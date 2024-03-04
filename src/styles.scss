@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&family=Pacifico&display=swap");
+
+.dark body {
+  background-color: #111111 !important;
+}
+
+.light body {
+  background-color: #fafafa !important;
+}
+
+input {
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-apperarance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  outline: none;
+  padding: 0px;
+  resize: none;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+.svg-illustration-1 svg {
+  height: 20rem !important;
+  width: 20rem !important;
+}
+
+.svg-illustration-2 svg {
+  height: 15rem !important;
+  width: 15rem !important;
+}
+
+.svg-illustration-3 svg {
+  height: 10rem !important;
+  width: 10rem !important;
+}
+
+.svg-illustration-4 svg {
+  height: 7.5rem !important;
+  width: 7.5rem !important;
+}
+
+.svg-illustration-5 svg {
+  height: 5rem !important;
+  width: 5rem !important;
+}
+
+.svg-illustration-6 svg {
+  height: 3.75rem !important;
+  width: 3.75rem !important;
+}
+
+.svg-illustration-7 svg {
+  height: 2.5rem !important;
+  width: 2.5rem !important;
+}
+
+.svg-illustration-8 svg {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+.svg-illustration-9 svg {
+  height: 1.75rem !important;
+  width: 1.75rem !important;
+}
+
+.svg-icon-1 svg {
+  height: 1.75rem !important;
+  width: 1.75rem !important;
+}
+
+.svg-icon-2 svg {
+  height: 1.5rem !important;
+  width: 1.5rem !important;
+}
+
+.svg-icon-3 svg {
+  height: 1.35rem !important;
+  width: 1.35rem !important;
+}
+
+.svg-icon-4 svg {
+  height: 1.25rem !important;
+  width: 1.25rem !important;
+}
+
+.svg-icon-5 svg {
+  height: 1.15rem !important;
+  width: 1.15rem !important;
+}
+
+.svg-icon-6 svg {
+  height: 1.075rem !important;
+  width: 1.075rem !important;
+}
+
+.svg-icon-7 svg {
+  height: 1rem !important;
+  width: 1rem !important;
+}
+
+.svg-icon-8 svg {
+  height: 0.95rem !important;
+  width: 0.95rem !important;
+}
+
+.svg-icon-9 svg {
+  height: 0.9rem !important;
+  width: 0.9rem !important;
+}
+
+.button-type-text:before {
+  transition: 0.15s ease-in-out;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, #7047eb 0%, #b447eb 95%);
+  border-radius: 10px;
+  position: absolute;
+  z-index: -1;
+  top: -2px;
+  left: -2px;
+  content: "";
+  opacity: 0;
+}
+
+.ngx-charts .gridline-path {
+  stroke: gray !important;
+  opacity: 0.5 !important;
+}
+
+.ngx-charts .line-highlight {
+  display: block !important;
+}
+
+.background-animate {
+  background-size: 400%;
+  -webkit-animation: bgAnimation 6s ease infinite;
+  -moz-animation: bgAnimation 6s ease infinite;
+  animation: bgAnimation 6s ease infinite;
+}
+
+.background-animate-fast {
+  background-size: 400%;
+  -webkit-animation: bgAnimation 3s ease infinite;
+  -moz-animation: bgAnimation 3s ease infinite;
+  animation: bgAnimation 3s ease infinite;
+}
+
+.background-animate-fast-hover:hover {
+  background-size: 400%;
+  -webkit-animation: bgAnimation 3s ease infinite;
+  -moz-animation: bgAnimation 3s ease infinite;
+  animation: bgAnimation 3s ease infinite;
+}
+
+.dark input[type="date"] {
+  color-scheme: dark;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+@keyframes bgAnimation {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
