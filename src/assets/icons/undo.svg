@@ -1,4 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9.25 4.75L4.75 9L9.25 13.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5.5 9H15.25C17.4591 9 19.25 10.7909 19.25 13V19.25"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>undo</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M3,10c.528-.461,2.7-2.251,6-2.251s5.472,1.79,6,2.251" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><polyline points="4.625 5.598 3 10 7.53 11.222" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>

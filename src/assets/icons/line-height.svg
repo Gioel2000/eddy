@@ -1,8 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.25 12L13.75 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 17.25L13.75 17.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 6.75L13.75 6.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M5.75 7.25L8 4.75L10.25 7.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M5.75 16.75L8 19.25L10.25 16.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 5.5V18.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>line height</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><polyline points="12.57 13.25 9.273 4.75 8.727 4.75 5.43 13.25" stroke-linecap="round" stroke-linejoin="round"></polyline><line x1="6.4" y1="10.75" x2="11.6" y2="10.75" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.75" y1="2.25" x2="15.25" y2="2.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="2.75" y1="15.75" x2="15.25" y2="15.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line></g></svg>

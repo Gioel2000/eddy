@@ -1,5 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <circle cx="7" cy="17" r="2.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9.25 17V6.75C9.25 5.64543 10.1454 4.75 11.25 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V14"/>
-  <circle cx="17" cy="14" r="2.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>music</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="5.75" y1="7.25" x2="5.75" y2="13.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="14.75" y1="5.75" x2="14.75" y2="12.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M6.586,3.361l7-1.167c.61-.102,1.164,.368,1.164,.986v2.57l-9,1.5v-2.903c0-.489,.353-.906,.836-.986Z" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="3.75" cy="13.75" r="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="12.75" cy="12.25" r="2" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>

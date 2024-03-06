@@ -1,4 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.75 7.75L12 11.25L15.25 7.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.75 12.75L12 16.25L15.25 12.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>double chevron down</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><polyline points="13.25 9.75 9 14 4.75 9.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></polyline><polyline points="13.25 5 9 9.25 4.75 5" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>

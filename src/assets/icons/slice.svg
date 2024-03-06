@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M13.25 10.75L7.75 16.25H13.25V13.75M13.25 10.75L19.25 4.75V8L13.25 13.75M13.25 10.75V13.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.75 19.25H6.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.75 19.25H10.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.75 19.25H14.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.75 19.25H18.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>slice</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M10.206,6.294L1.25,15.25c3.344,.25,6.125-.781,7.75-2.5l-.253-1.702,1.546-1.546" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><path d="M10.206,6.294l3.578-3.578c.621-.621,1.629-.621,2.25,0h0c.621,.621,.621,1.629,0,2.25l-3.578,3.578-2.25-2.25Z" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

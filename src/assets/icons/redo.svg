@@ -1,4 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M14.75 4.75L19.25 9L14.75 13.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M19.25 9H8.75C6.54086 9 4.75 10.7909 4.75 13V19.25"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>redo</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M15,10c-.528-.461-2.7-2.251-6-2.251s-5.472,1.79-6,2.251" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><polyline points="13.375 5.598 15 10 10.47 11.222" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>

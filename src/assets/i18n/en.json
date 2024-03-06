@@ -47,5 +47,10 @@
   "REVIEWS": "Reviews",
   "MENU": "Menu",
   "COMPETITORS": "Competitors",
-  "MY_PROFILE": "My profile"
+  "MY_PROFILE": "My profile",
+  "EXIT": "Exit",
+  "HELP": "Help",
+  "CHOOSE_RESTAURANT": "Choose Restaurant",
+  "CHOOSE_RESTAURANT_DESCRIPTION": "Choose the facility you wish to access",
+  "CHOOSE": "Choose"
 }

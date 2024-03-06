@@ -1,4 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.75 8L12 4.75L19.25 8V16L12 19.25L4.75 16V8Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="12" cy="12" r="2.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>nut</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><circle cx="9" cy="9" r="2.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></circle><path d="M11.473,2.75H6.527c-.713,0-1.372,.38-1.73,.997L2.332,7.997c-.36,.621-.36,1.386,0,2.007l2.465,4.25c.358,.617,1.017,.997,1.73,.997h4.946c.713,0,1.372-.38,1.73-.997l2.465-4.25c.36-.621,.36-1.386,0-2.007l-2.465-4.25c-.358-.617-1.017-.997-1.73-.997Z" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

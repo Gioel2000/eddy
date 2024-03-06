@@ -1,5 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.75 10.75H19.25V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V10.75Z"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6.75 10.5V4.75H17.25V10.5"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.75 16.25H16.25"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>print</title><g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper"><path d="M5.75,5.25V2.75c0-.552,.448-1,1-1h4.5c.552,0,1,.448,1,1v2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></path><path d="M5.75,13.25h-1.5c-1.105,0-2-.895-2-2V7.25c0-1.105,.895-2,2-2H13.75c1.105,0,2,.895,2,2v4c0,1.105-.895,2-2,2h-1.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.25,9.75v5.5c0,.552-.448,1-1,1H6.75c-.552,0-1-.448-1-1v-5.5h6.5Z" fill="none" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></path></g></svg>

@@ -1,5 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.25 19.25H6.94953C5.77004 19.25 4.88989 18.2103 5.49085 17.1954C6.36247 15.7234 8.23935 14 12.25 14"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M19.25 17L15.75 17"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>user minus</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><circle cx="9" cy="4.5" r="2.75" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M13.975,12.25c-1.139-1.512-2.935-2.5-4.975-2.5-2.551,0-4.739,1.53-5.709,3.72-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734,.422,0,.824-.023,1.217-.053" stroke-linecap="round" stroke-linejoin="round"></path><line x1="17.25" y1="14.75" x2="12.25" y2="14.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line></g></svg>

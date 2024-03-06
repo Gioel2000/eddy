@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m4.75 19.25 7.25-5V5m2 10.63 5.25 3.62m-10.5-11L12 4.75l3.25 3.5"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>merge</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M9.5,9l-2.172-3.752c-.358-.618-1.017-.998-1.731-.998H2.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><path d="M9.5,9l-2.172,3.752c-.358,.618-1.017,.998-1.731,.998H2.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><line x1="16.25" y1="9" x2="9.5" y2="9" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><polyline points="13.5 6.25 16.25 9 13.5 11.75" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>

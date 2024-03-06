@@ -1,12 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.25 16.25L8.5627 15.5C8.05157 14.7984 7.75 13.9344 7.75 13C7.75 10.6528 9.65279 8.75 12 8.75C14.3472 8.75 16.25 10.6528 16.25 13C16.25 13.9344 15.9484 14.7984 15.4373 15.5L14.75 16.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.74023 16.25H19.2502" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.74023 19.25H17.2502" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 4.75V5.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.625 5.72132L15.375 6.15433" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M18.2787 8.375L17.8457 8.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 12.0001H18.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M5.25 12H4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.15445 8.62501L5.72144 8.37501" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.625 6.15435L8.375 5.72133" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>sunrise</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="1.75" y1="15.25" x2="16.25" y2="15.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="1.75" y1="12.25" x2="3" y2="12.25" stroke-linecap="round" stroke-linejoin="round"></line><line x1="3.873" y1="7.124" x2="4.757" y2="8.007" stroke-linecap="round" stroke-linejoin="round"></line><line x1="14.126" y1="7.124" x2="13.243" y2="8.007" stroke-linecap="round" stroke-linejoin="round"></line><line x1="16.25" y1="12.25" x2="15" y2="12.25" stroke-linecap="round" stroke-linejoin="round"></line><polyline points="7 3.25 9 1.25 11 3.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></polyline><line x1="9" y1="1.25" x2="9" y2="6.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M5.5,12.25c0-1.933,1.567-3.5,3.5-3.5s3.5,1.567,3.5,3.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

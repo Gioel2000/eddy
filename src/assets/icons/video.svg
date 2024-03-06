@@ -1,4 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.75 6.75C4.75 5.64543 5.64543 4.75 6.75 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V6.75Z"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M15.25 12L9.75 8.75V15.25L15.25 12Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>video</title><g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper"><path d="M12.25,8l4.259-2.342c.333-.183,.741,.058,.741,.438v5.809c0,.38-.408,.621-.741,.438l-4.259-2.342" fill="none" stroke="inherit" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></path><rect x="1.75" y="3.75" width="10.5" height="10.5" rx="2" ry="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></rect><circle cx="4.75" cy="6.75" r=".75" data-color="color-2" data-stroke="none" stroke="none"></circle></g></svg>

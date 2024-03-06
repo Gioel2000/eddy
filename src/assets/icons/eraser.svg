@@ -1,4 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7 15.25L4.75 13L11.2929 6.45711C11.6834 6.06658 12.3166 6.06658 12.7071 6.45711L15.5429 9.29289C15.9334 9.68342 15.9334 10.3166 15.5429 10.7071L11 15.25H7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.75 19.25H19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>eraser</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="8.75" y1="15.25" x2="16" y2="15.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M5.876,15.25l-3.402-3.402c-.586-.586-.586-1.536,0-2.121L9.692,2.51c.586-.586,1.536-.586,2.121,0l3.712,3.712c.586,.586,.586,1.536,0,2.121l-6.906,6.907h-2.744Z" stroke-linecap="round" stroke-linejoin="round"></path><line x1="6.083" y1="6.118" x2="11.917" y2="11.952" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>

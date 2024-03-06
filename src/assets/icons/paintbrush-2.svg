@@ -1,6 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.7888 8.7361L16.1972 5.32785C16.9167 4.60838 18.0539 4.57914 18.7374 5.26256C19.4208 5.94598 19.3915 7.08325 18.6721 7.80273L15.2374 11.2374" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.6665 11.6665L12.3335 8.33347C11.5847 7.58468 10.382 7.54934 9.59053 8.25287L8.75 9L15 15.25L15.7471 14.4095C16.4507 13.618 16.4153 12.4153 15.6665 11.6665Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9 10L4.75 12.75L11.25 19.25L14 15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 15L8.25 13.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>paintbrush 2</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M6.956,9.044L13.534,2.466c.621-.621,1.629-.621,2.25,0h0c.621,.621,.621,1.629,0,2.25l-6.578,6.578" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.75,14.706c2.703,.812,4.896,.88,6.689-.955,1.081-1.085,1.081-2.845,0-3.931s-2.826-1.102-3.916,0c-1.773,1.792-.225,3.494-2.773,4.886Z" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path></g></svg>

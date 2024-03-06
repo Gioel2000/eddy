@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="7" cy="13" r="2.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="17" cy="13" r="2.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 11L14.75 5.75H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.5 13H12.25M12.25 13L8.75 7.74997H10.5H7M12.25 13H14.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.75 18.25H19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>bicycle</title><g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper"><circle cx="13.75" cy="11.75" r="3" fill="none" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></circle><circle cx="4.25" cy="11.75" r="3" fill="none" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></circle><path d="M7.761,6.57l-.074-.187c-.151-.382-.52-.633-.93-.633h-1.507" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.75,11.75L10.594,2.75h3.406c.69,0,1.25,.56,1.25,1.25h0c0,.69-.56,1.25-1.25,1.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.25" y1="11.75" x2="11.933" y2="6.57" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>

@@ -47,5 +47,10 @@
   "REVIEWS": "Recensioni",
   "MENU": "Menù",
   "COMPETITORS": "Concorrenza",
-  "MY_PROFILE": "Il mio profilo"
+  "MY_PROFILE": "Il mio profilo",
+  "HELP": "Aiuto",
+  "EXIT": "Esci",
+  "CHOOSE_RESTAURANT": "Scegli Ristorante",
+  "CHOOSE_RESTAURANT_DESCRIPTION": "Scegli la struttura a cui desideri accedere",
+  "CHOOSE": "Scegli"
 }

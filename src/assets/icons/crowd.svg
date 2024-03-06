@@ -1,11 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="7" cy="14" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="12" cy="14" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="9" cy="10" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="15" cy="10" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="12" cy="6" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="17" cy="14" r="1.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.5 19.25C9.5 19.25 9.25001 16.75 7 16.75C4.74999 16.75 4.75 19.25 4.75 19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.5 19.25C14.5 19.25 14.25 16.75 12 16.75C9.74999 16.75 9.5 19.25 9.5 19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 19.25C19.25 19.25 19.25 16.75 17 16.75C14.75 16.75 14.5 19.25 14.5 19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>crowd</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><circle cx="4.25" cy="10.5" r="1.75" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M.895,17c.43-1.446,1.77-2.5,3.355-2.5,1.585,0,2.925,1.054,3.355,2.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="2.5" r="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></circle><path d="M11.194,7.273c-.6-.484-1.363-.773-2.194-.773-.831,0-1.594,.289-2.194,.773" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><circle cx="13.75" cy="10.5" r="1.5" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.395,17c.43-1.446,1.77-2.5,3.355-2.5,1.585,0,2.925,1.054,3.355,2.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

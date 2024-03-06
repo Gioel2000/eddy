@@ -1,4 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.75V17.25H8.75"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17 17L6.75 6.75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>arrow down right</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="14.25" y1="14.25" x2="3.75" y2="3.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><polyline points="14.25 8.24 14.25 14.25 8.24 14.25" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>

@@ -1,4 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12 5.75V18.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M18.25 12L5.75 12"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>plus</title><g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper"><line x1="9" y1="3.25" x2="9" y2="14.75" fill="none" stroke-linecap="round" stroke-linejoin="round" data-color="color-2"></line><line x1="3.25" y1="9" x2="14.75" y2="9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>

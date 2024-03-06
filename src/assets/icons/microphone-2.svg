@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.25 8.5C19.25 10.5711 17.5711 12.25 15.5 12.25C13.4289 12.25 11.75 10.5711 11.75 8.5C11.75 6.42893 13.4289 4.75 15.5 4.75C17.5711 4.75 19.25 6.42893 19.25 8.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.59099 18.591C7.71231 19.4697 6.28769 19.4697 5.40901 18.591C4.53033 17.7123 4.53033 16.2877 5.40901 15.409" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.5 9.32031L5.50781 15.3125" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.6797 12.5L8.625 18.5547" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13 6L18 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>microphone 2</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M13.75,9.75v.75c0,2.623-2.127,4.75-4.75,4.75h0c-2.623,0-4.75-2.127-4.75-4.75v-.75" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.25,7.25v-1.25c0-2.623,2.127-4.75,4.75-4.75h0c2.623,0,4.75,2.127,4.75,4.75v1.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><line x1="9" y1="15.25" x2="9" y2="17" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.75" y1="9.75" x2="15.25" y2="9.75" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>

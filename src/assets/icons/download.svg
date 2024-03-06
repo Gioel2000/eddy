@@ -1,5 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.75 14.75V16.25C4.75 17.9069 6.09315 19.25 7.75 19.25H16.25C17.9069 19.25 19.25 17.9069 19.25 16.25V14.75"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12 14.25L12 4.75"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8.75 10.75L12 14.25L15.25 10.75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>download</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M11.75,6.25h.585c.965,0,1.792,.689,1.967,1.638l1.013,5.5c.226,1.229-.717,2.362-1.967,2.362H4.652c-1.25,0-2.193-1.133-1.967-2.362l1.013-5.5c.175-.949,1.002-1.638,1.967-1.638h.585" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="12 9.5 9 12.5 6 9.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></polyline><line x1="9" y1="12.5" x2="9" y2="1.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line></g></svg>

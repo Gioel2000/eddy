@@ -20,12 +20,14 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
     role="dialog"
     aria-modal="true"
   >
-    <div class="fixed inset-0 bg-zinc-500 bg-opacity-20 backdrop-blur-sm transition-opacity"></div>
+    <div
+      class="fixed inset-0 bg-zinc-300 dark:bg-zinc-900 bg-opacity-20 dark:bg-opacity-20 backdrop-blur-md transition-opacity"
+    ></div>
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-          class="relative transform overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-800 ring-[1px] ring-zinc-300 dark:ring-zinc-700/50 px-4 pb-4 pt-5 text-left shadow-lg shadow-black/20 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
+          class="relative transform overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
           [ngClass]="{
             'opacity-100 translate-y-0 sm:scale-100': dialog.isDialogVisible(),
             'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95': !dialog.isDialogVisible()
@@ -42,7 +44,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon-4 stroke-[1.6]" inlineSVG="close.svg"></span>
+              <span class="svg-icon-8" inlineSVG="xmark.svg"></span>
             </button>
           </div>
 
@@ -59,18 +61,13 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     (click)="dialog.optionSelected.set('theme')"
                   >
                     <span
-                      class="svg-icon-1 mb-2 stroke-[1.6]"
-                      [ngClass]="{
-                        'text-black dark:text-white': dialog.optionSelected() === 'theme'
-                      }"
-                      inlineSVG="paintbrush.svg"
+                      class="svg-icon-1 mb-2"
+                      [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }"
+                      inlineSVG="window-paintbrush.svg"
                     ></span>
-                    <span
-                      [ngClass]="{
-                        'text-black dark:text-white': dialog.optionSelected() === 'theme'
-                      }"
-                      >{{ 'THEME' | translate }}</span
-                    >
+                    <span [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }">{{
+                      'THEME' | translate
+                    }}</span>
                   </a>
 
                   <a
@@ -83,18 +80,13 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     (click)="dialog.optionSelected.set('language')"
                   >
                     <span
-                      class="svg-icon-1 mb-2 stroke-[1.6]"
-                      [ngClass]="{
-                        'text-black dark:text-white': dialog.optionSelected() === 'language'
-                      }"
+                      [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }"
+                      class="svg-icon-1 mb-2"
                       inlineSVG="language.svg"
                     ></span>
-                    <span
-                      [ngClass]="{
-                        'text-black dark:text-white': dialog.optionSelected() === 'language'
-                      }"
-                      >{{ 'LANGUAGE' | translate }}</span
-                    >
+                    <span [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }">{{
+                      'LANGUAGE' | translate
+                    }}</span>
                   </a>
                 </nav>
               </div>
@@ -103,7 +95,6 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 
           <div>
             @switch (dialog.optionSelected()) { @case ('theme') {
-
             <div class="py-4 sm:py-6">
               <div class="grid gap-5 sm:gap-10 grid-cols-3">
                 <div class="col-span-1 flex flex-col">
@@ -170,12 +161,19 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 <div
                   class="flex flex-row items-center col-span-1 rounded-lg p-3 cursor-pointer dark:cursor-pointer"
                   [ngClass]="{
-                    'bg-accent text-white': lang.selected,
+                    'bg-accent text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]': lang.selected,
                     'text-zinc-800 dark:text-zinc-200 bg-black/5 dark:bg-zinc-50/5': !lang.selected
                   }"
                   (click)="i18n.setLocale$.next(lang.locale)"
                 >
-                  <img src="assets/flags/{{ lang.flag }}.svg" class="rounded-full w-5 h-5 mr-3 shadow-sm" />
+                  <img
+                    src="assets/flags/{{ lang.flag }}.svg"
+                    class="rounded-full mr-3 w-6 h-6 border-2"
+                    [ngClass]="{
+                      'border-white/40': lang.selected,
+                      'border-transparent': !lang.selected
+                    }"
+                  />
                   <span class="font-medium text-sm">{{ lang.name }}</span>
                 </div>
                 }

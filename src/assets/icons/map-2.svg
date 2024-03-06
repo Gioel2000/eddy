@@ -1,16 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7 19.25C5.75736 19.25 4.75 18.2426 4.75 17C4.75 15.7574 5.75736 14.75 7 14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 19.25C18.2426 19.25 19.25 18.2426 19.25 17C19.25 15.7574 18.2426 14.75 17 14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.75 7C4.75 5.75736 5.75736 4.75 7 4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 7C19.25 5.75736 18.2426 4.75 17 4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.25 4.75V14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.75 4.75V14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.75 17V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.25 17V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 19.25H17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.5 6.75H16.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.75 16.25H9.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.75 16.25H12.25V14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.25 12.25V11.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.25 9.25V8.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>map 2</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="6.25" y1="2.792" x2="6.25" y2="13.292" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="11.75" y1="4.708" x2="11.75" y2="15.208" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M2.533,3.576l3.432-.763c.186-.041,.38-.029,.559,.036l4.952,1.801c.179,.065,.373,.078,.559,.036l2.998-.666c.625-.139,1.217,.336,1.217,.976V13.448c0,.469-.326,.875-.783,.976l-3.432,.763c-.186,.041-.38,.029-.559-.036l-4.952-1.801c-.179-.065-.373-.078-.559-.036l-2.998,.666c-.625,.139-1.217-.336-1.217-.976V4.552c0-.469,.326-.875,.783-.976Z" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

@@ -1,12 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_701:87)">
-<path d="M5.75 7.75C5.75 6.09315 7.09315 4.75 8.75 4.75H15.25C16.9069 4.75 18.25 6.09315 18.25 7.75V9.75H5.75V7.75Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M5.75 16.25C5.75 17.9069 7.09315 19.25 8.75 19.25H15.25C16.9069 19.25 18.25 17.9069 18.25 16.25V14.75H16L14 15.75L12 14.75H5.75V16.25Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.75 12.25H19.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_701:87">
-<rect width="24" height="24" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>burger</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M16.25,10.25c-1.065,0-1.352,1-2.417,1s-1.352-1-2.417-1-1.352,1-2.417,1-1.352-1-2.417-1-1.352,1-2.417,1-1.352-1-2.417-1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="7.25" cy="5" r=".75" fill="currentColor" stroke="none"></circle><circle cx="10.75" cy="5.5" r=".75" fill="currentColor" stroke="none"></circle><path d="M9,7.75h5.898c.324,0,.564-.299,.488-.615-.321-1.336-1.481-4.385-5.386-4.385h-1c-.304,0-.637,0-1,0-3.905,0-5.065,3.05-5.386,4.385-.076,.316,.163,.615,.488,.615h5.898Z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15,13.25s-.25,2-3.25,2c-.859,0-4.641,0-5.5,0-3,0-3.25-2-3.25-2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

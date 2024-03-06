@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.75 6.75V12M8.75 6.75H14.3655C17.2189 6.75 18.2926 10.4845 15.875 12M8.75 6.75H6.75M8.75 12V17.25M8.75 12H15.875M8.75 17.25H14.3655C17.2189 17.25 18.2926 13.5155 15.875 12M8.75 17.25H6.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.75 6.5V4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 6.5V4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 19.25V17.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.75 19.25V17.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>bitcoin</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="11.809" y1="2.445" x2="11.253" y2="4.654" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="8.89" y1="14.041" x2="8.334" y2="16.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M6.283,3.403l6.074,1.529c1.22,.307,1.96,1.545,1.653,2.765h0c-.307,1.22-1.545,1.96-2.765,1.653l-3.865-.973" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.38,8.376l4.418,1.112c1.372,.345,2.205,1.738,1.859,3.11h0c-.345,1.372-1.738,2.205-3.11,1.86l-6.626-1.668" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.048" y1="1.75" x2="5.573" y2="15.555" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line></g></svg>

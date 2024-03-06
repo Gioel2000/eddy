@@ -1,5 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.25 19.25H6.94953C5.77004 19.25 4.88989 18.2103 5.49085 17.1954C6.36247 15.7234 8.23935 14 12.25 14"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M14.75 17.75L16 19.25L19.25 14.75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>user check</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><circle cx="9" cy="4.5" r="2.75" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M13.314,11.5c-1.121-1.078-2.635-1.75-4.313-1.75-2.551,0-4.739,1.53-5.709,3.72-.365,.825,.087,1.774,.947,2.045,1.225,.386,2.846,.734,4.762,.734" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="11.25 14.75 12.859 16.25 16.256 11.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></polyline></g></svg>

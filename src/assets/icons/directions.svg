@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.75 19.25V4.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.25 19.25H9.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 4.75H18L19.25 6L18 7.25H12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 11.75H18L19.25 13L18 14.25H12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.75 11.25H6.2069L4.75 10L6.2069 8.75H11.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>directions</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="9" y1="1.75" x2="9" y2="16.25" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.75" y1="16.25" x2="12.25" y2="16.25" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9,6.25H3.884c-.247,0-.485-.091-.669-.257l-1.389-1.25c-.441-.397-.441-1.089,0-1.487l1.389-1.25c.184-.165,.422-.257,.669-.257h5.116" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.495,10.75h2.616c.247,0,.485-.091,.669-.257l1.389-1.25c.441-.397,.441-1.089,0-1.487l-1.389-1.25c-.184-.165-.422-.257-.669-.257h-2.616" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path></g></svg>

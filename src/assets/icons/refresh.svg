@@ -1,6 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.75L8.75 7L11.25 9.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.25L15.25 17L12.75 14.75"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9.75 7H13.25C16.5637 7 19.25 9.68629 19.25 13V13.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M14.25 17H10.75C7.43629 17 4.75 14.3137 4.75 11V10.75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>refresh</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><polyline points="5.25 9.5 3 7.25 .75 9.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></polyline><path d="M13.762,13.048c-1.146,1.347-2.855,2.202-4.762,2.202-3.452,0-6.25-2.798-6.25-6.25,0-.597,.084-1.175,.24-1.722" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></path><polyline points="12.75 8.5 15 10.75 17.25 8.5" stroke-linecap="round" stroke-linejoin="round"></polyline><path d="M4.238,4.952c1.146-1.347,2.855-2.202,4.762-2.202,3.452,0,6.25,2.798,6.25,6.25,0,.579-.079,1.14-.226,1.672" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>

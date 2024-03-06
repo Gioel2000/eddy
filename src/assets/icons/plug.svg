@@ -1,6 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M18.2813 12.0313L11.9687 5.7187C11.4896 5.23964 10.6829 5.36557 10.3726 5.96785L6.75 13L11 17.25L18.0321 13.6274C18.6344 13.3171 18.7604 12.5104 18.2813 12.0313Z"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.75 19.25L8.5 15.5"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.75 7.25L16.25 4.75"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M16.75 10.25L19.25 7.75"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>plug</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="6.25" y1="4.75" x2="6.25" y2="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="11.75" y1="4.75" x2="11.75" y2="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><path d="M3.75,4.75H14.25c.552,0,1,.448,1,1v1.75c0,3.449-2.801,6.25-6.25,6.25h0c-3.449,0-6.25-2.801-6.25-6.25v-1.75c0-.552,.448-1,1-1Z" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9" y1="16.25" x2="9" y2="13.75" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>

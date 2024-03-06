@@ -1,11 +1,1 @@
-<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <circle cx="12" cy="12" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12 2.75V4.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L16.0659 7.93416"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M21.25 12.0001L19.75 12.0001"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17.25 17.2501L16.0659 16.066"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12 19.75V21.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.9341 16.0659L6.74996 17.25"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.25 12.0001L2.75 12.0001"/>
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.93405 7.93423L6.74991 6.75003"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>sun</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><line x1="9" y1="1.25" x2="9" y2="2.25" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="14.48" y1="3.52" x2="13.773" y2="4.227" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="16.75" y1="9" x2="15.75" y2="9" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="14.48" y1="14.48" x2="13.773" y2="13.773" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="9" y1="16.75" x2="9" y2="15.75" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="3.52" y1="14.48" x2="4.227" y2="13.773" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="1.25" y1="9" x2="2.25" y2="9" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><line x1="3.52" y1="3.52" x2="4.227" y2="4.227" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"></line><circle cx="9" cy="9" r="4.25" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>

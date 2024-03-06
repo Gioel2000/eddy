@@ -1,6 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 16.5C9 16.5 9 19.25 12 19.25C15 19.25 15 16.5 15 16.5" stroke="#currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.25 12L19.25 16.25H4.75L6.75 12V10C6.75 7.10051 9.10051 4.75 12 4.75C12.8056 4.75 13.5688 4.93145 14.251 5.2557" stroke="#currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.75 8.75H14.25L12.75 11.25H14.25" stroke="#currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.75 4.75H19.25L16.75 8.25H19.25" stroke="#currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18"><title>bell snooze</title><g fill="none" stroke="currentColor" class="nc-icon-wrapper"><path d="M10.588,15.185c-.095-.117-.237-.185-.388-.185h-2.399c-.151,0-.293,.068-.388,.185-.095,.117-.132,.271-.101,.418,.173,.822,.868,1.397,1.689,1.397s1.516-.575,1.689-1.397c.031-.147-.006-.301-.101-.418h-.001Z" stroke="none" fill="currentColor"></path><path d="M10.37,1.975c-.437-.132-.89-.225-1.37-.225-2.623,0-4.75,2.127-4.75,4.75v4.75c0,1.105-.895,2-2,2H15.75c-1.105,0-2-.895-2-2v-3.5" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="12.75 1.25 16.25 1.25 12.75 5.25 16.25 5.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></polyline></g></svg>
