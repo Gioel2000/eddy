@@ -5,9 +5,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '@auth0/auth0-angular';
+import { UserModel, UserTO } from './interface/user';
 
-export interface UserState {
-  user: any;
+export interface UserStoreModel {
+  user: UserModel;
   state: 'loaded' | 'loading' | 'error';
 }
 
@@ -17,8 +18,8 @@ export class UserStore {
   http = inject(HttpClient);
   auth = inject(AuthService);
 
-  private store = signal<UserState>({
-    user: null,
+  private store = signal<UserStoreModel>({
+    user: {} as UserModel,
     state: 'loading',
   });
 
@@ -26,20 +27,20 @@ export class UserStore {
   status = computed(() => this.store().state);
 
   constructor() {
-    const next$: Observable<UserState> = combineLatest({
+    const next$: Observable<UserStoreModel> = combineLatest({
       systemUser: this.getUser(),
       authUser: this.auth.user$,
     }).pipe(
       untilDestroyed(this),
-      map(({ systemUser, authUser }) => ({ ...authUser, ...systemUser })),
-      map((user) => ({ user, state: 'loaded' as const })),
-      catchError(() => of({ user: null, state: 'error' as const }))
+      map(({ systemUser, authUser }) => ({ ...authUser, ...systemUser } as UserModel)),
+      map((user) => ({ user: user as UserModel, state: 'loaded' as const })),
+      catchError(() => of({ user: {} as UserModel, state: 'error' as const }))
     );
 
     connect(this.store).with(next$);
   }
 
   private getUser() {
-    return this.http.get(`${environment.apiUrl}/api/users/me`);
+    return this.http.get<UserTO>(`${environment.apiUrl}/api/users/me`);
   }
 }

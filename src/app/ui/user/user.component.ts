@@ -13,7 +13,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
 
 @UntilDestroy()
 @Component({
-  selector: 'panel-selector',
+  selector: 'user-panel',
   standalone: true,
   imports: [
     CommonModule,
@@ -74,8 +74,8 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                         class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[34rem]"
                       >
                         <div class="flex flex-col items-center justify-center w-full">
-                          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 relative -left-1"></span>
-                          <span class="text-md font-semibold text-zinc-500 mt-2">{{ 'NO_DATA' | translate }}</span>
+                          <span [inlineSVG]="'ufo.svg'" class="svg-icon-3 text-zinc-500 stroke-[1.4]"></span>
+                          <span class="text-base font-medium text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
                         </div>
                       </div>
                     </ng-template>
@@ -83,8 +83,11 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                     <ng-template #error>
                       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-96">
                         <div class="flex flex-col items-center justify-center w-full">
-                          <span [inlineSVG]="'triangle-warning.svg'" class="text-red-500"></span>
-                          <span class="text-sm text-red-500 mt-2">{{ 'ERROR' | translate }}</span>
+                          <span
+                            [inlineSVG]="'triangle-warning.svg'"
+                            class="svg-icon-3 text-red-500 stroke-[1.4]"
+                          ></span>
+                          <span class="text-base font-medium text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
                         </div>
                       </div>
                     </ng-template>
@@ -122,7 +125,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                                 >
                                   <span
                                     inlineSVG="rect-logout.svg"
-                                    class="text-zinc-700 dark:text-zinc-200 mt-[1px]"
+                                    class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"
                                   ></span>
                                   <span class="text-zinc-700 dark:text-zinc-200 ml-1.5 mr-1">{{
                                     'EXIT' | translate

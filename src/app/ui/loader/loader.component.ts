@@ -19,7 +19,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
         'rotate-[-315deg]': counter() === 8,
       }"
     >
-      <span class="text-zinc-700 dark:text-zinc-200 svg-icon-3" inlineSVG="loader.svg"></span>
+      <span class="text-zinc-700 dark:text-zinc-200 svg-icon-3 stroke-[1.8]" inlineSVG="loader.svg"></span>
     </div>
   `,
 })

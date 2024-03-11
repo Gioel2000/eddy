@@ -44,7 +44,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon-8" inlineSVG="xmark.svg"></span>
+              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
             </button>
           </div>
 
@@ -61,7 +61,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     (click)="dialog.optionSelected.set('theme')"
                   >
                     <span
-                      class="svg-icon-1 mb-2"
+                      class="svg-icon-1 mb-2 stroke-[1.6]"
                       [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }"
                       inlineSVG="window-paintbrush.svg"
                     ></span>
@@ -81,7 +81,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                   >
                     <span
                       [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }"
-                      class="svg-icon-1 mb-2"
+                      class="svg-icon-1 mb-2 stroke-[1.6]"
                       inlineSVG="language.svg"
                     ></span>
                     <span [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }">{{

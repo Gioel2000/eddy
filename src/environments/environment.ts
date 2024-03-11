@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'http://localhost:4000',
   auth: {
-    domain: 'auth.diamondshub.it',
-    clientId: '01WE7IMuTqYbKyXzHRbCnDVkyPH1ay1O',
-    serverUrl: 'http://localhost:3000',
+    domain: 'auth.eddy.restaurant',
+    clientId: 'nhudQrPIIuwn6iw0EnLan1sVR3FXhqWW',
+    serverUrl: 'http://localhost:4000',
   },
 };

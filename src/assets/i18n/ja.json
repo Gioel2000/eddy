@@ -36,5 +36,7 @@
   "TREND": "傾向",
   "VIEWS": "ビュー",
   "VIEW_PROFILE": "プロフィールを見る",
-  "WELCOME": "おかえりなさい {{name}}"
+  "WELCOME": "おかえりなさい {{name}}",
+  "GOOGLE": "グーグル",
+  "THE_FORK": "The Fork"
 }
