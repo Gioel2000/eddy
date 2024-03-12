@@ -23,7 +23,7 @@ import { RestaurantPanelService } from '../panel.service';
           <div
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
-            <div>
+            <div class="col-span-full sm:col-span-1">
               <div
                 class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
@@ -36,7 +36,7 @@ import { RestaurantPanelService } from '../panel.service';
                 }}</span>
               </div>
             </div>
-            <div class="col-span-2 flex flex-row items-center gap-x-2">
+            <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
@@ -63,7 +63,7 @@ import { RestaurantPanelService } from '../panel.service';
           <div
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
-            <div>
+            <div class="col-span-full sm:col-span-1">
               <div
                 class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
@@ -73,7 +73,7 @@ import { RestaurantPanelService } from '../panel.service';
                 }}</span>
               </div>
             </div>
-            <div class="col-span-2 flex flex-row items-center gap-x-2">
+            <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
@@ -100,7 +100,7 @@ import { RestaurantPanelService } from '../panel.service';
           <div
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
-            <div>
+            <div class="col-span-full sm:col-span-1">
               <div
                 class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
@@ -113,7 +113,7 @@ import { RestaurantPanelService } from '../panel.service';
                 }}</span>
               </div>
             </div>
-            <div class="col-span-2 flex flex-row items-center gap-x-2">
+            <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"

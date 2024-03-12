@@ -19,10 +19,10 @@ import { RestaurantPanelService } from '../panel.service';
         class="rounded-lg bg-yellow-50 dark:bg-yellow-500/10 ring-1 ring-inset ring-yellow-300 dark:ring-yellow-500 p-4 shadow-sm shadow-yellow-500/30"
       >
         <div class="flex">
-          <div class="flex-shrink-0 mt-0.5">
+          <div class="flex-shrink-0">
             <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-3 text-yellow-500 stroke-[1.4]"></span>
           </div>
-          <div class="ml-3">
+          <div class="ml-2">
             <h3 class="text-sm font-medium text-yellow-500">{{ 'IRREVERSIBLE' | translate }}</h3>
             <div class="my-1 text-xs text-yellow-500/80">
               <p>

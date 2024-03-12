@@ -42,14 +42,14 @@ import { UserService } from '../user/user.service';
     </ng-template>
 
     <div class="px-4 sm:px-6 lg:px-8 py-8">
-      <div class="sm:flex sm:items-center">
-        <div class="sm:flex-auto">
+      <div class="flex items-center">
+        <div class="flex-auto">
           <h1 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{ 'USERS' | translate }}</h1>
           <p class="mt-2 text-sm text-zinc-500">
             {{ 'USERS_DESCRIPTION' | translate }}
           </p>
         </div>
-        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <div class="mt-4 ml-16 flex-none">
           <a
             class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-inset ring-zinc-800 dark:ring-zinc-100 bg-zinc-800 dark:bg-zinc-100 hover:bg-zinc-700 dark:hover:bg-zinc-200 text-white dark:text-black shadow-[shadow:inset_0_1.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)]"
             (click)="openForm()"

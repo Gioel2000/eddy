@@ -81,5 +81,32 @@
   "ADMIN": "Administrator",
   "USER": "User",
   "IRREVERSIBLE": "The action is irreversible",
-  "DELETE_RESTAURANT_WARNING": "You will lose all data relating to your restaurant"
+  "DELETE_RESTAURANT_WARNING": "You will lose all data relating to your restaurant",
+  "GROUP": "Group",
+  "COUPLE": "Couple",
+  "BUSINESS": "Business",
+  "BRAND_REPUTATION": "Brand reputation",
+  "OUT_OF_5": "Out of 5",
+  "AVERAGE_OF_THE_PERIOD": "Average of the period",
+  "BRAND_REPUTATION_CURRENT": "Brand reputation current",
+  "BRAND_REPUTATION_OVER_TIME": "Brand reputation over time",
+  "COMPARISON": "Comparison",
+  "CUSTOMER_TYPES": "Customer types",
+  "DAYS": {
+    "FRIDAY": "Friday",
+    "MONDAY": "Monday",
+    "SATURDAY": "Saturnday",
+    "SUNDAY": "Sunday",
+    "THURSDAY": "Thursday",
+    "TUESDAY": "Tuesday",
+    "WEDNESDAY": "Wednesday"
+  },
+  "ENDDATE": "End date",
+  "FAMILY": "Family",
+  "NO_CHANNEL": "No channel",
+  "NUMBER_OF_REVIEWS": "Number of reviews",
+  "QUANTITY_REVIEWS": "Quantity of reviews",
+  "SOLO": "Solo",
+  "STARTDATE": "Start date",
+  "SUM_OF_PERIOD": "Sum of period"
 }

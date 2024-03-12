@@ -3,8 +3,8 @@ import { Component, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { RestaurantPanelService } from './panel.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { LoaderComponent } from '../loader/loader.component';
 import { MomentPipe } from '../../utils/pipes/moment.pipe';
@@ -18,6 +18,7 @@ import { UserStore } from '../../store/user/user.service';
 import { DialogService } from './dialog.service';
 import { UserDialogComponent } from './user/user.component';
 import { DeleteRestaurantPanelComponent } from './delete/delete.component';
+import { filter } from 'rxjs';
 
 export interface MarkerInterface {
   structure: any;
@@ -139,7 +140,22 @@ export interface MarkerInterface {
                         </div>
 
                         <div>
-                          <div class="block">
+                          <div class="sm:hidden px-4">
+                            <label for="tabs" class="sr-only">Select a tab</label>
+                            <select
+                              id="tabs"
+                              name="tabs"
+                              class="block w-full mb-1 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md border-zinc-300 dark:border-zinc-700 py-2 pl-3 pr-10 focus:border-accent focus:outline-none focus:ring-accent text-sm"
+                              [formControl]="pageOption"
+                            >
+                              <option value="overview">{{ 'OVERVIEW' | translate }}</option>
+                              <option value="edit">{{ 'INFORMATIONS' | translate }}</option>
+                              <option value="channels">{{ 'CHANNELS' | translate }}</option>
+                              <option value="users">{{ 'USERS' | translate }}</option>
+                              <option value="delete">{{ 'DELETE' | translate }}</option>
+                            </select>
+                          </div>
+                          <div class="hidden sm:block">
                             <div class="border-b border-zinc-200 dark:border-zinc-700 overflow-x-auto">
                               <nav class="-mb-px flex space-x-8 px-4 sm:px-6 lg:px-8" aria-label="Tabs">
                                 <a
@@ -252,4 +268,14 @@ export class RestaurantPanelComponent {
   dialog = inject(DialogService);
 
   page = signal('overview');
+  pageOption = new FormControl('overview');
+
+  constructor() {
+    this.pageOption.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        filter((page): page is string => !!page)
+      )
+      .subscribe((value) => this.page.set(value));
+  }
 }

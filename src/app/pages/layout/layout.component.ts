@@ -123,7 +123,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           <a
                             [routerLink]="['/' + route.path]"
                             class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
-                            routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-600/5 dark:bg-zinc-300/5"
+                            routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-500/5 dark:bg-zinc-300/5"
                             (click)="layout.closeMenu()"
                           >
                             <span class="mr-2 svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
@@ -176,8 +176,8 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                         (click)="structures.choose(restaurant._id)"
                                       >
                                         <div class="flex items-center">
-                                          <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-5 w-5 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
-                                          <span class="font-normal text-sm ml-3 block truncate">{{ restaurant.name }}</span>
+                                          <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
+                                          <span class="font-normal text-sm ml-2 block truncate">{{ restaurant.name }}</span>
                                         </div>
 
                                         @if (structures.selected(); as selected) {
@@ -322,7 +322,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                     <a
                       [routerLink]="['/' + route.path]"
                       class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
-                      routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-600/5 dark:bg-zinc-300/5"
+                      routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-500/5 dark:bg-zinc-300/5"
                     >
                       <span class="mr-2 svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
                       <span class="text-sm font-semibold">{{ routeData['i18n'] | translate }}</span>
@@ -376,8 +376,8 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                   (click)="structures.choose(restaurant._id)"
                                 >
                                   <div class="flex items-center">
-                                    <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-5 w-5 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
-                                    <span class="font-normal ml-3 block truncate">{{ restaurant.name }}</span>
+                                    <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
+                                    <span class="font-normal ml-2 block truncate">{{ restaurant.name }}</span>
                                   </div>
                                   @if (structures.selected(); as selected) {
                                     @if (selected._id === restaurant._id) {
