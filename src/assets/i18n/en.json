@@ -108,5 +108,11 @@
   "QUANTITY_REVIEWS": "Quantity of reviews",
   "SOLO": "Solo",
   "STARTDATE": "Start date",
-  "SUM_OF_PERIOD": "Sum of period"
+  "SUM_OF_PERIOD": "Sum of period",
+  "REVIEWS_LAST_DAY": "Reviews arrived in the last 24 hours",
+  "OVERVIEW_REVIEWS_LAST_DAY": "Overview of reviews received in the last 24 hours",
+  "TODAY": "Today",
+  "VERIFIED_TRAVELER": "Verified traveler",
+  "CUSTOMER_TYPE": "Customer type",
+  "COUNTRY": "Country"
 }

@@ -4,14 +4,16 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { map } from 'rxjs';
 import { DatePickerComponent } from '../../../ui/datepicker/datepicker.component';
 import { HomeService } from './home.service';
 import { ChannelsDropdownComponent } from './channels/channels.component';
-import moment from 'moment';
 import { BrandReputationComponent } from './widgets/brand-reputation.component';
 import { RatingsComponent } from './widgets/ratings.component';
 import { TypesComponent } from './widgets/types.component';
+import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
+import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
+import { map } from 'rxjs';
+import moment from 'moment';
 
 @Component({
   selector: 'home',
@@ -26,6 +28,8 @@ import { TypesComponent } from './widgets/types.component';
     BrandReputationComponent,
     RatingsComponent,
     TypesComponent,
+    ReviewsLastDayComponent,
+    OverviewReviewsLastDayComponent,
   ],
   template: `
     <div class="h-full lg:pr-10 lg:pl-3 px-4">
@@ -37,10 +41,7 @@ import { TypesComponent } from './widgets/types.component';
               role="list"
               class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
             >
-              <form
-                [formGroup]="formGroup"
-                class="grid gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6"
-              >
+              <form [formGroup]="formGroup" class="grid gap-4 sm:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
                 <date-picker
                   class="col-span-1"
                   [i18n]="'STARTDATE'"
@@ -70,6 +71,12 @@ import { TypesComponent } from './widgets/types.component';
             </div>
             <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
               <types-graph></types-graph>
+            </div>
+            <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
+              <reviews-last-day></reviews-last-day>
+            </div>
+            <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
+              <overview-reviews-last-day></overview-reviews-last-day>
             </div>
           </div>
         </div>

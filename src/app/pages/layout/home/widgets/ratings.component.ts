@@ -42,7 +42,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
-            {{ 'QUANTITY_REVIEWS' | translate }}
+            {{ 'REVIEWS' | translate }}
           </dt>
           <div class="flex flex-row items-center gap-x-3 w-full">
             <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">

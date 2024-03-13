@@ -108,5 +108,11 @@
   "GROUP": "Gruppo",
   "COUPLE": "Coppia",
   "BUSINESS": "Business",
-  "BRAND_REPUTATION": "Brand reputation"
+  "BRAND_REPUTATION": "Brand reputation",
+  "REVIEWS_LAST_DAY": "Recensioni arrivate nelle ultime 24 ore",
+  "OVERVIEW_REVIEWS_LAST_DAY": "Panoramica delle recensioni ricevute nelle ultime 24 ore",
+  "TODAY": "Oggi",
+  "VERIFIED_TRAVELER": "Viaggiatore verificato",
+  "CUSTOMER_TYPE": "Tipo di cliente",
+  "COUNTRY": "Paese"
 }

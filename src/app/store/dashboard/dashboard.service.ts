@@ -3,7 +3,7 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BrandReputationTO, RatingTO, StateModel, TypeTO } from './interfaces/dashboard';
+import { BrandReputationTO, RatingTO, ReviewTO, StateModel, TypeTO } from './interfaces/dashboard';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import {
@@ -32,6 +32,10 @@ export interface DashboardStoreModel {
     data: TypeTO[];
     state: StateModel;
   };
+  reviewsLastDay: {
+    data: ReviewTO[];
+    state: StateModel;
+  };
 }
 
 export const INIT_STATE: DashboardStoreModel = {
@@ -50,6 +54,10 @@ export const INIT_STATE: DashboardStoreModel = {
     data: [],
     state: 'loading',
   },
+  reviewsLastDay: {
+    data: [],
+    state: 'loading',
+  },
 };
 
 @UntilDestroy()
@@ -65,6 +73,7 @@ export class DashboardStore {
   brandReputation = computed(() => this.store().brandReputation);
   ratings = computed(() => this.store().ratings);
   typologies = computed(() => this.store().typologies);
+  reviewsLastDay = computed(() => this.store().reviewsLastDay);
 
   constructor() {
     const stream$ = combineLatest({
@@ -117,6 +126,33 @@ export class DashboardStore {
               })
             )
           ),
+          // debug /api/reviews/last/day/1
+          reviewsLastDay: this.http
+            .post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, {
+              rows: 10,
+              offset: 0,
+              channels: 'tripadvisor,thefork,google',
+            })
+            .pipe(
+              // map((review) => review.slice(0, 2)),
+              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+              catchError(() =>
+                of({
+                  data: [] as any,
+                  state: 'error' as const,
+                })
+              )
+            ),
+          // debug
+          // this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/day/1`).pipe(
+          //   map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+          //   catchError(() =>
+          //     of({
+          //       data: [] as any,
+          //       state: 'error' as const,
+          //     })
+          //   )
+          // ),
         })
       )
     );
@@ -128,6 +164,7 @@ export class DashboardStore {
         brandReputation: { ...state.brandReputation, state: 'loading' },
         ratings: { ...state.ratings, state: 'loading' },
         typologies: { ...state.typologies, state: 'loading' },
+        reviewsLastDay: { ...state.reviewsLastDay, state: 'loading' },
       }));
 
     effect(() => {

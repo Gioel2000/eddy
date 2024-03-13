@@ -30,7 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         (click)="dropdown.toggle()"
       >
         <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-24 capitalize">{{ checkedChannels() || ('NO_CHANNEL' | translate) }}</span>
+          <span class="truncate max-w-full sm:max-w-24 capitalize">{{
+            checkedChannels() || ('NO_CHANNEL' | translate)
+          }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
             class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"

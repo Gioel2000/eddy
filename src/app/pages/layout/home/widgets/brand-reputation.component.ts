@@ -57,9 +57,7 @@ import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.p
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
             {{ store().data.average | numb : translate.currentLang }}
-            <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600">
-              {{ 'OUT_OF_5' | translate | lowercase }}
-            </span>
+            <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
             class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
