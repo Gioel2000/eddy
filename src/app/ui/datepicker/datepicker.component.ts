@@ -61,7 +61,7 @@ export interface CalendarModel {
           (click)="toggle()"
         >
           <div class="flex flex-row items-center justify-between">
-            <span>{{ date() | moment : translate.currentLang : 'DD MMM YYYY' }}</span>
+            <span>{{ date() ? (date() | moment : translate.currentLang : 'DD MMM YYYY') : ('VOID' | translate) }}</span>
             <span [inlineSVG]="'calendar.svg'" class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"></span>
           </div>
         </button>
@@ -166,7 +166,7 @@ export interface CalendarModel {
 })
 export class DatePickerComponent {
   translate = inject(TranslateService);
-  date = input.required<Date>();
+  date = input<Date>();
   i18n = input.required<string>();
   limitStart = input.required<Date>();
   limitEnd = input.required<Date>();
@@ -188,7 +188,7 @@ export class DatePickerComponent {
     toObservable(this.date)
       .pipe(untilDestroyed(this))
       .subscribe((date) => {
-        this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
+        date && this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
       });
   }
 

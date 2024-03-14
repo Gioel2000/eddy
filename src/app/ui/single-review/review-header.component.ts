@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import moment from 'moment';
-import { ReviewTO } from '../../store/dashboard/interfaces/dashboard';
+import { ReviewTO } from '../../store/reviews/interfaces/reviews';
 
 @Component({
   selector: 'header-review',
@@ -14,26 +14,23 @@ import { ReviewTO } from '../../store/dashboard/interfaces/dashboard';
       <div class="flex-none py-5">
         <div
           class="h-10 w-10 rounded-full"
-          class="bg-blue-500 flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/80"
+          class="bg-accent flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
         >
           {{ review().name.charAt(0).toUpperCase() }}
         </div>
       </div>
       <div class="flex-1 py-5">
         <div class="flex flex-row items-center mt-1">
-          <h3 class="font-medium text-zinc-900 dark:text-zinc-100">
+          <h3 class="font-semibold text-base text-zinc-900 dark:text-zinc-100">
             {{ nameFormatter(review().name) }}
           </h3>
           <span
             *ngIf="review().name === 'Verified traveler'"
-            [inlineSVG]="'./assets/icons/bold/Check badge.svg'"
-            class="svg-icon svg-icon-4 text-zinc-800 dark:text-zinc-200"
+            [inlineSVG]="'badge-check.svg'"
+            class="svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
           ></span>
         </div>
-
-        <p>
-          <time class="capitalize">{{ formatDate(review().date) }}</time>
-        </p>
+        <p class="font-medium text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>
       </div>
     </div>
   `,
@@ -60,7 +57,7 @@ export class HeaderReviewComponent {
 
     return moment(date)
       .locale(currentLang)
-      .format('ddd DD MMM YYYY')
-      .replace(moment(new Date()).locale(currentLang).format('ddd DD MMM YYYY'), `${todayLabel} `);
+      .format('DD MMM YYYY')
+      .replace(moment(new Date()).locale(currentLang).format('DD MMM YYYY'), `${todayLabel} `);
   }
 }

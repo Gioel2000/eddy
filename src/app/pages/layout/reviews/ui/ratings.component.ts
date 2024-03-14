@@ -5,6 +5,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
+import { ReviewsStore } from '../../../../store/reviews/reviews.service';
 
 @Component({
   selector: 'ratings-graph',
@@ -37,35 +38,116 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col py-3">
-      @switch (store().state) { @case ('loaded') {
+    <div #container class="flex flex-col sticky top-0 pt-8">
+      @switch (summaryState()) { @case ('loaded') {
       <div class="lg:col-span-4">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+        <div class="flex flex-col items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
             {{ 'REVIEWS' | translate }}
           </dt>
-          <div class="flex flex-row items-center gap-x-3 w-full">
-            <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-              {{ totalReviews() | numb : translate.currentLang }}
-            </dd>
-            <dd
-              class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
-              [ngClass]="{
-                'text-green-600 bg-green-100 dark:bg-green-900': isGrowthPercentagePositive(),
-                'text-zinc-500 bg-zinc-100 dark:bg-zinc-900': !isGrowthPercentagePositive(),
-              }"
-            >
-              <span
-                [inlineSVG]="isGrowthPercentagePositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
-                class="svg-icon-7 stroke-2"
-              ></span>
-              <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
-            </dd>
+          <div class="flex flex-row items-center gap-x-3">
+            <div class="flex flex-row items-center gap-x-3 w-full">
+              <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
+                {{ totalRating() | numb : translate.currentLang }}
+              </dd>
+            </div>
+            <div class="flex flex-col items-start gap-y-1">
+              <div class="flex flex-row items-center mr-4">
+                <div class="flex items-center">
+                  <svg
+                    [ngClass]="{
+                      'text-yellow-400': totalRating() >= 1,
+                      'text-zinc-200 dark:text-zinc-700': totalRating() < 1
+                    }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 18 18"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                  <svg
+                    [ngClass]="{
+                      'text-yellow-400': totalRating() >= 2,
+                      'text-zinc-200 dark:text-zinc-700': totalRating() < 2
+                    }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 18 18"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                  <svg
+                    [ngClass]="{
+                      'text-yellow-400': totalRating() >= 3,
+                      'text-zinc-200 dark:text-zinc-700': totalRating() < 3
+                    }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 18 18"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                  <svg
+                    [ngClass]="{
+                      'text-yellow-400': totalRating() >= 4,
+                      'text-zinc-200 dark:text-zinc-700': totalRating() < 4
+                    }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 18 18"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                  <svg
+                    [ngClass]="{
+                      'text-yellow-400': totalRating() >= 5,
+                      'text-zinc-200 dark:text-zinc-700': totalRating() < 5
+                    }"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 18 18"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+                </div>
+                <p class="sr-only">4 out of 5 stars</p>
+              </div>
+              <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+                {{ totalReviews() | numb : translate.currentLang }}
+                {{ 'REVIEWS' | translate }}
+              </p>
+            </div>
           </div>
-          <dt class="text-sm font-medium leading-6 text-zinc-500">
-            vs. {{ totalReviewsReceived() | numb : translate.currentLang }}
-            {{ 'SUM_OF_PERIOD' | translate | lowercase }}
-          </dt>
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
@@ -91,11 +173,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     @if (getStarData(5).percentage; as percentage) {
                     <div
                       [style.width.%]="percentage"
-                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
-                    ></div>
-                    } @if (getStarData(5).percentageLessGrow; as percentageLessGrow) {
-                    <div
-                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
                     }
@@ -108,15 +185,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
                   {{ getStarData(5).percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
-                  [ngClass]="{
-                    'text-green-500': getStarData(5).received > 0,
-                    'text-zinc-500 dark:text-zinc-100': getStarData(5).received === 0
-                  }"
-                >
-                  +{{ getStarData(5).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
@@ -142,11 +210,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     @if (getStarData(4).percentage; as percentage) {
                     <div
                       [style.width.%]="percentage"
-                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
-                    ></div>
-                    } @if (getStarData(4).percentageLessGrow; as percentageLessGrow) {
-                    <div
-                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
                     }
@@ -159,15 +222,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
                   {{ getStarData(4).percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
-                  [ngClass]="{
-                    'text-green-500': getStarData(4).received > 0,
-                    'text-zinc-500 dark:text-zinc-100': getStarData(4).received === 0
-                  }"
-                >
-                  +{{ getStarData(4).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
@@ -193,11 +247,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     @if (getStarData(3).percentage; as percentage) {
                     <div
                       [style.width.%]="percentage"
-                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
-                    ></div>
-                    } @if (getStarData(3).percentageLessGrow; as percentageLessGrow) {
-                    <div
-                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
                     }
@@ -210,15 +259,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
                   {{ getStarData(3).percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
-                  [ngClass]="{
-                    'text-green-500': getStarData(3).received > 0,
-                    'text-zinc-500 dark:text-zinc-100': getStarData(3).received === 0
-                  }"
-                >
-                  +{{ getStarData(3).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
@@ -245,11 +285,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     @if (getStarData(2).percentage; as percentage) {
                     <div
                       [style.width.%]="percentage"
-                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
-                    ></div>
-                    } @if (getStarData(2).percentageLessGrow; as percentageLessGrow) {
-                    <div
-                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
                     }
@@ -262,15 +297,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
                   {{ getStarData(2).percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
-                  [ngClass]="{
-                    'text-green-500': getStarData(2).received > 0,
-                    'text-zinc-500 dark:text-zinc-100': getStarData(2).received === 0
-                  }"
-                >
-                  +{{ getStarData(2).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
@@ -296,11 +322,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     @if (getStarData(1).percentage; as percentage) {
                     <div
                       [style.width.%]="percentage"
-                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
-                    ></div>
-                    } @if (getStarData(1).percentageLessGrow; as percentageLessGrow) {
-                    <div
-                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
                     }
@@ -313,15 +334,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
                   {{ getStarData(1).percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
-                  [ngClass]="{
-                    'text-green-500': getStarData(1).received > 0,
-                    'text-zinc-500 dark:text-zinc-100': getStarData(1).received === 0
-                  }"
-                >
-                  +{{ getStarData(1).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
@@ -339,34 +351,21 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
   `,
 })
 export class RatingsComponent {
-  store = inject(DashboardStore).ratings;
+  summary = inject(ReviewsStore).summary;
+  summaryState = inject(ReviewsStore).summaryState;
   translate = inject(TranslateService);
 
-  totalReviews = computed(() => this.store().data.reduce((acc, curr) => acc + curr.totalCount, 0));
-  totalReviewsReceived = computed(() => this.store().data.reduce((acc, curr) => acc + curr.filteredCount, 0));
-
-  growthPercentage = computed(() => {
-    const now = this.totalReviews();
-    const received = this.totalReviewsReceived();
-    return (received / now) * 100;
-  });
-
-  isGrowthPercentagePositive = computed(() => this.growthPercentage() > 0);
+  totalReviews = computed(() => this.summary().count);
+  totalRating = computed(() => this.summary().rating);
 
   getStarData(rating: number) {
-    const row = this.store().data.find((item) => item.rating === rating);
-    const count = row?.totalCount || 0;
-    const received = row?.filteredCount || 0;
+    const row = this.summary().ratingGrouped.find((item) => item.rating === rating);
+    const count = row?.count || 0;
     const percentage = (count / this.totalReviews()) * 100;
-    const growth = (received / this.totalReviews()) * 100;
-    const percentageLessGrow = percentage - growth;
 
     return {
       count,
       percentage,
-      received,
-      growth,
-      percentageLessGrow,
     };
   }
 }

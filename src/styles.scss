@@ -184,3 +184,19 @@ input::-webkit-inner-spin-button {
     background-position: 100% 50%;
   }
 }
+
+
+.sentiment-positive {
+	background-color: #22c55e !important;
+	color: #000;
+}
+
+.sentiment-negative {
+	background-color: #ef4444 !important;
+	color: #000;
+}
+
+.sentiment-neutral {
+	background-color: #facc15 !important;
+	color: #000;
+}

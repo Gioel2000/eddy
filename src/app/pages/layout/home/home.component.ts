@@ -41,12 +41,12 @@ import moment from 'moment';
               role="list"
               class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
             >
-              <form [formGroup]="formGroup" class="grid gap-4 sm:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
+              <div class="grid gap-4 sm:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
                 <date-picker
                   class="col-span-1"
                   [i18n]="'STARTDATE'"
                   [date]="startdate()"
-                  [limitStart]="fourMonthsAgo"
+                  [limitStart]="limitStart"
                   [limitEnd]="enddate()"
                   (onDateSet)="setStartDate($event)"
                 ></date-picker>
@@ -55,11 +55,11 @@ import moment from 'moment';
                   [i18n]="'ENDDATE'"
                   [date]="enddate()"
                   [limitStart]="startdate()"
-                  [limitEnd]="fourMonthsLater"
+                  [limitEnd]="now"
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
-              </form>
+              </div>
             </ul>
           </nav>
           <brand-reputation-graph></brand-reputation-graph>
@@ -87,28 +87,11 @@ import moment from 'moment';
 export class HomeComponent {
   home = inject(HomeService);
 
-  fourMonthsAgo = moment().subtract(3, 'months').toDate();
-  fourMonthsLater = moment().add(3, 'months').toDate();
-
-  formGroup = new FormGroup({
-    startdate: new FormControl(moment().subtract(2, 'weeks').toDate()),
-    enddate: new FormControl(moment().add(2, 'weeks').toDate()),
-  });
+  limitStart = moment().subtract(1, 'year').toDate();
+  now = moment().toDate();
 
   startdate = computed(() => this.home.filter().startdate);
   enddate = computed(() => this.home.filter().enddate);
-
-  errorStartDate = toSignal(
-    this.formGroup.valueChanges.pipe(
-      map(() => Boolean(this.formGroup.get('startdate')?.invalid || this.formGroup.errors))
-    )
-  );
-
-  errorEndDate = toSignal(
-    this.formGroup.valueChanges.pipe(
-      map(() => Boolean(this.formGroup.get('enddate')?.invalid || this.formGroup.errors))
-    )
-  );
 
   setStartDate(date: Date) {
     this.home.filter.set({ ...this.home.filter(), startdate: date });

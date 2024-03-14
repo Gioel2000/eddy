@@ -32,7 +32,7 @@ export interface DashboardStoreModel {
     data: TypeTO[];
     state: StateModel;
   };
-  reviewsLastDay: {
+  recentReviews: {
     data: ReviewTO[];
     state: StateModel;
   };
@@ -54,7 +54,7 @@ export const INIT_STATE: DashboardStoreModel = {
     data: [],
     state: 'loading',
   },
-  reviewsLastDay: {
+  recentReviews: {
     data: [],
     state: 'loading',
   },
@@ -73,7 +73,7 @@ export class DashboardStore {
   brandReputation = computed(() => this.store().brandReputation);
   ratings = computed(() => this.store().ratings);
   typologies = computed(() => this.store().typologies);
-  reviewsLastDay = computed(() => this.store().reviewsLastDay);
+  recentReviews = computed(() => this.store().recentReviews);
 
   constructor() {
     const stream$ = combineLatest({
@@ -126,8 +126,8 @@ export class DashboardStore {
               })
             )
           ),
-          // debug /api/reviews/last/day/1
-          reviewsLastDay: this.http
+          // degub
+          recentReviews: this.http
             .post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, {
               rows: 10,
               offset: 0,
@@ -143,8 +143,7 @@ export class DashboardStore {
                 })
               )
             ),
-          // debug
-          // this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/day/1`).pipe(
+          //   this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
           //   map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
           //   catchError(() =>
           //     of({
@@ -164,11 +163,7 @@ export class DashboardStore {
         brandReputation: { ...state.brandReputation, state: 'loading' },
         ratings: { ...state.ratings, state: 'loading' },
         typologies: { ...state.typologies, state: 'loading' },
-        reviewsLastDay: { ...state.reviewsLastDay, state: 'loading' },
+        recentReviews: { ...state.recentReviews, state: 'loading' },
       }));
-
-    effect(() => {
-      console.log('store', this.store());
-    });
   }
 }

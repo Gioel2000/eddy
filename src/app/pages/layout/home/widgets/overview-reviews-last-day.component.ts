@@ -42,7 +42,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
-            {{ 'OVERVIEW_REVIEWS_LAST_DAY' | translate }}
+            {{ 'OVERVIEW_RECENT_REVIEWS' | translate }}
           </dt>
         </div>
 
@@ -1107,7 +1107,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
   `,
 })
 export class OverviewReviewsLastDayComponent {
-  store = inject(DashboardStore).reviewsLastDay;
+  store = inject(DashboardStore).recentReviews;
   translate = inject(TranslateService);
 
   totalReviews = computed(() => this.store().data.length);
@@ -1135,7 +1135,6 @@ export class OverviewReviewsLastDayComponent {
 
   thefork = computed(() => {
     const reviews = this.store().data.filter((review) => review.channel.source.toLowerCase() === 'thefork');
-    console.log(reviews);
 
     return {
       totalReviews: reviews.length,

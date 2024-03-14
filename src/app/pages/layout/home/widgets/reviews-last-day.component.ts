@@ -39,10 +39,10 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 
     <div class="flex flex-col">
       @switch (store().state) { @case ('loaded') {
-      <div class="mt-16 lg:col-span-6 lg:mt-0">
+      <div class="lg:col-span-6 lg:mt-0">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 mb-8">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
-            {{ 'REVIEWS_LAST_DAY' | translate }}
+            {{ 'RECENT_REVIEWS' | translate }}
           </dt>
         </div>
 
@@ -207,7 +207,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
               </div>
 
               <div class="mt-8 grid grid-cols-2 gap-2">
-                @if (review.clientsType[0] | lowercase; as clientType) {
+                @if (review.clientsType) { @if (review.clientsType[0] | lowercase; as clientType) {
                 <div class="flex flex-col gap-y-3">
                   <div class="flex flex-row items-center justify-center w-fit gap-x-2">
                     <span
@@ -229,7 +229,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     }}</span>
                   </div>
                 </div>
-                } @if (review.country; as country) {
+                }} @if (review.country; as country) {
                 <div class="flex flex-col gap-y-2">
                   <span class="text-sm text-zinc-400 dark:text-zinc-600">
                     <div class="flex flex-row items-center justify-center w-fit gap-x-2">
@@ -251,7 +251,6 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
           </div>
         </div>
       </div>
-
       } @case ('error') {
       <ng-container [ngTemplateOutlet]="error"></ng-container>
       } @case ('empty') {
@@ -263,7 +262,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
   `,
 })
 export class ReviewsLastDayComponent {
-  store = inject(DashboardStore).reviewsLastDay;
+  store = inject(DashboardStore).recentReviews;
   translate = inject(TranslateService);
 
   totalReviews = computed(() => this.store().data.length);
