@@ -94,8 +94,8 @@
     "WEDNESDAY": "Mercoledì"
   },
   "NO_CHANNEL": "Nessun canale",
-  "BRAND_REPUTATION_OVER_TIME": "Brand Reputation nel tempo",
-  "BRAND_REPUTATION_CURRENT": "Brand Reputation attuale",
+  "BRAND_REPUTATION_OVER_TIME": "Reputazione nel tempo",
+  "BRAND_REPUTATION_CURRENT": "Reputazione corrente",
   "COMPARISON": "",
   "AVERAGE_OF_THE_PERIOD": "Media del periodo",
   "QUANTITY_REVIEWS": "Quantità di recensioni",
@@ -108,7 +108,7 @@
   "GROUP": "Gruppo",
   "COUPLE": "Coppia",
   "BUSINESS": "Business",
-  "BRAND_REPUTATION": "Brand reputation",
+  "BRAND_REPUTATION": "Reputazione",
   "REVIEWS_LAST_DAY": "Recensioni arrivate nelle ultime 24 ore",
   "OVERVIEW_REVIEWS_LAST_DAY": "Panoramica delle recensioni ricevute nelle ultime 24 ore",
   "TODAY": "Oggi",
@@ -238,5 +238,6 @@
   "MARK_AS_REPLIED_DESCRIPTION": "Ricorda le recensioni a cui hai risposto",
   "CHOOSE_LANGUAGE": "Scegli la lingua",
   "COPY": "Copia",
-  "PAGE": "Pagina"
+  "PAGE": "Pagina",
+  "SEND": "Invia"
 }

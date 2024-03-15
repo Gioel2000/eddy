@@ -77,13 +77,20 @@ export interface RestaurantSettedTO {
   telephone: string;
   website: string;
   image: string;
-  channels: Channels[];
+  channels: {
+    _id: string;
+    source: string;
+    url: string;
+  }[];
   openaiLimit: number;
   __v: number;
+  competitors: string[];
 }
 
 export type AddRestaurant = Omit<RestaurantTOModel, 'openaiLimit'> &
-  Omit<RestaurantTOModel, '_id'> & { googleMapsLink: string } & { image: string };
+  Omit<RestaurantTOModel, '_id'> & { googleMapsLink: string } & { image: string } & { latitude: number } & {
+    longitude: number;
+  };
 
 export type EditRestaurant = {
   id: string;

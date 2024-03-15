@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, WritableSignal, inject, input } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject, filter, map } from 'rxjs';
-import LanguageDetect from 'languagedetect';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MISSING_TRANSLATION } from '../../utils/constants/missingTranslation';
 import { CommonModule } from '@angular/common';
@@ -14,6 +13,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
 import { TranslateDropdownComponent } from './components/types/translate.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { ReviewsStore } from '../../store/reviews/reviews.service';
+import LanguageDetect from 'languagedetect';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +30,10 @@ import { ReviewsStore } from '../../store/reviews/reviews.service';
     LoaderComponent,
   ],
   template: `
-    <div class="z-100 mb-12 sm:ml-16 pb-8 border-b border-zinc-200 dark:border-zinc-800">
+    <div
+      class="z-100 mb-12 sm:ml-16 pb-8"
+      [ngClass]="{ 'border-b border-zinc-200 dark:border-zinc-800': showBorder() }"
+    >
       <ng-container *ngIf="reviewContent$ | async as reviewContent">
         <div class="grid grid-cols-6 my-8">
           <div class="flex flex-row items-center col-span-full sm:col-span-4 mb-5 sm:mb-0">
@@ -302,7 +305,7 @@ import { ReviewsStore } from '../../store/reviews/reviews.service';
                 name="comment"
                 id="comment"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-xl border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent sm:text-sm sm:leading-6 focus:outline-none"
+                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent sm:text-sm sm:leading-6 focus:outline-none"
               ></textarea>
             </div>
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
@@ -312,8 +315,8 @@ import { ReviewsStore } from '../../store/reviews/reviews.service';
                   [disabled]="commentControl.invalid"
                   (click)="onCopyAndReply()"
                 >
-                  <span [inlineSVG]="'duplicate-2.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
-                  <span>{{ 'COPY' | translate | uppercase }}</span>
+                  <span [inlineSVG]="'paper-plane-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
+                  <span>{{ 'SEND' | translate | uppercase }}</span>
                 </button>
               </div>
               <div *ngIf="(alreadyReplied$ | async) === true">
@@ -329,7 +332,7 @@ import { ReviewsStore } from '../../store/reviews/reviews.service';
                 <div class="flex h-5 items-center">
                   <input
                     type="checkbox"
-                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent bg-zinc-200 dark:bg-zinc-600 border-none text-accent-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent bg-zinc-200/50 dark:bg-zinc-600 border-none text-accent-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
                     [checked]="alreadyReplied$ | async"
                     (change)="alreadyReplied()"
                   />
@@ -371,6 +374,7 @@ export class BodyReviewComponent {
   }>({});
 
   review = input.required<ReviewTO>();
+  showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
 
   constructor(
@@ -733,15 +737,12 @@ export class BodyReviewComponent {
 
   private getLanguageFromReviewContent() {
     try {
-      const ZERO = 0;
-      const EMPTY = ' ';
       const lngDetector = new LanguageDetect();
-      const title = this.review().title;
-      const { text } = this.review();
-      const reviewContent = `${title || EMPTY} ${text || EMPTY}`;
+      const { title, text } = this.review();
+      const reviewContent = `${title || ''} ${text || ''}`;
       const lang = lngDetector.detect(reviewContent)[0][0].toLowerCase();
 
-      return reviewContent.trim().length > ZERO ? lang : null;
+      return reviewContent.trim().length > 0 ? lang : null;
     } catch {
       return null;
     }

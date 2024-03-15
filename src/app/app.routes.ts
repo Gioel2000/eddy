@@ -4,6 +4,7 @@ import { CookieGuard } from './utils/guards/cookie.guard';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HomeComponent } from './pages/layout/home/home.component';
 import { ReviewsComponent } from './pages/layout/reviews/reviews.component';
+import { CompetitorsComponent } from './pages/layout/competitors/competitors.component';
 
 export const routes: Routes = [
   {
@@ -37,7 +38,7 @@ export const routes: Routes = [
       },
       {
         path: 'competitors',
-        component: HomeComponent,
+        component: CompetitorsComponent,
         data: { show: true, i18n: 'COMPETITORS', icon: 'shield.svg' },
         canActivate: [CookieGuard],
       },

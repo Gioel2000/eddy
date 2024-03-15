@@ -255,37 +255,47 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                               </div>
                             </div>
                           </div>
-                          @if (structures.selected(); as structureSelected) {
-                          <button
-                            type="button"
-                            class="flex items-center p-2 w-full hover:bg-zinc-600/5 dark:hover:bg-zinc-300/5 rounded-lg"
-                            id="user-menu-button"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            (click)="layout.toggleDropdownSm()"
-                            (clickOutside)="isSearchBlur() && layout.closeDropdownSm()"
-                          >
-                            <div class="flex flex-row items-center justify-between w-full">
-                              <div class="flex flex-row items-center">
-                                <div
-                                  class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
-                                >
-                                  {{ structureSelected.name | substring : 0 : 1}}
-                                </div>
-                                <span class="flex flex-col items-start ml-3">
+                          @switch (structures.selectedState()) {
+                            @case ('loaded') {
+                              @if (structures.selected(); as structureSelected) {
+                              <button
+                                type="button"
+                                class="flex items-center p-2 w-full hover:bg-zinc-600/5 dark:hover:bg-zinc-300/5 rounded-lg"
+                                id="user-menu-button"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                (click)="layout.toggleDropdownSm()"
+                                (clickOutside)="isSearchBlur() && layout.closeDropdownSm()"
+                              >
+                                <div class="flex flex-row items-center justify-between w-full">
+                                  <div class="flex flex-row items-center">
+                                    <div
+                                      class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
+                                    >
+                                      {{ structureSelected.name | substring : 0 : 1}}
+                                    </div>
+                                    <span class="flex flex-col items-start ml-3">
+                                      <span
+                                        class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
+                                        aria-hidden="true"
+                                        >{{ structureSelected.name }}</span
+                                      >
+                                    </span>
+                                  </div>
                                   <span
-                                    class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
-                                    aria-hidden="true"
-                                    >{{ structureSelected.name }}</span
-                                  >
-                                </span>
+                                    class="svg-icon-7 stroke-2 text-zinc-900 dark:text-zinc-100"
+                                    [inlineSVG]="'dots-vertical.svg'"
+                                  ></span>
+                                </div>
+                              </button>
+                              }
+                            } @case ('loading') {
+                              <div class="flex flex-row items-center justify-start w-full px-4 py-2">
+                                <div class="flex flex-row items-center justify-start w-full">
+                                  <loader></loader>
+                                </div>
                               </div>
-                              <span
-                                class="svg-icon-7 stroke-2 text-zinc-900 dark:text-zinc-100"
-                                [inlineSVG]="'dots-vertical.svg'"
-                              ></span>
-                            </div>
-                          </button>
+                            }
                           }
                         </div>
                       </a>
@@ -455,38 +465,47 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                         </div>
                       </div>
                     </div>
-                    @if (structures.selected(); as structureSelected) {
-                    <button
-                      type="button"
-                      class="flex items-center p-2 w-full hover:bg-zinc-600/5 dark:hover:bg-zinc-300/5 rounded-lg"
-                      id="user-menu-button"
-                      aria-expanded="false"
-                      aria-haspopup="true"
-                      (click)="layout.toggleDropdown()"
-                      (clickOutside)="isSearchBlur() && layout.closeDropdown()"
-                    >
-                      <div class="flex flex-row items-center justify-between w-full">
-                        <div class="flex flex-row items-center">
-                          <div
-                            class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
-                          >
-                            {{ structureSelected.name | substring : 0 : 1}}
-                          </div>
-                          <span class="flex flex-col items-start ml-3">
+                    @switch (structures.selectedState()) {
+                      @case ('loaded') {
+                        @if (structures.selected(); as structureSelected) {
+                        <button
+                          type="button"
+                          class="flex items-center p-2 w-full hover:bg-zinc-600/5 dark:hover:bg-zinc-300/5 rounded-lg"
+                          id="user-menu-button"
+                          aria-expanded="false"
+                          aria-haspopup="true"
+                          (click)="layout.toggleDropdown()"
+                          (clickOutside)="isSearchBlur() && layout.closeDropdown()"
+                        >
+                          <div class="flex flex-row items-center justify-between w-full">
+                            <div class="flex flex-row items-center">
+                              <div
+                                class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
+                              >
+                                {{ structureSelected.name | substring : 0 : 1}}
+                              </div>
+                              <span class="flex flex-col items-start ml-3">
+                                <span
+                                  class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
+                                  aria-hidden="true"
+                                  >{{ structureSelected.name }}</span
+                                >
+                              </span>
+                            </div>
                             <span
-                              class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
-                              aria-hidden="true"
-                              >{{ structureSelected.name }}</span
-                            >
-                          </span>
+                              class="svg-icon-7 stroke-2 text-zinc-900 dark:text-zinc-100"
+                              [inlineSVG]="'dots-vertical.svg'"
+                            ></span>
+                          </div>
+                        </button>
+                        }
+                      } @case ('loading') {
+                        <div class="flex flex-row items-center justify-start w-full px-4 py-2">
+                          <div class="flex flex-row items-center justify-start w-full">
+                            <loader></loader>
+                          </div>
                         </div>
-                        <span
-                          class="svg-icon-7 stroke-2 text-zinc-900 dark:text-zinc-100"
-                          [inlineSVG]="'dots-vertical.svg'"
-                        ></span>
-                      </div>
-                    </button>
-                    }
+                      }}
                   </div>
                 </a>
                 <!-- <a class="flex items-center gap-x-4 lg:gap-x-6">
@@ -558,7 +577,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
             </div>
             }
 
-            <footer class="bg-zinc-50 dark:bg-dark mt-16">
+            <footer class="bg-zinc-50 dark:bg-dark mt-52">
               <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
                 <div class="flex justify-center space-x-6 md:order-2"></div>
                 <div class="mt-8 md:order-1 md:mt-0">

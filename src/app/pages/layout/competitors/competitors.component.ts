@@ -4,17 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { DatePickerComponent } from '../../../ui/datepicker/datepicker.component';
-import { HomeService } from './home.service';
 import { ChannelsDropdownComponent } from './channels/channels.component';
+import { CompetitorsService } from './competitors.service';
 import moment from 'moment';
-import { BrandReputationComponent } from './widgets/brand-reputation.component';
-import { RatingsComponent } from './widgets/ratings.component';
-import { TypesComponent } from './widgets/types.component';
-import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
-import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
+import { YouComponent } from './you/you.component';
+import { CompetitorComponent } from './competitor/competitor.component';
 
 @Component({
-  selector: 'home',
+  selector: 'competitors',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,15 +20,14 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
     ReactiveFormsModule,
     DatePickerComponent,
     ChannelsDropdownComponent,
-    BrandReputationComponent,
-    RatingsComponent,
-    TypesComponent,
-    ReviewsLastDayComponent,
-    OverviewReviewsLastDayComponent,
+    YouComponent,
+    CompetitorComponent,
   ],
   template: `
     <div class="h-full lg:pr-10 lg:pl-3 px-4">
-      <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1>
+      <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">
+        {{ 'COMPETITORS' | translate }}
+      </h1>
       <div class="mx-auto bg-zinc-50 dark:bg-dark">
         <div class="block">
           <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-10 pb-6">
@@ -60,21 +56,15 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
               </div>
             </ul>
           </nav>
-          <brand-reputation-graph></brand-reputation-graph>
-          <div
-            class="divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden bg-zinc-200 dark:bg-zinc-800 sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
-          >
-            <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
-              <ratings-graph></ratings-graph>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
-              <types-graph></types-graph>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
-              <reviews-last-day></reviews-last-day>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
-              <overview-reviews-last-day></overview-reviews-last-day>
+          <div class="pb-24 sm:pb-32">
+            <div class="mt-10 lg:mx-0 lg:max-w-none overflow-x-auto p-1">
+              <div class="flex flex-row min-w-[96rem] gap-8">
+                <you></you>
+                @for (competitor of competitors.others.competitor(); track $index) {
+                <competitor [competitor]="competitor" [state]="competitors.others.state()"></competitor>
+                <competitor [competitor]="competitor" [state]="competitors.others.state()"></competitor>
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -82,20 +72,22 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
     </div>
   `,
 })
-export class HomeComponent {
-  home = inject(HomeService);
+export class CompetitorsComponent {
+  competitors = inject(CompetitorsService);
 
   limitStart = moment().subtract(1, 'year').toDate();
   now = moment().toDate();
 
-  startdate = computed(() => this.home.store.filter().startdate);
-  enddate = computed(() => this.home.store.filter().enddate);
+  startdate = computed(() => this.competitors.you.filter().startdate);
+  enddate = computed(() => this.competitors.you.filter().enddate);
 
   setStartDate(date: Date) {
-    this.home.store.filter.set({ ...this.home.store.filter(), startdate: date });
+    this.competitors.you.filter.set({ ...this.competitors.you.filter(), startdate: date });
+    this.competitors.others.filter.set({ ...this.competitors.you.filter(), startdate: date });
   }
 
   setEndDate(date: Date) {
-    this.home.store.filter.set({ ...this.home.store.filter(), enddate: date });
+    this.competitors.you.filter.set({ ...this.competitors.you.filter(), enddate: date });
+    this.competitors.others.filter.set({ ...this.competitors.you.filter(), enddate: date });
   }
 }

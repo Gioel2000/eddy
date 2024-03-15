@@ -1,11 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, Subject, catchError, delay, filter, map, mergeMap, of, switchMap, tap, toArray } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  debounce,
+  debounceTime,
+  filter,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+  toArray,
+} from 'rxjs';
 import {
   AddRestaurant,
   EditRestaurant,
@@ -17,9 +30,14 @@ import {
 } from './interfaces/restaurant';
 
 export interface StructuresStore {
-  selected: RestaurantSettedTO | null;
-  structures: RestaurantModel[];
-  state: StateModel;
+  selected: {
+    structure: RestaurantSettedTO;
+    state: StateModel;
+  };
+  structures: {
+    data: RestaurantModel[];
+    state: StateModel;
+  };
 }
 
 @UntilDestroy()
@@ -30,14 +48,21 @@ export class StructureStore {
   storage = inject(StorageMap);
 
   private store = signal<StructuresStore>({
-    selected: null,
-    structures: [],
-    state: 'loading',
+    selected: {
+      structure: {} as RestaurantSettedTO,
+      state: 'loading' as const,
+    },
+    structures: {
+      data: [] as RestaurantModel[],
+      state: 'loading' as const,
+    },
   });
 
-  structures = computed(() => this.store().structures.filter((restaurant) => restaurant.show));
-  selected = computed(() => this.store().selected);
-  state = computed(() => this.store().state);
+  structures = computed(() => this.store().structures.data.filter((restaurant) => restaurant.show));
+  state = computed(() => this.store().structures.state);
+  selected = computed(() => this.store().selected.structure);
+  selectedState = computed(() => this.store().selected.state);
+
   savedSuccesfully = signal(false);
 
   search$ = new Subject<string>();
@@ -46,19 +71,11 @@ export class StructureStore {
   private delete$ = new Subject<string>();
   private edit$ = new Subject<{ id: string; structure: RestaurantTOModel }>();
   private state$ = new Subject<StateModel>();
+  private selectedState$ = new Subject<StateModel>();
   private selected$ = new Subject<RestaurantSettedTO | null>();
   private showAll$ = new Subject<void>();
 
   constructor() {
-    this.storage
-      .get('restaurantId', { type: 'string' })
-      .pipe(
-        untilDestroyed(this),
-        filter((id): id is string => !!id),
-        tap((id) => this.choose(id))
-      )
-      .subscribe();
-
     const next$: Observable<StructuresStore> = this.http
       .get<RestaurantTOModel[]>(`${environment.apiUrl}/api/restaurants`)
       .pipe(
@@ -66,54 +83,97 @@ export class StructureStore {
         mergeMap((structures) => structures),
         map((structure) => ({ ...structure, show: true })),
         toArray(),
-        map((structures) => ({ structures, selected: null, state: 'loaded' as const })),
-        catchError(() => of({ structures: [], selected: null, state: 'error' as const }))
+        map((structures) => ({
+          selected: { structure: {} as RestaurantSettedTO, state: 'loading' as const },
+          structures: {
+            data: structures,
+            state: structures.length > 0 ? ('loaded' as const) : ('empty' as const),
+          },
+        })),
+        catchError(() =>
+          of({
+            selected: { structure: {} as RestaurantSettedTO, state: 'loading' as const },
+            structures: {
+              data: [],
+              state: 'error' as const,
+            },
+          })
+        ),
+        tap(() => {
+          this.storage
+            .get('restaurantId', { type: 'string' })
+            .pipe(
+              untilDestroyed(this),
+              filter((id): id is string => !!id),
+              tap((id) => this.choose(id))
+            )
+            .subscribe();
+        })
       );
 
     connect(this.store)
       .with(next$)
-      .with(this.state$, (store, state) => ({ ...store, state }))
-      .with(this.selected$, (store, selected) => (selected ? { ...store, selected } : store))
+      .with(this.state$, (store, state) => ({ ...store, structures: { ...store.structures, state } }))
+      .with(this.selectedState$, (store, state) => ({ ...store, selected: { ...store.selected, state } }))
+      .with(this.selected$, (store, selected) =>
+        selected
+          ? {
+              ...store,
+              selected: { structure: selected, state: 'loaded' as const },
+            }
+          : store
+      )
       .with(this.showAll$, (store) => ({
         ...store,
-        structures: store.structures.map((restaurant) => ({ ...restaurant, show: true })),
+        structures: {
+          ...store.structures,
+          data: store.structures.data.map((restaurant) => ({ ...restaurant, show: true })),
+        },
       }))
       .with(this.search$, (store: StructuresStore, search: string) => {
         const filter = (field: 'name' | 'city' | 'address', restaurant: RestaurantModel) =>
           restaurant[field].toLowerCase().includes(search.toLowerCase());
 
-        const fitered = store.structures.filter(
+        const fitered = store.structures.data.filter(
           (restaurant) => filter('name', restaurant) || filter('city', restaurant) || filter('address', restaurant)
         );
 
         return {
           ...store,
-          structures: store.structures.map((restaurant) => ({
-            ...restaurant,
-            show: fitered.some((h) => h._id === restaurant._id),
-          })),
-          state: fitered.length > 0 ? ('loaded' as const) : ('empty' as const),
+          structures: {
+            data: store.structures.data.map((restaurant) => ({
+              ...restaurant,
+              show: fitered.some((h) => h._id === restaurant._id),
+            })),
+            state: fitered.length > 0 ? ('loaded' as const) : ('empty' as const),
+          },
         };
       })
       .with(this.add$, (store, restaurant) => ({
         ...store,
-        structures: [{ ...restaurant, show: true }, ...store.structures],
+        structures: { ...store.structures, data: [{ ...restaurant, show: true }, ...store.structures.data] },
       }))
       .with(this.edit$, (store, { id, structure }) => ({
         ...store,
-        structures: store.structures.map((restaurant) =>
-          restaurant._id === id ? { ...restaurant, ...structure } : restaurant
-        ),
+        structures: {
+          ...store.structures,
+          data: store.structures.data.map((restaurant) =>
+            restaurant._id === id ? { ...restaurant, ...structure } : restaurant
+          ),
+        },
       }))
       .with(this.delete$, (store, id) => ({
         ...store,
-        structures: store.structures.filter((restaurant) => restaurant._id !== id),
+        structures: {
+          ...store.structures,
+          data: store.structures.data.filter((restaurant) => restaurant._id !== id),
+        },
       }));
   }
 
   choose(id: string) {
     this.showAll$.next();
-    this.state$.next('loading');
+    this.selectedState$.next('loading');
 
     this.http
       .get<SetTO>(`${environment.apiUrl}/api/restaurants/${id}/set`)
@@ -123,16 +183,24 @@ export class StructureStore {
         switchMap(() => this.storage.set('restaurantId', id)),
         switchMap(() =>
           this.http.get<RestaurantSettedTO>(`${environment.apiUrl}/api/restaurants/current`).pipe(
-            delay(200),
-            tap((selected) => this.selected$.next(selected))
+            tap((selected) => {
+              this.showAll$.next();
+              this.selectedState$.next('loaded');
+              this.selected$.next(selected);
+            })
           )
         ),
         catchError(() => {
-          this.state$.next('error');
+          this.selectedState$.next('error');
           return of(null);
         })
       )
-      .subscribe(() => this.router.navigate(['/home']).then(() => this.state$.next('loaded')));
+      .subscribe(() => {
+        const { url: current } = this.router;
+        const page = current.includes('structures') ? '/home' : current;
+
+        this.router.navigate([page]);
+      });
   }
 
   add(structure: AddRestaurant) {

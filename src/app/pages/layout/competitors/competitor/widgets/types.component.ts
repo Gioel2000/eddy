@@ -1,15 +1,15 @@
-import { Component, Signal, computed, effect, inject, signal } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { Component, inject, input, signal } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
-import { TypeTO } from '../../../../store/dashboard/interfaces/dashboard';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
+import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
+import { ClientTypeModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'types-graph',
   standalone: true,
@@ -41,8 +41,8 @@ import { map } from 'rxjs';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col py-3">
-      @switch (store().state) { @case ('loaded') {
+    <div #container class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
+      @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
@@ -51,9 +51,9 @@ import { map } from 'rxjs';
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
-            <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+            <div class="grid grid-cols-1 gap-4">
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-50 dark:bg-dark shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -189,7 +189,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-50 dark:bg-dark shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -325,7 +325,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-50 dark:bg-dark shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -461,7 +461,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-50 dark:bg-dark shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -611,7 +611,9 @@ import { map } from 'rxjs';
   `,
 })
 export class TypesComponent {
-  store = inject(DashboardStore).typologies;
+  typologies = input.required<ClientTypeModel[]>();
+  state = input.required<StateModel>();
+
   translate = inject(TranslateService);
 
   family = signal({
@@ -651,8 +653,8 @@ export class TypesComponent {
   });
 
   constructor() {
-    toObservable(this.store)
-      .pipe(map((store) => store.data))
+    toObservable(this.typologies)
+      .pipe(untilDestroyed(this))
       .subscribe((data) => {
         this.family.set(this.filterByType(data, 'family'));
         this.couple.set(this.filterByType(data, 'couple'));
@@ -661,7 +663,7 @@ export class TypesComponent {
       });
   }
 
-  private filterByType(data: TypeTO[], clientType: string) {
+  private filterByType(data: ClientTypeModel[], clientType: string) {
     const family = data.find((type) => type.clientType.toLowerCase() === clientType) || {
       totalCount: 0,
       filteredCount: 0,

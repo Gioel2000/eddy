@@ -4,8 +4,8 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../utils/directives/clickoutside';
 import { TranslateModule } from '@ngx-translate/core';
-import { HomeService } from '../home.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompetitorsService } from '../competitors.service';
 
 @Component({
   selector: 'channels-dropdown',
@@ -114,26 +114,36 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ChannelsDropdownComponent {
   dropdown = inject(DropdownService);
-  home = inject(HomeService);
+  competitor = inject(CompetitorsService);
 
-  checkedChannels = computed(() => this.home.store.filter().channels.join(', '));
+  checkedChannels = computed(() => this.competitor.you.filter().channels.join(', '));
 
-  thereIsTheFork = computed(() => this.home.store.filter().channels.includes('thefork'));
-  thereIsGoogle = computed(() => this.home.store.filter().channels.includes('google'));
-  thereIsTripAdvisor = computed(() => this.home.store.filter().channels.includes('tripadvisor'));
+  thereIsTheFork = computed(() => this.competitor.you.filter().channels.includes('thefork'));
+  thereIsGoogle = computed(() => this.competitor.you.filter().channels.includes('google'));
+  thereIsTripAdvisor = computed(() => this.competitor.you.filter().channels.includes('tripadvisor'));
 
   toggle(service: string) {
-    const channels = this.home.store.filter().channels;
+    const channels = this.competitor.you.filter().channels;
     const thereIsService = channels.includes(service);
 
     if (thereIsService) {
-      this.home.store.filter.set({
-        ...this.home.store.filter(),
+      this.competitor.you.filter.set({
+        ...this.competitor.you.filter(),
+        channels: channels.filter((channel) => channel !== service),
+      });
+
+      this.competitor.others.filter.set({
+        ...this.competitor.others.filter(),
         channels: channels.filter((channel) => channel !== service),
       });
     } else {
-      this.home.store.filter.set({
-        ...this.home.store.filter(),
+      this.competitor.you.filter.set({
+        ...this.competitor.you.filter(),
+        channels: [...channels, service],
+      });
+
+      this.competitor.others.filter.set({
+        ...this.competitor.others.filter(),
         channels: [...channels, service],
       });
     }

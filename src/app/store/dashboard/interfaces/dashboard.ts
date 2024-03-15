@@ -41,7 +41,7 @@ export interface ReviewTO {
   sentiments: any[];
   replyLink: string;
   hasReplied: boolean;
-  clientsType: string[];
+  clientsType?: string[];
   reviewId?: any;
   externalSource?: any;
   __v: number;

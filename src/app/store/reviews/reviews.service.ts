@@ -70,6 +70,7 @@ export class ReviewsStore {
     }).pipe(
       untilDestroyed(this),
       filter(({ selected }) => !!selected),
+      filter(({ selected }) => Object.keys(selected).length > 0),
       distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
       map(({ filter }) => filter),
       filter((filter) => !!filter)
@@ -82,62 +83,7 @@ export class ReviewsStore {
           list: this.http.post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, filter).pipe(
             // degub
             map((data) => ({
-              data: data.map(
-                (review) =>
-                  ({
-                    ...review,
-                    text: 'structure in a very convenient position to reach the center of perugia on foot. panoramic superior rooms with small balcony, renovated with taste and attention to technological details. average breakfast. good christmas eve and christmas lunch. professional staff',
-                    sentiments: [
-                      {
-                        category: ['hotel_value', 'hotel_location'],
-                        positive: ['reach'],
-                        negative: [],
-                        score: 1,
-                        sentence: 'structure in a very convenient position to reach the center of perugia on foot.',
-                        words: ['convenient', 'position'],
-                        wordsIt: ['convenient', 'posizione'],
-                      },
-                      {
-                        category: ['hotel_condition'],
-                        positive: [],
-                        negative: [],
-                        score: 0,
-                        sentence: 'attention to technological details.',
-                        words: ['details'],
-                        wordsIt: ['dettagli'],
-                      },
-                      {
-                        category: ['hotel_services'],
-                        positive: [],
-                        negative: [],
-                        score: 0,
-                        sentence: 'average breakfast.',
-                        words: ['breakfast'],
-                        wordsIt: ['colazione'],
-                      },
-                      {
-                        category: ['hotel_services'],
-                        positive: [],
-                        negative: [],
-                        score: 0,
-                        sentence: 'christmas lunch.',
-                        words: ['lunch'],
-                        wordsIt: ['pranzo'],
-                      },
-                    ],
-                    translations: [
-                      {
-                        title: 'Comfortable and pleasant',
-                        language: 'en',
-                        description: {
-                          text: 'Structure in a very convenient position to reach the center of Perugia on foot.\nPanoramic Superior rooms with small balcony, renovated with taste and attention to technological details.\nAverage breakfast.\nGood Christmas Eve and Christmas Lunch.\nProfessional staff',
-                        },
-                      },
-                    ],
-                    replyLink:
-                      'https://admin.booking.com/hotel/hoteladmin/extranet_ng/manage/reviews.html?hotel_id=28959',
-                  } as ReviewTO)
-              ),
+              data,
               state: 'loaded',
             })),
             catchError(() => of({ data: [], state: 'error' }))
@@ -157,10 +103,6 @@ export class ReviewsStore {
         list: { data: [], state: 'loading' },
         summary: { data: {} as SummaryTO, state: 'loading' },
       }));
-
-    effect(() => {
-      console.log('reviews', this.store());
-    });
   }
 
   translate(reviewId: string, lang: string) {

@@ -1,10 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 
 @Component({
   selector: 'reviews-last-day',
@@ -37,17 +37,17 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col py-6">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-6 lg:mt-0">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 mb-8">
-          <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
+          <dt class="text-sm font-medium leading-6 text-zinc-200">
             {{ 'RECENT_REVIEWS' | translate }}
           </dt>
         </div>
 
         <div class="flow-root">
-          <div class="divide-y divide-zinc-200 dark:divide-zinc-800">
+          <div class="divide-y divide-zinc-800">
             @for (review of store().data; track $index) {
             <div class="py-6">
               <div class="flex flex-row items-center justify-between">
@@ -58,13 +58,13 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     {{ review.name.charAt(0).toUpperCase() }}
                   </div>
                   <div class="ml-4">
-                    <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">{{ review.name }}</h4>
+                    <h4 class="text-sm font-bold text-zinc-100">{{ review.name }}</h4>
                     <div class="mt-1 flex items-center">
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
                             'text-yellow-400': review.rating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': review.rating < 1
+                            'text-zinc-700': review.rating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -81,7 +81,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': review.rating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': review.rating < 2
+                            'text-zinc-700': review.rating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -98,7 +98,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': review.rating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': review.rating < 3
+                            'text-zinc-700': review.rating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -115,7 +115,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': review.rating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': review.rating < 4
+                            'text-zinc-700': review.rating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -132,7 +132,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': review.rating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': review.rating < 5
+                            'text-zinc-700': review.rating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -147,9 +147,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                           </g>
                         </svg>
                       </div>
-                      <span class="text-sm text-zinc-600 dark:text-zinc-400 ml-1">{{
-                        review.rating | numb : translate.currentLang
-                      }}</span>
+                      <span class="text-sm text-zinc-400 ml-1">{{ review.rating | numb : translate.currentLang }}</span>
                     </div>
                     <p class="sr-only">5 out of 5 stars</p>
                   </div>
@@ -157,37 +155,31 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 <div>
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-700"
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      class="svg-icon-2 stroke-[1.8] text-emerald-500"
                     ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-500">{{
                       'TRIPADVISOR' | translate
                     }}</span>
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-700"
                   >
-                    <span
-                      [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-200">{{
+                    <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{
                       'GOOGLE' | translate
                     }}</span>
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-700"
                   >
-                    <span
-                      [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                    <span [inlineSVG]="'channels/TheFork.svg'" class="svg-icon-4 stroke-[1.8] text-[#00ab97]"></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
                       'THE_FORK' | translate
                     }}</span>
                   </div>
@@ -195,12 +187,12 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </div>
               </div>
 
-              <div class="mt-4 space-y-6 text-base font-semibold text-zinc-800 dark:text-zinc-200">
+              <div class="mt-4 space-y-6 text-base font-semibold text-zinc-200">
                 <p>
                   {{ review.title }}
                 </p>
               </div>
-              <div class="mt-4 space-y-6 text-sm text-zinc-400 dark:text-zinc-600">
+              <div class="mt-4 space-y-6 text-sm text-zinc-600">
                 <p>
                   {{ review.text }}
                 </p>
@@ -222,25 +214,23 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                           ? 'user.svg'
                           : 'users.svg'
                       "
-                      class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
+                      class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"
                     ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{
                       clientType | uppercase | translate
                     }}</span>
                   </div>
                 </div>
                 }} @if (review.country; as country) {
                 <div class="flex flex-col gap-y-2">
-                  <span class="text-sm text-zinc-400 dark:text-zinc-600">
+                  <span class="text-sm text-zinc-600">
                     <div class="flex flex-row items-center justify-center w-fit gap-x-2">
                       <img
                         class="w-5 h-4 ml-0.5 rounded-md object-cover shadow"
                         alt=""
                         [src]="'./assets/flags/' + replaceAll(review.country.toLowerCase(), ' ', '-') + '.svg'"
                       />
-                      <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
-                        review.country
-                      }}</span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ review.country }}</span>
                     </div>
                   </span>
                 </div>

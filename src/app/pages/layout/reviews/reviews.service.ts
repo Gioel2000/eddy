@@ -2,7 +2,7 @@ import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ReviewsStore } from '../../../store/reviews/reviews.service';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import moment from 'moment';
 
 const INIT_FILTER = {
@@ -19,6 +19,8 @@ const INIT_FILTER = {
 export class ReviewsService {
   store = inject(ReviewsStore);
 
+  page = signal(1);
+
   filter: WritableSignal<{
     startdate: Date | undefined;
     enddate: Date | undefined;
@@ -34,12 +36,13 @@ export class ReviewsService {
         untilDestroyed(this),
         map(({ startdate, enddate, channels, clients, rows, offset }) => ({
           startdate: startdate ? moment(startdate).format('YYYY-MM-DD') : undefined,
-          enddate: startdate ? moment(enddate).format('YYYY-MM-DD') : undefined,
+          enddate: enddate ? moment(enddate).format('YYYY-MM-DD') : undefined,
           channels: channels.join(','),
           clients,
           rows,
           offset,
-        }))
+        })),
+        tap(() => this.page.set(1))
       )
       .subscribe((filter) => this.store.filter$.next(filter));
   }

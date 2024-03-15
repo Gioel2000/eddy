@@ -18,6 +18,7 @@ import {
   of,
   switchMap,
 } from 'rxjs';
+import moment from 'moment';
 
 export interface DashboardStoreModel {
   brandReputation: {
@@ -60,6 +61,12 @@ export const INIT_STATE: DashboardStoreModel = {
   },
 };
 
+const INIT_FILTER = {
+  startdate: moment().subtract(2, 'weeks').toDate(),
+  enddate: moment().toDate(),
+  channels: ['thefork', 'tripadvisor', 'google'],
+};
+
 @UntilDestroy()
 @Injectable({ providedIn: 'root' })
 export class DashboardStore {
@@ -67,6 +74,12 @@ export class DashboardStore {
   structure = inject(StructureStore);
 
   private store = signal<DashboardStoreModel>(INIT_STATE);
+
+  filter = signal({
+    startdate: moment().subtract(2, 'weeks').toDate(),
+    enddate: moment().toDate(),
+    channels: ['thefork', 'tripadvisor', 'google'],
+  });
 
   filter$ = new Subject<{ startdate: string; enddate: string; channels: string }>();
 
@@ -76,12 +89,24 @@ export class DashboardStore {
   recentReviews = computed(() => this.store().recentReviews);
 
   constructor() {
+    toObservable(this.filter)
+      .pipe(
+        untilDestroyed(this),
+        map(({ startdate, enddate, channels }) => ({
+          startdate: moment(startdate).format('YYYY-MM-DD'),
+          enddate: moment(enddate).format('YYYY-MM-DD'),
+          channels: channels.join(','),
+        }))
+      )
+      .subscribe((filter) => this.filter$.next(filter));
+
     const stream$ = combineLatest({
       selected: toObservable(this.structure.selected),
       filter: this.filter$,
     }).pipe(
       untilDestroyed(this),
       filter(({ selected }) => !!selected),
+      filter(({ selected }) => Object.keys(selected).length > 0),
       distinctUntilChanged(
         (prev, curr) =>
           prev.filter.startdate === curr.filter.startdate &&
@@ -126,32 +151,15 @@ export class DashboardStore {
               })
             )
           ),
-          // degub
-          recentReviews: this.http
-            .post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, {
-              rows: 10,
-              offset: 0,
-              channels: 'tripadvisor,thefork,google',
-            })
-            .pipe(
-              // map((review) => review.slice(0, 2)),
-              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-              catchError(() =>
-                of({
-                  data: [] as any,
-                  state: 'error' as const,
-                })
-              )
-            ),
-          //   this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
-          //   map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-          //   catchError(() =>
-          //     of({
-          //       data: [] as any,
-          //       state: 'error' as const,
-          //     })
-          //   )
-          // ),
+          recentReviews: this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
+            map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+            catchError(() =>
+              of({
+                data: [] as any,
+                state: 'error' as const,
+              })
+            )
+          ),
         })
       )
     );
@@ -165,5 +173,9 @@ export class DashboardStore {
         typologies: { ...state.typologies, state: 'loading' },
         recentReviews: { ...state.recentReviews, state: 'loading' },
       }));
+  }
+
+  reset() {
+    this.filter.set(INIT_FILTER);
   }
 }

@@ -1,10 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 
 @Component({
   selector: 'overview-reviews-last-day',
@@ -37,11 +37,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col border-b border-zinc-800 py-6">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-          <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
+          <dt class="text-sm font-medium leading-6 text-zinc-200">
             {{ 'OVERVIEW_RECENT_REVIEWS' | translate }}
           </dt>
         </div>
@@ -49,7 +49,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
         <div class="mt-3 flex items-center">
           <div class="flex flex-row items-center gap-x-3">
             <div class="flex flex-row items-center gap-x-3 w-full">
-              <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
+              <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-100">
                 {{ averageRating() | numb : translate.currentLang }}
               </dd>
             </div>
@@ -59,7 +59,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                   <svg
                     [ngClass]="{
                       'text-yellow-400': averageRating() >= 1,
-                      'text-zinc-200 dark:text-zinc-700': averageRating() < 1
+                      'text-zinc-700': averageRating() < 1
                     }"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -76,7 +76,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                   <svg
                     [ngClass]="{
                       'text-yellow-400': averageRating() >= 2,
-                      'text-zinc-200 dark:text-zinc-700': averageRating() < 2
+                      'text-zinc-700': averageRating() < 2
                     }"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -93,7 +93,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                   <svg
                     [ngClass]="{
                       'text-yellow-400': averageRating() >= 3,
-                      'text-zinc-200 dark:text-zinc-700': averageRating() < 3
+                      'text-zinc-700': averageRating() < 3
                     }"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -110,7 +110,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                   <svg
                     [ngClass]="{
                       'text-yellow-400': averageRating() >= 4,
-                      'text-zinc-200 dark:text-zinc-700': averageRating() < 4
+                      'text-zinc-700': averageRating() < 4
                     }"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -127,7 +127,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                   <svg
                     [ngClass]="{
                       'text-yellow-400': averageRating() >= 5,
-                      'text-zinc-200 dark:text-zinc-700': averageRating() < 5
+                      'text-zinc-700': averageRating() < 5
                     }"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -144,7 +144,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 </div>
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
-              <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+              <p class="text-sm  font-medium tabular-nums text-zinc-600">
                 {{ totalReviews() | numb : translate.currentLang }}
                 {{ 'REVIEWS' | translate }}
               </p>
@@ -153,16 +153,16 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
         </div>
 
         <div class="mt-6">
-          <div class="mt-6 space-y-5 divide-y divide-zinc-200 dark:divide-zinc-800 pb-10">
+          <div class="mt-6 space-y-5 divide-y divide-zinc-800">
             @if (tripadvisor().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
-                    class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                    class="svg-icon-2 stroke-[1.8] text-emerald-500"
                   ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-500">{{
                     'TRIPADVISOR' | translate
                   }}</span>
                 </div>
@@ -175,7 +175,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': tripadvisor().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': tripadvisor().averageRating < 1
+                            'text-zinc-700': tripadvisor().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -192,7 +192,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': tripadvisor().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': tripadvisor().averageRating < 2
+                            'text-zinc-700': tripadvisor().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -209,7 +209,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': tripadvisor().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': tripadvisor().averageRating < 3
+                            'text-zinc-700': tripadvisor().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -226,7 +226,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': tripadvisor().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': tripadvisor().averageRating < 4
+                            'text-zinc-700': tripadvisor().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -243,7 +243,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': tripadvisor().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': tripadvisor().averageRating < 5
+                            'text-zinc-700': tripadvisor().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -259,11 +259,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ tripadvisor().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ tripadvisor().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -275,13 +275,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'channels/google.svg'"
-                    class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-200">{{
-                    'GOOGLE' | translate
-                  }}</span>
+                  <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{ 'GOOGLE' | translate }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -292,7 +287,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': google().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': google().averageRating < 1
+                            'text-zinc-700': google().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -309,7 +304,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': google().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': google().averageRating < 2
+                            'text-zinc-700': google().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -326,7 +321,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': google().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': google().averageRating < 3
+                            'text-zinc-700': google().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -343,7 +338,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': google().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': google().averageRating < 4
+                            'text-zinc-700': google().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -360,7 +355,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': google().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': google().averageRating < 5
+                            'text-zinc-700': google().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -376,11 +371,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ google().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ google().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -392,11 +387,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'channels/TheFork.svg'"
-                    class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                  <span [inlineSVG]="'channels/TheFork.svg'" class="svg-icon-4 stroke-[1.8] text-[#00ab97]"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
                     'THE_FORK' | translate
                   }}</span>
                 </div>
@@ -409,7 +401,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': thefork().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': thefork().averageRating < 1
+                            'text-zinc-700': thefork().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -426,7 +418,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': thefork().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': thefork().averageRating < 2
+                            'text-zinc-700': thefork().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -443,7 +435,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': thefork().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': thefork().averageRating < 3
+                            'text-zinc-700': thefork().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -460,7 +452,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': thefork().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': thefork().averageRating < 4
+                            'text-zinc-700': thefork().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -477,7 +469,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': thefork().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': thefork().averageRating < 5
+                            'text-zinc-700': thefork().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -493,11 +485,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ thefork().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ thefork().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -509,13 +501,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'crowd.svg'"
-                    class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
-                    'FAMILY' | translate
-                  }}</span>
+                  <span [inlineSVG]="'crowd.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'FAMILY' | translate }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -526,7 +513,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': family().averageRating < 1
+                            'text-zinc-700': family().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -543,7 +530,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': family().averageRating < 2
+                            'text-zinc-700': family().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -560,7 +547,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': family().averageRating < 3
+                            'text-zinc-700': family().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -577,7 +564,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': family().averageRating < 4
+                            'text-zinc-700': family().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -594,7 +581,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': family().averageRating < 5
+                            'text-zinc-700': family().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -610,11 +597,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ family().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ family().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -626,13 +613,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'user.svg'"
-                    class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
-                    'SOLO' | translate
-                  }}</span>
+                  <span [inlineSVG]="'user.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'SOLO' | translate }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -643,7 +625,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': solo().averageRating < 1
+                            'text-zinc-700': solo().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -660,7 +642,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': solo().averageRating < 2
+                            'text-zinc-700': solo().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -677,7 +659,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': solo().averageRating < 3
+                            'text-zinc-700': solo().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -694,7 +676,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': solo().averageRating < 4
+                            'text-zinc-700': solo().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -711,7 +693,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': solo().averageRating < 5
+                            'text-zinc-700': solo().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -727,11 +709,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ solo().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ solo().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -743,13 +725,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'users-3.svg'"
-                    class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
-                    'COUPLE' | translate
-                  }}</span>
+                  <span [inlineSVG]="'users-3.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'COUPLE' | translate }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -760,7 +737,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': couple().averageRating < 1
+                            'text-zinc-700': couple().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -777,7 +754,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': couple().averageRating < 2
+                            'text-zinc-700': couple().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -794,7 +771,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': couple().averageRating < 3
+                            'text-zinc-700': couple().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -811,7 +788,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': couple().averageRating < 4
+                            'text-zinc-700': couple().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -828,7 +805,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': couple().averageRating < 5
+                            'text-zinc-700': couple().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -844,11 +821,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ couple().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ couple().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -860,11 +837,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
-                  <span
-                    [inlineSVG]="'suitcase-6.svg'"
-                    class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
+                  <span [inlineSVG]="'suitcase-6.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{
                     'BUSINESS' | translate
                   }}</span>
                 </div>
@@ -877,7 +851,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().averageRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': business().averageRating < 1
+                            'text-zinc-700': business().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -894,7 +868,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().averageRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': business().averageRating < 2
+                            'text-zinc-700': business().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -911,7 +885,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().averageRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': business().averageRating < 3
+                            'text-zinc-700': business().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -928,7 +902,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().averageRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': business().averageRating < 4
+                            'text-zinc-700': business().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -945,7 +919,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().averageRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': business().averageRating < 5
+                            'text-zinc-700': business().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -961,11 +935,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ business().averageRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ business().totalReviews | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -982,9 +956,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     alt=""
                     [src]="'./assets/flags/' + replaceAll(country.country.toLowerCase(), ' ', '-') + '.svg'"
                   />
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100"
-                    >{{ country.country }}, {{ replaceAll(country.country.toLowerCase(), ' ', '-') }}</span
-                  >
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ country.country }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -995,7 +967,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': country.avgRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': country.avgRating < 1
+                            'text-zinc-700': country.avgRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -1012,7 +984,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': country.avgRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': country.avgRating < 2
+                            'text-zinc-700': country.avgRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -1029,7 +1001,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': country.avgRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': country.avgRating < 3
+                            'text-zinc-700': country.avgRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -1046,7 +1018,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': country.avgRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': country.avgRating < 4
+                            'text-zinc-700': country.avgRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -1063,7 +1035,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': country.avgRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': country.avgRating < 5
+                            'text-zinc-700': country.avgRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -1079,11 +1051,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm text-zinc-100">
                         {{ country.avgRating | numb : translate.currentLang }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600 mt-1">
                       {{ country.count | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                     </p>

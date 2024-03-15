@@ -275,6 +275,13 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
   googleLink = signal<string>('');
   cover = signal<string>('');
+  coordinates = signal<{
+    latitude: number;
+    longitude: number;
+  }>({
+    latitude: 0,
+    longitude: 0,
+  });
 
   constructor() {
     this.formGroup.valueChanges.pipe(untilDestroyed(this)).subscribe(({ website }) => {
@@ -289,7 +296,7 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
     const options = {
       componentRestrictions: { country: 'it' },
-      fields: ['url', 'name', 'website', 'address_components', 'formatted_phone_number', 'photos'],
+      fields: ['url', 'name', 'website', 'address_components', 'formatted_phone_number', 'photos', 'geometry.location'],
       strictBounds: false,
     };
 
@@ -297,6 +304,9 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
     autoComplete.addListener('place_changed', (e: any) => {
       const place = autoComplete.getPlace();
+
+      const lat = place.geometry?.location?.lat();
+      const lng = place.geometry?.location?.lng();
 
       const address: string = place!.address_components!.find((c) => c.types.includes('route'))!.long_name;
       const number: string = place!.address_components!.find((c) => c.types.includes('street_number'))!.long_name;
@@ -306,6 +316,10 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
       this.cover.set(photo || '');
       this.googleLink.set(place.url || '');
+      this.coordinates.set({ latitude: lat || 0, longitude: lng || 0 });
+
+      console.log('lat', lat);
+      console.log('lng', lng);
 
       this.formGroup.patchValue({
         name: place.name,
@@ -323,6 +337,8 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
       ...this.formGroup.value,
       image: this.cover(),
       googleMapsLink: this.googleLink(),
+      latitude: this.coordinates().latitude,
+      longitude: this.coordinates().longitude,
     } as AddRestaurant);
 
     this.googleLink.set('');

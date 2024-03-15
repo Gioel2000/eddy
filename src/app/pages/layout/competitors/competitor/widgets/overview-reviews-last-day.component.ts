@@ -1,10 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { Component, computed, inject, input } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
+import { ReviewModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 
 @Component({
   selector: 'overview-reviews-last-day',
@@ -37,8 +37,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col">
-      @switch (store().state) { @case ('loaded') {
+    <div class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
+      @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
@@ -982,9 +982,9 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     alt=""
                     [src]="'./assets/flags/' + replaceAll(country.country.toLowerCase(), ' ', '-') + '.svg'"
                   />
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100"
-                    >{{ country.country }}, {{ replaceAll(country.country.toLowerCase(), ' ', '-') }}</span
-                  >
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    country.country
+                  }}</span>
                 </div>
               </div>
               <div class="col-span-6">
@@ -1107,16 +1107,18 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
   `,
 })
 export class OverviewReviewsLastDayComponent {
-  store = inject(DashboardStore).recentReviews;
+  recentReviews = input.required<ReviewModel[]>();
+  state = input.required<StateModel>();
+
   translate = inject(TranslateService);
 
-  totalReviews = computed(() => this.store().data.length);
+  totalReviews = computed(() => this.recentReviews().length);
   averageRating = computed(
-    () => this.store().data.reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
+    () => this.recentReviews().reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
   );
 
   tripadvisor = computed(() => {
-    const reviews = this.store().data.filter((review) => review.channel.source.toLowerCase() === 'tripadvisor');
+    const reviews = this.recentReviews().filter((review) => review.channel.source.toLowerCase() === 'tripadvisor');
 
     return {
       totalReviews: reviews.length,
@@ -1125,7 +1127,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   google = computed(() => {
-    const reviews = this.store().data.filter((review) => review.channel.source.toLowerCase() === 'google');
+    const reviews = this.recentReviews().filter((review) => review.channel.source.toLowerCase() === 'google');
 
     return {
       totalReviews: reviews.length,
@@ -1134,7 +1136,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   thefork = computed(() => {
-    const reviews = this.store().data.filter((review) => review.channel.source.toLowerCase() === 'thefork');
+    const reviews = this.recentReviews().filter((review) => review.channel.source.toLowerCase() === 'thefork');
 
     return {
       totalReviews: reviews.length,
@@ -1143,7 +1145,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   family = computed(() => {
-    const reviews = this.store().data.filter((review) => {
+    const reviews = this.recentReviews().filter((review) => {
       if (!review.clientsType) return false;
       if (review.clientsType.length === 0) return false;
 
@@ -1157,7 +1159,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   solo = computed(() => {
-    const reviews = this.store().data.filter((review) => {
+    const reviews = this.recentReviews().filter((review) => {
       if (!review.clientsType) return false;
       if (review.clientsType.length === 0) return false;
 
@@ -1171,7 +1173,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   couple = computed(() => {
-    const reviews = this.store().data.filter((review) => {
+    const reviews = this.recentReviews().filter((review) => {
       if (!review.clientsType) return false;
       if (review.clientsType.length === 0) return false;
 
@@ -1185,7 +1187,7 @@ export class OverviewReviewsLastDayComponent {
   });
 
   business = computed(() => {
-    const reviews = this.store().data.filter((review) => {
+    const reviews = this.recentReviews().filter((review) => {
       if (!review.clientsType) return false;
       if (review.clientsType.length === 0) return false;
 
@@ -1199,13 +1201,13 @@ export class OverviewReviewsLastDayComponent {
   });
 
   countries = computed(() => {
-    const countries = this.store()
-      .data.map((review) => review.country)
+    const countries = this.recentReviews()
+      .map((review) => review.country)
       .filter((country) => country);
     const uniqueCountries = Array.from(new Set(countries));
 
     return uniqueCountries.map((country) => {
-      const reviews = this.store().data.filter((review) => review.country === country);
+      const reviews = this.recentReviews().filter((review) => review.country === country);
       return {
         country,
         avgRating: reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length,

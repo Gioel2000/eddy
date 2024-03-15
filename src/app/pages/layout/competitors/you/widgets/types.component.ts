@@ -1,12 +1,12 @@
 import { Component, Signal, computed, effect, inject, signal } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
-import { TypeTO } from '../../../../store/dashboard/interfaces/dashboard';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
+import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
+import { TypeTO } from '../../../../../store/dashboard/interfaces/dashboard';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
@@ -41,38 +41,35 @@ import { map } from 'rxjs';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col py-3">
+    <div #container class="flex flex-col border-b border-zinc-800 py-6">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-          <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
+          <dt class="text-sm font-medium leading-6 text-zinc-200">
             {{ 'CUSTOMER_TYPES' | translate }}
           </dt>
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
-            <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+            <div class="grid grid-cols-1 gap-4 xl:grid-cols-1">
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-900 shadow-black/10 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
-                    <span
-                      [inlineSVG]="'crowd.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
-                    ></span>
+                    <span [inlineSVG]="'crowd.svg'" class="svg-icon-1 text-zinc-200 stroke-[1.7]"></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'FAMILY' | translate }}</p>
+                    <p class="text-sm font-bold text-zinc-200">{{ 'FAMILY' | translate }}</p>
                     <div class="flex items-center xl:col-span-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 1
+                            'text-zinc-700': family().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -89,7 +86,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 2
+                            'text-zinc-700': family().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -106,7 +103,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 3
+                            'text-zinc-700': family().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -123,7 +120,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 4
+                            'text-zinc-700': family().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -140,7 +137,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': family().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 5
+                            'text-zinc-700': family().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -155,7 +152,7 @@ import { map } from 'rxjs';
                           </g>
                         </svg>
                       </div>
-                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
+                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-300">
                         <span>{{ family().totalRating | numb : translate.currentLang }}</span>
                         @if (family().growthRating) {
                         <span
@@ -170,7 +167,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600">
                       {{ family().totalCount | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                       @if (family().growthCount) {
@@ -189,26 +186,23 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-900 shadow-black/10 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
-                    <span
-                      [inlineSVG]="'user.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
-                    ></span>
+                    <span [inlineSVG]="'user.svg'" class="svg-icon-1 text-zinc-200 stroke-[1.7]"></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'SOLO' | translate }}</p>
+                    <p class="text-sm font-bold text-zinc-200">{{ 'SOLO' | translate }}</p>
                     <div class="flex items-center xl:col-span-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 1
+                            'text-zinc-700': solo().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -225,7 +219,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 2
+                            'text-zinc-700': solo().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -242,7 +236,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 3
+                            'text-zinc-700': solo().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -259,7 +253,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 4
+                            'text-zinc-700': solo().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -276,7 +270,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': solo().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 5
+                            'text-zinc-700': solo().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -291,7 +285,7 @@ import { map } from 'rxjs';
                           </g>
                         </svg>
                       </div>
-                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
+                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-300">
                         <span>{{ solo().totalRating | numb : translate.currentLang }}</span>
                         @if (solo().growthRating) {
                         <span
@@ -306,7 +300,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600">
                       {{ solo().totalCount | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                       @if (solo().growthCount) {
@@ -325,26 +319,23 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-900 shadow-black/10 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
-                    <span
-                      [inlineSVG]="'users-3.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
-                    ></span>
+                    <span [inlineSVG]="'users-3.svg'" class="svg-icon-1 text-zinc-200 stroke-[1.7]"></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'COUPLE' | translate }}</p>
+                    <p class="text-sm font-bold text-zinc-200">{{ 'COUPLE' | translate }}</p>
                     <div class="flex items-center xl:col-span-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 1
+                            'text-zinc-700': couple().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -361,7 +352,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 2
+                            'text-zinc-700': couple().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -378,7 +369,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 3
+                            'text-zinc-700': couple().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -395,7 +386,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 4
+                            'text-zinc-700': couple().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -412,7 +403,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': couple().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 5
+                            'text-zinc-700': couple().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -427,7 +418,7 @@ import { map } from 'rxjs';
                           </g>
                         </svg>
                       </div>
-                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
+                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-300">
                         <span>{{ couple().totalRating | numb : translate.currentLang }}</span>
                         @if (couple().growthRating) {
                         <span
@@ -442,7 +433,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600">
                       {{ couple().totalCount | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                       @if (couple().growthCount) {
@@ -461,26 +452,23 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-zinc-900 shadow-black/10 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
-                    <span
-                      [inlineSVG]="'suitcase-6.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
-                    ></span>
+                    <span [inlineSVG]="'suitcase-6.svg'" class="svg-icon-1 text-zinc-200 stroke-[1.7]"></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'BUSINESS' | translate }}</p>
+                    <p class="text-sm font-bold text-zinc-200">{{ 'BUSINESS' | translate }}</p>
                     <div class="flex items-center xl:col-span-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 1
+                            'text-zinc-700': business().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -497,7 +485,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 2
+                            'text-zinc-700': business().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -514,7 +502,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 3
+                            'text-zinc-700': business().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -531,7 +519,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 4
+                            'text-zinc-700': business().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -548,7 +536,7 @@ import { map } from 'rxjs';
                         <svg
                           [ngClass]="{
                             'text-yellow-400': business().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 5
+                            'text-zinc-700': business().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -563,7 +551,7 @@ import { map } from 'rxjs';
                           </g>
                         </svg>
                       </div>
-                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
+                      <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-300">
                         <span>{{ business().totalRating | numb : translate.currentLang }}</span>
                         @if (business().growthRating) {
                         <span
@@ -578,7 +566,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+                    <p class="text-sm font-medium tabular-nums text-zinc-600">
                       {{ business().totalCount | numb : translate.currentLang }}
                       {{ 'REVIEWS' | translate }}
                       @if (business().growthCount) {

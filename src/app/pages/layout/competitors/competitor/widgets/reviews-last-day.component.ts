@@ -1,10 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
+import { Component, computed, inject, input } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
+import { LoaderComponent } from '../../../../../ui/loader/loader.component';
+import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
+import { ReviewModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 
 @Component({
   selector: 'reviews-last-day',
@@ -37,8 +37,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col">
-      @switch (store().state) { @case ('loaded') {
+    <div class="flex flex-col py-6">
+      @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-6 lg:mt-0">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 mb-8">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
@@ -48,7 +48,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 
         <div class="flow-root">
           <div class="divide-y divide-zinc-200 dark:divide-zinc-800">
-            @for (review of store().data; track $index) {
+            @for (review of recentReviews(); track $index) {
             <div class="py-6">
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
@@ -262,16 +262,18 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
   `,
 })
 export class ReviewsLastDayComponent {
-  store = inject(DashboardStore).recentReviews;
+  recentReviews = input.required<ReviewModel[]>();
+  state = input.required<StateModel>();
+
   translate = inject(TranslateService);
 
-  totalReviews = computed(() => this.store().data.length);
+  totalReviews = computed(() => this.recentReviews().length);
   averageRating = computed(
-    () => this.store().data.reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
+    () => this.recentReviews().reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
   );
 
   tripadvisor = computed(() => {
-    const reviews = this.store().data.filter((review) => review.channel.source === 'tripadvisor');
+    const reviews = this.recentReviews().filter((review) => review.channel.source === 'tripadvisor');
 
     return {
       totalReviews: reviews.length,

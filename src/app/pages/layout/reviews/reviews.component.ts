@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { DatePickerComponent } from '../../../ui/datepicker/datepicker.component';
@@ -103,10 +103,19 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
 
                 <div class="flow-root">
                   <div class="pt-8">
-                    @for (review of store.reviews(); track $index) {
+                    @for (review of store.reviews(); track $index) { @defer (on viewport; prefetch on idle) {
                     <header-review [review]="review"></header-review>
-                    <body-review [review]="review"></body-review>
-                    }
+                    } @placeholder {
+                    <div></div>
+                    } @loading {
+                    <div></div>
+                    } @defer (on viewport; prefetch on idle) {
+                    <body-review [review]="review" [showBorder]="$index !== store.reviews().length - 1"></body-review>
+                    } @placeholder {
+                    <div></div>
+                    } @loading {
+                    <div></div>
+                    } }
                   </div>
                 </div>
               </div>
@@ -120,29 +129,35 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
           <ng-container [ngTemplateOutlet]="loading"></ng-container>
           } }
         </div>
-        <div class="flex flex-row items-center justify-between w-full px-3 py-5">
-          <div>
-            <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
-              >{{ 'PAGE' | translate }}: {{ page() }}</span
-            >
-          </div>
-          <div class="flex flex-row items-center gap-x-2">
-            <button
-              class="flex flex-row items-center bg-accent rounded-xl px-2.5 py-2 shadow-sm text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30"
-              (click)="showLess()"
-              [disabled]="reviews.filter().offset === 0"
-            >
-              <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-            </button>
-            <button
-              class="flex flex-row items-center bg-accent rounded-xl px-2.5 py-2 shadow-sm text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium disabled:bg-accent/30 leading-6"
-              (click)="showMore()"
-              [disabled]="stopKeepGoing()"
-            >
-              <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-            </button>
+        @if (store.state() === 'loaded' && store.reviews().length > 0) {
+        <div class="flex flex-col items-center justify-center w-full">
+          <div
+            class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
+          >
+            <div>
+              <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
+                >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
+              >
+            </div>
+            <div class="flex flex-row items-center gap-x-2">
+              <button
+                class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                (click)="showLess()"
+                [disabled]="reviews.filter().offset === 0"
+              >
+                <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+              </button>
+              <button
+                class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                (click)="showMore()"
+                [disabled]="stopKeepGoing()"
+              >
+                <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+              </button>
+            </div>
           </div>
         </div>
+        }
       </div>
     </div>
   `,
@@ -157,7 +172,6 @@ export class ReviewsComponent {
   enddate = computed(() => this.reviews.filter().enddate);
   offset = signal(0);
   stopKeepGoing = computed(() => this.store.reviews().length < 5);
-  page = signal(1);
 
   setStartDate(startdate: any) {
     this.reviews.filter.set({ ...this.reviews.filter(), startdate, offset: 0 });
@@ -168,12 +182,14 @@ export class ReviewsComponent {
   }
 
   showLess() {
-    this.page.set(this.page() - 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.reviews.page.set(this.reviews.page() - 1);
     this.reviews.filter.set({ ...this.reviews.filter(), offset: this.reviews.filter().offset - 5 });
   }
 
   showMore() {
-    this.page.set(this.page() + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.reviews.page.set(this.reviews.page() + 1);
     this.reviews.filter.set({ ...this.reviews.filter(), offset: this.reviews.filter().offset + 5 });
   }
 }
