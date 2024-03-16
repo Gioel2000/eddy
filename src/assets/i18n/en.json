@@ -239,5 +239,7 @@
   "CHOOSE_LANGUAGE": "Choose language",
   "COPY": "Copy",
   "PAGE": "Page",
-  "SEND": "Send"
+  "SEND": "Send",
+  "ADD_COMPETITOR": "Add competitor",
+  "CREATE_COMPETITOR": "Create competitor"
 }

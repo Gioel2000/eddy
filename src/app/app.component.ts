@@ -6,6 +6,7 @@ import { SettingsComponent } from './ui/settings/settings.component';
 import { UserPanelComponent } from './ui/user/user.component';
 import { CreateRestaurantPanelComponent } from './ui/create-restaurant/create-restaurant.component';
 import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
+import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-competitor.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
     UserPanelComponent,
     CreateRestaurantPanelComponent,
     RestaurantPanelComponent,
+    CreateCompetitorPanelComponent,
   ],
   template: `
     @defer (on viewport; prefetch on idle) {
@@ -40,6 +42,12 @@ import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <create-restaurant-panel></create-restaurant-panel>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <create-competitor-panel></create-competitor-panel>
     } @placeholder {
     <div></div>
     } @loading {

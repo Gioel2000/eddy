@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
@@ -65,11 +65,13 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
 
       <div class="p-8 xl:p-10">
         <!-- <p class="text-sm leading-6 text-zinc-300">{{ competitor().address }}, {{ competitor().city }}</p> -->
-        <p class="text-sm leading-6 text-zinc-700 dark:text-zinc-300">
+        <p class="text-sm leading-6 text-zinc-700 dark:text-zinc-300 line-clamp-1">
           {{ competitor().address }}, {{ competitor().city }}
         </p>
         <p class="flex items-baseline gap-x-1 h-[6rem]">
-          <span class="text-4xl font-bold tracking-tight text-black dark:text-white">{{ competitor().name }}</span>
+          <span class="text-4xl font-bold tracking-tight text-black dark:text-white py-2 line-clamp-2">{{
+            competitor().name
+          }}</span>
         </p>
         @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph [reputation]="competitor().reputation" [state]="state()"></brand-reputation-graph>
@@ -103,13 +105,13 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         <div></div>
         }
 
-        <!-- @defer (on viewport; prefetch on idle) {
-        <overview-reviews-last-day></overview-reviews-last-day>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } -->
+        <button
+          class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          (click)="delete.emit(competitor()._id)"
+        >
+          <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>
+          <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
+        </button>
       </div>
       } @case('loading') {
       <ng-container *ngTemplateOutlet="loading"></ng-container>
@@ -124,4 +126,6 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
 export class CompetitorComponent {
   competitor = input.required<CompetitorModel>();
   state = input.required<StateModel>();
+
+  @Output() delete = new EventEmitter<string>();
 }

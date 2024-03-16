@@ -9,6 +9,7 @@ import { CompetitorsService } from './competitors.service';
 import moment from 'moment';
 import { YouComponent } from './you/you.component';
 import { CompetitorComponent } from './competitor/competitor.component';
+import { CompetitorPanelService } from '../../../ui/create-competitor/create-competitor.service';
 
 @Component({
   selector: 'competitors',
@@ -61,8 +62,19 @@ import { CompetitorComponent } from './competitor/competitor.component';
               <div class="flex flex-row min-w-[96rem] gap-8">
                 <you></you>
                 @for (competitor of competitors.others.competitor(); track $index) {
-                <competitor [competitor]="competitor" [state]="competitors.others.state()"></competitor>
-                <competitor [competitor]="competitor" [state]="competitors.others.state()"></competitor>
+                <competitor
+                  [competitor]="competitor"
+                  [state]="competitors.others.state()"
+                  (delete)="delete($event)"
+                ></competitor>
+                } @if (competitors.others.competitor().length < 3) {
+                <button
+                  type="button"
+                  class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"
+                  (click)="panelUI.openPanel()"
+                >
+                  <div class="gap-y-3 w-96"></div>
+                </button>
                 }
               </div>
             </div>
@@ -74,6 +86,7 @@ import { CompetitorComponent } from './competitor/competitor.component';
 })
 export class CompetitorsComponent {
   competitors = inject(CompetitorsService);
+  panelUI = inject(CompetitorPanelService);
 
   limitStart = moment().subtract(1, 'year').toDate();
   now = moment().toDate();
@@ -89,5 +102,10 @@ export class CompetitorsComponent {
   setEndDate(date: Date) {
     this.competitors.you.filter.set({ ...this.competitors.you.filter(), enddate: date });
     this.competitors.others.filter.set({ ...this.competitors.you.filter(), enddate: date });
+  }
+
+  delete(id: string) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.competitors.others.delete(id);
   }
 }

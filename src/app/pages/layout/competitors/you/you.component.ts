@@ -66,9 +66,9 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
       </div> -->
 
       <div class="p-8 xl:p-10">
-        <p class="text-sm leading-6 text-zinc-300">{{ selected().address }}, {{ selected().city }}</p>
+        <p class="text-sm leading-6 text-zinc-300 line-clamp-1">{{ selected().address }}, {{ selected().city }}</p>
         <p class="flex items-baseline gap-x-1 h-[6rem]">
-          <span class="text-4xl font-bold tracking-tight text-white">{{ selected().name }}</span>
+          <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{ selected().name }}</span>
         </p>
         @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph></brand-reputation-graph>

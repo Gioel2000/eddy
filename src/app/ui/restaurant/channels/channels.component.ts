@@ -40,11 +40,12 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  [ngClass]="{ 'opacity-50': formGroup.get('tripadvisor')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="tripadvisor"
                 />
@@ -77,11 +78,12 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  [ngClass]="{ 'opacity-50': formGroup.get('google')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
                   placeholder="www.google.com/travel/hotels/entity/aje4nbsk"
                   formControlName="google"
                 />
@@ -117,11 +119,12 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  [ngClass]="{ 'opacity-50': formGroup.get('thefork')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="thefork"
                 />
@@ -154,8 +157,9 @@ import { RestaurantPanelService } from '../panel.service';
               {{ 'CANCEL' | translate }}
             </button>
             <button
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-50"
               [disabled]="formGroup.invalid || formGroup.pristine"
+              (click)="save()"
             >
               {{ 'EDIT' | translate }}
             </button>
@@ -200,21 +204,55 @@ export class ChannelsRestaurantPanelComponent {
         map((restaurant) => restaurant.channels)
       )
       .subscribe((channels) => {
+        console.log(channels);
+
+        this.formGroup.patchValue({
+          thefork: '',
+          google: '',
+          tripadvisor: '',
+        });
+
+        this.formGroup.get('thefork')?.enable();
+        this.formGroup.get('google')?.enable();
+        this.formGroup.get('tripadvisor')?.enable();
+
         const thefork = channels.find((channel) => channel.source.toLowerCase() === 'thefork');
         const google = channels.find((channel) => channel.source.toLowerCase() === 'google');
         const tripadvisor = channels.find((channel) => channel.source.toLowerCase() === 'tripadvisor');
 
         if (thefork && thefork.url) {
           this.formGroup.patchValue({ thefork: thefork.url });
+          this.formGroup.get('thefork')?.disable();
         }
 
         if (google && google.url) {
           this.formGroup.patchValue({ google: google.url });
+          this.formGroup.get('google')?.disable();
         }
 
         if (tripadvisor && tripadvisor.url) {
           this.formGroup.patchValue({ tripadvisor: tripadvisor.url });
+          this.formGroup.get('tripadvisor')?.disable();
         }
       });
+  }
+
+  save() {
+    const tripadvisorId =
+      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'tripadvisor')?._id || '';
+
+    const theforkId =
+      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'thefork')?._id || '';
+
+    const googleId =
+      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'google')?._id || '';
+
+    const channels = [
+      { source: 'thefork', url: this.formGroup.get('thefork')?.value || '', id: theforkId },
+      { source: 'google', url: this.formGroup.get('google')?.value || '', id: googleId },
+      { source: 'tripadvisor', url: this.formGroup.get('tripadvisor')?.value || '', id: tripadvisorId },
+    ].filter((channel) => channel.url);
+
+    this.structures.save(channels);
   }
 }

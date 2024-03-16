@@ -90,3 +90,14 @@ export interface Translation {
   language: string;
   text: string;
 }
+
+export type AddCompetitor = {
+  name: string;
+  address: string;
+  city: string;
+  zipCode: string;
+  image: string;
+  googleMapsLink: string;
+  latitude: number;
+  longitude: number;
+};

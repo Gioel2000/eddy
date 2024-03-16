@@ -7,6 +7,8 @@ import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import {
   Observable,
+  Subject,
+  catchError,
   combineLatest,
   delay,
   distinctUntilChanged,
@@ -14,9 +16,11 @@ import {
   forkJoin,
   map,
   mergeMap,
+  of,
   switchMap,
+  tap,
 } from 'rxjs';
-import { CompetitorModel, CompetitorTO, StateModel } from './interfaces/competitors';
+import { AddCompetitor, CompetitorModel, CompetitorTO, StateModel } from './interfaces/competitors';
 import moment from 'moment';
 
 export interface CompetitorsStoreModel {
@@ -36,13 +40,17 @@ export class CompetitorsStore {
   });
 
   filter = signal({
-    startdate: moment().subtract(2, 'weeks').toDate(),
+    startdate: moment().subtract(1, 'months').toDate(),
     enddate: moment().toDate(),
     channels: ['thefork', 'tripadvisor', 'google'],
   });
 
   competitor = computed(() => this.store().data);
   state = computed(() => this.store().state);
+
+  private state$ = new Subject<StateModel>();
+  private add$ = new Subject<CompetitorModel>();
+  private delete$ = new Subject<string>();
 
   constructor() {
     const stream$ = combineLatest({
@@ -64,32 +72,101 @@ export class CompetitorsStore {
     const next$: Observable<CompetitorsStoreModel> = stream$.pipe(
       untilDestroyed(this),
       switchMap(({ selected, filter }) =>
-        forkJoin(
-          selected.competitors.map((competitor) =>
-            this.http.get<CompetitorTO>(`${environment.apiUrl}/api/competitors/${competitor}`).pipe(
-              mergeMap((data) =>
-                forkJoin({
-                  reputation: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitor}/graph/average`,
-                    filter
-                  ),
-                  rating: this.http.post(`${environment.apiUrl}/api/competitors/${competitor}/rating/grouped`, filter),
-                  clientTypes: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitor}/clientType/grouped`,
-                    filter
-                  ),
-                  reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitor}/last/week/2`),
-                }).pipe(map((response) => ({ ...data, ...response })))
+        selected && selected?.competitors?.length > 0
+          ? forkJoin(
+              selected.competitors.map((competitor) =>
+                this.http.get<CompetitorTO>(`${environment.apiUrl}/api/competitors/${competitor}`).pipe(
+                  mergeMap((data) =>
+                    forkJoin({
+                      reputation: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/graph/average`,
+                        filter
+                      ),
+                      rating: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/rating/grouped`,
+                        filter
+                      ),
+                      clientTypes: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/clientType/grouped`,
+                        filter
+                      ),
+                      reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitor}/last/week/2`),
+                    }).pipe(map((response) => ({ ...data, ...response })))
+                  )
+                )
               )
             )
-          )
-        )
+          : of([]).pipe(delay(0))
       ),
       map((data) => ({ data, state: 'loaded' } as CompetitorsStoreModel))
     );
 
     connect(this.store)
       .with(next$)
-      .with(stream$, () => ({ data: [{} as CompetitorModel, {} as CompetitorModel], state: 'loading' }));
+      .with(stream$, () => ({ data: [{} as CompetitorModel, {} as CompetitorModel], state: 'loading' }))
+      .with(this.state$, (store, state) => ({ ...store, state }))
+      .with(this.add$, (store, payload) => ({ ...store, data: [payload, ...store.data] }))
+      .with(this.delete$, (store, id) => ({
+        ...store,
+        data: store.data.filter((competitor) => competitor._id !== id),
+      }));
+  }
+
+  add(competitor: AddCompetitor) {
+    this.state$.next('loading');
+
+    const { startdate, enddate, channels } = this.filter();
+
+    const startDateFilter = moment(startdate).format('YYYY-MM-DD');
+    const endDateFilter = moment(enddate).format('YYYY-MM-DD');
+    const channelsFilter = channels.join(',');
+
+    const filter = {
+      startdate: startDateFilter,
+      enddate: endDateFilter,
+      channels: channelsFilter,
+    };
+
+    this.http
+      .post<CompetitorTO>(`${environment.apiUrl}/api/competitors`, competitor)
+      .pipe(
+        untilDestroyed(this),
+        mergeMap((data) =>
+          forkJoin({
+            reputation: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/graph/average`, filter),
+            rating: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/rating/grouped`, filter),
+            clientTypes: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/clientType/grouped`, filter),
+            reviews: this.http.get(`${environment.apiUrl}/api/competitors/${data._id}/last/week/2`),
+          }).pipe(map((response) => ({ ...data, ...response })))
+        ),
+        map((data) => data as CompetitorModel),
+        tap((data) => {
+          this.add$.next(data);
+          this.state$.next('loaded');
+        }),
+        catchError((error) => {
+          this.state$.next('error');
+          return of(error);
+        })
+      )
+      .subscribe();
+  }
+
+  delete(competitorId: string) {
+    this.state$.next('loading');
+    this.http
+      .delete(`${environment.apiUrl}/api/competitors/${competitorId}`)
+      .pipe(
+        untilDestroyed(this),
+        tap(() => {
+          this.delete$.next(competitorId);
+          this.state$.next('loaded');
+        }),
+        catchError((error) => {
+          this.state$.next('error');
+          return of(error);
+        })
+      )
+      .subscribe();
   }
 }

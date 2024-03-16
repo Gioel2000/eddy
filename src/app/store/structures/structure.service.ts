@@ -5,20 +5,7 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import {
-  Observable,
-  Subject,
-  catchError,
-  debounce,
-  debounceTime,
-  filter,
-  map,
-  mergeMap,
-  of,
-  switchMap,
-  tap,
-  toArray,
-} from 'rxjs';
+import { Observable, Subject, catchError, filter, map, mergeMap, of, switchMap, tap, toArray } from 'rxjs';
 import {
   AddRestaurant,
   EditRestaurant,
@@ -211,7 +198,11 @@ export class StructureStore {
       .post<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, structure)
       .pipe(
         untilDestroyed(this),
-        tap(() => this.state$.next('loaded')),
+        tap(() => {
+          this.state$.next('loaded');
+          this.savedSuccesfully.set(true);
+          setTimeout(() => this.savedSuccesfully.set(false), 4000);
+        }),
         tap((restaurant) => this.add$.next(restaurant)),
         catchError(() => {
           this.state$.next('error');
@@ -260,6 +251,31 @@ export class StructureStore {
       .pipe(
         untilDestroyed(this),
         tap(() => this.delete$.next(id)),
+        tap(() => this.state$.next('loaded')),
+        catchError(() => {
+          this.state$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  save(
+    channels: {
+      source: string;
+      url: string;
+      id: string;
+    }[]
+  ) {
+    this.showAll$.next();
+    this.state$.next('loading');
+
+    const { _id: restaurantId } = this.selected();
+
+    this.http
+      .put(`${environment.apiUrl}/api/restaurants/${restaurantId}/channels`, { channels })
+      .pipe(
+        untilDestroyed(this),
         tap(() => this.state$.next('loaded')),
         catchError(() => {
           this.state$.next('error');
