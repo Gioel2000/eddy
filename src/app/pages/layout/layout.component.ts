@@ -157,7 +157,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                   </div>
                                   <input
                                     type="text"
-                                    class="block w-full text-sm rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 sm:text-sm sm:leading-6"
+                                    class="block w-full rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                                     placeholder="{{ 'SEARCH' | translate }}..."
                                     [formControl]="searchFormControl"
                                     (blur)="isSearchBlur.set(true)"
@@ -367,7 +367,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                             </div>
                             <input
                               type="text"
-                              class="block w-full rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 sm:text-sm sm:leading-6"
+                              class="block w-full rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                               placeholder="{{ 'SEARCH' | translate }}..."
                               [formControl]="searchFormControl"
                               (blur)="isSearchBlur.set(true)"
@@ -578,8 +578,16 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
             }
 
             <footer class="bg-zinc-50 dark:bg-dark mt-52">
-              <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-                <div class="flex justify-center space-x-6 md:order-2"></div>
+              <div class="flex flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
+                <div class="flex justify-center space-x-6 md:order-2">
+                  <a
+                    class="flex flex-row items-center gap-x-1 text-sm font-medium text-zinc-400 dark:text-zinc-600"
+                    href="mailto:support@eddy.restaurant"
+                  >
+                    <span class="svg-icon-6 stroke-[1.6]" inlineSVG="circle-question.svg"></span>
+                    <span>{{ "HELP" | translate }}</span>
+                  </a>
+                </div>
                 <div class="mt-8 md:order-1 md:mt-0">
                   <p class="text-center text-xs leading-5 text-zinc-500">
                     &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.

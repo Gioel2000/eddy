@@ -92,7 +92,7 @@ import { filter, map } from 'rxjs';
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent sm:text-sm sm:leading-6"
+                class="block w-full rounded-xl border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />
@@ -192,6 +192,7 @@ import { filter, map } from 'rxjs';
           <div class="pb-6">
             <a
               class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+              href="mailto:support@eddy.restaurant"
               >{{ 'HELP' | translate }}</a
             >
           </div>

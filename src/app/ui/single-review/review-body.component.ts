@@ -305,7 +305,7 @@ import LanguageDetect from 'languagedetect';
                 name="comment"
                 id="comment"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent sm:text-sm sm:leading-6 focus:outline-none"
+                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent text-sm leading-6 focus:outline-none"
               ></textarea>
             </div>
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">

@@ -23,7 +23,7 @@ import { CompetitorsService } from '../competitors.service';
       >
       <button
         type="button"
-        class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-zinc-50 dark:bg-dark text-zinc-600 dark:text-zinc-300 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 sm:text-sm sm:leading-6"
+        class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-zinc-50 dark:bg-dark text-zinc-600 dark:text-zinc-300 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
         id="menu-button"
         aria-expanded="true"
         aria-haspopup="true"

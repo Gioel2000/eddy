@@ -74,7 +74,7 @@ import { UserService } from './user.service';
                         name="first-name"
                         id="first-name"
                         autocomplete="given-name"
-                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent sm:text-sm sm:leading-6"
+                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         placeholder="John"
                         formControlName="name"
                       />
@@ -93,7 +93,7 @@ import { UserService } from './user.service';
                         name="last-name"
                         id="last-name"
                         autocomplete="family-name"
-                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent sm:text-sm sm:leading-6"
+                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         placeholder="Doe"
                         formControlName="surname"
                       />
@@ -110,7 +110,7 @@ import { UserService } from './user.service';
                         name="email"
                         type="email"
                         autocomplete="email"
-                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent sm:text-sm sm:leading-6 disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+                        class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6 disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
                         placeholder="example@email.com"
                         formControlName="email"
                       />

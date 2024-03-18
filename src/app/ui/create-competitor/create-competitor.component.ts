@@ -24,7 +24,6 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
     ClickOutsideDirective,
     LoaderComponent,
     MomentPipe,
-    ReactiveFormsModule,
     GoogleMapsModule,
   ],
   template: `

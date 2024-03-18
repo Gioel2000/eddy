@@ -70,7 +70,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                       id="first-name"
                       [formControl]="nameControl"
                       autocomplete="given-name"
-                      class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent sm:text-sm sm:leading-6"
+                      class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                       placeholder="{{ 'CATEGORIES_DESCRIPTION' | translate }}"
                     />
                   </div>
@@ -149,7 +149,7 @@ export class AddCategoryComponent {
   menu = inject(MenuService);
 
   icons = icons;
-  nameControl = new FormControl('', [Validators.required]);
+  nameControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
   iconSelected = signal('');
   iconsPerPage = 16;
   start = signal(0);
