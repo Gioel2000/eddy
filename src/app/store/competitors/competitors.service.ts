@@ -52,7 +52,7 @@ export class CompetitorsStore {
   private state$ = new Subject<StateModel>();
   private add$ = new Subject<CompetitorModel>();
   private delete$ = new Subject<string>();
-  private setIsDownloading$ = new Subject<{ compeitorId: string; newIsDownloading: boolean }>();
+  private setIsDownloading$ = new Subject<{ competitorId: string; newIsDownloading: boolean }>();
 
   constructor() {
     const subscription = interval(3000)
@@ -71,14 +71,18 @@ export class CompetitorsStore {
                 .get<{ status: 'downloading' | 'completed' }>(
                   `${environment.apiUrl}/api/competitors/${competitor}/channels/status`
                 )
-                .pipe(map((data) => ({ compeitorId: competitor, newIsDownloading: data.status === 'downloading' })))
+                .pipe(map((data) => ({ competitorId: competitor, newIsDownloading: data.status === 'downloading' })))
             )
           );
         })
       )
       .subscribe((newDownload) => {
-        newDownload.forEach(({ compeitorId, newIsDownloading }) => {
-          this.setIsDownloading$.next({ compeitorId, newIsDownloading });
+        newDownload.forEach(({ competitorId, newIsDownloading }) => {
+          const competitor = this.competitor().find((competitor) => competitor._id === competitorId);
+          if (!competitor) return;
+          if (!competitor.reputation || !competitor.rating || !competitor.clientTypes || !competitor.reviews) return;
+
+          this.setIsDownloading$.next({ competitorId, newIsDownloading });
         });
 
         if (newDownload.every(({ newIsDownloading }) => !newIsDownloading)) {
@@ -143,15 +147,23 @@ export class CompetitorsStore {
       .with(next$)
       .with(stream$, () => ({ data: [{} as CompetitorModel, {} as CompetitorModel], state: 'loading' }))
       .with(this.state$, (store, state) => ({ ...store, state }))
-      .with(this.add$, (store, payload) => ({ ...store, data: [...store.data, payload] }))
+      .with(this.add$, (store, payload) => {
+        return {
+          ...store,
+          data: [
+            ...store.data.filter((competitor) => competitor._id !== payload._id),
+            { ...payload, isDownloading: true },
+          ],
+        };
+      })
       .with(this.delete$, (store, id) => ({
         ...store,
         data: store.data.filter((competitor) => competitor._id !== id),
       }))
-      .with(this.setIsDownloading$, (store, { compeitorId, newIsDownloading }) => ({
+      .with(this.setIsDownloading$, (store, { competitorId, newIsDownloading }) => ({
         ...store,
         data: store.data.map((competitor) =>
-          competitor._id === compeitorId ? { ...competitor, isDownloading: newIsDownloading } : competitor
+          competitor._id === competitorId ? { ...competitor, isDownloading: newIsDownloading } : competitor
         ),
       }));
   }
@@ -160,12 +172,11 @@ export class CompetitorsStore {
     this.state$.next('loading');
 
     const { startdate, enddate, channels } = this.filter();
-
     const startDateFilter = moment(startdate).format('YYYY-MM-DD');
     const endDateFilter = moment(enddate).format('YYYY-MM-DD');
     const channelsFilter = channels.join(',');
 
-    const filter = {
+    const filterData = {
       startdate: startDateFilter,
       enddate: endDateFilter,
       channels: channelsFilter,
@@ -175,42 +186,63 @@ export class CompetitorsStore {
       .post<CompetitorTO>(`${environment.apiUrl}/api/competitors`, competitor)
       .pipe(
         untilDestroyed(this),
-        mergeMap((data) =>
-          forkJoin({
-            reputation: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/graph/average`, filter),
-            rating: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/rating/grouped`, filter),
-            clientTypes: this.http.post(`${environment.apiUrl}/api/competitors/${data._id}/clientType/grouped`, filter),
-            reviews: this.http.get(`${environment.apiUrl}/api/competitors/${data._id}/last/week/2`),
-            isDownloading: this.http
-              .get<{ status: 'downloading' | 'completed' }>(
-                `${environment.apiUrl}/api/competitors/${competitor}/channels/status`
-              )
-              .pipe(map((data) => data.status === 'downloading')),
-          }).pipe(map((response) => ({ ...data, ...response })))
-        ),
-        map((data) => data as CompetitorModel),
         tap((data) => {
-          this.add$.next(data);
+          const competitorsId = data._id;
           this.state$.next('loaded');
+          this.add$.next(data as CompetitorModel);
+          this.setIsDownloading$.next({ competitorId: competitorsId, newIsDownloading: true });
 
           const subscription = interval(3000)
             .pipe(
               untilDestroyed(this),
-              switchMap(() => {
-                const competitorsId = data._id;
-                return this.http
+              switchMap(() =>
+                this.http
                   .get<{ status: 'downloading' | 'completed' }>(
                     `${environment.apiUrl}/api/competitors/${competitorsId}/channels/status`
                   )
                   .pipe(
-                    map((data) => ({ compeitorId: competitorsId, newIsDownloading: data.status === 'downloading' }))
-                  );
-              })
+                    map((data) => ({ competitorId: competitorsId, newIsDownloading: data.status === 'downloading' }))
+                  )
+              ),
+              filter((newDownload) => !newDownload.newIsDownloading),
+              switchMap(() =>
+                forkJoin({
+                  reputation: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/graph/average`,
+                    filterData
+                  ),
+                  rating: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/rating/grouped`,
+                    filterData
+                  ),
+                  clientTypes: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/clientType/grouped`,
+                    filterData
+                  ),
+                  reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitorsId}/last/week/2`),
+                }).pipe(
+                  filter(
+                    (response) =>
+                      !!response.reputation && !!response.rating && !!response.clientTypes && !!response.reviews
+                  ),
+                  map((response) => ({ ...data, ...response })),
+                  map((data) => data as CompetitorModel),
+                  tap((response) => {
+                    this.add$.next(response);
+                    this.setIsDownloading$.next({
+                      competitorId: competitorsId,
+                      newIsDownloading: false,
+                    });
+                    subscription.unsubscribe();
+                  }),
+                  catchError((error) => {
+                    this.state$.next('error');
+                    return of(error);
+                  })
+                )
+              )
             )
-            .subscribe((newDownload) => {
-              this.setIsDownloading$.next(newDownload);
-              !newDownload.newIsDownloading && subscription.unsubscribe();
-            });
+            .subscribe();
         }),
         catchError((error) => {
           this.state$.next('error');

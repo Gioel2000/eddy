@@ -73,7 +73,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
           }}</span>
         </p>
         @if (competitor().isDownloading) {
-        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24">
+        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
           <span class="svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
           <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
             {{ 'WARNING' | translate }}

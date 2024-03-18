@@ -72,7 +72,7 @@ import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
           <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{ selected().name }}</span>
         </p>
         @if (dashboard.isDownloading()) {
-        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24">
+        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
           <span class="svg-icon-1 stroke-2 text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
           <p class="text-2xl font-bold leading-8 text-zinc-100 tracking-tight">
             {{ 'WARNING' | translate }}
