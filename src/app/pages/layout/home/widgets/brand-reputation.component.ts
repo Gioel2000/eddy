@@ -56,7 +56,7 @@ import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.p
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-            {{ store().data.average | numb : translate.currentLang }}
+            {{ store().data.average | numb : translate.currentLang : 1 }}
             <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
@@ -78,7 +78,8 @@ import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.p
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
-          vs. {{ averageGraph() | numb : translate.currentLang }} {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
+          vs. {{ averageGraph() | numb : translate.currentLang : 1 }}
+          {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
         </dt>
       </div>
       <div class="mt-8 -mx-4">

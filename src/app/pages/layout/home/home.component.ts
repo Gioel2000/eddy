@@ -60,21 +60,46 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
               </div>
             </ul>
           </nav>
-          <brand-reputation-graph></brand-reputation-graph>
+
+          @if (home.store.isDownloading()) {
+          <div class="absolute inset-0 flex justify-center items-center z-10 lg:pl-72 py-8">
+            <div class="flex flex-col items-center text-balance text-center gap-y-3">
+              <span
+                class="svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
+                [inlineSVG]="'star-sparkle.svg'"
+              ></span>
+              <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
+                {{ 'WARNING' | translate }}
+              </p>
+              <p
+                class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
+              >
+                {{ 'DOWNLOADING_REVIEWS' | translate }}
+              </p>
+            </div>
+          </div>
+          }
           <div
-            class="divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden bg-zinc-200 dark:bg-zinc-800 sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
+            [ngClass]="{
+              'blur-md opacity-80': home.store.isDownloading()
+            }"
           >
-            <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
-              <ratings-graph></ratings-graph>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
-              <types-graph></types-graph>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
-              <reviews-last-day></reviews-last-day>
-            </div>
-            <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
-              <overview-reviews-last-day></overview-reviews-last-day>
+            <brand-reputation-graph></brand-reputation-graph>
+            <div
+              class="divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden bg-zinc-200 dark:bg-zinc-800 sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
+            >
+              <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
+                <ratings-graph></ratings-graph>
+              </div>
+              <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
+                <types-graph></types-graph>
+              </div>
+              <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
+                <reviews-last-day></reviews-last-day>
+              </div>
+              <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
+                <overview-reviews-last-day></overview-reviews-last-day>
+              </div>
             </div>
           </div>
         </div>

@@ -27,6 +27,7 @@ export interface CompetitorModel {
   reviews: ReviewModel[];
   address: string;
   city: string;
+  isDownloading: boolean;
 }
 
 export interface Channel {

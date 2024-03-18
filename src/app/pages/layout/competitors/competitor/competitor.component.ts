@@ -64,7 +64,6 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
       </div>
 
       <div class="p-8 xl:p-10">
-        <!-- <p class="text-sm leading-6 text-zinc-300">{{ competitor().address }}, {{ competitor().city }}</p> -->
         <p class="text-sm leading-6 text-zinc-700 dark:text-zinc-300 line-clamp-1">
           {{ competitor().address }}, {{ competitor().city }}
         </p>
@@ -73,7 +72,19 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
             competitor().name
           }}</span>
         </p>
-        @defer (on viewport; prefetch on idle) {
+        @if (competitor().isDownloading) {
+        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24">
+          <span class="svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
+          <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
+            {{ 'WARNING' | translate }}
+          </p>
+          <p
+            class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
+          >
+            {{ 'DOWNLOADING_REVIEWS' | translate }}
+          </p>
+        </div>
+        } @else { @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph [reputation]="competitor().reputation" [state]="state()"></brand-reputation-graph>
         } @placeholder {
         <div></div>
@@ -104,7 +115,6 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         } @loading {
         <div></div>
         }
-
         <button
           class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="delete.emit(competitor()._id)"
@@ -112,6 +122,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
           <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>
           <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
         </button>
+        }
       </div>
       } @case('loading') {
       <ng-container *ngTemplateOutlet="loading"></ng-container>

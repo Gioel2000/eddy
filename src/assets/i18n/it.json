@@ -234,12 +234,21 @@
   "COPY_ANSWER": "Copia la risposta",
   "COMMENT": "Commento",
   "COMMENT_PLACEHOLDER": "Lascia qui il tuo commento",
-  "MARK_AS_REPLIED": "Segna come ha risposto",
+  "MARK_AS_REPLIED": "Segna come risposto",
   "MARK_AS_REPLIED_DESCRIPTION": "Ricorda le recensioni a cui hai risposto",
   "CHOOSE_LANGUAGE": "Scegli la lingua",
   "COPY": "Copia",
   "PAGE": "Pagina",
   "SEND": "Invia",
   "ADD_COMPETITOR": "Aggiungi concorrente",
-  "CREATE_COMPETITOR": "Creare un competitor"
+  "CREATE_COMPETITOR": "Creare un competitor",
+  "COPY_SEND": "Copia e invia",
+  "HAVE_THE_AI_RESPOND": "Chiedi all'IA di rispondere",
+  "DOWNLOADING_REVIEWS": "Stiamo raccogliendo recensioni dai principali canali (TripAdvisor, Google, The Fork) per garantirti un'esperienza completa",
+  "WAIT_PLEASE": "Aspetta per favore",
+  "WARNING": "Attenzione",
+  "CATEGORIES": "Categorie",
+  "CATEGORIES_DESCRIPTION": "Pizza, antipasti, primi piatti, sushi, panini",
+  "ADD_CATEGORY": "Aggiungi categoria",
+  "ICON": "Icona"
 }

@@ -48,7 +48,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
           <div class="flex flex-row items-center gap-x-3">
             <div class="flex flex-row items-center gap-x-3 w-full">
               <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-                {{ totalRating() | numb : translate.currentLang }}
+                {{ totalRating() | numb : translate.currentLang : 1 }}
               </dd>
             </div>
             <div class="flex flex-col items-start gap-y-1">

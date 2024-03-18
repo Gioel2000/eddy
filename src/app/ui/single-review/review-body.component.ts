@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject, filter, map } from 'rxjs';
@@ -316,7 +316,7 @@ import LanguageDetect from 'languagedetect';
                   (click)="onCopyAndReply()"
                 >
                   <span [inlineSVG]="'paper-plane-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
-                  <span>{{ 'SEND' | translate | uppercase }}</span>
+                  <span>{{ 'COPY_SEND' | translate | uppercase }}</span>
                 </button>
               </div>
               <div *ngIf="(alreadyReplied$ | async) === true">
@@ -345,6 +345,26 @@ import LanguageDetect from 'languagedetect';
                     {{ 'MARK_AS_REPLIED_DESCRIPTION' | translate }}
                   </p>
                 </div>
+              </div>
+            </div>
+            <div *ngIf="(alreadyReplied$ | async) === false">
+              <div class="flex flex-row items-center mt-10 gap-x-3">
+                @if (review().title.trim().length || review().text.trim().length) {
+                <button
+                  class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                  [disabled]="isAiResponseLoading()"
+                  (click)="askAIToReply()"
+                >
+                  <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
+                  <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
+                </button>
+                } @if (isAiResponseLoading()){
+                <div class="flex flex-row items-center justify-center">
+                  <div class="flex flex-row items-center justify-center w-full">
+                    <loader></loader>
+                  </div>
+                </div>
+                }
               </div>
             </div>
           </div>
@@ -376,6 +396,8 @@ export class BodyReviewComponent {
   review = input.required<ReviewTO>();
   showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
+
+  isAiResponseLoading = signal(false);
 
   constructor(
     private readonly translateService: TranslateService // private readonly reviewsService: ReviewsService, // private readonly francisService: FrancisService
@@ -428,14 +450,19 @@ export class BodyReviewComponent {
       }
 
       if (reviewLang !== 'it' && index !== -1) {
-        const translation = this.review().translations![index];
+        const translation = this.review().translations[index];
         translation &&
           this.reviewContent$.next({
-            ...translation.description,
+            text: translation.description,
             title: titleFormatted,
           });
 
         this.calculateSentiment(translation, 'en');
+      }
+
+      const aiReply = this.review().aiReply;
+      if (aiReply) {
+        this.commentControl.setValue(aiReply);
       }
     });
 
@@ -456,7 +483,7 @@ export class BodyReviewComponent {
 
           translation &&
             this.reviewContent$.next({
-              ...translation?.description,
+              text: translation?.description || '',
               title: titleFormatted,
             });
           this.calculateSentiment(translation, currentLang);
@@ -472,7 +499,7 @@ export class BodyReviewComponent {
 
               translation &&
                 this.reviewContent$.next({
-                  ...translation?.description,
+                  text: typeof translation?.description === 'string' ? translation?.description : '',
                   title: titleFormatted,
                 });
               this.calculateSentiment(translation, currentLang);
@@ -713,16 +740,12 @@ export class BodyReviewComponent {
       return attrWithSentiment;
     };
 
-    const { pros, cons, text } = translation?.description || translation || {};
+    const text = translation.description;
 
-    const prosSentiment = replaceBySentiment(pros);
-    const consSentiment = replaceBySentiment(cons);
     const textSentiment = replaceBySentiment(text);
 
     this.reviewContent$.next({
       ...this.reviewContent$.value,
-      pros: prosSentiment,
-      cons: consSentiment,
       text: textSentiment,
     });
   }
@@ -750,5 +773,16 @@ export class BodyReviewComponent {
 
   replaceAll(str: string, find: string, replace: string) {
     return str.replace(new RegExp(find, 'g'), replace);
+  }
+
+  askAIToReply() {
+    this.isAiResponseLoading.set(true);
+    this.store
+      .askAIReply(this.review()._id)
+      .pipe(untilDestroyed(this))
+      .subscribe(({ text }) => {
+        this.isAiResponseLoading.set(false);
+        this.commentControl.setValue(text);
+      });
   }
 }

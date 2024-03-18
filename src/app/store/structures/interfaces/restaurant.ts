@@ -67,6 +67,12 @@ export interface Channels {
   url: string;
 }
 
+export interface ChannelModelTO {
+  _id: string;
+  source: string;
+  url: string;
+}
+
 export interface RestaurantSettedTO {
   _id: string;
   name: string;
@@ -77,11 +83,7 @@ export interface RestaurantSettedTO {
   telephone: string;
   website: string;
   image: string;
-  channels: {
-    _id: string;
-    source: string;
-    url: string;
-  }[];
+  channels: ChannelModelTO[];
   openaiLimit: number;
   __v: number;
   competitors: string[];

@@ -8,8 +8,8 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "deploy": "ng build --base-href /",
-        "client-s3-deploy": "aws s3 sync dist/eddy/browser/ s3://eddy.diamondshub.it/ --delete",
-        "client-cloudfront-invalidation": "aws cloudfront create-invalidation --distribution-id E19XW11BEMBK4Z  --paths '/*' ",
+        "client-s3-deploy": "aws s3 sync dist/eddy/browser/ s3://eddy.restaurant/ --delete",
+        "client-cloudfront-invalidation": "aws cloudfront create-invalidation --distribution-id E1WH2IF5G0GX7O  --paths '/*' ",
         "client-deploy": "npm run deploy && npm run client-s3-deploy && npm run client-cloudfront-invalidation"
     },
     "private": true,

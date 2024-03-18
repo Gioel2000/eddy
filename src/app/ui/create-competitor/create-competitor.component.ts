@@ -238,9 +238,6 @@ export class CreateCompetitorPanelComponent implements AfterViewInit {
       this.googleLink.set(place.url || '');
       this.coordinates.set({ latitude: lat || 0, longitude: lng || 0 });
 
-      console.log('lat', lat);
-      console.log('lng', lng);
-
       this.formGroup.patchValue({
         name: place.name,
         address: `${address} ${number}`,

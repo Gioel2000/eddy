@@ -93,71 +93,97 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
               </div>
             </ul>
           </nav>
-          @switch (store.state()) { @case ('loaded') {
-          <div>
-            <div class="max-w-3xl px-4 sm:px-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-8">
-              <div class="lg:col-span-4"><ratings-graph></ratings-graph></div>
+          @if (reviews.store.isDownloading()) {
+          <div class="absolute inset-0 flex justify-center items-center z-10 lg:pl-72 py-8">
+            <div class="flex flex-col items-center text-balance text-center gap-y-3">
+              <span
+                class="svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
+                [inlineSVG]="'star-sparkle.svg'"
+              ></span>
+              <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
+                {{ 'WARNING' | translate }}
+              </p>
+              <p
+                class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
+              >
+                {{ 'DOWNLOADING_REVIEWS' | translate }}
+              </p>
+            </div>
+          </div>
+          }
+          <div
+            [ngClass]="{
+              'blur-md opacity-80': reviews.store.isDownloading()
+            }"
+          >
+            @switch (store.state()) { @case ('loaded') {
+            <div>
+              <div
+                class="max-w-3xl px-4 sm:px-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-8"
+              >
+                <div class="lg:col-span-4"><ratings-graph></ratings-graph></div>
 
-              <div class="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-                <h3 class="sr-only">Recent reviews</h3>
+                <div class="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+                  <h3 class="sr-only">Recent reviews</h3>
 
-                <div class="flow-root">
-                  <div class="pt-8">
-                    @for (review of store.reviews(); track $index) { @defer (on viewport; prefetch on idle) {
-                    <header-review [review]="review"></header-review>
-                    } @placeholder {
-                    <div></div>
-                    } @loading {
-                    <div></div>
-                    } @defer (on viewport; prefetch on idle) {
-                    <body-review [review]="review" [showBorder]="$index !== store.reviews().length - 1"></body-review>
-                    } @placeholder {
-                    <div></div>
-                    } @loading {
-                    <div></div>
-                    } }
+                  <div class="flow-root">
+                    <div class="pt-8">
+                      @for (review of store.reviews(); track $index) { @defer (on viewport; prefetch on idle) {
+                      <header-review [review]="review"></header-review>
+                      } @placeholder {
+                      <div></div>
+                      } @loading {
+                      <div></div>
+                      } @defer (on viewport; prefetch on idle) {
+                      <body-review [review]="review" [showBorder]="$index !== store.reviews().length - 1"></body-review>
+                      } @placeholder {
+                      <div></div>
+                      } @loading {
+                      <div></div>
+                      } }
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            } @case ('error') {
+            <ng-container [ngTemplateOutlet]="error"></ng-container>
+            } @case ('empty') {
+            <ng-container [ngTemplateOutlet]="empty"></ng-container>
+            } @case ('loading') {
+            <ng-container [ngTemplateOutlet]="loading"></ng-container>
+            } }
           </div>
-          } @case ('error') {
-          <ng-container [ngTemplateOutlet]="error"></ng-container>
-          } @case ('empty') {
-          <ng-container [ngTemplateOutlet]="empty"></ng-container>
-          } @case ('loading') {
-          <ng-container [ngTemplateOutlet]="loading"></ng-container>
-          } }
-        </div>
-        @if (store.state() === 'loaded' && store.reviews().length > 0) {
-        <div class="flex flex-col items-center justify-center w-full">
-          <div
-            class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
-          >
-            <div>
-              <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
-                >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
-              >
-            </div>
-            <div class="flex flex-row items-center gap-x-2">
-              <button
-                class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                (click)="showLess()"
-                [disabled]="reviews.filter().offset === 0"
-              >
-                <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-              </button>
-              <button
-                class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                (click)="showMore()"
-                [disabled]="stopKeepGoing()"
-              >
-                <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-              </button>
+          @if (store.state() === 'loaded' && store.reviews().length > 0) {
+          <div class="flex flex-col items-center justify-center w-full">
+            <div
+              class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
+            >
+              <div>
+                <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
+                  >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
+                >
+              </div>
+              <div class="flex flex-row items-center gap-x-2">
+                <button
+                  class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                  (click)="showLess()"
+                  [disabled]="reviews.filter().offset === 0"
+                >
+                  <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                </button>
+                <button
+                  class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                  (click)="showMore()"
+                  [disabled]="stopKeepGoing()"
+                >
+                  <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                </button>
+              </div>
             </div>
           </div>
+          }
         </div>
-        }
       </div>
     </div>
   `,

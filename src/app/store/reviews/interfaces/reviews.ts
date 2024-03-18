@@ -21,6 +21,7 @@ export interface ReviewTO {
   clientsType?: string[];
   reviewId?: any;
   externalSource?: any;
+  aiReply: string;
   __v: number;
 }
 

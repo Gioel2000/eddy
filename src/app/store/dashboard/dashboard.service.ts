@@ -14,9 +14,11 @@ import {
   distinctUntilChanged,
   filter,
   forkJoin,
+  interval,
   map,
   of,
   switchMap,
+  tap,
 } from 'rxjs';
 import moment from 'moment';
 
@@ -37,6 +39,7 @@ export interface DashboardStoreModel {
     data: ReviewTO[];
     state: StateModel;
   };
+  isDownloading: boolean;
 }
 
 export const INIT_STATE: DashboardStoreModel = {
@@ -59,6 +62,7 @@ export const INIT_STATE: DashboardStoreModel = {
     data: [],
     state: 'loading',
   },
+  isDownloading: false,
 };
 
 const INIT_FILTER = {
@@ -82,13 +86,31 @@ export class DashboardStore {
   });
 
   filter$ = new Subject<{ startdate: string; enddate: string; channels: string }>();
+  setIsDownloading$ = new Subject<boolean>();
 
   brandReputation = computed(() => this.store().brandReputation);
   ratings = computed(() => this.store().ratings);
   typologies = computed(() => this.store().typologies);
   recentReviews = computed(() => this.store().recentReviews);
+  isDownloading = computed(() => this.store().isDownloading);
 
   constructor() {
+    const subscription = interval(3000)
+      .pipe(
+        untilDestroyed(this),
+        filter(() => this.isDownloading()),
+        switchMap(() =>
+          this.http.get<{ status: 'downloading' | 'completed' }>(
+            `${environment.apiUrl}/api/restaurants/channels/status`
+          )
+        ),
+        map((data) => data.status === 'downloading')
+      )
+      .subscribe((isDownloading) => {
+        !isDownloading && subscription.unsubscribe();
+        this.setIsDownloading$.next(isDownloading);
+      });
+
     toObservable(this.filter)
       .pipe(
         untilDestroyed(this),
@@ -121,46 +143,59 @@ export class DashboardStore {
     const next$: Observable<DashboardStoreModel> = stream$.pipe(
       untilDestroyed(this),
       switchMap((filter) =>
-        forkJoin({
-          brandReputation: this.http
-            .post<BrandReputationTO>(`${environment.apiUrl}/api/reviews/graph/average`, filter)
-            .pipe(
-              map((data) => ({ data, state: data.graph.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+        combineLatest({
+          dashboard: forkJoin({
+            brandReputation: this.http
+              .post<BrandReputationTO>(`${environment.apiUrl}/api/reviews/graph/average`, filter)
+              .pipe(
+                map((data) => ({ data, state: data.graph.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+                catchError(() =>
+                  of({
+                    data: { average: 0, graph: [] },
+                    state: 'error' as const,
+                  })
+                )
+              ),
+            ratings: this.http.post<RatingTO[]>(`${environment.apiUrl}/api/reviews/rating/grouped`, filter).pipe(
+              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
               catchError(() =>
                 of({
-                  data: { average: 0, graph: [] },
+                  data: [] as RatingTO[],
                   state: 'error' as const,
                 })
               )
             ),
-          ratings: this.http.post<RatingTO[]>(`${environment.apiUrl}/api/reviews/rating/grouped`, filter).pipe(
-            map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-            catchError(() =>
-              of({
-                data: [] as RatingTO[],
-                state: 'error' as const,
-              })
-            )
-          ),
-          typologies: this.http.post<TypeTO[]>(`${environment.apiUrl}/api/reviews/clientType/grouped`, filter).pipe(
-            map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-            catchError(() =>
-              of({
-                data: [] as TypeTO[],
-                state: 'error' as const,
-              })
-            )
-          ),
-          recentReviews: this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
-            map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-            catchError(() =>
-              of({
-                data: [] as any,
-                state: 'error' as const,
-              })
-            )
-          ),
-        })
+            typologies: this.http.post<TypeTO[]>(`${environment.apiUrl}/api/reviews/clientType/grouped`, filter).pipe(
+              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+              catchError(() =>
+                of({
+                  data: [] as TypeTO[],
+                  state: 'error' as const,
+                })
+              )
+            ),
+            recentReviews: this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
+              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+              catchError(() =>
+                of({
+                  data: [] as any,
+                  state: 'error' as const,
+                })
+              )
+            ),
+          }),
+          isDownloading: this.http
+            .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)
+            .pipe(map((data) => data.status === 'downloading')),
+        }).pipe(
+          map(({ dashboard, isDownloading }) => ({
+            brandReputation: dashboard.brandReputation,
+            ratings: dashboard.ratings,
+            typologies: dashboard.typologies,
+            recentReviews: dashboard.recentReviews,
+            isDownloading,
+          }))
+        )
       )
     );
 
@@ -172,7 +207,8 @@ export class DashboardStore {
         ratings: { ...state.ratings, state: 'loading' },
         typologies: { ...state.typologies, state: 'loading' },
         recentReviews: { ...state.recentReviews, state: 'loading' },
-      }));
+      }))
+      .with(this.setIsDownloading$, (store, isDownloading) => ({ ...store, isDownloading }));
   }
 
   reset() {

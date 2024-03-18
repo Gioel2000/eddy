@@ -9,6 +9,7 @@ import { RatingsComponent } from './widgets/ratings.component';
 import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
 import { TypesComponent } from './widgets/types.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
+import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 
 @Component({
   selector: 'you',
@@ -70,7 +71,17 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         <p class="flex items-baseline gap-x-1 h-[6rem]">
           <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{ selected().name }}</span>
         </p>
-        @defer (on viewport; prefetch on idle) {
+        @if (dashboard.isDownloading()) {
+        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24">
+          <span class="svg-icon-1 stroke-2 text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
+          <p class="text-2xl font-bold leading-8 text-zinc-100 tracking-tight">
+            {{ 'WARNING' | translate }}
+          </p>
+          <p class="text-center text-base font-medium max-w-[24rem] text-zinc-100 opacity-75 mt-1 tracking-tight">
+            {{ 'DOWNLOADING_REVIEWS' | translate }}
+          </p>
+        </div>
+        } @else { @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph></brand-reputation-graph>
         } @placeholder {
         <div></div>
@@ -100,7 +111,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         <div></div>
         } @loading {
         <div></div>
-        }
+        } }
       </div>
 
       } @case('loading') {
@@ -115,6 +126,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
 })
 export class YouComponent {
   store = inject(StructureStore);
+  dashboard = inject(DashboardStore);
 
   selected = computed(() => this.store.selected());
   state = computed(() => this.store.selectedState());

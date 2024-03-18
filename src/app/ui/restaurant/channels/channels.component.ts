@@ -40,22 +40,25 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
-                  [ngClass]="{ 'opacity-50': formGroup.get('tripadvisor')?.disabled }"
+                  [ngClass]="{ 'opacity-30': formGroup.get('tripadvisor')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="tripadvisor"
                 />
               </div>
+              @if (formGroup.get('tripadvisor')?.disabled) {
               <button
                 type="button"
                 class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                (click)="delete('tripadvisor')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
               </button>
+              }
             </div>
           </div>
         </div>
@@ -78,22 +81,25 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
-                  [ngClass]="{ 'opacity-50': formGroup.get('google')?.disabled }"
+                  [ngClass]="{ 'opacity-30': formGroup.get('google')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.google.com/travel/hotels/entity/aje4nbsk"
                   formControlName="google"
                 />
               </div>
+              @if (formGroup.get('google')?.disabled) {
               <button
                 type="button"
                 class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                (click)="delete('google')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
               </button>
+              }
             </div>
           </div>
         </div>
@@ -119,23 +125,25 @@ import { RestaurantPanelService } from '../panel.service';
               <div class="flex rounded-md shadow-sm w-full">
                 <span
                   class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
-                  [ngClass]="{ 'opacity-50': formGroup.get('thefork')?.disabled }"
+                  [ngClass]="{ 'opacity-30': formGroup.get('thefork')?.disabled }"
                   >http://</span
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-50 disabled:text-opacity-50"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="thefork"
                 />
               </div>
-
+              @if (formGroup.get('thefork')?.disabled) {
               <button
                 type="button"
                 class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                (click)="delete('thefork')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
               </button>
+              }
             </div>
           </div>
         </div>
@@ -148,6 +156,12 @@ import { RestaurantPanelService } from '../panel.service';
                 <loader></loader>
               </div>
             </div>
+            } @if (structures.savedSuccesfully()){
+            <div class="flex flex-row items-center justify-center">
+              <div class="flex flex-row items-center justify-center w-full">
+                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-600 stroke-[1.6]"></span>
+              </div>
+            </div>
             }
             <button
               type="button"
@@ -157,7 +171,7 @@ import { RestaurantPanelService } from '../panel.service';
               {{ 'CANCEL' | translate }}
             </button>
             <button
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-50"
+              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
               [disabled]="formGroup.invalid || formGroup.pristine"
               (click)="save()"
             >
@@ -204,8 +218,6 @@ export class ChannelsRestaurantPanelComponent {
         map((restaurant) => restaurant.channels)
       )
       .subscribe((channels) => {
-        console.log(channels);
-
         this.formGroup.patchValue({
           thefork: '',
           google: '',
@@ -253,6 +265,25 @@ export class ChannelsRestaurantPanelComponent {
       { source: 'tripadvisor', url: this.formGroup.get('tripadvisor')?.value || '', id: tripadvisorId },
     ].filter((channel) => channel.url);
 
-    this.structures.save(channels);
+    if (this.formGroup.get('thefork')?.value) this.formGroup.get('thefork')?.disable();
+    if (this.formGroup.get('google')?.value) this.formGroup.get('google')?.disable();
+    if (this.formGroup.get('tripadvisor')?.value) this.formGroup.get('tripadvisor')?.disable();
+
+    this.structures.saveChannels(channels);
+  }
+
+  delete(channel: 'thefork' | 'google' | 'tripadvisor') {
+    this.panelUI.isAllowed.set(false);
+    setTimeout(() => this.panelUI.isAllowed.set(true), 0);
+
+    this.formGroup.patchValue({ [channel]: '' });
+
+    if (!this.formGroup.get('thefork')?.value) this.formGroup.get('thefork')?.enable();
+    if (!this.formGroup.get('google')?.value) this.formGroup.get('google')?.enable();
+    if (!this.formGroup.get('tripadvisor')?.value) this.formGroup.get('tripadvisor')?.enable();
+
+    const id = this.structures.selected()?.channels.find((c) => c.source.toLowerCase() === channel)?._id || '';
+
+    this.structures.deleteChannel(id);
   }
 }

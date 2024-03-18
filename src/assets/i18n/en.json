@@ -241,5 +241,11 @@
   "PAGE": "Page",
   "SEND": "Send",
   "ADD_COMPETITOR": "Add competitor",
-  "CREATE_COMPETITOR": "Create competitor"
+  "CREATE_COMPETITOR": "Create competitor",
+  "COPY_SEND": "Copy and sent",
+  "HAVE_THE_AI_RESPOND": "Have the AI respond",
+  "CATEGORIES": "Categories",
+  "CATEGORIES_DESCRIPTION": "Pizza, appetizers, first courses, sushi, sandwiches",
+  "ADD_CATEGORY": "Add category",
+  "ICON": "Icon"
 }

@@ -13,9 +13,11 @@ import {
   distinctUntilChanged,
   filter,
   forkJoin,
+  interval,
   map,
   of,
   switchMap,
+  tap,
 } from 'rxjs';
 import { ReviewTO, StateModel, SummaryTO } from './interfaces/reviews';
 
@@ -28,6 +30,7 @@ export interface ReviewsStoreModel {
     data: ReviewTO[];
     state: StateModel;
   };
+  isDownloading: boolean;
 }
 
 export const INIT_STATE: ReviewsStoreModel = {
@@ -39,6 +42,7 @@ export const INIT_STATE: ReviewsStoreModel = {
     data: [],
     state: 'loading',
   },
+  isDownloading: false,
 };
 
 @UntilDestroy()
@@ -58,12 +62,31 @@ export class ReviewsStore {
     offset: number;
   }>();
 
+  setIsDownloading$ = new Subject<boolean>();
+
   reviews = computed(() => this.store().list.data);
   summary = computed(() => this.store().summary.data);
   summaryState = computed(() => this.store().summary.state);
   state = computed(() => this.store().list.state);
+  isDownloading = computed(() => this.store().isDownloading);
 
   constructor() {
+    const subscription = interval(3000)
+      .pipe(
+        untilDestroyed(this),
+        filter(() => this.isDownloading()),
+        switchMap(() =>
+          this.http.get<{ status: 'downloading' | 'completed' }>(
+            `${environment.apiUrl}/api/restaurants/channels/status`
+          )
+        ),
+        map((data) => data.status === 'downloading')
+      )
+      .subscribe((isDownloading) => {
+        !isDownloading && subscription.unsubscribe();
+        this.setIsDownloading$.next(isDownloading);
+      });
+
     const stream$ = combineLatest({
       selected: toObservable(this.structure.selected),
       filter: this.filter$,
@@ -79,20 +102,30 @@ export class ReviewsStore {
     const next$: Observable<ReviewsStoreModel> = stream$.pipe(
       untilDestroyed(this),
       switchMap((filter) =>
-        forkJoin({
-          list: this.http.post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, filter).pipe(
-            // degub
-            map((data) => ({
-              data,
-              state: 'loaded',
-            })),
-            catchError(() => of({ data: [], state: 'error' }))
-          ),
-          summary: this.http.post<SummaryTO>(`${environment.apiUrl}/api/reviews/summary`, filter).pipe(
-            map((data) => ({ data, state: 'loaded' })),
-            catchError(() => of({ data: null, state: 'error' }))
-          ),
-        })
+        combineLatest({
+          data: forkJoin({
+            list: this.http.post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, filter).pipe(
+              map((data) => ({
+                data,
+                state: 'loaded',
+              })),
+              catchError(() => of({ data: [], state: 'error' }))
+            ),
+            summary: this.http.post<SummaryTO>(`${environment.apiUrl}/api/reviews/summary`, filter).pipe(
+              map((data) => ({ data, state: 'loaded' })),
+              catchError(() => of({ data: null, state: 'error' }))
+            ),
+          }),
+          isDownloading: this.http
+            .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)
+            .pipe(map((data) => data.status === 'downloading')),
+        }).pipe(
+          map(({ data, isDownloading }) => ({
+            list: data.list,
+            summary: data.summary,
+            isDownloading,
+          }))
+        )
       ),
       map((data) => data as ReviewsStoreModel)
     );
@@ -102,7 +135,8 @@ export class ReviewsStore {
       .with(stream$, () => ({
         list: { data: [], state: 'loading' },
         summary: { data: {} as SummaryTO, state: 'loading' },
-      }));
+      }))
+      .with(this.setIsDownloading$, (store, isDownloading) => ({ ...store, isDownloading }));
   }
 
   translate(reviewId: string, lang: string) {
@@ -115,5 +149,9 @@ export class ReviewsStore {
 
   setReviewReplied(reviewId: string, replied: boolean) {
     return this.http.put(`${environment.apiUrl}/api/reviews/${reviewId}/setreplied/${replied}`, {});
+  }
+
+  askAIReply(reviewId: string) {
+    return this.http.get<{ text: string }>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply`);
   }
 }

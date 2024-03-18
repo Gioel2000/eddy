@@ -5,6 +5,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { HomeComponent } from './pages/layout/home/home.component';
 import { ReviewsComponent } from './pages/layout/reviews/reviews.component';
 import { CompetitorsComponent } from './pages/layout/competitors/competitors.component';
+import { MenuComponent } from './pages/layout/menu/menu.component';
 
 export const routes: Routes = [
   {
@@ -26,7 +27,7 @@ export const routes: Routes = [
       },
       {
         path: 'menu',
-        component: HomeComponent,
+        component: MenuComponent,
         data: { show: true, i18n: 'MENU', icon: 'restaurant-menu.svg' },
         canActivate: [CookieGuard],
       },

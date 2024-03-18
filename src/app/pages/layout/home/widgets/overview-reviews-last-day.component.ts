@@ -982,9 +982,9 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                     alt=""
                     [src]="'./assets/flags/' + replaceAll(country.country.toLowerCase(), ' ', '-') + '.svg'"
                   />
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100"
-                    >{{ country.country }}, {{ replaceAll(country.country.toLowerCase(), ' ', '-') }}</span
-                  >
+                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    country.country
+                  }}</span>
                 </div>
               </div>
               <div class="col-span-6">
