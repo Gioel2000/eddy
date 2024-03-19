@@ -11,4 +11,6 @@ export class MenuService {
 
   menuMode = signal<'edit' | 'add'>('add');
   menu = signal<MenuTO>({} as MenuTO);
+
+  menuId = signal('');
 }

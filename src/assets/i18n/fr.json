@@ -274,5 +274,9 @@
   "WARNING": "Attention",
   "WEBSITE": "Site web",
   "YOUR_LANGUAGE": "Votre langue",
-  "YOUR_RESTAURANT": "Votre restaurant"
+  "YOUR_RESTAURANT": "Votre restaurant",
+  "NO_IMAGE": "Pas d'image",
+  "OPEN": "Ouvrir",
+  "PRINT": "Imprimer",
+  "SHARE": "Partager"
 }

@@ -274,5 +274,9 @@
   "WARNING": "Huomio",
   "WEBSITE": "Verkkosivusto",
   "YOUR_LANGUAGE": "Sinun kielesi",
-  "YOUR_RESTAURANT": "Sinun ravintolasi"
+  "YOUR_RESTAURANT": "Sinun ravintolasi",
+  "NO_IMAGE": "Ei kuvaa",
+  "OPEN": "Avata",
+  "PRINT": "Tulosta",
+  "SHARE": "Jaa"
 }

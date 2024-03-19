@@ -274,5 +274,9 @@
   "WARNING": "ความสนใจ",
   "WEBSITE": "เว็บไซต์",
   "YOUR_LANGUAGE": "ภาษาของคุณ",
-  "YOUR_RESTAURANT": "ร้านอาหารของคุณ"
+  "YOUR_RESTAURANT": "ร้านอาหารของคุณ",
+  "NO_IMAGE": "ไม่มีรูป",
+  "OPEN": "เปิด",
+  "PRINT": "พิมพ์",
+  "SHARE": "แบ่งปัน"
 }

@@ -274,5 +274,9 @@
   "VOID": "Vacío",
   "WAIT_PLEASE": "Espere por favor",
   "WARNING": "Atención",
-  "YOUR_LANGUAGE": "Tu lenguaje"
+  "YOUR_LANGUAGE": "Tu lenguaje",
+  "NO_IMAGE": "Sin imágen",
+  "OPEN": "Abierto",
+  "PRINT": "Imprimir",
+  "SHARE": "Compartir"
 }

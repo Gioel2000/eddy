@@ -12,7 +12,7 @@ import { combineLatest, filter } from 'rxjs';
   selector: 'menu-dish',
   imports: [MoneyPipe, InlineSVGModule],
   standalone: true,
-  template: `<div class="rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-800 w-full shadow-md shadow-black/5">
+  template: `<div class="rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-800 w-full h-full shadow-md shadow-black/5">
     @if (dish().image) {
     <div class="relative flex h-56 w-full flex-col overflow-hidden rounded-t-xl p-6">
       <span aria-hidden="true" class="absolute inset-0">

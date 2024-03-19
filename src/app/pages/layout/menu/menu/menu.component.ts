@@ -7,6 +7,7 @@ import { MenuStoreService } from '../../../../store/menu/menu.service';
 import { MenuService } from '../menu.service';
 import { DialogService } from './add/dialog.service';
 import { MenuTO } from '../../../../store/menu/interfaces/menu';
+import { ShareDialogService } from './share/dialog.service';
 
 @Component({
   selector: 'menu-menus',
@@ -62,15 +63,10 @@ import { MenuTO } from '../../../../store/menu/interfaces/menu';
       </div>
       <div>
         @switch(store.menusState()) { @case('loaded') {
-
         <ul role="list" class="divide-y divide-zinc-200 dark:divide-zinc-800">
           @for (menu of store.menus(); track $index) {
           <li class="flex justify-between gap-x-6 py-5">
             <div class="flex flex-row items-center gap-x-2">
-              <span
-                class="svg-icon-6 stroke-2 text-zinc-900 dark:text-zinc-100"
-                [inlineSVG]="'food/' + menu.icon"
-              ></span>
               <div class="min-w-0 flex-auto">
                 <p class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{ menu.name }}</p>
                 <p class="text-sm font-semibold leading-6 text-zinc-500">{{ menu?.description }}</p>
@@ -78,8 +74,10 @@ import { MenuTO } from '../../../../store/menu/interfaces/menu';
             </div>
             <div class="flex flex-row items-center">
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="qrcode.svg"></span
+                <a
+                  class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                  (click)="share(menu._id)"
+                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="export.svg"></span
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
@@ -98,7 +96,6 @@ import { MenuTO } from '../../../../store/menu/interfaces/menu';
           </li>
           }
         </ul>
-
         } @case('loading') {
         <ng-container *ngTemplateOutlet="loading"></ng-container>
         } @case('error') {
@@ -114,6 +111,7 @@ export class MenusMenuComponent {
   store = inject(MenuStoreService);
   menu = inject(MenuService);
   dialog = inject(DialogService);
+  shareDialog = inject(ShareDialogService);
 
   onAdd() {
     this.menu.menuMode.set('add');
@@ -125,6 +123,11 @@ export class MenusMenuComponent {
     this.menu.menuMode.set('edit');
     this.menu.menu.set(menu);
     this.dialog.openDialog();
+  }
+
+  share(menuId: string) {
+    this.shareDialog.openDialog();
+    this.menu.menuId.set(menuId);
   }
 
   onDelete(id: string) {

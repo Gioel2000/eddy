@@ -274,5 +274,9 @@
   "WARNING": "注意",
   "WEBSITE": "Webサイト",
   "YOUR_LANGUAGE": "あなたの言語",
-  "YOUR_RESTAURANT": "あなたのレストラン"
+  "YOUR_RESTAURANT": "あなたのレストラン",
+  "NO_IMAGE": "画像無し",
+  "OPEN": "開ける",
+  "PRINT": "印刷する",
+  "SHARE": "共有"
 }

@@ -7,6 +7,7 @@ import { MenuDishesComponent } from './dishes/dishes.component';
 import { AddDishComponent } from './dishes/add/add-dish.component';
 import { MenusMenuComponent } from './menu/menu.component';
 import { AddMenuComponent } from './menu/add/add-menu.component';
+import { ShareMenuComponent } from './menu/share/share.component';
 
 @Component({
   selector: 'menu',
@@ -19,6 +20,7 @@ import { AddMenuComponent } from './menu/add/add-menu.component';
     AddDishComponent,
     MenusMenuComponent,
     AddMenuComponent,
+    ShareMenuComponent,
   ],
   template: `
     @defer (on viewport; prefetch on idle) {
@@ -35,6 +37,12 @@ import { AddMenuComponent } from './menu/add/add-menu.component';
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <add-menu-dialog></add-menu-dialog>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <share-menu-dialog></share-menu-dialog>
     } @placeholder {
     <div></div>
     } @loading {
@@ -56,7 +64,7 @@ import { AddMenuComponent } from './menu/add/add-menu.component';
               <div></div>
               }
             </div>
-            <div class="bg-zinc-50 dark:bg-dark col-span-full sm:col-span-6 xl:col-span-3 py-5 px-0 sm:px-5">
+            <div class="bg-zinc-50 dark:bg-dark col-span-full sm:col-span-6 xl:col-span-5 py-5 px-0 sm:px-5">
               @defer (on viewport; prefetch on idle) {
               <menu-dishes></menu-dishes>
               } @placeholder {
@@ -65,8 +73,7 @@ import { AddMenuComponent } from './menu/add/add-menu.component';
               <div></div>
               }
             </div>
-
-            <div class="bg-zinc-50 dark:bg-dark col-span-full sm:col-span-full xl:col-span-5 py-5 px-0 sm:px-5">
+            <div class="bg-zinc-50 dark:bg-dark col-span-full sm:col-span-full xl:col-span-3 py-5 px-0 sm:px-5">
               @defer (on viewport; prefetch on idle) {
               <menu-menus></menu-menus>
               } @placeholder {

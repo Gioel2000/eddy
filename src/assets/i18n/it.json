@@ -274,5 +274,9 @@
   "ADD_MENU": "Aggiungi menù",
   "MENU_PLACEHOLDER": "Nome del menù",
   "MENU_DESCRIPTION_PLACEHOLDER": "Descrizione del menù",
-  "ADD_ALL_CATEGORIES": "Aggiungi tutte"
+  "ADD_ALL_CATEGORIES": "Aggiungi tutte",
+  "SHARE": "Condividi",
+  "PRINT": "Stampa",
+  "OPEN": "Apri",
+  "NO_IMAGE": "Nessuna immagine"
 }

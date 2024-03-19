@@ -29,7 +29,7 @@ export interface MenuStoreModel {
     state: StateModel;
   };
   menus: {
-    data: any[];
+    data: MenuTO[];
     state: StateModel;
   };
 }
@@ -88,7 +88,7 @@ export class MenuStoreService {
         forkJoin({
           categories: this.http.get<CategoryTO[]>(`${environment.apiUrl}/api/menus/categories`),
           dishes: this.http.get<DishTO[]>(`${environment.apiUrl}/api/menus/dishes`),
-          menus: this.http.get<any[]>(`${environment.apiUrl}/api/menus`),
+          menus: this.http.get<MenuTO[]>(`${environment.apiUrl}/api/menus`),
         }).pipe(
           map(
             ({ categories, dishes, menus }) =>
@@ -162,6 +162,17 @@ export class MenuStoreService {
           ...state.categories,
           data: state.categories.data.filter((c) => c._id !== categoryId),
         },
+        menus: {
+          ...state.menus,
+          data: state.menus.data.map((m) => ({
+            ...m,
+            categories: m.categories.filter((c) => c.category !== categoryId),
+          })),
+        },
+        dishes: {
+          ...state.dishes,
+          data: state.dishes.data.map((d) => (d.category !== categoryId ? d : { ...d, category: '' })),
+        },
       }))
       .with(this.addDish$, (state, dish) => ({
         dishes: {
@@ -185,6 +196,13 @@ export class MenuStoreService {
         dishes: {
           ...state.dishes,
           data: state.dishes.data.filter((d) => d._id !== dishId),
+        },
+        menus: {
+          ...state.menus,
+          data: state.menus.data.map((m) => ({
+            ...m,
+            dishes: m.dishes.filter((d) => d.dish !== dishId),
+          })),
         },
       }))
       .with(this.addMenu$, (state, menu) => ({

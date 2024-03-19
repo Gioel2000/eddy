@@ -274,5 +274,9 @@
   "ADD_ALL_CATEGORIES": "Add all",
   "DOWNLOADING_REVIEWS": "We are collecting reviews from the main channels (TripAdvisor, Google, The Fork) to guarantee you a complete experience",
   "WAIT_PLEASE": "Wait please",
-  "WARNING": "Attention"
+  "WARNING": "Attention",
+  "SHARE": "Share",
+  "PRINT": "Print",
+  "OPEN": "Open",
+  "NO_IMAGE": "No image"
 }

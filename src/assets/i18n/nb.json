@@ -274,5 +274,9 @@
   "WARNING": "Merk følgende",
   "WEBSITE": "Nettsted",
   "YOUR_LANGUAGE": "Ditt språk",
-  "YOUR_RESTAURANT": "Din restaurant"
+  "YOUR_RESTAURANT": "Din restaurant",
+  "NO_IMAGE": "Ikke noe bilde",
+  "OPEN": "Åpen",
+  "PRINT": "Skrive ut",
+  "SHARE": "Dele"
 }

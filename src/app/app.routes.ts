@@ -6,6 +6,8 @@ import { HomeComponent } from './pages/layout/home/home.component';
 import { ReviewsComponent } from './pages/layout/reviews/reviews.component';
 import { CompetitorsComponent } from './pages/layout/competitors/competitors.component';
 import { MenuComponent } from './pages/layout/menu/menu.component';
+import { StructuresComponent } from './pages/structures/structures.component';
+import { PublicMenuComponent } from './pages/public-menu/public-menu.component';
 
 export const routes: Routes = [
   {
@@ -47,7 +49,11 @@ export const routes: Routes = [
   },
   {
     path: 'structures',
-    loadComponent: () => import('./pages/structures/structures.component').then((m) => m.StructuresComponent),
+    component: StructuresComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'public-menu/:id',
+    loadComponent: () => PublicMenuComponent,
   },
 ];

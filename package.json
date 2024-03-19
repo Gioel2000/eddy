@@ -34,6 +34,7 @@
         "@swimlane/ngx-charts": "^20.5.0",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/line-clamp": "^0.4.4",
+        "angularx-qrcode": "^17.0.0",
         "languagedetect": "^2.0.0",
         "lottie-web": "^5.12.2",
         "moment": "^2.30.1",

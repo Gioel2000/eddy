@@ -274,5 +274,9 @@
   "VOID": "Ruang kosong",
   "WAIT_PLEASE": "Mohon tunggu",
   "WARNING": "Perhatian",
-  "YOUR_LANGUAGE": "Bahasa Anda"
+  "YOUR_LANGUAGE": "Bahasa Anda",
+  "NO_IMAGE": "Tidak ada gambar",
+  "OPEN": "Membuka",
+  "PRINT": "Mencetak",
+  "SHARE": "Membagikan"
 }

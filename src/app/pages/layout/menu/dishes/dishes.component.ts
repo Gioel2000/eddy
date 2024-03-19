@@ -64,18 +64,21 @@ import { DishTO } from '../../../../store/menu/interfaces/menu';
       <div>
         @switch(store.dishesState()) { @case('loaded') {
         <div class="flex flex-col gap-y-6">
-          @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
-          <menu-dish
-            [dish]="dish"
-            [categories]="store.categories()"
-            (edit)="editDish($event)"
-            (delete)="deleteDish($event)"
-          ></menu-dish>
-          } } @placeholder {
-          <div></div>
-          } @loading {
-          <div></div>
-          }
+          <div class="grid gap-4 sm:grid-cols-2 w-full sm:w-auto sm:max-w-full gap-y-6">
+            @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
+            <menu-dish
+              class="h-full"
+              [dish]="dish"
+              [categories]="store.categories()"
+              (edit)="editDish($event)"
+              (delete)="deleteDish($event)"
+            ></menu-dish>
+            } } @placeholder {
+            <div></div>
+            } @loading {
+            <div></div>
+            }
+          </div>
         </div>
         } @case('loading') {
         <ng-container *ngTemplateOutlet="loading"></ng-container>

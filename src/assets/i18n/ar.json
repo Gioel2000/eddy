@@ -274,5 +274,9 @@
   "VOID": "فارغ",
   "WAIT_PLEASE": "انتظر من فضلك",
   "WARNING": "انتباه",
-  "YOUR_LANGUAGE": "لغتك"
+  "YOUR_LANGUAGE": "لغتك",
+  "NO_IMAGE": "لا توجد صورة",
+  "OPEN": "يفتح",
+  "PRINT": "مطبعة",
+  "SHARE": "يشارك"
 }
