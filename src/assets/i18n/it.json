@@ -272,7 +272,7 @@
   "MENUS": "Menù",
   "MENU_DESCRIPTION": "I menu che vedranno i tuoi clienti",
   "ADD_MENU": "Aggiungi menù",
-  "MENU_PLACEHOLDER": "Dai un nome al tuo menu",
-  "MENU_DESCRIPTION_PLACEHOLDER": "Nome del menù",
+  "MENU_PLACEHOLDER": "Nome del menù",
+  "MENU_DESCRIPTION_PLACEHOLDER": "Descrizione del menù",
   "ADD_ALL_CATEGORIES": "Aggiungi tutte"
 }

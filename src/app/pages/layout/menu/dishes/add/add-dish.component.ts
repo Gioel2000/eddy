@@ -150,9 +150,11 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                   </div>
                   <div class="col-span-full">
                     <div>
-                      <label for="location" class="block text-sm font-medium leading-6 text-zinc-900">{{
-                        'CATEGORY' | translate
-                      }}</label>
+                      <label
+                        for="location"
+                        class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
+                        >{{ 'CATEGORY' | translate }}</label
+                      >
                       <select
                         id="location"
                         name="location"
@@ -206,12 +208,12 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                         'ALLERGENS' | translate
                       }}</label>
                       <div class="relative mt-2 rounded-md shadow-sm bg-zinc-50 dark:bg-zinc-800">
-                        <fieldset class="border-b border-t border-zinc-200">
+                        <fieldset class="border-b border-t border-zinc-200 dark:border-zinc-700">
                           <legend class="sr-only">Notifications</legend>
-                          <div class="divide-y divide-zinc-200">
+                          <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
                             <div class="relative flex items-start pb-4 pt-3.5">
                               <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900">{{
+                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
                                   'GLUTEN' | translate
                                 }}</label>
                                 <p id="comments-description" class="text-zinc-500">
@@ -225,13 +227,13 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                                   name="comments"
                                   type="checkbox"
                                   formControlName="gluten"
-                                  class="bg-zinc-200 dark:bg-zinc-800 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
+                                  class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
                                 />
                               </div>
                             </div>
                             <div class="relative flex items-start pb-4 pt-3.5">
                               <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900">{{
+                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
                                   'PEANUTS' | translate
                                 }}</label>
                                 <p id="comments-description" class="text-zinc-500">
@@ -245,13 +247,15 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                                   name="comments"
                                   type="checkbox"
                                   formControlName="peanuts"
-                                  class="bg-zinc-200 dark:bg-zinc-800 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
+                                  class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
                                 />
                               </div>
                             </div>
                             <div class="relative flex items-start pb-4 pt-3.5">
                               <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900">{{ 'MILK' | translate }}</label>
+                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
+                                  'MILK' | translate
+                                }}</label>
                                 <p id="comments-description" class="text-zinc-500">
                                   {{ 'MILK_DESCRIPTION' | translate }}
                                 </p>
@@ -263,7 +267,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                                   name="comments"
                                   type="checkbox"
                                   formControlName="milk"
-                                  class="bg-zinc-200 dark:bg-zinc-800 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
+                                  class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent"
                                 />
                               </div>
                             </div>

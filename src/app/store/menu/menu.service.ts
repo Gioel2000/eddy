@@ -142,7 +142,7 @@ export class MenuStoreService {
       .with(this.addCategory$, (state, category) => ({
         categories: {
           ...state.categories,
-          data: [...state.categories.data, category],
+          data: [category, ...state.categories.data],
         },
       }))
       .with(this.stateCategory$, (state, stateCategory) => ({
@@ -166,7 +166,7 @@ export class MenuStoreService {
       .with(this.addDish$, (state, dish) => ({
         dishes: {
           ...state.dishes,
-          data: [...state.dishes.data, dish],
+          data: [dish, ...state.dishes.data],
         },
       }))
       .with(this.stateDish$, (state, stateDish) => ({
@@ -188,9 +188,10 @@ export class MenuStoreService {
         },
       }))
       .with(this.addMenu$, (state, menu) => ({
+        ...state,
         menus: {
           ...state.menus,
-          data: [...state.menus.data, menu],
+          data: [menu, ...state.menus.data],
         },
       }))
       .with(this.stateMenu$, (state, stateMenu) => ({

@@ -105,11 +105,11 @@ import { filter } from 'rxjs';
                     <label for="about" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                       'CATEGORIES' | translate
                     }}</label>
-                    <a
+                    <!-- <a
                       class="text-sm font-semibold text-accent hover:underline decoration-2"
                       (click)="addAllCategories()"
                       >{{ 'ADD_ALL_CATEGORIES' | translate }}</a
-                    >
+                    > -->
                   </div>
                   <div class="mt-2">
                     <fieldset class="mt-2">
