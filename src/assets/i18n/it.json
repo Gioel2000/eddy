@@ -96,7 +96,7 @@
   "NO_CHANNEL": "Nessun canale",
   "BRAND_REPUTATION_OVER_TIME": "Reputazione nel tempo",
   "BRAND_REPUTATION_CURRENT": "Reputazione corrente",
-  "COMPARISON": "",
+  "COMPARISON": "Confronto",
   "AVERAGE_OF_THE_PERIOD": "Media del periodo",
   "QUANTITY_REVIEWS": "Quantità di recensioni",
   "SUM_OF_PERIOD": "Somma del periodo",
@@ -270,5 +270,9 @@
   "MILK_DESCRIPTION": "Yogurt, biscotti e torte, gelati e creme varie. \nQualsiasi prodotto in cui viene utilizzato il latte",
   "CATEGORY": "Categoria",
   "MENUS": "Menù",
-  "MENU_DESCRIPTION": "I menu che vedranno i tuoi clienti"
+  "MENU_DESCRIPTION": "I menu che vedranno i tuoi clienti",
+  "ADD_MENU": "Aggiungi menù",
+  "MENU_PLACEHOLDER": "Dai un nome al tuo menu",
+  "MENU_DESCRIPTION_PLACEHOLDER": "Nome del menù",
+  "ADD_ALL_CATEGORIES": "Aggiungi tutte"
 }

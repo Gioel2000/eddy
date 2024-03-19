@@ -74,7 +74,9 @@ import { MenuService } from '../menu.service';
             </div>
             <div class="flex flex-row items-center">
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a class="text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100" (click)="onEdit(category)"
+                <a
+                  class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                  (click)="onEdit(category)"
                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
                 ></a>
               </div>

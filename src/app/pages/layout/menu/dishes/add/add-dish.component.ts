@@ -193,7 +193,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                             formControlName="currency"
                           >
                             @for (currency of currencies; track $index) {
-                            <option [value]="currency.value">{{ currency.key }}</option>
+                            <option [value]="currency.key">{{ currency.key }}</option>
                             }
                           </select>
                         </div>
@@ -305,9 +305,13 @@ export class AddDishComponent {
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     description: new FormControl('', [Validators.maxLength(1000)]),
-    price: new FormControl(0, [Validators.required, Validators.min(0)]),
+    price: new FormControl(0, [
+      Validators.required,
+      Validators.min(0),
+      (control) => (isNaN(control.value) ? { notANumber: true } : null),
+    ]),
     category: new FormControl('', [Validators.required]),
-    currency: new FormControl('EUR', [Validators.required]),
+    currency: new FormControl('', [Validators.required]),
     gluten: new FormControl(false),
     milk: new FormControl(false),
     peanuts: new FormControl(false),
@@ -316,7 +320,7 @@ export class AddDishComponent {
   selectedCurrency$ = this.formGroup.valueChanges.pipe(
     map((value) => value.currency),
     distinctUntilChanged(),
-    map((currency) => currency || this.currencies[0].value)
+    map((currency) => this.currencies.find((c) => c.key === currency)?.value || '€')
   );
 
   constructor() {
@@ -326,14 +330,29 @@ export class AddDishComponent {
         const mode = this.menu.dishMode();
 
         if (mode === 'edit') {
-          const { icon, name } = this.menu.dish();
-          // this.nameControl.setValue(name);
+          const dish = this.menu.dish();
+          this.formGroup.patchValue({
+            name: dish.name,
+            description: dish.description,
+            category: dish.category,
+            price: dish.price,
+            currency: dish.currency,
+            gluten: dish.allergens.includes('gluten'),
+            peanuts: dish.allergens.includes('peanuts'),
+            milk: dish.allergens.includes('milk'),
+          });
+
+          if (dish.image) {
+            this.imagePreview.set(dish.image);
+            this.file.set(dish.image);
+            this.fileType.set('image');
+          }
         }
 
         if (mode === 'add') {
           this.formGroup.reset();
           this.formGroup.patchValue({
-            currency: this.currencies[0].value,
+            currency: this.currencies[0].key,
           });
           this.imagePreview.set(null);
           this.file.set(null);
@@ -413,16 +432,18 @@ export class AddDishComponent {
       this.store.addDish({
         name: this.formGroup.value.name!,
         description: this.formGroup.value.description || '',
-        image: this.file() as File,
+        file: this.file() as File,
         category: this.formGroup.value.category!,
-        price: this.formGroup.value.price!,
+        price: +this.formGroup.value.price!.toString().replace(',', '.') || 0,
         currency: this.formGroup.value.currency!,
         visible: true,
         allergens: [
           this.formGroup.value.gluten ? 'gluten' : '',
           this.formGroup.value.peanuts ? 'peanuts' : '',
           this.formGroup.value.milk ? 'milk' : '',
-        ].filter(Boolean),
+        ]
+          .filter(Boolean)
+          .join(','),
       });
 
       this.formGroup.reset();
@@ -435,6 +456,25 @@ export class AddDishComponent {
     }
 
     if (mode === 'edit') {
+      this.dialog.closeDialog();
+      this.store.editDish({
+        _id: this.menu.dish()._id,
+        name: this.formGroup.value.name!,
+        description: this.formGroup.value.description || '',
+        file: this.file() instanceof File ? (this.file() as File) : undefined,
+        image: this.file() instanceof File ? '' : ((this.file() || '') as string),
+        category: this.formGroup.value.category!,
+        price: +this.formGroup.value.price!.toString().replace(',', '.') || 0,
+        currency: this.formGroup.value.currency!,
+        visible: true,
+        allergens: [
+          this.formGroup.value.gluten ? 'gluten' : '',
+          this.formGroup.value.peanuts ? 'peanuts' : '',
+          this.formGroup.value.milk ? 'milk' : '',
+        ]
+          .filter(Boolean)
+          .join(','),
+      });
     }
   }
 }

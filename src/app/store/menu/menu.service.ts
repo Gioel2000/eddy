@@ -1,5 +1,16 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
-import { AddCategory, AddDish, CategoryTO, DishTO, EditCategory, StateModel } from './interfaces/menu';
+import {
+  AddCategory,
+  AddDish,
+  AddMenu,
+  CategoryTO,
+  DishTO,
+  EditCategory,
+  EditDish,
+  EditMenu,
+  MenuTO,
+  StateModel,
+} from './interfaces/menu';
 import { connect } from 'ngxtension/connect';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, catchError, forkJoin, map, of, switchMap, tap } from 'rxjs';
@@ -64,6 +75,11 @@ export class MenuStoreService {
   private editDish$ = new Subject<DishTO>();
   private deleteDish$ = new Subject<string>();
 
+  private stateMenu$ = new Subject<StateModel>();
+  private addMenu$ = new Subject<MenuTO>();
+  private editMenu$ = new Subject<MenuTO>();
+  private deleteMenu$ = new Subject<string>();
+
   constructor() {
     const trigger$ = toObservable(this.structure.selected).pipe(untilDestroyed(this));
     const next$: Observable<MenuStoreModel> = trigger$.pipe(
@@ -83,7 +99,7 @@ export class MenuStoreService {
                 },
                 dishes: {
                   data: dishes,
-                  state: dishes.length ? 'loaded' : 'loaded', // DEBUG 'empty',
+                  state: dishes.length ? 'loaded' : 'empty',
                 },
                 menus: {
                   data: menus,
@@ -170,11 +186,31 @@ export class MenuStoreService {
           ...state.dishes,
           data: state.dishes.data.filter((d) => d._id !== dishId),
         },
+      }))
+      .with(this.addMenu$, (state, menu) => ({
+        menus: {
+          ...state.menus,
+          data: [...state.menus.data, menu],
+        },
+      }))
+      .with(this.stateMenu$, (state, stateMenu) => ({
+        menus: {
+          ...state.menus,
+          state: stateMenu,
+        },
+      }))
+      .with(this.editMenu$, (state, menu) => ({
+        menus: {
+          ...state.menus,
+          data: state.menus.data.map((m) => (m._id === menu._id ? menu : m)),
+        },
+      }))
+      .with(this.deleteMenu$, (state, menuId) => ({
+        menus: {
+          ...state.menus,
+          data: state.menus.data.filter((m) => m._id !== menuId),
+        },
       }));
-
-    effect(() => {
-      console.log(this.store());
-    });
   }
 
   addCategory(category: AddCategory) {
@@ -240,15 +276,15 @@ export class MenuStoreService {
     const formData = new FormData();
     formData.append('name', dish.name);
     formData.append('description', dish.description || '');
-    dish.image && formData.append('image', dish.image, dish.image && dish.image.name);
+    dish.file && formData.append('file', dish.file as File, 'file');
     formData.append('category', dish.category);
     formData.append('price', dish.price.toString());
     formData.append('currency', dish.currency);
     formData.append('visible', dish.visible.toString());
-    formData.append('allergens', dish.allergens.join(','));
+    formData.append('allergens', dish.allergens || '');
 
     this.http
-      .post<DishTO>(`${environment.apiUrl}/api/menus/dishes`, dish)
+      .post<DishTO>(`${environment.apiUrl}/api/menus/dishes`, formData)
       .pipe(
         untilDestroyed(this),
         tap((dish) => {
@@ -257,6 +293,112 @@ export class MenuStoreService {
         }),
         catchError((error) => {
           this.stateDish$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
+  editDish(dish: EditDish) {
+    this.stateDish$.next('loading');
+
+    const formData = new FormData();
+    formData.append('name', dish.name);
+    formData.append('description', dish.description || '');
+    dish.file && formData.append('file', dish.file as File, 'file');
+    formData.append('image', dish.image || '');
+    formData.append('category', dish.category);
+    formData.append('price', dish.price.toString());
+    formData.append('currency', dish.currency);
+    formData.append('visible', dish.visible.toString());
+    formData.append('allergens', dish.allergens || '');
+
+    this.http
+      .put<DishTO>(`${environment.apiUrl}/api/menus/dishes/${dish._id}`, formData)
+      .pipe(
+        untilDestroyed(this),
+        tap((dish) => {
+          this.stateDish$.next('loaded');
+          this.editDish$.next(dish);
+        }),
+        catchError((error) => {
+          this.stateDish$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
+  deleteDish(dishId: string) {
+    this.stateDish$.next('loading');
+
+    this.http
+      .delete<DishTO>(`${environment.apiUrl}/api/menus/dishes/${dishId}`)
+      .pipe(
+        untilDestroyed(this),
+        tap(() => {
+          this.stateDish$.next('loaded');
+          this.deleteDish$.next(dishId);
+        }),
+        catchError((error) => {
+          this.stateDish$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
+  addMenu(menu: AddMenu) {
+    this.stateMenu$.next('loading');
+
+    this.http
+      .post<MenuTO>(`${environment.apiUrl}/api/menus`, menu)
+      .pipe(
+        untilDestroyed(this),
+        tap((menu) => {
+          this.stateMenu$.next('loaded');
+          this.addMenu$.next(menu);
+        }),
+        catchError((error) => {
+          this.stateMenu$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
+  editMenu(menu: EditMenu) {
+    this.stateMenu$.next('loading');
+
+    this.http
+      .put<MenuTO>(`${environment.apiUrl}/api/menus/${menu._id}`, menu)
+      .pipe(
+        untilDestroyed(this),
+        tap((menu) => {
+          this.stateMenu$.next('loaded');
+          this.editMenu$.next(menu);
+        }),
+        catchError((error) => {
+          this.stateMenu$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
+  deleteMenu(menuId: string) {
+    this.stateMenu$.next('loading');
+
+    this.http
+      .delete<MenuTO>(`${environment.apiUrl}/api/menus/${menuId}`)
+      .pipe(
+        untilDestroyed(this),
+        tap(() => {
+          this.stateMenu$.next('loaded');
+          this.deleteMenu$.next(menuId);
+        }),
+        catchError((error) => {
+          this.stateMenu$.next('error');
           return error;
         })
       )

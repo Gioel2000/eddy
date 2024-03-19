@@ -267,5 +267,12 @@
   "MILK_DESCRIPTION": "Yogurt, biscuits and cakes, ice cream and various creams. Any product in which milk is used",
   "CATEGORY": "Category",
   "MENUS": "Menus",
-  "MENU_DESCRIPTION": "The menus your customers will see"
+  "MENU_DESCRIPTION": "The menus your customers will see",
+  "ADD_MENU": "Add menu",
+  "MENU_PLACEHOLDER": "Give your menu a name",
+  "MENU_DESCRIPTION_PLACEHOLDER": "Menu name",
+  "ADD_ALL_CATEGORIES": "Add all",
+  "DOWNLOADING_REVIEWS": "We are collecting reviews from the main channels (TripAdvisor, Google, The Fork) to guarantee you a complete experience",
+  "WAIT_PLEASE": "Wait please",
+  "WARNING": "Attention"
 }

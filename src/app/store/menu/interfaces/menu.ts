@@ -22,10 +22,41 @@ export type EditCategory = CategoryTO;
 export type AddDish = {
   name: string;
   description?: string;
-  image?: File;
+  file?: File;
   category: string;
   price: number;
   currency: string;
   visible: boolean;
-  allergens: string[];
+  allergens: string;
 };
+
+export type EditDish = {
+  _id: string;
+  name: string;
+  description?: string;
+  file?: File;
+  image: string | null;
+  category: string;
+  price: number;
+  currency: string;
+  visible: boolean;
+  allergens: string;
+};
+
+export interface MenuTO {
+  _id: string;
+  name: string;
+  description: string;
+  image: string;
+  dishes: {
+    dish: string;
+    orderNumber: number;
+  }[];
+  categories: {
+    category: string;
+    orderNumber: number;
+  }[];
+}
+
+export type AddMenu = Omit<MenuTO, '_id'>;
+export type EditMenu = MenuTO;

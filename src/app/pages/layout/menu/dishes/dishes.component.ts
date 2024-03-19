@@ -64,9 +64,14 @@ import { DishTO } from '../../../../store/menu/interfaces/menu';
       <div>
         @switch(store.dishesState()) { @case('loaded') {
         <div class="flex flex-col gap-y-6">
-          @defer (on viewport; prefetch on idle) {
-          <menu-dish [dish]="dish"></menu-dish>
-          } @placeholder {
+          @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
+          <menu-dish
+            [dish]="dish"
+            [categories]="store.categories()"
+            (edit)="editDish($event)"
+            (delete)="deleteDish($event)"
+          ></menu-dish>
+          } } @placeholder {
           <div></div>
           } @loading {
           <div></div>
@@ -88,22 +93,19 @@ export class MenuDishesComponent {
   dialog = inject(DialogService);
   menu = inject(MenuService);
 
-  dish: DishTO = {
-    _id: '1',
-    name: 'Margherita Margherita',
-    description: 'Pizza description',
-    price: 3.4,
-    category: 'Pizza',
-    currency: 'EUR',
-    visible: true,
-    allergens: ['gluten'],
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/640px-Eq_it-na_pizza-margherita_sep2005_sml.jpg',
-  };
-
   onAdd() {
     this.menu.dishMode.set('add');
     this.menu.dish.set({} as any);
     this.dialog.openDialog();
+  }
+
+  editDish(dish: DishTO) {
+    this.menu.dishMode.set('edit');
+    this.menu.dish.set(dish);
+    this.dialog.openDialog();
+  }
+
+  deleteDish(dish: DishTO) {
+    this.store.deleteDish(dish._id);
   }
 }

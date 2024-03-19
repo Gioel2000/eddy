@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { CategoryTO } from '../../../store/menu/interfaces/menu';
+import { CategoryTO, DishTO, MenuTO } from '../../../store/menu/interfaces/menu';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -7,5 +7,8 @@ export class MenuService {
   category = signal<CategoryTO>({} as CategoryTO);
 
   dishMode = signal<'edit' | 'add'>('add');
-  dish = signal<any>({});
+  dish = signal<DishTO>({} as DishTO);
+
+  menuMode = signal<'edit' | 'add'>('add');
+  menu = signal<MenuTO>({} as MenuTO);
 }

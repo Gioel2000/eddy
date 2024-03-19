@@ -6,6 +6,7 @@ import { AddCategoryComponent } from './categories/add/add-category.component';
 import { MenuDishesComponent } from './dishes/dishes.component';
 import { AddDishComponent } from './dishes/add/add-dish.component';
 import { MenusMenuComponent } from './menu/menu.component';
+import { AddMenuComponent } from './menu/add/add-menu.component';
 
 @Component({
   selector: 'menu',
@@ -17,6 +18,7 @@ import { MenusMenuComponent } from './menu/menu.component';
     MenuDishesComponent,
     AddDishComponent,
     MenusMenuComponent,
+    AddMenuComponent,
   ],
   template: `
     @defer (on viewport; prefetch on idle) {
@@ -27,6 +29,12 @@ import { MenusMenuComponent } from './menu/menu.component';
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <add-dish-dialog></add-dish-dialog>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <add-menu-dialog></add-menu-dialog>
     } @placeholder {
     <div></div>
     } @loading {
