@@ -5,6 +5,8 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { AddCompetitor, CompetitorModel, CompetitorTO, StateModel } from './interfaces/competitors';
+import moment from 'moment';
 import {
   Observable,
   Subject,
@@ -21,8 +23,6 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { AddCompetitor, CompetitorModel, CompetitorTO, StateModel } from './interfaces/competitors';
-import moment from 'moment';
 
 export interface CompetitorsStoreModel {
   data: CompetitorModel[];

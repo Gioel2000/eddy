@@ -54,6 +54,6 @@ export const routes: Routes = [
   },
   {
     path: 'public-menu/:id',
-    loadComponent: () => PublicMenuComponent,
+    component: PublicMenuComponent,
   },
 ];

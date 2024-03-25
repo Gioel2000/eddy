@@ -54,18 +54,12 @@ import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 
     <div class="rounded-3xl ring-1 ring-inset bg-zinc-900 ring-zinc-800 dark:ring-zinc-900 min-h-screen shadow-sm w-96">
       @switch(state()) { @case('loaded') {
-
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
           <img [src]="selected().image" alt="" class="h-full w-full object-cover object-center" />
         </span>
         <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-zinc-900"></span>
       </div>
-      <!-- 
-      <div>
-        <img class="h-44 w-full object-cover lg:h-64 rounded-t-3xl" [src]="selected().image" />
-      </div> -->
-
       <div class="p-8 xl:p-10">
         <p class="text-sm leading-6 text-zinc-300 line-clamp-1">{{ selected().address }}, {{ selected().city }}</p>
         <p class="flex items-baseline gap-x-1 h-[6rem]">
