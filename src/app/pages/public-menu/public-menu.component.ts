@@ -186,23 +186,6 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                       </div>
                     </div>
                   </div>
-
-                  <!-- <label for="tabs" class="sr-only">Select a tab</label>
-                  <select
-                    id="tabs"
-                    name="tabs"
-                    class="block w-full rounded-md bg-transparent border-zinc-700 text-white focus:border-accent focus:ring-accent"
-                    [formControl]="categoryControl"
-                  >
-                    @for (category of categories(); track $index) {
-                    <option
-                      [value]="category.category._id"
-                      [selected]="selectedCategory().category._id === category.category._id"
-                    >
-                      {{ category.category.name }}
-                    </option>
-                    }
-                  </select> -->
                 </div>
                 <div class="hidden sm:block">
                   <nav class="flex space-x-4" aria-label="Tabs">
@@ -300,9 +283,9 @@ export class PublicMenuComponent {
       }
     });
 
-    // effect(() => {
-    //   console.log(this.publicMenu.menu());
-    // });
+    effect(() => {
+      console.log(this.publicMenu.menu());
+    });
   }
 
   dishesFromCategory(category: string) {
