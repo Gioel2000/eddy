@@ -27,7 +27,14 @@ export class PublicMenuStoreService {
   constructor() {
     const next$ = this.menuId$.pipe(
       switchMap((id) =>
-        this.http.get<any>(`${environment.apiUrl}/api/menus/public/${id}`).pipe(map((data) => data[0] as MenuTO))
+        this.http
+          .get<any>(`${environment.apiUrl}/api/menus/public/${id}`, {
+            headers: {
+              'skip-with-credentials': 'true',
+              'skip-auth': 'true',
+            },
+          })
+          .pipe(map((data) => data[0] as MenuTO))
       ),
       map((data) => ({ data, state: 'loaded' } as PublicMenuStore)),
       catchError(() => of({ data: {} as MenuTO, state: 'error' } as PublicMenuStore))

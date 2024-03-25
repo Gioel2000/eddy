@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClickOutsideDirective } from '../../../../../utils/directives/clickoutside';
@@ -7,6 +7,7 @@ import { ShareDialogService } from './dialog.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MenuService } from '../../menu.service';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @UntilDestroy()
 @Component({
@@ -53,7 +54,7 @@ import { MenuService } from '../../menu.service';
 
           <qrcode
             #qrcodeContainer
-            [qrdata]="'ascascas'"
+            [qrdata]="link()"
             [width]="container.offsetWidth - 60"
             [errorCorrectionLevel]="'M'"
             cssClass="flex flex-col items-center justify-center ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 rounded-md p-1 shadow-sm shadow-black/10"
@@ -95,16 +96,26 @@ export class ShareMenuComponent {
   dialog = inject(ShareDialogService);
   menu = inject(MenuService);
 
+  link = signal('');
+
+  constructor() {
+    toObservable(this.dialog.isDialogOpen)
+      .pipe(untilDestroyed(this))
+      .subscribe((isOpen) => {
+        if (isOpen) {
+          this.link.set(`${window.location.origin}/public-menu/${this.menu.menuId()}`);
+        }
+      });
+  }
+
   open() {
-    const link = `${window.location.origin}/public-menu/${this.menu.menuId()}`;
-    window.open(link, '_blank');
+    window.open(this.link(), '_blank');
   }
 
   print() {
     const qrCodePrint = window.open('QR CODE PRINT', 'PRINT', 'height=800,width=1000');
 
     if (qrCodePrint) {
-      // save image to new window
       qrCodePrint.document.write(this.qrcode.nativeElement.innerHTML);
 
       qrCodePrint.document.write();

@@ -43,7 +43,7 @@ import { MoneyPipe } from '../../utils/pipes/money.pipe';
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-8 py-5">
       @switch(publicMenu.state()) { @case('loaded') {
-      <div class="h-full lg:pr-10 lg:pl-3 px-4">
+      <div class="h-full lg:pr-10 lg:pl-3 px-4 bg-zinc-50">
         <h1 class="block text-xl font-medium text-zinc-900">
           {{ publicMenu.menu().name }}
         </h1>
@@ -113,7 +113,6 @@ import { MoneyPipe } from '../../utils/pipes/money.pipe';
         </div>
         }
       </div>
-
       } @case('loading') {
       <ng-container *ngTemplateOutlet="loading"></ng-container>
       } @case('error') {
