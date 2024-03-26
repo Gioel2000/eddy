@@ -10,7 +10,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
   imports: [CommonModule, TranslateModule, MoneyPipe],
   template: `
     <a
-      class="group relative flex flex-col items-start justify-between ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-2xl shadow-md shadow-black/5 bg-zinc-100 dark:bg-zinc-900 h-full"
+      class="group relative flex flex-col items-start justify-between ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 bg-zinc-100 dark:bg-zinc-900 h-full"
       (click)="open.emit(dish())"
     >
       <div>
@@ -60,11 +60,11 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
           }
         </div>
         <div class="px-4 pb-4 mb-1.5">
-          <h3 class="mt-4 w-44 sm:w-52 md:w-56 truncate text-base font-bold text-zinc-900/90 dark:text-zinc-100/90">
+          <h3 class="mt-4 w-44 sm:w-52 md:w-56 truncate text-base font-bold text-zinc-700 dark:text-zinc-300">
             <span class="absolute inset-0"></span>
             <span>{{ dish().dish.name }}</span>
           </h3>
-          <p class="text-xl font-bold text-zinc-900 dark:text-zinc-100 drop-shadow-sm">
+          <p class="text-xl font-bold text-zinc-800 dark:text-zinc-200 drop-shadow-sm">
             {{ dish().dish.price | money : currentLang() : dish().dish.currency }}
           </p>
           <p class="mt-1 text-sm text-zinc-400 dark:text-zinc-600 w-48 sm:w-52 md:w-60 line-clamp-2">

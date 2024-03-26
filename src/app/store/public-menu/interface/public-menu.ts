@@ -13,6 +13,9 @@ export interface MenuTO {
 export interface Restaurant {
   _id: string;
   name: string;
+  address: string;
+  city: string;
+  image: string;
 }
 
 export interface Dish {

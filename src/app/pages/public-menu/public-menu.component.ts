@@ -78,7 +78,7 @@ import { DialogService } from './dish-dialog/dialog.service';
       </div>
     </ng-template>
 
-    <div class="h-full w-full bg-zinc-50 dark:bg-zinc-950/5">
+    <div class="h-full w-full bg-zinc-500/10 dark:bg-zinc-900/30">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-8 py-5">
         @switch(publicMenu.state()) { @case('loaded') {
         <div class="h-full px-6 sm:px-2">
@@ -93,9 +93,7 @@ import { DialogService } from './dish-dialog/dialog.service';
             >
               <span aria-hidden="true" class="absolute inset-0">
                 <img
-                  [src]="
-                    'https://lh3.googleusercontent.com/places/ANXAkqEWMBxEFHdOKgw59j_pen0kaiYaN4-pNvBTxfCjU5WmGkUMUrz6i7UmjhN6DhhjlMY1yJryhlmDyMF8rD6qdX34UTxle-gXy8s=s1600-w500-h500'
-                  "
+                  [src]="publicMenu.menu().restaurant.image"
                   alt=""
                   class="h-full w-full object-cover object-center"
                 />
@@ -171,7 +169,8 @@ import { DialogService } from './dish-dialog/dialog.service';
                                 <div
                                   class="flex flex-row items-center gap-x-1 rounded-md p-2 text-sm font-bold leading-6 cursor-pointer transition-all transform-gpu ease-in-out duration-300 hover:bg-accent hover:text-white"
                                   [ngClass]="{
-                                    'bg-accent text-white': selectedCategory().category._id === category.category._id,
+                                    'bg-accent text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]':
+                                      selectedCategory().category._id === category.category._id,
                                     'bg-zinc-800 text-zinc-500':
                                       selectedCategory().category._id !== category.category._id
                                   }"
@@ -242,7 +241,7 @@ import { DialogService } from './dish-dialog/dialog.service';
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                class="block w-full rounded-xl border-0 bg-zinc-100 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />
@@ -282,7 +281,7 @@ import { DialogService } from './dish-dialog/dialog.service';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-      <footer class="bg-zinc-100 dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-800">
+      <footer class="bg-zinc-500/5 border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
         </div>

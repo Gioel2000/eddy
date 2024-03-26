@@ -109,7 +109,13 @@ export interface CalendarModel {
                         ></span>
                       </button>
                     </div>
-                    <div class="mt-10 grid grid-cols-7 text-center text-xs leading-6 text-zinc-500">
+                    <!-- <div class="flex items-center px-3 pt-5">
+                      <span
+                        class="inline-flex items-center cursor-pointer rounded-md bg-accent/5 px-2 py-1 text-xs font-medium text-accent ring-1 ring-inset ring-accent/10"
+                        >Badge</span
+                      >
+                    </div> -->
+                    <div class="mt-7 grid grid-cols-7 text-center text-xs leading-6 text-zinc-500">
                       <div>{{ 'DAYS.MONDAY' | translate | substring : 0 : 1 }}</div>
                       <div>
                         {{ 'DAYS.TUESDAY' | translate | substring : 0 : 1 }}
