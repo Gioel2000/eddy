@@ -31,6 +31,7 @@ export interface Dish2 {
   visible: boolean;
   restaurant: string;
   allergens: string[];
+  show: boolean;
 }
 
 export interface Category {

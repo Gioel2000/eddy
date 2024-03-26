@@ -1,6 +1,6 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
-import { MenuTO, StateModel } from './interface/public-menu';
+import { Dish, MenuTO, StateModel } from './interface/public-menu';
 import { HttpClient } from '@angular/common/http';
 import { Subject, catchError, map, of, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -21,6 +21,8 @@ export class PublicMenuStoreService {
   private http = inject(HttpClient);
 
   menuId$ = new Subject<string>();
+  search$ = new Subject<string>();
+
   menu = computed(() => this.store().data);
   state = computed(() => this.store().state);
 
@@ -36,14 +38,34 @@ export class PublicMenuStoreService {
           })
           .pipe(map((data) => data[0] as MenuTO))
       ),
-      map((data) => ({ data, state: 'loaded' } as PublicMenuStore)),
+      map((menu) => {
+        return {
+          data: {
+            ...menu,
+            dishes: menu.dishes.map((dish) => ({ ...dish, dish: { ...dish.dish, show: true } })),
+          },
+          state: 'loaded',
+        } as PublicMenuStore;
+      }),
       catchError(() => of({ data: {} as MenuTO, state: 'error' } as PublicMenuStore))
     );
 
-    connect(this.store).with(next$);
+    connect(this.store)
+      .with(next$)
+      .with(this.search$, (store: PublicMenuStore, search: string) => {
+        const filter = (field: 'name' | 'description', dish: Dish) =>
+          dish.dish[field].toLowerCase().includes(search.toLowerCase());
 
-    effect(() => {
-      console.log(this.store());
-    });
+        return {
+          data: {
+            ...store.data,
+            dishes: store.data.dishes.map((dish) => ({
+              ...dish,
+              dish: { ...dish.dish, show: filter('name', dish) || filter('description', dish) },
+            })),
+          },
+          state: store.state,
+        } as PublicMenuStore;
+      });
   }
 }

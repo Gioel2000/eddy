@@ -10,11 +10,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MoneyPipe } from '../../utils/pipes/money.pipe';
 import { DishComponent } from './dish/dish.component';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { Category } from '../../store/public-menu/interface/public-menu';
+import { Category, Dish } from '../../store/public-menu/interface/public-menu';
 import moment from 'moment';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DropdownService } from './dropdown.service';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
+import { DishDialogComponent } from './dish-dialog/dish-dialog.component';
+import { DialogService } from './dish-dialog/dialog.service';
 
 @UntilDestroy()
 @Component({
@@ -29,8 +31,11 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
     ReactiveFormsModule,
     DishComponent,
     ClickOutsideDirective,
+    DishDialogComponent,
   ],
   template: `
+    <dish-dialog [dish]="selectedDish()" [currentLang]="translate.currentLang"></dish-dialog>
+
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-row items-center justify-center w-full h-screen">
@@ -106,11 +111,9 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 </p>
                 <p class="text-sm leading-6 text-zinc-300 line-clamp-1">
                   {{ publicMenu.menu().name }}
-
                   @if (publicMenu.menu().description) {
                   <span class="text-zinc-500">—</span>
                   }
-
                   {{ publicMenu.menu().description }}
                 </p>
               </div>
@@ -172,7 +175,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                                     'bg-zinc-800 text-zinc-500':
                                       selectedCategory().category._id !== category.category._id
                                   }"
-                                  (click)="scrollToCategory(category, header.offsetHeight)"
+                                  (click)="scrollToCategory(category, header.offsetHeight); dropdown.close()"
                                 >
                                   <span class="block text-sm font-bold mr-2 leading-6 cursor-pointer">
                                     {{ category.category.name }}
@@ -207,28 +210,67 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
             </div>
           </div>
           <div [style.height.px]="header.offsetHeight"></div>
-
+          <div class="mb-4">
+            <div class="relative mt-2 rounded-xl shadow-sm">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <span class="svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                    <title>magnifier</title>
+                    <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                      <line
+                        x1="15.25"
+                        y1="15.25"
+                        x2="11.285"
+                        y2="11.285"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-color="color-2"
+                      ></line>
+                      <circle
+                        cx="7.75"
+                        cy="7.75"
+                        r="5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></circle>
+                    </g>
+                  </svg>
+                </span>
+              </div>
+              <input
+                type="text"
+                class="block w-full rounded-xl border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                placeholder="{{ 'SEARCH' | translate }}..."
+                [formControl]="searchFormControl"
+              />
+            </div>
+          </div>
           @for (category of publicMenu.menu().categories; track $index) {
-          <div class="py-8">
-            <div class="md:flex md:items-center md:justify-between">
-              <h2
-                class="text-lg font-bold tracking-tight text-zinc-700 dark:text-zinc-300"
-                [id]="category.category.name"
-              >
-                {{ category.category.name }}
-              </h2>
+          <div>
+            @if(dishesFromCategory(category.category._id); as dishes) { @if (dishes.length > 0) {
+            <div class="py-8">
+              <div class="md:flex md:items-center md:justify-between">
+                <h2
+                  class="text-lg font-bold tracking-tight text-zinc-700 dark:text-zinc-300"
+                  [id]="category.category.name"
+                >
+                  {{ category.category.name }}
+                </h2>
+              </div>
+              <div class="mt-6 p-0.5 pb-3 flex flex-row gap-x-4 overflow-x-auto">
+                @for (dish of dishes; track $index) { @defer (on viewport; prefetch on idle) {
+                <dish [dish]="dish" [currentLang]="translate.currentLang" (open)="open($event)"></dish>
+                } @placeholder {
+                <div><ng-container *ngTemplateOutlet="loading"></ng-container></div>
+                } @loading {
+                <div><ng-container *ngTemplateOutlet="loading"></ng-container></div>
+                } }
+              </div>
             </div>
-
-            <div class="mt-6 flex flex-row gap-x-4 overflow-x-auto">
-              @for (dish of dishesFromCategory(category.category._id); track $index) { @defer (on viewport; prefetch on
-              idle) {
-              <dish [dish]="dish" [currentLang]="translate.currentLang"></dish>
-              } @placeholder {
-              <div><ng-container *ngTemplateOutlet="loading"></ng-container></div>
-              } @loading {
-              <div><ng-container *ngTemplateOutlet="loading"></ng-container></div>
-              } }
-            </div>
+            } }
           </div>
           }
         </div>
@@ -240,7 +282,6 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-
       <footer class="bg-zinc-100 dark:bg-zinc-800 border-t border-zinc-200 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
@@ -255,12 +296,15 @@ export class PublicMenuComponent {
   translate = inject(TranslateService);
   render = inject(Renderer2);
   dropdown = inject(DropdownService);
+  dialog = inject(DialogService);
 
   year = moment().format('YYYY');
   categories = computed(() => this.publicMenu.menu()?.categories?.sort((a, b) => a.orderNumber - b.orderNumber));
   selectedCategory = signal({} as Category);
   showImage = signal(true);
+  selectedDish = signal({} as Dish);
   categoryControl = new FormControl();
+  searchFormControl = new FormControl();
 
   constructor() {
     this.route.paramMap
@@ -283,13 +327,19 @@ export class PublicMenuComponent {
       }
     });
 
-    effect(() => {
-      console.log(this.publicMenu.menu());
-    });
+    this.searchFormControl.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        map((value) => value || '')
+      )
+      .subscribe((value) => this.publicMenu.search$.next(value));
   }
 
   dishesFromCategory(category: string) {
-    return this.publicMenu.menu().dishes.filter((dish) => dish.dish.category === category);
+    return this.publicMenu
+      .menu()
+      .dishes.filter((dish) => dish.dish.category === category)
+      .filter((dish) => dish.dish.show);
   }
 
   ngAfterViewInit() {
@@ -319,5 +369,10 @@ export class PublicMenuComponent {
       this.selectedCategory.set(category);
       this.categoryControl.patchValue(category.category._id, { emitEvent: false });
     }
+  }
+
+  open(dish: Dish) {
+    this.selectedDish.set(dish);
+    this.dialog.openDialog();
   }
 }
