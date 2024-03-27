@@ -278,5 +278,85 @@
   "NO_IMAGE": "Tidak ada gambar",
   "OPEN": "Membuka",
   "PRINT": "Mencetak",
-  "SHARE": "Membagikan"
+  "SHARE": "Membagikan",
+  "1_YEAR_AGO": "1 tahun yang lalu",
+  "2_WEEKS_AGO": "2 minggu yang lalu",
+  "3_MONTHS_AGO": "3 bulan yang lalu",
+  "6_MONTHS_AGO": "6 bulan lalu",
+  "ALSO_TALK_ABOUT": "Juga bicarakan",
+  "BEGINNING_OF_THE_YEAR": "1 Januari",
+  "IN_1_MONTH": "Dalam 1 bulan",
+  "IN_3_MONTH": "Dalam 3 bulan",
+  "IN_ONE_MONTH": "Dalam 1 bulan",
+  "LAST_MONTH": "1 bulan yang lalu",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Pembersihan"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Kenyamanan"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Kondisi Kamar"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Ramah lingkungan"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Lingkungan"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Dapur"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Lokasi"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Lingkungan"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Kamar yang Tersedia"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Persentase pekerjaan"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Harga Maksimum"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Harga Sedang"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Harga Minimum"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Kamar yang Dihuni"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Kamar untuk dijual"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Jumlah kamar"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Kapasitas penerimaan"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Melayani"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Jasa"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Staf"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Nilai untuk uang"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wifi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Bicaralah yang buruk",
+  "SPEAK_WELL_OF": "Bicaralah dengan baik"
 }

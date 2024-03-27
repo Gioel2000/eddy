@@ -278,5 +278,85 @@
   "SHARE": "Condividi",
   "PRINT": "Stampa",
   "OPEN": "Apri",
-  "NO_IMAGE": "Nessuna immagine"
+  "NO_IMAGE": "Nessuna immagine",
+  "2_WEEKS_AGO": "2 sett. fa",
+  "LAST_MONTH": "1 mese fa",
+  "3_MONTHS_AGO": "3 mesi fa",
+  "6_MONTHS_AGO": "6 mesi fa",
+  "1_YEAR_AGO": "1 anno fa",
+  "BEGINNING_OF_THE_YEAR": "1 gennaio",
+  "IN_ONE_MONTH": "Tra 1 mese",
+  "IN_1_MONTH": "Tra 1 mese",
+  "IN_3_MONTH": "Tra 3 mesi",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_SERVICE": {
+      "DESC": "Servizi"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Cucina"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Comfort"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Ambiente"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Location"
+    },
+    "RESTAURANT_CLEAN": {
+      "DESC": "Pulizia"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Rapporto Qualità Prezzo"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Servizi"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personale"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Condizioni Camere"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Quartiere"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Eco Friendly"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Percentuale Occupazione"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Capacità di accoglienza"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Prezzo Medio"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Prezzo Massimo"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Prezzo Minimo"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Camere Disponibili"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Camere Occupate"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Camere totali"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Camere in vendita"
+    }
+  },
+  "SPEAK_WELL_OF": "Parlatene bene di",
+  "SPEAK_BADLY_OF": "Parlarne male di",
+  "ALSO_TALK_ABOUT": "Parla anche di"
 }

@@ -278,5 +278,85 @@
   "NO_IMAGE": "Intet billede",
   "OPEN": "Åben",
   "PRINT": "Print",
-  "SHARE": "Del"
+  "SHARE": "Del",
+  "1_YEAR_AGO": "1 år siden",
+  "2_WEEKS_AGO": "2 uger siden",
+  "3_MONTHS_AGO": "for 3 måneder siden",
+  "6_MONTHS_AGO": "6 måneder siden",
+  "ALSO_TALK_ABOUT": "Tal også om",
+  "BEGINNING_OF_THE_YEAR": "1. januar",
+  "IN_1_MONTH": "Om 1 måned",
+  "IN_3_MONTH": "Om 3 måneder",
+  "IN_ONE_MONTH": "Om 1 måned",
+  "LAST_MONTH": "1 måned siden",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Rengøring"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Komfort"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Tilstand Værelser"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Miljøvenlig"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Miljø"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Køkken"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Beliggenhed"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Kvarter"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Ledige værelser"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Beskæftigelsesprocent"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maksimal pris"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Mellem pris"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimumspris"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Optaget Værelser"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Værelser til salg"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Samlet antal værelser"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Modtagelseskapacitet"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Tjenester"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personale"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Værdi for pengene"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Trådløst internet"
+    }
+  },
+  "SPEAK_BADLY_OF": "Tale dårligt om",
+  "SPEAK_WELL_OF": "Tal godt om"
 }

@@ -278,5 +278,85 @@
   "NO_IMAGE": "Resim yok",
   "OPEN": "Açık",
   "PRINT": "Yazdır",
-  "SHARE": "Paylaşmak"
+  "SHARE": "Paylaşmak",
+  "1_YEAR_AGO": "1 yıl önce",
+  "2_WEEKS_AGO": "2 hafta önce",
+  "3_MONTHS_AGO": "3 ay önce",
+  "6_MONTHS_AGO": "6 ay önce",
+  "ALSO_TALK_ABOUT": "Ayrıca hakkında konuşun",
+  "BEGINNING_OF_THE_YEAR": "1 Ocak",
+  "IN_1_MONTH": "1 ay içinde",
+  "IN_3_MONTH": "3 ay içinde",
+  "IN_ONE_MONTH": "1 ay içinde",
+  "LAST_MONTH": "1 ay önce",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Temizlik"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Konfor"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Durum Odaları"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Çevre Dostu"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Çevre"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Mutfak"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Konum"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Komşu"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Kullanılabilir odalar"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "İstihdam yüzdesi"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maksimum Fiyat"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Orta Fiyat"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimum fiyat"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Kullanılan Odalar"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Satılık odalar"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Toplam oda"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Resepsiyon kapasitesi"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Hizmet"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Hizmetler"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Kadro"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Paranın karşılığı"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wifi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Hakkında kötü konuşmak",
+  "SPEAK_WELL_OF": "hakkında iyi konuş"
 }

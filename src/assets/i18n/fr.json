@@ -278,5 +278,85 @@
   "NO_IMAGE": "Pas d'image",
   "OPEN": "Ouvrir",
   "PRINT": "Imprimer",
-  "SHARE": "Partager"
+  "SHARE": "Partager",
+  "1_YEAR_AGO": "il y a 1 an",
+  "2_WEEKS_AGO": "Il y a 2 semaines",
+  "3_MONTHS_AGO": "il y a 3 mois",
+  "6_MONTHS_AGO": "il y a 6 mois",
+  "ALSO_TALK_ABOUT": "Parlons aussi de",
+  "BEGINNING_OF_THE_YEAR": "1er janvier",
+  "IN_1_MONTH": "Dans 1 mois",
+  "IN_3_MONTH": "Dans 3 mois",
+  "IN_ONE_MONTH": "Dans 1 mois",
+  "LAST_MONTH": "Il ya 1 mois",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Nettoyage"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Confort"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "État des chambres"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Respectueux de la nature"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Environnement"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Cuisine"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Emplacement"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Quartier"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Chambres disponibles"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Pourcentage d'emploi"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Prix ​​maximum"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Prix ​​moyen"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Prix ​​minimum"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Chambres occupées"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Chambres à vendre"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Nombre total de chambres"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Capacité d'accueil"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Prestations de service"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personnel"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Le rapport qualité prix"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wifi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Parler en mal de",
+  "SPEAK_WELL_OF": "Parlez bien de"
 }

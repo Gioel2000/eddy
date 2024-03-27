@@ -14,6 +14,7 @@ import { TranslateDropdownComponent } from './components/types/translate.compone
 import { LoaderComponent } from '../loader/loader.component';
 import { ReviewsStore } from '../../store/reviews/reviews.service';
 import LanguageDetect from 'languagedetect';
+import { BodyReviewSentimentComponent } from './components/review-body-sentiment.component';
 
 @UntilDestroy()
 @Component({
@@ -28,6 +29,7 @@ import LanguageDetect from 'languagedetect';
     ReactiveFormsModule,
     TranslateDropdownComponent,
     LoaderComponent,
+    BodyReviewSentimentComponent,
   ],
   template: `
     <div
@@ -163,18 +165,13 @@ import LanguageDetect from 'languagedetect';
           <span class="text-sm mt-4 max-w-none text-zinc-500" [innerHTML]="text"></span>
         </div>
 
-        <!-- <div class="mt-5">
+        <div class="mt-5">
           <ng-container *ngIf="categories$ | async as categories">
             <ng-container *ngIf="categories && categories.length">
-              <app-body-review-sentiment
-                [categories]="categories"
-                positivei18n="REVIEWS.SPEAK_WELL"
-                negativei18n="REVIEWS.SPEAK_BAD"
-                neutrali18n="REVIEWS.SPEAK_NEUTRAL"
-              ></app-body-review-sentiment>
+              <body-review-sentiment [categories]="categories"></body-review-sentiment>
             </ng-container>
           </ng-container>
-        </div> -->
+        </div>
 
         <div class="mt-2 mb-3">
           <div class="grid grid-cols-6 w-full pt-3 sm:pt-6">
@@ -651,12 +648,9 @@ export class BodyReviewComponent {
   private showSentimentCategories(translation: any, sentiments: any) {
     // .filter((sentiment: any) => sentiment.score !== 0)
     const categories = sentiments.map((sentiment: any) => {
-      const translation = this.translateService.instant(
-        'YOUR_HOTEL.CATEGORIES.' + sentiment.singleCategory.toUpperCase()
-      );
+      const translation = this.translateService.instant('REVIEWS_CATEGORIES.' + sentiment.singleCategory.toUpperCase());
 
       return {
-        icon: translation.ICON,
         name: translation.DESC,
         score: sentiment.score,
         category: sentiment.singleCategory,
@@ -692,6 +686,8 @@ export class BodyReviewComponent {
 
       return acc;
     }, []);
+
+    console.log(categoriesGrouped);
 
     this.categories$.next(
       categoriesGrouped.map((category: any) => ({

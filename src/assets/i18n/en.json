@@ -278,5 +278,85 @@
   "SHARE": "Share",
   "PRINT": "Print",
   "OPEN": "Open",
-  "NO_IMAGE": "No image"
+  "NO_IMAGE": "No image",
+  "6_MONTHS_AGO": "6 months ago",
+  "1_YEAR_AGO": "1 year ago",
+  "3_MONTHS_AGO": "3 months ago",
+  "LAST_MONTH": "1 month ago",
+  "2_WEEKS_AGO": "2 weeks ago",
+  "BEGINNING_OF_THE_YEAR": "January 1st",
+  "IN_ONE_MONTH": "In 1 month",
+  "IN_1_MONTH": "In 1 month",
+  "IN_3_MONTH": "In 3 months",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Kitchen"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Environment"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Comfort"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Location"
+    },
+    "RESTAURANT_CLEAN": {
+      "DESC": "Cleaning"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Value for money"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Services"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Staff"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Condition Rooms"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Neighborhood"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Eco Friendly"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Employment percentage"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Reception capacity"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Medium Price"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maximum Price"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimum Price"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Available Rooms"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Occupied Rooms"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Total rooms"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Rooms for sale"
+    }
+  },
+  "SPEAK_WELL_OF": "Speak well of",
+  "SPEAK_BADLY_OF": "Speak badly of",
+  "ALSO_TALK_ABOUT": "Also talk about"
 }

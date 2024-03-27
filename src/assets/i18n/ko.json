@@ -278,5 +278,85 @@
   "NO_IMAGE": "이미지 없음",
   "OPEN": "열려 있는",
   "PRINT": "인쇄",
-  "SHARE": "공유하다"
+  "SHARE": "공유하다",
+  "1_YEAR_AGO": "1 년 전",
+  "2_WEEKS_AGO": "2주 전",
+  "3_MONTHS_AGO": "3 개월 전에",
+  "6_MONTHS_AGO": "6 개월 전",
+  "ALSO_TALK_ABOUT": "또한 이야기",
+  "BEGINNING_OF_THE_YEAR": "1월 1일",
+  "IN_1_MONTH": "1개월 후",
+  "IN_3_MONTH": "3개월 후",
+  "IN_ONE_MONTH": "1개월 후",
+  "LAST_MONTH": "1 개월 전",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "청소"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "편안"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "조건 객실"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "친환경"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "환경"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "주방"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "위치"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "이웃"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "이용 가능한 객실"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "고용률"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "최대 가격"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "중간 가격"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "최소 가격"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "점유된 방"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "판매 중인 객실"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "총 객실 수"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "수신능력"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "서비스"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "서비스"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "직원"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "가격 대비 가치"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "와이파이"
+    }
+  },
+  "SPEAK_BADLY_OF": "나쁘게 말하다",
+  "SPEAK_WELL_OF": "좋게 말하다"
 }

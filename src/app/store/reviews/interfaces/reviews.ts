@@ -15,7 +15,7 @@ export interface ReviewTO {
   createdAt: string;
   updatedAt: string;
   translations: any[];
-  sentiments: any[];
+  sentiments: Sentiment[];
   replyLink: string;
   hasReplied: boolean;
   clientsType?: string[];
@@ -23,6 +23,16 @@ export interface ReviewTO {
   externalSource?: any;
   aiReply: string;
   __v: number;
+}
+
+export interface Sentiment {
+  category: string[];
+  positive: string[];
+  negative: any[];
+  score: number;
+  sentence: string;
+  words: string[];
+  wordsIt: string[];
 }
 
 export interface SummaryTO {

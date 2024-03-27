@@ -278,5 +278,85 @@
   "NO_IMAGE": "Ingen bild",
   "OPEN": "Öppen",
   "PRINT": "Skriva ut",
-  "SHARE": "Dela med sig"
+  "SHARE": "Dela med sig",
+  "1_YEAR_AGO": "1 år sedan",
+  "2_WEEKS_AGO": "2 veckor sedan",
+  "3_MONTHS_AGO": "3 månader sedan",
+  "6_MONTHS_AGO": "6 månader sen",
+  "ALSO_TALK_ABOUT": "Prata också om",
+  "BEGINNING_OF_THE_YEAR": "den 1 januari",
+  "IN_1_MONTH": "Om 1 månad",
+  "IN_3_MONTH": "Om 3 månader",
+  "IN_ONE_MONTH": "Om 1 månad",
+  "LAST_MONTH": "1 månad sedan",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Rengöring"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Bekvämlighet"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Skick rum"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Miljövänlig"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Miljö"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Kök"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Plats"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Grannskap"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Lediga rum"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Sysselsättningsprocent"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maxpris"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Mellanpris"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Lägsta pris"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Upptagna rum"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Rum till salu"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Totalt antal rum"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Mottagningskapacitet"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Tjänster"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personal"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Värde för pengar"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Tala illa om",
+  "SPEAK_WELL_OF": "Tala väl om"
 }

@@ -41,8 +41,7 @@ import { map } from 'rxjs';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-800 py-6">
-      @switch (store().state) { @case ('loaded') {
+    <ng-template #loaded>
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-200">
@@ -588,10 +587,15 @@ import { map } from 'rxjs';
           </dl>
         </div>
       </div>
+    </ng-template>
+
+    <div #container class="flex flex-col border-b border-zinc-800 py-6">
+      @switch (store().state) { @case ('loaded') {
+      <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('error') {
       <ng-container [ngTemplateOutlet]="error"></ng-container>
-      } @case ('empty') {
-      <ng-container [ngTemplateOutlet]="empty"></ng-container>
+      }@case ('empty') {
+      <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('loading') {
       <ng-container [ngTemplateOutlet]="loading"></ng-container>
       } }

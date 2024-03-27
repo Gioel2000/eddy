@@ -278,5 +278,85 @@
   "NO_IMAGE": "Ei kuvaa",
   "OPEN": "Avata",
   "PRINT": "Tulosta",
-  "SHARE": "Jaa"
+  "SHARE": "Jaa",
+  "1_YEAR_AGO": "1 vuosi sitten",
+  "2_WEEKS_AGO": "2 viikkoa sitten",
+  "3_MONTHS_AGO": "3 kuukautta sitten",
+  "6_MONTHS_AGO": "6 kuukautta sitten",
+  "ALSO_TALK_ABOUT": "Puhua myös",
+  "BEGINNING_OF_THE_YEAR": "1. tammikuuta",
+  "IN_1_MONTH": "1 kuukaudessa",
+  "IN_3_MONTH": "3 kuukaudessa",
+  "IN_ONE_MONTH": "1 kuukaudessa",
+  "LAST_MONTH": "1 kuukausi sitten",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Puhdistus"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Mukavuus"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Kunto Huoneet"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Ympäristöystävällinen"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Ympäristö"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Keittiö"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Sijainti"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Naapurusto"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Saatavilla olevat huoneet"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Työllisyysprosentti"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Enimmäishinta"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Keskihintainen"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimihinta"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Varatut huoneet"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Huoneita myytävänä"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Huoneita yhteensä"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Vastaanottokyky"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Palvelu"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Palvelut"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Henkilökunta"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Rahan arvo"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Puhu pahaa",
+  "SPEAK_WELL_OF": "Puhu hyvin"
 }

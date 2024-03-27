@@ -109,13 +109,20 @@ export interface CalendarModel {
                         ></span>
                       </button>
                     </div>
-                    <!-- <div class="flex items-center px-3 pt-5">
+                    @if (rapidDates(); as dates) { @if (dates.length > 0) {
+                    <div class="grid grid-cols-3 gap-2 px-3 pt-5">
+                      @for (date of rapidDates(); track $index) {
                       <span
-                        class="inline-flex items-center cursor-pointer rounded-md bg-accent/5 px-2 py-1 text-xs font-medium text-accent ring-1 ring-inset ring-accent/10"
-                        >Badge</span
+                        class="col-span-1 inline-flex items-center cursor-pointer gap-x-1 rounded-md bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 p-1.5 text-xs text-red-500 font-semibold"
+                        (click)="onDateSet.emit(date.value)"
                       >
-                    </div> -->
-                    <div class="mt-7 grid grid-cols-7 text-center text-xs leading-6 text-zinc-500">
+                        <span [inlineSVG]="'bolt.svg'" class="svg-icon-9 stroke-[1.8]"></span>
+                        <span>{{ date.key | translate }}</span>
+                      </span>
+                      }
+                    </div>
+                    } }
+                    <div class="mt-5 grid grid-cols-7 text-center text-xs leading-6 text-zinc-500">
                       <div>{{ 'DAYS.MONDAY' | translate | substring : 0 : 1 }}</div>
                       <div>
                         {{ 'DAYS.TUESDAY' | translate | substring : 0 : 1 }}
@@ -176,6 +183,12 @@ export class DatePickerComponent {
   i18n = input.required<string>();
   limitStart = input.required<Date>();
   limitEnd = input.required<Date>();
+  rapidDates = input.required<
+    {
+      key: string;
+      value: Date;
+    }[]
+  >();
 
   @Output() onDateSet = new EventEmitter<Date>();
 

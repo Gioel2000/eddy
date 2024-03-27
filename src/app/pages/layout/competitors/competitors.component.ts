@@ -71,6 +71,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
                   [date]="startdate()"
                   [limitStart]="limitStart"
                   [limitEnd]="enddate()"
+                  [rapidDates]="pastRapidDates"
                   (onDateSet)="setStartDate($event)"
                 ></date-picker>
                 <date-picker
@@ -79,6 +80,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
                   [date]="enddate()"
                   [limitStart]="startdate()"
                   [limitEnd]="now"
+                  [rapidDates]="[]"
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
@@ -180,4 +182,19 @@ export class CompetitorsComponent {
       behavior: 'smooth',
     });
   }
+
+  pastRapidDates = [
+    {
+      key: '2_WEEKS_AGO',
+      value: moment().toDate(),
+    },
+    {
+      key: 'LAST_MONTH',
+      value: moment().subtract(1, 'month').toDate(),
+    },
+    {
+      key: '3_MONTHS_AGO',
+      value: moment().subtract(3, 'months').toDate(),
+    },
+  ];
 }

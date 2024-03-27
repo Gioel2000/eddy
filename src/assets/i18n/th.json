@@ -278,5 +278,85 @@
   "NO_IMAGE": "ไม่มีรูป",
   "OPEN": "เปิด",
   "PRINT": "พิมพ์",
-  "SHARE": "แบ่งปัน"
+  "SHARE": "แบ่งปัน",
+  "1_YEAR_AGO": "1 ปีที่ผ่านมา",
+  "2_WEEKS_AGO": "2 สัปดาห์ที่แล้ว",
+  "3_MONTHS_AGO": "3 เดือนที่แล้ว",
+  "6_MONTHS_AGO": "6 เดือนที่แล้ว",
+  "ALSO_TALK_ABOUT": "ยังพูดถึง",
+  "BEGINNING_OF_THE_YEAR": "1 มกราคม",
+  "IN_1_MONTH": "ในอีก 1 เดือน",
+  "IN_3_MONTH": "ในอีก 3 เดือน",
+  "IN_ONE_MONTH": "ในอีก 1 เดือน",
+  "LAST_MONTH": "1 เดือนที่แล้ว",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "การทำความสะอาด"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "ปลอบโยน"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "สภาพห้อง"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "เป็นมิตรกับสิ่งแวดล้อม"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "สิ่งแวดล้อม"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "ครัว"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "ที่ตั้ง"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "ละแวกบ้าน"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "ห้องว่าง"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "เปอร์เซ็นต์การจ้างงาน"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "ราคาสูงสุด"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "ราคากลาง"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "ราคาขั้นต่ำ"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "ห้องว่าง"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "ขายห้อง"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "จำนวนห้องทั้งหมด"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "ความจุในการรับสัญญาณ"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "บริการ"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "บริการ"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "พนักงาน"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "ค่าของเงิน"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "อินเตอร์เน็ตไร้สาย"
+    }
+  },
+  "SPEAK_BADLY_OF": "พูดจาไม่ดี",
+  "SPEAK_WELL_OF": "พูดได้ดี"
 }

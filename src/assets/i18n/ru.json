@@ -278,5 +278,85 @@
   "NO_IMAGE": "Нет изображения",
   "OPEN": "Открыть",
   "PRINT": "Распечатать",
-  "SHARE": "Делиться"
+  "SHARE": "Делиться",
+  "1_YEAR_AGO": "1 год назад",
+  "2_WEEKS_AGO": "2 недели назад",
+  "3_MONTHS_AGO": "3 месяца назад",
+  "6_MONTHS_AGO": "6 месяцев назад",
+  "ALSO_TALK_ABOUT": "Также поговорим о",
+  "BEGINNING_OF_THE_YEAR": "1 января",
+  "IN_1_MONTH": "Через 1 месяц",
+  "IN_3_MONTH": "Через 3 месяца",
+  "IN_ONE_MONTH": "Через 1 месяц",
+  "LAST_MONTH": "1 месяц назад",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Очистка"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Комфорт"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Состояние Комнаты"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Экологичный"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Среда"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Кухня"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Расположение"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Район"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Доступные номера"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Процент занятости"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Максимальная цена"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Средняя цена"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Минимальная цена"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Занятые комнаты"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Комнаты на продажу"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Всего номеров"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Возможности приема"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Услуга"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Услуги"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Персонал"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Цена денег"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Говорить о себе плохо",
+  "SPEAK_WELL_OF": "Говорите хорошо о"
 }

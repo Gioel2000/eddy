@@ -278,5 +278,85 @@
   "NO_IMAGE": "Nenhuma imagem",
   "OPEN": "Abrir",
   "PRINT": "Imprimir",
-  "SHARE": "Compartilhar"
+  "SHARE": "Compartilhar",
+  "1_YEAR_AGO": "1 ano atrás",
+  "2_WEEKS_AGO": "2 semanas atrás",
+  "3_MONTHS_AGO": "3 meses atrás",
+  "6_MONTHS_AGO": "6 meses atrás",
+  "ALSO_TALK_ABOUT": "Fale também sobre",
+  "BEGINNING_OF_THE_YEAR": "1 de Janeiro",
+  "IN_1_MONTH": "Em 1 mês",
+  "IN_3_MONTH": "Em 3 meses",
+  "IN_ONE_MONTH": "Em 1 mês",
+  "LAST_MONTH": "1 mês atrás",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Limpeza"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Conforto"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Condições Quartos"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Ecológico"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Ambiente"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Cozinha"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Localização"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Vizinhança"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Quartos disponíveis"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Porcentagem de emprego"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Preço Máximo"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Preço Médio"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Preço minimo"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Quartos Ocupados"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Quartos à venda"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Total de quartos"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Capacidade de recepção"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Serviço"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Serviços"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Funcionários"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Custo-benefício"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Fale mal de",
+  "SPEAK_WELL_OF": "Fale bem de"
 }

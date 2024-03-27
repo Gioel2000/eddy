@@ -71,6 +71,7 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
                   [date]="startdate()"
                   [limitStart]="limitStart"
                   [limitEnd]="enddate() || now"
+                  [rapidDates]="[]"
                   (onDateSet)="setStartDate($event)"
                 ></date-picker>
                 <date-picker
@@ -79,6 +80,7 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
                   [date]="enddate()"
                   [limitStart]="startdate() || limitStart"
                   [limitEnd]="now"
+                  [rapidDates]="[]"
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>

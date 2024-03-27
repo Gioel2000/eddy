@@ -278,5 +278,85 @@
   "NO_IMAGE": "Χωρίς εικόνα",
   "OPEN": "Ανοιξε",
   "PRINT": "Τυπώνω",
-  "SHARE": "Μερίδιο"
+  "SHARE": "Μερίδιο",
+  "1_YEAR_AGO": "Πριν 1 χρόνο",
+  "2_WEEKS_AGO": "πριν 2 εβδομάδες",
+  "3_MONTHS_AGO": "πριν 3 μήνες",
+  "6_MONTHS_AGO": "6 μήνες πριν",
+  "ALSO_TALK_ABOUT": "Μιλήστε επίσης για",
+  "BEGINNING_OF_THE_YEAR": "1η Ιανουαρίου",
+  "IN_1_MONTH": "Σε 1 μήνα",
+  "IN_3_MONTH": "Σε 3 μήνες",
+  "IN_ONE_MONTH": "Σε 1 μήνα",
+  "LAST_MONTH": "πριν 1 μηνά",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Καθάρισμα"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Ανεση"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Κατάσταση Δωμάτια"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Φιλική προς το περιβάλλον"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "περιβάλλον"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Κουζίνα"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Τοποθεσία"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Γειτονιά"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Διαθέσιμα δωμάτια"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Ποσοστό απασχόλησης"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Μέγιστη Τιμή"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Μεσαία Τιμή"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Κατώτατη τιμή"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Κατεχόμενα Δωμάτια"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Δωμάτια προς πώληση"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Σύνολο δωματίων"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Δυνατότητα υποδοχής"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Υπηρεσία"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Υπηρεσίες"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Προσωπικό"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Σχέση ποιότητας και τιμής"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Μίλα άσχημα",
+  "SPEAK_WELL_OF": "Μίλα καλά"
 }

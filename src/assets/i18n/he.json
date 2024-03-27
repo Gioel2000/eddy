@@ -278,5 +278,85 @@
   "NO_IMAGE": "אין תמונה",
   "OPEN": "לִפְתוֹחַ",
   "PRINT": "הדפס",
-  "SHARE": "לַחֲלוֹק"
+  "SHARE": "לַחֲלוֹק",
+  "1_YEAR_AGO": "לפני שנה",
+  "2_WEEKS_AGO": "לפני 2 שבועות",
+  "3_MONTHS_AGO": "לפני 3 חודשים",
+  "6_MONTHS_AGO": "לפני 6 חודשים",
+  "ALSO_TALK_ABOUT": "גם לדבר על",
+  "BEGINNING_OF_THE_YEAR": "ה -1 לינואר",
+  "IN_1_MONTH": "בעוד חודש",
+  "IN_3_MONTH": "בעוד 3 חודשים",
+  "IN_ONE_MONTH": "בעוד חודש",
+  "LAST_MONTH": "לפני חודש",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "ניקוי"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "נוחות"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "מצב חדרים"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "ידידותי לסביבה"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "סביבה"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "מִטְבָּח"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "מקום"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "שְׁכוּנָה"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "חדרים זמינים"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "אחוזי תעסוקה"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "מחיר מקסימלי"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "מחיר בינוני"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "מחיר מינימום"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "חדרים תפוסים"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "חדרים למכירה"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "סה\"כ חדרים"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "יכולת קליטה"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "שֵׁרוּת"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "שירותים"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "צוות"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "תמורה לכסף"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "וויי - פיי"
+    }
+  },
+  "SPEAK_BADLY_OF": "דבר רע",
+  "SPEAK_WELL_OF": "דבר טוב על"
 }

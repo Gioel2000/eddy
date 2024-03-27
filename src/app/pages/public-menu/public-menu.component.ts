@@ -78,7 +78,7 @@ import { DialogService } from './dish-dialog/dialog.service';
       </div>
     </ng-template>
 
-    <div class="h-full w-full bg-zinc-500/10 dark:bg-zinc-900/30">
+    <div class="h-full w-full bg-zinc-500/5 dark:bg-zinc-900/5">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-8 py-5">
         @switch(publicMenu.state()) { @case('loaded') {
         <div class="h-full px-6 sm:px-2">
@@ -281,7 +281,7 @@ import { DialogService } from './dish-dialog/dialog.service';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-      <footer class="bg-zinc-500/5 border-t border-zinc-300 dark:border-zinc-800">
+      <footer class="bg-zinc-400/5 dark:bg-zinc-600/5 border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
         </div>

@@ -278,5 +278,85 @@
   "NO_IMAGE": "Kein Bild",
   "OPEN": "Offen",
   "PRINT": "Drucken",
-  "SHARE": "Aktie"
+  "SHARE": "Aktie",
+  "1_YEAR_AGO": "vor 1 Jahr",
+  "2_WEEKS_AGO": "vor 2 Wochen",
+  "3_MONTHS_AGO": "vor 3 Monaten",
+  "6_MONTHS_AGO": "vor 6 Monaten",
+  "ALSO_TALK_ABOUT": "Sprechen Sie auch darüber",
+  "BEGINNING_OF_THE_YEAR": "1. Januar",
+  "IN_1_MONTH": "In 1 Monat",
+  "IN_3_MONTH": "In 3 Monaten",
+  "IN_ONE_MONTH": "In 1 Monat",
+  "LAST_MONTH": "Vor 1 Monat",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Reinigung"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Komfort"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Zustand der Zimmer"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Umweltfreundlich"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Umfeld"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Küche"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Standort"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Nachbarschaft"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Verfügbare Zimmer"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Beschäftigungsprozentsatz"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maximaler Preis"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Mittlerer Preis"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimaler Preis"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Besetzte Zimmer"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Zimmer zu verkaufen"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Gesamtzahl der Zimmer"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Empfangskapazität"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Dienstleistungen"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personal"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Preis-Leistungs-Verhältnis"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "W-lan"
+    }
+  },
+  "SPEAK_BADLY_OF": "Sprich schlecht darüber",
+  "SPEAK_WELL_OF": "Sprich gut darüber"
 }

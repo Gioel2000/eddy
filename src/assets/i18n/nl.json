@@ -278,5 +278,85 @@
   "NO_IMAGE": "Geen afbeelding",
   "OPEN": "Open",
   "PRINT": "Afdrukken",
-  "SHARE": "Deel"
+  "SHARE": "Deel",
+  "1_YEAR_AGO": "1 jaar geleden",
+  "2_WEEKS_AGO": "2 weken geleden",
+  "3_MONTHS_AGO": "3 maanden geleden",
+  "6_MONTHS_AGO": "6 maanden geleden",
+  "ALSO_TALK_ABOUT": "Ook over praten",
+  "BEGINNING_OF_THE_YEAR": "1 januari",
+  "IN_1_MONTH": "Binnen 1 maand",
+  "IN_3_MONTH": "Binnen 3 maanden",
+  "IN_ONE_MONTH": "Binnen 1 maand",
+  "LAST_MONTH": "1 maand geleden",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Schoonmaak"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Comfort"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Conditie Kamers"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Eco-vriendelijk"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Omgeving"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Keuken"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Plaats"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Buurt"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Beschikbare kamers"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Werkgelegenheidspercentage"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maximale prijs"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Gemiddelde prijs"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimum prijs"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Bezette kamers"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Kamers te koop"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Totaal kamers"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Ontvangstcapaciteit"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Dienst"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Diensten"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personeel"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Waar voor je geld"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wifi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Slecht over spreken",
+  "SPEAK_WELL_OF": "Spreek er goed over"
 }

@@ -278,5 +278,85 @@
   "NO_IMAGE": "चित्र उपलब्द नहीं है",
   "OPEN": "खुला",
   "PRINT": "छाप",
-  "SHARE": "शेयर करना"
+  "SHARE": "शेयर करना",
+  "1_YEAR_AGO": "1 साल पहले",
+  "2_WEEKS_AGO": "2 सप्ताह पहले",
+  "3_MONTHS_AGO": "तीन महीने पहले",
+  "6_MONTHS_AGO": "6 महीने पहले",
+  "ALSO_TALK_ABOUT": "के बारे में भी बात करें",
+  "BEGINNING_OF_THE_YEAR": "जनवरी 1",
+  "IN_1_MONTH": "1 महीने में",
+  "IN_3_MONTH": "3 महीने में",
+  "IN_ONE_MONTH": "1 महीने में",
+  "LAST_MONTH": "1 महीने पहले",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "सफाई"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "आराम"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "हालत वाले कमरे"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "पर्यावरण के अनुकूल"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "पर्यावरण"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "रसोईघर"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "जगह"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "अड़ोस-पड़ोस"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "उपलब्ध कमरे"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "रोजगार प्रतिशत"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "अधिकतम कीमत"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "मध्यम कीमत"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "न्यूनतम कीमत"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "कब्जे वाले कमरे"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "बिक्री के लिए कमरे"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "कुल कमरे"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "स्वागत क्षमता"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "सेवा"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "सेवाएं"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "कर्मचारी"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "पैसा वसूल"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "वाईफ़ाई"
+    }
+  },
+  "SPEAK_BADLY_OF": "बुरा बोलना",
+  "SPEAK_WELL_OF": "अच्छा बोलो"
 }

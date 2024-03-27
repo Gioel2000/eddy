@@ -278,5 +278,85 @@
   "NO_IMAGE": "لا توجد صورة",
   "OPEN": "يفتح",
   "PRINT": "مطبعة",
-  "SHARE": "يشارك"
+  "SHARE": "يشارك",
+  "1_YEAR_AGO": "منذ سنة 1",
+  "2_WEEKS_AGO": "2 منذ أسابيع",
+  "3_MONTHS_AGO": "قبل 3 أشهر",
+  "6_MONTHS_AGO": "قبل 6 أشهر",
+  "ALSO_TALK_ABOUT": "الحديث أيضا عن",
+  "BEGINNING_OF_THE_YEAR": "1 يناير",
+  "IN_1_MONTH": "في شهر واحد",
+  "IN_3_MONTH": "في 3 أشهر",
+  "IN_ONE_MONTH": "في شهر واحد",
+  "LAST_MONTH": "1 قبل شهر",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "تنظيف"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "راحة"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "غرف الحالة"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "صديقة للبيئة"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "بيئة"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "مطبخ"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "موقع"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "حيّ"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "الغرف المتاحة"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "نسبة التوظيف"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "الحد الأقصى للسعر"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "سعر متوسط"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "سعر الحد الأدنى"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "الغرف المحتلة"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "غرف للبيع"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "إجمالي الغرف"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "قدرة الاستقبال"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "خدمة"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "خدمات"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "طاقم عمل"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "قيمة المال"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "واي فاي"
+    }
+  },
+  "SPEAK_BADLY_OF": "تكلم بالسوء",
+  "SPEAK_WELL_OF": "تحدث جيدًا عن"
 }

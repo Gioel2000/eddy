@@ -278,5 +278,85 @@
   "NO_IMAGE": "Ikke noe bilde",
   "OPEN": "Åpen",
   "PRINT": "Skrive ut",
-  "SHARE": "Dele"
+  "SHARE": "Dele",
+  "1_YEAR_AGO": "1 år siden",
+  "2_WEEKS_AGO": "2 uker siden",
+  "3_MONTHS_AGO": "3 måneder siden",
+  "6_MONTHS_AGO": "6 måneder siden",
+  "ALSO_TALK_ABOUT": "Snakk også om",
+  "BEGINNING_OF_THE_YEAR": "1. januar",
+  "IN_1_MONTH": "Om 1 måned",
+  "IN_3_MONTH": "Om 3 måneder",
+  "IN_ONE_MONTH": "Om 1 måned",
+  "LAST_MONTH": "1 måned siden",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Rengjøring"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Komfort"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Tilstandsrom"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Miljøvennlig"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Miljø"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Kjøkken"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "plassering"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Nabolag"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Ledige rom"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Sysselsettingsprosent"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maksimal pris"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Middels pris"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimumspris"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Okkuperte rom"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Rom til salgs"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Totalt rom"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Resepsjonskapasitet"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Service"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Tjenester"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personale"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Valuta for pengene"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Snakke stygt om",
+  "SPEAK_WELL_OF": "Snakk godt om"
 }

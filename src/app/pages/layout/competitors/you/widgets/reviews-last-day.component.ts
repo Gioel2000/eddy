@@ -37,8 +37,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col py-6">
-      @switch (store().state) { @case ('loaded') {
+    <ng-template #loaded>
       <div class="lg:col-span-6 lg:mt-0">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 mb-8">
           <dt class="text-sm font-medium leading-6 text-zinc-200">
@@ -241,6 +240,11 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
           </div>
         </div>
       </div>
+    </ng-template>
+
+    <div class="flex flex-col py-6">
+      @switch (store().state) { @case ('loaded') {
+      <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('error') {
       <ng-container [ngTemplateOutlet]="error"></ng-container>
       } @case ('empty') {

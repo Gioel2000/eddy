@@ -278,5 +278,85 @@
   "NO_IMAGE": "Bez obrázku",
   "OPEN": "OTEVŘENO",
   "PRINT": "Tisk",
-  "SHARE": "Podíl"
+  "SHARE": "Podíl",
+  "1_YEAR_AGO": "před 1 rokem",
+  "2_WEEKS_AGO": "Před 2 týdny",
+  "3_MONTHS_AGO": "před 3 měsíci",
+  "6_MONTHS_AGO": "před 6 měsíci",
+  "ALSO_TALK_ABOUT": "Také mluvit o",
+  "BEGINNING_OF_THE_YEAR": "1. ledna",
+  "IN_1_MONTH": "Za 1 měsíc",
+  "IN_3_MONTH": "Za 3 měsíce",
+  "IN_ONE_MONTH": "Za 1 měsíc",
+  "LAST_MONTH": "před 1 měsícem",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Čištění"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Pohodlí"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Podmíněné pokoje"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Ekologický"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "životní prostředí"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Kuchyně"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Umístění"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Sousedství"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Volné pokoje"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Procento zaměstnanosti"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maximální cena"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Střední cena"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimální cena"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Obsazené pokoje"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Pokoje na prodej"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Celkem pokojů"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Kapacita recepce"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Servis"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Služby"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Personál"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Hodnota za peníze"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Mluvit špatně",
+  "SPEAK_WELL_OF": "Mluvte dobře"
 }

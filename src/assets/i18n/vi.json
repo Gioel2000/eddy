@@ -278,5 +278,85 @@
   "NO_IMAGE": "Không có hình ảnh",
   "OPEN": "Mở",
   "PRINT": "In",
-  "SHARE": "Chia sẻ"
+  "SHARE": "Chia sẻ",
+  "1_YEAR_AGO": "1 năm trước",
+  "2_WEEKS_AGO": "2 tuần trước",
+  "3_MONTHS_AGO": "3 tháng trước",
+  "6_MONTHS_AGO": "6 tháng trước",
+  "ALSO_TALK_ABOUT": "Cũng nói về",
+  "BEGINNING_OF_THE_YEAR": "ngày 1 tháng 1",
+  "IN_1_MONTH": "trong 1 tháng",
+  "IN_3_MONTH": "trong 3 tháng",
+  "IN_ONE_MONTH": "trong 1 tháng",
+  "LAST_MONTH": "1 tháng trước",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Làm sạch"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "An ủi"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Phòng điều kiện"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Thân thiện với môi trường"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Môi trường"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Phòng bếp"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Vị trí"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Hàng xóm"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Phòng có sẵn"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Tỷ lệ việc làm"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Giá tối đa"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Giá trung bình"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Giá thấp nhất"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Phòng có người ở"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Phòng bán"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Tổng số phòng"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Năng lực tiếp nhận"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Dịch vụ"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Dịch vụ"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Nhân viên"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "Giá trị của đồng tiền"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wifi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Nói xấu",
+  "SPEAK_WELL_OF": "Nói tốt về"
 }

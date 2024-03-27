@@ -278,5 +278,85 @@
   "NO_IMAGE": "画像無し",
   "OPEN": "開ける",
   "PRINT": "印刷する",
-  "SHARE": "共有"
+  "SHARE": "共有",
+  "1_YEAR_AGO": "1年前",
+  "2_WEEKS_AGO": "2週間前",
+  "3_MONTHS_AGO": "3ヶ月前",
+  "6_MONTHS_AGO": "6ヶ月前",
+  "ALSO_TALK_ABOUT": "についても話します",
+  "BEGINNING_OF_THE_YEAR": "1月1日",
+  "IN_1_MONTH": "1ヶ月以内",
+  "IN_3_MONTH": "3ヶ月以内",
+  "IN_ONE_MONTH": "1ヶ月以内",
+  "LAST_MONTH": "1ヶ月前",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "クリーニング"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "快適"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "コンディションルーム"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "環境に優しい"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "環境"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "台所"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "位置"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "近所"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "空室のある部屋"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "雇用率"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "最高価格"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "中価格帯"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "最低価格"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "占有室数"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "販売中の部屋"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "総部屋数"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "受信能力"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "サービス"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "サービス"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "スタッフ"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "価格に見合った価値"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "悪口を言う",
+  "SPEAK_WELL_OF": "よく話す"
 }

@@ -278,5 +278,85 @@
   "NO_IMAGE": "Nincs kép",
   "OPEN": "Nyisd ki",
   "PRINT": "Nyomtatás",
-  "SHARE": "Ossza meg"
+  "SHARE": "Ossza meg",
+  "1_YEAR_AGO": "1 évvel ezelőtt",
+  "2_WEEKS_AGO": "2 héttel ezelőtt",
+  "3_MONTHS_AGO": "3hónappal ezelőtt",
+  "6_MONTHS_AGO": "6 hónappal ezelőtt",
+  "ALSO_TALK_ABOUT": "Arról is beszélni",
+  "BEGINNING_OF_THE_YEAR": "január 1",
+  "IN_1_MONTH": "1 hónap alatt",
+  "IN_3_MONTH": "3 hónap alatt",
+  "IN_ONE_MONTH": "1 hónap alatt",
+  "LAST_MONTH": "1 hónapja",
+  "REVIEWS_CATEGORIES": {
+    "RESTAURANT_CLEAN": {
+      "DESC": "Tisztítás"
+    },
+    "RESTAURANT_COMFORT": {
+      "DESC": "Kényelem"
+    },
+    "RESTAURANT_CONDITION": {
+      "DESC": "Szobák állapota"
+    },
+    "RESTAURANT_ECOFRIENDLY": {
+      "DESC": "Környezetbarát"
+    },
+    "RESTAURANT_ENVIRONMENT": {
+      "DESC": "Környezet"
+    },
+    "RESTAURANT_KITCHEN": {
+      "DESC": "Konyha"
+    },
+    "RESTAURANT_LOCATION": {
+      "DESC": "Elhelyezkedés"
+    },
+    "RESTAURANT_NEIGHBOURHOOD": {
+      "DESC": "Szomszédság"
+    },
+    "RESTAURANT_ROOMS_AVAILABLE_ROOMS": {
+      "DESC": "Rendelkezésre álló szobák"
+    },
+    "RESTAURANT_ROOMS_EMPLOYMENT_PERCENTAGE": {
+      "DESC": "Foglalkoztatási százalék"
+    },
+    "RESTAURANT_ROOMS_MAXIMUM_PRICE": {
+      "DESC": "Maximális ár"
+    },
+    "RESTAURANT_ROOMS_MEDIUM_PRICE": {
+      "DESC": "Közepes ár"
+    },
+    "RESTAURANT_ROOMS_MINIMUM_PRICE": {
+      "DESC": "Minimális ár"
+    },
+    "RESTAURANT_ROOMS_OCCUPIED_ROOMS": {
+      "DESC": "Foglalt szobák"
+    },
+    "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
+      "DESC": "Szobák eladók"
+    },
+    "RESTAURANT_ROOMS_TOTAL": {
+      "DESC": "Összes szoba"
+    },
+    "RESTAURANT_ROOMS_TOTAL_PEOPLE": {
+      "DESC": "Fogadási kapacitás"
+    },
+    "RESTAURANT_SERVICE": {
+      "DESC": "Szolgáltatás"
+    },
+    "RESTAURANT_SERVICES": {
+      "DESC": "Szolgáltatások"
+    },
+    "RESTAURANT_STAFF": {
+      "DESC": "Személyzet"
+    },
+    "RESTAURANT_VALUE": {
+      "DESC": "A pénz értéke"
+    },
+    "RESTAURANT_WIFI": {
+      "DESC": "Wi-Fi"
+    }
+  },
+  "SPEAK_BADLY_OF": "Beszélj rosszat",
+  "SPEAK_WELL_OF": "Jól beszélj róla"
 }
