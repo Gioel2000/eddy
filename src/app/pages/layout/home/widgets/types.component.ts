@@ -53,7 +53,7 @@ import { map } from 'rxjs';
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-zinc-800 shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -189,7 +189,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-zinc-800 shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -325,7 +325,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-zinc-800 shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -461,7 +461,7 @@ import { map } from 'rxjs';
                 </div>
               </div>
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-zinc-800 shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">

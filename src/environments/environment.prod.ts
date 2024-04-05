@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  url: 'https://www.eddy.restaurant/',
   apiUrl: 'https://api.eddy.restaurant',
   auth: {
     domain: 'auth.eddy.restaurant',

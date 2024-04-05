@@ -8,8 +8,9 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { LoaderComponent } from '../loader/loader.component';
 import { UserStore } from '../../store/user/user.service';
-import { AuthService, LogoutOptions } from '@auth0/auth0-angular';
+import { AuthService } from '@auth0/auth0-angular';
 import { MomentPipe } from '../../utils/pipes/moment.pipe';
+import { environment } from '../../../environments/environment';
 
 @UntilDestroy()
 @Component({
@@ -121,7 +122,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                                 <button
                                   type="button"
                                   class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1 ring-inset ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
-                                  (click)="auth.logout()"
+                                  (click)="logout()"
                                 >
                                   <span
                                     inlineSVG="rect-logout.svg"
@@ -193,6 +194,7 @@ export class UserPanelComponent {
   translate = inject(TranslateService);
 
   logout() {
-    this.auth.logout({ returnTo: window.location.origin } as LogoutOptions);
+    const { url } = environment;
+    this.auth.logout().subscribe(() => window.open(url, '_self'));
   }
 }
