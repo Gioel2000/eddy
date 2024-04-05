@@ -231,7 +231,7 @@ export class CreateCompetitorPanelComponent implements AfterViewInit {
       const number: string = place!.address_components!.find((c) => c.types.includes('street_number'))!.long_name;
       const zipCode: string = place!.address_components!.find((c) => c.types.includes('postal_code'))!.long_name;
       const city: string = place!.address_components!.find((c) => c.types.includes('locality'))!.long_name;
-      const photo = place.photos?.[0].getUrl({ maxWidth: 300, maxHeight: 300 });
+      const photo = place.photos?.[0].getUrl({ maxWidth: 600, maxHeight: 600 });
 
       this.cover.set(photo || '');
       this.googleLink.set(place.url || '');

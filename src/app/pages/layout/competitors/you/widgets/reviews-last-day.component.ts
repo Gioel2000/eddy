@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -47,7 +47,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 
         <div class="flow-root">
           <div class="divide-y divide-zinc-800">
-            @for (review of store().data; track $index) {
+            @for (review of store().data.slice(start(), end()); track $index) {
             <div class="py-6">
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
@@ -237,6 +237,26 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             }
+            <div class="flex flex-col items-center justify-center w-full">
+              <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
+                <div class="flex flex-row items-center gap-x-2">
+                  <button
+                    class="flex flex-row items-center bg-zinc-800 rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-zinc-200/30 shadow-[shadow:inset_0_2px_theme(colors.white/20%)] text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800/70 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5"
+                    (click)="showLess()"
+                    [disabled]="start() === 0"
+                  >
+                    <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                  </button>
+                  <button
+                    class="flex flex-row items-center bg-zinc-800 rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-zinc-200/30 shadow-[shadow:inset_0_2px_theme(colors.white/20%)] text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800/70 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5"
+                    (click)="showMore()"
+                    [disabled]="stopKeepGoing()"
+                  >
+                    <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -263,6 +283,7 @@ export class ReviewsLastDayComponent {
   averageRating = computed(
     () => this.store().data.reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
   );
+  stopKeepGoing = computed(() => this.end() >= this.store().data.length);
 
   tripadvisor = computed(() => {
     const reviews = this.store().data.filter((review) => review.channel.source === 'tripadvisor');
@@ -273,7 +294,31 @@ export class ReviewsLastDayComponent {
     };
   });
 
+  reviesPerPage = 3;
+  start = signal(0);
+  end = signal(3);
+
   replaceAll(str: string, find: string, replace: string) {
     return str.replace(new RegExp(find, 'g'), replace);
+  }
+
+  next() {
+    this.start.set(this.start() + this.reviesPerPage);
+    this.end.set(this.end() + this.reviesPerPage);
+  }
+
+  prev() {
+    this.start.set(this.start() - this.reviesPerPage);
+    this.end.set(this.end() - this.reviesPerPage);
+  }
+
+  showLess() {
+    this.start.set(this.start() - this.reviesPerPage);
+    this.end.set(this.end() - this.reviesPerPage);
+  }
+
+  showMore() {
+    this.start.set(this.start() + this.reviesPerPage);
+    this.end.set(this.end() + this.reviesPerPage);
   }
 }

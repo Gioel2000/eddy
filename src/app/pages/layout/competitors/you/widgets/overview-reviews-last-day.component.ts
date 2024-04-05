@@ -153,7 +153,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
         </div>
 
         <div class="mt-6">
-          <div class="mt-6 space-y-5 divide-y divide-zinc-800">
+          <div class="mt-6 space-y-5 divide-y divide-zinc-800 pb-10">
             @if (tripadvisor().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">

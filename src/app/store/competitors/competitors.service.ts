@@ -127,7 +127,14 @@ export class CompetitorsStore {
                         `${environment.apiUrl}/api/competitors/${competitor}/clientType/grouped`,
                         filter
                       ),
-                      reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitor}/last/week/2`),
+                      reviews: this.http.post(`${environment.apiUrl}/api/reviews/paginate`, {
+                        startdate: filter.startdate,
+                        enddate: filter.enddate,
+                        channels: filter.channels,
+                        rows: 100,
+                        offset: 0,
+                        clients: [],
+                      }),
                       isDownloading: this.http
                         .get<{ status: 'downloading' | 'completed' }>(
                           `${environment.apiUrl}/api/competitors/${competitor}/channels/status`

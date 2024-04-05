@@ -421,8 +421,6 @@ export class AddMenuComponent {
       .flat()
       .map((d, index) => ({ dish: d._id, orderNumber: index }));
 
-    console.log(dishesOrederedByCategory);
-
     if (mode === 'add') {
       const menu: AddMenu = {
         image: '',

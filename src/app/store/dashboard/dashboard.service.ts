@@ -174,15 +174,24 @@ export class DashboardStore {
                 })
               )
             ),
-            recentReviews: this.http.get<ReviewTO[]>(`${environment.apiUrl}/api/reviews/last/month/1`).pipe(
-              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-              catchError(() =>
-                of({
-                  data: [] as any,
-                  state: 'error' as const,
-                })
-              )
-            ),
+            recentReviews: this.http
+              .post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, {
+                startdate: filter.startdate,
+                enddate: filter.enddate,
+                channels: 'thefork,tripadvisor,google',
+                rows: 100,
+                offset: 0,
+                clients: [],
+              })
+              .pipe(
+                map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+                catchError(() =>
+                  of({
+                    data: [] as any,
+                    state: 'error' as const,
+                  })
+                )
+              ),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)

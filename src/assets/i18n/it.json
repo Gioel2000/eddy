@@ -290,7 +290,7 @@
   "IN_3_MONTH": "Tra 3 mesi",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_SERVICE": {
-      "DESC": "Servizi"
+      "DESC": "Servizio"
     },
     "RESTAURANT_KITCHEN": {
       "DESC": "Cucina"
@@ -356,7 +356,7 @@
       "DESC": "Camere in vendita"
     }
   },
-  "SPEAK_WELL_OF": "Parlatene bene di",
-  "SPEAK_BADLY_OF": "Parlarne male di",
+  "SPEAK_WELL_OF": "Parla bene di",
+  "SPEAK_BADLY_OF": "Parla male di",
   "ALSO_TALK_ABOUT": "Parla anche di"
 }

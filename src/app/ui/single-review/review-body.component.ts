@@ -687,8 +687,6 @@ export class BodyReviewComponent {
       return acc;
     }, []);
 
-    console.log(categoriesGrouped);
-
     this.categories$.next(
       categoriesGrouped.map((category: any) => ({
         ...category,
