@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, Subject, catchError, filter, map, merge, mergeMap, of, switchMap, tap, toArray } from 'rxjs';
+import { Observable, Subject, catchError, filter, map, mergeMap, of, switchMap, tap, toArray } from 'rxjs';
 import {
   AddRestaurant,
   ChannelModelTO,
@@ -50,7 +50,6 @@ export class StructureStore {
   state = computed(() => this.store().structures.state);
   selected = computed(() => this.store().selected.structure);
   selectedState = computed(() => this.store().selected.state);
-
   savedSuccesfully = signal(false);
 
   search$ = new Subject<string>();

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject, filter, map } from 'rxjs';
@@ -241,11 +241,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                     }}</span>
                   </div>
                 </div>
-                } } @else {
-                <span class="font-medium text-sm text-zinc-500">
-                  {{ 'UNKNOWN' | translate }}
-                </span>
-                }
+                } }
               </div>
             </div>
 
@@ -266,10 +262,6 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                     </div>
                   </span>
                 </div>
-                } @else {
-                <span class="font-medium text-sm text-zinc-500">
-                  {{ 'UNKNOWN' | translate }}
-                </span>
                 }
               </div>
             </div>
@@ -344,28 +336,39 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 </div>
               </div>
             </div>
-            <div *ngIf="(alreadyReplied$ | async) === false">
-              <div class="flex flex-row items-center mt-10 gap-x-3">
-                @if (review().title.trim().length || review().text.trim().length) {
-                <button
-                  class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                  [disabled]="isAiResponseLoading()"
-                  (click)="askAIToReply()"
-                >
-                  <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
-                  <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
-                </button>
-                } @if (isAiResponseLoading()){
-                <div class="flex flex-row items-center justify-center">
-                  <div class="flex flex-row items-center justify-center w-full">
-                    <loader></loader>
-                  </div>
-                </div>
-                }
-              </div>
-            </div>
           </div>
         </ng-container>
+        <div *ngIf="(alreadyReplied$ | async) === false">
+          <div class="flex flex-row items-center mt-10 gap-x-3">
+            <button
+              class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+              [disabled]="isResponseLoading() || isResponseError()"
+              (click)="askAIToReply()"
+            >
+              <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
+              <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
+            </button>
+            @if (isResponseLoading()){
+            <div class="flex flex-row items-center justify-center">
+              <div class="flex flex-row items-center justify-center w-full">
+                <loader></loader>
+              </div>
+            </div>
+            } @if (isResponseError()){
+            <div class="flex flex-row items-center justify-center">
+              <div class="flex flex-row items-center justify-center w-full">
+                <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+              </div>
+            </div>
+            } @if (isResponseSuccess()){
+            <div class="flex flex-row items-center justify-center">
+              <div class="flex flex-row items-center justify-center w-full">
+                <span [inlineSVG]="'check.svg'" class="svg-icon-1 text-green-500 stroke-[1.7]"></span>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
       </ng-container>
     </div>
   `,
@@ -386,15 +389,15 @@ export class BodyReviewComponent {
   readonly reviewContent$ = new BehaviorSubject<{
     title?: string;
     text?: string;
-    pros?: string;
-    cons?: string;
   }>({});
 
   review = input.required<ReviewTO>();
   showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
 
-  isAiResponseLoading = signal(false);
+  isResponseSuccess = signal(false);
+  isResponseLoading = signal(false);
+  isResponseError = signal(false);
 
   constructor(
     private readonly translateService: TranslateService // private readonly reviewsService: ReviewsService, // private readonly francisService: FrancisService
@@ -450,7 +453,7 @@ export class BodyReviewComponent {
         const translation = this.review().translations[index];
         translation &&
           this.reviewContent$.next({
-            text: translation.description,
+            text: translation.text,
             title: titleFormatted,
           });
 
@@ -477,12 +480,12 @@ export class BodyReviewComponent {
           const translation = this.review().translations![index];
           const translatedTitle = translation?.title || '';
           const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
+          const text = translation?.text || '';
 
-          translation &&
-            this.reviewContent$.next({
-              text: translation?.description || '',
-              title: titleFormatted,
-            });
+          this.reviewContent$.next({
+            text: text,
+            title: titleFormatted,
+          });
           this.calculateSentiment(translation, currentLang);
         } else {
           this.isLoading$.next(true);
@@ -493,12 +496,12 @@ export class BodyReviewComponent {
               this.isLoading$.next(false);
               const translatedTitle = translation?.title || '';
               const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
+              const text = translation?.text || '';
 
-              translation &&
-                this.reviewContent$.next({
-                  text: typeof translation?.description === 'string' ? translation?.description : '',
-                  title: titleFormatted,
-                });
+              this.reviewContent$.next({
+                title: titleFormatted,
+                text: text,
+              });
               this.calculateSentiment(translation, currentLang);
               this.review().translations = [...(this.review().translations || []), translation];
             });
@@ -734,12 +737,13 @@ export class BodyReviewComponent {
       return attrWithSentiment;
     };
 
-    const text = translation.description;
+    const text = translation.text || '';
+    const title = translation.title || '';
 
     const textSentiment = replaceBySentiment(text);
 
     this.reviewContent$.next({
-      ...this.reviewContent$.value,
+      title: title,
       text: textSentiment,
     });
   }
@@ -770,13 +774,22 @@ export class BodyReviewComponent {
   }
 
   askAIToReply() {
-    this.isAiResponseLoading.set(true);
+    this.isResponseLoading.set(true);
     this.store
       .askAIReply(this.review()._id)
       .pipe(untilDestroyed(this))
-      .subscribe(({ text }) => {
-        this.isAiResponseLoading.set(false);
-        this.commentControl.setValue(text);
+      .subscribe({
+        next: ({ text }) => {
+          this.isResponseLoading.set(false);
+          this.isResponseError.set(false);
+          this.isResponseSuccess.set(true);
+          this.commentControl.setValue(text);
+          setTimeout(() => this.isResponseSuccess.set(false), 1500);
+        },
+        error: () => {
+          this.isResponseLoading.set(false);
+          this.isResponseError.set(true);
+        },
       });
   }
 }

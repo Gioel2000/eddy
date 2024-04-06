@@ -12,7 +12,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AddMenu, CategoryTO, DishTO, EditMenu } from '../../../../../store/menu/interfaces/menu';
 import { MoneyPipe } from '../../../../../utils/pipes/money.pipe';
-import { filter } from 'rxjs';
+import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
 
 @UntilDestroy()
 @Component({
@@ -26,6 +26,7 @@ import { filter } from 'rxjs';
     ReplacePipe,
     ReactiveFormsModule,
     MoneyPipe,
+    TruncatePipe,
   ],
   template: ` <div
     class="relative z-[10000]"
@@ -201,9 +202,11 @@ import { filter } from 'rxjs';
                               >
                                 {{ dish.name }}
                               </td>
-                              <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-500 truncate">
-                                {{ dish.description }}
+                              <!-- <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-500"></td> -->
+                              <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-500">
+                                {{ dish.description | truncate : 20 }}
                               </td>
+
                               <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-500 truncate">
                                 {{ dish.price | money : translate.currentLang : dish.currency }}
                               </td>

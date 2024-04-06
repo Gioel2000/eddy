@@ -71,7 +71,7 @@ export class ReviewsStore {
   isDownloading = computed(() => this.store().isDownloading);
 
   constructor() {
-    const subscription = interval(3000)
+    interval(3000)
       .pipe(
         untilDestroyed(this),
         filter(() => this.isDownloading()),
@@ -83,18 +83,17 @@ export class ReviewsStore {
         map((data) => data.status === 'downloading')
       )
       .subscribe((isDownloading) => {
-        !isDownloading && subscription.unsubscribe();
         this.setIsDownloading$.next(isDownloading);
       });
 
     const stream$ = combineLatest({
-      selected: toObservable(this.structure.selected),
+      // selected: toObservable(this.structure.selected),
       filter: this.filter$,
     }).pipe(
       untilDestroyed(this),
-      filter(({ selected }) => !!selected),
-      filter(({ selected }) => Object.keys(selected).length > 0),
-      distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
+      // filter(({ selected }) => !!selected),
+      // filter(({ selected }) => Object.keys(selected).length > 0),
+      // distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
       map(({ filter }) => filter),
       filter((filter) => !!filter)
     );
@@ -141,7 +140,7 @@ export class ReviewsStore {
 
   translate(reviewId: string, lang: string) {
     return this.http.put<{
-      description?: { pros: string; cons: string };
+      text?: string;
       language: string;
       title: string;
     }>(`${environment.apiUrl}/api/reviews/${reviewId}/translate/${lang}`, {});

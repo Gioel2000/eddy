@@ -1,9 +1,10 @@
-import { Injectable, WritableSignal, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, computed, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ReviewsStore } from '../../../store/reviews/reviews.service';
-import { distinctUntilChanged, map, tap } from 'rxjs';
+import { distinctUntilChanged, map, skip, tap } from 'rxjs';
 import moment from 'moment';
+import { StructureStore } from '../../../store/structures/structure.service';
 
 const INIT_FILTER = {
   startdate: undefined,
@@ -18,6 +19,7 @@ const INIT_FILTER = {
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
   store = inject(ReviewsStore);
+  structure = inject(StructureStore);
 
   page = signal(1);
 
@@ -57,9 +59,18 @@ export class ReviewsService {
         tap(() => this.page.set(1))
       )
       .subscribe();
+
+    toObservable(this.structure.selected)
+      .pipe(
+        untilDestroyed(this),
+        skip(1),
+        distinctUntilChanged((prev, curr) => prev._id === curr._id)
+      )
+      .subscribe(() => this.reset());
   }
 
   reset() {
+    this.page.set(1);
     this.filter.set(INIT_FILTER);
   }
 }
