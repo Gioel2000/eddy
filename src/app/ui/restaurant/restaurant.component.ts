@@ -82,7 +82,7 @@ export interface MarkerInterface {
                       <span class="svg-icon-5" inlineSVG="xmark.svg"></span>
                     </button>
                   </div>
-                  <nav class="h-full overflow-y-auto bg-zinc-50 dark:bg-zinc-800" aria-label="Directory">
+                  <nav class="h-full overflow-y-auto bg-white dark:bg-zinc-800" aria-label="Directory">
                     <ng-template #loading>
                       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-72">
                         <div class="flex flex-row items-center justify-center w-full">
@@ -114,7 +114,7 @@ export interface MarkerInterface {
                       </div>
                     </ng-template>
 
-                    <article class="bg-zinc-50 dark:bg-zinc-800 h-screen relative -top-8">
+                    <article class="bg-white dark:bg-zinc-800 h-screen relative -top-8">
                       <div>
                         @if (structures.selected(); as selectedStructure) {
                         <div>
@@ -145,7 +145,7 @@ export interface MarkerInterface {
                             <select
                               id="tabs"
                               name="tabs"
-                              class="block w-full mb-1 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md border-zinc-300 dark:border-zinc-700 py-2 pl-3 pr-10 focus:border-accent focus:outline-none focus:ring-accent text-sm"
+                              class="block w-full mb-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md border-zinc-300 dark:border-zinc-700 py-2 pl-3 pr-10 focus:border-accent focus:outline-none focus:ring-accent text-sm"
                               [formControl]="pageOption"
                             >
                               <option value="overview">{{ 'OVERVIEW' | translate }}</option>

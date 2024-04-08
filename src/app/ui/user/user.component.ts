@@ -61,7 +61,7 @@ import { environment } from '../../../environments/environment';
                       <span class="svg-icon-5" inlineSVG="xmark.svg"></span>
                     </button>
                   </div>
-                  <nav class="h-full overflow-y-auto bg-zinc-50 dark:bg-zinc-800" aria-label="Directory">
+                  <nav class="h-full overflow-y-auto bg-white dark:bg-zinc-800" aria-label="Directory">
                     <ng-template #loading>
                       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-72">
                         <div class="flex flex-row items-center justify-center w-full">
@@ -94,7 +94,7 @@ import { environment } from '../../../environments/environment';
                     </ng-template>
 
                     @switch (profile.status()) { @case('loaded') {
-                    <article class="bg-zinc-50 dark:bg-zinc-800 h-screen relative -top-8">
+                    <article class="bg-white dark:bg-zinc-800 h-screen relative -top-8">
                       <div>
                         <div>
                           <img class="h-32 w-full object-cover lg:h-48" src="/assets/images/profile-banner.jpg" />

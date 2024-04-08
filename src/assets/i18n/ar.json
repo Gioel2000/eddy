@@ -358,5 +358,7 @@
     }
   },
   "SPEAK_BADLY_OF": "تكلم بالسوء",
-  "SPEAK_WELL_OF": "تحدث جيدًا عن"
+  "SPEAK_WELL_OF": "تحدث جيدًا عن",
+  "EDIT_DISH": "تحرير الطبق",
+  "SHOW": ""
 }

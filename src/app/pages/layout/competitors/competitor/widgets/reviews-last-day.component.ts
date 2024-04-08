@@ -53,7 +53,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full bg-accent flex items-center justify-center text-base text-white/90"
+                    class="h-12 w-12 rounded-full bg-accent dark:bg-accentDark flex items-center justify-center text-base text-white/90"
                   >
                     {{ review.name.charAt(0).toUpperCase() }}
                   </div>
@@ -157,7 +157,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                 <div>
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
@@ -169,7 +169,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/google.svg'"
@@ -181,7 +181,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"

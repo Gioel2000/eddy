@@ -57,7 +57,7 @@ import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-co
     <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
     @if (!isRouterLoaded()) {
     <div
-      class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-zinc-50 dark:bg-dark"
+      class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
     >
       <loader></loader>
     </div>

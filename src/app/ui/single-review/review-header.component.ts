@@ -14,7 +14,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
       <div class="flex-none py-5">
         <div
           class="h-10 w-10 rounded-full"
-          class="bg-accent flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
+          class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
         >
           {{ review().name.charAt(0).toUpperCase() }}
         </div>

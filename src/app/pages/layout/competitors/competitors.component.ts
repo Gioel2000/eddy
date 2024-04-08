@@ -57,7 +57,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
       <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">
         {{ 'COMPETITORS' | translate }}
       </h1>
-      <div class="mx-auto bg-zinc-50 dark:bg-dark">
+      <div class="mx-auto bg-white dark:bg-dark">
         <div class="block">
           <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-10 pb-6">
             <ul
@@ -122,16 +122,16 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
       </div>
 
       <div
-        class="fixed flex flex-row items-center justify-center gap-x-3 p-3 rounded-2xl right-6 bottom-6 bg-zinc-50 dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
+        class="fixed flex flex-row items-center justify-center gap-x-3 p-3 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
       >
         <button
-          class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/80 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/80 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="scrollLeft()"
         >
           <span [inlineSVG]="'arrow-left.svg'" class="svg-icon-5 stroke-2"></span>
         </button>
         <button
-          class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/80 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="flex flex-row items-center justify-center w-full rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/80 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="scrollRight()"
         >
           <span [inlineSVG]="'arrow-right.svg'" class="svg-icon-5 stroke-2"></span>

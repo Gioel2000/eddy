@@ -57,7 +57,7 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
 
     <div class="h-full lg:pr-10 lg:pl-3 px-4">
       <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">{{ 'REVIEWS' | translate }}</h1>
-      <div class="mx-auto bg-zinc-50 dark:bg-dark">
+      <div class="mx-auto bg-white dark:bg-dark">
         <div class="block">
           <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-10 pb-6">
             <ul
@@ -168,14 +168,14 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
               </div>
               <div class="flex flex-row items-center gap-x-2">
                 <button
-                  class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                  class="flex flex-row items-center bg-accent dark:bg-accentDark rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
                   (click)="showLess()"
                   [disabled]="reviews.filter().offset === 0"
                 >
                   <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
                 </button>
                 <button
-                  class="flex flex-row items-center bg-accent rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                  class="flex flex-row items-center bg-accent dark:bg-accentDark rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
                   (click)="showMore()"
                   [disabled]="stopKeepGoing()"
                 >

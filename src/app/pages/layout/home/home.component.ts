@@ -32,7 +32,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
   template: `
     <div class="h-full lg:pr-10 lg:pl-3 px-4">
       <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1>
-      <div class="mx-auto bg-zinc-50 dark:bg-dark">
+      <div class="mx-auto bg-white dark:bg-dark">
         <div class="block">
           <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-10 pb-6">
             <ul
@@ -90,16 +90,16 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
             <div
               class="divide-y divide-zinc-200 dark:divide-zinc-800 overflow-hidden bg-zinc-200 dark:bg-zinc-800 sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
             >
-              <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
+              <div class="bg-white dark:bg-dark sm:pr-10 py-6">
                 <ratings-graph></ratings-graph>
               </div>
-              <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
+              <div class="bg-white dark:bg-dark sm:pl-10 py-6">
                 <types-graph></types-graph>
               </div>
-              <div class="bg-zinc-50 dark:bg-dark sm:pr-10 py-6">
+              <div class="bg-white dark:bg-dark sm:pr-10 py-6">
                 <reviews-last-day></reviews-last-day>
               </div>
-              <div class="bg-zinc-50 dark:bg-dark sm:pl-10 py-6">
+              <div class="bg-white dark:bg-dark sm:pl-10 py-6">
                 <overview-reviews-last-day></overview-reviews-last-day>
               </div>
             </div>

@@ -52,11 +52,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
             <div class="pointer-events-auto w-screen max-w-xl border-l border-zinc-300 dark:border-zinc-700">
               <form
                 [formGroup]="formGroup"
-                class="flex h-full flex-col overflow-y-scroll bg-zinc-50 dark:bg-zinc-800 shadow-xl"
+                class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-zinc-800 shadow-xl"
               >
                 <div class="flex-1">
                   <div
-                    class="bg-zinc-50 dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
+                    class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
                   >
                     <div class="flex items-start justify-between space-x-3">
                       <div class="space-y-1">
@@ -99,7 +99,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                           type="text"
                           placeholder="Da Mario"
                           formControlName="name"
-                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                       </div>
                     </div>
@@ -118,19 +118,19 @@ import { GoogleMapsModule } from '@angular/google-maps';
                           type="text"
                           placeholder="Via Torino 4"
                           formControlName="address"
-                          class="sm:col-span-4 col-span-2 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="sm:col-span-4 col-span-2 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                         <input
                           type="text"
                           placeholder="12345"
                           formControlName="zipCode"
-                          class="sm:col-span-2 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="sm:col-span-2 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                         <input
                           type="text"
                           placeholder="Roma"
                           formControlName="city"
-                          class="sm:col-span-3 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="sm:col-span-3 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                       </div>
                     </div>
@@ -149,7 +149,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                           type="text"
                           placeholder="you@example.com"
                           formControlName="email"
-                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-zinc-50 dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                       </div>
                     </div>
@@ -169,7 +169,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                             type="text"
                             name="phone-number"
                             id="phone-number"
-                            class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                            class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                             placeholder="111 111 1111"
                             formControlName="telephone"
                           />
@@ -196,7 +196,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                             type="text"
                             name="company-website"
                             id="company-website"
-                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                             placeholder="www.example.com"
                             formControlName="website"
                           />
@@ -206,7 +206,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                   </div>
                   @if (googleLink() === '' && formGroup.touched){
                   <div
-                    class="bg-zinc-50 dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
+                    class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
                   >
                     <div class="flex items-start justify-between space-x-3">
                       <span class="text-sm text-red-500 font-semibold">{{ 'TOUCH_GOOGLE_DROPDOWN' | translate }}</span>
@@ -214,7 +214,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                   </div>
                   } @if (cover() !== '') {
                   <div
-                    class="bg-zinc-50 dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
+                    class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
                   >
                     <div>
                       <label
@@ -223,7 +223,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         >{{ 'PHOTO' | translate }}</label
                       >
                     </div>
-                    <div class="bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
+                    <div class="bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
                       <img [src]="cover()" alt="" class="w-full h-72 bg-zinc-100 object-cover" />
                     </div>
                   </div>
@@ -234,14 +234,14 @@ import { GoogleMapsModule } from '@angular/google-maps';
                   <div class="flex justify-end space-x-3">
                     <button
                       type="button"
-                      class="rounded-md bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
+                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
                       (click)="panelUI.closePanel()"
                     >
                       {{ 'CANCEL' | translate }}
                     </button>
                     <button
                       type="button"
-                      class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+                      class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
                       (click)="add()"
                       [disabled]="formGroup.invalid || googleLink() === ''"
                     >

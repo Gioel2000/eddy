@@ -78,17 +78,17 @@ import { DialogService } from './dish-dialog/dialog.service';
       </div>
     </ng-template>
 
-    <div class="h-full w-full bg-zinc-500/5 dark:bg-zinc-900/5">
+    <div class="h-full w-full bg-zinc-50 dark:bg-[#141414]">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 lg:py-8 py-5">
         @switch(publicMenu.state()) { @case('loaded') {
         <div class="h-full px-6 sm:px-2">
           <div
             #header
             id="header"
-            class="fixed top-0 left-0 right-0 z-10 ring-1 ring-inset bg-zinc-900 ring-zinc-800 dark:ring-zinc-900 shadow-md"
+            class="fixed top-0 left-0 right-0 z-10 ring-1 ring-inset bg-[#1A1A1A] ring-zinc-800 dark:ring-zinc-900 shadow-md"
           >
             <div
-              [ngClass]="{ hidden: !showImage(), block: showImage() }"
+              [ngClass]="{ hidden: !isOnTop(), block: isOnTop() }"
               class="relative flex h-44 w-full flex-col overflow-hidden"
             >
               <span aria-hidden="true" class="absolute inset-0">
@@ -98,15 +98,21 @@ import { DialogService } from './dish-dialog/dialog.service';
                   class="h-full w-full object-cover object-center"
                 />
               </span>
-              <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-zinc-900"></span>
+              <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1A1A1A]"></span>
             </div>
-            <div class="mx-auto max-w-7xl px-6 sm:px-8 xl:px-10 sm:py-6 lg:py-8 py-8 xl:py-10">
+            <div class="mx-auto max-w-7xl px-6 sm:px-14 xl:px-16 sm:py-6 lg:py-8 py-8 xl:py-10">
               <div>
                 <p class="flex items-baseline gap-x-1">
-                  <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{
-                    publicMenu.menu().restaurant.name
-                  }}</span>
+                  <span
+                    class="font-bold tracking-tight text-white line-clamp-2"
+                    [ngClass]="{
+                      'text-4xl': isOnTop(),
+                      'text-2xl': !isOnTop()
+                    }"
+                    >{{ publicMenu.menu().restaurant.name }}</span
+                  >
                 </p>
+                @if (isOnTop()) {
                 <p class="text-sm leading-6 text-zinc-300 line-clamp-1">
                   {{ publicMenu.menu().name }}
                   @if (publicMenu.menu().description) {
@@ -114,6 +120,7 @@ import { DialogService } from './dish-dialog/dialog.service';
                   }
                   {{ publicMenu.menu().description }}
                 </p>
+                }
               </div>
               <div class="mt-6">
                 <div class="sm:hidden">
@@ -152,7 +159,7 @@ import { DialogService } from './dish-dialog/dialog.service';
                       </button>
                       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
                         <div
-                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-lg bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
+                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-xl bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
                           role="menu"
                           aria-orientation="vertical"
                           aria-labelledby="menu-button"
@@ -162,14 +169,14 @@ import { DialogService } from './dish-dialog/dialog.service';
                             'opacity-0 scale-90': !dropdown.isVisible()
                           }"
                         >
-                          <div class="p-3" role="none">
+                          <div class="px-3 py-3.5" role="none">
                             <fieldset>
                               <div class="space-y-2">
                                 @for (category of categories(); track $index) {
                                 <div
-                                  class="flex flex-row items-center gap-x-1 rounded-md p-2 text-sm font-bold leading-6 cursor-pointer transition-all transform-gpu ease-in-out duration-300 hover:bg-accent hover:text-white"
+                                  class="flex flex-row items-center gap-x-1 rounded-lg p-2 text-sm font-bold leading-6 cursor-pointer transition-all transform-gpu ease-in-out duration-300 hover:bg-accent hover:dark:bg-accentDark hover:text-white"
                                   [ngClass]="{
-                                    'bg-accent text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]':
+                                    'bg-accent dark:bg-accentDark text-white':
                                       selectedCategory().category._id === category.category._id,
                                     'bg-zinc-800 text-zinc-500':
                                       selectedCategory().category._id !== category.category._id
@@ -195,8 +202,9 @@ import { DialogService } from './dish-dialog/dialog.service';
                     <a
                       class="rounded-md px-3 py-2 text-sm font-medium transition-all transform-gpu ease-in-out duration-300 cursor-pointer"
                       [ngClass]="{
-                        'bg-accent text-white': selectedCategory().category._id === category.category._id,
-                        'text-zinc-400 hover:bg-accent hover:text-white':
+                        'bg-accent dark:bg-accentDark text-white':
+                          selectedCategory().category._id === category.category._id,
+                        'text-zinc-400 hover:bg-accent hover:dark:bg-accentDark hover:text-white':
                           selectedCategory().category._id !== category.category._id
                       }"
                       (click)="scrollToCategory(category, header.offsetHeight)"
@@ -209,7 +217,7 @@ import { DialogService } from './dish-dialog/dialog.service';
             </div>
           </div>
           <div [style.height.px]="header.offsetHeight"></div>
-          <div class="mb-4">
+          <div class="sm:px-6 mb-4">
             <div class="relative mt-2 rounded-xl shadow-sm">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span class="svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600">
@@ -241,7 +249,7 @@ import { DialogService } from './dish-dialog/dialog.service';
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 bg-zinc-100 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                class="block w-full rounded-xl border-0 bg-white dark:bg-[#1A1A1A] mb-8 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />
@@ -250,16 +258,16 @@ import { DialogService } from './dish-dialog/dialog.service';
           @for (category of publicMenu.menu().categories; track $index) {
           <div>
             @if(dishesFromCategory(category.category._id); as dishes) { @if (dishes.length > 0) {
-            <div class="py-8">
+            <div class="pb-8">
               <div class="md:flex md:items-center md:justify-between">
                 <h2
-                  class="text-lg font-bold tracking-tight text-zinc-700 dark:text-zinc-300"
+                  class="text-lg sm:px-5 font-bold tracking-tight text-zinc-700 dark:text-zinc-300"
                   [id]="category.category.name"
                 >
                   {{ category.category.name }}
                 </h2>
               </div>
-              <div class="mt-6 p-0.5 pb-3 flex flex-row gap-x-4 overflow-x-auto">
+              <div class="mt-3 pt-2 pl-0.5 sm:px-5 pb-10 flex flex-row gap-x-4 overflow-x-auto">
                 @for (dish of dishes; track $index) { @defer (on viewport; prefetch on idle) {
                 <dish [dish]="dish" [currentLang]="translate.currentLang" (open)="open($event)"></dish>
                 } @placeholder {
@@ -281,7 +289,7 @@ import { DialogService } from './dish-dialog/dialog.service';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-      <footer class="bg-zinc-400/5 dark:bg-zinc-600/5 border-t border-zinc-300 dark:border-zinc-800">
+      <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
         </div>
@@ -300,7 +308,7 @@ export class PublicMenuComponent {
   year = moment().format('YYYY');
   categories = computed(() => this.publicMenu.menu()?.categories?.sort((a, b) => a.orderNumber - b.orderNumber));
   selectedCategory = signal({} as Category);
-  showImage = signal(true);
+  isOnTop = signal(true);
   selectedDish = signal({} as Dish);
   categoryControl = new FormControl();
   searchFormControl = new FormControl();
@@ -343,7 +351,7 @@ export class PublicMenuComponent {
 
   ngAfterViewInit() {
     this.render.listen('window', 'scroll', () => {
-      this.showImage.set(window.scrollY < 100);
+      this.isOnTop.set(window.scrollY < 100);
 
       const categories = this.publicMenu.menu().categories;
       const headerHeight = document.getElementById('header')?.offsetHeight || 0;

@@ -179,7 +179,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                 @if (review().channel.source === 'tripadvisor') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
@@ -191,7 +191,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 </div>
                 } @if (review().channel.source === 'google') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/google.svg'"
@@ -203,7 +203,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 </div>
                 } @if (review().channel.source === 'thefork') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/TheFork.svg'"
@@ -314,14 +314,14 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   (click)="showReview()"
                 >
                   <span [inlineSVG]="'share-right-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
-                  <span>{{ 'SHOW_REPLY' | translate | uppercase }}</span>
+                  <span>{{ 'OPEN' | translate | uppercase }}</span>
                 </button>
               </div>
               <div class="relative flex items-start">
                 <div class="flex h-5 items-center">
                   <input
                     type="checkbox"
-                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent bg-zinc-200/50 dark:bg-zinc-600 border-none text-accent-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200/50 dark:bg-zinc-600 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
                     [checked]="alreadyReplied$ | async"
                     (change)="alreadyReplied()"
                   />
@@ -330,7 +330,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
                     'MARK_AS_REPLIED' | translate
                   }}</label>
-                  <p id="comments-description" class="text-zinc-500 font-normal text-xs">
+                  <p id="comments-description" class="hidden sm:block text-zinc-500 font-normal text-xs">
                     {{ 'MARK_AS_REPLIED_DESCRIPTION' | translate }}
                   </p>
                 </div>
@@ -341,26 +341,26 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
         <div *ngIf="(alreadyReplied$ | async) === false">
           <div class="flex flex-row items-center mt-10 gap-x-3">
             <button
-              class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent/70 text-sm font-medium leading-6 disabled:bg-accent/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+              class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
               [disabled]="isResponseLoading() || isResponseError()"
               (click)="askAIToReply()"
             >
               <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
               <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
             </button>
-            @if (isResponseLoading()){
+            @if (isResponseLoading()) {
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
                 <loader></loader>
               </div>
             </div>
-            } @if (isResponseError()){
+            } @if (isResponseError()) {
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
                 <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
               </div>
             </div>
-            } @if (isResponseSuccess()){
+            } @if (isResponseSuccess()) {
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
                 <span [inlineSVG]="'check.svg'" class="svg-icon-1 text-green-500 stroke-[1.7]"></span>

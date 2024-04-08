@@ -52,7 +52,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full bg-accent flex items-center justify-center text-base text-white/90"
+                    class="h-12 w-12 rounded-full bg-accent dark:bg-accentDark flex items-center justify-center text-base text-white/90"
                   >
                     {{ review.name.charAt(0).toUpperCase() }}
                   </div>

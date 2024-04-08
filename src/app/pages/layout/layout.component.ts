@@ -106,7 +106,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                       <a
                         class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
                       >
-                        <h1 class="text-accent -tracking-[0.05rem]">
+                        <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                           Eddy
                           <span class="text-dark dark:text-white">.</span>
                         </h1>
@@ -123,7 +123,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           <a
                             [routerLink]="['/' + route.path]"
                             class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
-                            routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-500/5 dark:bg-zinc-300/5"
+                            routerLinkActive="text-accent dark:text-accentDark font-semibold rounded-lg bg-zinc-500/5 dark:bg-zinc-300/5"
                             (click)="layout.closeMenu()"
                           >
                             <span class="mr-2 svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
@@ -137,7 +137,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                         <div class="relative w-full">
                           <div [ngClass]="{ hidden: !layout.isDropdownOpenSm() }">
                             <div
-                              class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-zinc-50 dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
+                              class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
                               role="menu"
                               aria-orientation="vertical"
                               aria-labelledby="menu-button"
@@ -157,7 +157,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                   </div>
                                   <input
                                     type="text"
-                                    class="block w-full rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
+                                    class="block w-full rounded-xl border-0 bg-white dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                                     placeholder="{{ 'SEARCH' | translate }}..."
                                     [formControl]="searchFormControl"
                                     (blur)="isSearchBlur.set(true)"
@@ -176,13 +176,13 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                         (click)="structures.choose(restaurant._id)"
                                       >
                                         <div class="flex items-center">
-                                          <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
+                                          <div class="flex flex-row items-center justify-center bg-accent dark:bg-accentDark text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
                                           <span class="font-normal text-sm ml-2 block truncate">{{ restaurant.name }}</span>
                                         </div>
 
                                         @if (structures.selected(); as selected) {
                                           @if (selected._id === restaurant._id) {
-                                          <span class="text-accent absolute inset-y-0 right-0 flex items-center pr-4">
+                                          <span class="text-accent dark:text-accentDark absolute inset-y-0 right-0 flex items-center pr-4">
                                             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                               <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                             </svg>
@@ -270,7 +270,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                 <div class="flex flex-row items-center justify-between w-full">
                                   <div class="flex flex-row items-center">
                                     <div
-                                      class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
+                                      class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent dark:bg-accentDark text-white text-xs uppercase"
                                     >
                                       {{ structureSelected.name | substring : 0 : 1}}
                                     </div>
@@ -308,13 +308,13 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
         </div>
       </div>
 
-      <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col bg-zinc-50 dark:bg-dark">
+      <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col bg-white dark:bg-dark">
         <div class="flex grow flex-col gap-y-6 overflow-y-auto px-10 py-6">
           <div class="flex h-16 shrink-0 items-center">
             <a
               class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
             >
-              <h1 class="text-accent -tracking-[0.05rem]">
+              <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                 Eddy
                 <span class="text-dark dark:text-white">.</span>
               </h1>
@@ -323,7 +323,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
           <nav class="-ml-3 flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
-                <ul role="list" class="space-y-1 text-zinc-800 dark:text-zinc-200">
+                <ul role="list" class="space-y-1 text-zinc-800 dark:text-zinc-300">
                   @for (route of router.config[0].children; track $index) { @if (route.data; as routeData) { @if (routeData &&
                   routeData['show']) {
                   <li 
@@ -332,7 +332,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                     <a
                       [routerLink]="['/' + route.path]"
                       class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
-                      routerLinkActive="text-accent font-semibold rounded-lg bg-zinc-500/5 dark:bg-zinc-300/5"
+                      routerLinkActive="text-accent dark:text-accentDark font-semibold rounded-lg bg-zinc-50 dark:bg-zinc-300/5"
                     >
                       <span class="mr-2 svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
                       <span class="text-sm font-semibold">{{ routeData['i18n'] | translate }}</span>
@@ -347,7 +347,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                   <div class="relative w-full">
                     <div [ngClass]="{ hidden: !layout.isDropdownOpen() }">
                       <div
-                        class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-zinc-50 dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
+                        class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
@@ -367,7 +367,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                             </div>
                             <input
                               type="text"
-                              class="block w-full rounded-xl border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
+                              class="block w-full rounded-xl border-0 bg-white dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                               placeholder="{{ 'SEARCH' | translate }}..."
                               [formControl]="searchFormControl"
                               (blur)="isSearchBlur.set(true)"
@@ -386,12 +386,12 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                   (click)="structures.choose(restaurant._id)"
                                 >
                                   <div class="flex items-center">
-                                    <div class="flex flex-row items-center justify-center bg-accent text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
+                                    <div class="flex flex-row items-center justify-center bg-accent dark:bg-accentDark text-xs text-white h-6 w-6 flex-shrink-0 rounded-full">{{  restaurant.name | substring : 0 : 1}}</div>
                                     <span class="font-normal ml-2 block truncate">{{ restaurant.name }}</span>
                                   </div>
                                   @if (structures.selected(); as selected) {
                                     @if (selected._id === restaurant._id) {
-                                    <span class="text-accent absolute inset-y-0 right-0 flex items-center pr-4">
+                                    <span class="text-accent dark:text-accentDark absolute inset-y-0 right-0 flex items-center pr-4">
                                       <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                                       </svg>
@@ -480,7 +480,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           <div class="flex flex-row items-center justify-between w-full">
                             <div class="flex flex-row items-center">
                               <div
-                                class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent text-white text-xs uppercase"
+                                class="flex flex-col items-center justify-center h-6 w-6 rounded-full bg-accent dark:bg-accentDark text-white text-xs uppercase"
                               >
                                 {{ structureSelected.name | substring : 0 : 1}}
                               </div>
@@ -539,7 +539,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
         </div>
       </div>
 
-      <div class="lg:pl-72 py-8 bg-zinc-50 dark:bg-dark">
+      <div class="lg:pl-72 py-8 bg-white dark:bg-dark">
         <div class="flex flex-col items-center w-full">
           <div class="w-full max-w-[1600px]">
             <div class="block lg:hidden relative -top-8">
@@ -557,7 +557,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                 <a
                   class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
                 >
-                  <h1 class="text-accent -tracking-[0.05rem]">
+                  <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                     Eddy
                     <span class="text-dark dark:text-white">.</span>
                   </h1>
@@ -571,13 +571,13 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
             ></router-outlet>
             @if (!isRouterLoaded()) {
             <div
-              class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-zinc-50 dark:bg-dark"
+              class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
             >
               <loader></loader>
             </div>
             }
 
-            <footer class="bg-zinc-50 dark:bg-dark mt-52">
+            <footer class="bg-white dark:bg-dark mt-52">
               <div class="flex flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
                 <div class="flex justify-center space-x-6 md:order-2">
                   <a

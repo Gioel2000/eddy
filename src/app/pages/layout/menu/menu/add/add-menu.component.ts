@@ -44,7 +44,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-          class="relative transform overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
+          class="relative transform overflow-hidden rounded-xl bg-white dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
           [ngClass]="{
             'opacity-100 translate-y-0 sm:scale-100': dialog.isDialogVisible(),
             'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95': !dialog.isDialogVisible()
@@ -81,7 +81,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       id="first-name"
                       autocomplete="given-name"
                       formControlName="name"
-                      class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                      class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                       placeholder="{{ 'MENU_PLACEHOLDER' | translate }}"
                     />
                   </div>
@@ -96,7 +96,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       name="about"
                       rows="3"
                       formControlName="description"
-                      class="block w-full rounded-md border-0 py-1.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                      class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                       placeholder="{{ 'MENU_DESCRIPTION_PLACEHOLDER' | translate }}"
                     ></textarea>
                   </div>
@@ -107,7 +107,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       'CATEGORIES' | translate
                     }}</label>
                     <!-- <a
-                      class="text-sm font-semibold text-accent hover:underline decoration-2"
+                      class="text-sm font-semibold text-accent dark:text-accentDark hover:underline decoration-2"
                       (click)="addAllCategories()"
                       >{{ 'ADD_ALL_CATEGORIES' | translate }}</a
                     > -->
@@ -141,7 +141,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       <span class="isolate inline-flex rounded-md shadow-sm">
                         <button
                           type="button"
-                          class="relative inline-flex items-center rounded-l-md bg-zinc-50 dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
+                          class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
                           [disabled]="start() === 0"
                           (click)="prev()"
                         >
@@ -149,7 +149,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         </button>
                         <button
                           type="button"
-                          class="relative -ml-px inline-flex items-center rounded-r-md bg-zinc-50 dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
+                          class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
                           [disabled]="end() >= store.categories().length"
                           (click)="next()"
                         >
@@ -168,7 +168,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                     <div class="overflow-x-auto">
                       <div class="inline-block min-w-full py-2 align-middle">
                         <table class="min-w-full">
-                          <tbody class="bg-zinc-50 dark:bg-zinc-800">
+                          <tbody class="bg-white dark:bg-zinc-800">
                             @for (category of menuCategories(); track $index) {
                             <tr class="border-t border-zinc-300 dark:border-zinc-700">
                               <th
@@ -213,7 +213,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                               <td
                                 class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"
                               >
-                                <a (click)="removeDishFromMenu(dish)" class="text-accent hover:text-accent"
+                                <a (click)="removeDishFromMenu(dish)" class="text-accent dark:text-accentDark"
                                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                                 ></a>
                               </td>
@@ -245,7 +245,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
           </form>
 
           <button
-            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             (click)="done()"
           >
             <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>

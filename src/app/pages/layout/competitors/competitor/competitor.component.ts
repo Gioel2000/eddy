@@ -51,7 +51,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+    <div class="rounded-3xl ring-1 ring-zinc-100 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
       @switch(state()) { @case('loaded') {
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
@@ -59,7 +59,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         </span>
         <span
           aria-hidden="true"
-          class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-zinc-50 dark:from-dark"
+          class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white dark:from-dark"
         ></span>
       </div>
 

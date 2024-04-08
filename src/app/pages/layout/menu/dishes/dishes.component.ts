@@ -64,7 +64,7 @@ import { DishTO } from '../../../../store/menu/interfaces/menu';
       <div>
         @switch(store.dishesState()) { @case('loaded') {
         <div class="flex flex-col gap-y-6">
-          <div class="grid gap-4 sm:grid-cols-2 w-full sm:w-auto sm:max-w-full gap-y-6">
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
             @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
             <menu-dish
               class="h-full"

@@ -53,11 +53,11 @@ export interface CalendarModel {
       <div class="relative">
         <label
           for="name"
-          class="absolute -top-2 left-2 inline-block bg-zinc-50 dark:bg-dark px-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
+          class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
           >{{ i18n() | translate }}</label
         >
         <button
-          class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-zinc-50 dark:bg-dark text-zinc-600 dark:text-zinc-300 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+          class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-300 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
           (click)="toggle()"
         >
           <div class="flex flex-row items-center justify-between">
@@ -67,7 +67,7 @@ export interface CalendarModel {
         </button>
         <div [ngClass]="{ hidden: !isOpen() }">
           <div
-            class="absolute left-0 z-10 mt-2 w-80 origin-top-left rounded-xl bg-zinc-50 dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-800 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 transform-gpu"
+            class="absolute left-0 z-10 mt-2 w-80 origin-top-left rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-800 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 transform-gpu"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -113,7 +113,7 @@ export interface CalendarModel {
                     <div class="grid grid-cols-3 gap-2 px-3 pt-5">
                       @for (date of rapidDates(); track $index) {
                       <span
-                        class="col-span-1 inline-flex items-center cursor-pointer gap-x-1 rounded-md bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 p-1.5 text-xs text-red-500 font-semibold"
+                        class="col-span-1 inline-flex items-center cursor-pointer transition ease-in-out duration-200 gap-x-1 rounded-md bg-red-500/10 hover:bg-accent hover:text-white dark:hover:text-white dark:hover:bg-red-500 p-1.5 text-xs text-red-500 font-semibold"
                         (click)="onDateSet.emit(date.value)"
                       >
                         <span [inlineSVG]="'bolt.svg'" class="svg-icon-9 stroke-[1.8]"></span>
@@ -157,7 +157,8 @@ export interface CalendarModel {
                           type="button"
                           class="mx-auto flex h-7 w-7 items-center justify-center rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm disabled:cursor-not-allowed disabled:opacity-50"
                           [ngClass]="{
-                            'bg-accent font-semibold text-white': day.date | isSameDay : date()
+                            'bg-accent dark:bg-accentDark font-semibold text-white':
+                              !day.disabled && (day.date | isSameDay : date())
                           }"
                           [disabled]="!(day.date | isBetweenDay : limitStart() : limitEnd()) || day.disabled"
                           (click)="onDaySelected(day.date)"
@@ -332,7 +333,7 @@ export class DatePickerComponent {
             day: day.date(),
             month: nextMonth.month(),
             year: nextMonth.year(),
-            isToday: nextMonth.isSame(moment(), 'day'),
+            isToday: false,
             disabled: true,
           });
         });

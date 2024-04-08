@@ -17,7 +17,7 @@ import { RestaurantPanelService } from '../panel.service';
   standalone: true,
   imports: [CommonModule, TranslateModule, InlineSVGModule, ReactiveFormsModule, LoaderComponent, InlineSVGModule],
   template: `
-    <form [formGroup]="formGroup" class="flex h-full flex-col overflow-y-scroll bg-zinc-50 dark:bg-zinc-800">
+    <form [formGroup]="formGroup" class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-zinc-800">
       <div class="flex-1">
         <div>
           <div
@@ -25,7 +25,7 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
                 <span
                   [inlineSVG]="'channels/tripadvisor.svg'"
@@ -45,7 +45,7 @@ import { RestaurantPanelService } from '../panel.service';
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="tripadvisor"
                 />
@@ -69,7 +69,7 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
                 <span [inlineSVG]="'channels/google.svg'" class="svg-icon-2 stroke-[1.8] text-zinc-900"></span>
                 <span class="block text-sm font-bold mr-2 leading-6 text-zinc-900 dark:text-zinc-200">{{
@@ -86,7 +86,7 @@ import { RestaurantPanelService } from '../panel.service';
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.google.com/travel/hotels/entity/aje4nbsk"
                   formControlName="google"
                 />
@@ -110,7 +110,7 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-100 dark:bg-zinc-700 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
               >
                 <span
                   [inlineSVG]="'channels/TheFork.svg'"
@@ -130,7 +130,7 @@ import { RestaurantPanelService } from '../panel.service';
                 >
                 <input
                   type="text"
-                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-zinc-50 dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
+                  class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
                   placeholder="www.thefork.it/ristorante/diamonds-r732559"
                   formControlName="thefork"
                 />
@@ -165,13 +165,13 @@ import { RestaurantPanelService } from '../panel.service';
             }
             <button
               type="button"
-              class="rounded-md bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
+              class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
               (click)="panelUI.closePanel()"
             >
               {{ 'CANCEL' | translate }}
             </button>
             <button
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
               [disabled]="formGroup.invalid || formGroup.pristine"
               (click)="save()"
             >

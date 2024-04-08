@@ -47,7 +47,7 @@ import { filter, map } from 'rxjs';
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="pb-12">
           <a class="flex flex-row items-center cursor-pointer font-[Pacifico] text-3xl font-bold">
-            <h1 class="text-accent -tracking-[0.05rem]">
+            <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
               Eddy
               <span class="text-dark dark:text-white">.</span>
             </h1>
@@ -103,7 +103,7 @@ import { filter, map } from 'rxjs';
         <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
           <article
-            class="flex flex-col items-start justify-between rounded-2xl bg-zinc-50 dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 shadow-sm shadow-black/10"
+            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 shadow-sm shadow-black/10"
           >
             <div class="relative w-full">
               <img
@@ -144,7 +144,7 @@ import { filter, map } from 'rxjs';
               </div>
               <div class="relative mt-8 flex items-center gap-x-4">
                 <a
-                  class="flex flex-row items-center justify-center col-span-1 rounded-lg p-3 w-full cursor-pointer ring-1 ring-inset ring-accent bg-accent hover:bg-accent/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]"
+                  class="flex flex-row items-center justify-center col-span-1 rounded-lg p-3 w-full cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]"
                   (click)="store.choose(structure._id)"
                 >
                   <span class="font-semibold text-base">{{ 'CHOOSE' | translate }}</span>
