@@ -25,6 +25,7 @@ export interface CompetitorModel {
   rating: RatingModel[];
   clientTypes: ClientTypeModel[];
   reviews: ReviewModel[];
+  channelsRatings: any[];
   address: string;
   city: string;
   isDownloading: boolean;

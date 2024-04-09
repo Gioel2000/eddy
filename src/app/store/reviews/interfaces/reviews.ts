@@ -43,3 +43,10 @@ export interface SummaryTO {
     rating: number;
   }[];
 }
+
+export interface SentimentTO {
+  word: string;
+  bad: number;
+  good: number;
+  neutral: number;
+}

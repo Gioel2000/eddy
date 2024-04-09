@@ -12,6 +12,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
 import { RatingsComponent } from './ui/ratings.component';
 import { HeaderReviewComponent } from '../../../ui/single-review/review-header.component';
 import { BodyReviewComponent } from '../../../ui/single-review/review-body.component';
+import { SentimentComponent } from './ui/sentiment-words.component';
 
 @Component({
   selector: 'reviews',
@@ -27,6 +28,7 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
     RatingsComponent,
     HeaderReviewComponent,
     BodyReviewComponent,
+    SentimentComponent,
   ],
   template: `
     <ng-template #loading>
@@ -121,11 +123,16 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
             @switch (store.state()) { @case ('loaded') {
             <div>
               <div
-                class="max-w-3xl px-4 sm:px-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-8"
+                class="max-w-3xl pl-0 pr-4 sm:pr-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-20 lg:pr-8 lg:py-6"
               >
-                <div class="lg:col-span-4"><ratings-graph></ratings-graph></div>
+                <div class="lg:col-span-5">
+                  <div class="flex flex-col sticky top-0 w-full">
+                    <ratings-graph></ratings-graph>
+                    <sentiment-graph></sentiment-graph>
+                  </div>
+                </div>
 
-                <div class="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+                <div class="mt-16 lg:col-span-8 lg:col-start-6 lg:mt-0">
                   <h3 class="sr-only">Recent reviews</h3>
 
                   <div class="flow-root">

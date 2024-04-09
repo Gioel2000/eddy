@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "Tale dårligt om",
-  "SPEAK_WELL_OF": "Tal godt om"
+  "SPEAK_WELL_OF": "Tal godt om",
+  "SENTIMENT": "Følelse"
 }

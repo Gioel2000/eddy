@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "hablar mal de",
-  "SPEAK_WELL_OF": "hablar bien de"
+  "SPEAK_WELL_OF": "hablar bien de",
+  "SENTIMENT": "Sentimiento"
 }

@@ -4,22 +4,8 @@ import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
-import { toObservable } from '@angular/core/rxjs-interop';
-import {
-  Observable,
-  Subject,
-  catchError,
-  combineLatest,
-  distinctUntilChanged,
-  filter,
-  forkJoin,
-  interval,
-  map,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
-import { ReviewTO, StateModel, SummaryTO } from './interfaces/reviews';
+import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
+import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
 
 export interface ReviewsStoreModel {
   summary: {
@@ -28,6 +14,10 @@ export interface ReviewsStoreModel {
   };
   list: {
     data: ReviewTO[];
+    state: StateModel;
+  };
+  sentiment: {
+    data: SentimentTO[];
     state: StateModel;
   };
   isDownloading: boolean;
@@ -39,6 +29,10 @@ export const INIT_STATE: ReviewsStoreModel = {
     state: 'loading',
   },
   list: {
+    data: [],
+    state: 'loading',
+  },
+  sentiment: {
     data: [],
     state: 'loading',
   },
@@ -65,9 +59,14 @@ export class ReviewsStore {
   setIsDownloading$ = new Subject<boolean>();
 
   reviews = computed(() => this.store().list.data);
+  state = computed(() => this.store().list.state);
+
   summary = computed(() => this.store().summary.data);
   summaryState = computed(() => this.store().summary.state);
-  state = computed(() => this.store().list.state);
+
+  sentiment = computed(() => this.store().sentiment.data);
+  sentimentState = computed(() => this.store().sentiment.state);
+
   isDownloading = computed(() => this.store().isDownloading);
 
   constructor() {
@@ -114,6 +113,36 @@ export class ReviewsStore {
               map((data) => ({ data, state: 'loaded' })),
               catchError(() => of({ data: null, state: 'error' }))
             ),
+            // degub
+            sentiment: of<{ data: SentimentTO[]; state: StateModel }>({
+              data: [
+                {
+                  word: 'pulizia',
+                  bad: 5,
+                  good: 10,
+                  neutral: 2,
+                },
+                {
+                  word: 'cibo',
+                  bad: 5,
+                  good: 10,
+                  neutral: 2,
+                },
+                {
+                  word: 'servizio',
+                  bad: 5,
+                  good: 10,
+                  neutral: 2,
+                },
+                {
+                  word: 'prezzo',
+                  bad: 5,
+                  good: 10,
+                  neutral: 2,
+                },
+              ],
+              state: 'loaded',
+            }),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)
@@ -122,6 +151,7 @@ export class ReviewsStore {
           map(({ data, isDownloading }) => ({
             list: data.list,
             summary: data.summary,
+            sentiment: data.sentiment,
             isDownloading,
           }))
         )

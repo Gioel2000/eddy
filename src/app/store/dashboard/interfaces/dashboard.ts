@@ -46,3 +46,11 @@ export interface ReviewTO {
   externalSource?: any;
   __v: number;
 }
+
+export interface ChannelTO {
+  source: string;
+  totalRating: number;
+  filteredRating: number;
+  totalCount: number;
+  filteredCount: number;
+}

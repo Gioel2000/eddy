@@ -12,7 +12,7 @@ module.exports = {
         accent: "#EF0314",
         accentDark: "#E63535",
         light: "#FFF",
-        dark: "#111",
+        dark: "#141414",
       },
     },
   },

@@ -72,7 +72,13 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-100">5<span class="sr-only"> star reviews</span></p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -98,17 +104,17 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100 ml-2">
                   {{ getStarData(5).count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500">
                   {{ getStarData(5).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
                   class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(5).received > 0,
-                    'text-zinc-100': getStarData(5).received === 0
+                    'text-zinc-500': getStarData(5).received === 0
                   }"
                 >
                   +{{ getStarData(5).received | numb : translate.currentLang : 0 }}
@@ -119,7 +125,13 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-100">4<span class="sr-only"> star reviews</span></p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -145,17 +157,17 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100 ml-2">
                   {{ getStarData(4).count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500">
                   {{ getStarData(4).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
                   class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(4).received > 0,
-                    'text-zinc-100': getStarData(4).received === 0
+                    'text-zinc-500': getStarData(4).received === 0
                   }"
                 >
                   +{{ getStarData(4).received | numb : translate.currentLang : 0 }}
@@ -166,7 +178,13 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-100">3<span class="sr-only"> star reviews</span></p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -192,17 +210,17 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100 ml-2">
                   {{ getStarData(3).count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500">
                   {{ getStarData(3).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
                   class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(3).received > 0,
-                    'text-zinc-100': getStarData(3).received === 0
+                    'text-zinc-500': getStarData(3).received === 0
                   }"
                 >
                   +{{ getStarData(3).received | numb : translate.currentLang : 0 }}
@@ -213,7 +231,13 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-100">2<span class="sr-only"> star reviews</span></p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -240,17 +264,17 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100 ml-2">
                   {{ getStarData(2).count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500">
                   {{ getStarData(2).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
                   class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(2).received > 0,
-                    'text-zinc-100': getStarData(2).received === 0
+                    'text-zinc-500': getStarData(2).received === 0
                   }"
                 >
                   +{{ getStarData(2).received | numb : translate.currentLang : 0 }}
@@ -261,7 +285,13 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-100">1<span class="sr-only"> star reviews</span></p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -287,17 +317,17 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-100 ml-2">
                   {{ getStarData(1).count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500">
                   {{ getStarData(1).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
                   class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(1).received > 0,
-                    'text-zinc-100': getStarData(1).received === 0
+                    'text-zinc-500': getStarData(1).received === 0
                   }"
                 >
                   +{{ getStarData(1).received | numb : translate.currentLang : 0 }}

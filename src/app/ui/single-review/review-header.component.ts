@@ -11,7 +11,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
   imports: [CommonModule, InlineSVGModule],
   template: `
     <div class="flex space-x-4 text-sm text-zinc-500">
-      <div class="flex-none py-5">
+      <div class="flex-none py-3">
         <div
           class="h-10 w-10 rounded-full"
           class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
@@ -19,7 +19,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
           {{ review().name.charAt(0).toUpperCase() }}
         </div>
       </div>
-      <div class="flex-1 py-5">
+      <div class="flex-1 py-3">
         <div class="flex flex-row items-center mt-1">
           <h3 class="font-semibold text-base text-zinc-900 dark:text-zinc-100">
             {{ nameFormatter(review().name) }}

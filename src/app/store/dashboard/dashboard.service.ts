@@ -3,9 +3,10 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BrandReputationTO, RatingTO, ReviewTO, StateModel, TypeTO } from './interfaces/dashboard';
+import { BrandReputationTO, ChannelTO, RatingTO, ReviewTO, StateModel, TypeTO } from './interfaces/dashboard';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
+import moment from 'moment';
 import {
   Observable,
   Subject,
@@ -18,9 +19,7 @@ import {
   map,
   of,
   switchMap,
-  tap,
 } from 'rxjs';
-import moment from 'moment';
 
 export interface DashboardStoreModel {
   brandReputation: {
@@ -37,6 +36,10 @@ export interface DashboardStoreModel {
   };
   recentReviews: {
     data: ReviewTO[];
+    state: StateModel;
+  };
+  channels: {
+    data: ChannelTO[];
     state: StateModel;
   };
   isDownloading: boolean;
@@ -59,6 +62,10 @@ export const INIT_STATE: DashboardStoreModel = {
     state: 'loading',
   },
   recentReviews: {
+    data: [],
+    state: 'loading',
+  },
+  channels: {
     data: [],
     state: 'loading',
   },
@@ -91,6 +98,7 @@ export class DashboardStore {
   brandReputation = computed(() => this.store().brandReputation);
   ratings = computed(() => this.store().ratings);
   typologies = computed(() => this.store().typologies);
+  channels = computed(() => this.store().channels);
   recentReviews = computed(() => this.store().recentReviews);
   isDownloading = computed(() => this.store().isDownloading);
 
@@ -192,6 +200,15 @@ export class DashboardStore {
                   })
                 )
               ),
+            // debug
+            channels: of({
+              data: [
+                { source: 'thefork', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
+                { source: 'tripadvisor', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
+                { source: 'google', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
+              ],
+              state: 'loaded' as const,
+            }),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)
@@ -202,6 +219,7 @@ export class DashboardStore {
             ratings: dashboard.ratings,
             typologies: dashboard.typologies,
             recentReviews: dashboard.recentReviews,
+            channels: dashboard.channels,
             isDownloading,
           }))
         )

@@ -58,7 +58,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                 <div class="flex items-center">
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': averageRating() >= 1,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': averageRating() >= 1,
                       'text-zinc-700': averageRating() < 1
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': averageRating() >= 2,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': averageRating() >= 2,
                       'text-zinc-700': averageRating() < 2
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': averageRating() >= 3,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': averageRating() >= 3,
                       'text-zinc-700': averageRating() < 3
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': averageRating() >= 4,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': averageRating() >= 4,
                       'text-zinc-700': averageRating() < 4
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': averageRating() >= 5,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': averageRating() >= 5,
                       'text-zinc-700': averageRating() < 5
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +174,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': tripadvisor().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              tripadvisor().averageRating >= 1,
                             'text-zinc-700': tripadvisor().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +192,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': tripadvisor().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              tripadvisor().averageRating >= 2,
                             'text-zinc-700': tripadvisor().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +210,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': tripadvisor().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              tripadvisor().averageRating >= 3,
                             'text-zinc-700': tripadvisor().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +228,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': tripadvisor().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              tripadvisor().averageRating >= 4,
                             'text-zinc-700': tripadvisor().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +246,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': tripadvisor().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              tripadvisor().averageRating >= 5,
                             'text-zinc-700': tripadvisor().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +291,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': google().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': google().averageRating >= 1,
                             'text-zinc-700': google().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +308,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': google().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': google().averageRating >= 2,
                             'text-zinc-700': google().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -320,7 +325,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': google().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': google().averageRating >= 3,
                             'text-zinc-700': google().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -337,7 +342,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': google().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': google().averageRating >= 4,
                             'text-zinc-700': google().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +359,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': google().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': google().averageRating >= 5,
                             'text-zinc-700': google().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -400,7 +405,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': thefork().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': thefork().averageRating >= 1,
                             'text-zinc-700': thefork().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -417,7 +422,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': thefork().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': thefork().averageRating >= 2,
                             'text-zinc-700': thefork().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -434,7 +439,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': thefork().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': thefork().averageRating >= 3,
                             'text-zinc-700': thefork().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -451,7 +456,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': thefork().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': thefork().averageRating >= 4,
                             'text-zinc-700': thefork().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -468,7 +473,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': thefork().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': thefork().averageRating >= 5,
                             'text-zinc-700': thefork().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -512,7 +517,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': family().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().averageRating >= 1,
                             'text-zinc-700': family().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -529,7 +534,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': family().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().averageRating >= 2,
                             'text-zinc-700': family().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -546,7 +551,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': family().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().averageRating >= 3,
                             'text-zinc-700': family().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -563,7 +568,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': family().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().averageRating >= 4,
                             'text-zinc-700': family().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -580,7 +585,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': family().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().averageRating >= 5,
                             'text-zinc-700': family().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -624,7 +629,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': solo().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().averageRating >= 1,
                             'text-zinc-700': solo().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -641,7 +646,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': solo().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().averageRating >= 2,
                             'text-zinc-700': solo().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -658,7 +663,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': solo().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().averageRating >= 3,
                             'text-zinc-700': solo().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -675,7 +680,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': solo().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().averageRating >= 4,
                             'text-zinc-700': solo().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -692,7 +697,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': solo().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().averageRating >= 5,
                             'text-zinc-700': solo().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -736,7 +741,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': couple().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().averageRating >= 1,
                             'text-zinc-700': couple().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -753,7 +758,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': couple().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().averageRating >= 2,
                             'text-zinc-700': couple().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -770,7 +775,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': couple().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().averageRating >= 3,
                             'text-zinc-700': couple().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -787,7 +792,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': couple().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().averageRating >= 4,
                             'text-zinc-700': couple().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -804,7 +809,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': couple().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().averageRating >= 5,
                             'text-zinc-700': couple().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -850,7 +855,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': business().averageRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              business().averageRating >= 1,
                             'text-zinc-700': business().averageRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -867,7 +873,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': business().averageRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              business().averageRating >= 2,
                             'text-zinc-700': business().averageRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -884,7 +891,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': business().averageRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              business().averageRating >= 3,
                             'text-zinc-700': business().averageRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -901,7 +909,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': business().averageRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              business().averageRating >= 4,
                             'text-zinc-700': business().averageRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -918,7 +927,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': business().averageRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]':
+                              business().averageRating >= 5,
                             'text-zinc-700': business().averageRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -966,7 +976,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': country.avgRating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': country.avgRating >= 1,
                             'text-zinc-700': country.avgRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -983,7 +993,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': country.avgRating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': country.avgRating >= 2,
                             'text-zinc-700': country.avgRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1000,7 +1010,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': country.avgRating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': country.avgRating >= 3,
                             'text-zinc-700': country.avgRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1017,7 +1027,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': country.avgRating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': country.avgRating >= 4,
                             'text-zinc-700': country.avgRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1034,7 +1044,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': country.avgRating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': country.avgRating >= 5,
                             'text-zinc-700': country.avgRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"

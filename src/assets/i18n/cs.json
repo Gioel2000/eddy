@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "Mluvit špatně",
-  "SPEAK_WELL_OF": "Mluvte dobře"
+  "SPEAK_WELL_OF": "Mluvte dobře",
+  "SENTIMENT": "Sentiment"
 }

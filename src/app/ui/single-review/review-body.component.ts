@@ -39,9 +39,15 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
       <ng-container *ngIf="reviewContent$ | async as reviewContent">
         <div class="grid grid-cols-6 my-8">
           <div class="flex flex-row items-center col-span-full sm:col-span-4 mb-5 sm:mb-0">
+            @if ((reviewContent.title || '').trim().length !== 0) {
             <h3 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 mb-2 mr-2">
               {{ reviewContent.title }}
             </h3>
+            } @else {
+            <div *ngIf="reviewContent?.text as text">
+              <span class="text-sm max-w-none text-zinc-500" [innerHTML]="text"></span>
+            </div>
+            }
             <!-- <span
               *ngIf="review().isTitleTranslated"
               [inlineSVG]="'./assets/icons/bold/Translate language.svg'"
@@ -54,7 +60,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               <div *ngFor="let avr of calculateStars(review().rating)">
                 @if (avr === 'full') {
                 <svg
-                  class="text-yellow-400"
+                  class="text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -109,7 +115,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 <div *ngFor="let avr of calculateHearts(scale === 5 ? vote / 2 : vote)">
                   @if (avr === 'full') {
                   <svg
-                    class="text-red-500"
+                    class="text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -161,9 +167,11 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
             </ng-container>
           </div>
         </div>
+        @if ((reviewContent.title || '').trim().length !== 0) {
         <div *ngIf="reviewContent?.text as text">
           <span class="text-sm mt-4 max-w-none text-zinc-500" [innerHTML]="text"></span>
         </div>
+        }
 
         <div class="mt-5">
           <ng-container *ngIf="categories$ | async as categories">

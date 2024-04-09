@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "Μίλα άσχημα",
-  "SPEAK_WELL_OF": "Μίλα καλά"
+  "SPEAK_WELL_OF": "Μίλα καλά",
+  "SENTIMENT": "Συναίσθημα"
 }

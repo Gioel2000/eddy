@@ -64,7 +64,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                       <div class="flex items-center">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': review.rating >= 1,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': review.rating >= 1,
                             'text-zinc-200 dark:text-zinc-700': review.rating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': review.rating >= 2,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': review.rating >= 2,
                             'text-zinc-200 dark:text-zinc-700': review.rating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': review.rating >= 3,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': review.rating >= 3,
                             'text-zinc-200 dark:text-zinc-700': review.rating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': review.rating >= 4,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': review.rating >= 4,
                             'text-zinc-200 dark:text-zinc-700': review.rating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +132,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400': review.rating >= 5,
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': review.rating >= 5,
                             'text-zinc-200 dark:text-zinc-700': review.rating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                 <div>
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 shadow-sm bg-zinc-50 dark:bg-zinc-800"
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
@@ -170,7 +170,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 shadow-sm bg-zinc-50 dark:bg-zinc-800"
                   >
                     <span
                       [inlineSVG]="'channels/google.svg'"
@@ -182,7 +182,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700 shadow-sm bg-zinc-50 dark:bg-zinc-800"
                   >
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"

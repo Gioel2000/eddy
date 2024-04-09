@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "Puhu pahaa",
-  "SPEAK_WELL_OF": "Puhu hyvin"
+  "SPEAK_WELL_OF": "Puhu hyvin",
+  "SENTIMENT": "Tunnelma"
 }

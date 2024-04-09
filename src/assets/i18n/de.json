@@ -358,5 +358,6 @@
     }
   },
   "SPEAK_BADLY_OF": "Sprich schlecht darüber",
-  "SPEAK_WELL_OF": "Sprich gut darüber"
+  "SPEAK_WELL_OF": "Sprich gut darüber",
+  "SENTIMENT": "Gefühl"
 }

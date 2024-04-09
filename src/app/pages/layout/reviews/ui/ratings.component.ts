@@ -1,5 +1,4 @@
 import { Component, computed, inject } from '@angular/core';
-import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -38,7 +37,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col sticky top-0 pt-8">
+    <div #container class="flex flex-col py-8 border-b border-zinc-200 dark:border-zinc-800">
       @switch (summaryState()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-col items-baseline justify-between gap-x-4 gap-y-2">
@@ -56,7 +55,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 <div class="flex items-center">
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': totalRating() >= 1,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': totalRating() >= 1,
                       'text-zinc-200 dark:text-zinc-700': totalRating() < 1
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +72,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': totalRating() >= 2,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': totalRating() >= 2,
                       'text-zinc-200 dark:text-zinc-700': totalRating() < 2
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +89,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': totalRating() >= 3,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': totalRating() >= 3,
                       'text-zinc-200 dark:text-zinc-700': totalRating() < 3
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +106,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': totalRating() >= 4,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': totalRating() >= 4,
                       'text-zinc-200 dark:text-zinc-700': totalRating() < 4
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +123,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   </svg>
                   <svg
                     [ngClass]="{
-                      'text-yellow-400': totalRating() >= 5,
+                      'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': totalRating() >= 5,
                       'text-zinc-200 dark:text-zinc-700': totalRating() < 5
                     }"
                     xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +141,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
-              <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+              <p class="text-sm min-w-[200px] font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
                 {{ totalReviews() | numb : translate.currentLang }}
                 {{ 'REVIEWS' | translate }}
               </p>
@@ -157,7 +156,13 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   5<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -166,9 +171,9 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                     </g>
                   </svg>
 
-                  <div class="relative ml-3 flex-1">
+                  <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
                     @if (getStarData(5).percentage; as percentage) {
                     <div
@@ -180,7 +185,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
                   {{ getStarData(5).count | numb : translate.currentLang : 0 }}
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
@@ -194,7 +199,13 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   4<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -203,9 +214,9 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                     </g>
                   </svg>
 
-                  <div class="relative ml-3 flex-1">
+                  <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
                     @if (getStarData(4).percentage; as percentage) {
                     <div
@@ -217,7 +228,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
                   {{ getStarData(4).count | numb : translate.currentLang : 0 }}
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
@@ -231,7 +242,13 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   3<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -240,9 +257,9 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                     </g>
                   </svg>
 
-                  <div class="relative ml-3 flex-1">
+                  <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
                     @if (getStarData(3).percentage; as percentage) {
                     <div
@@ -254,7 +271,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
                   {{ getStarData(3).count | numb : translate.currentLang : 0 }}
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
@@ -268,7 +285,13 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   2<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -277,9 +300,9 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                     </g>
                   </svg>
 
-                  <div class="relative ml-3 flex-1">
+                  <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
 
                     @if (getStarData(2).percentage; as percentage) {
@@ -292,7 +315,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
                   {{ getStarData(2).count | numb : translate.currentLang : 0 }}
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">
@@ -306,7 +329,13 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   1<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
                     <g fill="currentColor">
                       <path
                         d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
@@ -315,9 +344,9 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                     </g>
                   </svg>
 
-                  <div class="relative ml-3 flex-1">
+                  <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
                     @if (getStarData(1).percentage; as percentage) {
                     <div
@@ -329,7 +358,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
                   {{ getStarData(1).count | numb : translate.currentLang : 0 }}
                 </dd>
                 <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-100">

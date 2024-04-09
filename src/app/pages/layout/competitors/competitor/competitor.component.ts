@@ -9,6 +9,7 @@ import { RatingsComponent } from './widgets/ratings.component';
 import { TypesComponent } from './widgets/types.component';
 import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
+import { ChannelsComponent } from './widgets/channels.component';
 
 @Component({
   selector: 'competitor',
@@ -23,6 +24,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
     TypesComponent,
     ReviewsLastDayComponent,
     OverviewReviewsLastDayComponent,
+    ChannelsComponent,
   ],
   template: `
     <ng-template #loading>
@@ -51,7 +53,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-zinc-100 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+    <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
       @switch(state()) { @case('loaded') {
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
@@ -92,6 +94,12 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
         <div></div>
         } @defer (on viewport; prefetch on idle) {
         <ratings-graph [rating]="competitor().rating" [state]="state()"></ratings-graph>
+        } @placeholder {
+        <div></div>
+        } @loading {
+        <div></div>
+        } @defer (on viewport; prefetch on idle) {
+        <channels-graph [channelsRatings]="competitor().channelsRatings" [state]="state()"></channels-graph>
         } @placeholder {
         <div></div>
         } @loading {

@@ -25,13 +25,13 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
               >
                 <span
                   [inlineSVG]="'channels/tripadvisor.svg'"
                   class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                 ></span>
-                <span class="block text-sm font-bold mr-2 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
                   'TRIPADVISOR' | translate
                 }}</span>
               </div>
@@ -69,10 +69,13 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
               >
-                <span [inlineSVG]="'channels/google.svg'" class="svg-icon-2 stroke-[1.8] text-zinc-900"></span>
-                <span class="block text-sm font-bold mr-2 leading-6 text-zinc-900 dark:text-zinc-200">{{
+                <span
+                  [inlineSVG]="'channels/google.svg'"
+                  class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
+                ></span>
+                <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-300">{{
                   'GOOGLE' | translate
                 }}</span>
               </div>
@@ -110,13 +113,13 @@ import { RestaurantPanelService } from '../panel.service';
           >
             <div class="col-span-full sm:col-span-1">
               <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
               >
                 <span
                   [inlineSVG]="'channels/TheFork.svg'"
-                  class="svg-icon-2 text-[#005f54] dark:text-[#00ab97] stroke-[1.8]"
+                  class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                 ></span>
-                <span class="block text-sm font-bold mr-2 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
                   'THE_FORK' | translate
                 }}</span>
               </div>
