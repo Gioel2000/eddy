@@ -135,8 +135,10 @@ export class CompetitorsStore {
                         offset: 0,
                         clients: [],
                       }),
-                      // debug
-                      channelsRatings: of<any[]>([]),
+                      channelsRatings: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/channel/grouped`,
+                        filter
+                      ),
                       isDownloading: this.http
                         .get<{ status: 'downloading' | 'completed' }>(
                           `${environment.apiUrl}/api/competitors/${competitor}/channels/status`

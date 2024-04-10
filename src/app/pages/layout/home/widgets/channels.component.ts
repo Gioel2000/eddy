@@ -1,4 +1,4 @@
-import { Component, Signal, computed, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -6,7 +6,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
-import { TypeTO } from '../../../../store/dashboard/interfaces/dashboard';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
@@ -53,7 +52,7 @@ import { map } from 'rxjs';
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4 2xl:grid-cols-3">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -75,8 +74,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': google().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -92,8 +91,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': google().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -109,8 +108,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': google().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -126,8 +125,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': google().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -143,8 +142,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': google().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -156,32 +155,32 @@ import { map } from 'rxjs';
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ google().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ google().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (google().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
+                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': google().filteredRating < 0,
                             'text-green-500': google().filteredRating > 0,
                             'text-zinc-500': google().filteredRating === 0
                           }"
-                          >{{ google().filteredRating | growth : translate.currentLang }}</span
+                          >{{ google().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ google().totalCount | numb : translate.currentLang }}
+                      {{ google().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (google().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="px-1 font-semibold tabular-nums text-xs"
                         [ngClass]="{
                           'text-red-500': google().filteredCount < 0,
                           'text-green-500': google().filteredCount > 0,
                           'text-zinc-500': google().filteredCount === 0
                         }"
-                        >{{ google().filteredCount | growth : translate.currentLang }}</span
+                        >{{ google().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>
@@ -190,7 +189,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -213,8 +212,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': tripadvisor().totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -231,8 +230,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': tripadvisor().totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -249,8 +248,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': tripadvisor().totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -267,8 +266,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': tripadvisor().totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -285,8 +284,8 @@ import { map } from 'rxjs';
                             'text-zinc-200 dark:text-zinc-700': tripadvisor().totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 18 18"
                         >
                           <g fill="currentColor">
@@ -298,32 +297,32 @@ import { map } from 'rxjs';
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (tripadvisor().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
+                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': tripadvisor().filteredRating < 0,
                             'text-green-500': tripadvisor().filteredRating > 0,
                             'text-zinc-500': tripadvisor().filteredRating === 0
                           }"
-                          >{{ tripadvisor().filteredRating | growth : translate.currentLang }}</span
+                          >{{ tripadvisor().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ tripadvisor().totalCount | numb : translate.currentLang }}
+                      {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (tripadvisor().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="px-1 font-semibold tabular-nums text-xs"
                         [ngClass]="{
                           'text-red-500': tripadvisor().filteredCount < 0,
                           'text-green-500': tripadvisor().filteredCount > 0,
                           'text-zinc-500': tripadvisor().filteredCount === 0
                         }"
-                        >{{ tripadvisor().filteredCount | growth : translate.currentLang }}</span
+                        >{{ tripadvisor().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>
@@ -332,7 +331,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -435,32 +434,32 @@ import { map } from 'rxjs';
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ thefork().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (thefork().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
+                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': thefork().filteredRating < 0,
                             'text-green-500': thefork().filteredRating > 0,
                             'text-zinc-500': thefork().filteredRating === 0
                           }"
-                          >{{ thefork().filteredRating | growth : translate.currentLang }}</span
+                          >{{ thefork().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ thefork().totalCount | numb : translate.currentLang }}
+                      {{ thefork().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (thefork().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="px-1 font-semibold tabular-nums text-xs"
                         [ngClass]="{
                           'text-red-500': thefork().filteredCount < 0,
                           'text-green-500': thefork().filteredCount > 0,
                           'text-zinc-500': thefork().filteredCount === 0
                         }"
-                        >{{ thefork().filteredCount | growth : translate.currentLang }}</span
+                        >{{ thefork().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>
@@ -509,6 +508,37 @@ export class ChannelsComponent {
   constructor() {
     toObservable(this.store)
       .pipe(map((store) => store.data))
-      .subscribe((data) => {});
+      .subscribe((data) => {
+        const google = data.find((channel) => channel.channel === 'google');
+        const thefork = data.find((channel) => channel.channel === 'thefork');
+        const tripadvisor = data.find((channel) => channel.channel === 'tripadvisor');
+
+        if (google) {
+          this.google.set({
+            totalCount: google.totalCount,
+            filteredCount: google.filteredCount,
+            totalRating: google.totalRating,
+            filteredRating: google.filteredRating,
+          });
+        }
+
+        if (thefork) {
+          this.thefork.set({
+            totalCount: thefork.totalCount,
+            filteredCount: thefork.filteredCount,
+            totalRating: thefork.totalRating,
+            filteredRating: thefork.filteredRating,
+          });
+        }
+
+        if (tripadvisor) {
+          this.tripadvisor.set({
+            totalCount: tripadvisor.totalCount,
+            filteredCount: tripadvisor.filteredCount,
+            totalRating: tripadvisor.totalRating,
+            filteredRating: tripadvisor.filteredRating,
+          });
+        }
+      });
   }
 }

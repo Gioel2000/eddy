@@ -502,6 +502,37 @@ export class ChannelsComponent {
   constructor() {
     toObservable(this.store)
       .pipe(map((store) => store.data))
-      .subscribe((data) => {});
+      .subscribe((data) => {
+        const google = data.find((channel) => channel.channel === 'google');
+        const thefork = data.find((channel) => channel.channel === 'thefork');
+        const tripadvisor = data.find((channel) => channel.channel === 'tripadvisor');
+
+        if (google) {
+          this.google.set({
+            totalCount: google.totalCount,
+            filteredCount: google.filteredCount,
+            totalRating: google.totalRating,
+            filteredRating: google.filteredRating,
+          });
+        }
+
+        if (thefork) {
+          this.thefork.set({
+            totalCount: thefork.totalCount,
+            filteredCount: thefork.filteredCount,
+            totalRating: thefork.totalRating,
+            filteredRating: thefork.filteredRating,
+          });
+        }
+
+        if (tripadvisor) {
+          this.tripadvisor.set({
+            totalCount: tripadvisor.totalCount,
+            filteredCount: tripadvisor.filteredCount,
+            totalRating: tripadvisor.totalRating,
+            filteredRating: tripadvisor.filteredRating,
+          });
+        }
+      });
   }
 }

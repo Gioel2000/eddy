@@ -200,15 +200,15 @@ export class DashboardStore {
                   })
                 )
               ),
-            // debug
-            channels: of({
-              data: [
-                { source: 'thefork', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
-                { source: 'tripadvisor', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
-                { source: 'google', totalRating: 0, filteredRating: 0, totalCount: 0, filteredCount: 0 },
-              ],
-              state: 'loaded' as const,
-            }),
+            channels: this.http.post<ChannelTO[]>(`${environment.apiUrl}/api/reviews/channel/grouped`, filter).pipe(
+              map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+              catchError(() =>
+                of({
+                  data: [] as ChannelTO[],
+                  state: 'error' as const,
+                })
+              )
+            ),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)

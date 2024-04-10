@@ -48,7 +48,7 @@ export interface ReviewTO {
 }
 
 export interface ChannelTO {
-  source: string;
+  channel: string;
   totalRating: number;
   filteredRating: number;
   totalCount: number;
