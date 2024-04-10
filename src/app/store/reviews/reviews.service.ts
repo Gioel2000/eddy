@@ -5,7 +5,20 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
-import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  combineLatest,
+  distinctUntilChanged,
+  filter,
+  forkJoin,
+  interval,
+  map,
+  of,
+  switchMap,
+} from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export interface ReviewsStoreModel {
   summary: {
@@ -86,13 +99,13 @@ export class ReviewsStore {
       });
 
     const stream$ = combineLatest({
-      // selected: toObservable(this.structure.selected),
+      selected: toObservable(this.structure.selected),
       filter: this.filter$,
     }).pipe(
       untilDestroyed(this),
-      // filter(({ selected }) => !!selected),
-      // filter(({ selected }) => Object.keys(selected).length > 0),
-      // distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
+      filter(({ selected }) => !!selected),
+      filter(({ selected }) => Object.keys(selected).length > 0),
+      distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
       map(({ filter }) => filter),
       filter((filter) => !!filter)
     );
@@ -113,36 +126,15 @@ export class ReviewsStore {
               map((data) => ({ data, state: 'loaded' })),
               catchError(() => of({ data: null, state: 'error' }))
             ),
-            // degub
-            sentiment: of<{ data: SentimentTO[]; state: StateModel }>({
-              data: [
-                {
-                  word: 'pulizia',
-                  bad: 5,
-                  good: 10,
-                  neutral: 2,
-                },
-                {
-                  word: 'cibo',
-                  bad: 5,
-                  good: 10,
-                  neutral: 2,
-                },
-                {
-                  word: 'servizio',
-                  bad: 5,
-                  good: 10,
-                  neutral: 2,
-                },
-                {
-                  word: 'prezzo',
-                  bad: 5,
-                  good: 10,
-                  neutral: 2,
-                },
-              ],
-              state: 'loaded',
-            }),
+            sentiment: this.http
+              .post<SentimentTO[]>(`${environment.apiUrl}/api/reviews/sentiment/mostusedwords`, filter)
+              .pipe(
+                map((data) => ({
+                  data,
+                  state: data.length > 0 ? 'loaded' : 'empty',
+                })),
+                catchError(() => of({ data: [], state: 'error' }))
+              ),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)

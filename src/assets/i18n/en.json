@@ -361,5 +361,10 @@
   "ALSO_TALK_ABOUT": "Also talk about",
   "EDIT_DISH": "Edit dish",
   "SHOW": "",
-  "SENTIMENT": "Sentiment"
+  "SENTIMENT": "Sentiment",
+  "WORDS": "Words",
+  "GOOD": "Good",
+  "POSITIVE": "Positive",
+  "NEUTRAL": "Neutral",
+  "NEGATIVE": "Negative"
 }

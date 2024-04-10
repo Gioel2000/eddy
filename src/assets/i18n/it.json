@@ -361,5 +361,10 @@
   "ALSO_TALK_ABOUT": "Parla anche di",
   "EDIT_DISH": "Modifica piatto",
   "SHOW": "",
-  "SENTIMENT": "Sentiment"
+  "SENTIMENT": "Sentiment",
+  "WORDS": "Parole",
+  "GOOD": "Bene",
+  "POSITIVE": "Positivo",
+  "NEUTRAL": "Neutro",
+  "NEGATIVE": "Negativo"
 }

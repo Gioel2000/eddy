@@ -123,7 +123,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
             @switch (store.state()) { @case ('loaded') {
             <div>
               <div
-                class="max-w-3xl pl-0 pr-4 sm:pr-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-20 lg:pr-8 lg:py-6"
+                class="max-w-3xl px-4 sm:px-6 sm:py-4 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-8"
               >
                 <div class="lg:col-span-5">
                   <div class="flex flex-col sticky top-0 w-full">
@@ -132,7 +132,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                   </div>
                 </div>
 
-                <div class="mt-16 lg:col-span-8 lg:col-start-6 lg:mt-0">
+                <div class="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
                   <h3 class="sr-only">Recent reviews</h3>
 
                   <div class="flow-root">
