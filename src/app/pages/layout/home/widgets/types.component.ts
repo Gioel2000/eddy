@@ -60,25 +60,25 @@ import { map } from 'rxjs';
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'FAMILY' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ family().totalCount | numb : translate.currentLang }})
-                      </p>
+                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
+                        ({{ family().totalCount | numb : translate.currentLang : 2 }})
+                      </p> -->
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ family().totalRating | numb : translate.currentLang }}
+                        {{ family().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (family().growthCount) {
+                      @if (family().growthRating) {
                       <span
                         class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
                         [ngClass]="{
-                          'text-red-500': family().growthCount < 0,
-                          'text-green-500': family().growthCount > 0,
-                          'text-zinc-500': family().growthCount === 0
+                          'text-red-500': family().growthRating < 0,
+                          'text-green-500': family().growthRating > 0,
+                          'text-zinc-500': family().growthRating === 0
                         }"
-                        >{{ family().growthCount | growth : translate.currentLang }}</span
+                        >{{ family().growthRating | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -185,25 +185,25 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'COUPLE' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ couple().totalCount | numb : translate.currentLang }})
-                      </p>
+                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
+                        ({{ couple().totalCount | numb : translate.currentLang : 2 }})
+                      </p> -->
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ couple().totalRating | numb : translate.currentLang }}
+                        {{ couple().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (couple().growthCount) {
+                      @if (couple().growthRating) {
                       <span
                         class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
                         [ngClass]="{
-                          'text-red-500': couple().growthCount < 0,
-                          'text-green-500': couple().growthCount > 0,
-                          'text-zinc-500': couple().growthCount === 0
+                          'text-red-500': couple().growthRating < 0,
+                          'text-green-500': couple().growthRating > 0,
+                          'text-zinc-500': couple().growthRating === 0
                         }"
-                        >{{ couple().growthCount | growth : translate.currentLang }}</span
+                        >{{ couple().growthRating | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -310,25 +310,25 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'SOLO' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ solo().totalCount | numb : translate.currentLang }})
-                      </p>
+                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
+                        ({{ solo().totalCount | numb : translate.currentLang : 2 }})
+                      </p> -->
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ solo().totalRating | numb : translate.currentLang }}
+                        {{ solo().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (solo().growthCount) {
+                      @if (solo().growthRating) {
                       <span
                         class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
                         [ngClass]="{
-                          'text-red-500': solo().growthCount < 0,
-                          'text-green-500': solo().growthCount > 0,
-                          'text-zinc-500': solo().growthCount === 0
+                          'text-red-500': solo().growthRating < 0,
+                          'text-green-500': solo().growthRating > 0,
+                          'text-zinc-500': solo().growthRating === 0
                         }"
-                        >{{ solo().growthCount | growth : translate.currentLang }}</span
+                        >{{ solo().growthRating | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -435,25 +435,25 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'BUSINESS' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ business().totalCount | numb : translate.currentLang }})
-                      </p>
+                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
+                        ({{ business().totalCount | numb : translate.currentLang : 2 }})
+                      </p> -->
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ business().totalRating | numb : translate.currentLang }}
+                        {{ business().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (business().growthCount) {
+                      @if (business().growthRating) {
                       <span
                         class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
                         [ngClass]="{
-                          'text-red-500': business().growthCount < 0,
-                          'text-green-500': business().growthCount > 0,
-                          'text-zinc-500': business().growthCount === 0
+                          'text-red-500': business().growthRating < 0,
+                          'text-green-500': business().growthRating > 0,
+                          'text-zinc-500': business().growthRating === 0
                         }"
-                        >{{ business().growthCount | growth : translate.currentLang }}</span
+                        >{{ business().growthRating | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>

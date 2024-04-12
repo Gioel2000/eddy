@@ -156,7 +156,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ google().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ google().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (google().filteredRating) {
                         <span
                           class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
@@ -165,13 +165,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                             'text-green-500': google().filteredRating > 0,
                             'text-zinc-500': google().filteredRating === 0
                           }"
-                          >{{ google().filteredRating | growth : translate.currentLang }}</span
+                          >{{ google().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ google().totalCount | numb : translate.currentLang }}
+                      {{ google().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (google().filteredCount) {
                       <span
@@ -181,7 +181,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                           'text-green-500': google().filteredCount > 0,
                           'text-zinc-500': google().filteredCount === 0
                         }"
-                        >{{ google().filteredCount | growth : translate.currentLang }}</span
+                        >{{ google().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>
@@ -298,7 +298,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (tripadvisor().filteredRating) {
                         <span
                           class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
@@ -307,13 +307,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                             'text-green-500': tripadvisor().filteredRating > 0,
                             'text-zinc-500': tripadvisor().filteredRating === 0
                           }"
-                          >{{ tripadvisor().filteredRating | growth : translate.currentLang }}</span
+                          >{{ tripadvisor().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ tripadvisor().totalCount | numb : translate.currentLang }}
+                      {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (tripadvisor().filteredCount) {
                       <span
@@ -323,7 +323,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                           'text-green-500': tripadvisor().filteredCount > 0,
                           'text-zinc-500': tripadvisor().filteredCount === 0
                         }"
-                        >{{ tripadvisor().filteredCount | growth : translate.currentLang }}</span
+                        >{{ tripadvisor().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>
@@ -435,7 +435,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                         </svg>
                       </div>
                       <p class="ml-1 font-semibold text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ thefork().totalRating | numb : translate.currentLang }}</span>
+                        <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (thefork().filteredRating) {
                         <span
                           class="pl-1.5 px-1 font-semibold text-sm tabular-nums"
@@ -444,13 +444,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                             'text-green-500': thefork().filteredRating > 0,
                             'text-zinc-500': thefork().filteredRating === 0
                           }"
-                          >{{ thefork().filteredRating | growth : translate.currentLang }}</span
+                          >{{ thefork().filteredRating | growth : translate.currentLang : 2 }}</span
                         >
                         }
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
-                      {{ thefork().totalCount | numb : translate.currentLang }}
+                      {{ thefork().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (thefork().filteredCount) {
                       <span
@@ -460,7 +460,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
                           'text-green-500': thefork().filteredCount > 0,
                           'text-zinc-500': thefork().filteredCount === 0
                         }"
-                        >{{ thefork().filteredCount | growth : translate.currentLang }}</span
+                        >{{ thefork().filteredCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </p>

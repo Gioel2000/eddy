@@ -3,7 +3,16 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BrandReputationTO, ChannelTO, RatingTO, ReviewTO, StateModel, TypeTO } from './interfaces/dashboard';
+import {
+  BrandReputationTO,
+  CategoryTO,
+  ChannelTO,
+  RatingTO,
+  ReviewTO,
+  SentimentTO,
+  StateModel,
+  TypeTO,
+} from './interfaces/dashboard';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import moment from 'moment';
@@ -42,6 +51,14 @@ export interface DashboardStoreModel {
     data: ChannelTO[];
     state: StateModel;
   };
+  categories: {
+    data: CategoryTO[];
+    state: StateModel;
+  };
+  sentiment: {
+    data: SentimentTO[];
+    state: StateModel;
+  };
   isDownloading: boolean;
 }
 
@@ -66,6 +83,14 @@ export const INIT_STATE: DashboardStoreModel = {
     state: 'loading',
   },
   channels: {
+    data: [],
+    state: 'loading',
+  },
+  categories: {
+    data: [],
+    state: 'loading',
+  },
+  sentiment: {
     data: [],
     state: 'loading',
   },
@@ -101,6 +126,8 @@ export class DashboardStore {
   channels = computed(() => this.store().channels);
   recentReviews = computed(() => this.store().recentReviews);
   isDownloading = computed(() => this.store().isDownloading);
+  categories = computed(() => this.store().categories);
+  sentiment = computed(() => this.store().sentiment);
 
   constructor() {
     const subscription = interval(3000)
@@ -195,7 +222,7 @@ export class DashboardStore {
                 map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
                 catchError(() =>
                   of({
-                    data: [] as any,
+                    data: [] as ReviewTO[],
                     state: 'error' as const,
                   })
                 )
@@ -209,6 +236,28 @@ export class DashboardStore {
                 })
               )
             ),
+            categories: this.http
+              .post<CategoryTO[]>(`${environment.apiUrl}/api/reviewscores/category/grouped`, filter)
+              .pipe(
+                map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+                catchError(() =>
+                  of({
+                    data: [] as CategoryTO[],
+                    state: 'error' as const,
+                  })
+                )
+              ),
+            sentiment: this.http
+              .post<SentimentTO[]>(`${environment.apiUrl}/api/reviews/sentiment/categories`, filter)
+              .pipe(
+                map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+                catchError(() =>
+                  of({
+                    data: [] as SentimentTO[],
+                    state: 'error' as const,
+                  })
+                )
+              ),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)
@@ -220,6 +269,8 @@ export class DashboardStore {
             typologies: dashboard.typologies,
             recentReviews: dashboard.recentReviews,
             channels: dashboard.channels,
+            categories: dashboard.categories,
+            sentiment: dashboard.sentiment,
             isDownloading,
           }))
         )

@@ -13,6 +13,7 @@ import { TypesComponent } from './widgets/types.component';
 import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
 import { ChannelsComponent } from './widgets/channels.component';
+import { CategoriesComponent } from './widgets/categories.component';
 
 @Component({
   selector: 'home',
@@ -29,6 +30,7 @@ import { ChannelsComponent } from './widgets/channels.component';
     TypesComponent,
     ChannelsComponent,
     ReviewsLastDayComponent,
+    CategoriesComponent,
     OverviewReviewsLastDayComponent,
   ],
   template: `
@@ -96,7 +98,7 @@ import { ChannelsComponent } from './widgets/channels.component';
                 <ratings-graph></ratings-graph>
               </div>
               <div class="bg-light dark:bg-dark sm:pl-10 py-6">
-                <!-- <words-graph></words-graph> -->
+                <categories-graph></categories-graph>
               </div>
 
               <div class="bg-light dark:bg-dark sm:pr-10 py-6"><channels-graph></channels-graph></div>

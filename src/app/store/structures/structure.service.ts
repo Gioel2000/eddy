@@ -192,23 +192,33 @@ export class StructureStore {
         switchMap(() => this.storage.set('restaurantId', id)),
         switchMap(() =>
           this.http.get<RestaurantSettedTO>(`${environment.apiUrl}/api/restaurants/current`).pipe(
+            catchError(() => {
+              this.selectedState$.next('error');
+              this.delete$.next(id);
+              this.router.navigate(['/structures']);
+
+              return of(null);
+            }),
             tap((selected) => {
               this.showAll$.next();
               this.selectedState$.next('loaded');
               this.selected$.next(selected);
             })
           )
-        ),
-        catchError(() => {
-          this.selectedState$.next('error');
-          return of(null);
-        })
+        )
       )
-      .subscribe(() => {
-        const { url: current } = this.router;
-        const page = current.includes('structures') ? '/home' : current;
+      .subscribe({
+        next: () => {
+          const { url: current } = this.router;
+          const page = current.includes('structures') ? '/home' : current;
 
-        this.router.navigate([page]);
+          this.router.navigate([page]);
+        },
+        error: () => {
+          this.selectedState$.next('error');
+          this.delete$.next(id);
+          this.router.navigate(['/structures']);
+        },
       });
   }
 

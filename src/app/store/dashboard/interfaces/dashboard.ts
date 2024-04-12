@@ -54,3 +54,16 @@ export interface ChannelTO {
   totalCount: number;
   filteredCount: number;
 }
+
+export interface CategoryTO {
+  category: string;
+  totalRating: number;
+  filteredRating: number;
+}
+
+export interface SentimentTO {
+  category: string;
+  good: number;
+  neutral: number;
+  bad: number;
+}

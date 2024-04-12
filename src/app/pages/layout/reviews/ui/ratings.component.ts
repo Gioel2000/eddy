@@ -142,7 +142,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
               <p class="text-sm min-w-[200px] font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
-                {{ totalReviews() | numb : translate.currentLang }}
+                {{ totalReviews() | numb : translate.currentLang : 2 }}
                 {{ 'REVIEWS' | translate }}
               </p>
             </div>

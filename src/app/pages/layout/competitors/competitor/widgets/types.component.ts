@@ -61,13 +61,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'FAMILY' | translate }}</p>
                       <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ family().totalCount | numb : translate.currentLang }})
+                        ({{ family().totalCount | numb : translate.currentLang : 2 }})
                       </p>
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ family().totalRating | numb : translate.currentLang }}
+                        {{ family().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
                       @if (family().growthCount) {
@@ -78,7 +78,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                           'text-green-500': family().growthCount > 0,
                           'text-zinc-500': family().growthCount === 0
                         }"
-                        >{{ family().growthCount | growth : translate.currentLang }}</span
+                        >{{ family().growthCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -185,13 +185,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'COUPLE' | translate }}</p>
                       <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ couple().totalCount | numb : translate.currentLang }})
+                        ({{ couple().totalCount | numb : translate.currentLang : 2 }})
                       </p>
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ couple().totalRating | numb : translate.currentLang }}
+                        {{ couple().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
                       @if (couple().growthCount) {
@@ -202,7 +202,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                           'text-green-500': couple().growthCount > 0,
                           'text-zinc-500': couple().growthCount === 0
                         }"
-                        >{{ couple().growthCount | growth : translate.currentLang }}</span
+                        >{{ couple().growthCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -309,13 +309,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'SOLO' | translate }}</p>
                       <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ solo().totalCount | numb : translate.currentLang }})
+                        ({{ solo().totalCount | numb : translate.currentLang : 2 }})
                       </p>
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ solo().totalRating | numb : translate.currentLang }}
+                        {{ solo().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
                       @if (solo().growthCount) {
@@ -326,7 +326,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                           'text-green-500': solo().growthCount > 0,
                           'text-zinc-500': solo().growthCount === 0
                         }"
-                        >{{ solo().growthCount | growth : translate.currentLang }}</span
+                        >{{ solo().growthCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>
@@ -433,13 +433,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'BUSINESS' | translate }}</p>
                       <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ business().totalCount | numb : translate.currentLang }})
+                        ({{ business().totalCount | numb : translate.currentLang : 2 }})
                       </p>
                     </div>
 
                     <div class="flex flex-row items-end">
                       <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ business().totalRating | numb : translate.currentLang }}
+                        {{ business().totalRating | numb : translate.currentLang : 2 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
                       @if (business().growthCount) {
@@ -450,7 +450,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                           'text-green-500': business().growthCount > 0,
                           'text-zinc-500': business().growthCount === 0
                         }"
-                        >{{ business().growthCount | growth : translate.currentLang }}</span
+                        >{{ business().growthCount | growth : translate.currentLang : 2 }}</span
                       >
                       }
                     </div>

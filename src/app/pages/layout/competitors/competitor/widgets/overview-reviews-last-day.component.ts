@@ -50,7 +50,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
           <div class="flex flex-row items-center gap-x-3">
             <div class="flex flex-row items-center gap-x-3 w-full">
               <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-                {{ averageRating() | numb : translate.currentLang }}
+                {{ averageRating() | numb : translate.currentLang : 2 }}
               </dd>
             </div>
             <div class="flex flex-col items-start gap-y-1">
@@ -145,7 +145,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
               <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
-                {{ totalReviews() | numb : translate.currentLang }}
+                {{ totalReviews() | numb : translate.currentLang : 2 }}
                 {{ 'REVIEWS' | translate }}
               </p>
             </div>
@@ -265,11 +265,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ tripadvisor().averageRating | numb : translate.currentLang }}
+                        {{ tripadvisor().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ tripadvisor().totalReviews | numb : translate.currentLang }}
+                      {{ tripadvisor().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -382,11 +382,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ google().averageRating | numb : translate.currentLang }}
+                        {{ google().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ google().totalReviews | numb : translate.currentLang }}
+                      {{ google().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -499,11 +499,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ thefork().averageRating | numb : translate.currentLang }}
+                        {{ thefork().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ thefork().totalReviews | numb : translate.currentLang }}
+                      {{ thefork().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -616,11 +616,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ family().averageRating | numb : translate.currentLang }}
+                        {{ family().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ family().totalReviews | numb : translate.currentLang }}
+                      {{ family().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -733,11 +733,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ solo().averageRating | numb : translate.currentLang }}
+                        {{ solo().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ solo().totalReviews | numb : translate.currentLang }}
+                      {{ solo().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -850,11 +850,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ couple().averageRating | numb : translate.currentLang }}
+                        {{ couple().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ couple().totalReviews | numb : translate.currentLang }}
+                      {{ couple().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -972,11 +972,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ business().averageRating | numb : translate.currentLang }}
+                        {{ business().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ business().totalReviews | numb : translate.currentLang }}
+                      {{ business().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>
@@ -1090,11 +1090,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
                       <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ country.avgRating | numb : translate.currentLang }}
+                        {{ country.avgRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
                     <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
-                      {{ country.count | numb : translate.currentLang }}
+                      {{ country.count | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
                   </div>

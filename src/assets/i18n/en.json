@@ -354,6 +354,12 @@
     },
     "RESTAURANT_ROOMS_ROOMS_FOR_SALE": {
       "DESC": "Rooms for sale"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Food"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosphere"
     }
   },
   "SPEAK_WELL_OF": "Speak well of",

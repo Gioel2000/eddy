@@ -73,11 +73,12 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon-7 stroke-2"></span>
             }
-            <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
+            <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
-          vs. {{ averageGraph() | numb : translate.currentLang }} {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
+          vs. {{ averageGraph() | numb : translate.currentLang : 2 }}
+          {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
         </dt>
       </div>
       <div class="mt-8 -mx-4">

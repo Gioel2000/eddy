@@ -75,7 +75,7 @@ import moment from 'moment';
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon-7 stroke-2"></span>
             }
-            <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
+            <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">

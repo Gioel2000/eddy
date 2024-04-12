@@ -37,7 +37,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col py-8 border-b border-zinc-200 dark:border-zinc-800">
+    <div #container class="flex flex-col py-8">
       @switch (sentimentState()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-col items-baseline justify-between gap-x-4 gap-y-2">
@@ -54,7 +54,6 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
               <div class="flex flex-col items-start gap-y-1">
                 <div class="flex flex-row items-center mr-4">
                   <div class="flex items-center">
-                    <!-- class="text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]" -->
                     <svg
                       [ngClass]="{
                         'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': rating() >= 1,
@@ -148,8 +147,8 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                   <p class="sr-only">4 out of 5 stars</p>
                 </div>
                 <p class="text-sm min-w-[200px] font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
-                  {{ sentiment().length | numb : translate.currentLang }}
-                  {{ 'REVIEWS' | translate }}
+                  {{ sentiment().length | numb : translate.currentLang : 2 }}
+                  {{ 'WORDS' | translate }}
                 </p>
               </div>
             </div>
@@ -157,7 +156,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
-            @for (word of sentiment(); track $index) {
+            @for (word of words().slice(0, 20); track $index) {
             <div class="flex items-center text-sm">
               <dt class="flex flex-1 items-center">
                 <p class="w-20 truncate font-medium text-zinc-600 dark:text-zinc-400">
@@ -166,18 +165,22 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div class="flex flex-row items-center gap-x-1">
+                      @if (word.bad > 0) {
                       <div
                         [style.width.%]="(word.bad * 100) / maxCountWord()"
                         class="h-3 inset-y-0 rounded bg-red-400"
                       ></div>
+                      } @if (word.neutral > 0) {
                       <div
                         [style.width.%]="(word.neutral * 100) / maxCountWord()"
                         class="h-3 inset-y-0 rounded bg-yellow-400"
                       ></div>
+                      } @if (word.good > 0) {
                       <div
                         [style.width.%]="(word.good * 100) / maxCountWord()"
                         class="h-3 inset-y-0 rounded bg-green-400"
                       ></div>
+                      }
                     </div>
                   </div>
                 </div>
@@ -189,12 +192,12 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
         <div class="flex flex-row justify-between pt-10">
           <div class="flex flex-col gap-2">
             <p class="text-sm font-medium text-zinc-500 dark:text-zinc-500">
-              {{ 'POSITIVE' | translate }}
+              {{ 'NEGATIVE' | translate }}
             </p>
             <div class="flex flex-row items-center gap-x-2">
-              <span [inlineSVG]="'face-smile-2.svg'" class="svg-icon-3 text-green-500 stroke-[1.7]"></span>
+              <span [inlineSVG]="'face-sad-2.svg'" class="svg-icon-3 text-red-500 stroke-[1.7]"></span>
               <span class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                {{ positivePercentage() | numb : translate.currentLang : 1 }}%
+                {{ negativePercentage() | numb : translate.currentLang : 1 }}%
               </span>
             </div>
           </div>
@@ -213,12 +216,12 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
 
           <div class="flex flex-col gap-2">
             <p class="text-sm font-medium text-zinc-500 dark:text-zinc-500">
-              {{ 'NEGATIVE' | translate }}
+              {{ 'POSITIVE' | translate }}
             </p>
             <div class="flex flex-row items-center gap-x-2">
-              <span [inlineSVG]="'face-sad-2.svg'" class="svg-icon-3 text-red-500 stroke-[1.7]"></span>
+              <span [inlineSVG]="'face-smile-2.svg'" class="svg-icon-3 text-green-500 stroke-[1.7]"></span>
               <span class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                {{ negativePercentage() | numb : translate.currentLang : 1 }}%
+                {{ positivePercentage() | numb : translate.currentLang : 1 }}%
               </span>
             </div>
           </div>
@@ -239,7 +242,6 @@ export class SentimentComponent {
   sentimentState = inject(ReviewsStore).sentimentState;
   translate = inject(TranslateService);
 
-  // rating between 1 and 5
   rating = computed(() => {
     const badCount = this.sentiment()
       .map((item) => item.bad)
@@ -247,13 +249,13 @@ export class SentimentComponent {
     const goodCount = this.sentiment()
       .map((item) => item.good)
       .reduce((a, b) => a + b, 0);
-
     const total = badCount + goodCount;
-
     const rating = (goodCount * 5) / total;
 
     return rating;
   });
+
+  words = computed(() => this.sentiment().sort((a, b) => b.bad + b.good + b.neutral - (a.bad + a.good + a.neutral)));
 
   maxCountWord = computed(() => {
     const words = this.sentiment().map((a, b) => a.bad + a.good + a.neutral);

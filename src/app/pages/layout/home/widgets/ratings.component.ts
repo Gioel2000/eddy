@@ -46,7 +46,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
           </dt>
           <div class="flex flex-row items-center gap-x-3 w-full">
             <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-              {{ totalReviews() | numb : translate.currentLang }}
+              {{ totalReviews() | numb : translate.currentLang : 2 }}
             </dd>
             <dd
               class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
@@ -59,11 +59,11 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
                 [inlineSVG]="isGrowthPercentagePositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
                 class="svg-icon-7 stroke-2"
               ></span>
-              <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
+              <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
             </dd>
           </div>
           <dt class="text-sm font-medium leading-6 text-zinc-500">
-            vs. {{ totalReviewsReceived() | numb : translate.currentLang }}
+            vs. {{ totalReviewsReceived() | numb : translate.currentLang : 2 }}
             {{ 'SUM_OF_PERIOD' | translate | lowercase }}
           </dt>
         </div>

@@ -146,7 +146,9 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                           </g>
                         </svg>
                       </div>
-                      <span class="text-sm text-zinc-400 ml-1">{{ review.rating | numb : translate.currentLang }}</span>
+                      <span class="text-sm text-zinc-400 ml-1">{{
+                        review.rating | numb : translate.currentLang : 2
+                      }}</span>
                     </div>
                     <p class="sr-only">5 out of 5 stars</p>
                   </div>

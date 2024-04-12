@@ -5,9 +5,9 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
-import moment from 'moment';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.pipe';
+import moment from 'moment';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -74,7 +74,7 @@ import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.p
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon-7 stroke-2"></span>
             }
-            <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
+            <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
