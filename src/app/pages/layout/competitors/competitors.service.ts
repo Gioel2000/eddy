@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { DashboardStore } from '../../../store/dashboard/dashboard.service';
 import { CompetitorsStore } from '../../../store/competitors/competitors.service';
 

@@ -16,10 +16,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
       <ng-container *ngIf="categories | filterArray : 'valutation' : 'positive' as positive">
         <ng-container *ngIf="positive && positive.length">
           <div class="col-span-full mb-6 sm:col-span-1 sm:mb-0">
-            <label
-              fxLayout="row"
-              fxLayoutAlign="start center"
-              class="block text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
+            <label class="flex flex-row text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
               >{{ 'SPEAK_WELL_OF' | translate }}
             </label>
             <span
@@ -35,21 +32,13 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
       <ng-container *ngIf="categories | filterArray : 'valutation' : 'negative' as negative">
         <ng-container *ngIf="negative && negative.length">
           <div class="col-span-full mb-6 sm:col-span-1 sm:mb-0">
-            <label
-              fxLayout="row"
-              fxLayoutAlign="start center"
-              class="block text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
+            <label class="flex flex-row text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
               >{{ 'SPEAK_BADLY_OF' | translate }}
             </label>
             <span
               *ngFor="let sentiment of negative"
               class="inline-flex items-center rounded-md dark:bg-red-400/10 px-2 py-1 text-xs font-medium dark:text-red-400 ring-1 ring-inset dark:ring-red-400/20 bg-red-200/70 text-red-700 ring-red-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-red-400/20 hover:bg-red-100/50"
             >
-              <span
-                class="svg-icon svg-icon-5 mr-1 text-red-700 dark:text-red-400"
-                [inlineSVG]="'./assets/icons/bold/' + sentiment.icon"
-              >
-              </span>
               {{ sentiment.name }}
             </span>
           </div>
@@ -59,21 +48,13 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
       <ng-container *ngIf="categories | filterArray : 'valutation' : 'neutral' as neutral">
         <ng-container *ngIf="neutral && neutral.length">
           <div class="col-span-full mb-6 sm:col-span-1 sm:mb-0">
-            <label
-              fxLayout="row"
-              fxLayoutAlign="start center"
-              class="block text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
+            <label class="flex flex-row text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200 mb-2"
               >{{ 'ALSO_TALK_ABOUT' | translate }}
             </label>
             <span
               *ngFor="let sentiment of neutral"
               class="inline-flex items-center rounded-md dark:bg-yellow-400/10 px-2 py-1 text-xs font-medium dark:text-yellow-400 ring-1 ring-inset dark:ring-yellow-400/20 bg-yellow-200/70 text-yellow-700 ring-yellow-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-yellow-400/20 hover:bg-yellow-100/50"
             >
-              <span
-                class="svg-icon svg-icon-5 mr-1 text-yellow-700 dark:text-yellow-400"
-                [inlineSVG]="'./assets/icons/bold/' + sentiment.icon"
-              >
-              </span>
               {{ sentiment.name }}
             </span>
           </div>

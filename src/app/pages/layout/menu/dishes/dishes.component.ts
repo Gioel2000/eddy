@@ -8,11 +8,12 @@ import { DialogService } from './add/dialog.service';
 import { MenuService } from '../menu.service';
 import { DishComponent } from './dish/dish.component';
 import { DishTO } from '../../../../store/menu/interfaces/menu';
+import { MenuCategoriesComponent } from '../categories/categories.component';
 
 @Component({
   selector: 'menu-dishes',
   standalone: true,
-  imports: [CommonModule, TranslateModule, InlineSVGModule, LoaderComponent, DishComponent],
+  imports: [CommonModule, TranslateModule, InlineSVGModule, LoaderComponent, DishComponent, MenuCategoriesComponent],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
@@ -51,7 +52,7 @@ import { DishTO } from '../../../../store/menu/interfaces/menu';
           </p>
         </div>
         <div class="mt-4 ml-8 flex-none">
-          @if (store.categoriesState() === 'loaded') {
+          @if (store.categoriesState() !== 'empty') {
           <a
             class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-inset ring-zinc-800 dark:ring-zinc-100 bg-zinc-800 dark:bg-zinc-100 hover:bg-zinc-700 dark:hover:bg-zinc-200 text-white dark:text-black shadow-[shadow:inset_0_1.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)]"
             (click)="onAdd()"
@@ -62,9 +63,12 @@ import { DishTO } from '../../../../store/menu/interfaces/menu';
         </div>
       </div>
       <div>
+        <div class="mb-6"><menu-categories></menu-categories></div>
         @switch(store.dishesState()) { @case('loaded') {
         <div class="flex flex-col gap-y-6">
-          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
+          <div
+            class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 w-full sm:w-auto sm:max-w-full gap-y-6"
+          >
             @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
             <menu-dish
               class="h-full"

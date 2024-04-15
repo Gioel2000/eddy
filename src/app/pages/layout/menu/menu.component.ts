@@ -53,27 +53,20 @@ import { ShareMenuComponent } from './menu/share/share.component';
       <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">{{ 'MENU' | translate }}</h1>
       <div class="mx-auto bg-white dark:bg-dark">
         <div class="block">
-          <nav class="flex border-b border-zinc-200 dark:border-zinc-800 pb-6"></nav>
-          <div class="grid grid-cols-10 min-h-screen gap-px bg-zinc-200 dark:bg-zinc-800">
-            <div class="bg-white dark:bg-dark col-span-full sm:col-span-4 xl:col-span-2 py-5 px-0 sm:pr-5">
-              @defer (on viewport; prefetch on idle) {
-              <menu-categories></menu-categories>
-              } @placeholder {
-              <div></div>
-              } @loading {
-              <div></div>
-              }
+          <nav class="hidden sm:flex border-b border-zinc-200 dark:border-zinc-800 pb-6"></nav>
+          <div class="grid grid-cols-8 gap-px bg-zinc-200 dark:bg-zinc-800 min-h-screen">
+            <div class="bg-white dark:bg-dark col-span-full xl:col-span-5 h-full">
+              <div class="pt-0 pb-5 sm:py-5 px-0 xl:pr-7 h-full">
+                @defer (on viewport; prefetch on idle) {
+                <menu-dishes></menu-dishes>
+                } @placeholder {
+                <div></div>
+                } @loading {
+                <div></div>
+                }
+              </div>
             </div>
-            <div class="bg-white dark:bg-dark col-span-full sm:col-span-6 xl:col-span-5 py-5 px-0 sm:px-5">
-              @defer (on viewport; prefetch on idle) {
-              <menu-dishes></menu-dishes>
-              } @placeholder {
-              <div></div>
-              } @loading {
-              <div></div>
-              }
-            </div>
-            <div class="bg-white dark:bg-dark col-span-full sm:col-span-full xl:col-span-3 py-5 px-0 sm:px-5">
+            <div class="bg-white dark:bg-dark col-span-full sm:col-span-full xl:col-span-3 py-5 px-0 sm:pl-7">
               @defer (on viewport; prefetch on idle) {
               <menu-menus></menu-menus>
               } @placeholder {

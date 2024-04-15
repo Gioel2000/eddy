@@ -10,6 +10,7 @@ import { TypesComponent } from './widgets/types.component';
 import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
 import { ChannelsComponent } from './widgets/channels.component';
+import { CategoriesComponent } from './widgets/categories.component';
 
 @Component({
   selector: 'competitor',
@@ -25,6 +26,7 @@ import { ChannelsComponent } from './widgets/channels.component';
     ReviewsLastDayComponent,
     OverviewReviewsLastDayComponent,
     ChannelsComponent,
+    CategoriesComponent,
   ],
   template: `
     <ng-template #loading>
@@ -94,6 +96,16 @@ import { ChannelsComponent } from './widgets/channels.component';
         <div></div>
         } @defer (on viewport; prefetch on idle) {
         <ratings-graph [rating]="competitor().rating" [state]="state()"></ratings-graph>
+        } @placeholder {
+        <div></div>
+        } @loading {
+        <div></div>
+        } @defer (on viewport; prefetch on idle) {
+        <categories-graph
+          [categories]="competitor().categories"
+          [sentiment]="competitor().sentiment"
+          [state]="state()"
+        ></categories-graph>
         } @placeholder {
         <div></div>
         } @loading {

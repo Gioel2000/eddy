@@ -117,7 +117,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       <div class="grid grid-cols-3 gap-3 sm:grid-cols-4">
                         @for (category of store.categories().slice(start(), end()); track $index) {
                         <a
-                          class="flex items-center justify-center rounded-lg py-3 px-3 text-sm font-semibold uppercase sm:flex-1 cursor-pointer focus:outline-none text-zinc-900 dark:text-zinc-100"
+                          class="flex items-center justify-center rounded-lg py-3 px-3 text-sm font-semibold uppercase sm:flex-1 cursor-pointer focus:outline-none text-zinc-900 dark:text-zinc-100 min-h-20 shadow-sm"
                           [ngClass]="{
                             'ring-2 ring-inset ring-accent dark:ring-accent': thereIsThisCategory(category),
                             'ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700': !thereIsThisCategory(category),
@@ -130,8 +130,10 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         >
                           <input type="radio" class="sr-only" />
                           <div class="flex flex-col items-center gap-y-2">
-                            <span class="svg-icon-3 stroke-2" [inlineSVG]="'food/' + category.icon"></span>
-                            <span class="text-center text-xs capitalize opacity-50">{{ category.name }}</span>
+                            <!-- <span class="svg-icon-3 stroke-2" [inlineSVG]="'food/' + category.icon"></span> -->
+                            <span class="text-center text-xs capitalize opacity-50 line-clamp-3">{{
+                              category.name
+                            }}</span>
                           </div>
                         </a>
                         }

@@ -39,64 +39,34 @@ import { MenuService } from '../menu.service';
       </div>
     </ng-template>
 
-    <div class="flex flex-col gap-y-8 h-full">
-      <div class="flex">
-        <div class="flex-auto">
-          <h1 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">
-            {{ 'CATEGORIES' | translate }}
-          </h1>
-          <p class="mt-2 text-sm text-zinc-500">
-            {{ 'CATEGORIES_DESCRIPTION' | translate }}
-          </p>
+    <div class="grid gap-3 grid-cols-4 sm:grid-cols-4 md:grid-cols-6 2xl:grid-cols-8">
+      @for (category of store.categories(); track $index) {
+      <span
+        class="flex flex-row items-center justify-between rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 hover:shadow cursor-pointer"
+      >
+        <div
+          class="flex flex-row items-center w-[calc(80%_-_20px)] cursor-pointer h-full ml-1 p-1"
+          (click)="onEdit(category)"
+        >
+          <span class="truncate">{{ category.name }}</span>
         </div>
-        <div class="mt-4 ml-8 flex-none">
-          <a
-            class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-inset ring-zinc-800 dark:ring-zinc-100 bg-zinc-800 dark:bg-zinc-100 hover:bg-zinc-700 dark:hover:bg-zinc-200 text-white dark:text-black shadow-[shadow:inset_0_1.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)]"
-            (click)="onAdd()"
-          >
-            <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-          </a>
-        </div>
-      </div>
-      <div>
-        @switch(store.categoriesState()) { @case('loaded') {
-        <ul role="list" class="divide-y divide-zinc-200 dark:divide-zinc-800">
-          @for (category of store.categories(); track $index) {
-          <li class="flex justify-between gap-x-6 py-5">
-            <div class="flex flex-row items-center gap-x-2">
-              <span
-                class="svg-icon-6 stroke-2 text-zinc-900 dark:text-zinc-100"
-                [inlineSVG]="'food/' + category.icon"
-              ></span>
-              <div class="min-w-0 flex-auto">
-                <p class="text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{ category.name }}</p>
-              </div>
-            </div>
-            <div class="flex flex-row items-center">
-              <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a
-                  class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
-                  (click)="onEdit(category)"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
-                ></a>
-              </div>
-              <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a class="text-red-600 hover:text-red-900 dark:hover:text-red-100" (click)="onDelete(category._id)"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
-                ></a>
-              </div>
-            </div>
-          </li>
-          }
-        </ul>
-        } @case('loading') {
-        <ng-container *ngTemplateOutlet="loading"></ng-container>
-        } @case('error') {
-        <ng-container *ngTemplateOutlet="error"></ng-container>
-        } @case('empty') {
-        <ng-container *ngTemplateOutlet="empty"></ng-container>
-        } }
-      </div>
+        <button
+          type="button"
+          class="group relative rounded p-1 m-1 w-[25px] hover:bg-zinc-500/20 dark:hover:bg-zinc-700/20 focus:outline-none transition ease-in-out duration-100"
+          (click)="onDelete(category._id)"
+        >
+          <span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span>
+        </button>
+      </span>
+      }
+
+      <a
+        class="inline-flex items-center gap-x-2 rounded-md p-1 text-sm font-medium text-zinc-500 border border-dashed border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 cursor-pointer"
+        (click)="onAdd()"
+      >
+        <span class="svg-icon-9 stroke-[1.8] ml-1" inlineSVG="plus.svg"></span>
+        <div class="w-full">{{ 'NEW' | translate }}</div>
+      </a>
     </div>
   `,
 })

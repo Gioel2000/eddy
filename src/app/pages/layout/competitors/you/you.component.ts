@@ -11,6 +11,7 @@ import { TypesComponent } from './widgets/types.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
 import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { ChannelsComponent } from './widgets/channels.component';
+import { CategoriesComponent } from './widgets/categories.component';
 
 @Component({
   selector: 'you',
@@ -26,6 +27,7 @@ import { ChannelsComponent } from './widgets/channels.component';
     ReviewsLastDayComponent,
     OverviewReviewsLastDayComponent,
     ChannelsComponent,
+    CategoriesComponent,
   ],
   template: `
     <ng-template #loading>
@@ -85,6 +87,12 @@ import { ChannelsComponent } from './widgets/channels.component';
         <div></div>
         } @defer (on viewport; prefetch on idle) {
         <ratings-graph></ratings-graph>
+        } @placeholder {
+        <div></div>
+        } @loading {
+        <div></div>
+        } @defer (on viewport; prefetch on idle) {
+        <categories-graph></categories-graph>
         } @placeholder {
         <div></div>
         } @loading {

@@ -345,38 +345,39 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               </div>
             </div>
           </div>
-        </ng-container>
-        <div *ngIf="(alreadyReplied$ | async) === false">
-          <div class="flex flex-row items-center mt-10 gap-x-3">
-            <button
-              class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-              [disabled]="isResponseLoading() || isResponseError()"
-              (click)="askAIToReply()"
-            >
-              <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
-              <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
-            </button>
-            @if (isResponseLoading()) {
-            <div class="flex flex-row items-center justify-center">
-              <div class="flex flex-row items-center justify-center w-full">
-                <loader></loader>
+
+          <div *ngIf="(alreadyReplied$ | async) === false">
+            <div class="flex flex-row items-center mt-10 gap-x-3">
+              <button
+                class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                [disabled]="isResponseLoading() || isResponseError()"
+                (click)="askAIToReply()"
+              >
+                <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
+                <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
+              </button>
+              @if (isResponseLoading()) {
+              <div class="flex flex-row items-center justify-center">
+                <div class="flex flex-row items-center justify-center w-full">
+                  <loader></loader>
+                </div>
               </div>
-            </div>
-            } @if (isResponseError()) {
-            <div class="flex flex-row items-center justify-center">
-              <div class="flex flex-row items-center justify-center w-full">
-                <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+              } @if (isResponseError()) {
+              <div class="flex flex-row items-center justify-center">
+                <div class="flex flex-row items-center justify-center w-full">
+                  <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+                </div>
               </div>
-            </div>
-            } @if (isResponseSuccess()) {
-            <div class="flex flex-row items-center justify-center">
-              <div class="flex flex-row items-center justify-center w-full">
-                <span [inlineSVG]="'check.svg'" class="svg-icon-1 text-green-500 stroke-[1.7]"></span>
+              } @if (isResponseSuccess()) {
+              <div class="flex flex-row items-center justify-center">
+                <div class="flex flex-row items-center justify-center w-full">
+                  <span [inlineSVG]="'check.svg'" class="svg-icon-1 text-green-500 stroke-[1.7]"></span>
+                </div>
               </div>
+              }
             </div>
-            }
           </div>
-        </div>
+        </ng-container>
       </ng-container>
     </div>
   `,

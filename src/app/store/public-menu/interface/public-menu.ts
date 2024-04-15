@@ -45,6 +45,5 @@ export interface Category {
 export interface Category2 {
   _id: string;
   name: string;
-  icon: string;
   restaurant: string;
 }

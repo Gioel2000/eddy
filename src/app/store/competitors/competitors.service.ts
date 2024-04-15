@@ -103,7 +103,13 @@ export class CompetitorsStore {
       untilDestroyed(this),
       filter(({ selected }) => !!selected),
       filter(({ selected }) => Object.keys(selected).length > 0),
-      distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter)
+      distinctUntilChanged(
+        (prev, curr) =>
+          prev.selected === curr.selected &&
+          prev.filter.startdate === curr.filter.startdate &&
+          prev.filter.enddate === curr.filter.enddate &&
+          prev.filter.channels === curr.filter.channels
+      )
     );
 
     const next$: Observable<CompetitorsStoreModel> = stream$.pipe(
@@ -125,6 +131,14 @@ export class CompetitorsStore {
                       ),
                       clientTypes: this.http.post(
                         `${environment.apiUrl}/api/competitors/${competitor}/clientType/grouped`,
+                        filter
+                      ),
+                      categories: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/category/grouped`,
+                        filter
+                      ),
+                      sentiment: this.http.post(
+                        `${environment.apiUrl}/api/competitors/${competitor}/sentiment/categories`,
                         filter
                       ),
                       reviews: this.http.post(`${environment.apiUrl}/api/competitors/${competitor}/paginate`, {
@@ -158,15 +172,13 @@ export class CompetitorsStore {
       .with(next$)
       .with(stream$, () => ({ data: [{} as CompetitorModel, {} as CompetitorModel], state: 'loading' }))
       .with(this.state$, (store, state) => ({ ...store, state }))
-      .with(this.add$, (store, payload) => {
-        return {
-          ...store,
-          data: [
-            ...store.data.filter((competitor) => competitor._id !== payload._id),
-            { ...payload, isDownloading: true },
-          ],
-        };
-      })
+      .with(this.add$, (store, payload) => ({
+        ...store,
+        data: [
+          ...store.data.filter((competitor) => competitor._id !== payload._id),
+          { ...payload, isDownloading: true },
+        ],
+      }))
       .with(this.delete$, (store, id) => ({
         ...store,
         data: store.data.filter((competitor) => competitor._id !== id),

@@ -62,14 +62,44 @@ import { combineLatest, filter } from 'rxjs';
     </div>
   </div> -->
 
+    <!-- <div class="flex flex-row w-full items-center justify-end h-0 gap-x-1">
+      <div
+        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1 ring-inset ring-amber-600 bg-amber-500 hover:bg-amber-600 hover:dark:bg-amber-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+        (click)="edit.emit(dish())"
+      >
+        <span class="svg-icon-7 stroke-[1.8]" inlineSVG="pen-2.svg"></span>
+      </div>
+      <div
+        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600 hover:dark:bg-red-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+        (click)="delete.emit(dish())"
+      >
+        <span class="svg-icon-7 stroke-[1.8]" inlineSVG="trash.svg"></span>
+      </div>
+    </div> -->
+
     <div
-      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 bg-white dark:bg-[#1A1A1A] h-full pb-3"
-      (click)="edit.emit(dish())"
+      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
     >
       <div class="w-full">
-        <div
-          class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3 bg-white dark:bg-[#1A1A1A] transition ease-in-out duration-100"
-        >
+        <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">
+          <div class="flex flex-row w-full items-center justify-end h-0 gap-x-1 rounded-md">
+            <div
+              class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+            >
+              <a
+                class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                (click)="edit.emit(dish())"
+              >
+                <span class="svg-icon-7 stroke-2 text-amber-500" inlineSVG="pen-2.svg"></span>
+              </a>
+              <a
+                class="flex flex-row items-center rounded-r-md pr-2 pl-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                (click)="delete.emit(dish())"
+              >
+                <span class="svg-icon-7 stroke-2 text-red-500" inlineSVG="trash.svg"></span>
+              </a>
+            </div>
+          </div>
           @if (dish().image) {
           <div class="relative flex h-full w-full flex-col overflow-hidden rounded-lg p-6">
             <span aria-hidden="true" class="absolute inset-0">
@@ -112,17 +142,19 @@ import { combineLatest, filter } from 'rxjs';
           <h3 class="text-lg truncate font-bold text-zinc-700 dark:text-zinc-300">
             <span>{{ dish().name }}</span>
           </h3>
-          <p class="text-sm text-zinc-500/80 dark:text-zinc-600 w-full line-clamp-2">
+          @if (dish().description.trim().length) {
+          <p class="text-sm text-zinc-500/80 dark:text-zinc-600 w-full line-clamp-2 h-10">
             {{ dish().description }}
           </p>
+          }
           <p class="text-base font-bold text-zinc-800 dark:text-zinc-200 drop-shadow-sm">
             {{ dish().price | money : translate.currentLang : dish().currency }}
           </p>
         </div>
       </div>
-      @if (peanut() || milk() || gluten()) {
+      <!-- @if (peanut() || milk() || gluten()) {
       <div class="overflow-x-auto w-full">
-        <div class="flex flex-row gap-x-2 px-3 mb-1">
+        <div class="flex flex-row gap-x-2 px-3">
           @if (peanut()) {
           <div class="flex flex-row gap-x-1 bg-amber-100/80 dark:bg-amber-900/80 px-2 py-1.5 rounded-full">
             <span class="svg-icon-9 text-amber-600 stroke-2">
@@ -168,23 +200,23 @@ import { combineLatest, filter } from 'rxjs';
           }
         </div>
       </div>
-      }
-      <div class="flex flex-row items-center gap-x-1 px-3 w-full">
+      } -->
+      <!-- <div class="flex flex-row items-center gap-x-1 py-1 w-full">
         <button
-          class="flex flex-row gap-x-1 items-center justify-center col-span-1 rounded-lg mt-3 p-2 w-full cursor-pointer ring-1 ring-inset ring-amber-600 bg-amber-500 hover:bg-amber-600 hover:dark:bg-amber-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="flex flex-row gap-x-1 items-center justify-center col-span-1 rounded-lg w-full cursor-pointer text-amber-500 disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="edit.emit(dish())"
         >
           <span [inlineSVG]="'pen-2.svg'" class="svg-icon-8 stroke-[1.7]"></span>
           <span class="font-semibold text-sm">{{ 'EDIT' | translate }}</span>
         </button>
         <button
-          class="flex flex-row gap-x-1 items-center justify-center col-span-1 rounded-lg mt-3 p-2 w-full cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600 hover:dark:bg-red-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="flex flex-row gap-x-1 items-center justify-center col-span-1 rounded-lg w-full cursor-pointer text-red-500 disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="delete.emit(dish())"
         >
           <span [inlineSVG]="'trash.svg'" class="svg-icon-8 stroke-[1.7]"></span>
           <span class="font-semibold text-sm">{{ 'DELETE' | translate }}</span>
         </button>
-      </div>
+      </div> -->
     </div>
   `,
 })

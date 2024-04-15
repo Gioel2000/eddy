@@ -60,23 +60,30 @@ import { toObservable } from '@angular/core/rxjs-interop';
             cssClass="flex flex-col items-center justify-center ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 rounded-md p-1 shadow-sm shadow-black/10"
           ></qrcode>
 
-          <div class="my-4">
+          <div class="flex flex-row items-center gap-x-2 my-4">
             <button
               type="button"
               class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-950 hover:ring-zinc-800 bg-gradient-to-t from-zinc-900 to-zinc-700 hover:from-zinc-800 hover:to-zinc-600 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
               (click)="open()"
             >
-              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="link.svg"></span>
+              <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
               <span>{{ 'OPEN' | translate }}</span>
             </button>
-            <!-- <button
+            <button
               type="button"
               class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-950 hover:ring-zinc-800 bg-gradient-to-t from-zinc-900 to-zinc-700 hover:from-zinc-800 hover:to-zinc-600 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
-              (click)="print()"
+              (click)="copy()"
             >
-              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="print.svg"></span>
-              <span>{{ 'PRINT' | translate }}</span>
-            </button> -->
+              <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
+              <span>{{ 'COPY' | translate }}</span>
+            </button>
+            @if (copiedSuccesfully()){
+            <div class="flex flex-row items-center justify-center">
+              <div class="flex flex-row items-center justify-center w-full">
+                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-600 stroke-[1.6]"></span>
+              </div>
+            </div>
+            }
           </div>
 
           <button
@@ -97,6 +104,7 @@ export class ShareMenuComponent {
   menu = inject(MenuService);
 
   link = signal('');
+  copiedSuccesfully = signal(false);
 
   constructor() {
     toObservable(this.dialog.isDialogOpen)
@@ -110,6 +118,12 @@ export class ShareMenuComponent {
 
   open() {
     window.open(this.link(), '_blank');
+  }
+
+  copy() {
+    navigator.clipboard.writeText(this.link());
+    this.copiedSuccesfully.set(true);
+    setTimeout(() => this.copiedSuccesfully.set(false), 2000);
   }
 
   print() {

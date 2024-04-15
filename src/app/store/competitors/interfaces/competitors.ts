@@ -20,11 +20,12 @@ export interface CompetitorModel {
   channels: Channel[];
   gMapsUrl: string;
   active: boolean;
-  __v: number;
   reputation: ReputationModel;
   rating: RatingModel[];
   clientTypes: ClientTypeModel[];
   reviews: ReviewModel[];
+  categories: CategoryTO[];
+  sentiment: SentimentTO[];
   channelsRatings: any[];
   address: string;
   city: string;
@@ -103,3 +104,16 @@ export type AddCompetitor = {
   latitude: number;
   longitude: number;
 };
+
+export interface CategoryTO {
+  category: string;
+  totalRating: number;
+  filteredRating: number;
+}
+
+export interface SentimentTO {
+  category: string;
+  good: number;
+  neutral: number;
+  bad: number;
+}

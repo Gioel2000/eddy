@@ -97,7 +97,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
               </div>
 
               <div
-                class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 border-r border-zinc-300 dark:border-zinc-700/50 bg-zinc-50 dark:bg-zinc-900"
+                class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 border-r border-zinc-200 dark:border-zinc-800 bg-light dark:bg-dark"
                 (clickOutside)="layout.isMenuVisible() && layout.closeMenu()"
               >
                 <div class="flex h-16 shrink-0 items-center">
@@ -115,7 +115,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                   </div>
                 </div>
                 <nav class="flex flex-1 flex-col">
-                  <ul role="list" class="flex flex-1 flex-col gap-y-7 text-zinc-500">
+                  <ul role="list" class="flex flex-1 flex-col gap-y-7 text-zinc-900 dark:text-zinc-100">
                     <li>
                       @for (route of router.config[0].children; track $index) { @if (route.data; as routeData) { @if (routeData &&
                         routeData['show']) {
@@ -137,7 +137,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                         <div class="relative w-full">
                           <div [ngClass]="{ hidden: !layout.isDropdownOpenSm() }">
                             <div
-                              class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
+                              class="absolute bottom-12 z-10 mt-2 w-full origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
                               role="menu"
                               aria-orientation="vertical"
                               aria-labelledby="menu-button"
@@ -544,7 +544,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
           <div class="w-full max-w-[1600px]">
             <div class="block lg:hidden relative -top-8">
               <div
-                class="sticky py-1 top-0 flex z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-zinc-50/80 dark:bg-zinc-900/80 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+                class="sticky py-1 top-0 flex z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-light dark:bg-dark px-4 sm:gap-x-6 sm:px-6 lg:px-8"
               >
                 <button
                   type="button"
@@ -578,8 +578,13 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
             }
 
             <footer class="bg-white dark:bg-dark mt-52">
-              <div class="flex flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
-                <div class="flex justify-center space-x-6 md:order-2">
+              <div class="flex flex-col sm:flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
+                <div class="mt-8">
+                  <p class="text-center text-xs leading-5 text-zinc-500">
+                    &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.
+                  </p>
+                </div>
+                <div class="flex justify-center space-x-6 mt-5 sm:pt-0">
                   <a
                     class="flex flex-row items-center gap-x-1 text-sm font-medium text-zinc-400 dark:text-zinc-600"
                     href="mailto:support@eddy.restaurant"
@@ -587,11 +592,6 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                     <span class="svg-icon-6 stroke-[1.6]" inlineSVG="circle-question.svg"></span>
                     <span>{{ "HELP" | translate }}</span>
                   </a>
-                </div>
-                <div class="mt-8 md:order-1 md:mt-0">
-                  <p class="text-center text-xs leading-5 text-zinc-500">
-                    &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.
-                  </p>
                 </div>
               </div>
             </footer>

@@ -372,5 +372,8 @@
   "GOOD": "Good",
   "POSITIVE": "Positive",
   "NEUTRAL": "Neutral",
-  "NEGATIVE": "Negative"
+  "NEGATIVE": "Negative",
+  "ADD": "Add",
+  "NEW": "New",
+  "EDIT_CATEGORY": "Edit category"
 }

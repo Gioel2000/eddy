@@ -100,10 +100,12 @@ import { CategoriesComponent } from './widgets/categories.component';
               <div class="bg-light dark:bg-dark sm:pl-10 py-6">
                 <categories-graph></categories-graph>
               </div>
-
-              <div class="bg-light dark:bg-dark sm:pr-10 py-6"><channels-graph></channels-graph></div>
-              <div class="bg-light dark:bg-dark sm:pl-10 py-6"><types-graph></types-graph></div>
-
+              <div class="bg-light dark:bg-dark sm:pr-10 py-6">
+                <channels-graph></channels-graph>
+              </div>
+              <div class="bg-light dark:bg-dark sm:pl-10 py-6">
+                <types-graph></types-graph>
+              </div>
               <div class="bg-light dark:bg-dark sm:pr-10 py-6">
                 <reviews-last-day></reviews-last-day>
               </div>

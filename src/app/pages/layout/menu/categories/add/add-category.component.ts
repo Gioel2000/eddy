@@ -42,7 +42,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
         >
           <div class="flex flex-row items-center justify-between mb-8">
             <span class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-              {{ 'ADD_CATEGORY' | translate }}
+              {{ menu.categoryMode() === 'edit' ? ('EDIT_CATEGORY' | translate) : ('ADD_CATEGORY' | translate) }}
             </span>
 
             <button
@@ -75,65 +75,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     />
                   </div>
                 </div>
-
-                <div class="col-span-full">
-                  <div>
-                    <div class="flex items-center justify-between">
-                      <h2 class="text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">
-                        {{ 'ICON' | translate }}
-                      </h2>
-                    </div>
-
-                    <fieldset class="mt-2">
-                      <div class="grid grid-cols-3 gap-3 sm:grid-cols-4">
-                        @for (icon of icons.slice(start(), end()); track $index) {
-                        <label
-                          class="flex items-center justify-center rounded-lg py-3 px-3 text-sm font-semibold uppercase sm:flex-1 cursor-pointer focus:outline-none "
-                          [ngClass]="{
-                            'bg-accent dark:bg-accentDark text-white cursor-pointer shadow-[shadow:inset_0_2px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)] ring-1 ring-inset ring-accent': iconSelected() === icon,
-                            'text-zinc-900 dark:text-zinc-100 cursor-pointer': iconSelected() !== icon,
-                          }"
-                          (click)="iconSelected.set(icon)"
-                        >
-                          <input type="radio" class="sr-only" value="4 GB" />
-                          <div class="flex flex-col items-center gap-y-2">
-                            <span class="svg-icon-3 stroke-2" [inlineSVG]="'food/' + icon"></span>
-                            <span class="text-center text-xs capitalize opacity-50">{{
-                              icon | replace : '.svg' : '' | replace : '-' : ' '
-                            }}</span>
-                          </div>
-                        </label>
-                        }
-                      </div>
-                    </fieldset>
-                  </div>
-                </div>
               </div>
             </div>
           </form>
-          <div class="flex flew-row items-end w-full">
-            <span class="isolate inline-flex rounded-md shadow-sm">
-              <button
-                type="button"
-                class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
-                [disabled]="start() === 0"
-                (click)="prev()"
-              >
-                <span class="svg-icon-8" inlineSVG="arrow-left.svg"></span>
-              </button>
-              <button
-                type="button"
-                class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
-                [disabled]="end() >= icons.length"
-                (click)="next()"
-              >
-                <span class="svg-icon-8" inlineSVG="arrow-right.svg"></span>
-              </button>
-            </span>
-          </div>
           <button
             class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
-            [disabled]="!nameControl.valid || !iconSelected()"
+            [disabled]="!nameControl.valid"
             (click)="done()"
           >
             <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>
@@ -150,10 +97,6 @@ export class AddCategoryComponent {
 
   icons = icons;
   nameControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
-  iconSelected = signal('');
-  iconsPerPage = 16;
-  start = signal(0);
-  end = signal(16);
 
   constructor() {
     toObservable(this.dialog.isDialogOpen)
@@ -161,30 +104,15 @@ export class AddCategoryComponent {
       .subscribe(() => {
         const mode = this.menu.categoryMode();
 
-        this.start.set(0);
-        this.end.set(16);
-
         if (mode === 'edit') {
-          const { icon, name } = this.menu.category();
-          this.iconSelected.set(icon);
+          const { name } = this.menu.category();
           this.nameControl.setValue(name);
         }
 
         if (mode === 'add') {
-          this.iconSelected.set('');
           this.nameControl.reset();
         }
       });
-  }
-
-  next() {
-    this.start.set(this.start() + this.iconsPerPage);
-    this.end.set(this.end() + this.iconsPerPage);
-  }
-
-  prev() {
-    this.start.set(this.start() - this.iconsPerPage);
-    this.end.set(this.end() - this.iconsPerPage);
   }
 
   done() {
@@ -194,9 +122,7 @@ export class AddCategoryComponent {
       this.dialog.closeDialog();
       this.store.addCategory({
         name: this.nameControl.value!,
-        icon: this.iconSelected(),
       });
-      this.iconSelected.set('');
       this.nameControl.reset();
     }
 
@@ -205,9 +131,7 @@ export class AddCategoryComponent {
       this.store.editCategory({
         _id: this.menu.category()._id,
         name: this.nameControl.value!,
-        icon: this.iconSelected(),
       });
-      this.iconSelected.set('');
       this.nameControl.reset();
     }
   }

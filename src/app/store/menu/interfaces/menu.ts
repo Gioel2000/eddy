@@ -2,7 +2,6 @@ export type StateModel = 'loaded' | 'loading' | 'error' | 'empty';
 export interface CategoryTO {
   _id: string;
   name: string;
-  icon: string;
 }
 
 export interface DishTO {
