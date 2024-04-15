@@ -53,7 +53,7 @@ import { ShareDialogService } from './share/dialog.service';
         <div class="mt-4 ml-8 flex-none">
           @if (store.dishesState() !== 'empty') {
           <a
-            class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-inset ring-zinc-800 dark:ring-zinc-100 bg-zinc-800 dark:bg-zinc-100 hover:bg-zinc-700 dark:hover:bg-zinc-200 text-white dark:text-black shadow-[shadow:inset_0_1.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)]"
+            class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-full gap-x-1 p-2 shadow-sm cursor-pointer text-light dark:text-dark dark:ring-light bg-zinc-800 dark:bg-light hover:bg-zinc-800/90 dark:hover:bg-light/90 disabled:opacity-30"
             (click)="onAdd()"
           >
             <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
@@ -75,20 +75,20 @@ import { ShareDialogService } from './share/dialog.service';
             <div class="flex flex-row items-center">
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
                 <a
-                  class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                  class="text-zinc-600 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                   (click)="share(menu._id)"
                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="connected-dots-3.svg"></span
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
                 <a
-                  class="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                  class="text-zinc-600 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                   (click)="onEdit(menu)"
                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a class="text-red-600 hover:text-red-900 dark:hover:text-red-100" (click)="onDelete(menu._id)"
+                <a class="text-red-500 hover:text-red-700 dark:hover:text-red-300" (click)="onDelete(menu._id)"
                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                 ></a>
               </div>

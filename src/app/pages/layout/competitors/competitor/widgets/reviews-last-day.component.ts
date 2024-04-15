@@ -253,18 +253,24 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
                   <button
-                    class="flex flex-row items-center bg-zinc-800 rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-zinc-200/30 shadow-[shadow:inset_0_2px_theme(colors.white/20%)] text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800/70 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5"
-                    (click)="showLess()"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
                     [disabled]="start() === 0"
+                    (click)="showLess()"
                   >
-                    <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                    <span
+                      [inlineSVG]="'arrow-left.svg'"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                    ></span>
                   </button>
                   <button
-                    class="flex flex-row items-center bg-zinc-800 rounded-lg px-2.5 py-1.5 ring-1 ring-inset ring-zinc-200/30 shadow-[shadow:inset_0_2px_theme(colors.white/20%)] text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800/70 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5"
-                    (click)="showMore()"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
                     [disabled]="stopKeepGoing()"
+                    (click)="showMore()"
                   >
-                    <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                    <span
+                      [inlineSVG]="'arrow-right.svg'"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                    ></span>
                   </button>
                 </div>
               </div>

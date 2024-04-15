@@ -131,9 +131,10 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                           <input type="radio" class="sr-only" />
                           <div class="flex flex-col items-center gap-y-2">
                             <!-- <span class="svg-icon-3 stroke-2" [inlineSVG]="'food/' + category.icon"></span> -->
-                            <span class="text-center text-xs capitalize opacity-50 line-clamp-3">{{
-                              category.name
-                            }}</span>
+                            <span
+                              class="text-center text-xs capitalize text-zinc-700 dark:text-zinc-300 line-clamp-3"
+                              >{{ category.name }}</span
+                            >
                           </div>
                         </a>
                         }

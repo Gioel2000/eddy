@@ -57,13 +57,13 @@ import { toObservable } from '@angular/core/rxjs-interop';
             [qrdata]="link()"
             [width]="container.offsetWidth - 60"
             [errorCorrectionLevel]="'M'"
-            cssClass="flex flex-col items-center justify-center ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 rounded-md p-1 shadow-sm shadow-black/10"
+            cssClass="flex flex-col items-center justify-center ring-1 bg-white ring-inset ring-zinc-300 rounded-md p-1 shadow-sm shadow-black/10"
           ></qrcode>
 
           <div class="flex flex-row items-center gap-x-2 my-4">
             <button
               type="button"
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-950 hover:ring-zinc-800 bg-gradient-to-t from-zinc-900 to-zinc-700 hover:from-zinc-800 hover:to-zinc-600 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-dark dark:ring-zinc-600 hover:ring-dark/90 bg-dark hover:bg-dark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/30%)] disabled:opacity-30"
               (click)="open()"
             >
               <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
@@ -71,7 +71,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
             </button>
             <button
               type="button"
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-950 hover:ring-zinc-800 bg-gradient-to-t from-zinc-900 to-zinc-700 hover:from-zinc-800 hover:to-zinc-600 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-dark dark:ring-zinc-600 hover:ring-dark/90 bg-dark hover:bg-dark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/30%)] disabled:opacity-30"
               (click)="copy()"
             >
               <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
@@ -80,7 +80,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
             @if (copiedSuccesfully()){
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
-                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-600 stroke-[1.6]"></span>
+                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-500 stroke-[1.6]"></span>
               </div>
             </div>
             }

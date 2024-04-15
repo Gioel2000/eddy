@@ -323,7 +323,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
           <nav class="-ml-3 flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
-                <ul role="list" class="space-y-1 text-zinc-800 dark:text-zinc-300">
+                <ul role="list" class="space-y-1 text-zinc-800 dark:text-zinc-200">
                   @for (route of router.config[0].children; track $index) { @if (route.data; as routeData) { @if (routeData &&
                   routeData['show']) {
                   <li 
