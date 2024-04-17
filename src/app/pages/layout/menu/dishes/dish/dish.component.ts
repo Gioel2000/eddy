@@ -64,13 +64,13 @@ import { combineLatest, filter } from 'rxjs';
 
     <!-- <div class="flex flex-row w-full items-center justify-end h-0 gap-x-1">
       <div
-        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1 ring-inset ring-amber-600 bg-amber-500 hover:bg-amber-600 hover:dark:bg-amber-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1  ring-amber-600 bg-amber-500 hover:bg-amber-600 hover:dark:bg-amber-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
         (click)="edit.emit(dish())"
       >
         <span class="svg-icon-7 stroke-[1.8]" inlineSVG="pen-2.svg"></span>
       </div>
       <div
-        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600 hover:dark:bg-red-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+        class="relative flex flex-row items-center justify-center z-10 -bottom-5 -left-2 h-6 w-6 right-0 rounded-md cursor-pointer ring-1  ring-red-600 bg-red-500 hover:bg-red-600 hover:dark:bg-red-500 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
         (click)="delete.emit(dish())"
       >
         <span class="svg-icon-7 stroke-[1.8]" inlineSVG="trash.svg"></span>
@@ -84,7 +84,7 @@ import { combineLatest, filter } from 'rxjs';
         <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">
           <div class="flex flex-row w-full items-center justify-end h-0 gap-x-1 rounded-md">
             <div
-              class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+              class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1  ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             >
               <a
                 class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"

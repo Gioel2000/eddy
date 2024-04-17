@@ -97,7 +97,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
               </div>
 
               <div
-                class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 border-r border-zinc-200 dark:border-zinc-800 bg-light dark:bg-[#1D1D1D]"
+                class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 border-r border-zinc-200 dark:border-zinc-800 bg-light dark:bg-dark"
                 (clickOutside)="layout.isMenuVisible() && layout.closeMenu()"
               >
                 <div class="flex h-16 shrink-0 items-center">
@@ -137,7 +137,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                         <div class="relative w-full">
                           <div [ngClass]="{ hidden: !layout.isDropdownOpenSm() }">
                             <div
-                              class="absolute bottom-12 z-10 mt-2 w-full origin-bottom divide-y divide-zinc-200 dark:divide-zinc-800 rounded-lg bg-light dark:bg-[#1D1D1D] shadow-lg ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200"
+                              class="absolute bottom-12 z-10 mt-2 w-full origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1  ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
                               role="menu"
                               aria-orientation="vertical"
                               aria-labelledby="menu-button"
@@ -157,7 +157,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                   </div>
                                   <input
                                     type="text"
-                                    class="block w-full rounded-xl border-0 bg-light dark:bg-[#1D1D1D] py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
+                                    class="block w-full rounded-xl border-0 bg-white dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                                     placeholder="{{ 'SEARCH' | translate }}..."
                                     [formControl]="searchFormControl"
                                     (blur)="isSearchBlur.set(true)"
@@ -347,7 +347,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                   <div class="relative w-full">
                     <div [ngClass]="{ hidden: !layout.isDropdownOpen() }">
                       <div
-                        class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-200 dark:divide-zinc-800 rounded-lg bg-light dark:bg-[#1D1D1D] shadow-lg ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200"
+                        class="absolute bottom-12 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-300 dark:divide-zinc-700/80 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1  ring-zinc-300 dark:ring-zinc-700/80 focus:outline-none transition ease-out duration-200"
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
@@ -367,7 +367,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                             </div>
                             <input
                               type="text"
-                              class="block w-full rounded-xl border-0 bg-light dark:bg-[#1D1D1D] py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
+                              class="block w-full rounded-xl border-0 bg-white dark:bg-zinc-800 py-1.5 pl-10 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-0 text-sm leading-6"
                               placeholder="{{ 'SEARCH' | translate }}..."
                               [formControl]="searchFormControl"
                               (blur)="isSearchBlur.set(true)"
@@ -544,7 +544,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
           <div class="w-full max-w-[1600px]">
             <div class="block lg:hidden relative -top-8">
               <div
-                class="sticky py-1 top-0 flex z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-light dark:bg-[#1D1D1D] px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+                class="sticky py-1 top-0 flex z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-light dark:bg-dark px-4 sm:gap-x-6 sm:px-6 lg:px-8"
               >
                 <button
                   type="button"

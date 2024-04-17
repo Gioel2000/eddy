@@ -21,7 +21,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
             </label>
             <span
               *ngFor="let sentiment of positive"
-              class="inline-flex items-center rounded-md dark:bg-green-400/10 px-2 py-1 text-xs font-medium dark:text-green-400 ring-1 ring-inset dark:ring-green-400/20 bg-green-200/70 text-green-700 ring-green-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-green-400/20 hover:bg-green-100/50"
+              class="inline-flex items-center rounded-md dark:bg-green-400/10 px-2 py-1 text-xs font-medium dark:text-green-400 ring-1  dark:ring-green-400/20 bg-green-200/70 text-green-700 ring-green-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-green-400/20 hover:bg-green-100/50"
             >
               {{ sentiment.name }}
             </span>
@@ -37,7 +37,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
             </label>
             <span
               *ngFor="let sentiment of negative"
-              class="inline-flex items-center rounded-md dark:bg-red-400/10 px-2 py-1 text-xs font-medium dark:text-red-400 ring-1 ring-inset dark:ring-red-400/20 bg-red-200/70 text-red-700 ring-red-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-red-400/20 hover:bg-red-100/50"
+              class="inline-flex items-center rounded-md dark:bg-red-400/10 px-2 py-1 text-xs font-medium dark:text-red-400 ring-1  dark:ring-red-400/20 bg-red-200/70 text-red-700 ring-red-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-red-400/20 hover:bg-red-100/50"
             >
               {{ sentiment.name }}
             </span>
@@ -53,7 +53,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
             </label>
             <span
               *ngFor="let sentiment of neutral"
-              class="inline-flex items-center rounded-md dark:bg-yellow-400/10 px-2 py-1 text-xs font-medium dark:text-yellow-400 ring-1 ring-inset dark:ring-yellow-400/20 bg-yellow-200/70 text-yellow-700 ring-yellow-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-yellow-400/20 hover:bg-yellow-100/50"
+              class="inline-flex items-center rounded-md dark:bg-yellow-400/10 px-2 py-1 text-xs font-medium dark:text-yellow-400 ring-1  dark:ring-yellow-400/20 bg-yellow-200/70 text-yellow-700 ring-yellow-600/10 mr-1 mb-1 shadow cursor-pointer hover:dark:bg-yellow-400/20 hover:bg-yellow-100/50"
             >
               {{ sentiment.name }}
             </span>

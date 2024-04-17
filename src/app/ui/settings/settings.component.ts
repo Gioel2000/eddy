@@ -27,7 +27,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-          class="relative transform overflow-hidden rounded-xl bg-white dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
+          class="relative transform overflow-hidden rounded-xl bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
           [ngClass]="{
             'opacity-100 translate-y-0 sm:scale-100': dialog.isDialogVisible(),
             'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95': !dialog.isDialogVisible()
@@ -230,7 +230,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 <span class="isolate inline-flex rounded-md shadow-sm">
                   <button
                     type="button"
-                    class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
+                    class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
                     [disabled]="start() === 0"
                     (click)="prev()"
                   >
@@ -246,7 +246,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                   </button>
                   <button
                     type="button"
-                    class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
+                    class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-700/50 focus:z-10"
                     [disabled]="end() >= i18n.languages().length"
                     (click)="next()"
                   >

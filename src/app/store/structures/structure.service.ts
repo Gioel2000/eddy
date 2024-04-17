@@ -190,34 +190,23 @@ export class StructureStore {
         untilDestroyed(this),
         switchMap(({ expireDate }) => this.storage.set('expireDate', expireDate)),
         switchMap(() => this.storage.set('restaurantId', id)),
-        switchMap(() =>
-          this.http.get<RestaurantSettedTO>(`${environment.apiUrl}/api/restaurants/current`).pipe(
-            catchError(() => {
-              this.selectedState$.next('error');
-              this.delete$.next(id);
-              this.router.navigate(['/structures']);
-
-              return of(null);
-            }),
-            tap((selected) => {
-              this.showAll$.next();
-              this.selectedState$.next('loaded');
-              this.selected$.next(selected);
-            })
-          )
-        )
+        switchMap(() => this.http.get<RestaurantSettedTO>(`${environment.apiUrl}/api/restaurants/current`))
       )
       .subscribe({
-        next: () => {
+        next: (selected) => {
           const { url: current } = this.router;
           const page = current.includes('structures') ? '/home' : current;
+          this.showAll$.next();
+          this.selectedState$.next('loaded');
+          this.selected$.next(selected);
 
           this.router.navigate([page]);
         },
-        error: () => {
+        error: (error) => {
           this.selectedState$.next('error');
-          this.delete$.next(id);
           this.router.navigate(['/structures']);
+
+          console.log(error, 'error');
         },
       });
   }

@@ -56,7 +56,7 @@ import { CategoriesComponent } from './widgets/categories.component';
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-inset bg-[#1A1A1A] ring-zinc-800 min-h-screen shadow-sm w-96">
+    <div class="rounded-3xl ring-1  bg-[#1A1A1A] ring-zinc-800 min-h-screen shadow-sm w-96">
       @switch(state()) { @case('loaded') {
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">

@@ -187,7 +187,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                 @if (review().channel.source === 'tripadvisor') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
@@ -199,7 +199,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 </div>
                 } @if (review().channel.source === 'google') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/google.svg'"
@@ -211,7 +211,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 </div>
                 } @if (review().channel.source === 'thefork') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                 >
                   <span
                     [inlineSVG]="'channels/TheFork.svg'"
@@ -302,13 +302,13 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 name="comment"
                 id="comment"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent text-sm leading-6 focus:outline-none"
+                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent text-sm leading-6 focus:outline-none"
               ></textarea>
             </div>
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
               <div *ngIf="(alreadyReplied$ | async) === false">
                 <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
+                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1  ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
                   [disabled]="commentControl.invalid"
                   (click)="onCopyAndReply()"
                 >
@@ -318,7 +318,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               </div>
               <div *ngIf="(alreadyReplied$ | async) === true">
                 <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
+                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1  ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
                   (click)="showReview()"
                 >
                   <span [inlineSVG]="'share-right-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
@@ -348,14 +348,22 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
 
           <div *ngIf="(alreadyReplied$ | async) === false">
             <div class="flex flex-row items-center mt-10 gap-x-3">
-              <button
-                class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 ring-1 ring-inset ring-zinc-500/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                [disabled]="isResponseLoading() || isResponseError()"
-                (click)="askAIToReply()"
-              >
-                <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
-                <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
-              </button>
+              <div class="group relative max-w-7xl">
+                <div
+                  class="absolute -inset-1 bg-rainbow rounded-lg blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200"
+                ></div>
+                <div class="relative rounded-lg leading-none space-x-6">
+                  <button
+                    class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 shadow-sm ring-2 ring-inset ring-white/50 text-zinc-100 dark:text-zinc-100 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                    [disabled]="isResponseLoading() || isResponseError()"
+                    (click)="askAIToReply()"
+                  >
+                    <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
+                    <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
+                  </button>
+                </div>
+              </div>
+
               @if (isResponseLoading()) {
               <div class="flex flex-row items-center justify-center">
                 <div class="flex flex-row items-center justify-center w-full">

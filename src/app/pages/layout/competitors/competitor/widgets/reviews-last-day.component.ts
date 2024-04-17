@@ -157,7 +157,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                 <div>
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
@@ -169,7 +169,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/google.svg'"
@@ -181,7 +181,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-600"
+                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
                   >
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
@@ -253,7 +253,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                     [disabled]="start() === 0"
                     (click)="showLess()"
                   >
@@ -263,7 +263,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                     ></span>
                   </button>
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                     [disabled]="stopKeepGoing()"
                     (click)="showMore()"
                   >
