@@ -164,13 +164,13 @@ export class DashboardStore {
       untilDestroyed(this),
       filter(({ selected }) => !!selected),
       filter(({ selected }) => Object.keys(selected).length > 0),
-      distinctUntilChanged(
-        (prev, curr) =>
-          prev.filter.startdate === curr.filter.startdate &&
-          prev.filter.enddate === curr.filter.enddate &&
-          prev.filter.channels === curr.filter.channels &&
-          prev.selected === curr.selected
-      ),
+      // distinctUntilChanged(
+      //   (prev, curr) =>
+      //     prev.filter.startdate === curr.filter.startdate &&
+      //     prev.filter.enddate === curr.filter.enddate &&
+      //     prev.filter.channels === curr.filter.channels &&
+      //     prev.selected === curr.selected
+      // ),
       map(({ filter }) => filter),
       filter((filter) => !!filter)
     );
@@ -286,7 +286,21 @@ export class DashboardStore {
         typologies: { ...state.typologies, state: 'loading' },
         recentReviews: { ...state.recentReviews, state: 'loading' },
       }))
-      .with(this.setIsDownloading$, (store, isDownloading) => ({ ...store, isDownloading }));
+      .with(this.setIsDownloading$, (store, isDownloading) => {
+        const { isDownloading: isDownloadingCurrent } = store;
+        const isDownloadingNext = isDownloading;
+
+        if (isDownloadingCurrent && !isDownloadingNext) {
+          const { startdate, enddate, channels } = this.filter();
+          this.filter$.next({
+            startdate: moment(startdate).format('YYYY-MM-DD'),
+            enddate: moment(enddate).format('YYYY-MM-DD'),
+            channels: channels.join(','),
+          });
+        }
+
+        return { ...store, isDownloading };
+      });
   }
 
   reset() {

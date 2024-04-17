@@ -20,6 +20,15 @@ import {
 } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
+const INIT_FILTER = {
+  startdate: undefined,
+  enddate: undefined,
+  channels: ['thefork', 'tripadvisor', 'google'],
+  clients: [],
+  offset: 0,
+  rows: 5,
+};
+
 export interface ReviewsStoreModel {
   summary: {
     data: SummaryTO;
@@ -105,7 +114,7 @@ export class ReviewsStore {
       untilDestroyed(this),
       filter(({ selected }) => !!selected),
       filter(({ selected }) => Object.keys(selected).length > 0),
-      distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
+      // distinctUntilChanged((prev, curr) => prev.selected === curr.selected && prev.filter === curr.filter),
       map(({ filter }) => filter),
       filter((filter) => !!filter)
     );
@@ -157,7 +166,21 @@ export class ReviewsStore {
         list: { data: [], state: 'loading' },
         summary: { data: {} as SummaryTO, state: 'loading' },
       }))
-      .with(this.setIsDownloading$, (store, isDownloading) => ({ ...store, isDownloading }));
+      .with(this.setIsDownloading$, (store, isDownloading) => {
+        const { isDownloading: isDownloadingCurrent } = store;
+        const isDownloadingNext = isDownloading;
+
+        if (isDownloadingCurrent && !isDownloadingNext) {
+          this.filter$.next({
+            channels: 'thefork,tripadvisor,google',
+            clients: [],
+            rows: 0,
+            offset: 5,
+          });
+        }
+
+        return { ...store, isDownloading };
+      });
   }
 
   translate(reviewId: string, lang: string) {
