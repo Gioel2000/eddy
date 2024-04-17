@@ -263,7 +263,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
               <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                     [disabled]="start() === 0"
                     (click)="showLess()"
                   >
@@ -273,7 +273,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
                     ></span>
                   </button>
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                     [disabled]="stopKeepGoing()"
                     (click)="showMore()"
                   >

@@ -50,7 +50,7 @@ import { ShareDialogService } from './share/dialog.service';
             {{ 'MENU_DESCRIPTION' | translate }}
           </p>
         </div>
-        <div class="mt-4 ml-8 flex-none">
+        <div class="mt-2 ml-8 flex-none">
           @if (store.dishesState() !== 'empty') {
           <a
             class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-full gap-x-1 p-2 shadow-sm cursor-pointer text-light dark:text-dark dark:ring-light bg-zinc-800 dark:bg-light hover:bg-zinc-800/90 dark:hover:bg-light/90 disabled:opacity-30"

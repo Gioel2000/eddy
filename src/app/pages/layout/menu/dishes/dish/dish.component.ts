@@ -142,11 +142,9 @@ import { combineLatest, filter } from 'rxjs';
           <h3 class="text-lg truncate font-bold text-zinc-700 dark:text-zinc-300">
             <span>{{ dish().name }}</span>
           </h3>
-          @if (dish().description.trim().length) {
-          <p class="text-sm text-zinc-500/80 dark:text-zinc-600 w-full line-clamp-2 h-10">
+          <p class="text-sm text-zinc-500/80 dark:text-zinc-600 w-full line-clamp-2">
             {{ dish().description }}
           </p>
-          }
           <p class="text-base font-bold text-zinc-800 dark:text-zinc-200 drop-shadow-sm">
             {{ dish().price | money : translate.currentLang : dish().currency }}
           </p>

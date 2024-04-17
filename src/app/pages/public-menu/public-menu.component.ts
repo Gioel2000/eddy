@@ -17,6 +17,7 @@ import { DropdownService } from './dropdown.service';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { DishDialogComponent } from './dish-dialog/dish-dialog.component';
 import { DialogService } from './dish-dialog/dialog.service';
+import { SettingsService } from '../../ui/settings/settings.service';
 
 @UntilDestroy()
 @Component({
@@ -289,15 +290,41 @@ import { DialogService } from './dish-dialog/dialog.service';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-      <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
+      <!-- <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
+        </div>
+      </footer> -->
+
+      <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
+        <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+          <nav class="-mb-6 columns-2 flex justify-center space-x-12" aria-label="Footer">
+            <div class="pb-6">
+              <a
+                (click)="settingsUI.openDialog()"
+                class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                >{{ 'SETTINGS' | translate }}</a
+              >
+            </div>
+            <div class="pb-6">
+              <a
+                class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                href="mailto:support@eddy.restaurant"
+                >{{ 'HELP' | translate }}</a
+              >
+            </div>
+          </nav>
+
+          <p class="mt-10 text-center text-xs leading-5 text-zinc-500">
+            &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
   `,
 })
 export class PublicMenuComponent {
+  settingsUI = inject(SettingsService);
   route = inject(ActivatedRoute);
   publicMenu = inject(PublicMenuStoreService);
   translate = inject(TranslateService);

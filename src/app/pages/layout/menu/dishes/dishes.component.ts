@@ -42,7 +42,7 @@ import { MenuCategoriesComponent } from '../categories/categories.component';
     </ng-template>
 
     <div class="flex flex-col gap-y-8 h-full">
-      <div class="flex">
+      <div class="flex flex-row items-start justify-start">
         <div class="flex-auto">
           <h1 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">
             {{ 'DISHES' | translate }}
@@ -51,7 +51,7 @@ import { MenuCategoriesComponent } from '../categories/categories.component';
             {{ 'DISHES_DESCRIPTION' | translate }}
           </p>
         </div>
-        <div class="mt-4 ml-8 flex-none">
+        <div class="mt-2 ml-8 flex-none">
           @if (store.categoriesState() !== 'empty') {
           <a
             class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-full gap-x-1 p-2 shadow-sm cursor-pointer text-light dark:text-dark dark:ring-light bg-zinc-800 dark:bg-light hover:bg-zinc-800/90 dark:hover:bg-light/90 disabled:opacity-30"

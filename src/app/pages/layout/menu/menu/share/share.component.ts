@@ -63,19 +63,23 @@ import { toObservable } from '@angular/core/rxjs-interop';
           <div class="flex flex-row items-center gap-x-2 my-4">
             <button
               type="button"
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-dark dark:ring-zinc-600 hover:ring-dark/90 bg-dark hover:bg-dark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/30%)] disabled:opacity-30"
+              class="group flex flex-row items-center font-semibold bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-2 shadow-[shadow:inset_0_-3px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-base leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
               (click)="open()"
             >
-              <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
-              <span>{{ 'OPEN' | translate }}</span>
+              <span class="flex flex-row items-center gap-x-1 relative mr-0.5 -top-px group-hover:top-0">
+                <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
+                <span>{{ 'OPEN' | translate }}</span>
+              </span>
             </button>
             <button
               type="button"
-              class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg gap-x-1 px-3 py-2 cursor-pointer ring-1 ring-inset ring-dark dark:ring-zinc-600 hover:ring-dark/90 bg-dark hover:bg-dark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/30%)] disabled:opacity-30"
+              class="group flex flex-row items-center font-semibold bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-2 shadow-[shadow:inset_0_-3px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-base leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
               (click)="copy()"
             >
-              <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
-              <span>{{ 'COPY' | translate }}</span>
+              <span class="flex flex-row items-center gap-x-1 relative mr-0.5 -top-px group-hover:top-0">
+                <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
+                <span>{{ 'COPY' | translate }}</span>
+              </span>
             </button>
             @if (copiedSuccesfully()){
             <div class="flex flex-row items-center justify-center">

@@ -44,7 +44,15 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+              <span class="svg-icon-8 stroke-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                  <title>xmark</title>
+                  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+                    <line x1="2.25" y1="9.75" x2="9.75" y2="2.25"></line>
+                    <line x1="9.75" y1="9.75" x2="2.25" y2="2.25"></line>
+                  </g>
+                </svg>
+              </span>
             </button>
           </div>
 
@@ -63,8 +71,37 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     <span
                       class="svg-icon-1 mb-2 stroke-[1.6]"
                       [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }"
-                      inlineSVG="window-paintbrush.svg"
-                    ></span>
+                      ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <title>window-paintbrush</title>
+                        <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+                          <path
+                            d="M11.75,9.247l5.086-5.083c.552-.552,.552-1.448,0-2-.552-.552-1.448-.552-2,0l-5.094,5.096"
+                          ></path>
+                          <path
+                            d="M5.75,11.815c2.162,.65,3.917,.704,5.351-.764,.865-.868,.865-2.276,0-3.145s-2.261-.881-3.133,0c-1.418,1.434-.18,2.795-2.218,3.909Z"
+                          ></path>
+                          <path
+                            d="M16.25,8.284v4.966c0,1.105-.895,2-2,2H3.75c-1.105,0-2-.895-2-2V4.75c0-1.105,.895-2,2-2h6.965"
+                          ></path>
+                          <circle
+                            cx="4.25"
+                            cy="5.25"
+                            r=".75"
+                            fill="currentColor"
+                            data-stroke="none"
+                            stroke="none"
+                          ></circle>
+                          <circle
+                            cx="6.75"
+                            cy="5.25"
+                            r=".75"
+                            fill="currentColor"
+                            data-stroke="none"
+                            stroke="none"
+                          ></circle>
+                        </g>
+                      </svg>
+                    </span>
                     <span [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }">{{
                       'THEME' | translate
                     }}</span>
@@ -82,8 +119,19 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     <span
                       [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }"
                       class="svg-icon-1 mb-2 stroke-[1.6]"
-                      inlineSVG="language.svg"
-                    ></span>
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <title>language</title>
+                        <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+                          <line x1="2.25" y1="4.25" x2="10.25" y2="4.25"></line>
+                          <line x1="6.25" y1="2.25" x2="6.25" y2="4.25"></line>
+                          <path d="M4.25,4.25c.091,2.676,1.916,4.981,4.5,5.684"></path>
+                          <path d="M8.25,4.25c-.4,5.625-6,6-6,6"></path>
+                          <polyline points="9.25 15.75 12.25 7.75 12.75 7.75 15.75 15.75"></polyline>
+                          <line x1="10.188" y1="13.25" x2="14.813" y2="13.25"></line>
+                        </g>
+                      </svg>
+                    </span>
                     <span [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }">{{
                       'LANGUAGE' | translate
                     }}</span>
@@ -161,8 +209,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 <div
                   class="flex flex-row items-center col-span-1 rounded-lg p-3 cursor-pointer dark:cursor-pointer"
                   [ngClass]="{
-                    'bg-accent dark:bg-accentDark text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]':
-                      lang.selected,
+                    'bg-accent dark:bg-accentDark text-white': lang.selected,
                     'text-zinc-800 dark:text-zinc-200 bg-black/5 dark:bg-zinc-50/5': !lang.selected
                   }"
                   (click)="i18n.setLocale$.next(lang.locale)"
@@ -187,7 +234,15 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     [disabled]="start() === 0"
                     (click)="prev()"
                   >
-                    <span class="svg-icon-8" inlineSVG="arrow-left.svg"></span>
+                    <span class="svg-icon-8 stroke-[1.2]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                        <title>arrow-left</title>
+                        <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+                          <line x1="11" y1="6" x2="1.25" y2="6"></line>
+                          <polyline points="4.25 2.75 1 6 4.25 9.25"></polyline>
+                        </g>
+                      </svg>
+                    </span>
                   </button>
                   <button
                     type="button"
@@ -195,7 +250,15 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     [disabled]="end() >= i18n.languages().length"
                     (click)="next()"
                   >
-                    <span class="svg-icon-8" inlineSVG="arrow-right.svg"></span>
+                    <span class="svg-icon-8 stroke-[1.2]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                        <title>arrow-right</title>
+                        <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+                          <line x1="1" y1="6" x2="10.75" y2="6"></line>
+                          <polyline points="7.75 9.25 11 6 7.75 2.75"></polyline>
+                        </g>
+                      </svg>
+                    </span>
                   </button>
                 </span>
               </div>

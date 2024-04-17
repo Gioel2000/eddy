@@ -89,10 +89,10 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                 <types-dropdown class="col-span-1"></types-dropdown>
                 <button
                   type="button"
-                  class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-xl gap-x-1 px-3 py-2 cursor-pointer text-light dark:text-dark bg-zinc-800 dark:bg-light shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] dark:shadow-[shadow:inset_0_-3px_theme(colors.black/20%)] hover:shadow-none dark:hover:shadow-none disabled:opacity-30"
+                  class="group flex flex-row items-center justify-center text-white dark:text-dark bg-zinc-800 dark:bg-zinc-200 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-400 rounded-xl font-bold px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] dark:shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.400)] hover:shadow-none dark:hover:shadow-none hover:bg-zinc-900 text-sm leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30 transition ease-in-out duration-200"
                   (click)="reviews.reset()"
                 >
-                  <span class="relative -top-px group-hover:top-0">{{ 'RESET' | translate }}</span>
+                  <span class="relative -top-0.5 group-hover:top-0">{{ 'RESET' | translate }}</span>
                 </button>
               </div>
             </ul>
@@ -192,7 +192,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
 
               <div class="flex flex-row items-center gap-x-2">
                 <button
-                  class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
+                  class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                   [disabled]="reviews.filter().offset === 0"
                   (click)="showLess()"
                 >
@@ -202,7 +202,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                   ></span>
                 </button>
                 <button
-                  class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-dark dark:ring-white/20 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3px_theme(colors.white/20%)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-800 text-sm font-medium leading-6 disabled:bg-zinc-800/30 disabled:cursor-not-allowed disabled:ring-zinc-800/5 disabled:dark:opacity-30"
+                  class="group flex flex-row items-center bg-zinc-800 ring-1 ring-inset ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
                   [disabled]="stopKeepGoing()"
                   (click)="showMore()"
                 >
