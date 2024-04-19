@@ -170,7 +170,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                     @case('loaded') {
                                       @for (restaurant of structures.structures(); track $index) { 
                                       <li
-                                        class="text-zinc-900 dark:text-zinc-100 relative cursor-default select-none py-2 pl-3 pr-9"
+                                        class="text-zinc-900 dark:text-zinc-100 relative cursor-pointer hover:opacity-30 select-none py-2 pl-3 pr-9"
                                         id="listbox-option-0"
                                         role="option"
                                         (click)="structures.choose(restaurant._id)"
@@ -203,7 +203,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                               <div class="py-2" role="none">
                                 <a
                                   (click)="restaurantPanelUI.togglePanel(); layout.closeMenu()"
-                                  class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                                   role="menuitem"
                                   tabindex="-1"
                                   id="menu-item-0"
@@ -220,7 +220,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                 </a>
                                 <a
                                   (click)="userPanelUI.togglePanel(); layout.closeMenu()"
-                                  class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                                   role="menuitem"
                                   tabindex="-1"
                                   id="menu-item-0"
@@ -237,7 +237,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                                 </a>
                                 <a
                                   (click)="settings.openDialog(); layout.closeMenu()"
-                                  class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                                   role="menuitem"
                                   tabindex="-1"
                                   id="menu-item-0"
@@ -380,7 +380,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                               @case('loaded') {
                                 @for (restaurant of structures.structures(); track $index) { 
                                 <li
-                                  class="text-zinc-900 dark:text-zinc-100 relative cursor-default select-none py-2 pl-3 pr-9"
+                                  class="text-zinc-900 dark:text-zinc-100 relative cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900 select-none py-2 pl-3 pr-9"
                                   id="listbox-option-0"
                                   role="option"
                                   (click)="structures.choose(restaurant._id)"
@@ -412,7 +412,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           </ul>
                         <div class="py-2" role="none">
                           <a
-                            class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-0"
@@ -430,7 +430,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           </a>
                           <a
                             (click)="userPanelUI.togglePanel()"
-                            class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-0"
@@ -447,7 +447,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                           </a>
                           <a
                             (click)="settings.openDialog()"
-                            class="block px-4 py-2 text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700/80"
+                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-0"

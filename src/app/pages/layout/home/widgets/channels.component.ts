@@ -52,7 +52,7 @@ import { map } from 'rxjs';
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4 2xl:grid-cols-3">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -189,7 +189,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -331,7 +331,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">

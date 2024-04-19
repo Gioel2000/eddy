@@ -71,7 +71,7 @@ import { filter, map } from 'rxjs';
                 <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon-3 stroke-2"></span>
               </a>
               <a
-                class="flex flex-row items-center justify-center rounded-full p-3 w-full h-auto cursor-pointer ring-1 ring-inset ring-zinc-800 dark:ring-zinc-100 bg-zinc-800 dark:bg-zinc-100 hover:bg-zinc-700 dark:hover:bg-zinc-200 text-white dark:text-black shadow-[shadow:inset_0_1.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_1.5px_theme(colors.black/40%)]"
+                class="flex flex-row items-center justify-center rounded-full p-3 w-full h-auto cursor-pointer ring-1 ring-zinc-800 dark:ring-dark bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
                 (click)="restaurantPanelUI.openPanel()"
               >
                 <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-3 stroke-2"></span>

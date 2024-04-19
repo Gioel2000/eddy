@@ -260,7 +260,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   <span class="text-sm text-zinc-400 dark:text-zinc-600">
                     <div class="flex flex-row items-center justify-center w-fit gap-x-2">
                       <img
-                        class="w-5 h-4 ml-0.5 rounded-md object-cover shadow"
+                        class="w-5 h-4 ml-0.5 rounded object-cover shadow"
                         alt=""
                         [src]="'./assets/flags/' + replaceAll(country.toLowerCase(), ' ', '-') + '.svg'"
                       />
@@ -302,13 +302,13 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 name="comment"
                 id="comment"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent text-sm leading-6 focus:outline-none"
+                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accent text-sm leading-6 focus:outline-none"
               ></textarea>
             </div>
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
               <div *ngIf="(alreadyReplied$ | async) === false">
                 <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1  ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
+                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
                   [disabled]="commentControl.invalid"
                   (click)="onCopyAndReply()"
                 >
@@ -318,7 +318,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               </div>
               <div *ngIf="(alreadyReplied$ | async) === true">
                 <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1  ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30"
+                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
                   (click)="showReview()"
                 >
                   <span [inlineSVG]="'share-right-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
@@ -329,7 +329,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 <div class="flex h-5 items-center">
                   <input
                     type="checkbox"
-                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200/50 dark:bg-zinc-600 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200 dark:bg-zinc-800 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
                     [checked]="alreadyReplied$ | async"
                     (change)="alreadyReplied()"
                   />

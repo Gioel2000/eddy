@@ -55,7 +55,7 @@ import { CategoriesComponent } from './widgets/categories.component';
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+    <div class="rounded-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
       @switch(state()) { @case('loaded') {
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
@@ -136,7 +136,7 @@ import { CategoriesComponent } from './widgets/categories.component';
         <div></div>
         }
         <button
-          class="flex flex-row items-center justify-center w-full rounded-lg mt-8 gap-x-1 py-2.5 px-4 cursor-pointer ring-1  ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="flex flex-row items-center justify-center w-full rounded-lg mt-8 gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
           (click)="delete.emit(competitor()._id)"
         >
           <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>

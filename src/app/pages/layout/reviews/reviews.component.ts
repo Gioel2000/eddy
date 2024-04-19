@@ -87,13 +87,20 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
                 <types-dropdown class="col-span-1"></types-dropdown>
-                <button
+                <!-- <button
                   type="button"
-                  class="group flex flex-row items-center justify-center text-white dark:text-dark bg-zinc-800 dark:bg-zinc-200 ring-1 ring-zinc-500 dark:ring-zinc-400 rounded-xl font-bold px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] dark:shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.400)] hover:shadow-none dark:hover:shadow-none hover:bg-zinc-900 text-sm leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30 transition ease-in-out duration-200"
+                  class="group flex flex-row items-center justify-center text-white dark:text-dark bg-zinc-800 dark:bg-zinc-200 rounded-xl font-bold px-2.5 py-1.5 shadow-sm hover:bg-zinc-900 hover:dark:bg-zinc-100 text-sm leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30 transition ease-in-out duration-200"
                   (click)="reviews.reset()"
                 >
-                  <span class="relative -top-0.5 group-hover:top-0">{{ 'RESET' | translate }}</span>
-                </button>
+                  <span class="">{{ 'RESET' | translate }}</span>
+                </button> -->
+
+                <a
+                  class="flex flex-row items-center justify-center rounded-xl px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+                  (click)="reviews.reset()"
+                >
+                  <span class="">{{ 'RESET' | translate }}</span>
+                </a>
               </div>
             </ul>
           </nav>
@@ -151,6 +158,36 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                       <div></div>
                       } }
                     </div>
+
+                    @if (store.state() === 'loaded' && store.reviews().length > 0) {
+                    <div class="flex flex-col items-center justify-center w-full">
+                      <div
+                        class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
+                      >
+                        <div>
+                          <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
+                            >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
+                          >
+                        </div>
+                        <div class="flex flex-row items-center gap-x-2">
+                          <button
+                            class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200 disabled:opacity-30"
+                            [disabled]="reviews.filter().offset === 0"
+                            (click)="showLess()"
+                          >
+                            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                          </button>
+                          <button
+                            class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200 disabled:opacity-30"
+                            [disabled]="stopKeepGoing()"
+                            (click)="showMore()"
+                          >
+                            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    }
                   </div>
                 </div>
               </div>
@@ -163,58 +200,6 @@ import { SentimentComponent } from './ui/sentiment-words.component';
             <ng-container [ngTemplateOutlet]="loading"></ng-container>
             } }
           </div>
-          @if (store.state() === 'loaded' && store.reviews().length > 0) {
-          <div class="flex flex-col items-center justify-center w-full">
-            <div
-              class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1  ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
-            >
-              <div>
-                <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
-                  >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
-                >
-              </div>
-              <!-- <div class="flex flex-row items-center gap-x-2">
-                <button
-                  class="flex flex-row items-center bg-accent dark:bg-accentDark rounded-lg px-2.5 py-1.5 ring-1  ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                  (click)="showLess()"
-                  [disabled]="reviews.filter().offset === 0"
-                >
-                  <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-                </button>
-                <button
-                  class="flex flex-row items-center bg-accent dark:bg-accentDark rounded-lg px-2.5 py-1.5 ring-1  ring-accent/30 shadow-[shadow:inset_0_2px_theme(colors.white/40%)] text-zinc-100 dark:text-zinc-100 hover:bg-accent hover:dark:bg-accentDark/70 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
-                  (click)="showMore()"
-                  [disabled]="stopKeepGoing()"
-                >
-                  <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
-                </button>
-              </div> -->
-
-              <div class="flex flex-row items-center gap-x-2">
-                <button
-                  class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
-                  [disabled]="reviews.filter().offset === 0"
-                  (click)="showLess()"
-                >
-                  <span
-                    [inlineSVG]="'arrow-left.svg'"
-                    class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
-                  ></span>
-                </button>
-                <button
-                  class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
-                  [disabled]="stopKeepGoing()"
-                  (click)="showMore()"
-                >
-                  <span
-                    [inlineSVG]="'arrow-right.svg'"
-                    class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
-                  ></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          }
         </div>
       </div>
     </div>

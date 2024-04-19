@@ -56,7 +56,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           <div role="none">
             <fieldset>
               <div class="space-y-3">
-                <ul role="list" class="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <ul role="list" class="divide-y divide-zinc-200 dark:divide-zinc-700">
                   <li class="flex flex-row items-center py-2 px-3 cursor-pointer" (click)="select('en', 'english')">
                     <img
                       class="w-5 h-4 mr-1.5 rounded object-cover"

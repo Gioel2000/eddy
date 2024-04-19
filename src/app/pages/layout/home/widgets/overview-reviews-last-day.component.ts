@@ -988,7 +988,7 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
               <div class="col-start-1 col-span-6">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <img
-                    class="w-5 h-4 ml-0.5 rounded-md object-cover shadow"
+                    class="w-5 h-4 ml-0.5 rounded object-cover shadow"
                     alt=""
                     [src]="'./assets/flags/' + replaceAll(country.country.toLowerCase(), ' ', '-') + '.svg'"
                   />

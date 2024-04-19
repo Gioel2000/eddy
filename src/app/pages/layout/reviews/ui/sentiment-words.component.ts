@@ -37,7 +37,7 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col py-8">
+    <div #container class="flex flex-col pt-8 pb-20">
       @switch (sentimentState()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-col items-baseline justify-between gap-x-4 gap-y-2">

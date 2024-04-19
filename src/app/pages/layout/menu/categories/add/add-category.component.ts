@@ -54,32 +54,26 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
             </button>
           </div>
 
-          <form class="w-full">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-10 pb-4 md:grid-cols-2">
-              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-                <div class="col-span-full">
-                  <label
-                    for="first-name"
-                    class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                    >{{ 'NAME' | translate }}</label
-                  >
-                  <div class="mt-2">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      [formControl]="nameControl"
-                      autocomplete="given-name"
-                      class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
-                      placeholder="{{ 'CATEGORIES_DESCRIPTION' | translate }}"
-                    />
-                  </div>
+          <div class="grid grid-cols-1 gap-x-8 gap-y-10 pb-4 md:grid-cols-2">
+            <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+              <div class="col-span-full">
+                <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                  'NAME' | translate
+                }}</label>
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    [formControl]="nameControl"
+                    autocomplete="given-name"
+                    class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                    placeholder="{{ 'CATEGORIES_DESCRIPTION' | translate }}"
+                  />
                 </div>
               </div>
             </div>
-          </form>
+          </div>
           <button
-            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1  ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             [disabled]="!nameControl.valid"
             (click)="done()"
           >

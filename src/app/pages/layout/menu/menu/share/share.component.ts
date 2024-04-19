@@ -63,23 +63,19 @@ import { toObservable } from '@angular/core/rxjs-interop';
           <div class="flex flex-row items-center gap-x-2 my-4">
             <button
               type="button"
-              class="group flex flex-row items-center font-semibold bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-2 shadow-[shadow:inset_0_-3px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-base leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+              class="flex flex-row items-center justify-center rounded-lg px-3 py-2 gap-x-1 h-auto cursor-pointer ring-1 ring-zinc-900 bg-zinc-800 dark:bg-zinc-700 hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
               (click)="open()"
             >
-              <span class="flex flex-row items-center gap-x-1 relative mr-0.5 -top-px group-hover:top-0">
-                <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
-                <span>{{ 'OPEN' | translate }}</span>
-              </span>
+              <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
+              <span class="font-semibold">{{ 'OPEN' | translate }}</span>
             </button>
             <button
               type="button"
-              class="group flex flex-row items-center font-semibold bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-2 shadow-[shadow:inset_0_-3px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-base leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+              class="flex flex-row items-center justify-center rounded-lg px-3 py-2 gap-x-1 h-auto cursor-pointer ring-1 ring-zinc-900 bg-zinc-800 dark:bg-zinc-700 hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
               (click)="copy()"
             >
-              <span class="flex flex-row items-center gap-x-1 relative mr-0.5 -top-px group-hover:top-0">
-                <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
-                <span>{{ 'COPY' | translate }}</span>
-              </span>
+              <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
+              <span class="font-semibold">{{ 'COPY' | translate }}</span>
             </button>
             @if (copiedSuccesfully()){
             <div class="flex flex-row items-center justify-center">
@@ -91,7 +87,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
           </div>
 
           <button
-            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1  ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+            class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-12 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             (click)="dialog.closeDialog()"
           >
             <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>

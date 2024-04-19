@@ -165,7 +165,7 @@ import { RestaurantPanelService } from '../panel.service';
             {{ 'CANCEL' | translate }}
           </button>
           <button
-            class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
+            class="flex flex-row items-center justify-center col-span-1 rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             (click)="edit()"
             [disabled]="formGroup.invalid || formGroup.pristine"
           >

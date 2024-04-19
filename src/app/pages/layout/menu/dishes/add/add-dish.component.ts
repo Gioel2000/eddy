@@ -281,7 +281,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
             </form>
 
             <button
-              class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-6 p-2 w-full cursor-pointer ring-1  ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+              class="flex flex-row items-center justify-center col-span-1 rounded-lg mt-6 p-2 w-full cursor-pointer ring-1 ring-inset ring-accent bg-gradient-to-t from-accent to-accent/70 hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
               [disabled]="formGroup.invalid"
               (click)="done()"
             >

@@ -51,9 +51,9 @@ import { ShareDialogService } from './share/dialog.service';
           </p>
         </div>
         <div class="mt-2 ml-8 flex-none">
-          @if (store.dishesState() !== 'empty') {
+          @if (store.dishesState() !== 'empty' && store.dishesState() !== 'loading'){
           <a
-            class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-full gap-x-1 p-2 shadow-sm cursor-pointer text-light dark:text-dark dark:ring-light bg-zinc-800 dark:bg-light hover:bg-zinc-800/90 dark:hover:bg-light/90 disabled:opacity-30"
+            class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
             (click)="onAdd()"
           >
             <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
