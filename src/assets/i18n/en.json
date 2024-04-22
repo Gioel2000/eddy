@@ -376,5 +376,6 @@
   "ADD": "Add",
   "NEW": "New",
   "EDIT_CATEGORY": "Edit category",
-  "SEE_ALL": "See all"
+  "SEE_ALL": "See all",
+  "NO_CATEGORIES": "No categories"
 }

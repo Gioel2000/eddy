@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
+import { ReviewsService } from '../../reviews/reviews.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'categories-graph',
@@ -51,8 +53,9 @@ import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               @for (category of categories(); track $index) {
-              <div
+              <a
                 class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark"
+                (click)="checkCategory(category.category)"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -176,10 +179,11 @@ import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
               } @for (word of words(); track $index) {
-              <div
+              <a
                 class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark"
+                (click)="checkCategory(word.category)"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -292,7 +296,7 @@ import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
               }
             </div>
           </dl>
@@ -311,6 +315,9 @@ import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
 export class CategoriesComponent {
   translate = inject(TranslateService);
   dashboard = inject(DashboardStore);
+  reviews = inject(ReviewsService);
+  router = inject(Router);
+
   categories = computed(() => this.dashboard.categories().data);
   sentiment = computed(() => this.dashboard.sentiment().data);
 
@@ -350,5 +357,14 @@ export class CategoriesComponent {
     const rating = (good * 5) / total;
 
     return rating;
+  }
+
+  checkCategory(category: string) {
+    this.reviews.filter.set({
+      ...this.reviews.filter(),
+      sentimentCategories: [category],
+    });
+
+    this.router.navigate(['/reviews']);
   }
 }

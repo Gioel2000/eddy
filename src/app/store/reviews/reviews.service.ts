@@ -8,15 +8,6 @@ import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/revie
 import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
-const INIT_FILTER = {
-  startdate: undefined,
-  enddate: undefined,
-  channels: ['thefork', 'tripadvisor', 'google'],
-  clients: [],
-  offset: 0,
-  rows: 5,
-};
-
 export interface ReviewsStoreModel {
   summary: {
     data: SummaryTO;
@@ -64,6 +55,7 @@ export class ReviewsStore {
     clients: string[];
     rows: number;
     offset: number;
+    sentimentCategories: string[];
   }>();
 
   setIsDownloading$ = new Subject<boolean>();
@@ -164,6 +156,7 @@ export class ReviewsStore {
             clients: [],
             rows: 0,
             offset: 5,
+            sentimentCategories: [],
           });
         }
 

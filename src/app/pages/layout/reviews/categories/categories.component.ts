@@ -3,12 +3,12 @@ import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../utils/directives/clickoutside';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReviewsService } from '../reviews.service';
 
 @Component({
-  selector: 'types-dropdown',
+  selector: 'categories-dropdown',
   standalone: true,
   imports: [CommonModule, InlineSVGModule, ClickOutsideDirective, TranslateModule, ReactiveFormsModule],
   template: ` <div
@@ -19,7 +19,7 @@ import { ReviewsService } from '../reviews.service';
       <label
         for="name"
         class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
-        >{{ 'CUSTOMER_TYPES' | translate }}</label
+        >{{ 'CATEGORIES' | translate }}</label
       >
       <button
         type="button"
@@ -30,7 +30,9 @@ import { ReviewsService } from '../reviews.service';
         (click)="dropdown.toggle()"
       >
         <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-full sm:max-w-24 capitalize">{{ checked() || ('NO_TYPES' | translate) }}</span>
+          <span class="truncate max-w-full sm:max-w-24 capitalize">{{
+            checked() || ('NO_CATEGORIES' | translate)
+          }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
             class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
@@ -56,16 +58,16 @@ import { ReviewsService } from '../reviews.service';
                   <input
                     type="checkbox"
                     class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsSolo()"
-                    (change)="toggle('Solo')"
+                    [checked]="food()"
+                    (change)="toggle('restaurant_food')"
                   />
                   <div class="flex flex-row items-center gap-x-2">
                     <span
-                      [inlineSVG]="'user.svg'"
+                      [inlineSVG]="'pizza-slice-2.svg'"
                       class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
-                      'SOLO' | translate
+                      'REVIEWS_CATEGORIES.RESTAURANT_FOOD.DESC' | translate
                     }}</span>
                   </div>
                 </div>
@@ -73,16 +75,16 @@ import { ReviewsService } from '../reviews.service';
                   <input
                     type="checkbox"
                     class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsFamily()"
-                    (change)="toggle('Family')"
+                    [checked]="atmosphere()"
+                    (change)="toggle('restaurant_atmosphere')"
                   />
                   <div class="flex flex-row items-center gap-x-2">
                     <span
-                      [inlineSVG]="'crowd.svg'"
+                      [inlineSVG]="'portal-sparkle.svg'"
                       class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
-                      'FAMILY' | translate
+                      'REVIEWS_CATEGORIES.RESTAURANT_ATMOSPHERE.DESC' | translate
                     }}</span>
                   </div>
                 </div>
@@ -90,33 +92,16 @@ import { ReviewsService } from '../reviews.service';
                   <input
                     type="checkbox"
                     class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsCouple()"
-                    (change)="toggle('Couple')"
+                    [checked]="service()"
+                    (change)="toggle('restaurant_service')"
                   />
                   <div class="flex flex-row items-center gap-x-2">
                     <span
-                      [inlineSVG]="'users-3.svg'"
+                      [inlineSVG]="'food-delivery-time.svg'"
                       class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
-                      'COUPLE' | translate
-                    }}</span>
-                  </div>
-                </div>
-                <div class="flex flex-row items-center gap-x-2">
-                  <input
-                    type="checkbox"
-                    class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsBusiness()"
-                    (change)="toggle('Business')"
-                  />
-                  <div class="flex flex-row items-center gap-x-2">
-                    <span
-                      [inlineSVG]="'suitcase-6.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
-                    ></span>
-                    <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
-                      'BUSINESS' | translate
+                      'REVIEWS_CATEGORIES.RESTAURANT_SERVICE.DESC' | translate
                     }}</span>
                   </div>
                 </div>
@@ -128,24 +113,31 @@ import { ReviewsService } from '../reviews.service';
     </div>
   </div>`,
 })
-export class TypesDropdownComponent {
+export class CategoriesDropdownComponent {
   dropdown = inject(DropdownService);
   reviews = inject(ReviewsService);
+  translate = inject(TranslateService);
 
-  checked = computed(() => this.reviews.filter().clients.join(', '));
+  checked = computed(() =>
+    this.reviews
+      .filter()
+      .sentimentCategories.map((cat) => this.translate.instant(`REVIEWS_CATEGORIES.${cat.toUpperCase()}.DESC`))
+      .join(', ')
+  );
 
-  thereIsFamily = computed(() => this.reviews.filter().clients.includes('Family'));
-  thereIsSolo = computed(() => this.reviews.filter().clients.includes('Solo'));
-  thereIsCouple = computed(() => this.reviews.filter().clients.includes('Couple'));
-  thereIsBusiness = computed(() => this.reviews.filter().clients.includes('Business'));
+  food = computed(() => this.reviews.filter().sentimentCategories.includes('restaurant_food'));
+  atmosphere = computed(() => this.reviews.filter().sentimentCategories.includes('restaurant_atmosphere'));
+  service = computed(() => this.reviews.filter().sentimentCategories.includes('restaurant_service'));
 
-  toggle(client: string) {
-    const clients = this.reviews.filter().clients;
-    const thereIsService = clients.includes(client);
+  toggle(category: string) {
+    const sentimentCategories = this.reviews.filter().sentimentCategories;
+    const thereIsCategory = sentimentCategories.includes(category);
 
     this.reviews.filter.set({
       ...this.reviews.filter(),
-      clients: thereIsService ? clients.filter((channel) => channel !== client) : [...clients, client],
+      sentimentCategories: thereIsCategory
+        ? sentimentCategories.filter((cat) => cat !== category)
+        : [...sentimentCategories, category],
       offset: 0,
     });
   }

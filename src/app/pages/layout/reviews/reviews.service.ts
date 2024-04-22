@@ -14,6 +14,7 @@ const INIT_FILTER = {
   clients: [],
   offset: 0,
   rows: 5,
+  sentimentCategories: [],
 };
 
 @UntilDestroy()
@@ -29,6 +30,7 @@ export class ReviewsService {
     enddate: Date | undefined;
     channels: string[];
     clients: string[];
+    sentimentCategories: string[];
     rows: number;
     offset: number;
   }> = signal(INIT_FILTER);
@@ -37,23 +39,25 @@ export class ReviewsService {
     toObservable(this.filter)
       .pipe(
         untilDestroyed(this),
-        map(({ startdate, enddate, channels, clients, rows, offset }) => ({
+        map(({ startdate, enddate, channels, clients, rows, offset, sentimentCategories }) => ({
           startdate: startdate ? moment(startdate).format('YYYY-MM-DD') : undefined,
           enddate: enddate ? moment(enddate).format('YYYY-MM-DD') : undefined,
           channels: channels.join(','),
           clients,
           rows,
           offset,
+          sentimentCategories,
         }))
       )
       .subscribe((filter) => this.store.filter$.next(filter));
 
     toObservable(this.filter)
       .pipe(
-        map(({ startdate, enddate, channels, clients, rows, offset }) => ({
+        map(({ startdate, enddate, channels, clients, sentimentCategories, rows, offset }) => ({
           startdate: startdate ? moment(startdate).format('YYYY-MM-DD') : undefined,
           enddate: enddate ? moment(enddate).format('YYYY-MM-DD') : undefined,
           channels: channels.join(','),
+          sentimentCategories: sentimentCategories.join(','),
           clients,
         })),
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),

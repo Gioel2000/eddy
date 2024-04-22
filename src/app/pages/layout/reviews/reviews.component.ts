@@ -13,6 +13,7 @@ import { RatingsComponent } from './ui/ratings.component';
 import { HeaderReviewComponent } from '../../../ui/single-review/review-header.component';
 import { BodyReviewComponent } from '../../../ui/single-review/review-body.component';
 import { SentimentComponent } from './ui/sentiment-words.component';
+import { CategoriesDropdownComponent } from './categories/categories.component';
 
 @Component({
   selector: 'reviews',
@@ -29,6 +30,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
     HeaderReviewComponent,
     BodyReviewComponent,
     SentimentComponent,
+    CategoriesDropdownComponent,
   ],
   template: `
     <ng-template #loading>
@@ -66,7 +68,9 @@ import { SentimentComponent } from './ui/sentiment-words.component';
               role="list"
               class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
             >
-              <div class="grid gap-4 sm:grid-cols-5 w-full sm:w-auto sm:max-w-full gap-y-6">
+              <div
+                class="grid gap-4 grid-cols-full sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-6 w-full xl:w-auto max-w-full gap-y-6"
+              >
                 <date-picker
                   class="col-span-1"
                   [i18n]="'STARTDATE'"
@@ -87,16 +91,9 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
                 <types-dropdown class="col-span-1"></types-dropdown>
-                <!-- <button
-                  type="button"
-                  class="group flex flex-row items-center justify-center text-white dark:text-dark bg-zinc-800 dark:bg-zinc-200 rounded-xl font-bold px-2.5 py-1.5 shadow-sm hover:bg-zinc-900 hover:dark:bg-zinc-100 text-sm leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30 transition ease-in-out duration-200"
-                  (click)="reviews.reset()"
-                >
-                  <span class="">{{ 'RESET' | translate }}</span>
-                </button> -->
-
+                <categories-dropdown class="col-span-1"></categories-dropdown>
                 <a
-                  class="flex flex-row items-center justify-center rounded-xl px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+                  class="flex flex-row items-center justify-center rounded-xl col-span-full xl:col-span-1 px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
                   (click)="reviews.reset()"
                 >
                   {{ 'RESET' | translate }}
