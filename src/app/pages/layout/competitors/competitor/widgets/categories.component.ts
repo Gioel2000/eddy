@@ -306,6 +306,9 @@ export class CategoriesComponent {
   private calculateSentimentRating(word: SentimentTO) {
     const { bad, good } = word;
     const total = bad + good;
+
+    if (total === 0) return 0;
+
     const rating = (good * 5) / total;
 
     return rating;

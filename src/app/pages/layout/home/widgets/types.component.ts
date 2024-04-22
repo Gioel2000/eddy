@@ -9,6 +9,8 @@ import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 import { TypeTO } from '../../../../store/dashboard/interfaces/dashboard';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { ReviewsService } from '../../reviews/reviews.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'types-graph',
@@ -52,17 +54,19 @@ import { map } from 'rxjs';
         <div class="mt-6">
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
-              <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkType('Family')"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'FAMILY' | translate }}</p>
-                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ family().totalCount | numb : translate.currentLang : 2 }})
-                      </p> -->
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
                     </div>
 
                     <div class="flex flex-row items-end">
@@ -174,10 +178,11 @@ import { map } from 'rxjs';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkType('Couple')"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -185,9 +190,10 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'COUPLE' | translate }}</p>
-                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ couple().totalCount | numb : translate.currentLang : 2 }})
-                      </p> -->
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
                     </div>
 
                     <div class="flex flex-row items-end">
@@ -299,10 +305,11 @@ import { map } from 'rxjs';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkType('Solo')"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -310,9 +317,10 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'SOLO' | translate }}</p>
-                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ solo().totalCount | numb : translate.currentLang : 2 }})
-                      </p> -->
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
                     </div>
 
                     <div class="flex flex-row items-end">
@@ -424,10 +432,11 @@ import { map } from 'rxjs';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkType('Business')"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -435,9 +444,10 @@ import { map } from 'rxjs';
 
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'BUSINESS' | translate }}</p>
-                      <!-- <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ business().totalCount | numb : translate.currentLang : 2 }})
-                      </p> -->
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition ease-in-out duration-100"
+                      ></span>
                     </div>
 
                     <div class="flex flex-row items-end">
@@ -549,7 +559,7 @@ import { map } from 'rxjs';
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </dl>
         </div>
@@ -567,6 +577,8 @@ import { map } from 'rxjs';
 export class TypesComponent {
   store = inject(DashboardStore).typologies;
   translate = inject(TranslateService);
+  reviews = inject(ReviewsService);
+  router = inject(Router);
 
   family = signal({
     totalCount: 0,
@@ -613,6 +625,15 @@ export class TypesComponent {
         this.solo.set(this.filterByType(data, 'solo'));
         this.business.set(this.filterByType(data, 'business'));
       });
+  }
+
+  checkType(type: 'Family' | 'Couple' | 'Solo' | 'Business') {
+    this.reviews.filter.set({
+      ...this.reviews.filter(),
+      clients: [type],
+    });
+
+    this.router.navigate(['/reviews']);
   }
 
   private filterByType(data: TypeTO[], clientType: string) {

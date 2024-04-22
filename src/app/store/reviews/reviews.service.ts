@@ -1,23 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
-import {
-  Observable,
-  Subject,
-  catchError,
-  combineLatest,
-  distinctUntilChanged,
-  filter,
-  forkJoin,
-  interval,
-  map,
-  of,
-  switchMap,
-} from 'rxjs';
+import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 const INIT_FILTER = {

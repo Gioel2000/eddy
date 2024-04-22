@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, computed, effect, inject } from '@angular/core';
 import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
@@ -139,20 +139,20 @@ export class TypesDropdownComponent {
   thereIsCouple = computed(() => this.reviews.filter().clients.includes('Couple'));
   thereIsBusiness = computed(() => this.reviews.filter().clients.includes('Business'));
 
-  toggle(service: string) {
+  toggle(client: string) {
     const clients = this.reviews.filter().clients;
-    const thereIsService = clients.includes(service);
+    const thereIsService = clients.includes(client);
 
     if (thereIsService) {
       this.reviews.filter.set({
         ...this.reviews.filter(),
-        clients: clients.filter((channel) => channel !== service),
+        clients: clients.filter((channel) => channel !== client),
         offset: 0,
       });
     } else {
       this.reviews.filter.set({
         ...this.reviews.filter(),
-        clients: [...clients, service],
+        clients: [...clients, client],
         offset: 0,
       });
     }

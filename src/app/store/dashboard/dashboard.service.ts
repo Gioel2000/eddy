@@ -214,7 +214,7 @@ export class DashboardStore {
                 startdate: filter.startdate,
                 enddate: filter.enddate,
                 channels: 'thefork,tripadvisor,google',
-                rows: 100,
+                rows: 5,
                 offset: 0,
                 clients: [],
               })

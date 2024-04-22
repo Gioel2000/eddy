@@ -205,8 +205,6 @@ export class StructureStore {
         error: (error) => {
           this.selectedState$.next('error');
           this.router.navigate(['/structures']);
-
-          console.log(error, 'error');
         },
       });
   }

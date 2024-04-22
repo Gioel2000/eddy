@@ -99,7 +99,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
                   class="flex flex-row items-center justify-center rounded-xl px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
                   (click)="reviews.reset()"
                 >
-                  <span class="">{{ 'RESET' | translate }}</span>
+                  {{ 'RESET' | translate }}
                 </a>
               </div>
             </ul>

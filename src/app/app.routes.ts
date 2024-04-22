@@ -36,7 +36,12 @@ export const routes: Routes = [
       {
         path: 'reviews',
         component: ReviewsComponent,
-        data: { show: true, i18n: 'REVIEWS', icon: 'star.svg' },
+        data: {
+          show: true,
+          i18n: 'REVIEWS',
+          icon: 'star.svg',
+          queryParams: ['client', 'channel'],
+        },
         canActivate: [CookieGuard],
       },
       {

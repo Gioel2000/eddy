@@ -17,8 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
       <label
         for="name"
         class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
-        >{{ 'TRANSLATE' | translate }}</label
       >
+        <span [inlineSVG]="'language.svg'" class="svg-icon-8 text-zinc-500 stroke-[1.8]"></span>
+      </label>
       <button
         type="button"
         class="block w-full ring-1  ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"

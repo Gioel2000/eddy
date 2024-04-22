@@ -8,6 +8,8 @@ import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { ReviewsService } from '../../reviews/reviews.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'channels-graph',
@@ -51,8 +53,9 @@ import { map } from 'rxjs';
         <div class="mt-6">
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4 2xl:grid-cols-3">
-              <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkChannel('google')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -65,7 +68,13 @@ import { map } from 'rxjs';
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'GOOGLE' | translate }}</p>
+                    <div class="flex flex-row items-center justify-between">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'GOOGLE' | translate }}</p>
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
+                    </div>
                     <div class="flex items-center xl:col-span-1">
                       <div class="flex items-center py-1">
                         <svg
@@ -169,7 +178,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
+                    <p class="text-xs font-semibold tabular-nums text-zinc-300 dark:text-zinc-700">
                       {{ google().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (google().filteredCount) {
@@ -186,10 +195,11 @@ import { map } from 'rxjs';
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkChannel('tripadvisor')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -202,8 +212,14 @@ import { map } from 'rxjs';
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'TRIPADVISOR' | translate }}</p>
-                    <div class="flex items-center xl:col-span-1">
+                    <div class="flex flex-row items-center justify-between mb-1">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'TRIPADVISOR' | translate }}</p>
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
+                    </div>
+                    <div class="flex items-center xl:col-span-1 mb-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
@@ -311,7 +327,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
+                    <p class="text-xs font-semibold tabular-nums text-zinc-300 dark:text-zinc-700">
                       {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (tripadvisor().filteredCount) {
@@ -328,10 +344,11 @@ import { map } from 'rxjs';
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 px-4 py-3 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-700/50 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                (click)="checkChannel('thefork')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -344,8 +361,16 @@ import { map } from 'rxjs';
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'THE_FORK' | translate }}</p>
-                    <div class="flex items-center xl:col-span-1">
+
+                    <div class="flex flex-row items-center justify-between mb-1">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'THE_FORK' | translate }}</p>
+                      <span
+                        [inlineSVG]="'share-up-right.svg'"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                      ></span>
+                    </div>
+
+                    <div class="flex items-center xl:col-span-1 mb-1">
                       <div class="flex items-center py-1">
                         <svg
                           [ngClass]="{
@@ -448,7 +473,7 @@ import { map } from 'rxjs';
                         }
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-300 dark:text-zinc-700">
+                    <p class="text-xs font-semibold tabular-nums text-zinc-300 dark:text-zinc-700">
                       {{ thefork().totalCount | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                       @if (thefork().filteredCount) {
@@ -465,7 +490,7 @@ import { map } from 'rxjs';
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </dl>
         </div>
@@ -483,6 +508,8 @@ import { map } from 'rxjs';
 export class ChannelsComponent {
   store = inject(DashboardStore).channels;
   translate = inject(TranslateService);
+  reviews = inject(ReviewsService);
+  router = inject(Router);
 
   google = signal({
     totalCount: 0,
@@ -540,5 +567,14 @@ export class ChannelsComponent {
           });
         }
       });
+  }
+
+  checkChannel(channel: string) {
+    this.reviews.filter.set({
+      ...this.reviews.filter(),
+      channels: [channel],
+    });
+
+    this.router.navigate(['/reviews']);
   }
 }

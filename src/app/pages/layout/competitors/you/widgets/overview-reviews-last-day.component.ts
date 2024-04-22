@@ -1094,7 +1094,7 @@ export class OverviewReviewsLastDayComponent {
 
   totalReviews = computed(() => this.store().data.length);
   averageRating = computed(
-    () => this.store().data.reduce((acc, review) => acc + review.rating, 0) / this.totalReviews()
+    () => this.store().data.reduce((acc, review) => acc + review.rating, 0) / this.totalReviews() || 0
   );
 
   tripadvisor = computed(() => {
