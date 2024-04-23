@@ -242,12 +242,20 @@ export class CompetitorsStore {
                     `${environment.apiUrl}/api/competitors/${competitorsId}/clientType/grouped`,
                     filterData
                   ),
-                  reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitorsId}/last/week/2`),
-                }).pipe(
-                  filter(
-                    (response) =>
-                      !!response.reputation && !!response.rating && !!response.clientTypes && !!response.reviews
+                  categories: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/category/grouped`,
+                    filterData
                   ),
+                  sentiment: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/sentiment/categories`,
+                    filterData
+                  ),
+                  reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitorsId}/last/week/2`),
+                  channelsRatings: this.http.post(
+                    `${environment.apiUrl}/api/competitors/${competitorsId}/channel/grouped`,
+                    filterData
+                  ),
+                }).pipe(
                   map((response) => ({ ...data, ...response })),
                   map((data) => data as CompetitorModel),
                   tap((response) => {

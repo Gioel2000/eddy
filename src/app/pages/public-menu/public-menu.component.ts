@@ -126,7 +126,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
               <div class="mt-6">
                 <div class="sm:hidden">
                   <div
-                    class="min-w-36 w-full border-none md:border-l border-zinc-700/50"
+                    class="sm:min-w-36 w-full border-none md:border-l border-zinc-700/50"
                     (clickOutside)="dropdown.close()"
                   >
                     <div class="relative">

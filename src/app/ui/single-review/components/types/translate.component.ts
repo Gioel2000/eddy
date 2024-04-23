@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, InlineSVGModule, ClickOutsideDirective, TranslateModule, ReactiveFormsModule],
   template: ` <div
-    class="min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
+    class="sm:min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
     (clickOutside)="close()"
   >
     <div class="relative">

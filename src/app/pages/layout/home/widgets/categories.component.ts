@@ -54,14 +54,14 @@ import { Router } from '@angular/router';
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               @for (category of categories(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark"
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkCategory(category.category)"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
                         {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
                       </p>
                       <span
@@ -182,14 +182,14 @@ import { Router } from '@angular/router';
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark"
+                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkCategory(word.category)"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
                         {{ 'REVIEWS_CATEGORIES.' + (word.category | uppercase) + '.DESC' | translate }}
                       </p>
                       <span

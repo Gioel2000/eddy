@@ -14,6 +14,7 @@ import { HeaderReviewComponent } from '../../../ui/single-review/review-header.c
 import { BodyReviewComponent } from '../../../ui/single-review/review-body.component';
 import { SentimentComponent } from './ui/sentiment-words.component';
 import { CategoriesDropdownComponent } from './categories/categories.component';
+import { WordDropdownComponent } from './word/word.component';
 
 @Component({
   selector: 'reviews',
@@ -31,6 +32,7 @@ import { CategoriesDropdownComponent } from './categories/categories.component';
     BodyReviewComponent,
     SentimentComponent,
     CategoriesDropdownComponent,
+    WordDropdownComponent,
   ],
   template: `
     <ng-template #loading>
@@ -69,7 +71,7 @@ import { CategoriesDropdownComponent } from './categories/categories.component';
               class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
             >
               <div
-                class="grid gap-4 grid-cols-full sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-6 w-full xl:w-auto max-w-full gap-y-6"
+                class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-7 2xl:grid-cols-7 w-full xl:w-auto max-w-full gap-y-6"
               >
                 <date-picker
                   class="col-span-1"
@@ -78,6 +80,7 @@ import { CategoriesDropdownComponent } from './categories/categories.component';
                   [limitStart]="limitStart"
                   [limitEnd]="enddate() || now"
                   [rapidDates]="[]"
+                  [focus]="true"
                   (onDateSet)="setStartDate($event)"
                 ></date-picker>
                 <date-picker
@@ -87,13 +90,15 @@ import { CategoriesDropdownComponent } from './categories/categories.component';
                   [limitStart]="startdate() || limitStart"
                   [limitEnd]="now"
                   [rapidDates]="[]"
+                  [focus]="true"
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
                 <types-dropdown class="col-span-1"></types-dropdown>
                 <categories-dropdown class="col-span-1"></categories-dropdown>
+                <word-dropdown class="col-span-1"></word-dropdown>
                 <a
-                  class="flex flex-row items-center justify-center rounded-xl col-span-full xl:col-span-1 px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+                  class="flex flex-row items-center justify-center rounded-xl col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
                   (click)="reviews.reset()"
                 >
                   {{ 'RESET' | translate }}

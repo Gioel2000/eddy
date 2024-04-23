@@ -12,7 +12,7 @@ import { ReviewsService } from '../reviews.service';
   standalone: true,
   imports: [CommonModule, InlineSVGModule, ClickOutsideDirective, TranslateModule, ReactiveFormsModule],
   template: ` <div
-    class="min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
+    class="sm:min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
     (clickOutside)="dropdown.close()"
   >
     <div class="relative">
@@ -24,13 +24,14 @@ import { ReviewsService } from '../reviews.service';
       <button
         type="button"
         class="block w-full ring-1  ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
-        id="menu-button"
-        aria-expanded="true"
-        aria-haspopup="true"
+        [ngClass]="{
+          'ring-2 ring-accent dark:ring-accentDark': checked(),
+          'ring-1 ring-zinc-300 dark:ring-zinc-700/50': !checked()
+        }"
         (click)="dropdown.toggle()"
       >
         <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-full sm:max-w-24 capitalize">{{
+          <span class="truncate max-w-28 md:max-w-full xl:max-w-24 capitalize">{{
             checkedChannels() || ('NO_CHANNEL' | translate)
           }}</span>
           <span
@@ -121,6 +122,8 @@ export class ChannelsDropdownComponent {
   thereIsTheFork = computed(() => this.reviews.filter().channels.includes('thefork'));
   thereIsGoogle = computed(() => this.reviews.filter().channels.includes('google'));
   thereIsTripAdvisor = computed(() => this.reviews.filter().channels.includes('tripadvisor'));
+
+  checked = computed(() => !(this.thereIsGoogle() && this.thereIsTheFork() && this.thereIsTripAdvisor()));
 
   toggle(service: string) {
     const channels = this.reviews.filter().channels;

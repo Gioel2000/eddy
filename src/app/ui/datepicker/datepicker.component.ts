@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, inject, input, signal } from '@angular/core';
+import { Component, EventEmitter, Output, computed, inject, input, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -47,7 +47,7 @@ export interface CalendarModel {
   ],
   template: `
     <div
-      class="min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
+      class="sm:min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
       (clickOutside)="close()"
     >
       <div class="relative">
@@ -58,6 +58,10 @@ export interface CalendarModel {
         >
         <button
           class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+          [ngClass]="{
+            'ring-2 ring-accent dark:ring-accentDark': showRing(),
+            'ring-1 ring-zinc-300 dark:ring-zinc-700/50': !showRing()
+          }"
           (click)="toggle()"
         >
           <div class="flex flex-row items-center justify-between">
@@ -184,6 +188,7 @@ export class DatePickerComponent {
   i18n = input.required<string>();
   limitStart = input.required<Date>();
   limitEnd = input.required<Date>();
+  focus = input<boolean>();
   rapidDates = input.required<
     {
       key: string;
@@ -197,6 +202,7 @@ export class DatePickerComponent {
   filter = signal({ month: moment().month(), year: moment().year() });
   isOpen = signal(false);
   isVisible = signal(false);
+  showRing = computed(() => this.focus() && this.date());
 
   constructor() {
     toObservable(this.filter)

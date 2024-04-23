@@ -56,6 +56,7 @@ export class ReviewsStore {
     rows: number;
     offset: number;
     sentimentCategories: string[];
+    sentimentWords: string[];
   }>();
 
   setIsDownloading$ = new Subject<boolean>();
@@ -157,6 +158,7 @@ export class ReviewsStore {
             rows: 0,
             offset: 5,
             sentimentCategories: [],
+            sentimentWords: [],
           });
         }
 
