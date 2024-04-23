@@ -93,13 +93,13 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
                 <you></you>
 
                 @switch (competitors.others.state()) { @case('loaded') { @for (competitor of
-                competitors.others.competitor(); track $index) {
+                competitors.others.competitors(); track $index) {
                 <competitor
                   [competitor]="competitor"
                   [state]="competitors.others.state()"
                   (delete)="delete($event)"
                 ></competitor>
-                } @if (competitors.others.competitor().length < 3) {
+                } @if (competitors.others.competitors().length < 3) {
                 <button
                   type="button"
                   class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"

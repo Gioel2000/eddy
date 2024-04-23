@@ -53,7 +53,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4">
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -177,7 +177,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -301,7 +301,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -425,7 +425,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-700/50 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">

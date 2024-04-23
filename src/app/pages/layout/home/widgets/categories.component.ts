@@ -92,8 +92,8 @@ import { Router } from '@angular/router';
                       <div class="flex items-center pt-1">
                         <svg
                           [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.filteredRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': category.filteredRating < 1
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 1,
+                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 1
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -109,8 +109,8 @@ import { Router } from '@angular/router';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.filteredRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': category.filteredRating < 2
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 2,
+                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 2
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -126,8 +126,8 @@ import { Router } from '@angular/router';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.filteredRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': category.filteredRating < 3
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 3,
+                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 3
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -143,8 +143,8 @@ import { Router } from '@angular/router';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.filteredRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': category.filteredRating < 4
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 4,
+                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 4
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -160,8 +160,8 @@ import { Router } from '@angular/router';
                         </svg>
                         <svg
                           [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.filteredRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': category.filteredRating < 5
+                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 5,
+                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 5
                           }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"

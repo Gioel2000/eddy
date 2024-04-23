@@ -46,7 +46,7 @@ export class CompetitorsStore {
     channels: ['thefork', 'tripadvisor', 'google'],
   });
 
-  competitor = computed(() => this.store().data);
+  competitors = computed(() => this.store().data);
   state = computed(() => this.store().state);
 
   private state$ = new Subject<StateModel>();
@@ -58,7 +58,7 @@ export class CompetitorsStore {
     const subscription = interval(3000)
       .pipe(
         untilDestroyed(this),
-        filter(() => this.competitor().some((competitor) => competitor.isDownloading)),
+        filter(() => this.competitors().some((competitor) => competitor.isDownloading)),
         switchMap(() => {
           const competitorsIds = this.structure.selected().competitors;
 
@@ -78,7 +78,7 @@ export class CompetitorsStore {
       )
       .subscribe((newDownload) => {
         newDownload.forEach(({ competitorId, newIsDownloading }) => {
-          const competitor = this.competitor().find((competitor) => competitor._id === competitorId);
+          const competitor = this.competitors().find((competitor) => competitor._id === competitorId);
           if (!competitor) return;
           if (!competitor.reputation || !competitor.rating || !competitor.clientTypes || !competitor.reviews) return;
 

@@ -102,6 +102,7 @@ import { CategoriesComponent } from './widgets/categories.component';
         <div></div>
         } @defer (on viewport; prefetch on idle) {
         <categories-graph
+          [id]="competitor()._id"
           [categories]="competitor().categories"
           [sentiment]="competitor().sentiment"
           [state]="state()"

@@ -132,7 +132,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
                     <div class="relative">
                       <button
                         type="button"
-                        class="block w-full ring-1  ring-zinc-700/50 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-dark text-zinc-300 shadow-sm placeholder:text-zinc-600 text-sm leading-6"
+                        class="block w-full ring-1  ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-dark text-zinc-300 shadow-sm placeholder:text-zinc-600 text-sm leading-6"
                         id="menu-button"
                         aria-expanded="true"
                         aria-haspopup="true"
