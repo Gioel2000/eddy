@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, effect, inject } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  computed,
+  effect,
+  inject,
+} from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,7 +27,7 @@ import { filter, forkJoin, map } from 'rxjs';
   standalone: true,
   template: `
     <ng-template #loading>
-      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8">
         <div class="flex flex-row items-center justify-center w-full">
           <loader></loader>
         </div>
@@ -25,7 +35,7 @@ import { filter, forkJoin, map } from 'rxjs';
     </ng-template>
 
     <ng-template #empty>
-      <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
@@ -34,7 +44,7 @@ import { filter, forkJoin, map } from 'rxjs';
     </ng-template>
 
     <ng-template #error>
-      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
@@ -43,7 +53,7 @@ import { filter, forkJoin, map } from 'rxjs';
     </ng-template>
 
     <ng-template #loaded>
-      <div class="lg:col-span-4">
+      <div #container class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-200">
             {{ 'CATEGORIES' | translate }}
@@ -318,7 +328,7 @@ import { filter, forkJoin, map } from 'rxjs';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-800 py-6">
+    <div class="flex flex-col border-b border-zinc-800 py-6 h-[34rem] overflow-y-auto">
       @switch (state()) { @case ('loaded') {
       <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('error') {
@@ -370,15 +380,17 @@ export class CategoriesComponent {
     }));
   });
 
+  constructor() {}
+
   getCategoryVoteCompetitors(category: string) {
     const competitors = this.competitors.others.competitors();
     const state = this.competitors.others.state();
 
     if (state !== 'loaded') return 0;
 
-    const categoryVotes = competitors.map(
-      (competitor) => competitor.categories?.find((cat) => cat.category === category)?.totalRating || 0
-    );
+    const categoryVotes = competitors
+      .map((competitor) => competitor.categories?.find((cat) => cat.category === category)?.totalRating || 0)
+      .filter((rating) => rating !== 0);
 
     return categoryVotes.reduce((acc, curr) => acc + curr, 0) / categoryVotes.length;
   }
@@ -393,7 +405,8 @@ export class CategoriesComponent {
       .map((competitor) => competitor.sentiment)
       .flat()
       .filter((word) => word.category === category)
-      .map((word) => this.calculateSentimentRating(word));
+      .map((word) => this.calculateSentimentRating(word))
+      .filter((rating) => rating !== 0);
 
     return categoryVotes.reduce((acc, curr) => acc + curr, 0) / categoryVotes.length;
   }

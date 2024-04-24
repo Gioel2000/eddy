@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, ElementRef, ViewChild, computed, inject, input } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,7 @@ import { CompetitorsService } from '../../competitors.service';
   standalone: true,
   template: `
     <ng-template #loading>
-      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8">
         <div class="flex flex-row items-center justify-center w-full">
           <loader></loader>
         </div>
@@ -22,7 +22,7 @@ import { CompetitorsService } from '../../competitors.service';
     </ng-template>
 
     <ng-template #empty>
-      <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
@@ -31,7 +31,7 @@ import { CompetitorsService } from '../../competitors.service';
     </ng-template>
 
     <ng-template #error>
-      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
+      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
@@ -40,7 +40,7 @@ import { CompetitorsService } from '../../competitors.service';
     </ng-template>
 
     <ng-template #loaded>
-      <div class="lg:col-span-4">
+      <div #container class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
             {{ 'CATEGORIES' | translate }}
@@ -315,7 +315,7 @@ import { CompetitorsService } from '../../competitors.service';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
+    <div class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 h-[34rem] overflow-y-auto">
       @switch (state()) { @case ('loaded') {
       <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('error') {
@@ -349,6 +349,8 @@ export class CategoriesComponent {
     return categories.sort((a, b) => a.category.localeCompare(b.category));
   });
 
+  constructor() {}
+
   getCategoryVoteCompetitors(category: string) {
     const yourCategories = this.competitors.you.categories().data;
     const competitorCategories = this.competitors.others
@@ -359,7 +361,8 @@ export class CategoriesComponent {
 
     const categoryVotes = [...yourCategories, ...competitorCategories]
       .filter((cat) => cat.category === category)
-      .map((category) => category.totalRating);
+      .map((category) => category.totalRating)
+      .filter((rating) => rating !== 0);
 
     return categoryVotes.reduce((acc, curr) => acc + curr, 0) / categoryVotes.length;
   }
@@ -374,7 +377,8 @@ export class CategoriesComponent {
 
     const categoryVotes = [...yourSentiment, ...competitorSentiment]
       .filter((word) => word.category === category)
-      .map((word) => this.calculateSentimentRating(word));
+      .map((word) => this.calculateSentimentRating(word))
+      .filter((rating) => rating !== 0);
 
     return categoryVotes.reduce((acc, curr) => acc + curr, 0) / categoryVotes.length;
   }

@@ -9,6 +9,7 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
 import { ReputationModel } from '../../../../../store/competitors/interfaces/competitors';
 import { StateModel } from '../../../../../store/dashboard/interfaces/dashboard';
 import moment from 'moment';
+import { CompetitorsService } from '../../competitors.service';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -99,7 +100,7 @@ import moment from 'moment';
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: isBRPositive() ? ['#22c55e', '#facc15'] : ['#ef4444', '#facc15'],
+            domain: isBRPositive() ? ['#22c55e', '#facc15', '#8b5cf6'] : ['#ef4444', '#facc15', '#8b5cf6'],
           }"
           style="fill: #71717a;"
         >
@@ -116,9 +117,11 @@ import moment from 'moment';
   `,
 })
 export class BrandReputationComponent {
+  id = input.required<string>();
   reputation = input.required<ReputationModel>();
   state = input.required<StateModel>();
   translate = inject(TranslateService);
+  competitor = inject(CompetitorsService);
   linear = ScaleType.Linear;
 
   averageGraph = computed(() => {
@@ -149,6 +152,13 @@ export class BrandReputationComponent {
     const brandReputationOverTime = this.translate.instant('BRAND_REPUTATION_OVER_TIME');
     const brandReputationCurrent = this.translate.instant('BRAND_REPUTATION_CURRENT');
 
+    const competition = this.translate.instant('COMPETITION');
+    const competitors = this.competitor.others.competitors().filter((competitor) => competitor._id !== this.id());
+    const averageBrandReputation =
+      (competitors.map((competitor) => competitor.reputation.average).reduce((acc, value) => acc + value, 0) +
+        this.reputation().average) /
+      (competitors.length + 1);
+
     return [
       {
         name: brandReputationOverTime,
@@ -162,6 +172,13 @@ export class BrandReputationComponent {
         series: data.map(({ date, average: value }) => ({
           name: moment(date).locale(currentLang).format('DD/MM'),
           value: average,
+        })),
+      },
+      {
+        name: competition,
+        series: data.map(({ date }) => ({
+          name: moment(date).locale(currentLang).format('DD/MM'),
+          value: averageBrandReputation,
         })),
       },
     ];

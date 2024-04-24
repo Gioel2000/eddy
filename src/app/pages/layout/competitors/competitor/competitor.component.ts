@@ -89,7 +89,11 @@ import { CategoriesComponent } from './widgets/categories.component';
           </p>
         </div>
         } @else { @defer (on viewport; prefetch on idle) {
-        <brand-reputation-graph [reputation]="competitor().reputation" [state]="state()"></brand-reputation-graph>
+        <brand-reputation-graph
+          [id]="competitor()._id"
+          [reputation]="competitor().reputation"
+          [state]="state()"
+        ></brand-reputation-graph>
         } @placeholder {
         <div></div>
         } @loading {

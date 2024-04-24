@@ -8,6 +8,7 @@ import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import moment from 'moment';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentage.pipe';
+import { CompetitorsService } from '../../competitors.service';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -55,7 +56,7 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-100">
-            {{ store().data.average | numb : translate.currentLang : 1 }}
+            {{ competitor.you.brandReputation().data.average | numb : translate.currentLang : 1 }}
             <span class="text-sm font-semibold text-zinc-600"> / 5 </span>
           </dd>
           <dd
@@ -97,7 +98,7 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: isBRPositive() ? ['#22c55e', '#facc15'] : ['#ef4444', '#facc15'],
+            domain: isBRPositive() ? ['#22c55e', '#facc15', '#8b5cf6'] : ['#ef4444', '#facc15', '#8b5cf6'],
           }"
           style="fill: #71717a;"
         >
@@ -106,7 +107,7 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
     </ng-template>
 
     <div #container class="flex flex-col border-b border-zinc-800 py-6">
-      @switch (store().state) { @case ('loaded') {
+      @switch (competitor.you.brandReputation().state) { @case ('loaded') {
       <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case('error') {
       <ng-container [ngTemplateOutlet]="error"></ng-container>
@@ -119,24 +120,24 @@ import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentag
   `,
 })
 export class BrandReputationComponent {
-  store = inject(DashboardStore).brandReputation;
   translate = inject(TranslateService);
+  competitor = inject(CompetitorsService);
   linear = ScaleType.Linear;
 
   averageGraph = computed(() => {
-    const data = this.store()?.data?.graph || [];
+    const data = this.competitor.you.brandReputation().data?.graph || [];
     return data.reduce((acc, { average }) => acc + average, 0) / data.length;
   });
 
   isBRPositive = computed(() => {
-    const average = this.store()?.data?.average || 0;
+    const average = this.competitor.you.brandReputation().data?.average || 0;
     const averageGraph = this.averageGraph();
 
     return averageGraph > average ? '+' : averageGraph < average ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
-    const average = this.store()?.data?.average || 0;
+    const average = this.competitor.you.brandReputation().data?.average || 0;
     const averageGraph = this.averageGraph();
     const growth = ((averageGraph - average) / average) * 100;
 
@@ -144,12 +145,18 @@ export class BrandReputationComponent {
   });
 
   data = computed(() => {
-    const average = this.store()?.data?.average || 0;
-    const data = this.store()?.data?.graph || [];
+    const average = this.competitor.you.brandReputation().data?.average || 0;
+    const data = this.competitor.you.brandReputation().data?.graph || [];
     const { currentLang } = this.translate;
 
     const brandReputationOverTime = this.translate.instant('BRAND_REPUTATION_OVER_TIME');
     const brandReputationCurrent = this.translate.instant('BRAND_REPUTATION_CURRENT');
+    const competition = this.translate.instant('COMPETITION');
+    const averageBrandReputation =
+      this.competitor.others
+        .competitors()
+        .map((competitor) => competitor?.reputation?.average || 0)
+        .reduce((acc, value) => acc + value, 0) / this.competitor.others.competitors().length;
 
     return [
       {
@@ -164,6 +171,13 @@ export class BrandReputationComponent {
         series: data.map(({ date, average: value }) => ({
           name: moment(date).locale(currentLang).format('DD/MM'),
           value: average,
+        })),
+      },
+      {
+        name: competition,
+        series: data.map(({ date }) => ({
+          name: moment(date).locale(currentLang).format('DD/MM'),
+          value: averageBrandReputation,
         })),
       },
     ];

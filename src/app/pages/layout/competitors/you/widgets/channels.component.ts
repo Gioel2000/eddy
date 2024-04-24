@@ -40,7 +40,7 @@ import { DashboardStore } from '../../../../../store/dashboard/dashboard.service
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-800 py-6">
+    <div #container class="flex flex-col border-b border-zinc-800 px-px py-6 h-[30rem] overflow-y-auto">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">

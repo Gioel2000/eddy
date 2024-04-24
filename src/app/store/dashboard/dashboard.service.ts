@@ -16,19 +16,7 @@ import {
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import moment from 'moment';
-import {
-  Observable,
-  Subject,
-  catchError,
-  combineLatest,
-  distinctUntilChanged,
-  filter,
-  forkJoin,
-  interval,
-  map,
-  of,
-  switchMap,
-} from 'rxjs';
+import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
 
 export interface DashboardStoreModel {
   brandReputation: {
