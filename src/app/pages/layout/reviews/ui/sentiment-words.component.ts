@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { ReviewsStore } from '../../../../store/reviews/reviews.service';
+import { ReviewsService } from '../reviews.service';
 
 @Component({
   selector: 'sentiment-graph',
@@ -159,9 +160,17 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
             @for (word of words().slice(0, 20); track $index) {
             <div class="flex items-center text-sm">
               <dt class="flex flex-1 items-center">
-                <p class="w-20 truncate font-medium text-zinc-600 dark:text-zinc-400">
-                  {{ word.word }}
-                </p>
+                <a class="group flex flex-row items-center gap-x-2 w-24 cursor-pointer" (click)="toggle(word.word)">
+                  <p
+                    class="w-20 truncate font-medium text-zinc-600 dark:text-zinc-400 group-hover:font-semibold group-hover:text-accent dark:group-hover:text-accentDark transition-all transform-gpu ease-in-out duration-300"
+                  >
+                    {{ word.word }}
+                  </p>
+                  <span
+                    [inlineSVG]="'share-up-right.svg'"
+                    class="group-hover:block w-4 hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition-all transform-gpu ease-in-out duration-300"
+                  ></span>
+                </a>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div class="flex flex-row items-center gap-x-1">
@@ -238,9 +247,11 @@ import { ReviewsStore } from '../../../../store/reviews/reviews.service';
   `,
 })
 export class SentimentComponent {
-  sentiment = inject(ReviewsStore).sentiment;
-  sentimentState = inject(ReviewsStore).sentimentState;
   translate = inject(TranslateService);
+  reviews = inject(ReviewsService);
+
+  sentiment = computed(() => this.reviews.store.sentiment());
+  sentimentState = computed(() => this.reviews.store.sentimentState());
 
   rating = computed(() => {
     const badCount = this.sentiment()
@@ -278,7 +289,6 @@ export class SentimentComponent {
       .reduce((a, b) => a + b, 0);
 
     const total = goods + bads + neutral;
-
     const percentage = (goods * 100) / total;
 
     return percentage;
@@ -298,7 +308,6 @@ export class SentimentComponent {
       .reduce((a, b) => a + b, 0);
 
     const total = goods + bads + neutral;
-
     const percentage = (bads * 100) / total;
 
     return percentage;
@@ -318,9 +327,19 @@ export class SentimentComponent {
       .reduce((a, b) => a + b, 0);
 
     const total = goods + bads + neutral;
-
     const percentage = (neutral * 100) / total;
 
     return percentage;
   });
+
+  toggle(word: string) {
+    const sentimentWords = this.reviews.filter().sentimentWords;
+    const thereIsWord = sentimentWords.includes(word);
+
+    this.reviews.filter.set({
+      ...this.reviews.filter(),
+      sentimentWords: thereIsWord ? sentimentWords.filter((cat) => cat !== word) : [...sentimentWords, word],
+      offset: 0,
+    });
+  }
 }
