@@ -9,6 +9,7 @@ import { MenuService } from '../menu.service';
 import { DishComponent } from './dish/dish.component';
 import { DishTO } from '../../../../store/menu/interfaces/menu';
 import { MenuCategoriesComponent } from '../categories/categories.component';
+import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
 
 @Component({
   selector: 'menu-dishes',
@@ -99,6 +100,7 @@ export class MenuDishesComponent {
   store = inject(MenuStoreService);
   dialog = inject(DialogService);
   menu = inject(MenuService);
+  generalDialog = inject(GeneralDialogService);
 
   onAdd() {
     this.menu.dishMode.set('add');
@@ -113,6 +115,10 @@ export class MenuDishesComponent {
   }
 
   deleteDish(dish: DishTO) {
-    this.store.deleteDish(dish._id);
+    this.generalDialog.title.set(dish.name);
+    this.generalDialog.descriptioni18n.set('DELETE_DISH_CONFIRM');
+    this.generalDialog.mode.set('boolean');
+    this.generalDialog.fuction.set(() => this.store.deleteDish(dish._id));
+    this.generalDialog.openDialog();
   }
 }

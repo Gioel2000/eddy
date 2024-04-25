@@ -8,6 +8,7 @@ import { MenuService } from '../menu.service';
 import { DialogService } from './add/dialog.service';
 import { MenuTO } from '../../../../store/menu/interfaces/menu';
 import { ShareDialogService } from './share/dialog.service';
+import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
 
 @Component({
   selector: 'menu-menus',
@@ -88,7 +89,7 @@ import { ShareDialogService } from './share/dialog.service';
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
-                <a class="text-red-500 hover:text-red-700 dark:hover:text-red-300" (click)="onDelete(menu._id)"
+                <a class="text-red-500 hover:text-red-700 dark:hover:text-red-300" (click)="onDelete(menu)"
                   ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                 ></a>
               </div>
@@ -112,6 +113,7 @@ export class MenusMenuComponent {
   menu = inject(MenuService);
   dialog = inject(DialogService);
   shareDialog = inject(ShareDialogService);
+  generalDialog = inject(GeneralDialogService);
 
   onAdd() {
     this.menu.menuMode.set('add');
@@ -130,7 +132,11 @@ export class MenusMenuComponent {
     this.menu.menuId.set(menuId);
   }
 
-  onDelete(id: string) {
-    this.store.deleteMenu(id);
+  onDelete(menu: MenuTO) {
+    this.generalDialog.title.set(menu.name);
+    this.generalDialog.descriptioni18n.set('DELETE_MENU_CONFIRM');
+    this.generalDialog.mode.set('boolean');
+    this.generalDialog.fuction.set(() => this.store.deleteMenu(menu._id));
+    this.generalDialog.openDialog();
   }
 }

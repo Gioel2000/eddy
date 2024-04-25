@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { DialogService } from './add/dialog.service';
 import { CategoryTO } from '../../../../store/menu/interfaces/menu';
 import { MenuService } from '../menu.service';
+import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
 
 @Component({
   selector: 'menu-categories',
@@ -53,7 +54,7 @@ import { MenuService } from '../menu.service';
         <button
           type="button"
           class="group relative rounded p-1 m-1 w-[25px] hover:bg-zinc-500/20 dark:hover:bg-zinc-700/20 focus:outline-none transition ease-in-out duration-100"
-          (click)="onDelete(category._id)"
+          (click)="onDelete(category)"
         >
           <span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span>
         </button>
@@ -74,6 +75,7 @@ export class MenuCategoriesComponent {
   store = inject(MenuStoreService);
   dialog = inject(DialogService);
   menu = inject(MenuService);
+  generalDialog = inject(GeneralDialogService);
 
   onEdit(category: CategoryTO) {
     this.menu.categoryMode.set('edit');
@@ -87,7 +89,11 @@ export class MenuCategoriesComponent {
     this.dialog.openDialog();
   }
 
-  onDelete(id: string) {
-    this.store.deleteCategory(id);
+  onDelete(category: CategoryTO) {
+    this.generalDialog.title.set(category.name);
+    this.generalDialog.descriptioni18n.set('DELETE_CATEGORY_CONFIRM');
+    this.generalDialog.mode.set('boolean');
+    this.generalDialog.fuction.set(() => this.store.deleteCategory(category._id));
+    this.generalDialog.openDialog();
   }
 }

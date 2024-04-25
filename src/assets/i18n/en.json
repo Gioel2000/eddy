@@ -379,5 +379,11 @@
   "SEE_ALL": "See all",
   "NO_CATEGORIES": "No categories",
   "NO_WORDS": "No word",
-  "COMPETITION": "Competition"
+  "COMPETITION": "Competition",
+  "YES": "Yes",
+  "NO": "No",
+  "ARE_YOU_SURE": "Are you sure?",
+  "DELETE_DISH_CONFIRM": "Are you sure you want to eliminate this dish?",
+  "DELETE_CATEGORY_CONFIRM": "Are you sure you want to delete this category?",
+  "DELETE_MENU_CONFIRM": "Are you sure you want to eliminate this menu?"
 }

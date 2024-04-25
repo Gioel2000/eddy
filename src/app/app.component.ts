@@ -7,6 +7,7 @@ import { UserPanelComponent } from './ui/user/user.component';
 import { CreateRestaurantPanelComponent } from './ui/create-restaurant/create-restaurant.component';
 import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
 import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-competitor.component';
+import { GeneralDialogComponent } from './ui/dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -20,10 +21,17 @@ import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-co
     CreateRestaurantPanelComponent,
     RestaurantPanelComponent,
     CreateCompetitorPanelComponent,
+    GeneralDialogComponent,
   ],
   template: `
     @defer (on viewport; prefetch on idle) {
     <user-panel></user-panel>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <general-dialog></general-dialog>
     } @placeholder {
     <div></div>
     } @loading {
