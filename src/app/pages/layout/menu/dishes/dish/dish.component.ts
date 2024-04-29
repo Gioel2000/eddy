@@ -14,7 +14,7 @@ import { combineLatest, filter } from 'rxjs';
   standalone: true,
   template: `
     <div
-      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 bg-white dark:bg-[#171715] h-full max-h-[385px] pb-1"
+      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
     >
       <div class="w-full">
         <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">
@@ -23,13 +23,13 @@ import { combineLatest, filter } from 'rxjs';
               class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1  ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             >
               <a
-                class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#171715] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="edit.emit(dish())"
               >
                 <span class="svg-icon-7 stroke-2 text-amber-500" inlineSVG="pen-2.svg"></span>
               </a>
               <a
-                class="flex flex-row items-center rounded-r-md pr-2 pl-1.5 bg-white dark:bg-[#171715] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                class="flex flex-row items-center rounded-r-md pr-2 pl-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="delete.emit(dish())"
               >
                 <span class="svg-icon-7 stroke-2 text-red-500" inlineSVG="trash.svg"></span>

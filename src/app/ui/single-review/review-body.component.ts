@@ -190,7 +190,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
@@ -206,7 +206,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
                   >
                     <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-800 dark:text-zinc-200">{{
@@ -219,7 +219,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                   class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
                   >
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
@@ -317,12 +317,12 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
               <div *ngIf="(alreadyReplied$ | async) === false">
                 <button
-                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#171715] text-white bg-gradient-to-b from-black/55 via-[#171715] to-[#171715] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                   [disabled]="commentControl.invalid"
                   (click)="onCopyAndReply()"
                 >
                   <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-[#171715] h-full w-full px-3 py-2 rounded-[11px] cursor-pointer"
+                    class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[11px] cursor-pointer"
                   >
                     <span class="text-sm font-semibold">{{ 'COPY_SEND' | translate }}</span>
                     <span

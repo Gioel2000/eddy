@@ -70,12 +70,12 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
               hover:opacity-100
               ring-1
               dark:ring-0
-              ring-[#171715]
+              ring-[#1A1A1A]
               text-white
               bg-gradient-to-b
               from-black/55
-              via-[#171715]
-              to-[#171715]
+              via-[#1A1A1A]
+              to-[#1A1A1A]
               dark:from-white/10
               dark:via-white/5
               dark:to-white/5
@@ -92,7 +92,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
                 items-center
                 justify-center
                 gap-x-2
-                bg-[#171715]
+                bg-[#1A1A1A]
                 h-full
                 w-full
                 px-3

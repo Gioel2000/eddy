@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, computed, inject, input, signal } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, computed, inject, input, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -57,6 +57,7 @@ export interface CalendarModel {
           >{{ i18n() | translate }}</label
         >
         <button
+          #buttonElement
           class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
           [ngClass]="{
             'ring-2 ring-accent dark:ring-accentDark': showRing(),
@@ -71,14 +72,16 @@ export interface CalendarModel {
         </button>
         <div [ngClass]="{ hidden: !isOpen() }">
           <div
-            class="absolute left-0 z-10 mt-2 w-80 origin-top-left rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-800 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 transform-gpu"
+            class="absolute z-10 mt-2 w-80 rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-800 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 transform-gpu"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
             tabindex="-1"
             [ngClass]="{
               'opacity-100 scale-100': isVisible(),
-              'opacity-0 scale-90': !isVisible()
+              'opacity-0 scale-90': !isVisible(),
+              'left-0 origin-top-left ': direction() === 'left',
+              'right-0 origin-top-right': direction() === 'right'
             }"
           >
             <div role="none">
@@ -183,6 +186,8 @@ export interface CalendarModel {
   `,
 })
 export class DatePickerComponent {
+  @ViewChild('buttonElement', { read: ElementRef }) buttonElement: ElementRef | undefined;
+
   translate = inject(TranslateService);
   date = input<Date>();
   i18n = input.required<string>();
@@ -196,6 +201,8 @@ export class DatePickerComponent {
     }[]
   >();
 
+  direction = signal<'left' | 'right'>('left');
+
   @Output() onDateSet = new EventEmitter<Date>();
 
   calendarDays = signal<CalendarModel | null>(null);
@@ -207,15 +214,20 @@ export class DatePickerComponent {
   constructor() {
     toObservable(this.filter)
       .pipe(untilDestroyed(this))
-      .subscribe((date) => {
-        this.calendarDays.set(this.loadCalendarDays(date));
-      });
+      .subscribe((date) => this.calendarDays.set(this.loadCalendarDays(date)));
 
     toObservable(this.date)
       .pipe(untilDestroyed(this))
       .subscribe((date) => {
         date && this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
       });
+
+    setTimeout(() => {
+      const { innerWidth: windowWidth } = window;
+      const { right } = this.buttonElement?.nativeElement.getBoundingClientRect();
+
+      this.direction.set(right > windowWidth / 2 ? 'right' : 'left');
+    }, 0);
   }
 
   open() {

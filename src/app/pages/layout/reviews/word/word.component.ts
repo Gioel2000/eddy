@@ -1,4 +1,14 @@
-import { Component, OnInit, computed, effect, inject, WritableSignal, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  computed,
+  effect,
+  inject,
+  WritableSignal,
+  signal,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
@@ -27,6 +37,7 @@ import { filter, map, take, tap } from 'rxjs';
         >{{ 'WORDS' | translate }}</label
       >
       <button
+        #buttonElement
         type="button"
         class="block w-full ring-1 ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
         [ngClass]="{
@@ -54,7 +65,9 @@ import { filter, map, take, tap } from 'rxjs';
           tabindex="-1"
           [ngClass]="{
             'opacity-100 scale-100': dropdown.isVisible(),
-            'opacity-0 scale-90': !dropdown.isVisible()
+            'opacity-0 scale-90': !dropdown.isVisible(),
+            'left-0 origin-top-left ': direction() === 'left',
+            'right-0 origin-top-right': direction() === 'right'
           }"
         >
           <div class="py-2 px-3" role="none">
@@ -84,6 +97,8 @@ import { filter, map, take, tap } from 'rxjs';
   </div>`,
 })
 export class WordDropdownComponent {
+  @ViewChild('buttonElement', { read: ElementRef }) buttonElement: ElementRef | undefined;
+
   dropdown = inject(DropdownService);
   reviews = inject(ReviewsService);
   translate = inject(TranslateService);
@@ -97,6 +112,17 @@ export class WordDropdownComponent {
       map((sentiment) => sentiment.sort((a, b) => a.word.localeCompare(b.word)))
     )
   );
+
+  direction = signal<'left' | 'right'>('left');
+
+  constructor() {
+    setTimeout(() => {
+      const { innerWidth: windowWidth } = window;
+      const { right } = this.buttonElement?.nativeElement.getBoundingClientRect();
+
+      this.direction.set(right > windowWidth / 2 ? 'right' : 'left');
+    }, 0);
+  }
 
   thereIsThisWord(word: string) {
     return this.reviews.filter().sentimentWords.includes(word);

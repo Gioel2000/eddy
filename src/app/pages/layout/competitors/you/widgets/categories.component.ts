@@ -1,15 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  computed,
-  effect,
-  inject,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -18,8 +8,6 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { SentimentTO } from '../../../../../store/dashboard/interfaces/dashboard';
 import { CompetitorsService } from '../../competitors.service';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { filter, forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'categories-graph',

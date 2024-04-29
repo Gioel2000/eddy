@@ -71,11 +71,11 @@ import { map } from 'rxjs';
                 <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon-3 stroke-2"></span>
               </a>
               <button
-                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#171715] text-white bg-gradient-to-b from-black/55 via-[#171715] to-[#171715] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 (click)="restaurantPanelUI.openPanel()"
               >
                 <div
-                  class="flex flex-row items-center justify-center gap-x-2 bg-[#171715] p-3 rounded-[9998px] cursor-pointer"
+                  class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 rounded-[9998px] cursor-pointer"
                 >
                   <span class="svg-icon-3 stroke-2 text-zinc-100 dark:text-zinc-100" [inlineSVG]="'plus.svg'"></span>
                 </div>

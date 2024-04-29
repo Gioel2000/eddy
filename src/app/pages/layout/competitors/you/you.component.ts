@@ -56,13 +56,13 @@ import { CategoriesComponent } from './widgets/categories.component';
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-inset bg-[#171715] ring-zinc-800 min-h-screen shadow-sm w-96">
+    <div class="rounded-3xl ring-1 ring-inset bg-[#1A1A1A] ring-zinc-800 min-h-screen shadow-sm w-96">
       @switch(state()) { @case('loaded') {
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
           <img [src]="selected().image" alt="" class="h-full w-full object-cover object-center" />
         </span>
-        <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#171715]"></span>
+        <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#1A1A1A]"></span>
       </div>
       <div class="p-8 xl:p-10">
         <p class="text-sm leading-6 text-zinc-300 line-clamp-1">{{ selected().address }}, {{ selected().city }}</p>

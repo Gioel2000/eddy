@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
 import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
@@ -22,6 +22,7 @@ import { ReviewsService } from '../reviews.service';
         >{{ 'CHANNELS' | translate }}</label
       >
       <button
+        #buttonElement
         type="button"
         class="block w-full ring-1  ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
         [ngClass]="{
@@ -42,14 +43,16 @@ import { ReviewsService } from '../reviews.service';
       </button>
       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
         <div
-          class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
+          class="absolute z-10 mt-2 w-56 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
           tabindex="-1"
           [ngClass]="{
             'opacity-100 scale-100': dropdown.isVisible(),
-            'opacity-0 scale-90': !dropdown.isVisible()
+            'opacity-0 scale-90': !dropdown.isVisible(),
+            'left-0 origin-top-left ': direction() === 'left',
+            'right-0 origin-top-right': direction() === 'right'
           }"
         >
           <div class="py-2 px-3" role="none">
@@ -114,16 +117,27 @@ import { ReviewsService } from '../reviews.service';
   </div>`,
 })
 export class ChannelsDropdownComponent {
+  @ViewChild('buttonElement', { read: ElementRef }) buttonElement: ElementRef | undefined;
+
   dropdown = inject(DropdownService);
   reviews = inject(ReviewsService);
 
   checkedChannels = computed(() => this.reviews.filter().channels.join(', '));
-
   thereIsTheFork = computed(() => this.reviews.filter().channels.includes('thefork'));
   thereIsGoogle = computed(() => this.reviews.filter().channels.includes('google'));
   thereIsTripAdvisor = computed(() => this.reviews.filter().channels.includes('tripadvisor'));
-
   checked = computed(() => !(this.thereIsGoogle() && this.thereIsTheFork() && this.thereIsTripAdvisor()));
+
+  direction = signal<'left' | 'right'>('left');
+
+  constructor() {
+    setTimeout(() => {
+      const { innerWidth: windowWidth } = window;
+      const { right } = this.buttonElement?.nativeElement.getBoundingClientRect();
+
+      this.direction.set(right > windowWidth / 2 ? 'right' : 'left');
+    }, 0);
+  }
 
   toggle(service: string) {
     const channels = this.reviews.filter().channels;
