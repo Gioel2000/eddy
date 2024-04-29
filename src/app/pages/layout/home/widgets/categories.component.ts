@@ -361,7 +361,13 @@ export class CategoriesComponent {
 
   checkCategory(category: string) {
     this.reviews.filter.set({
-      ...this.reviews.filter(),
+      startdate: undefined,
+      enddate: undefined,
+      channels: ['thefork', 'tripadvisor', 'google'],
+      clients: [],
+      offset: 0,
+      rows: 5,
+      sentimentWords: [],
       sentimentCategories: [category],
     });
 

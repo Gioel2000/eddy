@@ -571,7 +571,13 @@ export class ChannelsComponent {
 
   checkChannel(channel: string) {
     this.reviews.filter.set({
-      ...this.reviews.filter(),
+      startdate: undefined,
+      enddate: undefined,
+      clients: [],
+      offset: 0,
+      rows: 5,
+      sentimentCategories: [],
+      sentimentWords: [],
       channels: [channel],
     });
 

@@ -218,3 +218,16 @@ input::-webkit-inner-spin-button {
 		#8b5cf6
 	);
 }
+
+.bg-rainbow-opacity-50 {
+  background: linear-gradient(
+    to right,
+    #fca5a5,
+    #fcd34d,
+    #bef264,
+    #5eead4,
+    #5eead4,
+    #93c5fd,
+    #c4b5fd
+  );
+}

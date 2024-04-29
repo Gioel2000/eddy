@@ -42,7 +42,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     </ng-template>
 
     <div class="flex flex-col gap-y-8 h-full">
-      <div class="flex">
+      <div class="flex flex-row items-start justify-start">
         <div class="flex-auto">
           <h1 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">
             {{ 'MENUS' | translate }}
@@ -51,13 +51,59 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
             {{ 'MENU_DESCRIPTION' | translate }}
           </p>
         </div>
-        <div class="mt-2 ml-8 flex-none">
+        <div class="flex flex-row mt-2 ml-8 flex-none">
           @if (store.dishesState() !== 'empty' && store.dishesState() !== 'loading'){
           <a
-            class="flex flex-row items-center justify-center rounded-full p-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+            class="
+              col-start-1
+              col-span-full
+              sm:col-start-2
+              sm:col-span-1
+              xl:col-span-1
+              rounded-xl
+              h-full
+              w-full
+              transition
+              ease-in-out
+              duration-200
+              opacity-90
+              hover:opacity-100
+              ring-1
+              dark:ring-0
+              ring-[#171715]
+              text-white
+              bg-gradient-to-b
+              from-black/55
+              via-[#171715]
+              to-[#171715]
+              dark:from-white/10
+              dark:via-white/5
+              dark:to-white/5
+              p-px
+              shadow-md
+              shadow-black/30
+            "
             (click)="onAdd()"
           >
-            <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
+            <div
+              class="
+                flex
+                flex-row
+                items-center
+                justify-center
+                gap-x-2
+                bg-[#171715]
+                h-full
+                w-full
+                px-3
+                py-2
+                rounded-[11px]
+                cursor-pointer
+              "
+            >
+              <span class="text-sm font-semibold">{{ 'ADD' | translate }}</span>
+              <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
+            </div>
           </a>
           }
         </div>

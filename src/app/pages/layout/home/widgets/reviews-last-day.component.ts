@@ -79,16 +79,20 @@ import { RouterModule } from '@angular/router';
             <div class="flex flex-col items-center justify-center w-full mb-24">
               <div class="flex flex-row items-center justify-center w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
-                  <button
-                    class="flex flex-row items-center justify-center rounded-lg gap-x-1 px-4 py-2 w-full text-sm font-semibold h-auto cursor-pointer ring-1 ring-zinc-800 dark:ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+                  <a
+                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#171715] text-white bg-gradient-to-b from-black/55 via-[#171715] to-[#171715] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
                     [routerLink]="['/reviews']"
                   >
-                    <span>{{ 'SEE_ALL' | translate }}</span>
-                    <span
-                      class="svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
-                      [inlineSVG]="'arrow-right.svg'"
-                    ></span>
-                  </button>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-[#171715] h-full w-full px-3 py-2 rounded-[11px] cursor-pointer"
+                    >
+                      <span class="text-sm font-semibold">{{ 'SEE_ALL' | translate }}</span>
+                      <span
+                        class="svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
+                        [inlineSVG]="'arrow-right.svg'"
+                      ></span>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

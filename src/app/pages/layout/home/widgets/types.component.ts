@@ -629,7 +629,13 @@ export class TypesComponent {
 
   checkType(type: 'Family' | 'Couple' | 'Solo' | 'Business') {
     this.reviews.filter.set({
-      ...this.reviews.filter(),
+      startdate: undefined,
+      enddate: undefined,
+      channels: ['thefork', 'tripadvisor', 'google'],
+      offset: 0,
+      rows: 5,
+      sentimentCategories: [],
+      sentimentWords: [],
       clients: [type],
     });
 

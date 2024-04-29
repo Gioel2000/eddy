@@ -65,7 +65,7 @@ import { GeneralDialogService } from './dialog.service';
               </button>
               <button
                 type="button"
-                class="mt-3 inline-flex w-full justify-center rounded-md min-w-10 bg-white px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 sm:mt-0 sm:w-auto"
+                class="mt-3 inline-flex w-full justify-center rounded-md min-w-10 bg-transparent px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 sm:mt-0 sm:w-auto"
                 (click)="dialog.closeDialog()"
               >
                 {{ 'NO' | translate }}

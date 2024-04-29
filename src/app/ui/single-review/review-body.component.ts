@@ -187,39 +187,48 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                 @if (review().channel.source === 'tripadvisor') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 ring-1 ring-zinc-300 dark:ring-zinc-600"
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
-                  <span
-                    [inlineSVG]="'channels/tripadvisor.svg'"
-                    class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
-                    'TRIPADVISOR' | translate
-                  }}</span>
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span
+                      [inlineSVG]="'channels/tripadvisor.svg'"
+                      class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                    ></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                      'TRIPADVISOR' | translate
+                    }}</span>
+                  </div>
                 </div>
                 } @if (review().channel.source === 'google') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 ring-1 ring-zinc-300 dark:ring-zinc-600"
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
-                  <span
-                    [inlineSVG]="'channels/google.svg'"
-                    class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-200">{{
-                    'GOOGLE' | translate
-                  }}</span>
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-800 dark:text-zinc-200">{{
+                      'GOOGLE' | translate
+                    }}</span>
+                  </div>
                 </div>
                 } @if (review().channel.source === 'thefork') {
                 <div
-                  class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 ring-1 ring-zinc-300 dark:ring-zinc-600"
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
-                  <span
-                    [inlineSVG]="'channels/TheFork.svg'"
-                    class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                  ></span>
-                  <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
-                    'THE_FORK' | translate
-                  }}</span>
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#171715] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span
+                      [inlineSVG]="'channels/TheFork.svg'"
+                      class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                    ></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                      'THE_FORK' | translate
+                    }}</span>
+                  </div>
                 </div>
                 }
               </div>
@@ -302,18 +311,25 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
                 name="comment"
                 id="comment"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-lg border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
+                class="mt-2 mb-4 block w-full rounded-xl border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
               ></textarea>
             </div>
             <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
               <div *ngIf="(alreadyReplied$ | async) === false">
                 <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#171715] text-white bg-gradient-to-b from-black/55 via-[#171715] to-[#171715] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                   [disabled]="commentControl.invalid"
                   (click)="onCopyAndReply()"
                 >
-                  <span [inlineSVG]="'paper-plane-4.svg'" class="svg-icon-5 stroke-[1.7] mr-1.5"></span>
-                  <span>{{ 'COPY_SEND' | translate | uppercase }}</span>
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-[#171715] h-full w-full px-3 py-2 rounded-[11px] cursor-pointer"
+                  >
+                    <span class="text-sm font-semibold">{{ 'COPY_SEND' | translate }}</span>
+                    <span
+                      class="svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
+                      [inlineSVG]="'paper-plane-4.svg'"
+                    ></span>
+                  </div>
                 </button>
               </div>
               <div *ngIf="(alreadyReplied$ | async) === true">
@@ -347,19 +363,28 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
           </div>
 
           <div *ngIf="(alreadyReplied$ | async) === false">
-            <div class="flex flex-row items-center mt-10 gap-x-3">
+            <div class="flex flex-row items-center mt-14 gap-x-3">
               <div class="group relative max-w-7xl">
                 <div
-                  class="absolute -inset-1 bg-rainbow rounded-lg blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200"
+                  class="absolute -inset-1 bg-rainbow rounded-xl blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200"
                 ></div>
-                <div class="relative rounded-lg leading-none space-x-6">
+                <div class="relative rounded-xl leading-none space-x-6">
                   <button
-                    class="flex flex-row items-center bg-rainbow rounded-lg gap-x-2 px-2.5 py-2 shadow-sm ring-2 ring-inset ring-white/50 text-zinc-100 dark:text-zinc-100 text-sm font-medium leading-6 disabled:bg-accent dark:bg-accentDark/30 disabled:cursor-not-allowed disabled:ring-accent/5"
+                    class="rounded-xl p-0.5 bg-rainbow-opacity-50 cursor-pointer leading-6 disabled:cursor-not-allowed shadow-md shadow-black/10"
                     [disabled]="isResponseLoading() || isResponseError()"
                     (click)="askAIToReply()"
                   >
-                    <span [inlineSVG]="'wand-sparkle.svg'" class="svg-icon svg-icon-3 stroke-[1.6]"></span>
-                    <span class="text-sm font-semibold">{{ 'HAVE_THE_AI_RESPOND' | translate }}</span>
+                    <div
+                      class="flex flex-row items-center gap-x-2 px-3 py-2 opacity-100 bg-rainbow cursor-pointer rounded-[10px]"
+                    >
+                      <span class="text-sm font-semibold text-white dark:text-white">{{
+                        'HAVE_THE_AI_RESPOND' | translate
+                      }}</span>
+                      <span
+                        [inlineSVG]="'wand-sparkle.svg'"
+                        class="svg-icon-6 stroke-2 text-white dark:text-white"
+                      ></span>
+                    </div>
                   </button>
                 </div>
               </div>

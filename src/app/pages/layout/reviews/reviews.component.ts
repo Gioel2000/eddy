@@ -98,10 +98,52 @@ import { WordDropdownComponent } from './word/word.component';
                 <categories-dropdown class="col-span-1"></categories-dropdown>
                 <word-dropdown class="col-span-1"></word-dropdown>
                 <a
-                  class="flex flex-row items-center justify-center rounded-xl col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-zinc-800 bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+                  class="
+                    col-start-1
+                    col-span-full
+                    sm:col-start-2
+                    sm:col-span-1
+                    xl:col-span-1
+                    rounded-xl
+                    h-full
+                    w-full
+                    transition
+                    ease-in-out
+                    duration-200
+                    opacity-90
+                    hover:opacity-100
+                    ring-1
+                    dark:ring-0
+                    ring-[#171715]
+                    text-white
+                    bg-gradient-to-b
+                    from-black/55
+                    via-[#171715]
+                    to-[#171715]
+                    dark:from-white/10
+                    dark:via-white/5
+                    dark:to-white/5
+                    p-px
+                    shadow-md
+                    shadow-black/30"
                   (click)="reviews.reset()"
                 >
-                  {{ 'RESET' | translate }}
+                  <div
+                    class="
+                      flex
+                      flex-row
+                      items-center
+                      justify-center
+                      bg-[#171715]
+                      h-full
+                      w-full
+                      py-2
+                      rounded-[11px]
+                      cursor-pointer
+                    "
+                  >
+                    {{ 'RESET' | translate }}
+                  </div>
                 </a>
               </div>
             </ul>

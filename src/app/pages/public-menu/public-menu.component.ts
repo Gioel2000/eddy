@@ -86,7 +86,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
           <div
             #header
             id="header"
-            class="fixed top-0 left-0 right-0 z-10 ring-1  bg-[#1A1A1A] ring-zinc-800 dark:ring-zinc-900 shadow-md"
+            class="fixed top-0 left-0 right-0 z-10 ring-1  bg-[#171715] ring-zinc-800 dark:ring-zinc-900 shadow-md"
           >
             <div
               [ngClass]="{ hidden: !isOnTop(), block: isOnTop() }"
@@ -99,7 +99,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
                   class="h-full w-full object-cover object-center"
                 />
               </span>
-              <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1A1A1A]"></span>
+              <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#171715]"></span>
             </div>
             <div class="mx-auto max-w-7xl px-6 sm:px-14 xl:px-16 sm:py-6 lg:py-8 py-8 xl:py-10">
               <div>
@@ -250,7 +250,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 bg-white dark:bg-[#1A1A1A] mb-8 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                class="block w-full rounded-xl border-0 bg-white dark:bg-[#171715] mb-8 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />
@@ -290,13 +290,13 @@ import { SettingsService } from '../../ui/settings/settings.service';
         <ng-container *ngTemplateOutlet="empty"></ng-container>
         } }
       </div>
-      <!-- <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
+      <!-- <footer class="bg-zinc-100 dark:bg-[#171715] border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-44 lg:px-8">
           <p class="text-center text-xs leading-5 text-zinc-500">&copy; {{ year }} Eddy. All rights reserved.</p>
         </div>
       </footer> -->
 
-      <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
+      <footer class="bg-zinc-100 dark:bg-[#171715] border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav class="-mb-6 columns-2 flex justify-center space-x-12" aria-label="Footer">
             <div class="pb-6">

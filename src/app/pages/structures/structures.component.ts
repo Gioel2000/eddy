@@ -10,7 +10,7 @@ import { LoaderComponent } from '../../ui/loader/loader.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -43,7 +43,7 @@ import { filter, map } from 'rxjs';
       </div>
     </ng-template>
 
-    <div class="bg-zinc-50 dark:bg-zinc-900 py-12 sm:py-24 min-h-screen">
+    <div class="bg-zinc-50 dark:bg-[#141414] py-12 sm:py-24 min-h-screen">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="pb-12">
           <a class="flex flex-row items-center cursor-pointer font-[Pacifico] text-3xl font-bold">
@@ -70,12 +70,16 @@ import { filter, map } from 'rxjs';
               >
                 <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon-3 stroke-2"></span>
               </a>
-              <a
-                class="flex flex-row items-center justify-center rounded-full p-3 w-full h-auto cursor-pointer ring-1 ring-zinc-800 dark:ring-dark bg-zinc-800 hover:bg-zinc-900 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
+              <button
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#171715] text-white bg-gradient-to-b from-black/55 via-[#171715] to-[#171715] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 (click)="restaurantPanelUI.openPanel()"
               >
-                <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-3 stroke-2"></span>
-              </a>
+                <div
+                  class="flex flex-row items-center justify-center gap-x-2 bg-[#171715] p-3 rounded-[9998px] cursor-pointer"
+                >
+                  <span class="svg-icon-3 stroke-2 text-zinc-100 dark:text-zinc-100" [inlineSVG]="'plus.svg'"></span>
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -103,7 +107,7 @@ import { filter, map } from 'rxjs';
         <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
           <article
-            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-zinc-800 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 shadow-sm shadow-black/10"
+            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f] shadow-sm shadow-black/10"
           >
             <div class="relative w-full">
               <img
@@ -172,7 +176,7 @@ import { filter, map } from 'rxjs';
       </div>
     </div>
 
-    <footer class="bg-zinc-50 dark:bg-zinc-900">
+    <footer class="bg-zinc-50 dark:bg-[#111]">
       <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           <div class="pb-6">
