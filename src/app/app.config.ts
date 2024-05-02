@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import {
   PreloadAllModules,
   provideRouter,
@@ -23,58 +23,57 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleMapsModule } from '@angular/google-maps';
 import './utils/imports/momentLocales';
 import { WithCredentialsInterceptor } from './utils/guards/with-credentials.interceptor';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(
-      routes,
-      withViewTransitions(),
-      withPreloading(PreloadAllModules),
-      withComponentInputBinding(),
-      withInMemoryScrolling({
+    provideRouter(routes, withViewTransitions(), withPreloading(PreloadAllModules), withComponentInputBinding(), withInMemoryScrolling({
         scrollPositionRestoration: 'top',
-      })
-    ),
+    })),
     provideHttpClient(withFetch()),
     importProvidersFrom([
-      HttpClientModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      NgxChartsModule,
-      GoogleMapsModule,
-      TranslateModule.forRoot({
-        defaultLanguage: DEFAULT_LANG,
-        loader: {
-          provide: TranslateLoader,
-          useClass: CustomTranslateLoader,
-          deps: [HttpClient],
-        },
-        missingTranslationHandler: {
-          provide: MissingTranslationHandler,
-          useClass: class implements MissingTranslationHandler {
-            handle() {
-              return MISSING_TRANSLATION;
-            }
-          },
-        },
-      }),
-      InlineSVGModule.forRoot({ baseUrl: 'assets/icons/' }),
-      AuthModule.forRoot({
-        ...environment.auth,
-        authorizationParams: {
-          redirect_uri: window.location.origin,
-          audience: 'https://api.eddy.restaurant',
-        },
-        httpInterceptor: {
-          allowedList: [`${environment.apiUrl}/*`],
-        },
-      }),
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        NgxChartsModule,
+        GoogleMapsModule,
+        TranslateModule.forRoot({
+            defaultLanguage: DEFAULT_LANG,
+            loader: {
+                provide: TranslateLoader,
+                useClass: CustomTranslateLoader,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {
+                provide: MissingTranslationHandler,
+                useClass: class implements MissingTranslationHandler {
+                    handle() {
+                        return MISSING_TRANSLATION;
+                    }
+                },
+            },
+        }),
+        InlineSVGModule.forRoot({ baseUrl: 'assets/icons/' }),
+        AuthModule.forRoot({
+            ...environment.auth,
+            authorizationParams: {
+                redirect_uri: window.location.origin,
+                audience: 'https://api.eddy.restaurant',
+            },
+            httpInterceptor: {
+                allowedList: [`${environment.apiUrl}/*`],
+            },
+        }),
     ]),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: WithCredentialsInterceptor,
-      multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: WithCredentialsInterceptor,
+        multi: true,
     },
-  ],
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
+],
 };
