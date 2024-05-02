@@ -37,7 +37,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col border-b border-zinc-800 py-6 px-px h-[32rem] overflow-y-auto">
+    <div class="flex flex-col border-b border-zinc-800 py-6 px-px h-[32rem] overflow-y-auto overflow-x-hidden">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
@@ -155,8 +155,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
         <div class="mt-6">
           <div class="mt-6 space-y-5 divide-y divide-zinc-800 pb-10">
             @if (tripadvisor().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
@@ -167,7 +167,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -277,14 +277,14 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (google().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{ 'GOOGLE' | translate }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -389,8 +389,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (thefork().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'channels/TheFork.svg'" class="svg-icon-4 stroke-[1.8] text-[#00ab97]"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
@@ -398,7 +398,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -503,14 +503,14 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (family().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'crowd.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'FAMILY' | translate }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -615,14 +615,14 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (solo().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'user.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'SOLO' | translate }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -727,14 +727,14 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (couple().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'users-3.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ 'COUPLE' | translate }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -839,8 +839,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (business().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span [inlineSVG]="'suitcase-6.svg'" class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"></span>
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{
@@ -848,7 +848,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -958,8 +958,8 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               </div>
             </div>
             } @if (countries().length > 0) { @for (country of countries(); track $index) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <img
                     class="w-5 h-4 ml-0.5 rounded object-cover shadow"
@@ -969,7 +969,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{ country.country }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">

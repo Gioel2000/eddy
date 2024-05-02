@@ -172,7 +172,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                       <label for="price" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                         'PRICE' | translate
                       }}</label>
-                      <div class="relative mt-2 rounded-md shadow-sm bg-white dark:bg-zinc-800">
+                      <div class="relative mt-2 rounded-md bg-white dark:bg-zinc-800">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                           <span class="text-zinc-500 sm:text-sm">
                             {{ selectedCurrency$ | async }}
@@ -207,7 +207,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                       <label for="price" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                         'ALLERGENS' | translate
                       }}</label>
-                      <div class="relative mt-2 rounded-md shadow-sm bg-white dark:bg-zinc-800">
+                      <div class="relative mt-2 rounded-md bg-white dark:bg-zinc-800">
                         <fieldset class="border-b border-t border-zinc-200 dark:border-zinc-700">
                           <legend class="sr-only">Notifications</legend>
                           <div class="divide-y divide-zinc-200 dark:divide-zinc-700">

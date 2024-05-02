@@ -182,6 +182,74 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
         </div>
 
         <div class="mt-2 mb-3">
+          <div class="grid grid-cols-2 gap-4 w-full pt-3 sm:pt-6">
+            @for (category of review().categories; track $index) {
+            <div class="col-span-2 mb-6 sm:col-span-1 sm:mb-0">
+              <div class="flex flex-row items-center justify-between mt-1 pr-2 py-1 z-100">
+                <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                  {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
+                </p>
+
+                <div class="flex flex-row items-center justify-start sm:justify-end">
+                  <div *ngFor="let avr of calculateStars(category.rating)">
+                    @if (avr === 'full') {
+                    <svg
+                      class="text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 18 18"
+                    >
+                      <g fill="currentColor">
+                        <path
+                          d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                          fill="currentColor"
+                        ></path>
+                      </g>
+                    </svg>
+                    } @if (avr === 'empty') {
+                    <svg
+                      class="text-zinc-200 dark:text-zinc-700"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 18 18"
+                    >
+                      <g fill="currentColor">
+                        <path
+                          d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                          fill="currentColor"
+                        ></path>
+                      </g>
+                    </svg>
+                    } @if (avr === 'half') {
+                    <svg
+                      class="text-yellow-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 18 18"
+                    >
+                      <title>star-half</title>
+                      <g fill="currentColor">
+                        <path
+                          d="M16.963,6.786c-.088-.271-.322-.469-.605-.51l-4.619-.671L9.673,1.418c-.254-.512-1.092-.512-1.346,0l-2.065,4.186-4.619,.671c-.283,.041-.518,.239-.605,.51-.089,.271-.015,.57,.189,.769l3.343,3.258-.789,4.601c-.048,.282,.067,.566,.299,.734,.229,.167,.536,.189,.789,.057l4.132-2.173,4.132,2.173c.109,.058,.229,.086,.349,.086,.155,0,.311-.048,.44-.143,.231-.168,.347-.452,.299-.734l-.789-4.601,3.343-3.258c.204-.199,.278-.498,.189-.769Zm-4.861,3.228c-.177,.172-.258,.42-.216,.664l.599,3.492-3.136-1.649c-.108-.057-.229-.086-.349-.086V3.445l1.567,3.177c.109,.221,.32,.375,.565,.41l3.506,.509-2.537,2.473Z"
+                        ></path>
+                      </g>
+                    </svg>
+                    }
+                  </div>
+                  <dd class="ml-2 w-5 text-right text-sm tabular-nums text-zinc-900 dark:text-zinc-100">
+                    {{ (category.rating * amountToMultiply).toFixed(1) | replace : '.0' : '' }}/{{ scale }}
+                  </dd>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="mt-2 mb-3">
           <div class="grid grid-cols-6 w-full pt-3 sm:pt-6">
             <div class="col-span-3 mb-6 sm:col-span-2 sm:mb-0">
               <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">

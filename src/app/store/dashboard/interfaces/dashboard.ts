@@ -45,6 +45,10 @@ export interface ReviewTO {
   reviewId?: any;
   externalSource?: any;
   aiReply: string;
+  categories: {
+    category: string;
+    rating: number;
+  }[];
   __v: number;
 }
 

@@ -312,7 +312,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
         <div class="flex grow flex-col gap-y-6 overflow-y-auto px-10 py-6">
           <div class="flex h-16 shrink-0 items-center">
             <a
-              class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
+              class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
             >
               <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                 Eddy
@@ -332,7 +332,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                     <a
                       [routerLink]="['/' + route.path]"
                       class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
-                      routerLinkActive="text-accent dark:text-accentDark font-semibold rounded-lg bg-zinc-50 dark:bg-zinc-300/5"
+                      routerLinkActive="text-accent dark:text-zinc-50 font-semibold rounded-lg bg-zinc-50 dark:bg-zinc-300/5"
                     >
                       <span class="mr-2 svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
                       <span class="text-sm font-semibold">{{ routeData['i18n'] | translate }}</span>
@@ -555,7 +555,7 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
                 </button>
 
                 <a
-                  class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
+                  class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
                 >
                   <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                     Eddy

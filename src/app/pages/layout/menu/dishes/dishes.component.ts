@@ -118,7 +118,6 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
           >
             @defer (on viewport; prefetch on idle) { @for (dish of store.dishes(); track $index) {
             <menu-dish
-              class="h-full"
               [dish]="dish"
               [categories]="store.categories()"
               (edit)="editDish($event)"

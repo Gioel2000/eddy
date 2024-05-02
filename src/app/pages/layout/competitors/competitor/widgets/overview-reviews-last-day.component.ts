@@ -37,7 +37,9 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
       </div>
     </ng-template>
 
-    <div class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[32rem] overflow-y-auto">
+    <div
+      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[32rem] overflow-y-auto overflow-x-hidden"
+    >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
@@ -155,8 +157,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
         <div class="mt-6">
           <div class="mt-6 space-y-5 divide-y divide-zinc-200 dark:divide-zinc-800 pb-10">
             @if (tripadvisor().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
@@ -167,7 +169,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -277,8 +279,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (google().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'channels/google.svg'"
@@ -289,7 +291,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -394,8 +396,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (thefork().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'channels/TheFork.svg'"
@@ -406,7 +408,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -511,8 +513,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (family().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'crowd.svg'"
@@ -523,7 +525,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -628,8 +630,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (solo().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'user.svg'"
@@ -640,7 +642,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -745,8 +747,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (couple().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'users-3.svg'"
@@ -757,7 +759,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -862,8 +864,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (business().totalReviews > 0) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <span
                     [inlineSVG]="'suitcase-6.svg'"
@@ -874,7 +876,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
@@ -984,8 +986,8 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               </div>
             </div>
             } @if (countries().length > 0) { @for (country of countries(); track $index) {
-            <div class="pt-5 grid grid-cols-12 gap-x-8">
-              <div class="col-start-1 col-span-6">
+            <div class="pt-5 grid grid-cols-2 gap-x-8">
+              <div class="col-start-1 col-span-1">
                 <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
                   <img
                     class="w-5 h-4 ml-0.5 rounded object-cover shadow"
@@ -997,7 +999,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   }}</span>
                 </div>
               </div>
-              <div class="col-span-6">
+              <div class="col-span-1">
                 <div class="flex items-center xl:col-span-1">
                   <div class="flex flex-col">
                     <div class="flex flex-row items-center">
