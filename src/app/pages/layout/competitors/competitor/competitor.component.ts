@@ -140,12 +140,17 @@ import { CategoriesComponent } from './widgets/categories.component';
         } @loading {
         <div></div>
         }
+
         <button
-          class="flex flex-row items-center justify-center w-full rounded-lg mt-8 gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl mt-6 w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
           (click)="delete.emit(competitor()._id)"
         >
-          <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>
-          <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
+          <div
+            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+          >
+            <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>
+            <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
+          </div>
         </button>
         }
       </div>

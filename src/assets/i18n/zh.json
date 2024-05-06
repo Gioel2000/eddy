@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "无线上网"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "气氛"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "食物"
     }
   },
   "SPEAK_BADLY_OF": "说坏话",
-  "SPEAK_WELL_OF": "说好话"
+  "SPEAK_WELL_OF": "说好话",
+  "ADD": "添加",
+  "ARE_YOU_SURE": "你确定吗？",
+  "COMPETITION": "竞赛",
+  "DELETE_CATEGORY_CONFIRM": "您确定要删除该类别吗？",
+  "DELETE_DISH_CONFIRM": "您确定要删除这道菜吗？",
+  "DELETE_MENU_CONFIRM": "您确定要删除此菜单吗？",
+  "EDIT_CATEGORY": "编辑类别",
+  "EDIT_DISH": "编辑菜品",
+  "GOOD": "好的",
+  "NEGATIVE": "消极的",
+  "NEUTRAL": "中性的",
+  "NEW": "新的",
+  "NO": "不",
+  "NO_CATEGORIES": "没有类别",
+  "NO_WORDS": "无话可说",
+  "POSITIVE": "积极的",
+  "SEE_ALL": "查看全部",
+  "SENTIMENT": "情绪",
+  "SHOW": "展示",
+  "WORDS": "字",
+  "YES": "是的"
 }

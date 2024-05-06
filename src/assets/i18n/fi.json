@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Tunnelma"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Ruoka"
     }
   },
   "SPEAK_BADLY_OF": "Puhu pahaa",
   "SPEAK_WELL_OF": "Puhu hyvin",
-  "SENTIMENT": "Tunnelma"
+  "SENTIMENT": "Tunnelma",
+  "ADD": "Lisätä",
+  "ARE_YOU_SURE": "Oletko varma?",
+  "COMPETITION": "Kilpailu",
+  "DELETE_CATEGORY_CONFIRM": "Haluatko varmasti poistaa tämän luokan?",
+  "DELETE_DISH_CONFIRM": "Haluatko varmasti poistaa tämän ruuan?",
+  "DELETE_MENU_CONFIRM": "Haluatko varmasti poistaa tämän valikon?",
+  "EDIT_CATEGORY": "Muokkaa luokkaa",
+  "EDIT_DISH": "Muokkaa ruokalajia",
+  "GOOD": "Hyvä",
+  "NEGATIVE": "Negatiivinen",
+  "NEUTRAL": "Neutraali",
+  "NEW": "Uusi",
+  "NO": "Ei",
+  "NO_CATEGORIES": "Ei luokkia",
+  "NO_WORDS": "Ei sanaa",
+  "POSITIVE": "Positiivista",
+  "SEE_ALL": "Näytä kaikki",
+  "SHOW": "Näytä",
+  "WORDS": "Sanat",
+  "YES": "Joo"
 }

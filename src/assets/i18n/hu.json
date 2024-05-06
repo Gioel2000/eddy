@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Légkör"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Étel"
     }
   },
   "SPEAK_BADLY_OF": "Beszélj rosszat",
   "SPEAK_WELL_OF": "Jól beszélj róla",
-  "SHOW": ""
+  "SHOW": "Előadás",
+  "ADD": "Hozzáadás",
+  "ARE_YOU_SURE": "biztos vagy ebben?",
+  "COMPETITION": "Verseny",
+  "DELETE_CATEGORY_CONFIRM": "Biztosan törli ezt a kategóriát?",
+  "DELETE_DISH_CONFIRM": "Biztos benne, hogy ki akarja hagyni ezt az ételt?",
+  "DELETE_MENU_CONFIRM": "Biztosan törölni szeretné ezt a menüt?",
+  "EDIT_CATEGORY": "Kategória szerkesztése",
+  "EDIT_DISH": "Étel szerkesztése",
+  "GOOD": "Jó",
+  "NEGATIVE": "Negatív",
+  "NEUTRAL": "Semleges",
+  "NEW": "Új",
+  "NO": "Nem",
+  "NO_CATEGORIES": "Nincsenek kategóriák",
+  "NO_WORDS": "Nincs rá szó",
+  "POSITIVE": "Pozitív",
+  "SEE_ALL": "Az összes megtekintése",
+  "SENTIMENT": "Érzés",
+  "WORDS": "Szavak",
+  "YES": "Igen"
 }

@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wifi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfeer"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Voedsel"
     }
   },
   "SPEAK_BADLY_OF": "Slecht over spreken",
-  "SPEAK_WELL_OF": "Spreek er goed over"
+  "SPEAK_WELL_OF": "Spreek er goed over",
+  "ADD": "Toevoegen",
+  "ARE_YOU_SURE": "Weet je het zeker?",
+  "COMPETITION": "Concurrentie",
+  "DELETE_CATEGORY_CONFIRM": "Weet u zeker dat u deze categorie wilt verwijderen?",
+  "DELETE_DISH_CONFIRM": "Weet je zeker dat je dit gerecht wilt elimineren?",
+  "DELETE_MENU_CONFIRM": "Weet u zeker dat u dit menu wilt verwijderen?",
+  "EDIT_CATEGORY": "Categorie bewerken",
+  "EDIT_DISH": "Gerecht bewerken",
+  "GOOD": "Goed",
+  "NEGATIVE": "Negatief",
+  "NEUTRAL": "Neutrale",
+  "NEW": "Nieuw",
+  "NO": "Nee",
+  "NO_CATEGORIES": "Geen categorieën",
+  "NO_WORDS": "Geen woord",
+  "POSITIVE": "Positief",
+  "SEE_ALL": "Alles zien",
+  "SENTIMENT": "Sentiment",
+  "SHOW": "Show",
+  "WORDS": "Woorden",
+  "YES": "Ja"
 }

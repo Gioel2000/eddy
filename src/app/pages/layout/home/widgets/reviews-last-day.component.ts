@@ -75,27 +75,6 @@ import { RouterModule } from '@angular/router';
             } @loading {
             <div></div>
             } }
-
-            <div class="flex flex-col items-center justify-center w-full mb-24">
-              <div class="flex flex-row items-center justify-center w-full pt-4 max-w-3xl">
-                <div class="flex flex-row items-center gap-x-2">
-                  <a
-                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
-                    [routerLink]="['/reviews']"
-                  >
-                    <div
-                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[11px] cursor-pointer"
-                    >
-                      <span class="text-sm font-semibold">{{ 'SEE_ALL' | translate }}</span>
-                      <span
-                        class="svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
-                        [inlineSVG]="'arrow-right.svg'"
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

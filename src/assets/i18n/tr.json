@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wifi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfer"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Yiyecek"
     }
   },
   "SPEAK_BADLY_OF": "Hakkında kötü konuşmak",
-  "SPEAK_WELL_OF": "hakkında iyi konuş"
+  "SPEAK_WELL_OF": "hakkında iyi konuş",
+  "ADD": "Eklemek",
+  "ARE_YOU_SURE": "Emin misin?",
+  "COMPETITION": "Yarışma",
+  "DELETE_CATEGORY_CONFIRM": "Bu kategoriyi silmek istediğinizden emin misiniz?",
+  "DELETE_DISH_CONFIRM": "Bu yemeği ortadan kaldırmak istediğinizden emin misiniz?",
+  "DELETE_MENU_CONFIRM": "Bu menüyü kaldırmak istediğinizden emin misiniz?",
+  "EDIT_CATEGORY": "Kategoriyi düzenle",
+  "EDIT_DISH": "Yemeği düzenle",
+  "GOOD": "İyi",
+  "NEGATIVE": "Olumsuz",
+  "NEUTRAL": "Doğal",
+  "NEW": "Yeni",
+  "NO": "HAYIR",
+  "NO_CATEGORIES": "Kategori yok",
+  "NO_WORDS": "Yorumsuz",
+  "POSITIVE": "Pozitif",
+  "SEE_ALL": "Hepsini gör",
+  "SENTIMENT": "Duygusallık",
+  "SHOW": "Göstermek",
+  "WORDS": "Kelimeler",
+  "YES": "Evet"
 }

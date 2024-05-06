@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfera"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Żywność"
     }
   },
   "SPEAK_BADLY_OF": "Mów źle o",
-  "SPEAK_WELL_OF": "Mów dobrze"
+  "SPEAK_WELL_OF": "Mów dobrze",
+  "ADD": "Dodać",
+  "ARE_YOU_SURE": "Jesteś pewny?",
+  "COMPETITION": "Konkurs",
+  "DELETE_CATEGORY_CONFIRM": "Czy na pewno chcesz usunąć tę kategorię?",
+  "DELETE_DISH_CONFIRM": "Czy na pewno chcesz wyeliminować to danie?",
+  "DELETE_MENU_CONFIRM": "Czy na pewno chcesz usunąć to menu?",
+  "EDIT_CATEGORY": "Edytuj kategorię",
+  "EDIT_DISH": "Edytuj danie",
+  "GOOD": "Dobry",
+  "NEGATIVE": "Negatywny",
+  "NEUTRAL": "Neutralny",
+  "NEW": "Nowy",
+  "NO": "NIE",
+  "NO_CATEGORIES": "Brak kategorii",
+  "NO_WORDS": "Żadnego słowa",
+  "POSITIVE": "Pozytywny",
+  "SEE_ALL": "Widzieć wszystko",
+  "SENTIMENT": "Sentyment",
+  "SHOW": "Pokazywać",
+  "WORDS": "Słowa",
+  "YES": "Tak"
 }

@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wifi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Suasana"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Makanan"
     }
   },
   "SPEAK_BADLY_OF": "Bicaralah yang buruk",
   "SPEAK_WELL_OF": "Bicaralah dengan baik",
-  "SHOW": ""
+  "SHOW": "Menunjukkan",
+  "ADD": "Menambahkan",
+  "ARE_YOU_SURE": "Apa kamu yakin?",
+  "COMPETITION": "Kompetisi",
+  "DELETE_CATEGORY_CONFIRM": "Apakah Anda yakin ingin menghapus kategori ini?",
+  "DELETE_DISH_CONFIRM": "Apakah Anda yakin ingin menghilangkan hidangan ini?",
+  "DELETE_MENU_CONFIRM": "Apakah Anda yakin ingin menghilangkan menu ini?",
+  "EDIT_CATEGORY": "Sunting kategori",
+  "EDIT_DISH": "Sunting hidangan",
+  "GOOD": "Bagus",
+  "NEGATIVE": "Negatif",
+  "NEUTRAL": "Netral",
+  "NEW": "Baru",
+  "NO": "TIDAK",
+  "NO_CATEGORIES": "Tidak ada kategori",
+  "NO_WORDS": "Tidak ada kabar",
+  "POSITIVE": "Positif",
+  "SEE_ALL": "Lihat semua",
+  "SENTIMENT": "Sentimen",
+  "WORDS": "Kata-kata",
+  "YES": "Ya"
 }

@@ -122,9 +122,31 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
       </div>
 
       <div
-        class="fixed flex flex-row items-center justify-center gap-x-3 p-3 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
+        class="fixed flex flex-row items-center justify-center gap-x-2 p-2 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
       >
         <button
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+          (click)="scrollLeft()"
+        >
+          <div
+            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+          >
+            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon-5 stroke-2"></span>
+          </div>
+        </button>
+
+        <button
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+          (click)="scrollRight()"
+        >
+          <div
+            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+          >
+            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon-5 stroke-2"></span>
+          </div>
+        </button>
+
+        <!-- <button
           class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
           (click)="scrollLeft()"
         >
@@ -135,7 +157,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
           (click)="scrollRight()"
         >
           <span [inlineSVG]="'arrow-right.svg'" class="svg-icon-5 stroke-2"></span>
-        </button>
+        </button> -->
       </div>
     </div>
   `,

@@ -355,11 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "واي فاي"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "أَجواء"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "طعام"
     }
   },
   "SPEAK_BADLY_OF": "تكلم بالسوء",
   "SPEAK_WELL_OF": "تحدث جيدًا عن",
   "EDIT_DISH": "تحرير الطبق",
-  "SHOW": "",
-  "SENTIMENT": "المشاعر"
+  "SHOW": "يعرض",
+  "SENTIMENT": "المشاعر",
+  "ADD": "يضيف",
+  "ARE_YOU_SURE": "هل أنت متأكد؟",
+  "COMPETITION": "مسابقة",
+  "DELETE_CATEGORY_CONFIRM": "هل أنت متأكد أنك تريد حذف هذه الفئة؟",
+  "DELETE_DISH_CONFIRM": "هل أنت متأكد أنك تريد التخلص من هذا الطبق؟",
+  "DELETE_MENU_CONFIRM": "هل أنت متأكد أنك تريد حذف هذه القائمة؟",
+  "EDIT_CATEGORY": "تحرير الفئة",
+  "GOOD": "جيد",
+  "NEGATIVE": "سلبي",
+  "NEUTRAL": "حيادي",
+  "NEW": "جديد",
+  "NO": "لا",
+  "NO_CATEGORIES": "لا توجد فئات",
+  "NO_WORDS": "لا كلمة",
+  "POSITIVE": "إيجابي",
+  "SEE_ALL": "اظهار الكل",
+  "WORDS": "كلمات",
+  "YES": "نعم"
 }

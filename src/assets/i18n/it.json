@@ -366,7 +366,7 @@
   "SPEAK_BADLY_OF": "Parla male di",
   "ALSO_TALK_ABOUT": "Parla anche di",
   "EDIT_DISH": "Modifica piatto",
-  "SHOW": "",
+  "SHOW": "Spettacolo",
   "SENTIMENT": "Sentiment",
   "WORDS": "Parole",
   "GOOD": "Bene",
@@ -384,5 +384,6 @@
   "ARE_YOU_SURE": "Sei sicuro?",
   "DELETE_DISH_CONFIRM": "Sei sicuro di voler eliminare questo piatto?",
   "DELETE_CATEGORY_CONFIRM": "Sei sicuro di voler eliminare questa categoria?",
-  "DELETE_MENU_CONFIRM": "Sei sicuro di voler eliminare questo menu?"
+  "DELETE_MENU_CONFIRM": "Sei sicuro di voler eliminare questo menu?",
+  "NO": "NO"
 }

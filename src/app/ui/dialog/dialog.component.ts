@@ -26,7 +26,7 @@ import { GeneralDialogService } from './dialog.service';
       <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div
-            class="relative transform overflow-hidden rounded-xl bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
+            class="relative transform overflow-hidden rounded-2xl bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 px-4 pb-4 pt-5 text-left shadow-sm shadow-black/10 transition-all sm:my-8 w-full sm:max-w-xl sm:p-6"
             [ngClass]="{
               'opacity-100 translate-y-0 sm:scale-100': dialog.isDialogVisible(),
               'opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95': !dialog.isDialogVisible()
@@ -57,15 +57,15 @@ import { GeneralDialogService } from './dialog.service';
             @switch (dialog.mode()) { @case ('boolean') {
             <div class="mt-8 sm:flex gap-x-3">
               <button
-                type="button"
-                class="inline-flex w-full justify-center rounded-md min-w-10 bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto"
+                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-xl min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto"
                 (click)="dialog.fuction()(); dialog.closeDialog()"
               >
-                {{ 'YES' | translate }}
+                <span class="font-semibold text-base">{{ 'YES' | translate }}</span>
               </button>
+
               <button
                 type="button"
-                class="mt-3 inline-flex w-full justify-center rounded-md min-w-10 bg-transparent px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 sm:mt-0 sm:w-auto"
+                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-xl min-w-11 bg-transparent px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 sm:mt-0 sm:w-auto"
                 (click)="dialog.closeDialog()"
               >
                 {{ 'NO' | translate }}

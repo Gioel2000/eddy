@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfære"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Mat"
     }
   },
   "SPEAK_BADLY_OF": "Snakke stygt om",
-  "SPEAK_WELL_OF": "Snakk godt om"
+  "SPEAK_WELL_OF": "Snakk godt om",
+  "ADD": "Legg til",
+  "ARE_YOU_SURE": "Er du sikker?",
+  "COMPETITION": "Konkurranse",
+  "DELETE_CATEGORY_CONFIRM": "Er du sikker på at du vil slette denne kategorien?",
+  "DELETE_DISH_CONFIRM": "Er du sikker på at du vil eliminere denne retten?",
+  "DELETE_MENU_CONFIRM": "Er du sikker på at du vil fjerne denne menyen?",
+  "EDIT_CATEGORY": "Rediger kategori",
+  "EDIT_DISH": "Rediger rett",
+  "GOOD": "Flink",
+  "NEGATIVE": "Negativ",
+  "NEUTRAL": "Nøytral",
+  "NEW": "Ny",
+  "NO": "Nei",
+  "NO_CATEGORIES": "Ingen kategorier",
+  "NO_WORDS": "Ingen ord",
+  "POSITIVE": "Positivt",
+  "SEE_ALL": "Se alt",
+  "SENTIMENT": "Sentiment",
+  "SHOW": "Forestilling",
+  "WORDS": "Ord",
+  "YES": "Ja"
 }

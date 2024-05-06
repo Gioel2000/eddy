@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wifi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmósfera"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Alimento"
     }
   },
   "SPEAK_BADLY_OF": "hablar mal de",
   "SPEAK_WELL_OF": "hablar bien de",
-  "SENTIMENT": "Sentimiento"
+  "SENTIMENT": "Sentimiento",
+  "ADD": "Agregar",
+  "ARE_YOU_SURE": "¿Está seguro?",
+  "COMPETITION": "Competencia",
+  "DELETE_CATEGORY_CONFIRM": "¿Estás seguro de que deseas eliminar esta categoría?",
+  "DELETE_DISH_CONFIRM": "¿Estás seguro de que quieres eliminar este plato?",
+  "DELETE_MENU_CONFIRM": "¿Estás seguro de que quieres eliminar este menú?",
+  "EDIT_CATEGORY": "Editar categoria",
+  "EDIT_DISH": "Editar plato",
+  "GOOD": "Bien",
+  "NEGATIVE": "Negativo",
+  "NEUTRAL": "Neutral",
+  "NEW": "Nuevo",
+  "NO": "No",
+  "NO_CATEGORIES": "Sin categorías",
+  "NO_WORDS": "Sin palabras",
+  "POSITIVE": "Positivo",
+  "SEE_ALL": "Ver todo",
+  "SHOW": "Espectáculo",
+  "WORDS": "Palabras",
+  "YES": "Sí"
 }

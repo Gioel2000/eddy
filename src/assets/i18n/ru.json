@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Атмосфера"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Еда"
     }
   },
   "SPEAK_BADLY_OF": "Говорить о себе плохо",
-  "SPEAK_WELL_OF": "Говорите хорошо о"
+  "SPEAK_WELL_OF": "Говорите хорошо о",
+  "ADD": "Добавлять",
+  "ARE_YOU_SURE": "Вы уверены?",
+  "COMPETITION": "Соревнование",
+  "DELETE_CATEGORY_CONFIRM": "Вы уверены, что хотите удалить эту категорию?",
+  "DELETE_DISH_CONFIRM": "Вы уверены, что хотите исключить это блюдо?",
+  "DELETE_MENU_CONFIRM": "Вы уверены, что хотите удалить это меню?",
+  "EDIT_CATEGORY": "Изменить категорию",
+  "EDIT_DISH": "Изменить блюдо",
+  "GOOD": "Хороший",
+  "NEGATIVE": "Отрицательный",
+  "NEUTRAL": "Нейтральный",
+  "NEW": "Новый",
+  "NO": "Нет",
+  "NO_CATEGORIES": "Нет категорий",
+  "NO_WORDS": "Нет слов",
+  "POSITIVE": "Позитивный",
+  "SEE_ALL": "Увидеть все",
+  "SENTIMENT": "Настроение",
+  "SHOW": "Показывать",
+  "WORDS": "Слова",
+  "YES": "Да"
 }

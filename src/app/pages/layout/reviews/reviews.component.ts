@@ -206,27 +206,35 @@ import { WordDropdownComponent } from './word/word.component';
                     @if (store.state() === 'loaded' && store.reviews().length > 0) {
                     <div class="flex flex-col items-center justify-center w-full">
                       <div
-                        class="flex flex-row items-center justify-between w-full p-4 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm rounded-xl"
+                        class="flex flex-row items-center justify-between w-full p-3 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 rounded-2xl"
                       >
                         <div>
                           <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"
-                            >{{ 'PAGE' | translate }}: {{ reviews.page() }}</span
+                            >{{ 'PAGE' | translate }} {{ reviews.page() }}</span
                           >
                         </div>
                         <div class="flex flex-row items-center gap-x-2">
                           <button
-                            class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200 disabled:opacity-30"
+                            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
                             [disabled]="reviews.filter().offset === 0"
                             (click)="showLess()"
                           >
-                            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                            <div
+                              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+                            >
+                              <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                            </div>
                           </button>
                           <button
-                            class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200 disabled:opacity-30"
+                            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
                             [disabled]="stopKeepGoing()"
                             (click)="showMore()"
                           >
-                            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                            <div
+                              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+                            >
+                              <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-3 stroke-[1.8]"></span>
+                            </div>
                           </button>
                         </div>
                       </div>

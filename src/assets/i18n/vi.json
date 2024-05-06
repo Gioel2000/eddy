@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wifi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Bầu không khí"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Đồ ăn"
     }
   },
   "SPEAK_BADLY_OF": "Nói xấu",
-  "SPEAK_WELL_OF": "Nói tốt về"
+  "SPEAK_WELL_OF": "Nói tốt về",
+  "ADD": "Thêm vào",
+  "ARE_YOU_SURE": "Bạn có chắc không?",
+  "COMPETITION": "Cuộc thi",
+  "DELETE_CATEGORY_CONFIRM": "Bạn có chắc chắn muốn xóa danh mục này?",
+  "DELETE_DISH_CONFIRM": "Bạn có chắc chắn muốn loại bỏ món ăn này?",
+  "DELETE_MENU_CONFIRM": "Bạn có chắc chắn muốn loại bỏ menu này?",
+  "EDIT_CATEGORY": "Chỉnh sửa danh mục",
+  "EDIT_DISH": "Chỉnh sửa món ăn",
+  "GOOD": "Tốt",
+  "NEGATIVE": "Tiêu cực",
+  "NEUTRAL": "Trung lập",
+  "NEW": "Mới",
+  "NO": "KHÔNG",
+  "NO_CATEGORIES": "Không có danh mục nào",
+  "NO_WORDS": "Không có từ nào",
+  "POSITIVE": "Tích cực",
+  "SEE_ALL": "Nhìn thấy tất cả",
+  "SENTIMENT": "tình cảm",
+  "SHOW": "Trình diễn",
+  "WORDS": "Từ",
+  "YES": "Đúng"
 }

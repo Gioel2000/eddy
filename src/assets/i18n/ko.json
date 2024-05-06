@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "와이파이"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "대기"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "음식"
     }
   },
   "SPEAK_BADLY_OF": "나쁘게 말하다",
-  "SPEAK_WELL_OF": "좋게 말하다"
+  "SPEAK_WELL_OF": "좋게 말하다",
+  "ADD": "추가하다",
+  "ARE_YOU_SURE": "확실합니까?",
+  "COMPETITION": "경쟁",
+  "DELETE_CATEGORY_CONFIRM": "이 카테고리를 삭제하시겠습니까?",
+  "DELETE_DISH_CONFIRM": "이 요리를 삭제하시겠습니까?",
+  "DELETE_MENU_CONFIRM": "이 메뉴를 제거하시겠습니까?",
+  "EDIT_CATEGORY": "카테고리 수정",
+  "EDIT_DISH": "요리 편집",
+  "GOOD": "좋은",
+  "NEGATIVE": "부정적인",
+  "NEUTRAL": "중립적",
+  "NEW": "새로운",
+  "NO": "아니요",
+  "NO_CATEGORIES": "카테고리 없음",
+  "NO_WORDS": "아무 말도 하지 않는다",
+  "POSITIVE": "긍정적인",
+  "SEE_ALL": "모두 보기",
+  "SENTIMENT": "감정",
+  "SHOW": "보여주다",
+  "WORDS": "단어",
+  "YES": "예"
 }

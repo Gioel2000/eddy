@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "वाईफ़ाई"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "वायुमंडल"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "खाना"
     }
   },
   "SPEAK_BADLY_OF": "बुरा बोलना",
   "SPEAK_WELL_OF": "अच्छा बोलो",
-  "SHOW": ""
+  "SHOW": "दिखाओ",
+  "ADD": "जोड़ना",
+  "ARE_YOU_SURE": "क्या आपको यकीन है?",
+  "COMPETITION": "प्रतियोगिता",
+  "DELETE_CATEGORY_CONFIRM": "क्या आप वाकई इस श्रेणी को हटाना चाहते हैं?",
+  "DELETE_DISH_CONFIRM": "क्या आप वाकई इस व्यंजन को ख़त्म करना चाहते हैं?",
+  "DELETE_MENU_CONFIRM": "क्या आप वाकई इस मेनू को ख़त्म करना चाहते हैं?",
+  "EDIT_CATEGORY": "श्रेणी संपादित करें",
+  "EDIT_DISH": "डिश संपादित करें",
+  "GOOD": "अच्छा",
+  "NEGATIVE": "नकारात्मक",
+  "NEUTRAL": "तटस्थ",
+  "NEW": "नया",
+  "NO": "नहीं",
+  "NO_CATEGORIES": "कोई श्रेणियाँ नहीं",
+  "NO_WORDS": "कोई शब्द नही",
+  "POSITIVE": "सकारात्मक",
+  "SEE_ALL": "सभी देखें",
+  "SENTIMENT": "भाव",
+  "WORDS": "शब्द",
+  "YES": "हाँ"
 }

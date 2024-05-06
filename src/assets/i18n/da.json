@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Trådløst internet"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfære"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Mad"
     }
   },
   "SPEAK_BADLY_OF": "Tale dårligt om",
   "SPEAK_WELL_OF": "Tal godt om",
-  "SENTIMENT": "Følelse"
+  "SENTIMENT": "Følelse",
+  "ADD": "Tilføje",
+  "ARE_YOU_SURE": "Er du sikker?",
+  "COMPETITION": "Konkurrence",
+  "DELETE_CATEGORY_CONFIRM": "Er du sikker på, at du vil slette denne kategori?",
+  "DELETE_DISH_CONFIRM": "Er du sikker på, at du vil fjerne denne ret?",
+  "DELETE_MENU_CONFIRM": "Er du sikker på, at du vil fjerne denne menu?",
+  "EDIT_CATEGORY": "Rediger kategori",
+  "EDIT_DISH": "Rediger skålen",
+  "GOOD": "godt",
+  "NEGATIVE": "Negativ",
+  "NEUTRAL": "Neutral",
+  "NEW": "Ny",
+  "NO": "Ingen",
+  "NO_CATEGORIES": "Ingen kategorier",
+  "NO_WORDS": "Intet ord",
+  "POSITIVE": "Positiv",
+  "SEE_ALL": "Se alt",
+  "SHOW": "At vise",
+  "WORDS": "Ord",
+  "YES": "Ja"
 }

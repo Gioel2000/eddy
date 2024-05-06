@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "อินเตอร์เน็ตไร้สาย"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "บรรยากาศ"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "อาหาร"
     }
   },
   "SPEAK_BADLY_OF": "พูดจาไม่ดี",
-  "SPEAK_WELL_OF": "พูดได้ดี"
+  "SPEAK_WELL_OF": "พูดได้ดี",
+  "ADD": "เพิ่ม",
+  "ARE_YOU_SURE": "คุณแน่ใจไหม?",
+  "COMPETITION": "การแข่งขัน",
+  "DELETE_CATEGORY_CONFIRM": "คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้",
+  "DELETE_DISH_CONFIRM": "คุณแน่ใจหรือไม่ว่าต้องการกำจัดอาหารจานนี้",
+  "DELETE_MENU_CONFIRM": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกเมนูนี้",
+  "EDIT_CATEGORY": "แก้ไขหมวดหมู่",
+  "EDIT_DISH": "แก้ไขจาน",
+  "GOOD": "ดี",
+  "NEGATIVE": "เชิงลบ",
+  "NEUTRAL": "เป็นกลาง",
+  "NEW": "ใหม่",
+  "NO": "เลขที่",
+  "NO_CATEGORIES": "ไม่มีหมวดหมู่",
+  "NO_WORDS": "ไม่มีคำพูด",
+  "POSITIVE": "เชิงบวก",
+  "SEE_ALL": "ดูทั้งหมด",
+  "SENTIMENT": "ความรู้สึก",
+  "SHOW": "แสดง",
+  "WORDS": "คำ",
+  "YES": "ใช่"
 }

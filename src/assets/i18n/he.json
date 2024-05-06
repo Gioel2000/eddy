@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "וויי - פיי"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "אַטמוֹספֵרָה"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "מזון"
     }
   },
   "SPEAK_BADLY_OF": "דבר רע",
-  "SPEAK_WELL_OF": "דבר טוב על"
+  "SPEAK_WELL_OF": "דבר טוב על",
+  "ADD": "לְהוֹסִיף",
+  "ARE_YOU_SURE": "האם אתה בטוח?",
+  "COMPETITION": "תַחֲרוּת",
+  "DELETE_CATEGORY_CONFIRM": "האם אתה בטוח שברצונך למחוק את הקטגוריה הזו?",
+  "DELETE_DISH_CONFIRM": "האם אתה בטוח שאתה רוצה לבטל את המנה הזו?",
+  "DELETE_MENU_CONFIRM": "האם אתה בטוח שברצונך לבטל את התפריט הזה?",
+  "EDIT_CATEGORY": "ערוך קטגוריה",
+  "EDIT_DISH": "ערוך מנה",
+  "GOOD": "טוֹב",
+  "NEGATIVE": "שלילי",
+  "NEUTRAL": "ניטראלי",
+  "NEW": "חָדָשׁ",
+  "NO": "לא",
+  "NO_CATEGORIES": "אין קטגוריות",
+  "NO_WORDS": "אין מילים",
+  "POSITIVE": "חִיוּבִי",
+  "SEE_ALL": "ראה הכל",
+  "SENTIMENT": "רֶגֶשׁ",
+  "SHOW": "הופעה",
+  "WORDS": "מילים",
+  "YES": "כן"
 }

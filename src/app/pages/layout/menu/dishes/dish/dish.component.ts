@@ -14,7 +14,7 @@ import { combineLatest, filter } from 'rxjs';
   standalone: true,
   template: `
     <div
-      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
+      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
     >
       <div class="w-full">
         <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">

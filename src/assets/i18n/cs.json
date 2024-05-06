@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosféra"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Jídlo"
     }
   },
   "SPEAK_BADLY_OF": "Mluvit špatně",
   "SPEAK_WELL_OF": "Mluvte dobře",
-  "SENTIMENT": "Sentiment"
+  "SENTIMENT": "Sentiment",
+  "ADD": "Přidat",
+  "ARE_YOU_SURE": "Jsi si jistá?",
+  "COMPETITION": "Soutěž",
+  "DELETE_CATEGORY_CONFIRM": "Opravdu chcete smazat tuto kategorii?",
+  "DELETE_DISH_CONFIRM": "Opravdu chcete toto jídlo odstranit?",
+  "DELETE_MENU_CONFIRM": "Opravdu chcete tuto nabídku odstranit?",
+  "EDIT_CATEGORY": "Upravit kategorii",
+  "EDIT_DISH": "Upravit jídlo",
+  "GOOD": "Dobrý",
+  "NEGATIVE": "Negativní",
+  "NEUTRAL": "Neutrální",
+  "NEW": "Nový",
+  "NO": "Ne",
+  "NO_CATEGORIES": "Žádné kategorie",
+  "NO_WORDS": "Žádné slovo",
+  "POSITIVE": "Pozitivní",
+  "SEE_ALL": "Vidět vše",
+  "SHOW": "Ukázat",
+  "WORDS": "Slova",
+  "YES": "Ano"
 }

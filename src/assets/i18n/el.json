@@ -355,9 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Ατμόσφαιρα"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Τροφή"
     }
   },
   "SPEAK_BADLY_OF": "Μίλα άσχημα",
   "SPEAK_WELL_OF": "Μίλα καλά",
-  "SENTIMENT": "Συναίσθημα"
+  "SENTIMENT": "Συναίσθημα",
+  "ADD": "Προσθήκη",
+  "ARE_YOU_SURE": "Είσαι σίγουρος?",
+  "COMPETITION": "Ανταγωνισμός",
+  "DELETE_CATEGORY_CONFIRM": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την κατηγορία;",
+  "DELETE_DISH_CONFIRM": "Είστε σίγουροι ότι θέλετε να καταργήσετε αυτό το πιάτο;",
+  "DELETE_MENU_CONFIRM": "Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το μενού;",
+  "EDIT_CATEGORY": "Επεξεργασία κατηγορίας",
+  "EDIT_DISH": "Επεξεργασία πιάτου",
+  "GOOD": "Καλός",
+  "NEGATIVE": "Αρνητικός",
+  "NEUTRAL": "Ουδέτερος",
+  "NEW": "Νέος",
+  "NO": "Οχι",
+  "NO_CATEGORIES": "Δεν υπάρχουν κατηγορίες",
+  "NO_WORDS": "Καμία λέξη",
+  "POSITIVE": "Θετικός",
+  "SEE_ALL": "Προβολή όλων",
+  "SHOW": "προβολή",
+  "WORDS": "Λόγια",
+  "YES": "Ναί"
 }

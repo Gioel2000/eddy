@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "Atmosfär"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "Mat"
     }
   },
   "SPEAK_BADLY_OF": "Tala illa om",
-  "SPEAK_WELL_OF": "Tala väl om"
+  "SPEAK_WELL_OF": "Tala väl om",
+  "ADD": "Lägg till",
+  "ARE_YOU_SURE": "Är du säker?",
+  "COMPETITION": "Konkurrens",
+  "DELETE_CATEGORY_CONFIRM": "Är du säker på att du vill ta bort den här kategorin?",
+  "DELETE_DISH_CONFIRM": "Är du säker på att du vill ta bort den här rätten?",
+  "DELETE_MENU_CONFIRM": "Är du säker på att du vill ta bort den här menyn?",
+  "EDIT_CATEGORY": "Redigera kategori",
+  "EDIT_DISH": "Redigera maträtt",
+  "GOOD": "Bra",
+  "NEGATIVE": "Negativ",
+  "NEUTRAL": "Neutral",
+  "NEW": "Ny",
+  "NO": "Nej",
+  "NO_CATEGORIES": "Inga kategorier",
+  "NO_WORDS": "Inget ord",
+  "POSITIVE": "Positiv",
+  "SEE_ALL": "Se allt",
+  "SENTIMENT": "Känsla",
+  "SHOW": "Show",
+  "WORDS": "Ord",
+  "YES": "Ja"
 }

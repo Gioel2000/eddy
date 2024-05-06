@@ -355,8 +355,35 @@
     },
     "RESTAURANT_WIFI": {
       "DESC": "Wi-Fi"
+    },
+    "RESTAURANT_ATMOSPHERE": {
+      "DESC": "雰囲気"
+    },
+    "RESTAURANT_FOOD": {
+      "DESC": "食べ物"
     }
   },
   "SPEAK_BADLY_OF": "悪口を言う",
-  "SPEAK_WELL_OF": "よく話す"
+  "SPEAK_WELL_OF": "よく話す",
+  "ADD": "追加",
+  "ARE_YOU_SURE": "本気ですか？",
+  "COMPETITION": "競争",
+  "DELETE_CATEGORY_CONFIRM": "このカテゴリを削除してもよろしいですか?",
+  "DELETE_DISH_CONFIRM": "この料理を削除してもよろしいですか?",
+  "DELETE_MENU_CONFIRM": "このメニューを削除してもよろしいですか?",
+  "EDIT_CATEGORY": "カテゴリを編集する",
+  "EDIT_DISH": "料理の編集",
+  "GOOD": "良い",
+  "NEGATIVE": "ネガティブ",
+  "NEUTRAL": "中性",
+  "NEW": "新しい",
+  "NO": "いいえ",
+  "NO_CATEGORIES": "カテゴリなし",
+  "NO_WORDS": "何も言わない",
+  "POSITIVE": "ポジティブ",
+  "SEE_ALL": "すべてを見る",
+  "SENTIMENT": "感情",
+  "SHOW": "見せる",
+  "WORDS": "言葉",
+  "YES": "はい"
 }
