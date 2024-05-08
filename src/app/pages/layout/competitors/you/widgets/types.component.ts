@@ -26,7 +26,7 @@ import { map } from 'rxjs';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -35,7 +35,7 @@ import { map } from 'rxjs';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -53,7 +53,7 @@ import { map } from 'rxjs';
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4">
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-[10px] bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -177,7 +177,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-[10px] bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -301,7 +301,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-[10px] bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
@@ -425,7 +425,7 @@ import { map } from 'rxjs';
               </div>
 
               <div
-                class="relative flex items-center space-x-3 rounded-xl bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center space-x-3 rounded-[10px] bg-[#1A1A1A] shadow-black/5 ring-1  ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">

@@ -38,7 +38,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -47,7 +47,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -125,24 +125,24 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
         class="fixed flex flex-row items-center justify-center gap-x-2 p-2 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
       >
         <button
-          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
           (click)="scrollLeft()"
         >
           <div
-            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
           >
-            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon-5 stroke-2"></span>
+            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
           </div>
         </button>
 
         <button
-          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
           (click)="scrollRight()"
         >
           <div
-            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
           >
-            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon-5 stroke-2"></span>
+            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
           </div>
         </button>
 
@@ -150,13 +150,13 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
           class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
           (click)="scrollLeft()"
         >
-          <span [inlineSVG]="'arrow-left.svg'" class="svg-icon-5 stroke-2"></span>
+          <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
         </button>
         <button
           class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
           (click)="scrollRight()"
         >
-          <span [inlineSVG]="'arrow-right.svg'" class="svg-icon-5 stroke-2"></span>
+          <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
         </button> -->
       </div>
     </div>

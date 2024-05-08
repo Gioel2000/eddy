@@ -25,7 +25,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -34,7 +34,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -56,7 +56,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
           class="group relative rounded p-1 m-1 w-[25px] hover:bg-zinc-500/20 dark:hover:bg-zinc-700/20 focus:outline-none transition ease-in-out duration-100"
           (click)="onDelete(category)"
         >
-          <span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span>
+          <span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span>
         </button>
       </span>
       }
@@ -65,7 +65,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
         class="inline-flex items-center gap-x-2 rounded-md p-1 text-sm font-medium text-zinc-500 border border-dashed border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 cursor-pointer"
         (click)="onAdd()"
       >
-        <span class="svg-icon-9 stroke-[1.8] ml-1" inlineSVG="plus.svg"></span>
+        <span class="svg-icon svg-icon-9 stroke-[1.8] ml-1" inlineSVG="plus.svg"></span>
         <div class="w-full">{{ 'NEW' | translate }}</div>
       </a>
     </div>

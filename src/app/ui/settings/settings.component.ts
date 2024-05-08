@@ -45,7 +45,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
               >
-                <span class="svg-icon-8 stroke-1">
+                <span class="svg-icon svg-icon-8 stroke-1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                     <title>xmark</title>
                     <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
@@ -71,7 +71,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                       (click)="dialog.optionSelected.set('theme')"
                     >
                       <span
-                        class="svg-icon-1 mb-2 stroke-[1.6]"
+                        class="svg-icon svg-icon-1 mb-2 stroke-[1.6]"
                         [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'theme' }"
                         ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                           <title>window-paintbrush</title>
@@ -120,7 +120,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     >
                       <span
                         [ngClass]="{ 'text-black dark:text-white': dialog.optionSelected() === 'language' }"
-                        class="svg-icon-1 mb-2 stroke-[1.6]"
+                        class="svg-icon svg-icon-1 mb-2 stroke-[1.6]"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                           <title>language</title>
@@ -236,7 +236,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                       [disabled]="start() === 0"
                       (click)="prev()"
                     >
-                      <span class="svg-icon-8 stroke-[0.8]">
+                      <span class="svg-icon svg-icon-8 stroke-[0.8]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                           <title>arrow-left</title>
                           <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
@@ -252,7 +252,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                       [disabled]="end() >= i18n.languages().length"
                       (click)="next()"
                     >
-                      <span class="svg-icon-8 stroke-[0.8]">
+                      <span class="svg-icon svg-icon-8 stroke-[0.8]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
                           <title>arrow-right</title>
                           <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">

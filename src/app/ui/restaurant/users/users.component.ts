@@ -26,7 +26,7 @@ import { UserService } from '../user/user.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -35,13 +35,13 @@ import { UserService } from '../user/user.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
     </ng-template>
 
-    <div class="px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex items-center">
         <div class="flex-auto">
           <h1 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{ 'USERS' | translate }}</h1>
@@ -49,13 +49,61 @@ import { UserService } from '../user/user.service';
             {{ 'USERS_DESCRIPTION' | translate }}
           </p>
         </div>
-        <div class="mt-4 ml-16 flex-none">
-          <a
-            class="group flex flex-row items-center justify-center font-semibold col-span-1 rounded-full gap-x-1 p-2 shadow-sm cursor-pointer text-light dark:text-dark dark:ring-light bg-zinc-800 dark:bg-light hover:bg-zinc-800/90 dark:hover:bg-light/90 disabled:opacity-30"
-            (click)="openForm()"
-          >
-            <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-          </a>
+        <div class="ml-16 flex-none">
+          <div class="flex flex-row mt-2 ml-8 flex-none">
+            <a
+              class="
+              col-start-1
+              col-span-full
+              sm:col-start-2
+              sm:col-span-1
+              xl:col-span-1
+              rounded-[10px]
+              h-full
+              w-full
+              transition
+              ease-in-out
+              duration-200
+              opacity-90
+              hover:opacity-100
+              ring-1
+              dark:ring-0
+              ring-[#1A1A1A]
+              text-white
+              bg-gradient-to-b
+              from-black/55
+              via-[#1A1A1A]
+              to-[#1A1A1A]
+              dark:from-white/10
+              dark:via-white/5
+              dark:to-white/5
+              p-px
+              shadow-md
+              shadow-black/30
+            "
+              (click)="openForm()"
+            >
+              <div
+                class="
+                flex
+                flex-row
+                items-center
+                justify-center
+                gap-x-2
+                bg-[#1A1A1A]
+                h-full
+                w-full
+                px-3
+                py-2
+                rounded-[9px]
+                cursor-pointer
+              "
+              >
+                <span class="text-sm font-semibold">{{ 'ADD' | translate }}</span>
+                <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon svg-icon-5 stroke-2"></span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
       <div class="mt-8 flow-root">
@@ -99,12 +147,12 @@ import { UserService } from '../user/user.service';
                     <a
                       (click)="patchForm(user._id, user)"
                       class="text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
-                      ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
+                      ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
                     ></a>
                   </td>
                   <td class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
                     <a (click)="onDelete(user._id)" class="text-red-600 hover:text-red-900 dark:hover:text-red-100"
-                      ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
+                      ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                     ></a>
                   </td>
                 </tr>

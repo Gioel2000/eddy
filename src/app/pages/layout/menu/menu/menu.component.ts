@@ -26,7 +26,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -35,7 +35,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -60,7 +60,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
               sm:col-start-2
               sm:col-span-1
               xl:col-span-1
-              rounded-xl
+              rounded-[10px]
               h-full
               w-full
               transition
@@ -97,12 +97,12 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
                 w-full
                 px-3
                 py-2
-                rounded-[11px]
+                rounded-[9px]
                 cursor-pointer
               "
             >
               <span class="text-sm font-semibold">{{ 'ADD' | translate }}</span>
-              <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
+              <span [inlineSVG]="'plus.svg'" class="svg-icon svg-icon svg-icon-5 stroke-2"></span>
             </div>
           </a>
           }
@@ -124,19 +124,19 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
                 <a
                   class="text-zinc-600 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                   (click)="share(menu._id)"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="connected-dots-3.svg"></span
+                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="connected-dots-3.svg"></span
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
                 <a
                   class="text-zinc-600 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                   (click)="onEdit(menu)"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
+                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="pen-2.svg"></span
                 ></a>
               </div>
               <div class="relative whitespace-nowrap py-4 px-3 text-right text-sm font-medium cursor-pointer">
                 <a class="text-red-500 hover:text-red-700 dark:hover:text-red-300" (click)="onDelete(menu)"
-                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
+                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                 ></a>
               </div>
             </div>

@@ -39,7 +39,7 @@ import { GeneralDialogService } from './dialog.service';
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
               >
-                <span class="svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+                <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
               </button>
             </div>
             <div class="sm:flex sm:items-start">
@@ -57,7 +57,7 @@ import { GeneralDialogService } from './dialog.service';
             @switch (dialog.mode()) { @case ('boolean') {
             <div class="mt-8 sm:flex gap-x-3">
               <button
-                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-xl min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto"
+                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-[10px] min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto"
                 (click)="dialog.fuction()(); dialog.closeDialog()"
               >
                 <span class="font-semibold text-base">{{ 'YES' | translate }}</span>
@@ -65,7 +65,7 @@ import { GeneralDialogService } from './dialog.service';
 
               <button
                 type="button"
-                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-xl min-w-11 bg-transparent px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 sm:mt-0 sm:w-auto"
+                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-[10px] min-w-11 bg-transparent px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 sm:mt-0 sm:w-auto"
                 (click)="dialog.closeDialog()"
               >
                 {{ 'NO' | translate }}

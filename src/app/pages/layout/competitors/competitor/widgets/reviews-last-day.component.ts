@@ -22,7 +22,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[485px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -31,7 +31,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[485px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -161,7 +161,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
                       'TRIPADVISOR' | translate
@@ -173,7 +173,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   >
                     <span
                       [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-200">{{
                       'GOOGLE' | translate
@@ -185,7 +185,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   >
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
                       'THE_FORK' | translate
@@ -222,7 +222,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                           ? 'user.svg'
                           : 'users.svg'
                       "
-                      class="svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
+                      class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100">{{
                       clientType | uppercase | translate
@@ -259,7 +259,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   >
                     <span
                       [inlineSVG]="'arrow-left.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
                     ></span>
                   </button>
                   <button
@@ -269,7 +269,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                   >
                     <span
                       [inlineSVG]="'arrow-right.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
                     ></span>
                   </button>
                 </div>

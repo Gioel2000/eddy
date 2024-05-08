@@ -25,7 +25,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
           </div>
           } @else {
           <div class="flex flex-col items-center justify-center gap-y-2 h-full w-full object-cover object-center">
-            <span class="text-zinc-900 dark:text-zinc-100 svg-icon-1 stroke-[1.6]">
+            <span class="text-zinc-900 dark:text-zinc-100 svg-icon svg-icon-1 stroke-[1.6]">
               <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                 <title>image sparkle 3</title>
                 <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
@@ -72,7 +72,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
       <div class="flex flex-row gap-x-2 px-3 mb-1">
         @if (peanut()) {
         <div class="flex flex-row gap-x-1 bg-amber-100/80 dark:bg-amber-900/80 px-2 py-1.5 rounded-full">
-          <span class="svg-icon-9 text-amber-600 stroke-2">
+          <span class="svg-icon svg-icon-9 text-amber-600 stroke-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 fill="currentColor"
@@ -86,7 +86,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
         </div>
         } @if (milk()) {
         <div class="flex flex-row gap-x-1 bg-sky-100/80 dark:bg-sky-900/80 px-2 py-1.5 rounded-full">
-          <span class="svg-icon-9 text-sky-500 stroke-2">
+          <span class="svg-icon svg-icon-9 text-sky-500 stroke-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
               <path
                 fill="currentColor"
@@ -100,7 +100,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
         </div>
         }@if (gluten()) {
         <div class="flex flex-row gap-x-1 bg-emerald-100/80 dark:bg-emerald-900/80 px-2 py-1.5 rounded-full">
-          <span class="svg-icon-9 text-emerald-500 stroke-2">
+          <span class="svg-icon svg-icon-9 text-emerald-500 stroke-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 fill="currentColor"

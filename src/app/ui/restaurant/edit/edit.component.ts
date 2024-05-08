@@ -153,7 +153,7 @@ import { RestaurantPanelService } from '../panel.service';
           } @if (structures.savedSuccesfully()){
           <div class="flex flex-row items-center justify-center">
             <div class="flex flex-row items-center justify-center w-full">
-              <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-600 stroke-[1.6]"></span>
+              <span [inlineSVG]="'check.svg'" class="svg-icon svg-icon-3 text-green-600 stroke-[1.6]"></span>
             </div>
           </div>
           }

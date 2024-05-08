@@ -27,7 +27,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
           <span
             *ngIf="review().name === 'Verified traveler'"
             [inlineSVG]="'badge-check.svg'"
-            class="svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
+            class="svg-icon svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
           ></span>
         </div>
         <p class="font-medium text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>

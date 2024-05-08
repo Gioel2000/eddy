@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -36,7 +36,7 @@ import { Router } from '@angular/router';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -51,28 +51,27 @@ import { Router } from '@angular/router';
           </dt>
         </div>
         <div class="mt-6">
-          <dl class="space-y-3">
+          <dl class="space-y-2">
             <div class="grid grid-cols-1 gap-4 2xl:grid-cols-3">
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('google')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
                       <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'GOOGLE' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] mr-2"
                       ></span>
                     </div>
                     <div class="flex items-center xl:col-span-1">
@@ -167,7 +166,7 @@ import { Router } from '@angular/router';
                         <span>{{ google().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (google().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
+                          class="pl-1 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': google().filteredRating < 0,
                             'text-green-500': google().filteredRating > 0,
@@ -198,25 +197,24 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('tripadvisor')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-1 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      class="svg-icon svg-icon-1 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                     ></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between mb-1">
                       <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'TRIPADVISOR' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] mr-2"
                       ></span>
                     </div>
                     <div class="flex items-center xl:col-span-1 mb-1">
@@ -316,7 +314,7 @@ import { Router } from '@angular/router';
                         <span>{{ tripadvisor().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (tripadvisor().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
+                          class="pl-1 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': tripadvisor().filteredRating < 0,
                             'text-green-500': tripadvisor().filteredRating > 0,
@@ -347,26 +345,24 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 p-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('thefork')"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon-1 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      class="svg-icon svg-icon-1 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                     ></span>
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
-
                     <div class="flex flex-row items-center justify-between mb-1">
                       <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'THE_FORK' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden relative -top-0.5 svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden relative -top-0.5 svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] mr-2"
                       ></span>
                     </div>
 
@@ -462,7 +458,7 @@ import { Router } from '@angular/router';
                         <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
                         @if (thefork().filteredRating) {
                         <span
-                          class="pl-1.5 px-1 font-semibold text-xs tabular-nums"
+                          class="pl-1 px-1 font-semibold text-xs tabular-nums"
                           [ngClass]="{
                             'text-red-500': thefork().filteredRating < 0,
                             'text-green-500': thefork().filteredRating > 0,

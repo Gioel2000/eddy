@@ -23,7 +23,7 @@ import { ReviewsService } from '../reviews.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -32,7 +32,7 @@ import { ReviewsService } from '../reviews.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -168,7 +168,7 @@ import { ReviewsService } from '../reviews.service';
                   </p>
                   <span
                     [inlineSVG]="'share-up-right.svg'"
-                    class="group-hover:block w-4 hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition-all transform-gpu ease-in-out duration-300"
+                    class="group-hover:block w-4 hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition-all transform-gpu ease-in-out duration-300"
                   ></span>
                 </a>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
@@ -204,7 +204,7 @@ import { ReviewsService } from '../reviews.service';
               {{ 'NEGATIVE' | translate }}
             </p>
             <div class="flex flex-row items-center gap-x-2">
-              <span [inlineSVG]="'face-sad-2.svg'" class="svg-icon-3 text-red-500 stroke-[1.7]"></span>
+              <span [inlineSVG]="'face-sad-2.svg'" class="svg-icon svg-icon-3 text-red-500 stroke-[1.7]"></span>
               <span class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
                 {{ negativePercentage() | numb : translate.currentLang : 1 }}%
               </span>
@@ -216,7 +216,7 @@ import { ReviewsService } from '../reviews.service';
               {{ 'NEUTRAL' | translate }}
             </p>
             <div class="flex flex-row items-center gap-x-2">
-              <span [inlineSVG]="'face-neutral.svg'" class="svg-icon-3 text-yellow-500 stroke-[1.7]"></span>
+              <span [inlineSVG]="'face-neutral.svg'" class="svg-icon svg-icon-3 text-yellow-500 stroke-[1.7]"></span>
               <span class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
                 {{ neutralPercentage() | numb : translate.currentLang : 1 }}%
               </span>
@@ -228,7 +228,7 @@ import { ReviewsService } from '../reviews.service';
               {{ 'POSITIVE' | translate }}
             </p>
             <div class="flex flex-row items-center gap-x-2">
-              <span [inlineSVG]="'face-smile-2.svg'" class="svg-icon-3 text-green-500 stroke-[1.7]"></span>
+              <span [inlineSVG]="'face-smile-2.svg'" class="svg-icon svg-icon-3 text-green-500 stroke-[1.7]"></span>
               <span class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
                 {{ positivePercentage() | numb : translate.currentLang : 1 }}%
               </span>

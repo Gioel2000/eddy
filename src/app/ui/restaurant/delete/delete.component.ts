@@ -16,11 +16,11 @@ import { RestaurantPanelService } from '../panel.service';
   template: `
     <div class="px-4 sm:px-6 lg:px-8 py-8">
       <div
-        class="rounded-lg bg-yellow-50 dark:bg-yellow-500/10 ring-1 ring-inset ring-yellow-300 dark:ring-yellow-500 p-4 shadow-sm shadow-yellow-500/30"
+        class="rounded-lg bg-yellow-50 dark:bg-yellow-500/10 ring-1 ring-inset ring-yellow-300 dark:ring-yellow-500 p-4"
       >
         <div class="flex">
           <div class="flex-shrink-0">
-            <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-3 text-yellow-500 stroke-[1.4]"></span>
+            <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-3 text-yellow-500 stroke-[1.4]"></span>
           </div>
           <div class="ml-2">
             <h3 class="text-sm font-medium text-yellow-500">{{ 'IRREVERSIBLE' | translate }}</h3>
@@ -34,11 +34,15 @@ import { RestaurantPanelService } from '../panel.service';
       </div>
       <div class="mt-6">
         <button
-          class="flex flex-row items-center justify-center col-span-1 rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/30"
           (click)="onDelete()"
         >
-          <span [inlineSVG]="'trash.svg'" class="svg-icon-5 stroke-[1.7]"></span>
-          <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
+          <div
+            class="flex flex-row items-center justify-center gap-x-2 bg-red-600 dark:bg-red-500 h-full px-3 py-2 rounded-[9px] cursor-pointer"
+          >
+            <span [inlineSVG]="'trash.svg'" class="svg-icon svg-icon-5 stroke-[1.7]"></span>
+            <span class="font-semibold text-base">{{ 'DELETE' | translate }}</span>
+          </div>
         </button>
       </div>
     </div>

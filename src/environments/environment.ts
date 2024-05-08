@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  url: 'https://localhost:4000',
+  url: 'https://localhost:4200',
   apiUrl: 'http://localhost:4000',
   auth: {
     domain: 'auth.eddy.restaurant',

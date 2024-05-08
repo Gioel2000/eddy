@@ -48,7 +48,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -57,7 +57,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px- py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span class="svg-icon-1 text-red-500 stroke-[1.7]">
+          <span class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
               <title>triangle-warning</title>
               <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor">
@@ -142,7 +142,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
                           <span class="truncate max-w-full sm:max-w-24 capitalize">{{
                             selectedCategory().category.name
                           }}</span>
-                          <span class="svg-icon-8 text-zinc-400 stroke-[1.8]">
+                          <span class="svg-icon svg-icon-8 text-zinc-400 stroke-[1.8]">
                             <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                               <title>chevron down</title>
                               <g fill="currentColor" class="nc-icon-wrapper">
@@ -160,7 +160,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
                       </button>
                       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
                         <div
-                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-xl bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
+                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-[10px] bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
                           role="menu"
                           aria-orientation="vertical"
                           aria-labelledby="menu-button"
@@ -219,9 +219,9 @@ import { SettingsService } from '../../ui/settings/settings.service';
           </div>
           <div [style.height.px]="header.offsetHeight"></div>
           <div class="sm:px-6 mb-4">
-            <div class="relative mt-2 rounded-xl shadow-sm">
+            <div class="relative mt-2 rounded-[10px] shadow-sm">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <span class="svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600">
+                <span class="svg-icon svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600">
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                     <title>magnifier</title>
                     <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
@@ -250,7 +250,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 bg-white dark:bg-[#1A1A1A] mb-8 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                class="block w-full rounded-[10px] border-0 bg-white dark:bg-[#1A1A1A] mb-8 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />

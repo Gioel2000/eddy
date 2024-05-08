@@ -58,7 +58,7 @@ import { environment } from '../../../environments/environment';
                       class="relative z-50 rounded-md p-1.5 bg-white/20 hover:bg-white/10 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100"
                       (click)="panelUI.closePanel()"
                     >
-                      <span class="svg-icon-5" inlineSVG="xmark.svg"></span>
+                      <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
                     </button>
                   </div>
                   <nav class="h-full overflow-y-auto bg-white dark:bg-zinc-800" aria-label="Directory">
@@ -75,7 +75,7 @@ import { environment } from '../../../environments/environment';
                         class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[34rem]"
                       >
                         <div class="flex flex-col items-center justify-center w-full">
-                          <span [inlineSVG]="'ufo.svg'" class="svg-icon-3 text-zinc-500 stroke-[1.4]"></span>
+                          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-3 text-zinc-500 stroke-[1.4]"></span>
                           <span class="text-base font-medium text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
                         </div>
                       </div>
@@ -86,7 +86,7 @@ import { environment } from '../../../environments/environment';
                         <div class="flex flex-col items-center justify-center w-full">
                           <span
                             [inlineSVG]="'triangle-warning.svg'"
-                            class="svg-icon-3 text-red-500 stroke-[1.4]"
+                            class="svg-icon svg-icon-3 text-red-500 stroke-[1.4]"
                           ></span>
                           <span class="text-base font-medium text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
                         </div>

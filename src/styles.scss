@@ -175,6 +175,10 @@ input {
   color-scheme: dark;
 }
 
+div .svg-icon svg {
+  pointer-events: none;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

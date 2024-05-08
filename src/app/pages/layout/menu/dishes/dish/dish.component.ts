@@ -26,13 +26,13 @@ import { combineLatest, filter } from 'rxjs';
                 class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="edit.emit(dish())"
               >
-                <span class="svg-icon-7 stroke-2 text-amber-500" inlineSVG="pen-2.svg"></span>
+                <span class="svg-icon svg-icon-7 stroke-2 text-amber-500" inlineSVG="pen-2.svg"></span>
               </a>
               <a
                 class="flex flex-row items-center rounded-r-md pr-2 pl-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="delete.emit(dish())"
               >
-                <span class="svg-icon-7 stroke-2 text-red-500" inlineSVG="trash.svg"></span>
+                <span class="svg-icon svg-icon-7 stroke-2 text-red-500" inlineSVG="trash.svg"></span>
               </a>
             </div>
           </div>
@@ -44,7 +44,7 @@ import { combineLatest, filter } from 'rxjs';
           </div>
           } @else {
           <div class="flex flex-col items-center justify-center gap-y-2 h-full w-full object-cover object-center">
-            <span class="text-zinc-900 dark:text-zinc-100 svg-icon-1 stroke-[1.6]">
+            <span class="text-zinc-900 dark:text-zinc-100 svg-icon svg-icon-1 stroke-[1.6]">
               <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                 <title>image sparkle 3</title>
                 <g fill="none" stroke="currentColor" class="nc-icon-wrapper">

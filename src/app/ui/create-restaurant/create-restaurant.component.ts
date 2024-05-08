@@ -76,7 +76,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                           class="relative text-zinc-400 dark:text-zinc-600 hover:text-zinc-500"
                           (click)="panelUI.closePanel()"
                         >
-                          <span class="svg-icon-5" inlineSVG="xmark.svg"></span>
+                          <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
                         </button>
                       </div>
                     </div>

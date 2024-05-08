@@ -71,7 +71,7 @@ import { CategoriesComponent } from './widgets/categories.component';
           <div class="absolute inset-0 flex justify-center items-center z-10 lg:pl-72 py-8 animate-pulse">
             <div class="flex flex-col items-center text-balance text-center gap-y-3">
               <span
-                class="svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
+                class="svg-icon svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
                 [inlineSVG]="'star-sparkle.svg'"
               ></span>
               <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">

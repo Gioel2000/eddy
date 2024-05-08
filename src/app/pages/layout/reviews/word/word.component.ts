@@ -52,7 +52,7 @@ import { filter, map, take, tap } from 'rxjs';
           }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
           ></span>
         </div>
       </button>

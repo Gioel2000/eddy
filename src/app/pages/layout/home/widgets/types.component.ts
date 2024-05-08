@@ -28,7 +28,7 @@ import { Router } from '@angular/router';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -37,7 +37,7 @@ import { Router } from '@angular/router';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ import { Router } from '@angular/router';
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkType('Family')"
               >
                 <div class="min-w-0 flex-1">
@@ -65,7 +65,7 @@ import { Router } from '@angular/router';
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'FAMILY' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
                       ></span>
                     </div>
 
@@ -181,7 +181,7 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkType('Couple')"
               >
                 <div class="min-w-0 flex-1">
@@ -192,7 +192,7 @@ import { Router } from '@angular/router';
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'COUPLE' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
                       ></span>
                     </div>
 
@@ -308,7 +308,7 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkType('Solo')"
               >
                 <div class="min-w-0 flex-1">
@@ -319,7 +319,7 @@ import { Router } from '@angular/router';
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'SOLO' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
+                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
                       ></span>
                     </div>
 
@@ -435,7 +435,7 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkType('Business')"
               >
                 <div class="min-w-0 flex-1">
@@ -446,7 +446,7 @@ import { Router } from '@angular/router';
                       <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'BUSINESS' | translate }}</p>
                       <span
                         [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition ease-in-out duration-100"
+                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition ease-in-out duration-100"
                       ></span>
                     </div>
 

@@ -19,7 +19,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
         'rotate-[-315deg]': counter() === 8,
       }"
     >
-      <span class="text-zinc-700 dark:text-zinc-200 svg-icon-3 stroke-[1.8]">
+      <span class="text-zinc-700 dark:text-zinc-200 svg-icon svg-icon-3 stroke-[1.8]">
         <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
           <title>loader</title>
           <g fill="currentColor" class="nc-icon-wrapper">

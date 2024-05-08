@@ -48,7 +48,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+              <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
             </button>
           </div>
 
@@ -57,30 +57,30 @@ import { toObservable } from '@angular/core/rxjs-interop';
             [qrdata]="link()"
             [width]="container.offsetWidth - 60"
             [errorCorrectionLevel]="'M'"
-            cssClass="flex flex-col items-center justify-center ring-1 bg-white ring-inset ring-zinc-300 rounded-xl p-1 shadow-sm shadow-black/10"
+            cssClass="flex flex-col items-center justify-center ring-1 bg-white ring-inset ring-zinc-300 rounded-[10px] p-1 shadow-sm shadow-black/10"
           ></qrcode>
 
           <div class="flex flex-row items-center gap-x-2 my-4">
             <button
-              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
+              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
               (click)="open()"
             >
               <div
-                class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full px-3 py-2 rounded-[11px] cursor-pointer"
+                class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full px-3 py-2 rounded-[9px] cursor-pointer"
               >
-                <span class="svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
+                <span class="svg-icon svg-icon-8 stroke-2" inlineSVG="share-up-right.svg"></span>
                 <span class="font-semibold">{{ 'OPEN' | translate }}</span>
               </div>
             </button>
 
             <button
-              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
+              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
               (click)="copy()"
             >
               <div
-                class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full px-3 py-2 rounded-[11px] cursor-pointer"
+                class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full px-3 py-2 rounded-[9px] cursor-pointer"
               >
-                <span class="svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
+                <span class="svg-icon svg-icon-8 stroke-2" inlineSVG="link.svg"></span>
                 <span class="font-semibold">{{ 'COPY' | translate }}</span>
               </div>
             </button>
@@ -88,18 +88,18 @@ import { toObservable } from '@angular/core/rxjs-interop';
             @if (copiedSuccesfully()){
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
-                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-500 stroke-[1.6]"></span>
+                <span [inlineSVG]="'check.svg'" class="svg-icon svg-icon-3 text-green-500 stroke-[1.6]"></span>
               </div>
             </div>
             }
           </div>
 
           <button
-            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
+            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
             (click)="dialog.closeDialog()"
           >
             <div
-              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
             >
               <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>
             </div>

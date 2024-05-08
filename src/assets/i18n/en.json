@@ -385,5 +385,8 @@
   "ARE_YOU_SURE": "Are you sure?",
   "DELETE_DISH_CONFIRM": "Are you sure you want to eliminate this dish?",
   "DELETE_CATEGORY_CONFIRM": "Are you sure you want to delete this category?",
-  "DELETE_MENU_CONFIRM": "Are you sure you want to eliminate this menu?"
+  "DELETE_MENU_CONFIRM": "Are you sure you want to eliminate this menu?",
+  "CHANGE_RESTAURANT": "Change restaurant",
+  "CHANGE": "Change",
+  "CHOISE_RESTAURANT": "Choice of restaurant"
 }

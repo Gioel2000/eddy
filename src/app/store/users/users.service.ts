@@ -94,7 +94,7 @@ export class UsersStore {
       .pipe(
         untilDestroyed(this),
         tap(() => this.delete$.next(id)),
-        tap(() => this.state$.next('loaded' as const)),
+        tap(() => this.state$.next(this.store().users.length ? ('loaded' as const) : ('empty' as const))),
         catchError(() => {
           this.state$.next('error' as const);
           return of(null);

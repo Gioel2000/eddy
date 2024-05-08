@@ -28,7 +28,7 @@ import { map } from 'rxjs';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -37,7 +37,7 @@ import { map } from 'rxjs';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -68,7 +68,7 @@ import { map } from 'rxjs';
                 class="flex flex-row items-center justify-center rounded-full p-3 w-full h-auto cursor-pointer text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800"
                 (click)="showSearch.set(!showSearch())"
               >
-                <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon-3 stroke-2"></span>
+                <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon svg-icon-3 stroke-2"></span>
               </a>
               <button
                 class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
@@ -77,7 +77,10 @@ import { map } from 'rxjs';
                 <div
                   class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 rounded-[9998px] cursor-pointer"
                 >
-                  <span class="svg-icon-3 stroke-2 text-zinc-100 dark:text-zinc-100" [inlineSVG]="'plus.svg'"></span>
+                  <span
+                    class="svg-icon svg-icon-3 stroke-2 text-zinc-100 dark:text-zinc-100"
+                    [inlineSVG]="'plus.svg'"
+                  ></span>
                 </div>
               </button>
             </div>
@@ -87,16 +90,16 @@ import { map } from 'rxjs';
         @if (showSearch()) {
         <div>
           <div class="mt-16">
-            <div class="relative mt-2 rounded-xl shadow-sm">
+            <div class="relative mt-2 rounded-[10px] shadow-sm">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span
                   [inlineSVG]="'magnifier.svg'"
-                  class="svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600"
+                  class="svg-icon svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600"
                 ></span>
               </div>
               <input
                 type="text"
-                class="block w-full rounded-xl border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                class="block w-full rounded-[10px] border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
                 [formControl]="searchFormControl"
               />
@@ -107,7 +110,7 @@ import { map } from 'rxjs';
         <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
           <article
-            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f] shadow-sm shadow-black/10"
+            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f]"
           >
             <div class="relative w-full">
               <img
@@ -146,13 +149,19 @@ import { map } from 'rxjs';
                   </div>
                 </div>
               </div>
-              <div class="relative mt-8 flex items-center gap-x-4">
-                <a
-                  class="flex flex-row items-center justify-center col-span-1 rounded-lg p-3 w-full cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)]"
+              <div
+                class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200"
+              >
+                <button
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full ring-1 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-white/40 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/20 hover:shadow-black/30 disabled:opacity-30"
                   (click)="store.choose(structure._id)"
                 >
-                  <span class="font-semibold text-base">{{ 'CHOOSE' | translate }}</span>
-                </a>
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
+                  >
+                    <span class="font-semibold text-base">{{ 'CHOOSE' | translate }}</span>
+                  </div>
+                </button>
               </div>
             </div>
           </article>

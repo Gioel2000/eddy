@@ -18,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         for="name"
         class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
       >
-        <span [inlineSVG]="'language.svg'" class="svg-icon-8 text-zinc-500 stroke-[1.8]"></span>
+        <span [inlineSVG]="'language.svg'" class="svg-icon svg-icon-8 text-zinc-500 stroke-[1.8]"></span>
       </label>
       <button
         type="button"
@@ -38,7 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           </span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
           ></span>
         </div>
       </button>

@@ -1,13 +1,11 @@
-import { Component, Signal, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
-import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
 import { StateModel } from '../../../../../store/competitors/interfaces/competitors';
 
 @Component({
@@ -26,7 +24,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -35,7 +33,7 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -56,13 +54,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-1 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                   </div>
                 </div>
@@ -193,13 +191,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-1 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      class="svg-icon svg-icon-1 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                     ></span>
                   </div>
                 </div>
@@ -335,13 +333,13 @@ import { StateModel } from '../../../../../store/competitors/interfaces/competit
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon-1 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      class="svg-icon svg-icon-1 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                     ></span>
                   </div>
                 </div>

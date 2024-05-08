@@ -35,7 +35,7 @@ import { CompetitorsService } from '../competitors.service';
           }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
           ></span>
         </div>
       </button>
@@ -64,7 +64,7 @@ import { CompetitorsService } from '../competitors.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-emerald-600 dark:text-emerald-500">{{
                       'TRIPADVISOR' | translate
@@ -80,7 +80,10 @@ import { CompetitorsService } from '../competitors.service';
                     (change)="toggle('google')"
                   />
                   <div class="flex flex-row items-center gap-x-2">
-                    <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-900"></span>
+                    <span
+                      [inlineSVG]="'channels/google.svg'"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900"
+                    ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-900 dark:text-zinc-200">{{
                       'GOOGLE' | translate
                     }}</span>
@@ -97,7 +100,7 @@ import { CompetitorsService } from '../competitors.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
                       'THE_FORK' | translate

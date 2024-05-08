@@ -37,7 +37,7 @@ import { ReviewsService } from '../reviews.service';
           }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
           ></span>
         </div>
       </button>
@@ -68,7 +68,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'user.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'SOLO' | translate
@@ -85,7 +85,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'crowd.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'FAMILY' | translate
@@ -102,7 +102,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'users-3.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'COUPLE' | translate
@@ -119,7 +119,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'suitcase-6.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'BUSINESS' | translate

@@ -29,7 +29,7 @@ import { RestaurantPanelService } from '../panel.service';
               >
                 <span
                   [inlineSVG]="'channels/tripadvisor.svg'"
-                  class="svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                  class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
                 ></span>
                 <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
                   'TRIPADVISOR' | translate
@@ -73,7 +73,7 @@ import { RestaurantPanelService } from '../panel.service';
               >
                 <span
                   [inlineSVG]="'channels/google.svg'"
-                  class="svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
+                  class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
                 ></span>
                 <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-300">{{
                   'GOOGLE' | translate
@@ -117,7 +117,7 @@ import { RestaurantPanelService } from '../panel.service';
               >
                 <span
                   [inlineSVG]="'channels/TheFork.svg'"
-                  class="svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                  class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
                 ></span>
                 <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
                   'THE_FORK' | translate
@@ -162,7 +162,7 @@ import { RestaurantPanelService } from '../panel.service';
             } @if (structures.savedSuccesfully()){
             <div class="flex flex-row items-center justify-center">
               <div class="flex flex-row items-center justify-center w-full">
-                <span [inlineSVG]="'check.svg'" class="svg-icon-3 text-green-600 stroke-[1.6]"></span>
+                <span [inlineSVG]="'check.svg'" class="svg-icon svg-icon-3 text-green-600 stroke-[1.6]"></span>
               </div>
             </div>
             }

@@ -35,7 +35,7 @@ import { CompetitorsService } from '../../competitors.service';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[385px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -44,7 +44,7 @@ import { CompetitorsService } from '../../competitors.service';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[385px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -70,11 +70,11 @@ import { CompetitorsService } from '../../competitors.service';
             }"
           >
             @if (isBRPositive() === '+') {
-            <span [inlineSVG]="'arrow-up.svg'" class="svg-icon-7 stroke-2"></span>
+            <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             } @if (isBRPositive() === '-') {
-            <span [inlineSVG]="'arrow-down.svg'" class="svg-icon-7 stroke-2"></span>
+            <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             } @if (isBRPositive() === '=') {
-            <span [inlineSVG]="'priority-normal.svg'" class="svg-icon-7 stroke-2"></span>
+            <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             }
             <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
           </dd>

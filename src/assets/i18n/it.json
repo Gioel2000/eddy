@@ -385,5 +385,8 @@
   "DELETE_DISH_CONFIRM": "Sei sicuro di voler eliminare questo piatto?",
   "DELETE_CATEGORY_CONFIRM": "Sei sicuro di voler eliminare questa categoria?",
   "DELETE_MENU_CONFIRM": "Sei sicuro di voler eliminare questo menu?",
-  "NO": "NO"
+  "NO": "NO",
+  "CHANGE_RESTAURANT": "Cambia ristorante",
+  "CHANGE": "Cambia",
+  "CHOISE_RESTAURANT": "Scegli il ristorante"
 }

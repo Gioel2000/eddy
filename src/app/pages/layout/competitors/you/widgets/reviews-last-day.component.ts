@@ -22,7 +22,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[485px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -31,7 +31,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[485px]">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -160,7 +160,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   >
                     <span
                       [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon-2 stroke-[1.8] text-emerald-500"
+                      class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-500"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-500">{{
                       'TRIPADVISOR' | translate
@@ -170,7 +170,10 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   <div
                     class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-700"
                   >
-                    <span [inlineSVG]="'channels/google.svg'" class="svg-icon-4 stroke-[1.8] text-zinc-100"></span>
+                    <span
+                      [inlineSVG]="'channels/google.svg'"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-100"
+                    ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{
                       'GOOGLE' | translate
                     }}</span>
@@ -179,7 +182,10 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   <div
                     class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-700"
                   >
-                    <span [inlineSVG]="'channels/TheFork.svg'" class="svg-icon-4 stroke-[1.8] text-[#00ab97]"></span>
+                    <span
+                      [inlineSVG]="'channels/TheFork.svg'"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#00ab97]"
+                    ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
                       'THE_FORK' | translate
                     }}</span>
@@ -215,7 +221,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                           ? 'user.svg'
                           : 'users.svg'
                       "
-                      class="svg-icon-6 ml-0.5 stroke-2 text-zinc-100"
+                      class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-100"
                     ></span>
                     <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-100">{{
                       clientType | uppercase | translate
@@ -249,7 +255,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   >
                     <span
                       [inlineSVG]="'arrow-left.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
                     ></span>
                   </button>
                   <button
@@ -259,7 +265,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                   >
                     <span
                       [inlineSVG]="'arrow-right.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
                     ></span>
                   </button>
                 </div>

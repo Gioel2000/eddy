@@ -61,7 +61,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+              <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
             </button>
           </div>
 
@@ -130,7 +130,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         >
                           <input type="radio" class="sr-only" />
                           <div class="flex flex-col items-center gap-y-2">
-                            <!-- <span class="svg-icon-3 stroke-2" [inlineSVG]="'food/' + category.icon"></span> -->
+                            <!-- <span class="svg-icon svg-icon-3 stroke-2" [inlineSVG]="'food/' + category.icon"></span> -->
                             <span
                               class="text-center text-xs capitalize text-zinc-700 dark:text-zinc-300 line-clamp-3"
                               >{{ category.name }}</span
@@ -148,7 +148,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                           [disabled]="start() === 0"
                           (click)="prev()"
                         >
-                          <span class="svg-icon-8" inlineSVG="arrow-left.svg"></span>
+                          <span class="svg-icon svg-icon-8" inlineSVG="arrow-left.svg"></span>
                         </button>
                         <button
                           type="button"
@@ -156,7 +156,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                           [disabled]="end() >= store.categories().length"
                           (click)="next()"
                         >
-                          <span class="svg-icon-8" inlineSVG="arrow-right.svg"></span>
+                          <span class="svg-icon svg-icon-8" inlineSVG="arrow-right.svg"></span>
                         </button>
                       </span>
                     </div>
@@ -189,12 +189,12 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                                 <a
                                   class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveCategoryUp(category)"
-                                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
+                                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
                                 ></a>
                                 <a
                                   class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveCategoryDown(category)"
-                                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
+                                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
                                 ></a>
                               </th>
                             </tr>
@@ -217,7 +217,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                                 class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"
                               >
                                 <a (click)="removeDishFromMenu(dish)" class="text-accent dark:text-accentDark"
-                                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
+                                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span
                                 ></a>
                               </td>
                               <td
@@ -226,12 +226,12 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                                 <a
                                   lass="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveDishUp(dish)"
-                                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
+                                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
                                 ></a>
                                 <a
                                   lass="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveDishDown(dish)"
-                                  ><span class="svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
+                                  ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
                                 ></a>
                               </td>
                             </tr>
@@ -247,11 +247,11 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
             </div>
           </form>
           <button
-            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
+            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
             (click)="done()"
           >
             <div
-              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+              class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
             >
               <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>
             </div>

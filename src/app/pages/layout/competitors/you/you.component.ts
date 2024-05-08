@@ -41,7 +41,7 @@ import { CategoriesComponent } from './widgets/categories.component';
     <ng-template #empty>
       <div class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'ufo.svg'" class="svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-1 text-zinc-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
         </div>
       </div>
@@ -50,7 +50,7 @@ import { CategoriesComponent } from './widgets/categories.component';
     <ng-template #error>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
-          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
+          <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
           <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
         </div>
       </div>
@@ -71,7 +71,7 @@ import { CategoriesComponent } from './widgets/categories.component';
         </p>
         @if (dashboard.isDownloading()) {
         <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
-          <span class="svg-icon-1 stroke-2 text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
+          <span class="svg-icon svg-icon-1 stroke-2 text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
           <p class="text-2xl font-bold leading-8 text-zinc-100 tracking-tight">
             {{ 'WARNING' | translate }}
           </p>

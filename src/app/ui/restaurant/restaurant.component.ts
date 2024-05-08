@@ -79,7 +79,7 @@ export interface MarkerInterface {
                       class="relative z-50 rounded-md p-1.5 bg-black/40 hover:bg-black/50 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100"
                       (click)="panelUI.closePanel()"
                     >
-                      <span class="svg-icon-5" inlineSVG="xmark.svg"></span>
+                      <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
                     </button>
                   </div>
                   <nav class="h-full overflow-y-auto bg-white dark:bg-zinc-800" aria-label="Directory">
@@ -96,7 +96,7 @@ export interface MarkerInterface {
                         class="flex flex-row items-center justify-center w-full px-4 pb-10 sm:px-6 xl:px-8 h-[34rem]"
                       >
                         <div class="flex flex-col items-center justify-center w-full">
-                          <span [inlineSVG]="'ufo.svg'" class="svg-icon-3 text-zinc-500 stroke-[1.4]"></span>
+                          <span [inlineSVG]="'ufo.svg'" class="svg-icon svg-icon-3 text-zinc-500 stroke-[1.4]"></span>
                           <span class="text-base font-medium text-zinc-500 mt-1">{{ 'NO_DATA' | translate }}</span>
                         </div>
                       </div>
@@ -107,7 +107,7 @@ export interface MarkerInterface {
                         <div class="flex flex-col items-center justify-center w-full">
                           <span
                             [inlineSVG]="'triangle-warning.svg'"
-                            class="svg-icon-3 text-red-500 stroke-[1.4]"
+                            class="svg-icon svg-icon-3 text-red-500 stroke-[1.4]"
                           ></span>
                           <span class="text-base font-medium text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
                         </div>
@@ -128,14 +128,10 @@ export interface MarkerInterface {
                           </div>
                           <button
                             type="button"
-                            class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                            class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                             (click)="structures.exit(); panelUI.closePanel()"
                           >
-                            <span
-                              inlineSVG="rect-logout.svg"
-                              class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"
-                            ></span>
-                            <span class="text-zinc-700 dark:text-zinc-200 ml-1.5 mr-1">{{ 'EXIT' | translate }}</span>
+                            {{ 'CHANGE_RESTAURANT' | translate }}
                           </button>
                         </div>
 

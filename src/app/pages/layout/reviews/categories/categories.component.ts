@@ -37,7 +37,7 @@ import { ReviewsService } from '../reviews.service';
           }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
           ></span>
         </div>
       </button>
@@ -68,7 +68,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'pizza-slice-2.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'REVIEWS_CATEGORIES.RESTAURANT_FOOD.DESC' | translate
@@ -85,7 +85,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'portal-sparkle.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'REVIEWS_CATEGORIES.RESTAURANT_ATMOSPHERE.DESC' | translate
@@ -102,7 +102,7 @@ import { ReviewsService } from '../reviews.service';
                   <div class="flex flex-row items-center gap-x-2">
                     <span
                       [inlineSVG]="'food-delivery-time.svg'"
-                      class="svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
+                      class="svg-icon svg-icon-6 text-zinc-800 dark:text-zinc-200 stroke-[1.7]"
                     ></span>
                     <span class="block text-sm font-bold mr-2 leading-6 text-zinc-800 dark:text-zinc-200">{{
                       'REVIEWS_CATEGORIES.RESTAURANT_SERVICE.DESC' | translate

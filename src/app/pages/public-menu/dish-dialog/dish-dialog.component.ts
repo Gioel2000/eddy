@@ -47,7 +47,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
               >
-                <span class="svg-icon-8 stroke-[1.6]">
+                <span class="svg-icon svg-icon-8 stroke-[1.6]">
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                     <title>xmark</title>
                     <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
@@ -108,7 +108,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
               <div class="flex flex-row gap-x-2 mb-1">
                 @if (peanut()) {
                 <div class="flex flex-row gap-x-1 bg-amber-100/80 dark:bg-amber-900/80 px-2 py-1.5 rounded-full">
-                  <span class="svg-icon-9 text-amber-600 stroke-2">
+                  <span class="svg-icon svg-icon-9 text-amber-600 stroke-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path
                         fill="currentColor"
@@ -122,7 +122,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
                 </div>
                 } @if (milk()) {
                 <div class="flex flex-row gap-x-1 bg-sky-100/80 dark:bg-sky-900/80 px-2 py-1.5 rounded-full">
-                  <span class="svg-icon-9 text-sky-500 stroke-2">
+                  <span class="svg-icon svg-icon-9 text-sky-500 stroke-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                       <path
                         fill="currentColor"
@@ -136,7 +136,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
                 </div>
                 }@if (gluten()) {
                 <div class="flex flex-row gap-x-1 bg-emerald-100/80 dark:bg-emerald-900/80 px-2 py-1.5 rounded-full">
-                  <span class="svg-icon-9 text-emerald-500 stroke-2">
+                  <span class="svg-icon svg-icon-9 text-emerald-500 stroke-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path
                         fill="currentColor"
@@ -153,11 +153,11 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
               }
             </div>
             <button
-              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-xl w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
+              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
               (click)="dialog.closeDialog()"
             >
               <div
-                class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[11px] cursor-pointer"
+                class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
               >
                 <span class="font-semibold text-base">{{ 'DONE' | translate }}</span>
               </div>
