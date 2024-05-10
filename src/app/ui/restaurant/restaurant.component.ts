@@ -152,7 +152,9 @@ export interface MarkerInterface {
                             </select>
                           </div>
                           <div class="hidden sm:block">
-                            <div class="border-b border-zinc-200 dark:border-zinc-700 overflow-x-auto">
+                            <div
+                              class="border-b border-zinc-200 dark:border-zinc-700 overflow-x-auto overflow-y-hidden"
+                            >
                               <nav class="-mb-px flex space-x-8 px-4 sm:px-6 lg:px-8" aria-label="Tabs">
                                 <a
                                   class="border-transparent hover:border-zinc-300 hover:text-zinc-700 whitespace-nowrap border-b-2 py-4 text-sm font-medium"

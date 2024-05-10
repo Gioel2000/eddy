@@ -388,5 +388,9 @@
   "DELETE_MENU_CONFIRM": "Are you sure you want to eliminate this menu?",
   "CHANGE_RESTAURANT": "Change restaurant",
   "CHANGE": "Change",
-  "CHOISE_RESTAURANT": "Choice of restaurant"
+  "CHOISE_RESTAURANT": "Choice of restaurant",
+  "RATING": "Rating",
+  "VOTE": "Vote",
+  "ALL": "All",
+  "STARS": "Stars"
 }

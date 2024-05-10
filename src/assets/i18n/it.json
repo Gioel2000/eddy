@@ -388,5 +388,9 @@
   "NO": "NO",
   "CHANGE_RESTAURANT": "Cambia ristorante",
   "CHANGE": "Cambia",
-  "CHOISE_RESTAURANT": "Scegli il ristorante"
+  "CHOISE_RESTAURANT": "Scegli il ristorante",
+  "RATING": "Valutazione",
+  "VOTE": "Votazione",
+  "ALL": "Tutto",
+  "STARS": "Stelle"
 }

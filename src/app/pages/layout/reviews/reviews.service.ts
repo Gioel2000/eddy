@@ -1,11 +1,10 @@
-import { Injectable, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ReviewsStore } from '../../../store/reviews/reviews.service';
-import { delay, distinctUntilChanged, filter, map, skip, tap } from 'rxjs';
-import moment from 'moment';
+import { distinctUntilChanged, map, skip, tap } from 'rxjs';
 import { StructureStore } from '../../../store/structures/structure.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 
 const INIT_FILTER = {
   startdate: undefined,
@@ -14,6 +13,7 @@ const INIT_FILTER = {
   clients: [],
   offset: 0,
   rows: 5,
+  rating: undefined,
   sentimentCategories: [],
   sentimentWords: [],
 };
@@ -33,6 +33,7 @@ export class ReviewsService {
     clients: string[];
     sentimentCategories: string[];
     sentimentWords: string[];
+    rating: number | undefined;
     rows: number;
     offset: number;
   }> = signal(INIT_FILTER);
@@ -41,7 +42,7 @@ export class ReviewsService {
     toObservable(this.filter)
       .pipe(
         untilDestroyed(this),
-        map(({ startdate, enddate, channels, clients, rows, offset, sentimentCategories, sentimentWords }) => ({
+        map(({ startdate, enddate, channels, clients, rows, offset, sentimentCategories, sentimentWords, rating }) => ({
           startdate: startdate ? moment(startdate).format('YYYY-MM-DD') : undefined,
           enddate: enddate ? moment(enddate).format('YYYY-MM-DD') : undefined,
           channels: channels.join(','),
@@ -50,19 +51,21 @@ export class ReviewsService {
           offset,
           sentimentCategories,
           sentimentWords,
+          rating,
         }))
       )
       .subscribe((filter) => this.store.filter$.next(filter));
 
     toObservable(this.filter)
       .pipe(
-        map(({ startdate, enddate, channels, clients, sentimentCategories, sentimentWords, rows, offset }) => ({
+        map(({ startdate, enddate, channels, clients, sentimentCategories, sentimentWords, rating, rows, offset }) => ({
           startdate: startdate ? moment(startdate).format('YYYY-MM-DD') : undefined,
           enddate: enddate ? moment(enddate).format('YYYY-MM-DD') : undefined,
           channels: channels.join(','),
           sentimentCategories: sentimentCategories.join(','),
           sentimentWords: sentimentWords.join(','),
           clients,
+          rating,
         })),
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
         tap(() => this.page.set(1))

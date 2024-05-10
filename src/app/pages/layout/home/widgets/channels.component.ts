@@ -575,6 +575,7 @@ export class ChannelsComponent {
       sentimentCategories: [],
       sentimentWords: [],
       channels: [channel],
+      rating: undefined,
     });
 
     this.router.navigate(['/reviews']);

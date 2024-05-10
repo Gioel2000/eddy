@@ -637,6 +637,7 @@ export class TypesComponent {
       sentimentCategories: [],
       sentimentWords: [],
       clients: [type],
+      rating: undefined,
     });
 
     this.router.navigate(['/reviews']);

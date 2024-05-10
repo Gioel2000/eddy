@@ -47,7 +47,7 @@ export interface CalendarModel {
   ],
   template: `
     <div
-      class="sm:min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
+      class="sm:min-w-32 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
       (clickOutside)="close()"
     >
       <div class="relative">
@@ -229,7 +229,7 @@ export class DatePickerComponent {
       const { innerWidth: windowWidth } = window;
       const { right } = this.buttonElement?.nativeElement.getBoundingClientRect();
 
-      this.direction.set(right > windowWidth / 2 ? 'right' : 'left');
+      this.direction.set(windowWidth - right > 200 ? 'left' : 'right');
     }, 0);
   }
 

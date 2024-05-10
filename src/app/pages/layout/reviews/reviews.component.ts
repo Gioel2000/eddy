@@ -14,7 +14,7 @@ import { HeaderReviewComponent } from '../../../ui/single-review/review-header.c
 import { BodyReviewComponent } from '../../../ui/single-review/review-body.component';
 import { SentimentComponent } from './ui/sentiment-words.component';
 import { CategoriesDropdownComponent } from './categories/categories.component';
-import { WordDropdownComponent } from './word/word.component';
+import { RatingDropdownComponent } from './rating/rating.component';
 
 @Component({
   selector: 'reviews',
@@ -32,7 +32,7 @@ import { WordDropdownComponent } from './word/word.component';
     BodyReviewComponent,
     SentimentComponent,
     CategoriesDropdownComponent,
-    WordDropdownComponent,
+    RatingDropdownComponent,
   ],
   template: `
     <ng-template #loading>
@@ -94,53 +94,15 @@ import { WordDropdownComponent } from './word/word.component';
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
                 <channels-dropdown class="col-span-1"></channels-dropdown>
+                <rating-dropdown class="col-span-1"></rating-dropdown>
                 <types-dropdown class="col-span-1"></types-dropdown>
                 <categories-dropdown class="col-span-1"></categories-dropdown>
-                <word-dropdown class="col-span-1"></word-dropdown>
                 <a
-                  class="
-                    col-start-1
-                    col-span-full
-                    sm:col-start-2
-                    sm:col-span-1
-                    xl:col-span-1
-                    rounded-[10px]
-                    h-full
-                    w-full
-                    transition
-                    ease-in-out
-                    duration-200
-                    opacity-90
-                    hover:opacity-100
-                    ring-1
-                    dark:ring-0
-                    ring-[#1A1A1A]
-                    text-white
-                    bg-gradient-to-b
-                    from-black/55
-                    via-[#1A1A1A]
-                    to-[#1A1A1A]
-                    dark:from-white/10
-                    dark:via-white/5
-                    dark:to-white/5
-                    p-px
-                    shadow-md
-                    shadow-black/30"
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-xl h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/30"
                   (click)="reviews.reset()"
                 >
                   <div
-                    class="
-                      flex
-                      flex-row
-                      items-center
-                      justify-center
-                      bg-[#1A1A1A]
-                      h-full
-                      w-full
-                      py-2
-                      rounded-[9px]
-                      cursor-pointer
-                    "
+                    class="flex flex-row items-center justify-center bg-[#1A1A1A] h-full w-full py-2 rounded-[11px] cursor-pointer"
                   >
                     {{ 'RESET' | translate }}
                   </div>

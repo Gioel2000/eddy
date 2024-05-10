@@ -369,6 +369,7 @@ export class CategoriesComponent {
       rows: 5,
       sentimentWords: [],
       sentimentCategories: [category],
+      rating: undefined,
     });
 
     this.router.navigate(['/reviews']);
