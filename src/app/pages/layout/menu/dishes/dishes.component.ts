@@ -122,6 +122,8 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
               [categories]="store.categories()"
               (edit)="editDish($event)"
               (delete)="deleteDish($event)"
+              (hide)="hide($event)"
+              (show)="show($event)"
             ></menu-dish>
             } } @placeholder {
             <div></div>
@@ -165,5 +167,21 @@ export class MenuDishesComponent {
     this.generalDialog.mode.set('boolean');
     this.generalDialog.fuction.set(() => this.store.deleteDish(dish._id));
     this.generalDialog.openDialog();
+  }
+
+  hide(dish: DishTO) {
+    this.store.editDish({
+      ...dish,
+      allergens: dish.allergens.join(','),
+      visible: false,
+    });
+  }
+
+  show(dish: DishTO) {
+    this.store.editDish({
+      ...dish,
+      allergens: dish.allergens.join(','),
+      visible: true,
+    });
   }
 }

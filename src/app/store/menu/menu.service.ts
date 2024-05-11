@@ -230,6 +230,10 @@ export class MenuStoreService {
           data: state.menus.data.filter((m) => m._id !== menuId),
         },
       }));
+
+    effect(() => {
+      console.log(this.store());
+    });
   }
 
   addCategory(category: AddCategory) {
@@ -336,9 +340,9 @@ export class MenuStoreService {
       .put<DishTO>(`${environment.apiUrl}/api/menus/dishes/${dish._id}`, formData)
       .pipe(
         untilDestroyed(this),
-        tap((dish) => {
+        tap((dishRes) => {
           this.stateDish$.next('loaded');
-          this.editDish$.next(dish);
+          this.editDish$.next(dishRes);
         }),
         catchError((error) => {
           this.stateDish$.next('error');

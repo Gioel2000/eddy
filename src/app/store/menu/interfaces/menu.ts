@@ -12,7 +12,7 @@ export interface DishTO {
   category: string;
   price: number;
   currency: string;
-  visible: true;
+  visible: boolean;
   allergens: string[];
 }
 

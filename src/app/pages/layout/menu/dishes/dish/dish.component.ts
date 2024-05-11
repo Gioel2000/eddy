@@ -6,15 +6,19 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, filter } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @UntilDestroy()
 @Component({
   selector: 'menu-dish',
-  imports: [MoneyPipe, InlineSVGModule, TranslateModule],
+  imports: [CommonModule, MoneyPipe, InlineSVGModule, TranslateModule],
   standalone: true,
   template: `
     <div
       class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
+      [ngClass]="{
+        'ring-zinc-100 dark:ring-zinc-900': !dish().visible,
+      }"
     >
       <div class="w-full">
         <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">
@@ -22,8 +26,23 @@ import { combineLatest, filter } from 'rxjs';
             <div
               class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1  ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             >
+              @if (dish().visible) {
               <a
                 class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                (click)="hide.emit(dish())"
+              >
+                <span class="svg-icon svg-icon-7 stroke-2 text-sky-500" inlineSVG="eye-slash.svg"></span>
+              </a>
+              } @else {
+              <a
+                class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
+                (click)="show.emit(dish())"
+              >
+                <span class="svg-icon svg-icon-7 stroke-2 text-sky-500" inlineSVG="eye.svg"></span>
+              </a>
+              }
+              <a
+                class="flex flex-row items-center pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="edit.emit(dish())"
               >
                 <span class="svg-icon svg-icon-7 stroke-2 text-amber-500" inlineSVG="pen-2.svg"></span>
@@ -37,13 +56,24 @@ import { combineLatest, filter } from 'rxjs';
             </div>
           </div>
           @if (dish().image) {
-          <div class="relative flex h-full w-full flex-col overflow-hidden rounded-lg p-6">
-            <span aria-hidden="true" class="absolute inset-0">
+          <div
+            class="relative flex h-full w-full flex-col overflow-hidden rounded-lg p-6"
+            [ngClass]="{
+              'opacity-30': !dish().visible,
+            }"
+          >
+            <span class="absolute inset-0">
               <img [src]="dish().image" alt="" class="h-full rounded-lg w-full object-cover object-center" />
             </span>
+            <span class="absolute inset-x-0 bottom-0 h-full blur-sm"></span>
           </div>
           } @else {
-          <div class="flex flex-col items-center justify-center gap-y-2 h-full w-full object-cover object-center">
+          <div
+            class="flex flex-col items-center justify-center gap-y-2 h-full w-full object-cover object-center"
+            [ngClass]="{
+              'opacity-30': !dish().visible,
+            }"
+          >
             <span class="text-zinc-900 dark:text-zinc-100 svg-icon svg-icon-1 stroke-[1.6]">
               <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                 <title>image sparkle 3</title>
@@ -74,7 +104,12 @@ import { combineLatest, filter } from 'rxjs';
           </div>
           }
         </div>
-        <div class="flex flex-col gap-y-1.5 px-4 pb-3">
+        <div
+          class="flex flex-col gap-y-1.5 px-4 pb-3"
+          [ngClass]="{
+              'opacity-30': !dish().visible,
+            }"
+        >
           <h3 class="text-lg truncate font-bold text-zinc-700 dark:text-zinc-300">
             <span>{{ dish().name }}</span>
           </h3>
@@ -109,6 +144,8 @@ export class DishComponent {
 
   @Output() edit = new EventEmitter<DishTO>();
   @Output() delete = new EventEmitter<DishTO>();
+  @Output() hide = new EventEmitter<DishTO>();
+  @Output() show = new EventEmitter<DishTO>();
 
   peanut = computed(() => this.dish()?.allergens?.includes('peanuts'));
   milk = computed(() => this.dish()?.allergens?.includes('milk'));
