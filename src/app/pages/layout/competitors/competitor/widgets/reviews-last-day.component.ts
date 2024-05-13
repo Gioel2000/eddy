@@ -53,11 +53,11 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full bg-accent dark:bg-accentDark flex items-center justify-center text-base text-white/90"
+                    class="h-10 w-10 rounded-full bg-accent dark:bg-accentDark flex items-center justify-center text-base text-white/90"
                   >
                     {{ review.name.charAt(0).toUpperCase() }}
                   </div>
-                  <div class="ml-4">
+                  <div class="ml-2">
                     <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">{{ review.name }}</h4>
                     <div class="mt-1 flex items-center">
                       <div class="flex items-center">
@@ -154,7 +154,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                     <p class="sr-only">5 out of 5 stars</p>
                   </div>
                 </div>
-                <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
+                <div class="flex flex-row items-center pl-2 py-1 z-100">
                   @if (review.channel.source === 'tripadvisor') {
                   <div
                     class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"

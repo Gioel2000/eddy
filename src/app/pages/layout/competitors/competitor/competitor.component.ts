@@ -55,24 +55,59 @@ import { CategoriesComponent } from './widgets/categories.component';
       </div>
     </ng-template>
 
-    <div class="rounded-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+    <div
+      class="rounded-3xl ring-1 min-h-screen w-96 shadow-sm"
+      [ngClass]="{
+        'ring-zinc-100 dark:ring-zinc-900': competitor().isExluded,
+        'ring-zinc-200 dark:ring-zinc-800': !competitor().isExluded
+      }"
+    >
       @switch(state()) { @case('loaded') {
+
       <div class="relative flex h-44 w-full flex-col overflow-hidden rounded-t-3xl p-6">
         <span aria-hidden="true" class="absolute inset-0">
-          <img [src]="competitor().image" alt="" class="h-full w-full object-cover object-center" />
+          <img
+            [src]="competitor().image"
+            alt=""
+            class="h-full w-full object-cover object-center"
+            [ngClass]="{
+              'opacity-50': competitor().isExluded,
+            }"
+          />
         </span>
         <span
           aria-hidden="true"
           class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white dark:from-dark"
         ></span>
+
+        @if (competitor().isExluded) {
+        <button
+          class="absolute top-3 right-3 flex flex-col items-center justify-center rounded-full bg-white dark:bg-dark hover:bg-zinc-50 dark:hover:bg-zinc-950 ring-1 ring-zinc-50 dark:ring-zinc-950 h-8 w-8 shadow-md shadow-black/20"
+          (click)="include.emit(competitor()._id)"
+        >
+          <span class="svg-icon svg-icon-8 stroke-2 text-zinc-700 dark:text-zinc-300" [inlineSVG]="'plus.svg'"></span>
+        </button>
+        } @else {
+        <button
+          class="absolute top-3 right-3 flex flex-col items-center justify-center rounded-full bg-white dark:bg-dark hover:bg-zinc-50 dark:hover:bg-zinc-950 ring-1 ring-zinc-50 dark:ring-zinc-950 h-8 w-8 shadow-md shadow-black/20"
+          (click)="exlude.emit(competitor()._id)"
+        >
+          <span class="svg-icon svg-icon-8 stroke-2 text-zinc-700 dark:text-zinc-300" [inlineSVG]="'minus.svg'"></span>
+        </button>
+        }
       </div>
 
-      <div class="p-8 xl:p-10">
+      <div
+        class="p-8 xl:p-10"
+        [ngClass]="{
+          'opacity-50': competitor().isExluded,
+        }"
+      >
         <p class="text-sm leading-6 text-zinc-700 dark:text-zinc-300 line-clamp-1">
           {{ competitor().address }}, {{ competitor().city }}
         </p>
         <p class="flex items-baseline gap-x-1 h-[6rem]">
-          <span class="text-4xl font-bold tracking-tight text-black dark:text-white pt-2 line-clamp-2">{{
+          <span class="text-4xl font-bold tracking-tight text-black dark:text-white pt-2 line-clamp-2 leading-tight">{{
             competitor().name
           }}</span>
         </p>
@@ -172,4 +207,6 @@ export class CompetitorComponent {
   state = input.required<StateModel>();
 
   @Output() delete = new EventEmitter<string>();
+  @Output() exlude = new EventEmitter<string>();
+  @Output() include = new EventEmitter<string>();
 }

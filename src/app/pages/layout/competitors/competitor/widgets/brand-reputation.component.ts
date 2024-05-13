@@ -153,7 +153,10 @@ export class BrandReputationComponent {
     const brandReputationCurrent = this.translate.instant('BRAND_REPUTATION_CURRENT');
 
     const competition = this.translate.instant('COMPETITION');
-    const competitors = this.competitor.others.competitors().filter((competitor) => competitor._id !== this.id());
+    const competitors = this.competitor.others
+      .competitors()
+      .filter((competitor) => !competitor.isExluded)
+      .filter((competitor) => competitor._id !== this.id());
     const averageBrandReputation =
       (competitors.map((competitor) => competitor.reputation.average).reduce((acc, value) => acc + value, 0) +
         this.reputation().average) /

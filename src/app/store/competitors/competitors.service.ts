@@ -53,6 +53,7 @@ export class CompetitorsStore {
   private add$ = new Subject<CompetitorModel>();
   private delete$ = new Subject<string>();
   private setIsDownloading$ = new Subject<{ competitorId: string; newIsDownloading: boolean }>();
+  private setExlusion$ = new Subject<{ competitorId: string; isExluded: boolean }>();
 
   constructor() {
     const subscription = interval(3000)
@@ -158,7 +159,7 @@ export class CompetitorsStore {
                           `${environment.apiUrl}/api/competitors/${competitor}/channels/status`
                         )
                         .pipe(map((data) => data.status === 'downloading')),
-                    }).pipe(map((response) => ({ ...data, ...response })))
+                    }).pipe(map((response) => ({ ...data, ...response, isExluded: false })))
                   )
                 )
               )
@@ -176,7 +177,7 @@ export class CompetitorsStore {
         ...store,
         data: [
           ...store.data.filter((competitor) => competitor._id !== payload._id),
-          { ...payload, isDownloading: true },
+          { ...payload, isDownloading: true, isExluded: false },
         ],
       }))
       .with(this.delete$, (store, id) => ({
@@ -188,7 +189,17 @@ export class CompetitorsStore {
         data: store.data.map((competitor) =>
           competitor._id === competitorId ? { ...competitor, isDownloading: newIsDownloading } : competitor
         ),
+      }))
+      .with(this.setExlusion$, (store, { competitorId, isExluded }) => ({
+        ...store,
+        data: store.data.map((competitor) =>
+          competitor._id === competitorId ? { ...competitor, isExluded } : competitor
+        ),
       }));
+
+    effect(() => {
+      console.log(this.store().data);
+    });
   }
 
   add(competitor: AddCompetitor) {
@@ -299,5 +310,13 @@ export class CompetitorsStore {
         })
       )
       .subscribe();
+  }
+
+  exlude(competitorId: string) {
+    this.setExlusion$.next({ competitorId, isExluded: true });
+  }
+
+  include(competitorId: string) {
+    this.setExlusion$.next({ competitorId, isExluded: false });
   }
 }

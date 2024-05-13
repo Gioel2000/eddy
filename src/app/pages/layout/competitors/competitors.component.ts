@@ -92,13 +92,14 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
             <div #container class="mt-10 lg:mx-0 lg:max-w-none overflow-x-auto p-1">
               <div class="flex flex-row min-w-[96rem] gap-8">
                 <you></you>
-
                 @switch (competitors.others.state()) { @case('loaded') { @for (competitor of
                 competitors.others.competitors(); track $index) {
                 <competitor
                   [competitor]="competitor"
                   [state]="competitors.others.state()"
                   (delete)="delete($event)"
+                  (exlude)="exlude($event)"
+                  (include)="include($event)"
                 ></competitor>
                 } @if (competitors.others.competitors().length < 3) {
                 <button
@@ -188,6 +189,16 @@ export class CompetitorsComponent {
   delete(id: string) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.competitors.others.delete(id);
+  }
+
+  exlude(id: string) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.competitors.others.exlude(id);
+  }
+
+  include(id: string) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.competitors.others.include(id);
   }
 
   scrollLeft() {

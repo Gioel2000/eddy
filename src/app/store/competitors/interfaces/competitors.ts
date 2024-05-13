@@ -30,6 +30,7 @@ export interface CompetitorModel {
   address: string;
   city: string;
   isDownloading: boolean;
+  isExluded: boolean;
 }
 
 export interface Channel {

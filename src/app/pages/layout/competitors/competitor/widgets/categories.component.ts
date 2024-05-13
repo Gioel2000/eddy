@@ -355,6 +355,7 @@ export class CategoriesComponent {
     const yourCategories = this.competitors.you.categories().data;
     const competitorCategories = this.competitors.others
       .competitors()
+      .filter((competitor) => !competitor.isExluded)
       .filter((competitor) => competitor._id !== this.id())
       .map((competitor) => competitor.categories)
       .flat();
@@ -371,6 +372,7 @@ export class CategoriesComponent {
     const yourSentiment = this.competitors.you.sentiment().data;
     const competitorSentiment = this.competitors.others
       .competitors()
+      .filter((competitor) => !competitor.isExluded)
       .filter((competitor) => competitor._id !== this.id())
       .map((competitor) => competitor.sentiment)
       .flat();

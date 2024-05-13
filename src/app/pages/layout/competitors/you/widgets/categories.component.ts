@@ -371,7 +371,7 @@ export class CategoriesComponent {
   constructor() {}
 
   getCategoryVoteCompetitors(category: string) {
-    const competitors = this.competitors.others.competitors();
+    const competitors = this.competitors.others.competitors().filter((competitor) => !competitor.isExluded);
     const state = this.competitors.others.state();
 
     if (state !== 'loaded') return 0;
@@ -384,7 +384,7 @@ export class CategoriesComponent {
   }
 
   getSentimentVoteCompetitors(category: string) {
-    const competitors = this.competitors.others.competitors();
+    const competitors = this.competitors.others.competitors().filter((competitor) => !competitor.isExluded);
     const state = this.competitors.others.state();
 
     if (state !== 'loaded') return 0;

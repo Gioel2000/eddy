@@ -155,8 +155,10 @@ export class BrandReputationComponent {
     const averageBrandReputation =
       this.competitor.others
         .competitors()
+        .filter((competitor) => !competitor.isExluded)
         .map((competitor) => competitor?.reputation?.average || 0)
-        .reduce((acc, value) => acc + value, 0) / this.competitor.others.competitors().length;
+        .reduce((acc, value) => acc + value, 0) /
+      this.competitor.others.competitors().filter((competitor) => !competitor.isExluded).length;
 
     return [
       {
