@@ -154,42 +154,54 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                     <p class="sr-only">5 out of 5 stars</p>
                   </div>
                 </div>
-                <div>
+                <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
-                      'TRIPADVISOR' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/tripadvisor.svg'"
+                        class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                        'TRIPADVISOR' | translate
+                      }}</span>
+                    </div>
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-200">{{
-                      'GOOGLE' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/google.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-100"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-800 dark:text-zinc-200">{{
+                        'GOOGLE' | translate
+                      }}</span>
+                    </div>
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-50 dark:bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-600"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
-                      'THE_FORK' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/TheFork.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                        'THE_FORK' | translate
+                      }}</span>
+                    </div>
                   </div>
                   }
                 </div>

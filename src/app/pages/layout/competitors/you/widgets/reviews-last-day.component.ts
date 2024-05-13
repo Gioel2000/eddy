@@ -52,7 +52,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <div class="flex flex-row items-center justify-between">
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full bg-accent dark:bg-accentDark flex items-center justify-center text-base text-white/90"
+                    class="h-12 w-12 rounded-full bg-accentDark flex items-center justify-center text-base text-white/90"
                   >
                     {{ review.name.charAt(0).toUpperCase() }}
                   </div>
@@ -153,42 +153,54 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                     <p class="sr-only">5 out of 5 stars</p>
                   </div>
                 </div>
-                <div>
+                <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-700"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-white/10 via-white/5 to-white/5 p-px shadow-md shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-500"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-500">{{
-                      'TRIPADVISOR' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/tripadvisor.svg'"
+                        class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-500"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-500">{{
+                        'TRIPADVISOR' | translate
+                      }}</span>
+                    </div>
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-700"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-white/10 via-white/5 to-white/5 p-px shadow-md shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-100"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{
-                      'GOOGLE' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/google.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-100"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-200">{{
+                        'GOOGLE' | translate
+                      }}</span>
+                    </div>
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full bg-zinc-800 shadow-sm shadow-black/10 ring-1  ring-zinc-700"
+                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-white/10 via-white/5 to-white/5 p-px shadow-md shadow-black/40"
                   >
-                    <span
-                      [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#00ab97]"
-                    ></span>
-                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
-                      'THE_FORK' | translate
-                    }}</span>
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                    >
+                      <span
+                        [inlineSVG]="'channels/TheFork.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-[#00ab97]"
+                      ></span>
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-[#00ab97]">{{
+                        'THE_FORK' | translate
+                      }}</span>
+                    </div>
                   </div>
                   }
                 </div>
@@ -249,7 +261,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
               <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30"
                     [disabled]="start() === 0"
                     (click)="showLess()"
                   >
@@ -259,7 +271,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
                     ></span>
                   </button>
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    class="group flex flex-row items-center bg-zinc-800 ring-1 ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30"
                     [disabled]="stopKeepGoing()"
                     (click)="showMore()"
                   >
