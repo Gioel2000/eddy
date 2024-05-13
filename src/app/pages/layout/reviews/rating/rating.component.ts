@@ -33,8 +33,8 @@ import { UntilDestroy } from '@ngneat/until-destroy';
         (click)="dropdown.toggle()"
       >
         <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-28 md:max-w-full xl:max-w-24 capitalize">{{
-            checked() ? reviews.filter().rating + ' ' + ('STARS' | translate | lowercase) : ('NO_WORDS' | translate)
+          <span class="truncate max-w-28 md:max-w-full xl:max-w-24">{{
+            checked() ? reviews.filter().rating + ' ' + ('STARS' | translate | lowercase) : ('ALL_RATINGS' | translate)
           }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"

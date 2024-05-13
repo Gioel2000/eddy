@@ -392,5 +392,9 @@
   "RATING": "Rating",
   "VOTE": "Vote",
   "ALL": "All",
-  "STARS": "Stars"
+  "STARS": "Stars",
+  "NO_RATING": "No rating",
+  "ALL_RATINGS": "All ratings",
+  "ALL_TYPES": "All types",
+  "ALL_CATEGORIES": "All categories"
 }

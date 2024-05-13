@@ -43,7 +43,7 @@ import { CategoriesComponent } from './widgets/categories.component';
               role="list"
               class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
             >
-              <div class="grid gap-4 sm:grid-cols-3 w-full sm:w-auto sm:max-w-full gap-y-6">
+              <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 w-full xl:w-auto max-w-full gap-y-6">
                 <date-picker
                   class="col-span-1"
                   [i18n]="'STARTDATE'"
@@ -62,7 +62,7 @@ import { CategoriesComponent } from './widgets/categories.component';
                   [rapidDates]="[]"
                   (onDateSet)="setEndDate($event)"
                 ></date-picker>
-                <channels-dropdown class="col-span-1"></channels-dropdown>
+                <channels-dropdown class="col-span-2 sm:col-span-1"></channels-dropdown>
               </div>
             </ul>
           </nav>

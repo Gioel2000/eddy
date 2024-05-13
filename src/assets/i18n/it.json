@@ -392,5 +392,9 @@
   "RATING": "Valutazione",
   "VOTE": "Votazione",
   "ALL": "Tutto",
-  "STARS": "Stelle"
+  "STARS": "Stelle",
+  "NO_RATING": "Nessuna valutazione",
+  "ALL_RATINGS": "Tutte le valutazioni",
+  "ALL_TYPES": "Tutti i tipi",
+  "ALL_CATEGORIES": "Tutte le categorie"
 }

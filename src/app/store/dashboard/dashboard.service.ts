@@ -86,7 +86,7 @@ export const INIT_STATE: DashboardStoreModel = {
 };
 
 const INIT_FILTER = {
-  startdate: moment().subtract(1, 'months').toDate(),
+  startdate: moment().subtract(3, 'months').toDate(),
   enddate: moment().toDate(),
   channels: ['thefork', 'tripadvisor', 'google'],
 };
@@ -100,7 +100,7 @@ export class DashboardStore {
   private store = signal<DashboardStoreModel>(INIT_STATE);
 
   filter = signal({
-    startdate: moment().subtract(1, 'months').toDate(),
+    startdate: moment().subtract(3, 'months').toDate(),
     enddate: moment().toDate(),
     channels: ['thefork', 'tripadvisor', 'google'],
   });

@@ -41,7 +41,7 @@ export class CompetitorsStore {
   });
 
   filter = signal({
-    startdate: moment().subtract(1, 'months').toDate(),
+    startdate: moment().subtract(3, 'months').toDate(),
     enddate: moment().toDate(),
     channels: ['thefork', 'tripadvisor', 'google'],
   });

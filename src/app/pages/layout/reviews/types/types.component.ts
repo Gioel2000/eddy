@@ -31,9 +31,7 @@ import { ReviewsService } from '../reviews.service';
         (click)="dropdown.toggle()"
       >
         <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-28 md:max-w-full xl:max-w-24 capitalize">{{
-            checked() || ('NO_TYPES' | translate)
-          }}</span>
+          <span class="truncate max-w-28 md:max-w-full xl:max-w-24">{{ checked() || ('ALL_TYPES' | translate) }}</span>
           <span
             [inlineSVG]="'chevron-down.svg'"
             class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
