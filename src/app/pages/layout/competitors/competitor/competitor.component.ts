@@ -56,7 +56,7 @@ import { CategoriesComponent } from './widgets/categories.component';
     </ng-template>
 
     <div
-      class="rounded-3xl ring-1 min-h-screen w-96 shadow-sm"
+      class="rounded-3xl ring-1 mx-px min-h-screen w-96 shadow-sm transition-all transform-gpu ease-in-out duration-300"
       [ngClass]="{
         'ring-zinc-100 dark:ring-zinc-900': competitor().isExluded,
         'ring-zinc-200 dark:ring-zinc-800': !competitor().isExluded
@@ -69,7 +69,7 @@ import { CategoriesComponent } from './widgets/categories.component';
           <img
             [src]="competitor().image"
             alt=""
-            class="h-full w-full object-cover object-center"
+            class="h-full w-full object-cover object-center transition-all transform-gpu ease-in-out duration-300"
             [ngClass]="{
               'opacity-50': competitor().isExluded,
             }"
@@ -98,7 +98,7 @@ import { CategoriesComponent } from './widgets/categories.component';
       </div>
 
       <div
-        class="p-8 xl:p-10"
+        class="p-8 xl:p-10 transition-all transform-gpu ease-in-out duration-300"
         [ngClass]="{
           'opacity-50': competitor().isExluded,
         }"
@@ -137,7 +137,7 @@ import { CategoriesComponent } from './widgets/categories.component';
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
-        <ratings-graph [rating]="competitor().rating" [state]="state()"></ratings-graph>
+        <ratings-graph [id]="competitor()._id" [rating]="competitor().rating" [state]="state()"></ratings-graph>
         } @placeholder {
         <div></div>
         } @loading {

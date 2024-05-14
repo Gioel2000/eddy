@@ -230,10 +230,6 @@ export class MenuStoreService {
           data: state.menus.data.filter((m) => m._id !== menuId),
         },
       }));
-
-    effect(() => {
-      console.log(this.store());
-    });
   }
 
   addCategory(category: AddCategory) {

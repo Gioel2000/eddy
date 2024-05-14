@@ -171,15 +171,23 @@ import { CompetitorsService } from '../../competitors.service';
                     </div>
 
                     @if (getCategoryVoteCompetitors(category.category); as competitorVote) {
-                    <span
-                      class="text-[0.70rem] font-bold tabular-nums relative -top-0.5"
-                      [ngClass]="{
-                        'text-red-500': category.totalRating < competitorVote,
-                        'text-green-500': category.totalRating > competitorVote,
-                        'text-zinc-500': competitorVote === category.totalRating
-                      }"
-                      >{{ 'COMPETITION' | translate }}: {{ competitorVote | numb : translate.currentLang : 1 }}</span
-                    >
+                    <div class="flex flex-row items-center gap-x-1 mt-1">
+                      @if (category.totalRating > competitorVote) {
+                      <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
+                      } @if (category.totalRating < competitorVote) {
+                      <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
+                      } @if (category.totalRating === competitorVote) {
+                      <span
+                        [inlineSVG]="'priority-normal.svg'"
+                        class="svg-icon svg-icon-7 stroke-2 text-violet-500"
+                      ></span>
+                      }
+
+                      <span class="text-sm font-bold tabular-nums text-violet-500">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                        <span class="relative -left-px opacity-50">/5</span>
+                      </span>
+                    </div>
                     }
                   </div>
                 </div>
@@ -295,15 +303,23 @@ import { CompetitorsService } from '../../competitors.service';
                     </div>
 
                     @if (getSentimentVoteCompetitors(word.category); as competitorVote) {
-                    <span
-                      class="text-[0.70rem] font-bold tabular-nums relative -top-0.5"
-                      [ngClass]="{
-                        'text-red-500': word.rating < competitorVote,
-                        'text-green-500': word.rating > competitorVote,
-                        'text-zinc-500': competitorVote === word.rating
-                      }"
-                      >{{ 'COMPETITION' | translate }}: {{ competitorVote | numb : translate.currentLang : 1 }}</span
-                    >
+                    <div class="flex flex-row items-center gap-x-1 mt-1">
+                      @if (word.rating > competitorVote) {
+                      <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
+                      } @if (word.rating < competitorVote) {
+                      <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
+                      } @if (word.rating === competitorVote) {
+                      <span
+                        [inlineSVG]="'priority-normal.svg'"
+                        class="svg-icon svg-icon-7 stroke-2 text-violet-500"
+                      ></span>
+                      }
+
+                      <span class="text-sm font-bold tabular-nums text-violet-500">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                        <span class="relative -left-px opacity-50">/5</span>
+                      </span>
+                    </div>
                     }
                   </div>
                 </div>
@@ -348,8 +364,6 @@ export class CategoriesComponent {
     const categories = this.categories();
     return categories.sort((a, b) => a.category.localeCompare(b.category));
   });
-
-  constructor() {}
 
   getCategoryVoteCompetitors(category: string) {
     const yourCategories = this.competitors.you.categories().data;

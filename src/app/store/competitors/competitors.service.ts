@@ -196,10 +196,6 @@ export class CompetitorsStore {
           competitor._id === competitorId ? { ...competitor, isExluded } : competitor
         ),
       }));
-
-    effect(() => {
-      console.log(this.store().data);
-    });
   }
 
   add(competitor: AddCompetitor) {

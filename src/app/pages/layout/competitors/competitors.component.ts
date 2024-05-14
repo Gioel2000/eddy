@@ -192,12 +192,12 @@ export class CompetitorsComponent {
   }
 
   exlude(id: string) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
     this.competitors.others.exlude(id);
   }
 
   include(id: string) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // window.scrollTo({ top: 0, behavior: 'smooth' });
     this.competitors.others.include(id);
   }
 
