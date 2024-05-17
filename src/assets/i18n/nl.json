@@ -385,5 +385,17 @@
   "SENTIMENT": "Sentiment",
   "SHOW": "Show",
   "WORDS": "Woorden",
-  "YES": "Ja"
+  "YES": "Ja",
+  "ALL": "Alle",
+  "ALL_CATEGORIES": "Alle categorieën",
+  "ALL_RATINGS": "Alle beoordelingen",
+  "ALL_TYPES": "Alle typen",
+  "CHANGE": "Wijziging",
+  "CHANGE_RESTAURANT": "Verander restaurant",
+  "CHOISE_RESTAURANT": "Keuze uit restaurant",
+  "DIFFERENCE": "Verschil",
+  "NO_RATING": "Geen beoordeling",
+  "RATING": "Beoordeling",
+  "STARS": "Sterren",
+  "VOTE": "Stemmen"
 }

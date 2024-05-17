@@ -49,14 +49,14 @@ import moment from 'moment';
     </ng-template>
 
     <div #container class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
-      @switch (store().state) { @case ('loaded') {
+      @switch (brandReputation().state) { @case ('loaded') {
       <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
         <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
           {{ 'BRAND_REPUTATION' | translate }}
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-            {{ store().data.average | numb : translate.currentLang : 1 }}
+            {{ brandReputation().data.average | numb : translate.currentLang : 1 }}
             <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
@@ -98,7 +98,7 @@ import moment from 'moment';
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: isBRPositive() ? ['#22c55e', '#facc15'] : ['#ef4444', '#facc15'],
+            domain: ['#facc15'],
           }"
           style="fill: #71717a;"
         >
@@ -115,53 +115,74 @@ import moment from 'moment';
   `,
 })
 export class BrandReputationComponent {
-  store = inject(DashboardStore).brandReputation;
+  store = inject(DashboardStore);
   translate = inject(TranslateService);
   linear = ScaleType.Linear;
 
+  brandReputation = computed(() => this.store.brandReputation());
+
   averageGraph = computed(() => {
-    const data = this.store()?.data?.graph || [];
+    const data = this.brandReputation()?.data?.graph || [];
     return data.reduce((acc, { average }) => acc + average, 0) / data.length;
   });
 
   isBRPositive = computed(() => {
-    const average = this.store()?.data?.average || 0;
+    const average = this.brandReputation()?.data?.average || 0;
     const averageGraph = this.averageGraph();
 
-    return averageGraph > average ? '+' : averageGraph < average ? '-' : '=';
+    return average > averageGraph ? '+' : average < averageGraph ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
-    const average = this.store()?.data?.average || 0;
+    const average = this.brandReputation()?.data?.average || 0;
     const averageGraph = this.averageGraph();
-    const growth = ((averageGraph - average) / average) * 100;
+    const growth = ((average - averageGraph) / average) * 100;
 
     return growth;
   });
 
   data = computed(() => {
-    const average = this.store()?.data?.average || 0;
-    const data = this.store()?.data?.graph || [];
+    const data = this.brandReputation()?.data?.graph || [];
     const { currentLang } = this.translate;
 
-    const brandReputationOverTime = this.translate.instant('BRAND_REPUTATION_OVER_TIME');
-    const brandReputationCurrent = this.translate.instant('BRAND_REPUTATION_CURRENT');
+    const brandReputation = this.translate.instant('BRAND_REPUTATION');
+
+    const { startdate, enddate } = this.store.filter();
+
+    const dataFilled = this.fillWithMissingDays(data, startdate, enddate);
 
     return [
       {
-        name: brandReputationOverTime,
-        series: data.map(({ date, average: value }) => ({
+        name: brandReputation,
+        series: dataFilled.map(({ date, average: value }) => ({
           name: moment(date).locale(currentLang).format('DD/MM'),
           value,
         })),
       },
-      {
-        name: brandReputationCurrent,
-        series: data.map(({ date, average: value }) => ({
-          name: moment(date).locale(currentLang).format('DD/MM'),
-          value: average,
-        })),
-      },
     ];
   });
+
+  private fillWithMissingDays(data: { date: string; average: number }[], startdate: Date, enddate: Date) {
+    const momentStartdate = moment(startdate);
+    const momentEnddate = moment(enddate);
+
+    let now = momentStartdate.clone();
+
+    const ratings: { date: Date; average: number }[] = [];
+
+    while (now.isSameOrBefore(momentEnddate)) {
+      ratings.push({
+        date: now.toDate(),
+        average:
+          data.find((rating) => now.isSame(rating.date, 'day'))?.average || ratings[ratings.length - 1]?.average || 0,
+      });
+
+      now = momentStartdate.clone();
+      momentStartdate.add(1, 'day');
+    }
+
+    const ratingsFormatted = ratings.filter(({ average }) => average > 0);
+
+    return ratingsFormatted;
+  }
 }

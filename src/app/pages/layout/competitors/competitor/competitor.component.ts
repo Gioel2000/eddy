@@ -154,7 +154,11 @@ import { CategoriesComponent } from './widgets/categories.component';
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
-        <channels-graph [channelsRatings]="competitor().channelsRatings" [state]="state()"></channels-graph>
+        <channels-graph
+          [id]="competitor()._id"
+          [channelsRatings]="competitor().channelsRatings"
+          [state]="state()"
+        ></channels-graph>
         } @placeholder {
         <div></div>
         } @loading {

@@ -385,5 +385,17 @@
   "SEE_ALL": "Se alt",
   "SHOW": "At vise",
   "WORDS": "Ord",
-  "YES": "Ja"
+  "YES": "Ja",
+  "ALL": "Alle",
+  "ALL_CATEGORIES": "Alle kategorier",
+  "ALL_RATINGS": "Alle bedømmelser",
+  "ALL_TYPES": "Alle typer",
+  "CHANGE": "Lave om",
+  "CHANGE_RESTAURANT": "Skift restaurant",
+  "CHOISE_RESTAURANT": "Valg af restaurant",
+  "DIFFERENCE": "Forskel",
+  "NO_RATING": "Ingen vurdering",
+  "RATING": "Bedømmelse",
+  "STARS": "Stjerner",
+  "VOTE": "Stemme"
 }

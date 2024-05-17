@@ -385,5 +385,17 @@
   "SENTIMENT": "Sentiment",
   "SHOW": "Forestilling",
   "WORDS": "Ord",
-  "YES": "Ja"
+  "YES": "Ja",
+  "ALL": "Alle",
+  "ALL_CATEGORIES": "Alle Kategorier",
+  "ALL_RATINGS": "Alle vurderinger",
+  "ALL_TYPES": "Alle typer",
+  "CHANGE": "Endring",
+  "CHANGE_RESTAURANT": "Bytt restaurant",
+  "CHOISE_RESTAURANT": "Valg av restaurant",
+  "DIFFERENCE": "Forskjell",
+  "NO_RATING": "Ingen vurdering",
+  "RATING": "Vurdering",
+  "STARS": "Stjerner",
+  "VOTE": "Stemme"
 }

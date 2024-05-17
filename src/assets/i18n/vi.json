@@ -385,5 +385,17 @@
   "SENTIMENT": "tình cảm",
   "SHOW": "Trình diễn",
   "WORDS": "Từ",
-  "YES": "Đúng"
+  "YES": "Đúng",
+  "ALL": "Tất cả",
+  "ALL_CATEGORIES": "Tất cả danh mục",
+  "ALL_RATINGS": "Tất cả xếp hạng",
+  "ALL_TYPES": "Các loại",
+  "CHANGE": "Thay đổi",
+  "CHANGE_RESTAURANT": "Thay đổi nhà hàng",
+  "CHOISE_RESTAURANT": "Lựa chọn nhà hàng",
+  "DIFFERENCE": "Sự khác biệt",
+  "NO_RATING": "Không có giá",
+  "RATING": "Xếp hạng",
+  "STARS": "Ngôi sao",
+  "VOTE": "Bỏ phiếu"
 }

@@ -385,5 +385,17 @@
   "SENTIMENT": "Настроение",
   "SHOW": "Показывать",
   "WORDS": "Слова",
-  "YES": "Да"
+  "YES": "Да",
+  "ALL": "Все",
+  "ALL_CATEGORIES": "Все категории",
+  "ALL_RATINGS": "Все рейтинги",
+  "ALL_TYPES": "Все типы",
+  "CHANGE": "Изменять",
+  "CHANGE_RESTAURANT": "Сменить ресторан",
+  "CHOISE_RESTAURANT": "Выбор ресторана",
+  "DIFFERENCE": "Разница",
+  "NO_RATING": "Без рейтинга",
+  "RATING": "Рейтинг",
+  "STARS": "Звезды",
+  "VOTE": "Голосование"
 }

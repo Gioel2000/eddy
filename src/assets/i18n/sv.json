@@ -385,5 +385,17 @@
   "SENTIMENT": "Känsla",
   "SHOW": "Show",
   "WORDS": "Ord",
-  "YES": "Ja"
+  "YES": "Ja",
+  "ALL": "Allt",
+  "ALL_CATEGORIES": "Alla kategorier",
+  "ALL_RATINGS": "Alla betyg",
+  "ALL_TYPES": "Alla typer",
+  "CHANGE": "Förändra",
+  "CHANGE_RESTAURANT": "Byt restaurang",
+  "CHOISE_RESTAURANT": "Val av restaurang",
+  "DIFFERENCE": "Skillnad",
+  "NO_RATING": "Ingen bedömning",
+  "RATING": "Betyg",
+  "STARS": "Stjärnor",
+  "VOTE": "Rösta"
 }

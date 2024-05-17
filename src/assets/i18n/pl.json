@@ -385,5 +385,17 @@
   "SENTIMENT": "Sentyment",
   "SHOW": "Pokazywać",
   "WORDS": "Słowa",
-  "YES": "Tak"
+  "YES": "Tak",
+  "ALL": "Wszystko",
+  "ALL_CATEGORIES": "Wszystkie kategorie",
+  "ALL_RATINGS": "Wszystkie oceny",
+  "ALL_TYPES": "Wszystkie typy",
+  "CHANGE": "Zmiana",
+  "CHANGE_RESTAURANT": "Zmień restaurację",
+  "CHOISE_RESTAURANT": "Wybór restauracji",
+  "DIFFERENCE": "Różnica",
+  "NO_RATING": "Brak oceny",
+  "RATING": "Ocena",
+  "STARS": "Gwiazdy",
+  "VOTE": "Głosować"
 }

@@ -385,5 +385,17 @@
   "SEE_ALL": "Alles sehen",
   "SHOW": "Zeigen",
   "WORDS": "Wörter",
-  "YES": "Ja"
+  "YES": "Ja",
+  "ALL": "Alle",
+  "ALL_CATEGORIES": "Alle Kategorien",
+  "ALL_RATINGS": "Alle Bewertungen",
+  "ALL_TYPES": "Alle Arten",
+  "CHANGE": "Ändern",
+  "CHANGE_RESTAURANT": "Restaurant wechseln",
+  "CHOISE_RESTAURANT": "Auswahl an Restaurants",
+  "DIFFERENCE": "Unterschied",
+  "NO_RATING": "Keine Bewertung",
+  "RATING": "Bewertung",
+  "STARS": "Sterne",
+  "VOTE": "Abstimmung"
 }

@@ -385,5 +385,17 @@
   "SEE_ALL": "Ver todo",
   "SHOW": "Espectáculo",
   "WORDS": "Palabras",
-  "YES": "Sí"
+  "YES": "Sí",
+  "ALL": "Todo",
+  "ALL_CATEGORIES": "Todas las categorias",
+  "ALL_RATINGS": "Todas las calificaciones",
+  "ALL_TYPES": "Todos los tipos",
+  "CHANGE": "Cambiar",
+  "CHANGE_RESTAURANT": "Cambiar restaurante",
+  "CHOISE_RESTAURANT": "elección de restaurante",
+  "DIFFERENCE": "Diferencia",
+  "NO_RATING": "Sin evaluar",
+  "RATING": "Clasificación",
+  "STARS": "Estrellas",
+  "VOTE": "Votar"
 }

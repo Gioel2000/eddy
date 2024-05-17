@@ -385,5 +385,17 @@
   "SENTIMENT": "감정",
   "SHOW": "보여주다",
   "WORDS": "단어",
-  "YES": "예"
+  "YES": "예",
+  "ALL": "모두",
+  "ALL_CATEGORIES": "모든 카테고리",
+  "ALL_RATINGS": "모든 평가",
+  "ALL_TYPES": "모든 유형",
+  "CHANGE": "변화",
+  "CHANGE_RESTAURANT": "레스토랑 변경",
+  "CHOISE_RESTAURANT": "레스토랑 선택",
+  "DIFFERENCE": "차이점",
+  "NO_RATING": "평가 없음",
+  "RATING": "평가",
+  "STARS": "별",
+  "VOTE": "투표"
 }

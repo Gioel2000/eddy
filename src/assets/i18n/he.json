@@ -385,5 +385,17 @@
   "SENTIMENT": "רֶגֶשׁ",
   "SHOW": "הופעה",
   "WORDS": "מילים",
-  "YES": "כן"
+  "YES": "כן",
+  "ALL": "את כל",
+  "ALL_CATEGORIES": "כל הקטגוריות",
+  "ALL_RATINGS": "כל הרייטינג",
+  "ALL_TYPES": "כל הסוגים",
+  "CHANGE": "שינוי",
+  "CHANGE_RESTAURANT": "תחליף מסעדה",
+  "CHOISE_RESTAURANT": "בחירת מסעדה",
+  "DIFFERENCE": "הֶבדֵל",
+  "NO_RATING": "בלי דירוג",
+  "RATING": "דֵרוּג",
+  "STARS": "כוכבים",
+  "VOTE": "הַצבָּעָה"
 }

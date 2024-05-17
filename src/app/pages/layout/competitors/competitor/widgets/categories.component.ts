@@ -51,276 +51,379 @@ import { CompetitorsService } from '../../competitors.service';
             <div class="grid grid-cols-2 gap-4">
               @for (category of categoriesOrdered(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
-                  <div class="focus:outline-none">
+                <div class="flex flex-col gap-y-2 w-full">
+                  <div class="flex flex-col gap-y-2">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-2 text-sm w-full font-semibold text-zinc-800 dark:text-zinc-200">
                         {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
                       </p>
                     </div>
+                  </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ category.totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (category.filteredRating) {
-                      <span
-                        class="text-xs px-1 font-semibold tabular-nums relative -top-1"
-                        [ngClass]="{
-                          'text-red-500': category.filteredRating < 0,
-                          'text-green-500': category.filteredRating > 0,
-                          'text-zinc-500': category.filteredRating === 0
-                        }"
-                        >{{ category.filteredRating | growth : translate.currentLang : 2 }}</span
-                      >
-                      }
-                    </div>
+                  <div>
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center pt-1">
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 1,
-                            'text-zinc-300 dark:text-zinc-700': category.totalRating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 2,
-                            'text-zinc-300 dark:text-zinc-700': category.totalRating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 3,
-                            'text-zinc-300 dark:text-zinc-700': category.totalRating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 4,
-                            'text-zinc-300 dark:text-zinc-700': category.totalRating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 5,
-                            'text-zinc-300 dark:text-zinc-700': category.totalRating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
+                        <div
+                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - category.totalRating) * 20"
+                        ></div>
                       </div>
+                      <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                        {{ category.totalRating | numb : translate.currentLang : 1 }}
+                      </span>
                     </div>
 
                     @if (getCategoryVoteCompetitors(category.category); as competitorVote) {
-                    <div class="flex flex-row items-center gap-x-1 mt-1">
-                      @if (category.totalRating > competitorVote) {
-                      <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
-                      } @if (category.totalRating < competitorVote) {
-                      <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
-                      } @if (category.totalRating === competitorVote) {
-                      <span
-                        [inlineSVG]="'priority-normal.svg'"
-                        class="svg-icon svg-icon-7 stroke-2 text-violet-500"
-                      ></span>
-                      }
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                      <span class="text-sm font-bold tabular-nums text-violet-500">
+                        <div
+                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - competitorVote) * 20"
+                        ></div>
+                      </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
                         {{ competitorVote | numb : translate.currentLang : 1 }}
-                        <span class="relative -left-px opacity-50">/5</span>
                       </span>
                     </div>
-                    }
+
+                    @if((category.totalRating - competitorVote); as diff) {
+                    <div
+                      class="flex flex-row items-center justify-between text-xs font-bold mt-2"
+                      [ngClass]="{
+                        'text-green-500': diff > 0,
+                        'text-red-500': diff < 0,
+                        'text-zinc-700': diff === 0
+                      }"
+                    >
+                      <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                      <span></span>
+                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                    </div>
+                    } }
                   </div>
                 </div>
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
+                <div class="flex flex-col gap-y-2 w-full">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-2 text-sm font-bold text-zinc-800 dark:text-zinc-200">
                         {{ 'REVIEWS_CATEGORIES.' + (word.category | uppercase) + '.DESC' | translate }}
                       </p>
                     </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ word.rating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                    </div>
+                    <div>
+                      <div class="flex flex-row items-center justify-between mt-1">
+                        <div class="flex flex-row relative whitespace-nowrap">
+                          <svg
+                            class="fill-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-red-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center pt-1">
-                        <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 1,
-                            'text-zinc-300 dark:text-zinc-700': word.rating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <title>heart</title>
-                          <g fill="currentColor">
-                            <path
-                              d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 2,
-                            'text-zinc-300 dark:text-zinc-700': word.rating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <title>heart</title>
-                          <g fill="currentColor">
-                            <path
-                              d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 3,
-                            'text-zinc-300 dark:text-zinc-700': word.rating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <title>heart</title>
-                          <g fill="currentColor">
-                            <path
-                              d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 4,
-                            'text-zinc-300 dark:text-zinc-700': word.rating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <title>heart</title>
-                          <g fill="currentColor">
-                            <path
-                              d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 5,
-                            'text-zinc-300 dark:text-zinc-700': word.rating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <title>heart</title>
-                          <g fill="currentColor">
-                            <path
-                              d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
-                            ></path>
-                          </g>
-                        </svg>
+                          <div
+                            class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                            [style.width.%]="(5 - word.rating) * 20"
+                          ></div>
+                        </div>
+                        <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                          {{ word.rating | numb : translate.currentLang : 1 }}
+                        </span>
                       </div>
-                    </div>
 
-                    @if (getSentimentVoteCompetitors(word.category); as competitorVote) {
-                    <div class="flex flex-row items-center gap-x-1 mt-1">
-                      @if (word.rating > competitorVote) {
-                      <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
-                      } @if (word.rating < competitorVote) {
-                      <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-7 stroke-2 text-violet-500"></span>
-                      } @if (word.rating === competitorVote) {
-                      <span
-                        [inlineSVG]="'priority-normal.svg'"
-                        class="svg-icon svg-icon-7 stroke-2 text-violet-500"
-                      ></span>
-                      }
+                      @if (getSentimentVoteCompetitors(word.category); as competitorVote) {
+                      <div class="flex flex-row items-center justify-between mt-1">
+                        <div class="flex flex-row relative whitespace-nowrap">
+                          <svg
+                            class="fill-violet-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-violet-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-violet-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-violet-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
+                          <svg
+                            class="fill-violet-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 18 18"
+                          >
+                            <g>
+                              <path
+                                d="M12.164,2c-1.195,.015-2.324,.49-3.164,1.306-.84-.815-1.972-1.291-3.178-1.306-2.53,.015-4.582,2.084-4.572,4.609,0,5.253,5.306,8.429,6.932,9.278,.256,.133,.537,.2,.818,.2s.562-.067,.817-.2c1.626-.848,6.933-4.024,6.933-9.275,.009-2.528-2.042-4.597-4.586-4.612Z"
+                              ></path>
+                            </g>
+                          </svg>
 
-                      <span class="text-sm font-bold tabular-nums text-violet-500">
-                        {{ competitorVote | numb : translate.currentLang : 1 }}
-                        <span class="relative -left-px opacity-50">/5</span>
-                      </span>
+                          <div
+                            class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                            [style.width.%]="(5 - competitorVote) * 20"
+                          ></div>
+                        </div>
+                        <span class="text-xs font-bold text-zinc-700 dark:text-zinc-300">
+                          {{ competitorVote | numb : translate.currentLang : 1 }}
+                        </span>
+                      </div>
+
+                      @if((word.rating - competitorVote); as diff) {
+                      <div
+                        class="flex flex-row items-center justify-between text-xs font-bold mt-1"
+                        [ngClass]="{
+                          'text-green-500': diff > 0,
+                          'text-red-500': diff < 0,
+                          'text-zinc-700': diff === 0
+                        }"
+                      >
+                        <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                        <span></span>
+                        <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                      </div>
+                      } }
                     </div>
-                    }
                   </div>
                 </div>
               </a>

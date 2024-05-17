@@ -385,5 +385,17 @@
   "SEE_ALL": "Näytä kaikki",
   "SHOW": "Näytä",
   "WORDS": "Sanat",
-  "YES": "Joo"
+  "YES": "Joo",
+  "ALL": "Kaikki",
+  "ALL_CATEGORIES": "Kaikki kategoriat",
+  "ALL_RATINGS": "Kaikki arvosanat",
+  "ALL_TYPES": "Kaikki tyypit",
+  "CHANGE": "Muuttaa",
+  "CHANGE_RESTAURANT": "Vaihda ravintolaa",
+  "CHOISE_RESTAURANT": "Ravintolan valinta",
+  "DIFFERENCE": "Ero",
+  "NO_RATING": "Ei arvosanaa",
+  "RATING": "Luokitus",
+  "STARS": "Tähdet",
+  "VOTE": "Äänestys"
 }

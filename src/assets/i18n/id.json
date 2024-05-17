@@ -385,5 +385,17 @@
   "SEE_ALL": "Lihat semua",
   "SENTIMENT": "Sentimen",
   "WORDS": "Kata-kata",
-  "YES": "Ya"
+  "YES": "Ya",
+  "ALL": "Semua",
+  "ALL_CATEGORIES": "Semua Kategori",
+  "ALL_RATINGS": "Semua peringkat",
+  "ALL_TYPES": "Semua jenis",
+  "CHANGE": "Mengubah",
+  "CHANGE_RESTAURANT": "Ganti restoran",
+  "CHOISE_RESTAURANT": "Pilihan restoran",
+  "DIFFERENCE": "Perbedaan",
+  "NO_RATING": "Tidak ada peringkat",
+  "RATING": "Peringkat",
+  "STARS": "Bintang",
+  "VOTE": "Pilih"
 }

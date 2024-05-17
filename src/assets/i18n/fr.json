@@ -385,5 +385,17 @@
   "SENTIMENT": "Sentiment",
   "SHOW": "Montrer",
   "WORDS": "Mots",
-  "YES": "Oui"
+  "YES": "Oui",
+  "ALL": "Tous",
+  "ALL_CATEGORIES": "Toutes catégories",
+  "ALL_RATINGS": "Toutes les notes",
+  "ALL_TYPES": "Tous les types",
+  "CHANGE": "Changement",
+  "CHANGE_RESTAURANT": "Changer de restaurant",
+  "CHOISE_RESTAURANT": "Choix du restaurant",
+  "DIFFERENCE": "Différence",
+  "NO_RATING": "Pas de notation",
+  "RATING": "Notation",
+  "STARS": "Étoiles",
+  "VOTE": "Vote"
 }

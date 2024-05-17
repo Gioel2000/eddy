@@ -385,5 +385,17 @@
   "SENTIMENT": "感情",
   "SHOW": "見せる",
   "WORDS": "言葉",
-  "YES": "はい"
+  "YES": "はい",
+  "ALL": "全て",
+  "ALL_CATEGORIES": "すべてのカテゴリ",
+  "ALL_RATINGS": "すべての評価",
+  "ALL_TYPES": "いろんなタイプ",
+  "CHANGE": "変化",
+  "CHANGE_RESTAURANT": "レストランを変更する",
+  "CHOISE_RESTAURANT": "レストランの選択",
+  "DIFFERENCE": "違い",
+  "NO_RATING": "評価なし",
+  "RATING": "評価",
+  "STARS": "出演者",
+  "VOTE": "投票する"
 }

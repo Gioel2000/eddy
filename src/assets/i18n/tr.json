@@ -385,5 +385,17 @@
   "SENTIMENT": "Duygusallık",
   "SHOW": "Göstermek",
   "WORDS": "Kelimeler",
-  "YES": "Evet"
+  "YES": "Evet",
+  "ALL": "Tüm",
+  "ALL_CATEGORIES": "Tüm Kategoriler",
+  "ALL_RATINGS": "Tüm derecelendirmeler",
+  "ALL_TYPES": "Her türlü",
+  "CHANGE": "Değiştirmek",
+  "CHANGE_RESTAURANT": "Restoranı değiştir",
+  "CHOISE_RESTAURANT": "Restoran seçimi",
+  "DIFFERENCE": "Fark",
+  "NO_RATING": "Derecelendirme yok",
+  "RATING": "Değerlendirme",
+  "STARS": "Yıldızlar",
+  "VOTE": "Oy"
 }

@@ -385,5 +385,17 @@
   "SEE_ALL": "Vidět vše",
   "SHOW": "Ukázat",
   "WORDS": "Slova",
-  "YES": "Ano"
+  "YES": "Ano",
+  "ALL": "Všechno",
+  "ALL_CATEGORIES": "Všechny kategorie",
+  "ALL_RATINGS": "Všechna hodnocení",
+  "ALL_TYPES": "Všechny typy",
+  "CHANGE": "Změna",
+  "CHANGE_RESTAURANT": "Změnit restauraci",
+  "CHOISE_RESTAURANT": "Výběr restaurace",
+  "DIFFERENCE": "Rozdíl",
+  "NO_RATING": "Žádné hodnocení",
+  "RATING": "Hodnocení",
+  "STARS": "hvězdy",
+  "VOTE": "Hlasování"
 }

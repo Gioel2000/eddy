@@ -100,7 +100,7 @@ import { CompetitorsService } from '../../competitors.service';
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: isBRPositive() ? ['#22c55e', '#facc15', '#8b5cf6'] : ['#ef4444', '#facc15', '#8b5cf6'],
+            domain: isBRPositive() ? ['#22c55e', '#8b5cf6'] : ['#ef4444', '#8b5cf6'],
           }"
           style="fill: #71717a;"
         >
@@ -133,57 +133,91 @@ export class BrandReputationComponent {
     const average = this.reputation().average || 0;
     const averageGraph = this.averageGraph();
 
-    return averageGraph > average ? '+' : averageGraph < average ? '-' : '=';
+    return average > averageGraph ? '+' : average < averageGraph ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
     const average = this.reputation().average || 0;
     const averageGraph = this.averageGraph();
-    const growth = ((averageGraph - average) / average) * 100;
+    const growth = ((average - averageGraph) / average) * 100;
 
     return growth;
   });
 
   data = computed(() => {
-    const average = this.reputation().average || 0;
     const data = this.reputation().graph || [];
     const { currentLang } = this.translate;
+    const startdate = this.competitor.others.filter().startdate;
+    const enddate = this.competitor.others.filter().enddate;
 
-    const brandReputationOverTime = this.translate.instant('BRAND_REPUTATION_OVER_TIME');
-    const brandReputationCurrent = this.translate.instant('BRAND_REPUTATION_CURRENT');
-
+    const brandReputation = this.translate.instant('BRAND_REPUTATION');
     const competition = this.translate.instant('COMPETITION');
+
     const competitors = this.competitor.others
       .competitors()
       .filter((competitor) => !competitor.isExluded)
       .filter((competitor) => competitor._id !== this.id());
-    const averageBrandReputation =
-      (competitors.map((competitor) => competitor.reputation.average).reduce((acc, value) => acc + value, 0) +
-        this.reputation().average) /
-      (competitors.length + 1);
+
+    const competitorGraphs = competitors.map((competitor) => competitor?.reputation?.graph || []).flat();
+    const youGraph = this.competitor.you.brandReputation().data?.graph || [];
+
+    const averageGraphCompetitors: {
+      [date: string]: number[];
+    } = [...competitorGraphs, ...youGraph].reduce((acc: any, { date, average }) => {
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(average);
+      return acc;
+    }, {});
+
+    const averageGraph = Object.entries(averageGraphCompetitors).map(([date, values]) => ({
+      date,
+      average: values.reduce((acc: any, value: any) => acc + value, 0) / values.length,
+    }));
+
+    const ratings = this.fillWithMissingDays(data, startdate, enddate);
+    const competitorsRatings = this.fillWithMissingDays(averageGraph, startdate, enddate);
 
     return [
       {
-        name: brandReputationOverTime,
-        series: data.map(({ date, average: value }) => ({
+        name: brandReputation,
+        series: ratings.map(({ date, average: value }) => ({
           name: moment(date).locale(currentLang).format('DD/MM'),
           value,
         })),
       },
       {
-        name: brandReputationCurrent,
-        series: data.map(({ date, average: value }) => ({
+        name: competition,
+        series: competitorsRatings.map(({ date, average }) => ({
           name: moment(date).locale(currentLang).format('DD/MM'),
           value: average,
         })),
       },
-      {
-        name: competition,
-        series: data.map(({ date }) => ({
-          name: moment(date).locale(currentLang).format('DD/MM'),
-          value: averageBrandReputation,
-        })),
-      },
     ];
   });
+
+  private fillWithMissingDays(data: { date: string; average: number }[], startdate: Date, enddate: Date) {
+    const momentStartdate = moment(startdate);
+    const momentEnddate = moment(enddate);
+
+    let now = momentStartdate.clone();
+
+    const ratings: { date: Date; average: number }[] = [];
+
+    while (now.isSameOrBefore(momentEnddate)) {
+      ratings.push({
+        date: now.toDate(),
+        average:
+          data.find((rating) => now.isSame(rating.date, 'day'))?.average || ratings[ratings.length - 1]?.average || 0,
+      });
+
+      now = momentStartdate.clone();
+      momentStartdate.add(1, 'day');
+    }
+
+    const ratingsFormatted = ratings.filter(({ average }) => average > 0);
+
+    return ratingsFormatted;
+  }
 }

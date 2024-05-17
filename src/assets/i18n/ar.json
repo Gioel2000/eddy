@@ -385,5 +385,17 @@
   "POSITIVE": "إيجابي",
   "SEE_ALL": "اظهار الكل",
   "WORDS": "كلمات",
-  "YES": "نعم"
+  "YES": "نعم",
+  "ALL": "الجميع",
+  "ALL_CATEGORIES": "جميع الفئات",
+  "ALL_RATINGS": "جميع التقييمات",
+  "ALL_TYPES": "كل الانواع",
+  "CHANGE": "يتغير",
+  "CHANGE_RESTAURANT": "تغيير المطعم",
+  "CHOISE_RESTAURANT": "اختيار المطعم",
+  "DIFFERENCE": "اختلاف",
+  "NO_RATING": "لا يوجد تقييم",
+  "RATING": "تقييم",
+  "STARS": "النجوم",
+  "VOTE": "تصويت"
 }

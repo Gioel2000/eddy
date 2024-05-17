@@ -385,5 +385,17 @@
   "SEE_ALL": "सभी देखें",
   "SENTIMENT": "भाव",
   "WORDS": "शब्द",
-  "YES": "हाँ"
+  "YES": "हाँ",
+  "ALL": "सभी",
+  "ALL_CATEGORIES": "सब वर्ग",
+  "ALL_RATINGS": "सभी रेटिंग",
+  "ALL_TYPES": "सभी प्रकार के",
+  "CHANGE": "परिवर्तन",
+  "CHANGE_RESTAURANT": "रेस्तरां बदलें",
+  "CHOISE_RESTAURANT": "रेस्तरां का चयन",
+  "DIFFERENCE": "अंतर",
+  "NO_RATING": "कोई रेटिंग नहीं",
+  "RATING": "रेटिंग",
+  "STARS": "सितारे",
+  "VOTE": "वोट"
 }

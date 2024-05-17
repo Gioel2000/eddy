@@ -385,5 +385,17 @@
   "SENTIMENT": "ความรู้สึก",
   "SHOW": "แสดง",
   "WORDS": "คำ",
-  "YES": "ใช่"
+  "YES": "ใช่",
+  "ALL": "ทั้งหมด",
+  "ALL_CATEGORIES": "ทุกหมวดหมู่",
+  "ALL_RATINGS": "การให้คะแนนทั้งหมด",
+  "ALL_TYPES": "ทุกประเภท",
+  "CHANGE": "เปลี่ยน",
+  "CHANGE_RESTAURANT": "เปลี่ยนร้านอาหาร",
+  "CHOISE_RESTAURANT": "ทางเลือกของร้านอาหาร",
+  "DIFFERENCE": "ความแตกต่าง",
+  "NO_RATING": "ไม่มีการให้คะแนน",
+  "RATING": "เรตติ้ง",
+  "STARS": "ดาว",
+  "VOTE": "โหวต"
 }

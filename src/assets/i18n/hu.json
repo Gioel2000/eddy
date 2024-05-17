@@ -385,5 +385,17 @@
   "SEE_ALL": "Az összes megtekintése",
   "SENTIMENT": "Érzés",
   "WORDS": "Szavak",
-  "YES": "Igen"
+  "YES": "Igen",
+  "ALL": "Minden",
+  "ALL_CATEGORIES": "Minden kategória",
+  "ALL_RATINGS": "Minden értékelés",
+  "ALL_TYPES": "Minden típus",
+  "CHANGE": "változás",
+  "CHANGE_RESTAURANT": "Válts éttermet",
+  "CHOISE_RESTAURANT": "Étterem választása",
+  "DIFFERENCE": "Különbség",
+  "NO_RATING": "Nincs értékelés",
+  "RATING": "Értékelés",
+  "STARS": "Csillagok",
+  "VOTE": "Szavazás"
 }
