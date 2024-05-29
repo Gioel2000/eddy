@@ -238,7 +238,7 @@ export class StructureStore {
     this.state$.next('loading');
 
     this.http
-      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants/${id}`, restaurant)
+      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, restaurant)
       .pipe(
         untilDestroyed(this),
         tap((structure) => {

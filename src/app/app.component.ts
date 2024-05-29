@@ -65,7 +65,7 @@ import { GeneralDialogComponent } from './ui/dialog/dialog.component';
     <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
     @if (!isRouterLoaded()) {
     <div
-      class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
+      class="flex flex-col items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
     >
       <loader></loader>
     </div>
@@ -74,4 +74,10 @@ import { GeneralDialogComponent } from './ui/dialog/dialog.component';
 })
 export class AppComponent {
   isRouterLoaded = signal(false);
+
+  constructor() {
+    // setTimeout(() => {
+    //   debugger;
+    // }, 10000);
+  }
 }

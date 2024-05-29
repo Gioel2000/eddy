@@ -55,7 +55,7 @@ import { CompetitorsService } from '../../competitors.service';
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -310,7 +310,7 @@ import { CompetitorsService } from '../../competitors.service';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -574,7 +574,7 @@ import { CompetitorsService } from '../../competitors.service';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -665,26 +665,6 @@ import { CompetitorsService } from '../../competitors.service';
                         class="flex flex-row ml-1 font-semibold w-8 text-sm tabular-nums text-zinc-700 dark:text-zinc-300"
                       >
                         <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
-                        <!-- @if (thefork().filteredRating) {
-                        <div
-                          class="flex flex-row items-center gap-x-0.5 ml-2 font-semibold text-[0.70rem] tabular-nums py-px px-1 rounded bg-green-800"
-                          [ngClass]="{
-                            'bg-red-800 text-red-500': thefork().filteredRating < 0,
-                            'bg-green-800 text-green-500': thefork().filteredRating > 0,
-                            'bg-zinc-800 text-zinc-500': thefork().filteredRating === 0
-                          }"
-                        >
-                          @if (thefork().filteredRating > 0) {
-                          <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (thefork().filteredRating < 0) {
-                          <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (thefork().filteredRating == 0) {
-                          <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          }
-
-                          <span>{{ thefork().filteredRating | numb : translate.currentLang : 2 }}</span>
-                        </div>
-                        } -->
                       </p>
                       <p
                         class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"

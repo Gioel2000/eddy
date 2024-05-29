@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { AddCompetitor, CompetitorModel, CompetitorTO, StateModel } from './interfaces/competitors';
+import { AddCompetitor, CompetitorModel, CompetitorTO, ReputationModel, StateModel } from './interfaces/competitors';
 import moment from 'moment';
 import {
   Observable,
@@ -122,10 +122,17 @@ export class CompetitorsStore {
                 this.http.get<CompetitorTO>(`${environment.apiUrl}/api/competitors/${competitor}`).pipe(
                   mergeMap((data) =>
                     forkJoin({
-                      reputation: this.http.post(
-                        `${environment.apiUrl}/api/competitors/${competitor}/graph/average`,
-                        filter
-                      ),
+                      reputation: this.http
+                        .post<ReputationModel>(
+                          `${environment.apiUrl}/api/competitors/${competitor}/graph/average`,
+                          filter
+                        )
+                        .pipe(
+                          map((response) => ({
+                            average: response.average,
+                            graph: this.fillWithMissingDays(response.graph, filter.startdate, filter.enddate),
+                          }))
+                        ),
                       rating: this.http.post(
                         `${environment.apiUrl}/api/competitors/${competitor}/rating/grouped`,
                         filter
@@ -314,5 +321,37 @@ export class CompetitorsStore {
 
   include(competitorId: string) {
     this.setExlusion$.next({ competitorId, isExluded: false });
+  }
+
+  private fillWithMissingDays(
+    data: { date: string; average: number }[],
+    startdate: string,
+    enddate: string
+  ): {
+    date: string;
+    average: number;
+  }[] {
+    const momentStartdate = moment(startdate);
+    const momentEnddate = moment(enddate);
+
+    let now = momentStartdate.clone();
+
+    const ratings: { date: string; average: number }[] = [];
+
+    while (now.isSameOrBefore(momentEnddate)) {
+      const date = now.toDate();
+
+      const currentData = data.find((rating) => now.isSame(moment(rating.date), 'day'))?.average;
+      const prevData = ratings[ratings.length - 1]?.average;
+
+      const average = currentData || prevData || 0;
+
+      average && ratings.push({ date: moment(date).format('YYYY-MM-DD'), average });
+
+      now = momentStartdate.clone();
+      momentStartdate.add(1, 'day');
+    }
+
+    return ratings;
   }
 }

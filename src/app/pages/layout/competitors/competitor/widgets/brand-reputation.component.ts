@@ -58,7 +58,7 @@ import { CompetitorsService } from '../../competitors.service';
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-            {{ reputation().average | numb : translate.currentLang : 1 }}
+            {{ reputation().average | numb : translate.currentLang : 2 }}
             <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
@@ -80,7 +80,7 @@ import { CompetitorsService } from '../../competitors.service';
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
-          vs. {{ averageGraph() | numb : translate.currentLang : 1 }}
+          vs. {{ averageGraph() | numb : translate.currentLang : 2 }}
           {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
         </dt>
       </div>
@@ -100,7 +100,7 @@ import { CompetitorsService } from '../../competitors.service';
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: isBRPositive() ? ['#22c55e', '#8b5cf6'] : ['#ef4444', '#8b5cf6'],
+            domain: isBRPositive() === '+' ? ['#22c55e', '#8b5cf6'] : (isBRPositive() === '-' ? ['#ef4444', '#8b5cf6'] : ['#71717a', '#8b5cf6']),
           }"
           style="fill: #71717a;"
         >
@@ -130,25 +130,23 @@ export class BrandReputationComponent {
   });
 
   isBRPositive = computed(() => {
-    const average = this.reputation().average || 0;
-    const averageGraph = this.averageGraph();
+    const average = +(this.reputation().average || 0).toFixed(2);
+    const averageGraph = +this.averageGraph().toFixed(2);
 
     return average > averageGraph ? '+' : average < averageGraph ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
-    const average = this.reputation().average || 0;
-    const averageGraph = this.averageGraph();
+    const average = +(this.reputation().average || 0).toFixed(2);
+    const averageGraph = +this.averageGraph().toFixed(2);
     const growth = ((average - averageGraph) / average) * 100;
 
     return growth;
   });
 
   data = computed(() => {
-    const data = this.reputation().graph || [];
+    const ratings = this.reputation().graph || [];
     const { currentLang } = this.translate;
-    const startdate = this.competitor.others.filter().startdate;
-    const enddate = this.competitor.others.filter().enddate;
 
     const brandReputation = this.translate.instant('BRAND_REPUTATION');
     const competition = this.translate.instant('COMPETITION');
@@ -171,13 +169,10 @@ export class BrandReputationComponent {
       return acc;
     }, {});
 
-    const averageGraph = Object.entries(averageGraphCompetitors).map(([date, values]) => ({
+    const competitorsRatings = Object.entries(averageGraphCompetitors).map(([date, values]) => ({
       date,
       average: values.reduce((acc: any, value: any) => acc + value, 0) / values.length,
     }));
-
-    const ratings = this.fillWithMissingDays(data, startdate, enddate);
-    const competitorsRatings = this.fillWithMissingDays(averageGraph, startdate, enddate);
 
     return [
       {
@@ -196,28 +191,4 @@ export class BrandReputationComponent {
       },
     ];
   });
-
-  private fillWithMissingDays(data: { date: string; average: number }[], startdate: Date, enddate: Date) {
-    const momentStartdate = moment(startdate);
-    const momentEnddate = moment(enddate);
-
-    let now = momentStartdate.clone();
-
-    const ratings: { date: Date; average: number }[] = [];
-
-    while (now.isSameOrBefore(momentEnddate)) {
-      ratings.push({
-        date: now.toDate(),
-        average:
-          data.find((rating) => now.isSame(rating.date, 'day'))?.average || ratings[ratings.length - 1]?.average || 0,
-      });
-
-      now = momentStartdate.clone();
-      momentStartdate.add(1, 'day');
-    }
-
-    const ratingsFormatted = ratings.filter(({ average }) => average > 0);
-
-    return ratingsFormatted;
-  }
 }

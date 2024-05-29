@@ -114,7 +114,7 @@ export interface MarkerInterface {
                       </div>
                     </ng-template>
 
-                    <article class="bg-white dark:bg-zinc-800 h-screen relative -top-8">
+                    <div class="bg-white dark:bg-zinc-800 h-screen relative -top-8">
                       <div>
                         @if (structures.selected(); as selectedStructure) {
                         <div>
@@ -127,6 +127,7 @@ export interface MarkerInterface {
                             </h2>
                           </div>
                           <button
+                            id="change-restaurant"
                             type="button"
                             class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                             (click)="structures.exit(); panelUI.closePanel()"
@@ -204,6 +205,7 @@ export interface MarkerInterface {
                                 >
                                 }
                                 <a
+                                  id="delete-restaurant-tab"
                                   class="border-transparent text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 whitespace-nowrap border-b-2 py-4 text-sm font-medium"
                                   [ngClass]="{
                                     'border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100':
@@ -248,7 +250,7 @@ export interface MarkerInterface {
                         <div><ng-container *ngTemplateOutlet="loading"></ng-container></div>
                         } } }
                       </div>
-                    </article>
+                    </div>
                   </nav>
                 </div>
               </div>

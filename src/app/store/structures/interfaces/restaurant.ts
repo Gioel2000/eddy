@@ -4,7 +4,7 @@ export interface RestaurantTOModel {
   address: string;
   city: string;
   zipCode: string;
-  email: string;
+  email?: string;
   telephone: string;
   website: string;
   image: string;
@@ -79,7 +79,7 @@ export interface RestaurantSettedTO {
   address: string;
   city: string;
   zipCode: string;
-  email: string;
+  email?: string;
   telephone: string;
   website: string;
   image: string;

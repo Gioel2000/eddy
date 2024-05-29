@@ -56,7 +56,7 @@ import moment from 'moment';
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-            {{ brandReputation().data.average | numb : translate.currentLang : 1 }}
+            {{ brandReputation().data.average | numb : translate.currentLang : 2 }}
             <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
@@ -78,7 +78,7 @@ import moment from 'moment';
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
-          vs. {{ averageGraph() | numb : translate.currentLang : 1 }}
+          vs. {{ averageGraph() | numb : translate.currentLang : 2 }}
           {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
         </dt>
       </div>
@@ -98,7 +98,7 @@ import moment from 'moment';
             name: 'accent',
             selectable: true,
             group: linear,
-            domain: ['#facc15'],
+            domain: isBRPositive() === '+' ? ['#22c55e'] : (isBRPositive() === '-' ? ['#ef4444'] : ['#71717a']),
           }"
           style="fill: #71717a;"
         >
@@ -127,15 +127,15 @@ export class BrandReputationComponent {
   });
 
   isBRPositive = computed(() => {
-    const average = this.brandReputation()?.data?.average || 0;
-    const averageGraph = this.averageGraph();
+    const average = +(this.brandReputation()?.data?.average || 0).toFixed(2);
+    const averageGraph = +this.averageGraph().toFixed(2);
 
     return average > averageGraph ? '+' : average < averageGraph ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
-    const average = this.brandReputation()?.data?.average || 0;
-    const averageGraph = this.averageGraph();
+    const average = +(this.brandReputation()?.data?.average || 0).toFixed(2);
+    const averageGraph = +this.averageGraph().toFixed(2);
     const growth = ((average - averageGraph) / average) * 100;
 
     return growth;

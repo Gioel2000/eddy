@@ -13,9 +13,8 @@ import { SettingsService } from '../../ui/settings/settings.service';
 import { UserPanelService } from '../../ui/user/user.service';
 import { StructureStore } from '../../store/structures/structure.service';
 import { SubstringPipe } from '../../utils/pipes/substring.pipe';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { map } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
 import { UserStore } from '../../store/user/user.service';
 import { AuthService } from '@auth0/auth0-angular';
@@ -40,7 +39,6 @@ import { environment } from '../../../environments/environment';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
-
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-row items-center justify-center w-full">
@@ -124,6 +122,7 @@ import { environment } from '../../../environments/environment';
                         routeData['show']) {
                         <li>
                           <a
+                            [id]="'menu-item-' + $index"
                             [routerLink]="['/' + route.path]"
                             class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
                             routerLinkActive="text-zinc-950 dark:text-zinc-50 font-semibold rounded-lg bg-zinc-700/5 dark:bg-zinc-300/5"
@@ -294,6 +293,7 @@ import { environment } from '../../../environments/environment';
                     class="rounded-lg"
                   >
                     <a
+                      [id]="'menu-item-' + $index"
                       [routerLink]="['/' + route.path]"
                       class="flex flex-row items-center rounded-lg px-3 py-2 text-sm leading-6 font-medium mb-1 cursor-pointer"
                       routerLinkActive="text-zinc-950 dark:text-zinc-50 font-semibold rounded-lg bg-zinc-700/5 dark:bg-zinc-300/5"
@@ -324,7 +324,8 @@ import { environment } from '../../../environments/environment';
                         <div
                           class="block px-4 py-3 text-sm cursor-pointer w-full"
                         >
-                            <a
+                            <button
+                              id="structure-item"
                               class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
                               (click)="restaurantPanelUI.togglePanel()"
                             >
@@ -341,10 +342,10 @@ import { environment } from '../../../environments/environment';
                                       class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200"
                                     ></span>
                                   </div>
-                                  <span class="max-w-full truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200">{{ structures.selected().address }}, {{ structures.selected().city }}</span>
+                                  <span class="max-w-full text-left truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200">{{ structures.selected().address }}, {{ structures.selected().city }}</span>
                                 </div>
                               </div>
-                            </a>
+                            </button>
                         </div>
                         <div class="py-2" role="none">
                           <a
@@ -406,7 +407,7 @@ import { environment } from '../../../environments/environment';
                     <button
                       type="button"
                       class="flex items-center p-2 w-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all transform-gpu ease-in-out duration-200 rounded-lg"
-                      id="user-menu-button"
+                      id="user-menu-button-desktop"
                       aria-expanded="false"
                       aria-haspopup="true"
                       (click)="layout.toggleDropdown()"

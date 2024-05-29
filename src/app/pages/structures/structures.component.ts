@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import moment from 'moment';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -15,6 +15,7 @@ import { map } from 'rxjs';
 @UntilDestroy()
 @Component({
   standalone: true,
+  selector: 'choose-restaurant',
   imports: [CommonModule, TranslateModule, InlineSVGModule, LoaderComponent, ReactiveFormsModule, NgOptimizedImage],
   template: `
     <ng-template #loading>
@@ -66,11 +67,12 @@ import { map } from 'rxjs';
             <div class="flex flex-row items-center gap-x-2">
               <a
                 class="flex flex-row items-center justify-center rounded-full p-3 w-full h-auto cursor-pointer text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-800"
-                (click)="showSearch.set(!showSearch())"
+                (click)="showSearch()"
               >
                 <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon svg-icon-3 stroke-2"></span>
               </a>
               <button
+                id="open-create-restaurant-panel"
                 class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 (click)="restaurantPanelUI.openPanel()"
               >
@@ -87,9 +89,14 @@ import { map } from 'rxjs';
           </div>
         </div>
 
-        @if (showSearch()) {
         <div>
-          <div class="mt-16">
+          <div
+            class="mt-16"
+            [ngClass]="{
+              hidden: !isSearchVisible(),
+              block: isSearchVisible()
+            }"
+          >
             <div class="relative mt-2 rounded-[10px] shadow-sm">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span
@@ -98,6 +105,7 @@ import { map } from 'rxjs';
                 ></span>
               </div>
               <input
+                #searchControl
                 type="text"
                 class="block w-full rounded-[10px] border-0 dark:bg-zinc-900 py-3.5 pl-10 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                 placeholder="{{ 'SEARCH' | translate }}..."
@@ -106,8 +114,11 @@ import { map } from 'rxjs';
             </div>
           </div>
         </div>
-        } @switch(store.state()) { @case('loaded') {
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        @switch(store.state()) { @case('loaded') {
+        <div
+          id="loaded"
+          class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+        >
           @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
           <article
             class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f]"
@@ -153,6 +164,7 @@ import { map } from 'rxjs';
                 class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200"
               >
                 <button
+                  [id]="'choose-structure-' + structure._id"
                   class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full ring-1 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-white/40 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/20 hover:shadow-black/30 disabled:opacity-30"
                   (click)="store.choose(structure._id)"
                 >
@@ -219,13 +231,15 @@ import { map } from 'rxjs';
   `,
 })
 export class StructuresComponent {
+  @ViewChild('searchControl') searchControl!: ElementRef;
+
   settingsUI = inject(SettingsService);
   userPanelUI = inject(UserPanelService);
   restaurantPanelUI = inject(RestaurantPanelService);
   store = inject(StructureStore);
 
   searchFormControl = new FormControl('');
-  showSearch = signal(false);
+  isSearchVisible = signal(false);
   currentYear = moment(new Date()).year();
 
   constructor() {
@@ -235,5 +249,21 @@ export class StructuresComponent {
         map((value) => value || '')
       )
       .subscribe((value) => this.store.search$.next(value));
+  }
+
+  showSearch() {
+    this.searchFormControl.reset();
+
+    if (this.isSearchVisible()) {
+      this.isSearchVisible.set(false);
+      return;
+    }
+
+    this.isSearchVisible.set(true);
+
+    setTimeout(() => {
+      const inputElement = this.searchControl.nativeElement as HTMLInputElement;
+      inputElement.focus();
+    }, 0);
   }
 }

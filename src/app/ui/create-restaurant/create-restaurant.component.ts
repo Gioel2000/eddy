@@ -90,12 +90,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         <label
                           for="project-name"
                           class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'NAME' | translate }}</label
+                          >{{ 'NAME' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
                         >
                       </div>
                       <div class="col-span-2">
                         <input
                           #restaurantName
+                          id="restaurant-name"
                           type="text"
                           placeholder="Da Mario"
                           formControlName="name"
@@ -110,7 +111,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         <label
                           for="project-name"
                           class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'ADDRESS' | translate }}</label
+                          >{{ 'ADDRESS' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
                         >
                       </div>
                       <div class="col-span-2 grid grid-cols-2 sm:grid-cols-9 gap-x-2 gap-y-2 w-full">
@@ -134,6 +135,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         />
                       </div>
                     </div>
+
                     <div
                       class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
                     >
@@ -141,26 +143,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         <label
                           for="project-name"
                           class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'EMAIL' | translate }}</label
-                        >
-                      </div>
-                      <div class="col-span-2">
-                        <input
-                          type="text"
-                          placeholder="you@example.com"
-                          formControlName="email"
-                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
-                    >
-                      <div>
-                        <label
-                          for="project-name"
-                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'TELEPHONE' | translate }}</label
+                          >{{ 'TELEPHONE' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
                         >
                       </div>
                       <div class="col-span-2">
@@ -196,11 +179,31 @@ import { GoogleMapsModule } from '@angular/google-maps';
                             type="text"
                             name="company-website"
                             id="company-website"
-                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                            class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                             placeholder="www.example.com"
                             formControlName="website"
                           />
                         </div>
+                      </div>
+                    </div>
+                    <div
+                      class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
+                    >
+                      <div>
+                        <label
+                          for="project-name"
+                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+                          >{{ 'EMAIL' | translate }}</label
+                        >
+                      </div>
+                      <div class="col-span-2">
+                        <input
+                          id="restaurant-email"
+                          type="text"
+                          placeholder="you@example.com"
+                          formControlName="email"
+                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                        />
                       </div>
                     </div>
                   </div>
@@ -240,6 +243,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                       {{ 'CANCEL' | translate }}
                     </button>
                     <button
+                      id="create-restaurant-button"
                       type="button"
                       class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
                       (click)="add()"
@@ -266,11 +270,11 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     telephone: new FormControl('', [Validators.required]),
     website: new FormControl(''),
+    email: new FormControl('', [Validators.email]),
   });
 
   googleLink = signal<string>('');
@@ -308,10 +312,13 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
       const lat = place.geometry?.location?.lat();
       const lng = place.geometry?.location?.lng();
 
-      const address: string = place!.address_components!.find((c) => c.types.includes('route'))!.long_name;
-      const number: string = place!.address_components!.find((c) => c.types.includes('street_number'))!.long_name;
-      const zipCode: string = place!.address_components!.find((c) => c.types.includes('postal_code'))!.long_name;
-      const city: string = place!.address_components!.find((c) => c.types.includes('locality'))!.long_name;
+      const address: string = place?.address_components?.find((c) => c.types.includes('route'))?.long_name || '';
+      const number: string = place?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
+      const zipCode: string = place?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
+      const city: string =
+        place?.address_components?.find(
+          (c) => c.types.includes('locality') || c.types.includes('administrative_area_level_3')
+        )?.long_name || '';
       const photo = place.photos?.[0].getUrl();
 
       this.cover.set(photo || '');
@@ -330,8 +337,16 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
   }
 
   add() {
+    const { name, address, zipCode, city, telephone, website, email } = this.formGroup.value;
+
     this.store.add({
-      ...this.formGroup.value,
+      name,
+      address,
+      zipCode,
+      city,
+      telephone,
+      email: email || undefined,
+      website: website || undefined,
       image: this.cover(),
       googleMapsLink: this.googleLink(),
       latitude: this.coordinates().latitude,

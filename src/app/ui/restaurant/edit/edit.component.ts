@@ -26,7 +26,7 @@ import { RestaurantPanelService } from '../panel.service';
               <label
                 for="project-name"
                 class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'NAME' | translate }}</label
+                >{{ 'NAME' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
             <div class="col-span-2">
@@ -46,7 +46,7 @@ import { RestaurantPanelService } from '../panel.service';
               <label
                 for="project-name"
                 class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'ADDRESS' | translate }}</label
+                >{{ 'ADDRESS' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
             <div class="col-span-2 grid grid-cols-2 sm:grid-cols-9 gap-x-2 gap-y-2 w-full">
@@ -70,6 +70,7 @@ import { RestaurantPanelService } from '../panel.service';
               />
             </div>
           </div>
+
           <div
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
@@ -77,26 +78,7 @@ import { RestaurantPanelService } from '../panel.service';
               <label
                 for="project-name"
                 class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'EMAIL' | translate }}</label
-              >
-            </div>
-            <div class="col-span-2">
-              <input
-                type="text"
-                placeholder="you@example.com"
-                formControlName="email"
-                class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
-              />
-            </div>
-          </div>
-          <div
-            class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
-          >
-            <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'TELEPHONE' | translate }}</label
+                >{{ 'TELEPHONE' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
             <div class="col-span-2">
@@ -139,6 +121,25 @@ import { RestaurantPanelService } from '../panel.service';
               </div>
             </div>
           </div>
+          <div
+            class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
+          >
+            <div>
+              <label
+                for="project-name"
+                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+                >{{ 'EMAIL' | translate }}</label
+              >
+            </div>
+            <div class="col-span-2">
+              <input
+                type="text"
+                placeholder="you@example.com"
+                formControlName="email"
+                class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -159,17 +160,22 @@ import { RestaurantPanelService } from '../panel.service';
           }
           <button
             type="button"
-            class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
+            class="rounded-[9px] bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
             (click)="panelUI.closePanel()"
           >
             {{ 'CANCEL' | translate }}
           </button>
           <button
-            class="flex flex-row items-center justify-center col-span-1 rounded-lg gap-x-1 py-2.5 px-4 cursor-pointer ring-1 ring-inset ring-red-600 bg-red-500 hover:bg-red-600/90 text-white shadow-[shadow:inset_0_2.3px_theme(colors.white/40%)] disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+            id="delete-restaurant-button"
+            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-sm shadow-black/30"
             (click)="edit()"
             [disabled]="formGroup.invalid || formGroup.pristine"
           >
-            {{ 'EDIT' | translate }}
+            <div
+              class="flex flex-row items-center justify-center gap-x-2 bg-red-600 dark:bg-red-500 h-full px-3 py-2 rounded-[9px] cursor-pointer"
+            >
+              <span class="font-semibold text-base"> {{ 'EDIT' | translate }}</span>
+            </div>
           </button>
         </div>
       </div>
@@ -184,12 +190,11 @@ export class EditRestaurantPanelComponent {
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     telephone: new FormControl('', [Validators.required]),
-    image: new FormControl(''),
     website: new FormControl(''),
+    email: new FormControl('', [Validators.email]),
   });
 
   constructor() {
@@ -217,7 +222,16 @@ export class EditRestaurantPanelComponent {
     if (!selected) return;
 
     const { _id: id } = selected;
-    const restaurant = this.formGroup.value;
+    const { name, address, zipCode, city, telephone, email, website } = this.formGroup.value;
+    const restaurant = {
+      name,
+      address,
+      zipCode,
+      city,
+      telephone,
+      email: email || undefined,
+      website: website || undefined,
+    };
 
     this.structures.edit({ id, restaurant } as EditRestaurant);
   }

@@ -171,7 +171,13 @@ export class DashboardStore {
             brandReputation: this.http
               .post<BrandReputationTO>(`${environment.apiUrl}/api/reviews/graph/average`, filter)
               .pipe(
-                map((data) => ({ data, state: data.graph.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+                map((data) => ({
+                  data: {
+                    average: data.average,
+                    graph: this.fillWithMissingDays(data.graph, filter.startdate, filter.enddate),
+                  },
+                  state: data.graph.length > 0 ? ('loaded' as const) : ('empty' as const),
+                })),
                 catchError(() =>
                   of({
                     data: { average: 0, graph: [] },
@@ -293,5 +299,37 @@ export class DashboardStore {
 
   reset() {
     this.filter.set(INIT_FILTER);
+  }
+
+  private fillWithMissingDays(
+    data: { date: string; average: number }[],
+    startdate: string,
+    enddate: string
+  ): {
+    date: string;
+    average: number;
+  }[] {
+    const momentStartdate = moment(startdate);
+    const momentEnddate = moment(enddate);
+
+    let now = momentStartdate.clone();
+
+    const ratings: { date: string; average: number }[] = [];
+
+    while (now.isSameOrBefore(momentEnddate)) {
+      const date = now.toDate();
+
+      const currentData = data.find((rating) => now.isSame(moment(rating.date), 'day'))?.average;
+      const prevData = ratings[ratings.length - 1]?.average;
+
+      const average = currentData || prevData || 0;
+
+      average && ratings.push({ date: moment(date).format('YYYY-MM-DD'), average });
+
+      now = momentStartdate.clone();
+      momentStartdate.add(1, 'day');
+    }
+
+    return ratings;
   }
 }

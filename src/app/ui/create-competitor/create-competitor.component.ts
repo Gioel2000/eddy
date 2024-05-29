@@ -227,10 +227,10 @@ export class CreateCompetitorPanelComponent implements AfterViewInit {
       const lat = place.geometry?.location?.lat();
       const lng = place.geometry?.location?.lng();
 
-      const address: string = place!.address_components!.find((c) => c.types.includes('route'))!.long_name;
-      const number: string = place!.address_components!.find((c) => c.types.includes('street_number'))!.long_name;
-      const zipCode: string = place!.address_components!.find((c) => c.types.includes('postal_code'))!.long_name;
-      const city: string = place!.address_components!.find((c) => c.types.includes('locality'))!.long_name;
+      const address: string = place?.address_components?.find((c) => c.types.includes('route'))?.long_name || '';
+      const number: string = place?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
+      const zipCode: string = place?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
+      const city: string = place?.address_components?.find((c) => c.types.includes('locality'))?.long_name || '';
       const photo = place.photos?.[0].getUrl();
 
       this.cover.set(photo || '');

@@ -155,8 +155,8 @@ export class ReviewsStore {
           this.filter$.next({
             channels: 'thefork,tripadvisor,google',
             clients: [],
-            rows: 0,
-            offset: 5,
+            rows: 10,
+            offset: 0,
             sentimentCategories: [],
             sentimentWords: [],
           });
