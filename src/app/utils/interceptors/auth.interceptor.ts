@@ -1,28 +1,17 @@
-import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { catchError, map, mergeMap, throwError } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
-@UntilDestroy()
-@Injectable({ providedIn: 'root' })
-export class AuthInterceptor implements HttpInterceptor {
-  private authService = inject(AuthService);
+export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> =>
+  inject(AuthService)
+    .getAccessTokenSilently()
+    .pipe(
+      switchMap((token) => {
+        if (req.headers.get('skip-auth')) return next(req);
 
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    if (request.headers.get('skip-auth')) {
-      return next.handle(request);
-    }
-
-    return this.authService.getAccessTokenSilently().pipe(
-      untilDestroyed(this),
-      map((token) =>
-        request.clone({
-          setHeaders: { Authorization: `Bearer ${token}` },
-        })
-      ),
-      mergeMap((tokenReq) => next.handle(tokenReq)),
-      catchError((error) => throwError(error))
+        const headers = req.headers.set('Authorization', `Bearer ${token}`);
+        const clone = req.clone({ headers });
+        return next(clone);
+      })
     );
-  }
-}

@@ -103,7 +103,10 @@ export interface MarkerInterface {
                     </ng-template>
 
                     <ng-template #error>
-                      <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-96">
+                      <div
+                        id="error-view"
+                        class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-96"
+                      >
                         <div class="flex flex-col items-center justify-center w-full">
                           <span
                             [inlineSVG]="'triangle-warning.svg'"
@@ -158,6 +161,7 @@ export interface MarkerInterface {
                             >
                               <nav class="-mb-px flex space-x-8 px-4 sm:px-6 lg:px-8" aria-label="Tabs">
                                 <a
+                                  id="overview-restaurant-tab"
                                   class="border-transparent hover:border-zinc-300 hover:text-zinc-700 whitespace-nowrap border-b-2 py-4 text-sm font-medium"
                                   aria-current="page"
                                   [ngClass]="{
@@ -170,6 +174,7 @@ export interface MarkerInterface {
                                   >{{ 'OVERVIEW' | translate }}</a
                                 >
                                 <a
+                                  id="info-restaurant-tab"
                                   class="border-transparent text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 whitespace-nowrap border-b-2 py-4 text-sm font-medium"
                                   [ngClass]="{
                                     'border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100':
@@ -181,6 +186,7 @@ export interface MarkerInterface {
                                   >{{ 'INFORMATIONS' | translate }}</a
                                 >
                                 <a
+                                  id="channels-restaurant-tab"
                                   class="border-transparent text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 whitespace-nowrap border-b-2 py-4 text-sm font-medium"
                                   [ngClass]="{
                                     'border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100':
@@ -193,6 +199,7 @@ export interface MarkerInterface {
                                 >
                                 @if (user.me().role === 'admin' || user.me().role === 'superadmin') {
                                 <a
+                                  id="users-restaurant-tab"
                                   class="border-transparent text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 whitespace-nowrap border-b-2 py-4 text-sm font-medium"
                                   [ngClass]="{
                                     'border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100':

@@ -26,25 +26,25 @@ export interface MarkerInterface {
       <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-zinc-500">{{ 'EMAIL' | translate }}</dt>
-          <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+          <dd id="restaurant-overview-email" class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
             {{ selectedStructure.email }}
           </dd>
         </div>
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-zinc-500">{{ 'TELEPHONE' | translate }}</dt>
-          <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+          <dd id="restaurant-overview-telephone" class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
             {{ selectedStructure.telephone }}
           </dd>
         </div>
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-zinc-500">{{ 'ADDRESS' | translate }}</dt>
-          <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+          <dd id="restaurant-overview-address" class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
             {{ selectedStructure.address }}
           </dd>
         </div>
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-zinc-500">{{ 'CITY' | translate }}</dt>
-          <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+          <dd id="restaurant-overview-city" class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
             {{ selectedStructure.city }}
           </dd>
         </div>

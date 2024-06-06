@@ -52,6 +52,7 @@ import { UserService } from '../user/user.service';
         <div class="ml-16 flex-none">
           <div class="flex flex-row mt-2 ml-8 flex-none">
             <a
+              id="open-dialog-user"
               class="
               col-start-1
               col-span-full
@@ -109,8 +110,9 @@ import { UserService } from '../user/user.service';
       <div class="mt-8 flow-root">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 align-middle">
-            @switch (store.state()) { @case ('loaded') {
+            @if (store.state() === 'loaded' || store.state() === 'empty') {
             <table class="min-w-full divide-y divide-zinc-300 dark:divide-zinc-700">
+              @if (store.users().length > 0) {
               <thead>
                 <tr>
                   <th
@@ -133,7 +135,8 @@ import { UserService } from '../user/user.service';
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-zinc-300 dark:divide-zinc-700">
+              }
+              <tbody id="user-list" class="divide-y divide-zinc-300 dark:divide-zinc-700">
                 @for (user of store.users(); track $index) {
                 <tr>
                   <td
@@ -159,13 +162,11 @@ import { UserService } from '../user/user.service';
                 }
               </tbody>
             </table>
-            } @case('loading') {
+            } @if (store.state() === 'loading') {
             <ng-container *ngTemplateOutlet="loading"></ng-container>
-            } @case('error') {
+            } @if (store.state() === 'error') {
             <ng-container *ngTemplateOutlet="error"></ng-container>
-            } @case('empty') {
-            <ng-container *ngTemplateOutlet="empty"></ng-container>
-            } }
+            }
           </div>
         </div>
       </div>

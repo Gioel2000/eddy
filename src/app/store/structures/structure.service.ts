@@ -51,6 +51,7 @@ export class StructureStore {
   selected = computed(() => this.store().selected.structure);
   selectedState = computed(() => this.store().selected.state);
   savedSuccesfully = signal(false);
+  errors = signal(false);
 
   search$ = new Subject<string>();
 
@@ -220,7 +221,7 @@ export class StructureStore {
         tap(() => {
           this.state$.next('loaded');
           this.savedSuccesfully.set(true);
-          setTimeout(() => this.savedSuccesfully.set(false), 4000);
+          setTimeout(() => this.savedSuccesfully.set(false), 2000);
         }),
         tap((restaurant) => this.add$.next(restaurant)),
         catchError(() => {
@@ -245,7 +246,7 @@ export class StructureStore {
           this.edit$.next({ id, structure });
           this.state$.next('loaded');
           this.savedSuccesfully.set(true);
-          setTimeout(() => this.savedSuccesfully.set(false), 4000);
+          setTimeout(() => this.savedSuccesfully.set(false), 2000);
         }),
         catchError(() => {
           this.state$.next('error');
@@ -290,14 +291,25 @@ export class StructureStore {
     this.state$.next('loading');
 
     this.http
-      .put<RestaurantSettedTO>(`${environment.apiUrl}/api/restaurants/channels`, { channels })
+      .put<{ errors: { source: string; status: string }[]; restaurant: RestaurantSettedTO }>(
+        `${environment.apiUrl}/api/restaurants/channels`,
+        {
+          channels,
+        }
+      )
       .pipe(
         untilDestroyed(this),
-        tap((strucuture) => {
+        tap(({ errors, restaurant }) => {
           this.state$.next('loaded');
-          this.savedSuccesfully.set(true);
-          this.setChannels$.next(strucuture.channels);
-          setTimeout(() => this.savedSuccesfully.set(false), 4000);
+          this.setChannels$.next(restaurant.channels);
+
+          if (errors.find((e) => e.status === 'error')) {
+            this.errors.set(true);
+            setTimeout(() => this.errors.set(false), 2000);
+          } else {
+            this.savedSuccesfully.set(true);
+            setTimeout(() => this.savedSuccesfully.set(false), 2000);
+          }
         }),
         catchError(() => {
           this.state$.next('error');
@@ -319,7 +331,7 @@ export class StructureStore {
           this.state$.next('loaded');
           this.savedSuccesfully.set(true);
           this.deleteChannel$.next(id);
-          setTimeout(() => this.savedSuccesfully.set(false), 4000);
+          setTimeout(() => this.savedSuccesfully.set(false), 2000);
         }),
         catchError(() => {
           this.state$.next('error');

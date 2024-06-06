@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { DialogService } from './dialog.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
 import { Dish } from '../../../store/public-menu/interface/public-menu';
 import { MoneyPipe } from '../../../utils/pipes/money.pipe';

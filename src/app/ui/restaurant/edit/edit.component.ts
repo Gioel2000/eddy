@@ -32,6 +32,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-2">
               <input
                 #restaurantName
+                id="restaurant-edit-name"
                 type="text"
                 placeholder="Da Mario"
                 formControlName="name"
@@ -52,18 +53,21 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-2 grid grid-cols-2 sm:grid-cols-9 gap-x-2 gap-y-2 w-full">
               <input
                 type="text"
+                id="restaurant-edit-address"
                 placeholder="Via Torino 4"
                 formControlName="address"
                 class="sm:col-span-4 col-span-2 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
               />
               <input
                 type="text"
+                id="restaurant-edit-zip-code"
                 placeholder="12345"
                 formControlName="zipCode"
                 class="sm:col-span-2 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
               />
               <input
                 type="text"
+                id="restaurant-edit-city"
                 placeholder="Roma"
                 formControlName="city"
                 class="sm:col-span-3 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
@@ -86,7 +90,7 @@ import { RestaurantPanelService } from '../panel.service';
                 <input
                   type="text"
                   name="phone-number"
-                  id="phone-number"
+                  id="restaurant-edit-phone-number"
                   class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                   placeholder="111 111 1111"
                   formControlName="telephone"
@@ -113,7 +117,7 @@ import { RestaurantPanelService } from '../panel.service';
                 <input
                   type="text"
                   name="company-website"
-                  id="company-website"
+                  id="restaurant-edit-website"
                   class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                   placeholder="www.example.com"
                   formControlName="website"
@@ -134,6 +138,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-2">
               <input
                 type="text"
+                id="restaurant-edit-email"
                 placeholder="you@example.com"
                 formControlName="email"
                 class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
@@ -152,7 +157,7 @@ import { RestaurantPanelService } from '../panel.service';
             </div>
           </div>
           } @if (structures.savedSuccesfully()){
-          <div class="flex flex-row items-center justify-center">
+          <div id="edit-restaurant-success-alert" class="flex flex-row items-center justify-center">
             <div class="flex flex-row items-center justify-center w-full">
               <span [inlineSVG]="'check.svg'" class="svg-icon svg-icon-3 text-green-600 stroke-[1.6]"></span>
             </div>
@@ -166,7 +171,7 @@ import { RestaurantPanelService } from '../panel.service';
             {{ 'CANCEL' | translate }}
           </button>
           <button
-            id="delete-restaurant-button"
+            id="edit-restaurant-button"
             class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-sm shadow-black/30"
             (click)="edit()"
             [disabled]="formGroup.invalid || formGroup.pristine"
