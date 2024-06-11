@@ -176,8 +176,7 @@ export class RatingsComponent {
           return (selectedCount / totalCount) * 100;
         })
         .flat()
-        .reduce((acc, curr) => acc + curr, 0) /
-      (competitors.length + 1);
+        .reduce((acc, curr) => acc + curr, 0) / competitors.length;
 
     return {
       count,

@@ -199,32 +199,81 @@ import { map } from 'rxjs';
 
     <footer class="bg-zinc-50 dark:bg-[#111]">
       <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-        <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+        <div class="flex justify-center space-x-6 mt-5 sm:pt-0">
+          <a
+            href="https://www.iubenda.com/privacy-policy/40734880/cookie-policy"
+            class="iubenda iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+            title="Cookie Policy"
+            ><span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="cookie.svg"></span>Cookie Policy</a
+          >
+          <script type="text/javascript">
+            (function (w, d) {
+              var loader = function () {
+                var s = d.createElement('script'),
+                  tag = d.getElementsByTagName('script')[0];
+                s.src = 'https://cdn.iubenda.com/iubenda.js';
+                tag.parentNode.insertBefore(s, tag);
+              };
+              if (w.addEventListener) {
+                w.addEventListener('load', loader, false);
+              } else if (w.attachEvent) {
+                w.attachEvent('onload', loader);
+              } else {
+                w.onload = loader;
+              }
+            })(window, document);
+          </script>
+          <a
+            href="https://www.iubenda.com/privacy-policy/40734880"
+            class="iubenda iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe"
+            title="Privacy Policy"
+            ><span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="lock.svg"></span>Privacy Policy</a
+          >
+          <script type="text/javascript">
+            (function (w, d) {
+              var loader = function () {
+                var s = d.createElement('script'),
+                  tag = d.getElementsByTagName('script')[0];
+                s.src = 'https://cdn.iubenda.com/iubenda.js';
+                tag.parentNode.insertBefore(s, tag);
+              };
+              if (w.addEventListener) {
+                w.addEventListener('load', loader, false);
+              } else if (w.attachEvent) {
+                w.attachEvent('onload', loader);
+              } else {
+                w.onload = loader;
+              }
+            })(window, document);
+          </script>
+          <a
+            class="flex flex-row gap-x-1 bg-white dark:bg-zinc-800 text-black dark:text-white shadow-sm shadow-black/10 dark:shadow-black rounded-lg px-2 py-1.5 text-xs font-semibold ring-1 ring-zinc-900/10 dark:ring-zinc-50/20"
+            href="mailto:support@eddy.restaurant"
+          >
+            <span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="circle-question.svg"></span>
+            <span>{{ 'HELP' | translate }}</span>
+          </a>
+        </div>
+
+        <nav class="-mb-6 mt-10 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           <div class="pb-6">
             <a
               (click)="userPanelUI.togglePanel()"
-              class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+              class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline decoration-[1.5px]"
               >{{ 'MY_PROFILE' | translate }}</a
             >
           </div>
           <div class="pb-6">
             <a
               (click)="settingsUI.openDialog()"
-              class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+              class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline decoration-[1.5px]"
               >{{ 'SETTINGS' | translate }}</a
-            >
-          </div>
-          <div class="pb-6">
-            <a
-              class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
-              href="mailto:support@eddy.restaurant"
-              >{{ 'HELP' | translate }}</a
             >
           </div>
         </nav>
 
         <p class="mt-10 text-center text-xs leading-5 text-zinc-500">
-          &copy; {{ currentYear }} Diamonds Consulting, Inc. All rights reserved.
+          &copy; {{ currentYear }} Diamond Tech, Inc. All rights reserved.
         </p>
       </div>
     </footer>

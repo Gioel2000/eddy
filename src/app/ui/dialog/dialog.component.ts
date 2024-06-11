@@ -57,6 +57,7 @@ import { GeneralDialogService } from './dialog.service';
             @switch (dialog.mode()) { @case ('boolean') {
             <div class="mt-8 sm:flex gap-x-3">
               <button
+                id="yes"
                 class="flex flex-col items-center justify-center w-full cursor-pointer rounded-[10px] min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto"
                 (click)="dialog.fuction()(); dialog.closeDialog()"
               >

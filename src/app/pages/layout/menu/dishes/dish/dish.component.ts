@@ -28,6 +28,7 @@ import { CommonModule } from '@angular/common';
             >
               @if (dish().visible) {
               <a
+                [id]="'hide-dish-' + dish().name"
                 class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="hide.emit(dish())"
               >
@@ -35,6 +36,7 @@ import { CommonModule } from '@angular/common';
               </a>
               } @else {
               <a
+                [id]="'show-dish-' + dish().name"
                 class="flex flex-row items-center rounded-l-md pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="show.emit(dish())"
               >
@@ -42,6 +44,7 @@ import { CommonModule } from '@angular/common';
               </a>
               }
               <a
+                [id]="'edit-dish-' + dish().name"
                 class="flex flex-row items-center pl-2 pr-1.5 bg-white dark:bg-[#1A1A1A] hover:bg-zinc-50 dark:bg-zinc-dark h-full"
                 (click)="edit.emit(dish())"
               >
@@ -107,8 +110,8 @@ import { CommonModule } from '@angular/common';
         <div
           class="flex flex-col gap-y-1.5 px-4 pb-3"
           [ngClass]="{
-              'opacity-30': !dish().visible,
-            }"
+            'opacity-30': !dish().visible,
+          }"
         >
           <h3 class="text-lg truncate font-bold text-zinc-700 dark:text-zinc-300">
             <span>{{ dish().name }}</span>

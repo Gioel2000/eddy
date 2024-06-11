@@ -316,7 +316,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
           </nav>
 
           <p class="mt-10 text-center text-xs leading-5 text-zinc-500">
-            &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.
+            &copy; {{ year }} Diamond Tech, Inc. All rights reserved.
           </p>
         </div>
       </footer>

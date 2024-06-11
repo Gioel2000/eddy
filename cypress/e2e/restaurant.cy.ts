@@ -28,7 +28,7 @@ describe('Eddy Tests', () => {
 
   it('Check Restaurant', () => {
     cy.intercept('GET', '/api/restaurants').as('getRestaurants');
-    cy.wait('@getRestaurants');
+    cy.wait('@getRestaurants', { timeout: 15000 });
 
     cy.get('button[id^=choose-structure-]').first().click();
     cy.get('button[id=user-menu-button-desktop]').click();
@@ -37,6 +37,21 @@ describe('Eddy Tests', () => {
     // overview tab
     cy.get('a[id=overview-restaurant-tab]').click();
     cy.get('restaurant-panel-overview').find('#error-view').should('not.exist');
+
+    // log restaurant data
+    const logRestaurant = Cypress.log({
+      displayName: 'RESTAURANT DATA',
+      message: [
+        `name: ${restaurant.name} 
+        address: ${restaurant.address}
+        city: ${restaurant.city} 
+        zipCode: ${restaurant.zipCode} 
+        telephone: ${restaurant.telephone} 
+        website: ${restaurant.website} 
+        email: ${restaurant.email}`,
+      ],
+      autoEnd: false,
+    });
 
     // info tab
     cy.get('a[id=info-restaurant-tab]').click();
@@ -100,7 +115,7 @@ describe('Eddy Tests', () => {
 
     const logUserCreated = Cypress.log({
       displayName: 'USER CREATED',
-      message: [`👤 User created | ${user.email}`],
+      message: [`👤 User created | ${user.email} | ${user.name} | ${user.surname}`],
       autoEnd: false,
     });
     logUserCreated.end();

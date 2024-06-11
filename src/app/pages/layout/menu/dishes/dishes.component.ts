@@ -55,6 +55,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
         <div class="flex flex-row mt-2 ml-8 flex-none">
           @if (store.categoriesState() !== 'empty' && store.categoriesState() !== 'loading') {
           <a
+            id="open-add-dish-dialog"
             class="
               col-start-1
               col-span-full

@@ -62,6 +62,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                 }}</label>
                 <div class="mt-2">
                   <input
+                    id="category-name"
                     type="text"
                     [formControl]="nameControl"
                     autocomplete="given-name"
@@ -73,6 +74,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
             </div>
           </div>
           <button
+            id="add-category"
             class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
             [disabled]="!nameControl.valid"
             (click)="done()"

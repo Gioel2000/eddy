@@ -483,12 +483,14 @@ import { environment } from '../../../environments/environment';
               <div class="flex flex-col sm:flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
                 <div class="mt-8">
                   <p class="text-center text-xs leading-5 text-zinc-500">
-                    &copy; {{ year }} Diamonds Consulting, Inc. All rights reserved.
+                    &copy; {{ year }} Diamond Tech, Inc. All rights reserved.
                   </p>
                 </div>
                 <div class="flex justify-center space-x-6 mt-5 sm:pt-0">
+                  <a href="https://www.iubenda.com/privacy-policy/40734880/cookie-policy" class="iubenda iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Cookie Policy"><span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="cookie.svg"></span>Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                  <a href="https://www.iubenda.com/privacy-policy/40734880" class="iubenda iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Privacy Policy"><span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="lock.svg"></span>Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
                   <a
-                    class="flex flex-row items-center gap-x-1 text-sm font-medium text-zinc-400 dark:text-zinc-600"
+                    class="flex flex-row gap-x-1 bg-white dark:bg-zinc-800 text-black dark:text-white shadow-sm shadow-black/10 dark:shadow-black rounded-lg px-2 py-1.5 text-xs font-semibold ring-1 ring-zinc-900/10 dark:ring-zinc-50/20"
                     href="mailto:support@eddy.restaurant"
                   >
                     <span class="svg-icon svg-icon-6 stroke-[1.6]" inlineSVG="circle-question.svg"></span>

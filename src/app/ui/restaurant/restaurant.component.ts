@@ -132,10 +132,14 @@ export interface MarkerInterface {
                           <button
                             id="change-restaurant"
                             type="button"
-                            class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                            class="flex fle-row gap-x-1 items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                             (click)="structures.exit(); panelUI.closePanel()"
                           >
-                            {{ 'CHANGE_RESTAURANT' | translate }}
+                            <span
+                              class="svg-icon svg-icon-6 stroke-[1.6]"
+                              inlineSVG="arrows-diagonal-opposite-direction.svg"
+                            ></span>
+                            <span>{{ 'CHANGE_RESTAURANT' | translate }}</span>
                           </button>
                         </div>
 

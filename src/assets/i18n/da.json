@@ -397,5 +397,6 @@
   "NO_RATING": "Ingen vurdering",
   "RATING": "Bedømmelse",
   "STARS": "Stjerner",
-  "VOTE": "Stemme"
+  "VOTE": "Stemme",
+  "COOKIE_POLICY_DESCRIPTION": "Vi bruger cookies til at forbedre din oplevelse på vores hjemmeside. \nDe bruges til forskellige formål, herunder administration af autentificering og webstedssikkerhed. \nDisse cookies er essentielle for den korrekte funktion af vores autentificeringssystem og for at holde din session aktiv."
 }

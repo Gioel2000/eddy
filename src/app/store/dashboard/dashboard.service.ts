@@ -279,6 +279,8 @@ export class DashboardStore {
         ratings: { ...state.ratings, state: 'loading' },
         typologies: { ...state.typologies, state: 'loading' },
         recentReviews: { ...state.recentReviews, state: 'loading' },
+        channels: { ...state.channels, state: 'loading' },
+        categories: { ...state.categories, state: 'loading' },
       }))
       .with(this.setIsDownloading$, (store, isDownloading) => {
         const { isDownloading: isDownloadingCurrent } = store;

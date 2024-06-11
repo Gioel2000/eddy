@@ -47,6 +47,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                 {{ menu.dishMode() === 'edit' ? ('EDIT_DISH' | translate) : ('ADD_DISH' | translate) }}
               </span>
               <button
+                id="close-add-dish-dialog"
                 type="button"
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
@@ -68,7 +69,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                       <input
                         type="text"
                         name="first-name"
-                        id="first-name"
+                        id="dish-name"
                         formControlName="name"
                         autocomplete="given-name"
                         class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
@@ -82,7 +83,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                     }}</label>
                     <div class="mt-2">
                       <textarea
-                        id="about"
+                        id="dish-description"
                         name="about"
                         rows="3"
                         formControlName="description"
@@ -156,13 +157,13 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                         >{{ 'CATEGORY' | translate }}</label
                       >
                       <select
-                        id="location"
+                        id="dish-category"
                         name="location"
                         class="mt-2 bg-white dark:bg-zinc-800 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-zinc-900 dark:text-zinc-100 ring-1  ring-zinc-300 dark:ring-zinc-700 focus:ring-2 focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         formControlName="category"
                       >
                         @for (category of store.categories(); track $index) {
-                        <option [value]="category._id">{{ category.name }}</option>
+                        <option [id]="category.name" [value]="category._id">{{ category.name }}</option>
                         }
                       </select>
                     </div>
@@ -181,7 +182,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                         <input
                           type="text"
                           name="price"
-                          id="price"
+                          id="dish-price"
                           formControlName="price"
                           class="block w-full rounded-md bg-white dark:bg-zinc-800 border-0 py-1.5 pl-7 pr-20 text-zinc-900 dark:text-zinc-100 ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           placeholder="0.00"
@@ -280,6 +281,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
               </div>
             </form>
             <button
+              id="add-dish"
               class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
               [disabled]="formGroup.invalid"
               (click)="done()"

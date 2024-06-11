@@ -40,7 +40,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
       </div>
     </ng-template>
 
-    <div class="grid gap-3 grid-cols-4 sm:grid-cols-4 md:grid-cols-6 2xl:grid-cols-8">
+    <div id="menu-categories-list" class="grid gap-3 grid-cols-4 sm:grid-cols-4 md:grid-cols-6 2xl:grid-cols-8">
       @for (category of store.categories(); track $index) {
       <span
         class="flex flex-row items-center justify-between rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-200 shadow-sm ring-1  ring-zinc-200 dark:ring-zinc-800 hover:shadow cursor-pointer"
@@ -62,6 +62,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
       }
 
       <a
+        id="open-add-category-dialog"
         class="inline-flex items-center gap-x-2 rounded-md p-1 text-sm font-medium text-zinc-500 border border-dashed border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 cursor-pointer"
         (click)="onAdd()"
       >

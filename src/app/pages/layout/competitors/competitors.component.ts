@@ -147,19 +147,6 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
             <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
           </div>
         </button>
-
-        <!-- <button
-          class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
-          (click)="scrollLeft()"
-        >
-          <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-        </button>
-        <button
-          class="flex flex-row items-center justify-center rounded-lg px-3 py-2 w-full h-auto cursor-pointer ring-1 ring-accent dark:ring-accentDark bg-accent dark:bg-accentDark hover:opacity-80 text-white shadow-[shadow:inset_0_0.8px_theme(colors.white/50%)] hover:shadow-[shadow:inset_0_0.8px_theme(colors.white/40%)] dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/20%)] hover:dark:shadow-[shadow:inset_0_0.8px_theme(colors.white/10%)] transition ease-in-out duration-200"
-          (click)="scrollRight()"
-        >
-          <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-        </button> -->
       </div>
     </div>
   `,

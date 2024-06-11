@@ -8,6 +8,7 @@ import { CreateRestaurantPanelComponent } from './ui/create-restaurant/create-re
 import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
 import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-competitor.component';
 import { GeneralDialogComponent } from './ui/dialog/dialog.component';
+import { CookieAlertComponent } from './ui/cookie/cookie.component';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,10 @@ import { GeneralDialogComponent } from './ui/dialog/dialog.component';
     RestaurantPanelComponent,
     CreateCompetitorPanelComponent,
     GeneralDialogComponent,
+    CookieAlertComponent,
   ],
   template: `
-    @defer (on viewport; prefetch on idle) {
+    @if (isRouterLoaded()) { @defer (on viewport; prefetch on idle) {
     <user-panel></user-panel>
     } @placeholder {
     <div></div>
@@ -60,15 +62,24 @@ import { GeneralDialogComponent } from './ui/dialog/dialog.component';
     <div></div>
     } @loading {
     <div></div>
-    }
-
-    <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
-    @if (!isRouterLoaded()) {
+    } @defer (on viewport; prefetch on idle) {
+    <cookie-alert></cookie-alert>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } } @else {
     <div
       class="flex flex-col items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
     >
       <loader></loader>
     </div>
+    } @defer (on viewport; prefetch on idle) {
+    <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
     }
   `,
 })

@@ -397,5 +397,9 @@
   "ALL_RATINGS": "All ratings",
   "ALL_TYPES": "All types",
   "ALL_CATEGORIES": "All categories",
-  "DIFFERENCE": "Difference"
+  "DIFFERENCE": "Difference",
+  "COOKIE_POLICY_DESCRIPTION": "We use cookies to improve your experience on our website. They are used for various purposes, including managing authentication and site security. These cookies are essential for the correct functioning of our authentication system and to keep your session active.",
+  "COOKIE_POLICY": "Our cookie policy",
+  "ACCEPT": "Accept",
+  "REJECT": "Reject"
 }

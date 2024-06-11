@@ -397,5 +397,9 @@
   "ALL_RATINGS": "Tutte le valutazioni",
   "ALL_TYPES": "Tutti i tipi",
   "ALL_CATEGORIES": "Tutte le categorie",
-  "DIFFERENCE": "Differenza"
+  "DIFFERENCE": "Differenza",
+  "COOKIE_POLICY_DESCRIPTION": "Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito. Sono utilizzati per diverse finalità, tra cui la gestione dell'autenticazione e la sicurezza del sito. Questi cookie sono essenziali per il corretto funzionamento del nostro sistema di autenticazione e per mantenere la tua sessione attiva.",
+  "COOKIE_POLICY": "La nostra cookie policy",
+  "ACCEPT": "Accetta",
+  "REJECT": "Rifiuta"
 }

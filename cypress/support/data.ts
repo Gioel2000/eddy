@@ -1,13 +1,13 @@
-import { randomNumber, randomString } from './functions';
+import { faker } from '@faker-js/faker/locale/it';
 
 export const restaurant = {
-  name: `Ristorante ${randomString(5)}`,
-  address: randomString(10),
-  city: randomString(8),
-  zipCode: randomNumber(5),
-  telephone: randomNumber(11),
-  website: `www.${randomString(10)}.com`,
-  email: `${randomString(10)}@email.com`,
+  name: faker.company.name(),
+  address: faker.address.streetAddress(),
+  city: faker.address.city(),
+  zipCode: faker.address.zipCode(),
+  telephone: faker.phone.number(),
+  website: faker.internet.url().replace('https://', '').replace('http://', ''),
+  email: faker.internet.email(),
 };
 
 export const channels = {
@@ -17,12 +17,32 @@ export const channels = {
 };
 
 export const user = {
-  name: randomString(5),
-  surname: randomString(5),
-  email: `${randomString(5)}@gmail.com`,
+  name: faker.name.firstName(),
+  surname: faker.name.lastName(),
+  email: faker.internet.email(),
 };
 
 export const userToEdit = {
-  name: randomString(5),
-  surname: randomString(5),
+  name: faker.name.firstName(),
+  surname: faker.name.lastName(),
+};
+
+export const category = {
+  name: faker.lorem.word(),
+};
+
+export const categoryToEdit = {
+  name: faker.lorem.word(),
+};
+
+export const dish = {
+  name: faker.lorem.word(),
+  descrtiption: faker.lorem.sentence(),
+  price: faker.number.int({ min: 10, max: 100 }),
+};
+
+export const dishToEdit = {
+  name: faker.lorem.word(),
+  descrtiption: faker.lorem.sentence(),
+  price: faker.number.int({ min: 10, max: 100 }),
 };
