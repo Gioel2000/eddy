@@ -401,5 +401,17 @@
   "COOKIE_POLICY_DESCRIPTION": "Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito. Sono utilizzati per diverse finalità, tra cui la gestione dell'autenticazione e la sicurezza del sito. Questi cookie sono essenziali per il corretto funzionamento del nostro sistema di autenticazione e per mantenere la tua sessione attiva.",
   "COOKIE_POLICY": "La nostra cookie policy",
   "ACCEPT": "Accetta",
-  "REJECT": "Rifiuta"
+  "REJECT": "Rifiuta",
+  "CRUSTACEANS": "Crostacei",
+  "CRUSTACEANS_DESCRIPTION": "Sia marini che d'acqua dolce: gamberi, scampi, aragoste, granchi, paguri e simili",
+  "EGGS": "Uova",
+  "EGGS_DESCRIPTION": "Tutti prodotti realizzati con uova, anche in minima parte. \nTra i più comuni: maionese, frittate, emulsionanti, pasta all'uovo, biscotti e torte anche salate, gelati e creme, ecc.",
+  "FISH": "Pesci",
+  "FISH_DESCRIPTION": "Compresi i derivati, cioè tutti quei prodotti alimentari che sono costituiti da pesce, anche se in piccole percentuali",
+  "SOY": "Soia",
+  "SOY_DESCRIPTION": "Latte, tofu, spaghetti ecc",
+  "CELERY": "Sedano",
+  "CELERY_DESCRIPTION": "Presente in pezzi ma anche in preparati per zuppe, salse e concentrati di verdure",
+  "UNDEFINED_USER": "",
+  "UNKNOWN_USER": "Utente sconosciuto"
 }

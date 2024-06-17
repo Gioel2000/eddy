@@ -398,5 +398,16 @@
   "RATING": "Hodnocení",
   "STARS": "hvězdy",
   "VOTE": "Hlasování",
-  "COOKIE_POLICY_DESCRIPTION": "Používáme soubory cookie ke zlepšení vašeho zážitku na našich webových stránkách. \nPoužívají se pro různé účely, včetně správy ověřování a zabezpečení webu. \nTyto soubory cookie jsou nezbytné pro správné fungování našeho ověřovacího systému a pro udržení aktivní relace."
+  "COOKIE_POLICY_DESCRIPTION": "Používáme soubory cookie ke zlepšení vašeho zážitku na našich webových stránkách. \nPoužívají se pro různé účely, včetně správy ověřování a zabezpečení webu. \nTyto soubory cookie jsou nezbytné pro správné fungování našeho ověřovacího systému a pro udržení aktivní relace.",
+  "ACCEPT": "Akceptovat",
+  "COOKIE_POLICY": "Naše zásady používání souborů cookie",
+  "CRUSTACEANS": "Korýši",
+  "CRUSTACEANS_DESCRIPTION": "Mořské i sladkovodní: krevety, krevety, humři, krabi, krabi poustevníci a podobně",
+  "EGGS": "Vejce",
+  "EGGS_DESCRIPTION": "Všechny produkty vyrobené z vajec, a to i minimálně. \nMezi ty nejběžnější: majonézy, omeleta, emulgátory, vaječné těstoviny, sušenky a dorty včetně slaných, zmrzliny a krémy atd.",
+  "FISH": "Ryby",
+  "FISH_DESCRIPTION": "Včetně derivátů, tedy všech těch potravinářských produktů, které se skládají z ryb, i když v malých procentech",
+  "REJECT": "Odmítnout",
+  "SOY": "Sója",
+  "SOY_DESCRIPTION": "Mléko, tofu, špagety atd"
 }

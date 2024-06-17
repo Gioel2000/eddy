@@ -397,5 +397,17 @@
   "NO_RATING": "Derecelendirme yok",
   "RATING": "Değerlendirme",
   "STARS": "Yıldızlar",
-  "VOTE": "Oy"
+  "VOTE": "Oy",
+  "ACCEPT": "Kabul etmek",
+  "COOKIE_POLICY": "Çerez politikamız",
+  "COOKIE_POLICY_DESCRIPTION": "Web sitemizdeki deneyiminizi geliştirmek için çerezleri kullanıyoruz. \nKimlik doğrulama ve site güvenliğini yönetmek de dahil olmak üzere çeşitli amaçlar için kullanılırlar. \nBu çerezler, kimlik doğrulama sistemimizin doğru çalışması ve oturumunuzun aktif kalması için gereklidir.",
+  "CRUSTACEANS": "Kabuklular",
+  "CRUSTACEANS_DESCRIPTION": "Hem deniz hem de tatlı su: karidesler, karidesler, ıstakozlar, yengeçler, keşiş yengeçleri ve benzerleri",
+  "EGGS": "Yumurtalar",
+  "EGGS_DESCRIPTION": "Tüm ürünler minimum düzeyde de olsa yumurtadan yapılmıştır. \nEn yaygın olanlar arasında: mayonez, omlet, emülgatörler, yumurtalı makarna, bisküviler ve kekler (tuzlu olanlar dahil), dondurmalar ve kremalar vb.",
+  "FISH": "Balıklar",
+  "FISH_DESCRIPTION": "Türevler, yani küçük yüzdelerde de olsa balıktan oluşan tüm gıda ürünleri dahil",
+  "REJECT": "Reddetmek",
+  "SOY": "Soya",
+  "SOY_DESCRIPTION": "Süt, tofu, spagetti vb."
 }

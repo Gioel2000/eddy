@@ -397,5 +397,17 @@
   "NO_RATING": "Không có giá",
   "RATING": "Xếp hạng",
   "STARS": "Ngôi sao",
-  "VOTE": "Bỏ phiếu"
+  "VOTE": "Bỏ phiếu",
+  "ACCEPT": "Chấp nhận",
+  "COOKIE_POLICY": "Chính sách cookie của chúng tôi",
+  "COOKIE_POLICY_DESCRIPTION": "Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn trên trang web của chúng tôi. \nChúng được sử dụng cho nhiều mục đích khác nhau, bao gồm quản lý xác thực và bảo mật trang web. \nNhững cookie này rất cần thiết để hệ thống xác thực của chúng tôi hoạt động chính xác và duy trì phiên của bạn hoạt động.",
+  "CRUSTACEANS": "Động vật giáp xác",
+  "CRUSTACEANS_DESCRIPTION": "Cả nước biển và nước ngọt: tôm, cá nục, tôm hùm, cua, cua ẩn sĩ và các loại tương tự",
+  "EGGS": "Trứng",
+  "EGGS_DESCRIPTION": "Tất cả các sản phẩm được làm từ trứng, dù chỉ ở mức tối thiểu. \nTrong số những loại phổ biến nhất: sốt mayonnaise, trứng tráng, chất nhũ hóa, mì trứng, bánh quy và bánh ngọt, bao gồm cả món mặn, kem và kem, v.v.",
+  "FISH": "cá",
+  "FISH_DESCRIPTION": "Bao gồm các sản phẩm phái sinh, tức là tất cả các sản phẩm thực phẩm được làm từ cá, ngay cả với tỷ lệ nhỏ",
+  "REJECT": "Từ chối",
+  "SOY": "đậu nành",
+  "SOY_DESCRIPTION": "Sữa, đậu phụ, spaghetti vv"
 }

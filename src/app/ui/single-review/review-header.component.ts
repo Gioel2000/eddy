@@ -16,7 +16,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
           class="h-10 w-10 rounded-full"
           class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
         >
-          {{ review().name.charAt(0).toUpperCase() }}
+          {{ nameFormatter(review().name).charAt(0).toUpperCase() }}
         </div>
       </div>
       <div class="flex-1 py-3">
@@ -40,10 +40,16 @@ export class HeaderReviewComponent {
 
   constructor(private translateService: TranslateService) {}
 
-  nameFormatter(name: string): string {
+  nameFormatter(name: string | undefined): string {
+    if (!name) {
+      const unknownUser = this.translateService.instant('UNKNOWN_USER');
+      return unknownUser;
+    }
+
     if (name.toLowerCase() === 'verified traveler') {
       return this.translateService.instant('VERIFIED_TRAVELER');
     }
+
     return name;
   }
 

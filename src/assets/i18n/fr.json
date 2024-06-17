@@ -397,5 +397,17 @@
   "NO_RATING": "Pas de notation",
   "RATING": "Notation",
   "STARS": "Étoiles",
-  "VOTE": "Vote"
+  "VOTE": "Vote",
+  "ACCEPT": "Accepter",
+  "COOKIE_POLICY": "Notre politique en matière de cookies",
+  "COOKIE_POLICY_DESCRIPTION": "Nous utilisons des cookies pour améliorer votre expérience sur notre site Web. \nIls sont utilisés à diverses fins, notamment la gestion de l’authentification et de la sécurité du site. \nCes cookies sont indispensables au bon fonctionnement de notre système d'authentification et au maintien de votre session active.",
+  "CRUSTACEANS": "Crustacés",
+  "CRUSTACEANS_DESCRIPTION": "Marines et d'eau douce : crevettes, langoustines, homards, crabes, bernard-l'ermite, etc.",
+  "EGGS": "Œufs",
+  "EGGS_DESCRIPTION": "Tous les produits à base d'œufs, même en quantité minime. \nParmi les plus courants : mayonnaise, omelette, émulsifiants, pâtes aux œufs, biscuits et gâteaux, y compris salés, glaces et crèmes, etc.",
+  "FISH": "Des poissons",
+  "FISH_DESCRIPTION": "Y compris les dérivés, c'est-à-dire tous les produits alimentaires composés de poisson, même en faibles pourcentages",
+  "REJECT": "Rejeter",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Lait, tofu, spaghettis, etc."
 }

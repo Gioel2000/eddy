@@ -397,5 +397,17 @@
   "NO_RATING": "Brak oceny",
   "RATING": "Ocena",
   "STARS": "Gwiazdy",
-  "VOTE": "Głosować"
+  "VOTE": "Głosować",
+  "ACCEPT": "Zaakceptować",
+  "COOKIE_POLICY": "Nasza polityka dotycząca plików cookie",
+  "COOKIE_POLICY_DESCRIPTION": "Używamy plików cookie, aby poprawić komfort korzystania z naszej witryny. \nSą wykorzystywane do różnych celów, w tym do zarządzania uwierzytelnianiem i bezpieczeństwem witryny. \nTe pliki cookie są niezbędne do prawidłowego funkcjonowania naszego systemu uwierzytelniania i utrzymania aktywności sesji.",
+  "CRUSTACEANS": "Skorupiaki",
+  "CRUSTACEANS_DESCRIPTION": "Zarówno morskie, jak i słodkowodne: krewetki, krewetki, homary, kraby, kraby pustelniki i tym podobne",
+  "EGGS": "Jajka",
+  "EGGS_DESCRIPTION": "Wszystkie produkty wykonane z jaj, nawet w minimalnej ilości. \nDo najczęściej spotykanych: majonezy, omlety, emulgatory, makarony jajeczne, ciastka i ciasta, także wytrawne, lody i kremy itp.",
+  "FISH": "Ryby",
+  "FISH_DESCRIPTION": "Włącznie z pochodnymi, czyli wszystkimi produktami spożywczymi, które składają się z ryb, nawet jeśli w małych procentach",
+  "REJECT": "Odrzucić",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Mleko, tofu, spaghetti itp"
 }

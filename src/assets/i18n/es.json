@@ -397,5 +397,17 @@
   "NO_RATING": "Sin evaluar",
   "RATING": "Clasificación",
   "STARS": "Estrellas",
-  "VOTE": "Votar"
+  "VOTE": "Votar",
+  "ACCEPT": "Aceptar",
+  "COOKIE_POLICY": "Nuestra política de cookies",
+  "COOKIE_POLICY_DESCRIPTION": "Utilizamos cookies para mejorar su experiencia en nuestro sitio web. \nSe utilizan para diversos fines, incluida la gestión de la autenticación y la seguridad del sitio. \nEstas cookies son esenciales para el correcto funcionamiento de nuestro sistema de autenticación y para mantener activa su sesión.",
+  "CRUSTACEANS": "Crustáceos",
+  "CRUSTACEANS_DESCRIPTION": "Tanto marinos como de agua dulce: gambas, cigalas, langostas, cangrejos, cangrejos ermitaños y similares",
+  "EGGS": "Huevos",
+  "EGGS_DESCRIPTION": "Todos los productos elaborados con huevo, aunque sea mínimamente. \nEntre los más habituales: mayonesa, tortilla, emulsionantes, pasta al huevo, galletas y tartas, incluidas las saladas, helados y cremas, etc.",
+  "FISH": "peces",
+  "FISH_DESCRIPTION": "Incluyendo los derivados, es decir, todos aquellos productos alimenticios que estén compuestos por pescado, aunque sea en pequeños porcentajes.",
+  "REJECT": "Rechazar",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Leche, tofu, espaguetis, etc."
 }

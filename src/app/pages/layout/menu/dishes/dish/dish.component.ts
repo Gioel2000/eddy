@@ -149,8 +149,4 @@ export class DishComponent {
   @Output() delete = new EventEmitter<DishTO>();
   @Output() hide = new EventEmitter<DishTO>();
   @Output() show = new EventEmitter<DishTO>();
-
-  peanut = computed(() => this.dish()?.allergens?.includes('peanuts'));
-  milk = computed(() => this.dish()?.allergens?.includes('milk'));
-  gluten = computed(() => this.dish()?.allergens?.includes('gluten'));
 }

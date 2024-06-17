@@ -7,6 +7,7 @@ describe('Eddy Tests', () => {
     cy.login('ivan.martorelli00@gmail.com', 'Ivan2010!');
     cy.intercept('GET', '/api/restaurants').as('getRestaurants');
     cy.wait('@getRestaurants', { timeout: 15000 });
+    cy.get('.iubenda-cs-accept-btn').click();
 
     cy.get('button[id^=choose-structure-]').first().click();
   });
@@ -133,13 +134,13 @@ describe('Eddy Tests', () => {
     cy.get('#menu-categories-list').find('span').contains(categoryToEdit.name).should('not.exist');
 
     // visibility
-
-    cy.intercept('PUT', '/api/menus/dishes/*').as('hideDish');
+    cy.intercept('PUT', '/api/menus/dishes/*/visible/*').as('hideDish');
     cy.get('menu-dishes').find(`a[id^=hide-dish-${dishToEdit.name}]`).click();
     cy.wait('@hideDish', { timeout: 15000 });
-    // cy.intercept('PUT', '/api/menus/dishes/*').as('showDish');
-    // cy.get('menu-dishes').first().find(`a[id^=show-dish-${dishToEdit.name}]`).click();
-    // cy.wait('@showDish');
+
+    cy.intercept('PUT', '/api/menus/dishes/*/visible/*').as('showDish');
+    cy.get('menu-dishes').first().find(`a[id^=show-dish-${dishToEdit.name}]`).click();
+    cy.wait('@showDish');
   });
 
   Cypress.on('uncaught:exception', () => false);

@@ -348,6 +348,25 @@ export class MenuStoreService {
       .subscribe();
   }
 
+  visibility(dish: EditDish, visibility: boolean) {
+    this.stateDish$.next('loading');
+
+    this.http
+      .put<DishTO>(`${environment.apiUrl}/api/menus/dishes/${dish._id}/visible/${visibility}`, {})
+      .pipe(
+        untilDestroyed(this),
+        tap((dishRes) => {
+          this.stateDish$.next('loaded');
+          this.editDish$.next(dishRes);
+        }),
+        catchError((error) => {
+          this.stateDish$.next('error');
+          return error;
+        })
+      )
+      .subscribe();
+  }
+
   deleteDish(dishId: string) {
     this.stateDish$.next('loading');
 

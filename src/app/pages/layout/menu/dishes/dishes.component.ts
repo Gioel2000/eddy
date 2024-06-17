@@ -171,18 +171,22 @@ export class MenuDishesComponent {
   }
 
   hide(dish: DishTO) {
-    this.store.editDish({
-      ...dish,
-      allergens: dish.allergens.join(','),
-      visible: false,
-    });
+    this.store.visibility(
+      {
+        ...dish,
+        allergens: dish.allergens.join(','),
+      },
+      false
+    );
   }
 
   show(dish: DishTO) {
-    this.store.editDish({
-      ...dish,
-      allergens: dish.allergens.join(','),
-      visible: true,
-    });
+    this.store.visibility(
+      {
+        ...dish,
+        allergens: dish.allergens.join(','),
+      },
+      true
+    );
   }
 }

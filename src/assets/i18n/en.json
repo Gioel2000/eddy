@@ -401,5 +401,17 @@
   "COOKIE_POLICY_DESCRIPTION": "We use cookies to improve your experience on our website. They are used for various purposes, including managing authentication and site security. These cookies are essential for the correct functioning of our authentication system and to keep your session active.",
   "COOKIE_POLICY": "Our cookie policy",
   "ACCEPT": "Accept",
-  "REJECT": "Reject"
+  "REJECT": "Reject",
+  "CRUSTACEANS": "Crustaceans",
+  "CRUSTACEANS_DESCRIPTION": "Both marine and freshwater: prawns, scampi, lobsters, crabs, hermit crabs and the like",
+  "EGGS": "Eggs",
+  "EGGS_DESCRIPTION": "All products made with eggs, even minimally. Among the most common: mayonnaise, omelette, emulsifiers, egg pasta, biscuits and cakes, including savory ones, ice creams and creams, etc.",
+  "FISH": "Fishes",
+  "FISH_DESCRIPTION": "Including derivatives, i.e. all those food products that are made up of fish, even if in small percentages",
+  "SOY": "Soy",
+  "SOY_DESCRIPTION": "Milk, tofu, spaghetti etc",
+  "CELERY": "Celery",
+  "CELERY_DESCRIPTION": "Present in pieces but also in preparations for soups, sauces and vegetable concentrates",
+  "UNDEFINED_USER": "",
+  "UNKNOWN_USER": "Unknown user"
 }

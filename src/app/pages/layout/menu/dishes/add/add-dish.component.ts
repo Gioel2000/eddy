@@ -11,7 +11,8 @@ import { MenuService } from '../../menu.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CURRENCIES } from './currencies';
-import { distinctUntilChanged, map, tap } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
+import { ALLERGENS } from './allergens';
 
 @UntilDestroy()
 @Component({
@@ -19,6 +20,7 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
   standalone: true,
   imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReplacePipe, ReactiveFormsModule],
   template: `
+    <!-- {{ 'CELERY_DESCRIPTION' | translate }} -->
     <div
       class="relative z-[10000]"
       [ngClass]="{
@@ -212,69 +214,69 @@ import { distinctUntilChanged, map, tap } from 'rxjs';
                         <fieldset class="border-b border-t border-zinc-200 dark:border-zinc-700">
                           <legend class="sr-only">Notifications</legend>
                           <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
+                            @for (allergen of allergens.slice(paginateAllegens().start, paginateAllegens().end); track
+                            $index) {
                             <div class="relative flex items-start pb-4 pt-3.5">
                               <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
-                                  'GLUTEN' | translate
-                                }}</label>
-                                <p id="comments-description" class="text-zinc-500">
-                                  {{ 'GLUTEN_DESCRIPTION' | translate }}
+                                <label
+                                  [for]="allergen.formControlName"
+                                  class="font-medium text-zinc-900 dark:text-zinc-100"
+                                  >{{ allergen.titlei18n | translate }}</label
+                                >
+                                <p class="text-zinc-500">
+                                  {{ allergen.description | translate }}
                                 </p>
                               </div>
                               <div class="ml-3 flex h-6 items-center">
                                 <input
-                                  id="comments"
-                                  aria-describedby="comments-description"
-                                  name="comments"
                                   type="checkbox"
-                                  formControlName="gluten"
+                                  (change)="checkAllergen(allergen.formControlName)"
+                                  [checked]="formGroup.value[allergen.formControlName]"
                                   class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
                                 />
                               </div>
                             </div>
-                            <div class="relative flex items-start pb-4 pt-3.5">
-                              <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
-                                  'PEANUTS' | translate
-                                }}</label>
-                                <p id="comments-description" class="text-zinc-500">
-                                  {{ 'PEANUTS_DESCRIPTION' | translate }}
-                                </p>
-                              </div>
-                              <div class="ml-3 flex h-6 items-center">
-                                <input
-                                  id="comments"
-                                  aria-describedby="comments-description"
-                                  name="comments"
-                                  type="checkbox"
-                                  formControlName="peanuts"
-                                  class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                                />
-                              </div>
-                            </div>
-                            <div class="relative flex items-start pb-4 pt-3.5">
-                              <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
-                                  'MILK' | translate
-                                }}</label>
-                                <p id="comments-description" class="text-zinc-500">
-                                  {{ 'MILK_DESCRIPTION' | translate }}
-                                </p>
-                              </div>
-                              <div class="ml-3 flex h-6 items-center">
-                                <input
-                                  id="comments"
-                                  aria-describedby="comments-description"
-                                  name="comments"
-                                  type="checkbox"
-                                  formControlName="milk"
-                                  class="bg-zinc-200 dark:bg-zinc-700 h-4 w-4 rounded border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                                />
-                              </div>
-                            </div>
+                            }
                           </div>
                         </fieldset>
                       </div>
+                      <nav class="flex items-center justify-between px-4 sm:px-0">
+                        <div class="-mt-px flex w-0 flex-1">
+                          <button
+                            class="inline-flex gap-x-1 items-center border-t-[3px] border-transparent pr-1 pt-4 text-sm font-medium text-zinc-500 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                            [disabled]="paginateAllegens().start === 0"
+                            (click)="previous()"
+                          >
+                            <span class="svg-icon svg-icon-7 stroke-[1.5]" inlineSVG="arrow-left.svg"></span>
+                            {{ 'PREVIOUS' | translate }}
+                          </button>
+                        </div>
+                        <div class="hidden md:-mt-px md:flex">
+                          @for (page of pages; track $index) {
+                          <a
+                            class="inline-flex items-center px-4 pt-4 text-sm"
+                            [ngClass]="{
+                              'border-t-[3px] font-semibold border-accent text-accent dark:border-accentDark dark:text-accentDark':
+                                currentPage() === $index,
+                              'mt-[3px] border-transparent hover:border-t-[3px] hover:mt-0 font-medium text-zinc-500 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300':
+                                currentPage() !== $index
+                            }"
+                            (click)="goTo($index)"
+                            >{{ $index + 1 }}</a
+                          >
+                          }
+                        </div>
+                        <div class="-mt-px flex w-0 flex-1 justify-end">
+                          <button
+                            class="inline-flex gap-x-1 items-center border-t-[3px] border-transparent pl-1 pt-4 text-sm font-medium text-zinc-500 dark:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                            [disabled]="paginateAllegens().end >= allergens.length"
+                            (click)="next()"
+                          >
+                            {{ 'NEXT' | translate }}
+                            <span class="svg-icon svg-icon-7 stroke-[1.5]" inlineSVG="arrow-right.svg"></span>
+                          </button>
+                        </div>
+                      </nav>
                     </div>
                   </div>
                 </div>
@@ -306,6 +308,14 @@ export class AddDishComponent {
   readonly ALLOWED_TYPES = ['image'];
   readonly MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
   currencies = CURRENCIES;
+  allergens = ALLERGENS;
+  pages = Array(Math.ceil(this.allergens.length / 3));
+  currentPage = signal(0);
+
+  paginateAllegens = signal({
+    start: 0,
+    end: 3,
+  });
 
   file = signal<File | string | null>(null);
   fileType = signal<string | null>(null);
@@ -323,7 +333,12 @@ export class AddDishComponent {
     currency: new FormControl('', [Validators.required]),
     gluten: new FormControl(false),
     milk: new FormControl(false),
+    crustaceans: new FormControl(false),
     peanuts: new FormControl(false),
+    eggs: new FormControl(false),
+    fish: new FormControl(false),
+    soy: new FormControl(false),
+    celery: new FormControl(false),
   });
 
   selectedCurrency$ = this.formGroup.valueChanges.pipe(
@@ -349,6 +364,11 @@ export class AddDishComponent {
             gluten: dish.allergens.includes('gluten'),
             peanuts: dish.allergens.includes('peanuts'),
             milk: dish.allergens.includes('milk'),
+            crustaceans: dish.allergens.includes('crustaceans'),
+            eggs: dish.allergens.includes('eggs'),
+            fish: dish.allergens.includes('fish'),
+            soy: dish.allergens.includes('soy'),
+            celery: dish.allergens.includes('celery'),
           });
 
           if (dish.image) {
@@ -368,6 +388,30 @@ export class AddDishComponent {
           this.fileType.set(null);
         }
       });
+  }
+
+  previous() {
+    this.currentPage.set(this.currentPage() - 1);
+    this.paginateAllegens.set({
+      start: this.paginateAllegens().start - 3,
+      end: this.paginateAllegens().end - 3,
+    });
+  }
+
+  next() {
+    this.currentPage.set(this.currentPage() + 1);
+    this.paginateAllegens.set({
+      start: this.paginateAllegens().start + 3,
+      end: this.paginateAllegens().end + 3,
+    });
+  }
+
+  goTo(page: number) {
+    this.currentPage.set(page);
+    this.paginateAllegens.set({
+      start: page * 3,
+      end: page * 3 + 3,
+    });
   }
 
   onDragOver(event: any) {
@@ -433,6 +477,12 @@ export class AddDishComponent {
     this.imagePreview.set(null);
   }
 
+  checkAllergen(allergen: 'gluten' | 'peanuts' | 'milk' | 'crustaceans' | 'eggs' | 'fish' | 'soy' | 'celery') {
+    this.formGroup.patchValue({
+      [allergen]: !this.formGroup.value[allergen],
+    });
+  }
+
   done() {
     const mode = this.menu.dishMode();
 
@@ -450,6 +500,11 @@ export class AddDishComponent {
           this.formGroup.value.gluten ? 'gluten' : '',
           this.formGroup.value.peanuts ? 'peanuts' : '',
           this.formGroup.value.milk ? 'milk' : '',
+          this.formGroup.value.crustaceans ? 'crustaceans' : '',
+          this.formGroup.value.eggs ? 'eggs' : '',
+          this.formGroup.value.fish ? 'fish' : '',
+          this.formGroup.value.soy ? 'soy' : '',
+          this.formGroup.value.celery ? 'celery' : '',
         ]
           .filter(Boolean)
           .join(','),
@@ -480,6 +535,11 @@ export class AddDishComponent {
           this.formGroup.value.gluten ? 'gluten' : '',
           this.formGroup.value.peanuts ? 'peanuts' : '',
           this.formGroup.value.milk ? 'milk' : '',
+          this.formGroup.value.crustaceans ? 'crustaceans' : '',
+          this.formGroup.value.eggs ? 'eggs' : '',
+          this.formGroup.value.fish ? 'fish' : '',
+          this.formGroup.value.soy ? 'soy' : '',
+          this.formGroup.value.celery ? 'celery' : '',
         ]
           .filter(Boolean)
           .join(','),

@@ -397,5 +397,17 @@
   "NO_RATING": "Sem avaliação",
   "RATING": "Avaliação",
   "STARS": "Estrelas",
-  "VOTE": "Voto"
+  "VOTE": "Voto",
+  "ACCEPT": "Aceitar",
+  "COOKIE_POLICY": "Nossa política de cookies",
+  "COOKIE_POLICY_DESCRIPTION": "Utilizamos cookies para melhorar a sua experiência no nosso site. \nEles são usados ​​para diversos fins, incluindo gerenciamento de autenticação e segurança do site. \nEstes cookies são essenciais para o correto funcionamento do nosso sistema de autenticação e para manter a sua sessão ativa.",
+  "CRUSTACEANS": "Crustáceos",
+  "CRUSTACEANS_DESCRIPTION": "Tanto marinhos quanto de água doce: camarões, camarões, lagostas, caranguejos, caranguejos eremitas e similares",
+  "EGGS": "Ovos",
+  "EGGS_DESCRIPTION": "Todos os produtos feitos com ovos, mesmo que minimamente. \nEntre os mais comuns: maionese, omelete, emulsionantes, massas com ovos, biscoitos e bolos, inclusive salgados, sorvetes e cremes, etc.",
+  "FISH": "Peixes",
+  "FISH_DESCRIPTION": "Inclui os derivados, ou seja, todos os produtos alimentares constituídos por peixe, mesmo que em pequenas percentagens",
+  "REJECT": "Rejeitar",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Leite, tofu, espaguete etc."
 }

@@ -397,5 +397,17 @@
   "NO_RATING": "Geen beoordeling",
   "RATING": "Beoordeling",
   "STARS": "Sterren",
-  "VOTE": "Stemmen"
+  "VOTE": "Stemmen",
+  "ACCEPT": "Aanvaarden",
+  "COOKIE_POLICY": "Ons cookiebeleid",
+  "COOKIE_POLICY_DESCRIPTION": "Wij gebruiken cookies om uw ervaring op onze website te verbeteren. \nZe worden voor verschillende doeleinden gebruikt, waaronder het beheren van authenticatie en sitebeveiliging. \nDeze cookies zijn essentieel voor het correct functioneren van ons authenticatiesysteem en om uw sessie actief te houden.",
+  "CRUSTACEANS": "Schaaldieren",
+  "CRUSTACEANS_DESCRIPTION": "Zowel zee- als zoetwater: garnalen, scampi's, kreeften, krabben, heremietkreeften en dergelijke",
+  "EGGS": "Eieren",
+  "EGGS_DESCRIPTION": "Alle producten gemaakt met eieren, zelfs minimaal. \nEen van de meest voorkomende: mayonaise, omelet, emulgatoren, eierpasta, koekjes en cakes, inclusief hartige, ijsjes en crèmes, enz.",
+  "FISH": "Vissen",
+  "FISH_DESCRIPTION": "Inclusief derivaten, dat wil zeggen al die voedingsproducten die uit vis bestaan, ook al is het maar in kleine percentages",
+  "REJECT": "Afwijzen",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Melk, tofu, spaghetti etc"
 }

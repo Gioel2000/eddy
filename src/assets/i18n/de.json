@@ -397,5 +397,17 @@
   "NO_RATING": "Keine Bewertung",
   "RATING": "Bewertung",
   "STARS": "Sterne",
-  "VOTE": "Abstimmung"
+  "VOTE": "Abstimmung",
+  "ACCEPT": "Akzeptieren",
+  "COOKIE_POLICY": "Unsere Cookie-Richtlinie",
+  "COOKIE_POLICY_DESCRIPTION": "Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. \nSie werden für verschiedene Zwecke verwendet, einschließlich der Verwaltung der Authentifizierung und der Site-Sicherheit. \nDiese Cookies sind für das ordnungsgemäße Funktionieren unseres Authentifizierungssystems und für die Aufrechterhaltung Ihrer Sitzung unerlässlich.",
+  "CRUSTACEANS": "Krebstiere",
+  "CRUSTACEANS_DESCRIPTION": "Sowohl Meer- als auch Süßwasser: Garnelen, Scampi, Hummer, Krabben, Einsiedlerkrebse und dergleichen",
+  "EGGS": "Eier",
+  "EGGS_DESCRIPTION": "Alle Produkte werden mit Eiern hergestellt, wenn auch nur minimal. \nZu den häufigsten gehören: Mayonnaise, Omelett, Emulgatoren, Eiernudeln, Kekse und Kuchen, auch herzhaft, Eis und Cremes usw.",
+  "FISH": "Fische",
+  "FISH_DESCRIPTION": "Darunter auch Derivate, also alle Lebensmittel, die, wenn auch in geringen Anteilen, aus Fisch bestehen",
+  "REJECT": "Ablehnen",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Milch, Tofu, Spaghetti usw"
 }

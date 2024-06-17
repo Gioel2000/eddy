@@ -397,5 +397,17 @@
   "NO_RATING": "无评级",
   "RATING": "评分",
   "STARS": "星星",
-  "VOTE": "投票"
+  "VOTE": "投票",
+  "ACCEPT": "接受",
+  "COOKIE_POLICY": "我们的 cookie 政策",
+  "COOKIE_POLICY_DESCRIPTION": "我们使用 cookie 来改善您在我们网站上的体验。\n它们用于各种目的，包括管理身份验证和站点安全。\n这些 cookie 对于我们的身份验证系统的正确运行和保持您的会话活跃至关重要。",
+  "CRUSTACEANS": "甲壳类",
+  "CRUSTACEANS_DESCRIPTION": "海洋和淡水：虾、小龙虾、龙虾、螃蟹、寄居蟹等",
+  "EGGS": "蛋",
+  "EGGS_DESCRIPTION": "所有产品均由鸡蛋制成，即使是最少的。\n最常见的是：蛋黄酱、煎蛋卷、乳化剂、鸡蛋意大利面、饼干和蛋糕（包括咸味蛋糕）、冰淇淋和奶油等。",
+  "FISH": "鱼",
+  "FISH_DESCRIPTION": "包括衍生物，即所有由鱼制成的食品，即使比例很小",
+  "REJECT": "拒绝",
+  "SOY": "大豆",
+  "SOY_DESCRIPTION": "牛奶、豆腐、意大利面等"
 }

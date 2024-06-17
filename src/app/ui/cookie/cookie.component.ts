@@ -31,6 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
           </p>
           <div class="mt-4 flex items-center gap-x-5">
             <button
+              id="accept-cookie"
               type="button"
               class="rounded-md bg-zinc-800 dark:bg-zinc-100 px-3 py-2 text-sm font-semibold text-white dark:text-zinc-800 shadow-sm hover:bg-zinc-700 dark:hover:bg-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:focus-visible:outline-zinc-100"
               (click)="acceptCookie()"

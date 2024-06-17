@@ -397,5 +397,17 @@
   "NO_RATING": "Ingen vurdering",
   "RATING": "Vurdering",
   "STARS": "Stjerner",
-  "VOTE": "Stemme"
+  "VOTE": "Stemme",
+  "ACCEPT": "Aksepterer",
+  "COOKIE_POLICY": "Vår policy for informasjonskapsler",
+  "COOKIE_POLICY_DESCRIPTION": "Vi bruker informasjonskapsler for å forbedre opplevelsen din på nettstedet vårt. \nDe brukes til ulike formål, inkludert administrering av autentisering og nettstedsikkerhet. \nDisse informasjonskapslene er avgjørende for riktig funksjon av autentiseringssystemet vårt og for å holde økten aktiv.",
+  "CRUSTACEANS": "Krepsdyr",
+  "CRUSTACEANS_DESCRIPTION": "Både marine og ferskvann: reker, scampi, hummer, krabber, eremittkreps og lignende",
+  "EGGS": "Egg",
+  "EGGS_DESCRIPTION": "Alle produkter laget med egg, selv minimalt. \nBlant de vanligste: majones, omelett, emulgatorer, eggepasta, kjeks og kaker, inkludert salte, iskrem og kremer, etc.",
+  "FISH": "Fisker",
+  "FISH_DESCRIPTION": "Inkludert derivater, dvs. alle de matvarene som består av fisk, selv om det er i små prosenter",
+  "REJECT": "Avvis",
+  "SOY": "Soya",
+  "SOY_DESCRIPTION": "Melk, tofu, spaghetti etc"
 }

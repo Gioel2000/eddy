@@ -397,5 +397,17 @@
   "NO_RATING": "Tidak ada peringkat",
   "RATING": "Peringkat",
   "STARS": "Bintang",
-  "VOTE": "Pilih"
+  "VOTE": "Pilih",
+  "ACCEPT": "Menerima",
+  "COOKIE_POLICY": "Kebijakan cookie kami",
+  "COOKIE_POLICY_DESCRIPTION": "Kami menggunakan cookie untuk meningkatkan pengalaman Anda di situs web kami. \nMereka digunakan untuk berbagai tujuan, termasuk mengelola otentikasi dan keamanan situs. \nCookies ini penting agar sistem autentikasi kami berfungsi dengan baik dan menjaga sesi Anda tetap aktif.",
+  "CRUSTACEANS": "krustasea",
+  "CRUSTACEANS_DESCRIPTION": "Baik laut maupun air tawar: udang, scampi, lobster, rajungan, kelomang dan sejenisnya",
+  "EGGS": "Telur",
+  "EGGS_DESCRIPTION": "Semua produk dibuat dengan telur, meski minimal. \nDi antara yang paling umum: mayones, telur dadar, pengemulsi, pasta telur, biskuit dan kue, termasuk yang gurih, es krim dan krim, dll.",
+  "FISH": "Ikan",
+  "FISH_DESCRIPTION": "Termasuk turunannya, yaitu semua produk pangan yang berbahan dasar ikan, meskipun persentasenya kecil",
+  "REJECT": "Menolak",
+  "SOY": "Kedelai",
+  "SOY_DESCRIPTION": "Susu, tahu, spageti, dll"
 }

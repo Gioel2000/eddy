@@ -398,5 +398,16 @@
   "RATING": "Bedømmelse",
   "STARS": "Stjerner",
   "VOTE": "Stemme",
-  "COOKIE_POLICY_DESCRIPTION": "Vi bruger cookies til at forbedre din oplevelse på vores hjemmeside. \nDe bruges til forskellige formål, herunder administration af autentificering og webstedssikkerhed. \nDisse cookies er essentielle for den korrekte funktion af vores autentificeringssystem og for at holde din session aktiv."
+  "COOKIE_POLICY_DESCRIPTION": "Vi bruger cookies til at forbedre din oplevelse på vores hjemmeside. \nDe bruges til forskellige formål, herunder administration af autentificering og webstedssikkerhed. \nDisse cookies er essentielle for den korrekte funktion af vores autentificeringssystem og for at holde din session aktiv.",
+  "ACCEPT": "Acceptere",
+  "COOKIE_POLICY": "Vores cookiepolitik",
+  "CRUSTACEANS": "Krebsdyr",
+  "CRUSTACEANS_DESCRIPTION": "Både hav- og ferskvand: rejer, scampi, hummere, krabber, eremitkrebs og lignende",
+  "EGGS": "Æg",
+  "EGGS_DESCRIPTION": "Alle produkter lavet med æg, selv minimalt. \nBlandt de mest almindelige: mayonnaise, æggekage, emulgatorer, ægepasta, kiks og kager, herunder krydrede, is og cremer osv.",
+  "FISH": "Fisk",
+  "FISH_DESCRIPTION": "Inklusive derivater, dvs. alle de fødevarer, der består af fisk, selv om det er i små procenter",
+  "REJECT": "Afvise",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Mælk, tofu, spaghetti osv"
 }

@@ -397,5 +397,17 @@
   "NO_RATING": "Nincs értékelés",
   "RATING": "Értékelés",
   "STARS": "Csillagok",
-  "VOTE": "Szavazás"
+  "VOTE": "Szavazás",
+  "ACCEPT": "Elfogad",
+  "COOKIE_POLICY": "Cookie-szabályzatunk",
+  "COOKIE_POLICY_DESCRIPTION": "Cookie-kat használunk, hogy javítsuk az Ön élményét weboldalunkon. \nKülönféle célokra használják őket, beleértve a hitelesítés kezelését és a webhely biztonságát. \nEzek a cookie-k nélkülözhetetlenek hitelesítési rendszerünk megfelelő működéséhez és a munkamenet aktív megőrzéséhez.",
+  "CRUSTACEANS": "Rákfélék",
+  "CRUSTACEANS_DESCRIPTION": "Tengeri és édesvízi: garnélarák, scampi, homár, rákok, remeterák és hasonlók",
+  "EGGS": "Tojás",
+  "EGGS_DESCRIPTION": "Minden tojással készült termék, akár minimális mennyiségben is. \nA leggyakoribbak: majonéz, omlett, emulgeálószerek, tojásos tészta, kekszek és sütemények, beleértve a sósakat is, fagylaltok és krémek stb.",
+  "FISH": "Halak",
+  "FISH_DESCRIPTION": "Beleértve a származékokat, azaz minden olyan élelmiszerterméket, amely halból áll, még ha kis százalékban is",
+  "REJECT": "Elutasít",
+  "SOY": "Szója",
+  "SOY_DESCRIPTION": "Tej, tofu, spagetti stb"
 }

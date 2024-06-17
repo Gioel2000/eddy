@@ -397,5 +397,17 @@
   "NO_RATING": "Ingen bedömning",
   "RATING": "Betyg",
   "STARS": "Stjärnor",
-  "VOTE": "Rösta"
+  "VOTE": "Rösta",
+  "ACCEPT": "Acceptera",
+  "COOKIE_POLICY": "Vår cookiepolicy",
+  "COOKIE_POLICY_DESCRIPTION": "Vi använder cookies för att förbättra din upplevelse på vår webbplats. \nDe används för olika ändamål, inklusive hantering av autentisering och webbplatssäkerhet. \nDessa cookies är nödvändiga för att vårt autentiseringssystem ska fungera korrekt och för att hålla din session aktiv.",
+  "CRUSTACEANS": "Kräftdjur",
+  "CRUSTACEANS_DESCRIPTION": "Både marint och sötvatten: räkor, jätteräkor, hummer, krabbor, eremitkräftor och liknande",
+  "EGGS": "Ägg",
+  "EGGS_DESCRIPTION": "Alla produkter gjorda med ägg, även minimalt. \nBland de vanligaste: majonnäs, omelett, emulgeringsmedel, äggpasta, kex och kakor, inklusive salta, glass och krämer, etc.",
+  "FISH": "Fiskar",
+  "FISH_DESCRIPTION": "Inklusive derivat, det vill säga alla de livsmedelsprodukter som består av fisk, även om det är i små procentsatser",
+  "REJECT": "Avvisa",
+  "SOY": "Soja",
+  "SOY_DESCRIPTION": "Mjölk, tofu, spagetti mm"
 }

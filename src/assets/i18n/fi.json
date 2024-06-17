@@ -397,5 +397,17 @@
   "NO_RATING": "Ei arvosanaa",
   "RATING": "Luokitus",
   "STARS": "Tähdet",
-  "VOTE": "Äänestys"
+  "VOTE": "Äänestys",
+  "ACCEPT": "Hyväksyä",
+  "COOKIE_POLICY": "Evästekäytäntömme",
+  "COOKIE_POLICY_DESCRIPTION": "Käytämme evästeitä parantaaksemme käyttökokemustasi verkkosivustollamme. \nNiitä käytetään eri tarkoituksiin, mukaan lukien todennuksen ja sivuston suojauksen hallintaan. \nNämä evästeet ovat välttämättömiä todennusjärjestelmämme oikean toiminnan kannalta ja pitämään istuntosi aktiivisena.",
+  "CRUSTACEANS": "Äyriäiset",
+  "CRUSTACEANS_DESCRIPTION": "Sekä meri- että makean veden: katkaravut, scampit, hummerit, raput, erakkoravut ja vastaavat",
+  "EGGS": "Munat",
+  "EGGS_DESCRIPTION": "Kaikki tuotteet on valmistettu kananmunista, jopa vähän. \nYleisimpiä: majoneesi, munakas, emulgointiaineet, munapasta, keksit ja kakut, mukaan lukien suolaiset, jäätelöt ja kermat jne.",
+  "FISH": "Kalat",
+  "FISH_DESCRIPTION": "Mukaan lukien johdannaiset, eli kaikki ne elintarviketuotteet, jotka koostuvat kalasta, vaikkakin pieninä prosenttiosuuksina",
+  "REJECT": "Hylätä",
+  "SOY": "Soija",
+  "SOY_DESCRIPTION": "Maito, tofu, spagetti jne"
 }
