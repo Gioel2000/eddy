@@ -47,7 +47,7 @@ export interface CalendarModel {
   ],
   template: `
     <div
-      class="sm:min-w-32 w-full border-none md:border-l border-zinc-300 dark:border-zinc-700/50"
+      class="sm:min-w-32 w-full border-none md:border-l border-zinc-200 dark:border-zinc-800"
       (clickOutside)="close()"
     >
       <div class="relative">
@@ -58,10 +58,10 @@ export interface CalendarModel {
         >
         <button
           #buttonElement
-          class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+          class="block w-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
           [ngClass]="{
             'ring-2 ring-accent dark:ring-accentDark': showRing(),
-            'ring-1 ring-zinc-300 dark:ring-zinc-800': !showRing()
+            'ring-1 ring-zinc-200 dark:ring-zinc-800': !showRing()
           }"
           (click)="toggle()"
         >
@@ -227,7 +227,7 @@ export class DatePickerComponent {
 
     setTimeout(() => {
       const { innerWidth: windowWidth } = window;
-      const { right } = this.buttonElement?.nativeElement.getBoundingClientRect();
+      const { right } = (this.buttonElement?.nativeElement?.getBoundingClientRect() as DOMRect) || { right: 0 };
 
       this.direction.set(windowWidth - right > 200 ? 'left' : 'right');
     }, 0);

@@ -44,6 +44,79 @@ import { map } from 'rxjs';
       </div>
     </ng-template>
 
+    <ng-template #loaded>
+      <div
+        id="loaded"
+        class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+      >
+        @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
+        <article
+          class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f]"
+        >
+          <div class="relative w-full">
+            <img
+              [ngSrc]="structure.image"
+              alt=""
+              width="768"
+              height="432"
+              priority
+              class="aspect-[16/9] w-full rounded-t-2xl bg-zinc-100 dark:bg-zinc-900 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            />
+            <div class="absolute inset-0 rounded-t-2xl ring-1 ring-inset ring-zinc-900/10"></div>
+          </div>
+          <div class="w-full p-6">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="text-zinc-500">{{ structure.address }}, {{ structure.zipCode }}, {{ structure.city }}</span>
+            </div>
+            <div class="relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-zinc-900 dark:text-zinc-100">
+                <a>
+                  <span class="absolute inset-0"></span>
+                  {{ structure.name }}
+                </a>
+              </h3>
+
+              <div class="flex flex-col mt-5 gap-y-2">
+                <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
+                  {{ structure.email }}
+                </div>
+                <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
+                  {{ structure.telephone }}
+                </div>
+                <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
+                  {{ structure.website }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200"
+            >
+              <button
+                [id]="'choose-structure-' + structure._id"
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full ring-1 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-white/40 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/20 hover:shadow-black/30 disabled:opacity-30"
+                (click)="store.choose(structure._id)"
+              >
+                <div
+                  class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
+                >
+                  <span class="font-semibold text-base">{{ 'CHOOSE' | translate }}</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </article>
+        } @placeholder {
+        <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[34rem]">
+          <loader></loader>
+        </div>
+        } @loading {
+        <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[34rem]">
+          <loader></loader>
+        </div>
+        } }
+      </div>
+    </ng-template>
+
     <div class="bg-zinc-50 dark:bg-[#141414] py-12 sm:py-24 min-h-screen">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="pb-12">
@@ -114,80 +187,8 @@ import { map } from 'rxjs';
             </div>
           </div>
         </div>
-        @switch(store.state()) { @case('loaded') {
-        <div
-          id="loaded"
-          class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-        >
-          @for (structure of store.structures(); track $index) { @defer (on viewport; prefetch on idle) {
-          <article
-            class="flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-[#1a1a1a] ring-1 ring-inset ring-zinc-300 dark:ring-[#2f2f2f]"
-          >
-            <div class="relative w-full">
-              <img
-                [ngSrc]="structure.image"
-                alt=""
-                width="768"
-                height="432"
-                priority
-                class="aspect-[16/9] w-full rounded-t-2xl bg-zinc-100 dark:bg-zinc-900 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-              />
-              <div class="absolute inset-0 rounded-t-2xl ring-1 ring-inset ring-zinc-900/10"></div>
-            </div>
-            <div class="w-full p-6">
-              <div class="flex items-center gap-x-4 text-xs">
-                <span class="text-zinc-500"
-                  >{{ structure.address }}, {{ structure.zipCode }}, {{ structure.city }}</span
-                >
-              </div>
-              <div class="relative">
-                <h3 class="mt-3 text-lg font-semibold leading-6 text-zinc-900 dark:text-zinc-100">
-                  <a>
-                    <span class="absolute inset-0"></span>
-                    {{ structure.name }}
-                  </a>
-                </h3>
-
-                <div class="flex flex-col mt-5 gap-y-2">
-                  <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
-                    {{ structure.email }}
-                  </div>
-                  <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
-                    {{ structure.telephone }}
-                  </div>
-                  <div class="line-clamp-3 text-sm leading-4 text-zinc-600 dark:text-zinc-400">
-                    {{ structure.website }}
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200"
-              >
-                <button
-                  [id]="'choose-structure-' + structure._id"
-                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full ring-1 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-white/40 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/20 hover:shadow-black/30 disabled:opacity-30"
-                  (click)="store.choose(structure._id)"
-                >
-                  <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
-                  >
-                    <span class="font-semibold text-base">{{ 'CHOOSE' | translate }}</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </article>
-          } @placeholder {
-          <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[34rem]">
-            <loader></loader>
-          </div>
-          } @loading {
-          <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[34rem]">
-            <loader></loader>
-          </div>
-          } }
-        </div>
-        } @case('loading') {
+        @switch(store.state()) { @case('loaded') { <ng-container *ngTemplateOutlet="loaded"></ng-container> }
+        @case('loading') {
         <ng-container *ngTemplateOutlet="loading"></ng-container>
         } @case('error') {
         <ng-container *ngTemplateOutlet="error"></ng-container>

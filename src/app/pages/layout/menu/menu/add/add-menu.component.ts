@@ -144,7 +144,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       <span class="isolate inline-flex rounded-md shadow-sm">
                         <button
                           type="button"
-                          class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-800 focus:z-10"
+                          class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-200 dark:ring-zinc-800 focus:z-10"
                           [disabled]="start() === 0"
                           (click)="prev()"
                         >
@@ -152,7 +152,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         </button>
                         <button
                           type="button"
-                          class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-800 focus:z-10"
+                          class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-200 dark:ring-zinc-800 focus:z-10"
                           [disabled]="end() >= store.categories().length"
                           (click)="next()"
                         >

@@ -29,7 +29,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
   ],
   template: `
     <div
-      class="relative z-10"
+      class="relative z-40"
       [ngClass]="{
         hidden: !panelUI.isPanelOpen(),
       }"
@@ -235,6 +235,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
 
                 <div class="flex-shrink-0 border-t border-zinc-200 dark:border-zinc-700 px-4 py-5 sm:px-6">
                   <div class="flex justify-end space-x-3">
+                    @if (store.state() === 'loading'){
+                    <div class="flex flex-row items-center justify-center">
+                      <div class="flex flex-row items-center justify-center w-full">
+                        <loader></loader>
+                      </div>
+                    </div>
+                    }
                     <button
                       type="button"
                       class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
@@ -339,23 +346,25 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
   add() {
     const { name, address, zipCode, city, telephone, website, email } = this.formGroup.value;
 
-    this.store.add({
-      name,
-      address,
-      zipCode,
-      city,
-      telephone,
-      email: email || undefined,
-      website: website || undefined,
-      image: this.cover(),
-      googleMapsLink: this.googleLink(),
-      latitude: this.coordinates().latitude,
-      longitude: this.coordinates().longitude,
-    } as AddRestaurant);
-
-    this.googleLink.set('');
-    this.cover.set('');
-    this.panelUI.closePanel();
-    this.formGroup.reset();
+    this.store
+      .add({
+        name,
+        address,
+        zipCode,
+        city,
+        telephone,
+        email: email || undefined,
+        website: website || undefined,
+        image: this.cover(),
+        googleMapsLink: this.googleLink(),
+        latitude: this.coordinates().latitude,
+        longitude: this.coordinates().longitude,
+      } as AddRestaurant)
+      .subscribe(() => {
+        this.googleLink.set('');
+        this.cover.set('');
+        this.panelUI.closePanel();
+        this.formGroup.reset();
+      });
   }
 }

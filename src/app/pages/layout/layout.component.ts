@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { RouterModule } from '@angular/router';
@@ -19,6 +19,12 @@ import { RestaurantPanelService } from '../../ui/restaurant/panel.service';
 import { UserStore } from '../../store/user/user.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { environment } from '../../../environments/environment';
+import { filter, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ProfileComponent } from '../../ui/profile/profile.component';
+import { ProfileSmComponent } from '../../ui/profile/sm/profile-sm.component';
+import { StructureComponent } from '../../ui/structure/structure.component';
+import { StructureSmComponent } from '../../ui/structure/sm/structure-sm.component';
 
 @UntilDestroy()
 @Component({
@@ -36,6 +42,10 @@ import { environment } from '../../../environments/environment';
     ClickOutsideDirective,
     SubstringPipe,
     ReactiveFormsModule,
+    ProfileComponent,
+    ProfileSmComponent,
+    StructureComponent,
+    StructureSmComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
@@ -137,129 +147,7 @@ import { environment } from '../../../environments/environment';
                     <li class="mt-auto">
                       <a class="flex items-center gap-x-4 lg:gap-x-6">
                         <div class="relative w-full">
-                          <div [ngClass]="{ hidden: !layout.isDropdownOpenSm() }">
-                            <div
-                              class="absolute bottom-14 z-10 mt-2 w-full origin-bottom divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
-                              role="menu"
-                              aria-orientation="vertical"
-                              aria-labelledby="menu-button"
-                              tabindex="-1"
-                              [ngClass]="{
-                                'opacity-100 scale-100': layout.isDropdownVisibleSm(),
-                                'opacity-0 scale-90': !layout.isDropdownVisibleSm()
-                              }"
-                            >
-                              <div
-                                class="block px-4 py-3 text-sm cursor-pointer w-full"
-                              >
-                                  <a
-                                    class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
-                                    (click)="layout.closeMenu(); restaurantPanelUI.togglePanel()"
-                                  >
-                                    <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                                      <div class="flex flex-col gap-x-2 w-full">
-                                        <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                                          <p
-                                            class="max-w-36 text-base truncate font-semibold text-zinc-700 dark:text-zinc-100 group-hover:font-semibold group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
-                                          >
-                                            {{ structures.selected().name }}
-                                          </p>
-                                          <span
-                                            [inlineSVG]="'share-up-right.svg'"
-                                            class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200"
-                                          ></span>
-                                        </div>
-                                        <span class="max-w-full truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200">{{ structures.selected().address }}, {{ structures.selected().city }}</span>
-                                      </div>
-                                    </div>
-                                  </a>
-                              </div>
-                              <div class="py-2" role="none">
-                                <a
-                                  (click)="layout.closeMenu(); settings.openDialog()"
-                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                                  role="menuitem"
-                                  tabindex="-1"
-                                  id="menu-item-0"
-                                >
-                                  <div class="flex flex-row items-center w-full">
-                                    <span
-                                      class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                                      [inlineSVG]="'gear-2.svg'"
-                                    ></span>
-                                    <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{
-                                      'SETTINGS' | translate
-                                    }}</span>
-                                  </div>
-                                </a>
-                                <a
-                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                                  role="menuitem"
-                                  tabindex="-1"
-                                  id="menu-item-0"
-                                  (click)="layout.closeMenu(); userPanelUI.togglePanel()"
-                                >
-                                  <div class="flex flex-row items-center w-full">
-                                    <span
-                                      class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                                      [inlineSVG]="'user.svg'"
-                                    ></span>
-                                    <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{
-                                      'USER' | translate
-                                    }}</span>
-                                  </div>
-                                </a>
-                              </div>
-                              <div class="py-2" role="none">
-                                <a
-                                  class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                                  role="menuitem"
-                                  tabindex="-1"
-                                  id="menu-item-0"
-                                  (click)="logout()"
-                                >
-                                  <div class="flex flex-row items-center w-full">
-                                    <span
-                                      class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-red-600 dark:text-red-500 rotate-180"
-                                      [inlineSVG]="'rect-logout.svg'"
-                                    ></span>
-                                    <span class="text-sm font-medium text-red-600 dark:text-red-500">{{
-                                      'EXIT' | translate
-                                    }}</span>
-                                  </div>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <button
-                            type="button"
-                            class="flex items-center p-2 w-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all transform-gpu ease-in-out duration-200 rounded-lg"
-                            id="user-menu-button"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            (click)="layout.toggleDropdownSm()"
-                            (clickOutside)="layout.closeDropdownSm()"
-                            [ngClass]="{
-                              'bg-zinc-100 dark:bg-zinc-800': layout.isDropdownVisible(),
-                            }"
-                          >
-                            <div class="flex flex-row items-center justify-between w-full">
-                              <div class="flex flex-row items-center">
-                                <img
-                                  class="h-7 w-7 sm:h-7 sm:w-7 rounded-full"
-                                  [src]="user().picture"
-                                  alt=""
-                                />
-                                <span class="flex flex-col items-start ml-3">
-                                  <span
-                                    class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
-                                    aria-hidden="true"
-                                    >{{ user().name }} {{ user().surname }}</span
-                                  >
-                                </span>
-                              </div>
-                            </div>
-                          </button>
+                          <structure-dropdown-sm></structure-dropdown-sm>
                         </div>
                       </a>
                     </li>
@@ -309,130 +197,7 @@ import { environment } from '../../../environments/environment';
               <li class="mt-auto">
                 <a class="flex items-center gap-x-4 lg:gap-x-6">
                   <div class="relative w-full">
-                    <div [ngClass]="{ hidden: !layout.isDropdownOpen() }">
-                      <div
-                        class="absolute bottom-14 z-10 mt-2 w-56 origin-bottom divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="menu-button"
-                        tabindex="-1"
-                        [ngClass]="{
-                          'opacity-100 scale-100': layout.isDropdownVisible(),
-                          'opacity-0 scale-90': !layout.isDropdownVisible()
-                        }"
-                      >
-                        <div
-                          class="block px-4 py-3 text-sm cursor-pointer w-full"
-                        >
-                            <button
-                              id="structure-item"
-                              class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
-                              (click)="restaurantPanelUI.togglePanel()"
-                            >
-                              <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                                <div class="flex flex-col gap-x-2 w-full">
-                                  <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                                    <p
-                                      class="max-w-36 text-base truncate font-semibold text-zinc-700 dark:text-zinc-100 group-hover:font-semibold group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
-                                    >
-                                      {{ structures.selected().name }}
-                                    </p>
-                                    <span
-                                      [inlineSVG]="'share-up-right.svg'"
-                                      class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200"
-                                    ></span>
-                                  </div>
-                                  <span class="max-w-full text-left truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200">{{ structures.selected().address }}, {{ structures.selected().city }}</span>
-                                </div>
-                              </div>
-                            </button>
-                        </div>
-                        <div class="py-2" role="none">
-                          <a
-                            (click)="settings.openDialog()"
-                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-0"
-                          >
-                            <div class="flex flex-row items-center w-full">
-                              <span
-                                class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                                [inlineSVG]="'gear-2.svg'"
-                              ></span>
-                              <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{
-                                'SETTINGS' | translate
-                              }}</span>
-                            </div>
-                          </a>
-                          <a
-                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-0"
-                            (click)="userPanelUI.togglePanel()"
-                          >
-                            <div class="flex flex-row items-center w-full">
-                              <span
-                                class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                                [inlineSVG]="'user.svg'"
-                              ></span>
-                              <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{
-                                'USER' | translate
-                              }}</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="py-2" role="none">
-                          <a
-                            class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-0"
-                            (click)="logout()"
-                          >
-                            <div class="flex flex-row items-center w-full">
-                              <span
-                                class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-red-600 dark:text-red-500 rotate-180"
-                                [inlineSVG]="'rect-logout.svg'"
-                              ></span>
-                              <span class="text-sm font-medium text-red-600 dark:text-red-500">{{
-                                'EXIT' | translate
-                              }}</span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      class="flex items-center p-2 w-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all transform-gpu ease-in-out duration-200 rounded-lg"
-                      id="user-menu-button-desktop"
-                      aria-expanded="false"
-                      aria-haspopup="true"
-                      (click)="layout.toggleDropdown()"
-                      (clickOutside)="layout.closeDropdown()"
-                      [ngClass]="{
-                        'bg-zinc-100 dark:bg-zinc-800': layout.isDropdownVisible(),
-                      }"
-                    >
-                      <div class="flex flex-row items-center justify-between w-full">
-                        <div class="flex flex-row items-center">
-                          <img
-                            class="h-7 w-7 sm:h-7 sm:w-7 rounded-full"
-                            [src]="user().picture"
-                            alt=""
-                          />
-                          <span class="flex flex-col items-start ml-3">
-                            <span
-                              class="text-sm font-normal leading-6 text-zinc-800 dark:text-zinc-200 max-w-32 truncate"
-                              aria-hidden="true"
-                              >{{ user().name }} {{ user().surname }}</span
-                            >
-                          </span>
-                        </div>
-                      </div>
-                    </button>
+                    <structure-dropdown></structure-dropdown>
                   </div>
                 </a>
               </li>
@@ -446,38 +211,50 @@ import { environment } from '../../../environments/environment';
           <div class="w-full max-w-[1600px]">
             <div class="block lg:hidden relative -top-8">
               <div
-                class="sticky py-1 top-0 flex z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-light dark:bg-dark px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+                class="sticky py-1 top-0 flex justify-between z-20 h-16 shrink-0 items-center gap-x-4 backdrop-blur-lg bg-light dark:bg-dark px-4 sm:gap-x-6 sm:px-6 lg:px-8"
               >
-                <button
-                  type="button"
-                  class="-m-2.5 p-2.5 text-zinc-700 dark:text-zinc-200 lg:hidden"
-                  (click)="layout.openMenu()"
-                >
-                  <span class="svg-icon svg-icon-5 stroke-[1.6] text-zinc-800 dark:text-zinc-200" inlineSVG="menu.svg"></span>
-                </button>
-
-                <a
-                  class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
-                >
-                  <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
-                    Eddy
-                    <span class="text-dark dark:text-white">.</span>
-                  </h1>
-                </a>
+                <div class="flex flex-row items-center gap-x-4">
+                  <button
+                    type="button"
+                    class="-m-2.5 p-2.5 text-zinc-700 dark:text-zinc-200 lg:hidden"
+                    (click)="layout.openMenu()"
+                  >
+                    <span class="svg-icon svg-icon-5 stroke-[1.6] text-zinc-800 dark:text-zinc-200" inlineSVG="menu.svg"></span>
+                  </button>
+  
+                  <a
+                    class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
+                  >
+                    <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
+                      Eddy
+                      <span class="text-dark dark:text-white">.</span>
+                    </h1>
+                  </a>
+                </div>
+                <profile-dropdown-sm class="block sm:hidden"></profile-dropdown-sm>
               </div>
             </div>
 
-            <router-outlet
-              (activate)="isRouterLoaded.set(true)"
-              (deactivate)="isRouterLoaded.set(false)"
-            ></router-outlet>
-            @if (!isRouterLoaded()) {
-            <div
-              class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
-            >
-              <loader></loader>
+            <div class="h-full lg:pr-10 lg:pl-3 px-4">
+              <div class="hidden sm:block">
+                <div class="flex flex-row items-center justify-between">
+                  <h1 class="text-xl font-medium text-zinc-900 dark:text-zinc-100">{{ title() | translate }}</h1>
+                  <profile-dropdown></profile-dropdown>
+                </div>
+              </div>
+
+              <router-outlet
+                (activate)="isRouterLoaded.set(true)"
+                (deactivate)="isRouterLoaded.set(false)"
+              ></router-outlet>
+              @if (!isRouterLoaded()) {
+              <div
+                class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
+              >
+                <loader></loader>
+              </div>
+              }
             </div>
-            }
 
             <footer class="bg-white dark:bg-dark mt-52">
               <div class="flex flex-col sm:flex-row items-center justify-between mx-auto max-w-7xl px-6 py-12 lg:px-8">
@@ -518,6 +295,19 @@ export class LayoutComponent {
   user = computed(() => this.profile.me());
   year = moment().format('YYYY');
   isRouterLoaded = signal(false);
+
+  title = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => {
+        const url = this.router.url.split('/')[1];
+        const childrens = this.router.config[0].children;
+        const page = childrens?.find((r) => r.path === url)?.data?.['i18n'];
+        return page || '';
+      })
+    ),
+    { initialValue: '' }
+  );
 
   logout() {
     const { url } = environment;

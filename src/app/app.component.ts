@@ -62,30 +62,21 @@ import { CookieAlertComponent } from './ui/cookie/cookie.component';
     <div></div>
     } @loading {
     <div></div>
-    }
-
-    <!-- @defer (on viewport; prefetch on idle) {
+    } @defer (on viewport; prefetch on idle) {
     <cookie-alert></cookie-alert>
     } @placeholder {
     <div></div>
     } @loading {
     <div></div>
-    }
-   -->
-
-    } @else {
+    } } @else {
     <div
       class="flex flex-col items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
     >
       <loader></loader>
     </div>
-    } @defer (on viewport; prefetch on idle) {
-    <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
-    } @placeholder {
-    <div></div>
-    } @loading {
-    <div></div>
     }
+
+    <router-outlet (activate)="isRouterLoaded.set(true)" (deactivate)="isRouterLoaded.set(false)"></router-outlet>
   `,
 })
 export class AppComponent {

@@ -179,14 +179,14 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 
                   <div class="col-span-1 flex flex-col">
                     <a
-                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 flex flex-row rounded-lg border border-zinc-300 dark:border-zinc-700/50"
+                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 flex flex-row rounded-lg border border-zinc-200 dark:border-zinc-800"
                       [ngClass]="{
                         'ring-4 ring-accent shadow-lg shadow-accent/70': themeStore.option() === 'system'
                       }"
                       (click)="themeStore.set$.next('system')"
                     >
                       <div
-                        class="rounded-l-md bg-zinc-900 w-full h-full pt-4 pl-4 border-r border-zinc-300 dark:border-zinc-700/50"
+                        class="rounded-l-md bg-zinc-900 w-full h-full pt-4 pl-4 border-r border-zinc-200 dark:border-zinc-800"
                       >
                         <div
                           class="rounded-tl-lg rounded-br-lg bg-zinc-900 border-l border-t border-zinc-700 w-full h-14 pt-2 pl-3"

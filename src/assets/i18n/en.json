@@ -413,5 +413,6 @@
   "CELERY": "Celery",
   "CELERY_DESCRIPTION": "Present in pieces but also in preparations for soups, sauces and vegetable concentrates",
   "UNDEFINED_USER": "",
-  "UNKNOWN_USER": "Unknown user"
+  "UNKNOWN_USER": "Unknown user",
+  "ADD_RESTAURANT": "Add restaurant"
 }

@@ -413,5 +413,6 @@
   "CELERY": "Sedano",
   "CELERY_DESCRIPTION": "Presente in pezzi ma anche in preparati per zuppe, salse e concentrati di verdure",
   "UNDEFINED_USER": "",
-  "UNKNOWN_USER": "Utente sconosciuto"
+  "UNKNOWN_USER": "Utente sconosciuto",
+  "ADD_RESTAURANT": "Aggiungi ristorante"
 }

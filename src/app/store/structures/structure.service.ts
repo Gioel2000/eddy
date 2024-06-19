@@ -210,7 +210,8 @@ export class StructureStore {
       });
   }
 
-  add(structure: AddRestaurant) {
+  add(structure: AddRestaurant): Observable<void> {
+    const done$ = new Subject<void>();
     this.showAll$.next();
     this.state$.next('loading');
 
@@ -218,18 +219,25 @@ export class StructureStore {
       .post<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, structure)
       .pipe(
         untilDestroyed(this),
-        tap(() => {
+        tap((restaurant) => {
           this.state$.next('loaded');
           this.savedSuccesfully.set(true);
           setTimeout(() => this.savedSuccesfully.set(false), 2000);
+          this.add$.next(restaurant);
+          this.choose(restaurant._id);
+          this.router.navigate(['/home']);
         }),
-        tap((restaurant) => this.add$.next(restaurant)),
         catchError(() => {
           this.state$.next('error');
           return of(null);
         })
       )
-      .subscribe();
+      .subscribe({
+        complete: () => done$.next(),
+        next: () => done$.next(),
+      });
+
+    return done$;
   }
 
   edit(payload: EditRestaurant) {

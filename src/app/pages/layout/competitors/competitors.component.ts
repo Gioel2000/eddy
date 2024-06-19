@@ -53,101 +53,95 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
       </div>
     </ng-template>
 
-    <div class="h-full lg:pr-10 lg:pl-3 px-4">
-      <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">
-        {{ 'COMPETITORS' | translate }}
-      </h1>
-      <div class="mx-auto bg-white dark:bg-dark">
-        <div class="block">
-          <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-10 pb-6">
-            <ul
-              role="list"
-              class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
-            >
-              <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 w-full xl:w-auto max-w-full gap-y-6">
-                <date-picker
-                  class="col-span-1"
-                  [i18n]="'STARTDATE'"
-                  [date]="startdate()"
-                  [limitStart]="limitStart"
-                  [limitEnd]="enddate()"
-                  [rapidDates]="pastRapidDates"
-                  (onDateSet)="setStartDate($event)"
-                ></date-picker>
-                <date-picker
-                  class="col-span-1"
-                  [i18n]="'ENDDATE'"
-                  [date]="enddate()"
-                  [limitStart]="startdate()"
-                  [limitEnd]="now"
-                  [rapidDates]="[]"
-                  (onDateSet)="setEndDate($event)"
-                ></date-picker>
-                <channels-dropdown class="col-span-2 sm:col-span-1"></channels-dropdown>
-              </div>
-            </ul>
-          </nav>
+    <div class="mx-auto bg-white dark:bg-dark">
+      <div class="block">
+        <nav class="flex border-b border-zinc-200 dark:border-zinc-800 sm:pt-6 pb-6">
+          <ul
+            role="list"
+            class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
+          >
+            <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 w-full xl:w-auto max-w-full gap-y-6">
+              <date-picker
+                class="col-span-1"
+                [i18n]="'STARTDATE'"
+                [date]="startdate()"
+                [limitStart]="limitStart"
+                [limitEnd]="enddate()"
+                [rapidDates]="pastRapidDates"
+                (onDateSet)="setStartDate($event)"
+              ></date-picker>
+              <date-picker
+                class="col-span-1"
+                [i18n]="'ENDDATE'"
+                [date]="enddate()"
+                [limitStart]="startdate()"
+                [limitEnd]="now"
+                [rapidDates]="[]"
+                (onDateSet)="setEndDate($event)"
+              ></date-picker>
+              <channels-dropdown class="col-span-2 sm:col-span-1"></channels-dropdown>
+            </div>
+          </ul>
+        </nav>
 
-          <div class="pb-24 sm:pb-32">
-            <div #container class="mt-10 lg:mx-0 lg:max-w-none overflow-x-auto p-1">
-              <div class="flex flex-row min-w-[96rem] gap-8">
-                <you></you>
-                @switch (competitors.others.state()) { @case('loaded') { @for (competitor of
-                competitors.others.competitors(); track $index) {
-                <competitor
-                  [competitor]="competitor"
-                  [state]="competitors.others.state()"
-                  (delete)="delete($event)"
-                  (exlude)="exlude($event)"
-                  (include)="include($event)"
-                ></competitor>
-                } @if (competitors.others.competitors().length < 3) {
-                <button
-                  type="button"
-                  class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"
-                  (click)="panelUI.openPanel()"
-                >
-                  <div class="gap-y-3 w-96"></div>
-                </button>
-                } } @case('loading') {
-                <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
-                  <ng-container *ngTemplateOutlet="loading"></ng-container>
-                </div>
-                <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
-                  <ng-container *ngTemplateOutlet="loading"></ng-container>
-                </div>
-                } }
+        <div class="pb-24 sm:pb-32">
+          <div #container class="mt-10 lg:mx-0 lg:max-w-none overflow-x-auto p-1">
+            <div class="flex flex-row min-w-[96rem] gap-8">
+              <you></you>
+              @switch (competitors.others.state()) { @case('loaded') { @for (competitor of
+              competitors.others.competitors(); track $index) {
+              <competitor
+                [competitor]="competitor"
+                [state]="competitors.others.state()"
+                (delete)="delete($event)"
+                (exlude)="exlude($event)"
+                (include)="include($event)"
+              ></competitor>
+              } @if (competitors.others.competitors().length < 3) {
+              <button
+                type="button"
+                class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"
+                (click)="panelUI.openPanel()"
+              >
+                <div class="gap-y-3 w-96"></div>
+              </button>
+              } } @case('loading') {
+              <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+                <ng-container *ngTemplateOutlet="loading"></ng-container>
               </div>
+              <div class="rounded-3xl ring-1 ring-zinc-200 dark:ring-zinc-800 min-h-screen w-96 shadow-sm">
+                <ng-container *ngTemplateOutlet="loading"></ng-container>
+              </div>
+              } }
             </div>
           </div>
         </div>
       </div>
-
-      <div
-        class="fixed flex flex-row items-center justify-center gap-x-2 p-2 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
+    </div>
+    <div
+      class="fixed flex flex-row items-center justify-center gap-x-2 p-2 rounded-2xl right-6 bottom-6 bg-white dark:bg-zinc-800 ring-1  ring-zinc-300 dark:ring-zinc-700 shadow-lg shadow-black/5"
+    >
+      <button
+        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+        (click)="scrollLeft()"
       >
-        <button
-          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
-          (click)="scrollLeft()"
+        <div
+          class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
         >
-          <div
-            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
-          >
-            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-          </div>
-        </button>
+          <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
+        </div>
+      </button>
 
-        <button
-          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
-          (click)="scrollRight()"
+      <button
+        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+        (click)="scrollRight()"
+      >
+        <div
+          class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
         >
-          <div
-            class="flex flex-row items-center justify-center gap-x-2 bg-accent dark:bg-accentDark h-full px-3 py-2 w-full rounded-[9px] cursor-pointer"
-          >
-            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
-          </div>
-        </button>
-      </div>
+          <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-5 stroke-2"></span>
+        </div>
+      </button>
     </div>
   `,
 })
