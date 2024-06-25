@@ -7,6 +7,7 @@ export const LANGUAGES = [
   { locale: 'pt', name: 'Português', flag: 'portugal' },
   { locale: 'ru', name: 'Русский', flag: 'russia' },
   { locale: 'zh', name: '中文', flag: 'china' },
+  { locale: 'ms', name: 'Malaysia', flag: 'malaysia' },
   { locale: 'ja', name: '日本語', flag: 'japan' },
   { locale: 'ko', name: '한국어', flag: 'south-korea' },
   { locale: 'cs', name: 'Čeština', flag: 'czech-republic' },

@@ -69,11 +69,11 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
             class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
             (click)="restaurantPanel.togglePanel()"
           >
-            <div class="flex flex-row items-start justify-between w-full gap-x-2">
+            <div class="flex flex-row items-start justify-between w-full gap-x-1">
               <div class="flex flex-row items-center gap-x-2">
                 <div class="flex flex-col items-start w-full line-clamp-1 text-left">
                   <span
-                    class="text-sm font-semibold leading-5 text-zinc-800 dark:text-zinc-200 line-clamp-1"
+                    class="text-base font-semibold leading-5 text-zinc-700 dark:text-zinc-200 line-clamp-1"
                     aria-hidden="true"
                     >{{ structures.selected().name }}</span
                   >
@@ -83,8 +83,8 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
                 </div>
               </div>
               <span
-                class="svg-icon-7 stroke-[1.5] text-zinc-400 dark:text-zinc-600"
                 [inlineSVG]="'share-up-right.svg'"
+                class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-2 transition-all transform-gpu ease-in-out duration-200"
               ></span>
             </div>
           </button>

@@ -14,6 +14,7 @@ import { ReviewsLastDayComponent } from './widgets/reviews-last-day.component';
 import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last-day.component';
 import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
+import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 
 @Component({
   selector: 'home',
@@ -32,6 +33,7 @@ import { CategoriesComponent } from './widgets/categories.component';
     ReviewsLastDayComponent,
     CategoriesComponent,
     OverviewReviewsLastDayComponent,
+    SparkleComponent,
   ],
   template: `
     <!-- <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1> -->
@@ -67,22 +69,7 @@ import { CategoriesComponent } from './widgets/categories.component';
         </nav>
 
         @if (home.store.isDownloading()) {
-        <div class="absolute inset-0 flex justify-center items-center z-10 lg:pl-72 py-8 animate-pulse">
-          <div class="flex flex-col items-center text-balance text-center gap-y-3">
-            <span
-              class="svg-icon svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
-              [inlineSVG]="'star-sparkle.svg'"
-            ></span>
-            <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
-              {{ 'WARNING' | translate }}
-            </p>
-            <p
-              class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
-            >
-              {{ 'DOWNLOADING_REVIEWS' | translate }}
-            </p>
-          </div>
-        </div>
+        <sparkle [title]="'WARNING' | translate" [description]="'DOWNLOADING_REVIEWS' | translate"></sparkle>
         }
         <div
           [ngClass]="{

@@ -414,5 +414,12 @@
   "CELERY_DESCRIPTION": "Presente in pezzi ma anche in preparati per zuppe, salse e concentrati di verdure",
   "UNDEFINED_USER": "",
   "UNKNOWN_USER": "Utente sconosciuto",
-  "ADD_RESTAURANT": "Aggiungi ristorante"
+  "ADD_RESTAURANT": "Aggiungi ristorante",
+  "PHOTOS": "",
+  "CHOOSE_PHOTO": "Scegli la foto",
+  "OR": "",
+  "OTHERWISE": "Altrimenti",
+  "ATTACH_FILE": "",
+  "WAIT": "",
+  "CREATING_YOUR_RESTAURANT": "Stiamo creando il tuo ristorante"
 }

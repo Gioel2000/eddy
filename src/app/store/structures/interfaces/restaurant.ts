@@ -89,10 +89,13 @@ export interface RestaurantSettedTO {
   competitors: string[];
 }
 
-export type AddRestaurant = Omit<RestaurantTOModel, 'openaiLimit'> &
-  Omit<RestaurantTOModel, '_id'> & { googleMapsLink: string } & { image: string } & { latitude: number } & {
-    longitude: number;
-  };
+export type AddRestaurant = Omit<RestaurantSettedTO, '_id' | 'openaiLimit'> & {
+  image: File | string;
+  googleMapsLink: string;
+  latitude: number;
+  longitude: number;
+  type: 'restaurant' | 'bar' | 'pub' | 'pizzeria';
+};
 
 export type EditRestaurant = {
   id: string;

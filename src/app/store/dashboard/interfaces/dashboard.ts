@@ -44,7 +44,7 @@ export interface ReviewTO {
   clientsType?: string[];
   reviewId?: any;
   externalSource?: any;
-  aiReply: string;
+  aiReply: { reply: string; createdAt: Date }[];
   categories: {
     category: string;
     rating: number;

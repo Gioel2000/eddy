@@ -30,6 +30,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { withCredentialsInterceptor } from './utils/guards/with-credentials.interceptor';
 import { provideServiceWorker } from '@angular/service-worker';
 import './utils/imports/momentLocales';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -42,6 +44,9 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'top' })
     ),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor, withCredentialsInterceptor])),
+    provideLottieOptions({
+      player: () => player,
+    }),
     importProvidersFrom([
       BrowserModule,
       CookieService,

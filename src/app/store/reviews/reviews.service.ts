@@ -179,6 +179,6 @@ export class ReviewsStore {
   }
 
   askAIReply(reviewId: string) {
-    return this.http.get<{ text: string }>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply`);
+    return this.http.get<{ reply: string; createdAt: Date }>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply`);
   }
 }

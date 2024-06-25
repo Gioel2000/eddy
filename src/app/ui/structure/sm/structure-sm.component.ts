@@ -70,7 +70,7 @@ import { LayoutUIService } from '../../../pages/layout/layout.service';
             class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
             (click)="restaurantPanel.togglePanel(); layout.closeMenu()"
           >
-            <div class="flex flex-row items-start justify-between w-full gap-x-2">
+            <div class="flex flex-row items-start justify-between w-full gap-x-1">
               <div class="flex flex-row items-center gap-x-2">
                 <div class="flex flex-col items-start w-full line-clamp-1 text-left">
                   <span

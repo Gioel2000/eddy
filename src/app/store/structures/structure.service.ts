@@ -215,8 +215,27 @@ export class StructureStore {
     this.showAll$.next();
     this.state$.next('loading');
 
+    const formData = new FormData();
+    formData.append('name', structure.name);
+    formData.append('city', structure.city);
+    formData.append('address', structure.address);
+    formData.append('email', structure.email || '');
+    formData.append('googleMapsLink', structure.googleMapsLink || '');
+    formData.append('website', structure.website);
+    formData.append('telephone', structure.telephone);
+    formData.append('zipCode', structure.zipCode);
+    formData.append('type', 'restaurant');
+    formData.append('longitude', structure.longitude.toString());
+    formData.append('latitude', structure.latitude.toString());
+
+    if ((structure.image as File | string) instanceof File) {
+      formData.append('file', structure.image as File, 'file');
+    } else {
+      formData.append('image', structure.image as string);
+    }
+
     this.http
-      .post<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, structure)
+      .post<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, formData)
       .pipe(
         untilDestroyed(this),
         tap((restaurant) => {

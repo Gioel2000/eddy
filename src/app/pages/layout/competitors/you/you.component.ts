@@ -12,6 +12,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
 import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
+import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
 
 @Component({
   selector: 'you',
@@ -28,6 +29,7 @@ import { CategoriesComponent } from './widgets/categories.component';
     OverviewReviewsLastDayComponent,
     ChannelsComponent,
     CategoriesComponent,
+    SparkleComponent,
   ],
   template: `
     <ng-template #loading>
@@ -70,15 +72,7 @@ import { CategoriesComponent } from './widgets/categories.component';
           <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{ selected().name }}</span>
         </p>
         @if (dashboard.isDownloading()) {
-        <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
-          <span class="svg-icon svg-icon-1 stroke-2 text-zinc-100" [inlineSVG]="'star-sparkle.svg'"></span>
-          <p class="text-2xl font-bold leading-8 text-zinc-100 tracking-tight">
-            {{ 'WARNING' | translate }}
-          </p>
-          <p class="text-center text-base font-medium max-w-[24rem] text-zinc-100 opacity-75 mt-1 tracking-tight">
-            {{ 'DOWNLOADING_REVIEWS' | translate }}
-          </p>
-        </div>
+        <sparkle [title]="'WARNING' | translate" [description]="'DOWNLOADING_REVIEWS' | translate"></sparkle>
         } @else { @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph></brand-reputation-graph>
         } @placeholder {

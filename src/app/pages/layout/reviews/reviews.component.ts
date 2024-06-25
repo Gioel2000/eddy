@@ -15,6 +15,7 @@ import { BodyReviewComponent } from '../../../ui/single-review/review-body.compo
 import { SentimentComponent } from './ui/sentiment-words.component';
 import { CategoriesDropdownComponent } from './categories/categories.component';
 import { RatingDropdownComponent } from './rating/rating.component';
+import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 
 @Component({
   selector: 'reviews',
@@ -33,6 +34,7 @@ import { RatingDropdownComponent } from './rating/rating.component';
     SentimentComponent,
     CategoriesDropdownComponent,
     RatingDropdownComponent,
+    SparkleComponent,
   ],
   template: `
     <ng-template #loading>
@@ -112,22 +114,8 @@ import { RatingDropdownComponent } from './rating/rating.component';
           </ul>
         </nav>
         @if (reviews.store.isDownloading()) {
-        <div class="absolute inset-0 flex justify-center items-center z-10 lg:pl-72 py-8 animate-pulse">
-          <div class="flex flex-col items-center text-balance text-center gap-y-3">
-            <span
-              class="svg-icon svg-icon-1 stroke-2 text-zinc-900 dark:text-zinc-100"
-              [inlineSVG]="'star-sparkle.svg'"
-            ></span>
-            <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
-              {{ 'WARNING' | translate }}
-            </p>
-            <p
-              class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
-            >
-              {{ 'DOWNLOADING_REVIEWS' | translate }}
-            </p>
-          </div>
-        </div>
+        <sparkle [title]="'WARNING' | translate" [description]="'DOWNLOADING_REVIEWS' | translate"></sparkle>
+
         }
         <div
           [ngClass]="{

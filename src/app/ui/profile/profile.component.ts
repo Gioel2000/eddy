@@ -59,7 +59,7 @@ import { UserStore } from '../../store/user/user.service';
                     </p>
                     <span
                       [inlineSVG]="'share-up-right.svg'"
-                      class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200"
+                      class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-2 transition-all transform-gpu ease-in-out duration-200"
                     ></span>
                   </div>
                   <span

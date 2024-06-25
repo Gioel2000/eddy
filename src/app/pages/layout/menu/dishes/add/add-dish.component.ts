@@ -20,7 +20,6 @@ import { ALLERGENS } from './allergens';
   standalone: true,
   imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReplacePipe, ReactiveFormsModule],
   template: `
-    <!-- {{ 'CELERY_DESCRIPTION' | translate }} -->
     <div
       class="relative z-[10000]"
       [ngClass]="{

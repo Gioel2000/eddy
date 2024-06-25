@@ -753,7 +753,7 @@ export class BodyReviewComponent {
 
       const aiReply = this.review().aiReply;
       if (aiReply) {
-        this.commentControl.setValue(aiReply);
+        // this.commentControl.setValue(aiReply.reply);
       }
     });
 
@@ -1070,11 +1070,11 @@ export class BodyReviewComponent {
       .askAIReply(this.review()._id)
       .pipe(untilDestroyed(this))
       .subscribe({
-        next: ({ text }) => {
+        next: ({ reply }) => {
           this.isResponseLoading.set(false);
           this.isResponseError.set(false);
           this.isResponseSuccess.set(true);
-          this.commentControl.setValue(text);
+          this.commentControl.setValue(reply);
           setTimeout(() => this.isResponseSuccess.set(false), 1500);
         },
         error: () => {

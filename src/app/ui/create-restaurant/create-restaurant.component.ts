@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, ViewChild, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,6 +11,9 @@ import { RestaurantPanelService } from './create-restaurant.service';
 import { StructureStore } from '../../store/structures/structure.service';
 import { AddRestaurant } from '../../store/structures/interfaces/restaurant';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LottieComponent } from 'ngx-lottie';
+import { ThemeManagerStore } from '../../store/theme/theme.service';
+import { SparkleComponent } from '../sparkle/sparkle.component';
 
 @UntilDestroy()
 @Component({
@@ -26,6 +29,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MomentPipe,
     ReactiveFormsModule,
     GoogleMapsModule,
+    SparkleComponent,
   ],
   template: `
     <div
@@ -47,7 +51,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
               'translate-x-0': panelUI.isPanelVisible(),
               'translate-x-full': !panelUI.isPanelVisible()
             }"
-            (clickOutside)="panelUI.isPanelVisible() && panelUI.closePanel()"
+            (clickOutside)="store.state() !== 'loading' && panelUI.isPanelVisible() && panelUI.closePanel()"
           >
             <div class="pointer-events-auto w-screen max-w-xl border-l border-zinc-300 dark:border-zinc-700">
               <form
@@ -55,6 +59,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
                 class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-zinc-800 shadow-xl"
               >
                 <div class="flex-1">
+                  @if (isLoading()) {
+                  <sparkle
+                    [title]="'CREATING_YOUR_RESTAURANT' | translate"
+                    [description]="'DOWNLOADING_REVIEWS' | translate"
+                  ></sparkle>
+                  } @else {
                   <div
                     class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
                   >
@@ -100,7 +110,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                           type="text"
                           placeholder="Da Mario"
                           formControlName="name"
-                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                          class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
                       </div>
                     </div>
@@ -135,7 +145,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         />
                       </div>
                     </div>
-
                     <div
                       class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
                     >
@@ -206,7 +215,103 @@ import { GoogleMapsModule } from '@angular/google-maps';
                         />
                       </div>
                     </div>
+
+                    @if (photos().length > 0){
+                    <div
+                      class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
+                    >
+                      <div class="flex flex-row items-center justify-between">
+                        <label
+                          for="project-name"
+                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+                          >{{ 'CHOOSE_PHOTO' | translate }}</label
+                        >
+                        <div class="flex flex-row items-center gap-x-1">
+                          <a
+                            class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
+                            (click)="goLeft()"
+                          >
+                            <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-7 stroke-[1.3]"></span>
+                          </a>
+                          <a
+                            class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
+                            (click)="goRight()"
+                          >
+                            <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-7 stroke-[1.3]"></span>
+                          </a>
+                        </div>
+                      </div>
+                      <div #photosContainer class="flex flex-row items-start gap-x-1 mt-10 pb-4 overflow-x-auto">
+                        @for (photo of photos(); track $index) {
+                        <div class="flex flex-col items-start m-1">
+                          <a
+                            class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 focus:outline-none"
+                            [ngClass]="{
+                              'ring-4 ring-accent dark:ring-accentDark shadow-md shadow-accent/70 dark:shadow-accentDark/70': selectedPhoto() === $index,
+                            }"
+                            (click)="selectedPhoto.set($index)"
+                          >
+                            <img
+                              [src]="photo.preview"
+                              alt=""
+                              class="rounded-[7px] h-44 w-full bg-zinc-100 object-center object-cover"
+                            />
+                            <div class="w-44"></div>
+                          </a>
+                          @if (photo.file){
+                          <button
+                            type="button"
+                            class="mt-2 text-sm font-semibold text-red-500 hover:underline decoration-2"
+                            (click)="removeFile($index)"
+                          >
+                            {{ 'REMOVE' | translate }}
+                          </button>
+                          }
+                        </div>
+                        }
+
+                        <a
+                          class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-white cursor-pointer transition focus:outline-none m-1"
+                        >
+                          <div class="w-44"></div>
+                          <a
+                            class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 h-44 min-w-44 w-full"
+                            (dragover)="onDragOver($event)"
+                            (drop)="onDropSuccess($event)"
+                            (click)="clickFileUpload()"
+                          >
+                            <div class="text-center">
+                              <svg
+                                class="mx-auto h-12 w-12 text-zinc-300 dark:text-zinc-700"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                              <div class="mt-3 flex text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                                <h1
+                                  class="relative cursor-pointer rounded-md font-semibold text-accent dark:text-accentDark focus-within:outline-none focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2 hover:text-accent hover:dark:text-accentDark/70"
+                                >
+                                  {{ 'UPLOAD_IMAGE' | translate }}
+                                  <input #fileUpload type="file" class="sr-only" (change)="onImagesPicked($event)" />
+                                </h1>
+                              </div>
+                              <p class="text-xs leading-5 text-zinc-600 dark:text-zinc-400">
+                                {{ 'UPLOAD_MAX_LIMIT' | translate }}
+                              </p>
+                            </div>
+                          </a>
+                        </a>
+                      </div>
+                    </div>
+                    }
                   </div>
+
                   @if (googleLink() === '' && formGroup.touched){
                   <div
                     class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
@@ -215,36 +320,15 @@ import { GoogleMapsModule } from '@angular/google-maps';
                       <span class="text-sm text-red-500 font-semibold">{{ 'TOUCH_GOOGLE_DROPDOWN' | translate }}</span>
                     </div>
                   </div>
-                  } @if (cover() !== '') {
-                  <div
-                    class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
-                  >
-                    <div>
-                      <label
-                        for="project-name"
-                        class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5 mb-3"
-                        >{{ 'PHOTO' | translate }}</label
-                      >
-                    </div>
-                    <div class="bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
-                      <img [src]="cover()" alt="" class="w-full h-72 bg-zinc-100 object-cover" />
-                    </div>
-                  </div>
-                  }
+                  } }
                 </div>
 
                 <div class="flex-shrink-0 border-t border-zinc-200 dark:border-zinc-700 px-4 py-5 sm:px-6">
                   <div class="flex justify-end space-x-3">
-                    @if (store.state() === 'loading'){
-                    <div class="flex flex-row items-center justify-center">
-                      <div class="flex flex-row items-center justify-center w-full">
-                        <loader></loader>
-                      </div>
-                    </div>
-                    }
                     <button
                       type="button"
-                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
+                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
+                      [disabled]="store.state() === 'loading'"
                       (click)="panelUI.closePanel()"
                     >
                       {{ 'CANCEL' | translate }}
@@ -254,7 +338,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
                       type="button"
                       class="flex flex-row items-center justify-center font-semibold col-span-1 rounded-lg px-3 py-2 cursor-pointer ring-1 ring-inset ring-accent bg-accent dark:bg-accentDark hover:bg-accent hover:dark:bg-accentDark/90 text-white shadow-[shadow:inset_0_2px_theme(colors.white/40%)] disabled:opacity-30"
                       (click)="add()"
-                      [disabled]="formGroup.invalid || googleLink() === ''"
+                      [disabled]="formGroup.invalid || googleLink() === '' || store.state() === 'loading'"
                     >
                       {{ 'CREATE' | translate }}
                     </button>
@@ -270,9 +354,15 @@ import { GoogleMapsModule } from '@angular/google-maps';
 })
 export class CreateRestaurantPanelComponent implements AfterViewInit {
   @ViewChild('restaurantName', { read: ElementRef }) restaurantName: ElementRef | undefined;
+  @ViewChild('photosContainer', { read: ElementRef }) photosContainer: ElementRef | undefined;
+  @ViewChild('fileUpload', { read: ElementRef }) fileUpload: ElementRef | undefined;
+
+  readonly ALLOWED_TYPES = ['image'];
+  readonly MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
   panelUI = inject(RestaurantPanelService);
   store = inject(StructureStore);
+  theme = inject(ThemeManagerStore);
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -284,8 +374,17 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
     email: new FormControl('', [Validators.email]),
   });
 
+  photos = signal<
+    {
+      preview: string;
+      file?: File;
+      type?: string;
+    }[]
+  >([]);
+  isThemeLight = computed(() => this.theme.theme() === 'light');
+  isLoading = signal<boolean>(false);
   googleLink = signal<string>('');
-  cover = signal<string>('');
+  selectedPhoto = signal<number>(0);
   coordinates = signal<{
     latitude: number;
     longitude: number;
@@ -306,7 +405,7 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
     const htmlElement = this.restaurantName?.nativeElement as HTMLInputElement;
 
     const options = {
-      componentRestrictions: { country: 'it' },
+      // componentRestrictions: { country: 'it' },
       fields: ['url', 'name', 'website', 'address_components', 'formatted_phone_number', 'photos', 'geometry.location'],
       strictBounds: false,
     };
@@ -316,21 +415,27 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
     autoComplete.addListener('place_changed', (e: any) => {
       const place = autoComplete.getPlace();
 
-      const lat = place.geometry?.location?.lat();
-      const lng = place.geometry?.location?.lng();
+      const lat = place.geometry?.location?.lat() || 0;
+      const lng = place.geometry?.location?.lng() || 0;
 
-      const address: string = place?.address_components?.find((c) => c.types.includes('route'))?.long_name || '';
+      const address: string =
+        place?.address_components?.find((c) => c.types.includes('route') || c.types.includes('sublocality_level_2'))
+          ?.long_name || '';
       const number: string = place?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
       const zipCode: string = place?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
       const city: string =
         place?.address_components?.find(
-          (c) => c.types.includes('locality') || c.types.includes('administrative_area_level_3')
+          (c) =>
+            c.types.includes('locality') ||
+            c.types.includes('administrative_area_level_3') ||
+            c.types.includes('postal_town')
         )?.long_name || '';
-      const photo = place.photos?.[0].getUrl();
+      const photos = place.photos?.map((p: any) => p.getUrl()) || ([] as string[]);
 
-      this.cover.set(photo || '');
+      this.photos.set(photos.map((photo) => ({ preview: photo })));
+      this.selectedPhoto.set(0);
       this.googleLink.set(place.url || '');
-      this.coordinates.set({ latitude: lat || 0, longitude: lng || 0 });
+      this.coordinates.set({ latitude: lat, longitude: lng });
 
       this.formGroup.patchValue({
         name: place.name,
@@ -345,6 +450,9 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
   add() {
     const { name, address, zipCode, city, telephone, website, email } = this.formGroup.value;
+    const { file, preview } = this.photos()[this.selectedPhoto()];
+
+    this.isLoading.set(true);
 
     this.store
       .add({
@@ -353,18 +461,98 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
         zipCode,
         city,
         telephone,
-        email: email || undefined,
-        website: website || undefined,
-        image: this.cover(),
+        email,
+        website,
+        image: file ?? preview,
         googleMapsLink: this.googleLink(),
         latitude: this.coordinates().latitude,
         longitude: this.coordinates().longitude,
       } as AddRestaurant)
       .subscribe(() => {
+        this.isLoading.set(false);
         this.googleLink.set('');
-        this.cover.set('');
+        this.selectedPhoto.set(0);
+        this.photos.set([]);
         this.panelUI.closePanel();
         this.formGroup.reset();
       });
+  }
+
+  goLeft() {
+    const photosContainer = this.photosContainer?.nativeElement as HTMLElement;
+    photosContainer.scrollTo({
+      left: photosContainer.scrollLeft - 200,
+      behavior: 'smooth',
+    });
+  }
+
+  goRight() {
+    const photosContainer = this.photosContainer?.nativeElement as HTMLElement;
+    photosContainer.scrollTo({
+      left: photosContainer.scrollLeft + 200,
+      behavior: 'smooth',
+    });
+  }
+
+  onDragOver(event: any) {
+    event.preventDefault();
+  }
+
+  onDropSuccess(event: any) {
+    event.preventDefault();
+    this.onFileChange(event.dataTransfer.files);
+  }
+
+  onImagesPicked(fileInput: any) {
+    const [file] = fileInput.target.files;
+    this.uploadFile(file);
+  }
+
+  removeFile(index: number) {
+    this.photos.set(this.photos().filter((_, i) => i !== index));
+    this.selectedPhoto.set(this.photos().length - 1);
+  }
+
+  clickFileUpload() {
+    const fileUpload = this.fileUpload?.nativeElement as HTMLElement;
+    fileUpload.click();
+  }
+
+  private onFileChange(fileInput: File[]) {
+    const file = fileInput[0];
+    this.uploadFile(file);
+  }
+
+  private uploadFile(file: File) {
+    if (file && this.checkIfFileIsAllowed(file) && this.checkIfFileSizeIsAllowed(file)) {
+      this.renderFile(file, file.type);
+    }
+  }
+
+  private checkIfFileIsAllowed(file: File) {
+    const fileExtension = file.type.split('/')[0];
+    return this.ALLOWED_TYPES.includes(fileExtension);
+  }
+
+  private checkIfFileSizeIsAllowed(file: File) {
+    return file.size <= this.MAX_FILE_SIZE;
+  }
+
+  private renderFile(file: File | string | null, fileType: string) {
+    if (!file || !fileType) return;
+
+    if (file instanceof File) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const photo = reader.result as string;
+        this.photos.set([...this.photos(), { preview: photo, file, type: fileType }]);
+        this.selectedPhoto.set(this.photos().length - 1);
+      };
+    }
+
+    if (typeof file === 'string') {
+      this.photos.set([...this.photos(), { preview: file }]);
+    }
   }
 }
