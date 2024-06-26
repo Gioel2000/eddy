@@ -29,3 +29,11 @@ export interface UserModel {
   icon: string;
   updatedAt: string;
 }
+
+export type UserEdit = {
+  name: string;
+  surname: string;
+  file: File | null;
+};
+
+export type StateModel = 'loaded' | 'loading' | 'error' | 'empty';

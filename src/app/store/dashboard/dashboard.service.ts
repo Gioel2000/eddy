@@ -146,12 +146,10 @@ export class DashboardStore {
       .subscribe((filter) => this.filter$.next(filter));
 
     const stream$ = combineLatest({
-      selected: toObservable(this.structure.selected),
+      selected: this.structure.structureChanged$,
       filter: this.filter$,
     }).pipe(
       untilDestroyed(this),
-      filter(({ selected }) => !!selected),
-      filter(({ selected }) => Object.keys(selected).length > 0),
       // distinctUntilChanged(
       //   (prev, curr) =>
       //     prev.filter.startdate === curr.filter.startdate &&

@@ -20,11 +20,21 @@ import { ThemeManagerStore } from '../../store/theme/theme.service';
         loop
         autoplay
       ></ng-lottie>
-      <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
+      <p
+        class="text-2xl font-bold leading-8 tracking-tight"
+        [ngClass]="{
+          'text-zinc-900': isThemeLight(),
+          'text-zinc-100': !isThemeLight()
+        }"
+      >
         {{ title() }}
       </p>
       <p
-        class="text-center text-base font-medium max-w-[24rem] text-zinc-900 dark:text-zinc-100 opacity-75 mt-1 tracking-tight"
+        class="text-center text-base font-medium max-w-[24rem] opacity-75 mt-1 tracking-tight"
+        [ngClass]="{
+          'text-zinc-900': isThemeLight(),
+          'text-zinc-100': !isThemeLight()
+        }"
       >
         {{ description() }}
       </p>
@@ -32,9 +42,10 @@ import { ThemeManagerStore } from '../../store/theme/theme.service';
   `,
 })
 export class SparkleComponent {
-  theme = inject(ThemeManagerStore);
-  isThemeLight = computed(() => this.theme.theme() === 'light');
+  themeStore = inject(ThemeManagerStore);
+  isThemeLight = computed(() => (this.theme() ?? this.themeStore.theme()) === 'light');
 
   title = input.required<string>();
   description = input.required<string>();
+  theme = input<'light' | 'dark'>();
 }

@@ -5,7 +5,19 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { Observable, Subject, catchError, filter, map, mergeMap, of, switchMap, tap, toArray } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  distinctUntilChanged,
+  filter,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+  toArray,
+} from 'rxjs';
 import {
   AddRestaurant,
   ChannelModelTO,
@@ -16,6 +28,7 @@ import {
   SetTO,
   StateModel,
 } from './interfaces/restaurant';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export interface StructuresStore {
   selected: {
@@ -52,12 +65,17 @@ export class StructureStore {
   selectedState = computed(() => this.store().selected.state);
   savedSuccesfully = signal(false);
   errors = signal(false);
+  structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(
+    untilDestroyed(this),
+    distinctUntilChanged()
+  );
 
   search$ = new Subject<string>();
 
   private add$ = new Subject<RestaurantTOModel>();
   private delete$ = new Subject<string>();
   private edit$ = new Subject<{ id: string; structure: RestaurantTOModel }>();
+  private editSelected$ = new Subject<RestaurantTOModel>();
   private state$ = new Subject<StateModel>();
   private selectedState$ = new Subject<StateModel>();
   private selected$ = new Subject<RestaurantSettedTO | null>();
@@ -152,6 +170,16 @@ export class StructureStore {
           ),
         },
       }))
+      .with(this.editSelected$, (store, structure) => ({
+        ...store,
+        selected: {
+          ...store.selected,
+          structure: {
+            ...store.selected.structure,
+            ...structure,
+          },
+        },
+      }))
       .with(this.delete$, (store, id) => ({
         ...store,
         structures: {
@@ -224,7 +252,8 @@ export class StructureStore {
     formData.append('website', structure.website);
     formData.append('telephone', structure.telephone);
     formData.append('zipCode', structure.zipCode);
-    formData.append('type', 'restaurant');
+    formData.append('type', structure.type);
+    formData.append('googlePlaceId', structure.googlePlaceId);
     formData.append('longitude', structure.longitude.toString());
     formData.append('latitude', structure.latitude.toString());
 
@@ -265,13 +294,30 @@ export class StructureStore {
     this.showAll$.next();
     this.state$.next('loading');
 
+    const formData = new FormData();
+    formData.append('name', restaurant.name);
+    formData.append('city', restaurant.city);
+    formData.append('address', restaurant.address);
+    formData.append('email', restaurant.email || '');
+    formData.append('website', restaurant.website);
+    formData.append('telephone', restaurant.telephone);
+    formData.append('zipCode', restaurant.zipCode);
+    formData.append('type', restaurant.type);
+
+    if ((restaurant.image as File | string | null) instanceof File) {
+      formData.append('file', restaurant.image as File, 'file');
+    } else {
+      formData.append('image', (restaurant.image || '') as string);
+    }
+
     this.http
-      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, restaurant)
+      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, formData)
       .pipe(
         untilDestroyed(this),
         tap((structure) => {
-          this.edit$.next({ id, structure });
           this.state$.next('loaded');
+          this.edit$.next({ id, structure });
+          this.selected()._id === id && this.editSelected$.next(structure);
           this.savedSuccesfully.set(true);
           setTimeout(() => this.savedSuccesfully.set(false), 2000);
         }),

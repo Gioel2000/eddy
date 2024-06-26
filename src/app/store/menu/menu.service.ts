@@ -81,7 +81,7 @@ export class MenuStoreService {
   private deleteMenu$ = new Subject<string>();
 
   constructor() {
-    const trigger$ = toObservable(this.structure.selected).pipe(untilDestroyed(this));
+    const trigger$ = this.structure.structureChanged$;
     const next$: Observable<MenuStoreModel> = trigger$.pipe(
       untilDestroyed(this),
       switchMap(() =>

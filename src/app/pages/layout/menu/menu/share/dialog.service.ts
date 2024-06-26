@@ -9,7 +9,7 @@ export class ShareDialogService {
   openDialog() {
     if (!this.isAllowed()) return;
     this.isDialogOpen.set(true);
-    setTimeout(() => this.isDialogVisible.set(true), 100);
+    setTimeout(() => this.isDialogVisible.set(true), 0);
   }
 
   closeDialog() {

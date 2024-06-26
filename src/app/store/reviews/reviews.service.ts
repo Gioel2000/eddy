@@ -89,7 +89,7 @@ export class ReviewsStore {
       });
 
     const stream$ = combineLatest({
-      selected: toObservable(this.structure.selected),
+      selected: this.structure.structureChanged$,
       filter: this.filter$,
     }).pipe(
       untilDestroyed(this),

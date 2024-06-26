@@ -212,7 +212,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                     class="flex flex-row items-center col-span-1 rounded-lg p-3 cursor-pointer dark:cursor-pointer"
                     [ngClass]="{
                       'bg-accent dark:bg-accentDark text-white': lang.selected,
-                      'text-zinc-800 dark:text-zinc-200 bg-black/5 dark:bg-zinc-50/5': !lang.selected
+                      'text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-700': !lang.selected
                     }"
                     (click)="i18n.setLocale$.next(lang.locale)"
                   >

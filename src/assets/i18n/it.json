@@ -421,5 +421,13 @@
   "OTHERWISE": "Altrimenti",
   "ATTACH_FILE": "",
   "WAIT": "",
-  "CREATING_YOUR_RESTAURANT": "Stiamo creando il tuo ristorante"
+  "CREATING_YOUR_RESTAURANT": "Stiamo creando il tuo ristorante",
+  "TYPOLOGY": "Tipologia",
+  "RESTAURANT": "Ristorante",
+  "BAR": "Bar",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "pub",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Cerchiamo il tuo ristorante nel mondo e prendiamo i tuoi canali (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Carica immagini da Google",
+  "SAVE": "Salva"
 }

@@ -43,30 +43,31 @@ import { UserStore } from '../../store/user/user.service';
             'opacity-0 scale-90': !ui.isDropdownVisible()
           }"
         >
-          <div class="block px-4 py-3 text-sm cursor-pointer w-full">
+          <div class="block text-sm cursor-pointer w-full">
             <button
               id="structure-item"
-              class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
+              class="group flex flex-col w-full p-3 cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
               (click)="userPanel.togglePanel()"
             >
-              <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                <div class="flex flex-col gap-x-2 w-full">
-                  <div class="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <p
-                      class="max-w-36 text-base truncate font-semibold text-zinc-700 dark:text-zinc-100 group-hover:font-semibold group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
-                    >
-                      {{ user().name }} {{ user().surname }}
-                    </p>
+              <div class="flex flex-row items-start justify-between w-full gap-x-1">
+                <div class="flex flex-row items-center gap-x-2">
+                  <div class="flex flex-col items-start w-full line-clamp-1 text-left">
                     <span
-                      [inlineSVG]="'share-up-right.svg'"
-                      class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-2 transition-all transform-gpu ease-in-out duration-200"
-                    ></span>
+                      class="text-base font-semibold leading-5 text-zinc-700 dark:text-zinc-200 line-clamp-1"
+                      aria-hidden="true"
+                      >{{ user().name }} {{ user().surname }}</span
+                    >
+                    <span
+                      class="text-xs font-normal text-zinc-400 dark:text-zinc-600 line-clamp-1"
+                      aria-hidden="true"
+                      >{{ user().email }}</span
+                    >
                   </div>
-                  <span
-                    class="max-w-full text-left truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
-                    >{{ user().email }}</span
-                  >
                 </div>
+                <span
+                  [inlineSVG]="'share-up-right.svg'"
+                  class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-2 transition-all transform-gpu ease-in-out duration-200"
+                ></span>
               </div>
             </button>
           </div>

@@ -33,7 +33,7 @@ export class UsersStore {
   private delete$ = new Subject<string>();
 
   constructor() {
-    const next$: Observable<UsersStoreModel> = toObservable(this.structure.selected).pipe(
+    const next$: Observable<UsersStoreModel> = this.structure.structureChanged$.pipe(
       untilDestroyed(this),
       tap(() => this.state$.next('loading' as const)),
       switchMap(() => this.http.get<UserTO[]>(`${environment.apiUrl}/api/users`)),

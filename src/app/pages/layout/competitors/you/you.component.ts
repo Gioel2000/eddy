@@ -72,7 +72,11 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
           <span class="text-4xl font-bold tracking-tight text-white line-clamp-2">{{ selected().name }}</span>
         </p>
         @if (dashboard.isDownloading()) {
-        <sparkle [title]="'WARNING' | translate" [description]="'DOWNLOADING_REVIEWS' | translate"></sparkle>
+        <sparkle
+          [title]="'WARNING' | translate"
+          [description]="'DOWNLOADING_REVIEWS' | translate"
+          theme="dark"
+        ></sparkle>
         } @else { @defer (on viewport; prefetch on idle) {
         <brand-reputation-graph></brand-reputation-graph>
         } @placeholder {

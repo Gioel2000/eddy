@@ -63,10 +63,10 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
           'opacity-0 scale-90': !ui.isDropdownVisible()
         }"
       >
-        <div class="block pl-4 pr-3 py-3 text-sm cursor-pointer w-full">
+        <div class="block text-sm cursor-pointer w-full">
           <button
             id="structure-item"
-            class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
+            class="group flex flex-col w-full p-3 cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
             (click)="restaurantPanel.togglePanel()"
           >
             <div class="flex flex-row items-start justify-between w-full gap-x-1">

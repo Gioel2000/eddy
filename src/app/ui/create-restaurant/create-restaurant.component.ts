@@ -11,9 +11,10 @@ import { RestaurantPanelService } from './create-restaurant.service';
 import { StructureStore } from '../../store/structures/structure.service';
 import { AddRestaurant } from '../../store/structures/interfaces/restaurant';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { LottieComponent } from 'ngx-lottie';
 import { ThemeManagerStore } from '../../store/theme/theme.service';
 import { SparkleComponent } from '../sparkle/sparkle.component';
+import { SelectService } from './select.service';
+import { WorldComponent } from '../world/world.component';
 
 @UntilDestroy()
 @Component({
@@ -30,6 +31,8 @@ import { SparkleComponent } from '../sparkle/sparkle.component';
     ReactiveFormsModule,
     GoogleMapsModule,
     SparkleComponent,
+    WorldComponent,
+    ClickOutsideDirective,
   ],
   template: `
     <div
@@ -60,10 +63,10 @@ import { SparkleComponent } from '../sparkle/sparkle.component';
               >
                 <div class="flex-1">
                   @if (isLoading()) {
-                  <sparkle
+                  <world
                     [title]="'CREATING_YOUR_RESTAURANT' | translate"
-                    [description]="'DOWNLOADING_REVIEWS' | translate"
-                  ></sparkle>
+                    [description]="'CREATING_YOUR_RESTAURANT_DESCRIPTION' | translate"
+                  ></world>
                   } @else {
                   <div
                     class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
@@ -76,7 +79,7 @@ import { SparkleComponent } from '../sparkle/sparkle.component';
                         >
                           {{ 'CREATE_RESTAURANT' | translate }}
                         </h2>
-                        <p class="text-sm text-zinc-500">
+                        <p class="text-sm max-w-96 text-zinc-500">
                           {{ 'CREATE_RESTAURANT_DESCRIPTION' | translate }}
                         </p>
                       </div>
@@ -112,6 +115,92 @@ import { SparkleComponent } from '../sparkle/sparkle.component';
                           formControlName="name"
                           class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         />
+                      </div>
+                    </div>
+                    <div
+                      class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
+                    >
+                      <div>
+                        <label
+                          for="project-name"
+                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+                          >{{ 'TYPOLOGY' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
+                        >
+                      </div>
+                      <div class="col-span-2">
+                        <div class="relative rounded-md shadow-sm">
+                          <button
+                            type="button"
+                            class="relative w-full cursor-default rounded-md bg-transparent py-1.5 pl-3 pr-10 text-left text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accentDark sm:text-sm sm:leading-6"
+                            aria-haspopup="listbox"
+                            aria-expanded="true"
+                            aria-labelledby="listbox-label"
+                            (clickOutside)="select.close()"
+                            (click)="select.toggle()"
+                          >
+                            <span class="block truncate capitalize">
+                              {{ structureTypes[selectedType()] | uppercase | translate }}
+                            </span>
+                            <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                              <svg
+                                class="h-5 w-5 text-zinc-400 dark:text-zinc-600"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </span>
+                          </button>
+                          <div [ngClass]="{ hidden: !select.isOpen() }">
+                            <ul
+                              class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-zinc-800 shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 left-0 origin-top"
+                              tabindex="-1"
+                              role="listbox"
+                              aria-labelledby="listbox-label"
+                              aria-activedescendant="listbox-option-3"
+                              [ngClass]="{
+                                'opacity-100 scale-100': select.isVisible(),
+                                'opacity-0 scale-90': !select.isVisible()
+                              }"
+                            >
+                              @for (option of structureTypes; track $index) {
+                              <li
+                                class="relative cursor-default select-none py-2 pl-3 pr-9 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                                id="listbox-option-0"
+                                role="option"
+                                [ngClass]="{
+                                  'rounded-t-lg': $index === 0,
+                                  'rounded-b-lg': $index === structureTypes.length - 1
+                                }"
+                                (click)="selectedType.set($index)"
+                              >
+                                <span class="block text-sm truncate font-medium capitalize">{{
+                                  option | uppercase | translate
+                                }}</span>
+
+                                @if (selectedType() === $index) {
+                                <span
+                                  class="absolute inset-y-0 right-0 flex items-center pr-4 text-accent dark:text-accentDark"
+                                >
+                                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                                      clip-rule="evenodd"
+                                    />
+                                  </svg>
+                                </span>
+                                }
+                              </li>
+                              }
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -271,7 +360,7 @@ import { SparkleComponent } from '../sparkle/sparkle.component';
                         }
 
                         <a
-                          class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-white cursor-pointer transition focus:outline-none m-1"
+                          class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-transparent cursor-pointer transition focus:outline-none m-1"
                         >
                           <div class="w-44"></div>
                           <a
@@ -362,7 +451,7 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
   panelUI = inject(RestaurantPanelService);
   store = inject(StructureStore);
-  theme = inject(ThemeManagerStore);
+  select = inject(SelectService);
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -374,6 +463,7 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
     email: new FormControl('', [Validators.email]),
   });
 
+  readonly structureTypes = ['restaurant', 'pizzeria', 'bar', 'pub'];
   photos = signal<
     {
       preview: string;
@@ -381,10 +471,11 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
       type?: string;
     }[]
   >([]);
-  isThemeLight = computed(() => this.theme.theme() === 'light');
   isLoading = signal<boolean>(false);
   googleLink = signal<string>('');
   selectedPhoto = signal<number>(0);
+  selectedType = signal<number>(0);
+  googlePlaceId = signal<string>('');
   coordinates = signal<{
     latitude: number;
     longitude: number;
@@ -403,13 +494,27 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const htmlElement = this.restaurantName?.nativeElement as HTMLInputElement;
-
     const options = {
       // componentRestrictions: { country: 'it' },
-      fields: ['url', 'name', 'website', 'address_components', 'formatted_phone_number', 'photos', 'geometry.location'],
+      fields: [
+        'url',
+        'name',
+        'website',
+        'address_components',
+        'formatted_phone_number',
+        'photos',
+        'geometry.location',
+        'place_id',
+      ],
       strictBounds: false,
     };
 
+    // const place = new google.maps.places.PlacesService(htmlElement).getDetails(
+    //   { placeId: 'ChIJV7HojV8POxMRSXES_3ZSoOg' },
+    //   (place) => {
+    //     console.log(place?.photos);
+    //   }
+    // );
     const autoComplete = new google.maps.places.Autocomplete(htmlElement, options);
 
     autoComplete.addListener('place_changed', (e: any) => {
@@ -431,10 +536,12 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
             c.types.includes('postal_town')
         )?.long_name || '';
       const photos = place.photos?.map((p: any) => p.getUrl()) || ([] as string[]);
+      const googlePlaceId = place.place_id || '';
 
       this.photos.set(photos.map((photo) => ({ preview: photo })));
       this.selectedPhoto.set(0);
       this.googleLink.set(place.url || '');
+      this.googlePlaceId.set(googlePlaceId);
       this.coordinates.set({ latitude: lat, longitude: lng });
 
       this.formGroup.patchValue({
@@ -464,7 +571,9 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
         email,
         website,
         image: file ?? preview,
+        type: this.structureTypes[this.selectedType()],
         googleMapsLink: this.googleLink(),
+        googlePlaceId: this.googlePlaceId(),
         latitude: this.coordinates().latitude,
         longitude: this.coordinates().longitude,
       } as AddRestaurant)

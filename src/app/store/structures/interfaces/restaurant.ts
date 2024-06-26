@@ -1,6 +1,7 @@
 export interface RestaurantTOModel {
   _id: string;
   name: string;
+  type: string;
   address: string;
   city: string;
   zipCode: string;
@@ -9,6 +10,7 @@ export interface RestaurantTOModel {
   website: string;
   image: string;
   openaiLimit: number;
+  googlePlaceId: string;
 }
 
 export interface License {
@@ -85,8 +87,10 @@ export interface RestaurantSettedTO {
   image: string;
   channels: ChannelModelTO[];
   openaiLimit: number;
-  __v: number;
+  type: string;
   competitors: string[];
+  googlePlaceId: string;
+  __v: number;
 }
 
 export type AddRestaurant = Omit<RestaurantSettedTO, '_id' | 'openaiLimit'> & {
@@ -99,7 +103,7 @@ export type AddRestaurant = Omit<RestaurantSettedTO, '_id' | 'openaiLimit'> & {
 
 export type EditRestaurant = {
   id: string;
-  restaurant: Omit<RestaurantTOModel, 'openaiLimit'> & Omit<RestaurantTOModel, '_id'>;
+  restaurant: Omit<RestaurantTOModel, 'openaiLimit'> & Omit<RestaurantTOModel, '_id'> & { image: File | string | null };
 };
 
 export type StateModel = 'loaded' | 'loading' | 'error' | 'empty';
