@@ -53,7 +53,7 @@ import { SubstringPipe } from '../../../../../utils/pipes/substring.pipe';
             <div class="grid grid-cols-2 gap-4">
               @for (category of categoriesOrdered(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">
@@ -242,7 +242,7 @@ import { SubstringPipe } from '../../../../../utils/pipes/substring.pipe';
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="focus:outline-none">
@@ -460,7 +460,7 @@ export class CategoriesComponent {
     const categories = this.dashboard.categories().state;
     const sentiment = this.dashboard.sentiment().state;
 
-    if (categories === 'loaded' && sentiment === 'loaded') return 'loaded';
+    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
     if (categories === 'error' || sentiment === 'error') return 'error';
     if (categories === 'empty' || sentiment === 'empty') return 'empty';
     if (categories === 'loading' || sentiment === 'loading') return 'loading';

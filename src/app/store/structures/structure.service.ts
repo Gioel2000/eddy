@@ -65,10 +65,7 @@ export class StructureStore {
   selectedState = computed(() => this.store().selected.state);
   savedSuccesfully = signal(false);
   errors = signal(false);
-  structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(
-    untilDestroyed(this),
-    distinctUntilChanged()
-  );
+  structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(untilDestroyed(this));
 
   search$ = new Subject<string>();
 
@@ -304,9 +301,13 @@ export class StructureStore {
     formData.append('zipCode', restaurant.zipCode);
     formData.append('type', restaurant.type);
 
-    if ((restaurant.image as File | string | null) instanceof File) {
+    const image = restaurant.image as File | string | null;
+
+    if (image instanceof File) {
       formData.append('file', restaurant.image as File, 'file');
-    } else {
+    }
+
+    if (typeof image === 'string') {
       formData.append('image', (restaurant.image || '') as string);
     }
 

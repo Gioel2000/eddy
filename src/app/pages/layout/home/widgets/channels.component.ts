@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
 import { ReviewsService } from '../../reviews/reviews.service';
 import { Router } from '@angular/router';
 
@@ -532,9 +532,20 @@ export class ChannelsComponent {
     toObservable(this.store)
       .pipe(map((store) => store.data))
       .subscribe((data) => {
+        const empty = {
+          totalCount: 0,
+          filteredCount: 0,
+          totalRating: 0,
+          filteredRating: 0,
+        };
+
         const google = data.find((channel) => channel.channel === 'google');
         const thefork = data.find((channel) => channel.channel === 'thefork');
         const tripadvisor = data.find((channel) => channel.channel === 'tripadvisor');
+
+        this.google.set(empty);
+        this.thefork.set(empty);
+        this.tripadvisor.set(empty);
 
         if (google) {
           this.google.set({

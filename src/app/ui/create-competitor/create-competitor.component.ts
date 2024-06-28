@@ -48,7 +48,7 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
             }"
             (clickOutside)="panelUI.isPanelVisible() && panelUI.closePanel()"
           >
-            <div class="pointer-events-auto w-screen max-w-xl border-l border-zinc-300 dark:border-zinc-700">
+            <div class="pointer-events-auto w-screen max-w-xl border-l border-zinc-200 dark:border-zinc-800">
               <form
                 [formGroup]="formGroup"
                 class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-zinc-800 shadow-xl"

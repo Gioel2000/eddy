@@ -39,7 +39,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('tripadvisor')?.disabled }"
                   >http://</span
                 >
@@ -83,7 +83,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('google')?.disabled }"
                   >http://</span
                 >
@@ -127,7 +127,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('thefork')?.disabled }"
                   >http://</span
                 >
@@ -271,24 +271,32 @@ export class ChannelsRestaurantPanelComponent {
   }
 
   save() {
-    const tripadvisorId =
-      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'tripadvisor')?._id || '';
+    const structure = this.structures.selected()?.channels || [];
 
-    const theforkId =
-      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'thefork')?._id || '';
+    const tripadvisorId = structure.find((channel) => channel?.source?.toLowerCase() === 'tripadvisor')?._id || '';
+    const theforkId = structure.find((channel) => channel?.source?.toLowerCase() === 'thefork')?._id || '';
+    const googleId = structure.find((channel) => channel?.source?.toLowerCase() === 'google')?._id || '';
 
-    const googleId =
-      this.structures.selected()?.channels.find((channel) => channel.source.toLowerCase() === 'google')?._id || '';
+    const thefork = this.formGroup.get('thefork')?.value || '';
+    const google = this.formGroup.get('google')?.value || '';
+    const tripadvisor = this.formGroup.get('tripadvisor')?.value || '';
 
-    const channels = [
-      { source: 'thefork', url: this.formGroup.get('thefork')?.value || '', id: theforkId },
-      { source: 'google', url: this.formGroup.get('google')?.value || '', id: googleId },
-      { source: 'tripadvisor', url: this.formGroup.get('tripadvisor')?.value || '', id: tripadvisorId },
-    ].filter((channel) => channel.url);
+    const channels: { source: string; url: string; id: string }[] = [];
 
-    if (this.formGroup.get('thefork')?.value) this.formGroup.get('thefork')?.disable();
-    if (this.formGroup.get('google')?.value) this.formGroup.get('google')?.disable();
-    if (this.formGroup.get('tripadvisor')?.value) this.formGroup.get('tripadvisor')?.disable();
+    if (thefork) {
+      channels.push({ source: 'thefork', url: `https://${thefork}`, id: theforkId });
+      this.formGroup.get('thefork')?.disable();
+    }
+
+    if (google) {
+      channels.push({ source: 'google', url: `https://${google}`, id: googleId });
+      this.formGroup.get('google')?.disable();
+    }
+
+    if (tripadvisor) {
+      channels.push({ source: 'tripadvisor', url: `https://${tripadvisor}`, id: tripadvisorId });
+      this.formGroup.get('tripadvisor')?.disable();
+    }
 
     this.structures.saveChannels(channels);
   }

@@ -173,7 +173,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         <table class="min-w-full">
                           <tbody class="bg-white dark:bg-zinc-800">
                             @for (category of menuCategories(); track $index) {
-                            <tr class="border-t border-zinc-300 dark:border-zinc-700 h-10">
+                            <tr class="border-t border-zinc-200 dark:border-zinc-800 h-10">
                               <th
                                 colspan="4"
                                 scope="colgroup"
@@ -199,7 +199,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                               </th>
                             </tr>
                             @for (dish of getDishesByCategory(category); track $index) {
-                            <tr class="border-t border-zinc-300 dark:border-zinc-700">
+                            <tr class="border-t border-zinc-200 dark:border-zinc-800">
                               <td
                                 class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-zinc-900 dark:text-zinc-100 sm:pl-3 truncate"
                               >

@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, map, tap } from 'rxjs';
+import { filter, map, single, tap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { StructureStore } from '../../../store/structures/structure.service';
 import { EditRestaurant, RestaurantSettedTO } from '../../../store/structures/interfaces/restaurant';
@@ -205,7 +205,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             <div class="col-span-2">
               <div class="flex rounded-md shadow-sm">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
                   >http://</span
                 >
                 <input
@@ -239,14 +239,14 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
               />
             </div>
           </div>
-          <div class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700">
-            <div class="flex flex-row items-center justify-between">
+          @if (photos().length > 0) {
+          <div class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700 w-full">
+            <div class="flex flex-row items-center justify-between w-full">
               <label
                 for="project-name"
                 class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
                 >{{ 'CHOOSE_PHOTO' | translate }}</label
               >
-              @if (photos().length > 0) {
               <div class="flex flex-row items-center gap-x-1">
                 <a
                   class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
@@ -261,7 +261,84 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
                   <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-7 stroke-[1.3]"></span>
                 </a>
               </div>
-              } @else {
+            </div>
+            <div class="mt-10 w-full" [style.width.px]="dragAndDropWidth()">
+              <div #photosContainer class="flex flex-row items-start gap-x-1 overflow-x-auto">
+                @for (photo of photos(); track $index) {
+                <div class="flex flex-col items-start m-1">
+                  <a
+                    class="relative flex flex-col items-start w-36 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 focus:outline-none"
+                    [ngClass]="{
+                      'ring-4 ring-accent dark:ring-accentDark shadow-md shadow-accent/70 dark:shadow-accentDark/70': selectedPhoto() === $index,
+                    }"
+                    (click)="selectedPhoto.set($index); formGroup.markAsDirty()"
+                  >
+                    <img
+                      [src]="photo.preview"
+                      alt=""
+                      class="rounded-[7px] h-36 w-full bg-zinc-100 object-center object-cover"
+                    />
+                  </a>
+                  @if (photo.file){
+                  <button
+                    type="button"
+                    class="mt-2 text-sm font-semibold text-red-500 hover:underline decoration-2"
+                    (click)="removeFile($index)"
+                  >
+                    {{ 'REMOVE' | translate }}
+                  </button>
+                  }
+                </div>
+                }
+
+                <a
+                  class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-transparent cursor-pointer transition focus:outline-none"
+                >
+                  <div class="w-36"></div>
+                  <a
+                    class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 h-36 min-w-36 w-full my-1"
+                    (dragover)="onDragOver($event)"
+                    (drop)="onDropSuccess($event)"
+                    (click)="clickFileUpload()"
+                  >
+                    <div class="text-center">
+                      <svg
+                        class="mx-auto h-12 w-12 text-zinc-300 dark:text-zinc-700"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <div class="mt-3 flex text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                        <h1
+                          class="relative cursor-pointer rounded-md font-semibold text-accent dark:text-accentDark focus-within:outline-none focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2 hover:text-accent hover:dark:text-accentDark/70"
+                        >
+                          {{ 'UPLOAD_IMAGE' | translate }}
+                          <input #fileUpload type="file" class="sr-only" (change)="onImagesPicked($event)" />
+                        </h1>
+                      </div>
+                      <p class="text-xs leading-5 text-zinc-600 dark:text-zinc-400">
+                        {{ 'UPLOAD_MAX_LIMIT' | translate }}
+                      </p>
+                    </div>
+                  </a>
+                </a>
+              </div>
+            </div>
+          </div>
+          } @else {
+          <div class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700 w-full">
+            <div class="flex flex-row items-center justify-between w-full">
+              <label
+                for="project-name"
+                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+                >{{ 'CHOOSE_PHOTO' | translate }}</label
+              >
               <a
                 class="flex flex-row items-center justify-center cursor-pointer gap-x-1 text-sm font-medium bg-transparent rounded-lg py-2 px-2 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-600 dark:text-zinc-400"
                 (click)="loadImagesFromGoogle()"
@@ -269,76 +346,51 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
                 <span [inlineSVG]="'channels/google.svg'" class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900"></span>
                 {{ 'LOAD_IMAGES_FROM_GOOGLE' | translate }}
               </a>
-              }
             </div>
-            <div #photosContainer class="flex flex-row items-start gap-x-1 mt-10 pb-4 overflow-x-auto">
-              @for (photo of photos(); track $index) {
-              <div class="flex flex-col items-start m-1">
+            <div class="mt-10 w-full">
+              <div class="flex flex-row items-start gap-x-1 overflow-x-auto">
                 <a
-                  class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 focus:outline-none"
-                  [ngClass]="{
-                    'ring-4 ring-accent dark:ring-accentDark shadow-md shadow-accent/70 dark:shadow-accentDark/70': selectedPhoto() === $index,
-                  }"
-                  (click)="selectedPhoto.set($index); formGroup.markAsDirty()"
+                  #dragAndDrop
+                  class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-transparent cursor-pointer transition focus:outline-none"
                 >
-                  <img
-                    [src]="photo.preview"
-                    alt=""
-                    class="rounded-[7px] h-44 w-full bg-zinc-100 object-center object-cover"
-                  />
-                  <div class="w-44"></div>
-                </a>
-                @if (photo.file){
-                <button
-                  type="button"
-                  class="mt-2 text-sm font-semibold text-red-500 hover:underline decoration-2"
-                  (click)="removeFile($index)"
-                >
-                  {{ 'REMOVE' | translate }}
-                </button>
-                }
-              </div>
-              }
-
-              <a
-                class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-transparent cursor-pointer transition focus:outline-none"
-              >
-                <div class="w-44"></div>
-                <a
-                  class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 h-44 min-w-44 w-full my-1"
-                  (dragover)="onDragOver($event)"
-                  (drop)="onDropSuccess($event)"
-                  (click)="clickFileUpload()"
-                >
-                  <div class="text-center">
-                    <svg
-                      class="mx-auto h-12 w-12 text-zinc-300 dark:text-zinc-700"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <div class="mt-3 flex text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                      <h1
-                        class="relative cursor-pointer rounded-md font-semibold text-accent dark:text-accentDark focus-within:outline-none focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2 hover:text-accent hover:dark:text-accentDark/70"
+                  <div class="w-36"></div>
+                  <a
+                    class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 h-36 min-w-36 w-full my-1"
+                    (dragover)="onDragOver($event)"
+                    (drop)="onDropSuccess($event)"
+                    (click)="clickFileUpload()"
+                  >
+                    <div class="text-center">
+                      <svg
+                        class="mx-auto h-12 w-12 text-zinc-300 dark:text-zinc-700"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
                       >
-                        {{ 'UPLOAD_IMAGE' | translate }}
-                        <input #fileUpload type="file" class="sr-only" (change)="onImagesPicked($event)" />
-                      </h1>
+                        <path
+                          fill-rule="evenodd"
+                          d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <div class="mt-3 flex text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                        <h1
+                          class="relative cursor-pointer rounded-md font-semibold text-accent dark:text-accentDark focus-within:outline-none focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2 hover:text-accent hover:dark:text-accentDark/70"
+                        >
+                          {{ 'UPLOAD_IMAGE' | translate }}
+                          <input #fileUpload type="file" class="sr-only" (change)="onImagesPicked($event)" />
+                        </h1>
+                      </div>
+                      <p class="text-xs leading-5 text-zinc-600 dark:text-zinc-400">
+                        {{ 'UPLOAD_MAX_LIMIT' | translate }}
+                      </p>
                     </div>
-                    <p class="text-xs leading-5 text-zinc-600 dark:text-zinc-400">
-                      {{ 'UPLOAD_MAX_LIMIT' | translate }}
-                    </p>
-                  </div>
+                  </a>
                 </a>
-              </a>
+              </div>
             </div>
           </div>
+          }
         </div>
       </div>
 
@@ -384,6 +436,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
 export class EditRestaurantPanelComponent {
   @ViewChild('photosContainer', { read: ElementRef }) photosContainer: ElementRef | undefined;
   @ViewChild('fileUpload', { read: ElementRef }) fileUpload: ElementRef | undefined;
+  @ViewChild('dragAndDrop', { read: ElementRef }) dragAndDropElement: ElementRef | undefined;
 
   panelUI = inject(RestaurantPanelService);
   structures = inject(StructureStore);
@@ -405,6 +458,7 @@ export class EditRestaurantPanelComponent {
     email: new FormControl('', [Validators.email]),
     selectedType: new FormControl(0, [Validators.required]),
   });
+  dragAndDropWidth = signal<number>(0);
   photos = signal<
     {
       preview: string;
@@ -435,6 +489,10 @@ export class EditRestaurantPanelComponent {
         this.formGroup.patchValue({ website: newWebsite }, { emitEvent: false });
       }
     });
+  }
+
+  ngAfterViewInit() {
+    this.dragAndDropWidth.set(this.dragAndDropElement?.nativeElement.offsetWidth);
   }
 
   setType(index: number) {

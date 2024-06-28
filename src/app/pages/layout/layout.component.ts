@@ -115,7 +115,7 @@ import { StructureSmComponent } from '../../ui/structure/sm/structure-sm.compone
                   <div class="flex flex-row items-center">
                     <div class="flex flex-row items-center">
                       <a
-                        class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-bold"
+                        class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
                       >
                         <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                           Eddy
@@ -251,6 +251,7 @@ import { StructureSmComponent } from '../../ui/structure/sm/structure-sm.compone
               <div
                 class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
               >
+                
                 <loader></loader>
               </div>
               }

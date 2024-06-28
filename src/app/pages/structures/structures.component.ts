@@ -120,7 +120,7 @@ import { map } from 'rxjs';
     <div class="bg-zinc-50 dark:bg-[#141414] py-12 sm:py-24 min-h-screen">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="pb-12">
-          <a class="flex flex-row items-center cursor-pointer font-[Pacifico] text-3xl font-bold">
+          <a class="flex flex-row items-center cursor-pointer font-[Pacifico] text-3xl font-medium">
             <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
               Eddy
               <span class="text-dark dark:text-white">.</span>

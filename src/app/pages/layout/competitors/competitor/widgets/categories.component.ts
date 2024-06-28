@@ -51,7 +51,7 @@ import { CompetitorsService } from '../../competitors.service';
             <div class="grid grid-cols-2 gap-4">
               @for (category of categoriesOrdered(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer shadow-sm shadow-black/5"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer shadow-sm shadow-black/5"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">
@@ -240,7 +240,7 @@ import { CompetitorsService } from '../../competitors.service';
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer shadow-sm shadow-black/5"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 cursor-pointer shadow-sm shadow-black/5"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="focus:outline-none">

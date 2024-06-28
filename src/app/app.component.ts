@@ -69,9 +69,8 @@ import { CookieAlertComponent } from './ui/cookie/cookie.component';
     } @loading {
     <div></div>
     } } @else {
-    <div
-      class="flex flex-col items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
-    >
+    <div class="flex flex-col items-center justify-center gap-y-1 w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white">
+      <img class="h-20 w-auto" src="/assets/logo/extended-logo.png" alt="logo" />
       <loader></loader>
     </div>
     }

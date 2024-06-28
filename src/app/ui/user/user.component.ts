@@ -51,7 +51,7 @@ import { map, tap } from 'rxjs';
           >
             <div class="pointer-events-auto w-screen max-w-xl">
               <div
-                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-300 dark:border-zinc-700 shadow-md"
+                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-200 dark:border-zinc-800 shadow-md"
               >
                 <div class="h-0 flex-1 overflow-y-auto">
                   <div class="flex fle-row items-center justify-end w-full h-0 z-50 relative -bottom-7 -left-4">
@@ -85,12 +85,23 @@ import { map, tap } from 'rxjs';
 
                     <ng-template #error>
                       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-96">
-                        <div class="flex flex-col items-center justify-center w-full">
+                        <div class="flex flex-col items-center justify-center w-full gap-y-1">
                           <span
                             [inlineSVG]="'triangle-warning.svg'"
-                            class="svg-icon svg-icon-3 text-red-500 stroke-[1.4]"
+                            class="svg-icon svg-icon-1 text-red-500 stroke-[1.6]"
                           ></span>
-                          <span class="text-base font-medium text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+                          <span class="text-base font-semibold text-red-500">{{ 'ERROR' | translate }}</span>
+                          <button
+                            type="button"
+                            class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                            (click)="logout()"
+                          >
+                            <span
+                              inlineSVG="rect-logout.svg"
+                              class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"
+                            ></span>
+                            <span class="text-zinc-700 dark:text-zinc-200 ml-1.5 mr-1">{{ 'EXIT' | translate }}</span>
+                          </button>
                         </div>
                       </div>
                     </ng-template>
@@ -145,7 +156,7 @@ import { map, tap } from 'rxjs';
                               >
                                 <button
                                   type="button"
-                                  class="flex fle-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                                  class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                                   (click)="logout()"
                                 >
                                   <span
@@ -294,7 +305,6 @@ export class UserPanelComponent {
     toObservable(this.profile.me)
       .pipe(
         untilDestroyed(this),
-        tap(console.log),
         tap((user) => this.formGroup.patchValue(user))
       )
       .subscribe();

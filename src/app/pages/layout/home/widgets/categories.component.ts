@@ -328,7 +328,7 @@ export class CategoriesComponent {
     const categories = this.dashboard.categories().state;
     const sentiment = this.dashboard.sentiment().state;
 
-    if (categories === 'loaded' && sentiment === 'loaded') return 'loaded';
+    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
     if (categories === 'error' || sentiment === 'error') return 'error';
     if (categories === 'empty' || sentiment === 'empty') return 'empty';
     if (categories === 'loading' || sentiment === 'loading') return 'loading';

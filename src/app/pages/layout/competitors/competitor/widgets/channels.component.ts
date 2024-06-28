@@ -42,7 +42,7 @@ import { CompetitorsService } from '../../competitors.service';
 
     <div
       #container
-      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 px-px py-6 h-[32rem] overflow-y-auto"
+      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 px-px pt-6 h-[32rem] overflow-y-auto"
     >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
@@ -244,7 +244,7 @@ import { CompetitorsService } from '../../competitors.service';
 
                         <div
                           class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('google')) * 20"
+                          [style.width.%]="(5 - getCompetitorRating('google')) * 20 || 100"
                         ></div>
                       </div>
                       <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">
@@ -501,7 +501,7 @@ import { CompetitorsService } from '../../competitors.service';
 
                         <div
                           class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('tripadvisor')) * 20"
+                          [style.width.%]="(5 - getCompetitorRating('tripadvisor')) * 20 || 100"
                         ></div>
                       </div>
                       <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">
@@ -743,7 +743,7 @@ import { CompetitorsService } from '../../competitors.service';
 
                         <div
                           class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('thefork')) * 20"
+                          [style.width.%]="(5 - getCompetitorRating('thefork')) * 20 || 100"
                         ></div>
                       </div>
                       <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">

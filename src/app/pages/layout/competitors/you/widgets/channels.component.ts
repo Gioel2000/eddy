@@ -43,7 +43,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-800 px-px py-6 h-[32rem] overflow-y-auto">
+    <div #container class="flex flex-col border-b border-zinc-800 px-px pt-6 h-[32rem] overflow-y-auto">
       @switch (store().state) { @case ('loaded') {
       <div class="lg:col-span-4">
         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
@@ -847,6 +847,16 @@ export class ChannelsComponent {
         map((store) => store.data)
       )
       .subscribe((data) => {
+        const empty = {
+          totalCount: 0,
+          filteredCount: 0,
+          totalRating: 0,
+          filteredRating: 0,
+        };
+        this.google.set(empty);
+        this.thefork.set(empty);
+        this.tripadvisor.set(empty);
+
         const google = data.find((channel) => channel.channel === 'google');
         const thefork = data.find((channel) => channel.channel === 'thefork');
         const tripadvisor = data.find((channel) => channel.channel === 'tripadvisor');

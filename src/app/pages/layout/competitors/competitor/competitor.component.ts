@@ -153,7 +153,7 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
-        <types-graph [typologies]="competitor().clientTypes" [state]="state()"></types-graph>
+        <types-graph [id]="competitor()._id" [typologies]="competitor().clientTypes" [state]="state()"></types-graph>
         } @placeholder {
         <div></div>
         } @loading {

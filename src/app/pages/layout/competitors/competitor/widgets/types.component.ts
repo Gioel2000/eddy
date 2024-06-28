@@ -8,6 +8,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { ClientTypeModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { CompetitorsService } from '../../competitors.service';
 
 @UntilDestroy()
 @Component({
@@ -43,7 +44,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
     <div
       #container
-      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[22rem] overflow-y-auto"
+      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[34rem] overflow-y-auto"
     >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
@@ -55,501 +56,761 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
         <div class="mt-6">
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4">
-              <div
-                class="relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
-                  <div class="focus:outline-none">
+                <div class="flex flex-col gap-y-2 w-full">
+                  <div class="flex flex-col gap-y-2">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'FAMILY' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ family().totalCount | numb : translate.currentLang : 2 }})
+                      <p class="line-clamp-2 text-sm w-full font-semibold text-zinc-800 dark:text-zinc-200">
+                        {{ 'FAMILY' | translate }}
                       </p>
                     </div>
+                  </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ family().totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (family().growthCount) {
-                      <span
-                        class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
-                        [ngClass]="{
-                          'text-red-500': family().growthCount < 0,
-                          'text-green-500': family().growthCount > 0,
-                          'text-zinc-500': family().growthCount === 0
-                        }"
-                        >{{ family().growthCount | growth : translate.currentLang : 2 }}</span
-                      >
-                      }
-                    </div>
+                  <div>
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center py-1">
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': family().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': family().totalRating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - family().totalRating) * 20"
+                        ></div>
                       </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ family().totalRating | numb : translate.currentLang : 1 }}
+                      </span>
                     </div>
+
+                    @if (getClientypeVoteCompetitors('family'); as competitorVote) {
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - competitorVote) * 20"
+                        ></div>
+                      </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                      </span>
+                    </div>
+
+                    @if((+family().totalRating.toFixed(1) - +competitorVote.toFixed(1)); as diff) {
+                    <div
+                      class="flex flex-row items-center justify-between text-xs font-bold mt-1"
+                      [ngClass]="{
+                        'text-green-500': diff > 0,
+                        'text-red-500': diff < 0,
+                        'text-zinc-700': diff === 0
+                      }"
+                    >
+                      <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                      <span></span>
+                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                    </div>
+                    } }
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
-                  <div class="focus:outline-none">
+                <div class="flex flex-col gap-y-2 w-full">
+                  <div class="flex flex-col gap-y-2">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'COUPLE' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ couple().totalCount | numb : translate.currentLang : 2 }})
+                      <p class="line-clamp-2 text-sm w-full font-semibold text-zinc-800 dark:text-zinc-200">
+                        {{ 'COUPLE' | translate }}
                       </p>
                     </div>
+                  </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ couple().totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (couple().growthCount) {
-                      <span
-                        class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
-                        [ngClass]="{
-                          'text-red-500': couple().growthCount < 0,
-                          'text-green-500': couple().growthCount > 0,
-                          'text-zinc-500': couple().growthCount === 0
-                        }"
-                        >{{ couple().growthCount | growth : translate.currentLang : 2 }}</span
-                      >
-                      }
-                    </div>
+                  <div>
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center py-1">
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': couple().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': couple().totalRating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - couple().totalRating) * 20"
+                        ></div>
                       </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ couple().totalRating | numb : translate.currentLang : 1 }}
+                      </span>
                     </div>
+
+                    @if (getClientypeVoteCompetitors('couple'); as competitorVote) {
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - competitorVote) * 20"
+                        ></div>
+                      </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                      </span>
+                    </div>
+
+                    @if((+couple().totalRating.toFixed(1) - +competitorVote.toFixed(1)); as diff) {
+                    <div
+                      class="flex flex-row items-center justify-between text-xs font-bold mt-1"
+                      [ngClass]="{
+                        'text-green-500': diff > 0,
+                        'text-red-500': diff < 0,
+                        'text-zinc-700': diff === 0
+                      }"
+                    >
+                      <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                      <span></span>
+                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                    </div>
+                    } }
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
-                  <div class="focus:outline-none">
+                <div class="flex flex-col gap-y-2 w-full">
+                  <div class="flex flex-col gap-y-2">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'SOLO' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ solo().totalCount | numb : translate.currentLang : 2 }})
+                      <p class="line-clamp-2 text-sm w-full font-semibold text-zinc-800 dark:text-zinc-200">
+                        {{ 'SOLO' | translate }}
                       </p>
                     </div>
+                  </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ solo().totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (solo().growthCount) {
-                      <span
-                        class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
-                        [ngClass]="{
-                          'text-red-500': solo().growthCount < 0,
-                          'text-green-500': solo().growthCount > 0,
-                          'text-zinc-500': solo().growthCount === 0
-                        }"
-                        >{{ solo().growthCount | growth : translate.currentLang : 2 }}</span
-                      >
-                      }
-                    </div>
+                  <div>
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center py-1">
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': solo().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': solo().totalRating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - solo().totalRating) * 20"
+                        ></div>
                       </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ solo().totalRating | numb : translate.currentLang : 1 }}
+                      </span>
                     </div>
+
+                    @if (getClientypeVoteCompetitors('solo'); as competitorVote) {
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - competitorVote) * 20"
+                        ></div>
+                      </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                      </span>
+                    </div>
+
+                    @if((+solo().totalRating.toFixed(1) - +competitorVote.toFixed(1)); as diff) {
+                    <div
+                      class="flex flex-row items-center justify-between text-xs font-bold mt-1"
+                      [ngClass]="{
+                        'text-green-500': diff > 0,
+                        'text-red-500': diff < 0,
+                        'text-zinc-700': diff === 0
+                      }"
+                    >
+                      <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                      <span></span>
+                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                    </div>
+                    } }
                   </div>
                 </div>
-              </div>
+              </a>
 
-              <div
-                class="relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1  ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+              <a
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
-                <div class="min-w-0 flex-1">
-                  <div class="focus:outline-none">
+                <div class="flex flex-col gap-y-2 w-full">
+                  <div class="flex flex-col gap-y-2">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="text-sm font-bold text-zinc-700 dark:text-zinc-300">{{ 'BUSINESS' | translate }}</p>
-                      <p class="text-xs font-normal text-zinc-300 dark:text-zinc-700">
-                        ({{ business().totalCount | numb : translate.currentLang : 2 }})
+                      <p class="line-clamp-2 text-sm w-full font-semibold text-zinc-800 dark:text-zinc-200">
+                        {{ 'BUSINESS' | translate }}
                       </p>
                     </div>
+                  </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ business().totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (business().growthCount) {
-                      <span
-                        class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
-                        [ngClass]="{
-                          'text-red-500': business().growthCount < 0,
-                          'text-green-500': business().growthCount > 0,
-                          'text-zinc-500': business().growthCount === 0
-                        }"
-                        >{{ business().growthCount | growth : translate.currentLang : 2 }}</span
-                      >
-                      }
-                    </div>
+                  <div>
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center py-1">
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': business().totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 1
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': business().totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 2
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': business().totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 3
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': business().totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 4
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': business().totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': business().totalRating < 5
-                          }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
-                            ></path>
-                          </g>
-                        </svg>
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - business().totalRating) * 20"
+                        ></div>
                       </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ business().totalRating | numb : translate.currentLang : 1 }}
+                      </span>
                     </div>
+
+                    @if (getClientypeVoteCompetitors('business'); as competitorVote) {
+                    <div class="flex flex-row items-center justify-between mt-1">
+                      <div class="flex flex-row relative whitespace-nowrap">
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-violet-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-[#1a1a1a]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - competitorVote) * 20"
+                        ></div>
+                      </div>
+                      <span class="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {{ competitorVote | numb : translate.currentLang : 1 }}
+                      </span>
+                    </div>
+
+                    @if((+business().totalRating.toFixed(1) - +competitorVote.toFixed(1)); as diff) {
+                    <div
+                      class="flex flex-row items-center justify-between text-xs font-bold mt-1"
+                      [ngClass]="{
+                        'text-green-500': diff > 0,
+                        'text-red-500': diff < 0,
+                        'text-zinc-700': diff === 0
+                      }"
+                    >
+                      <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
+                      <span></span>
+                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                    </div>
+                    } }
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </dl>
         </div>
@@ -559,10 +820,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   `,
 })
 export class TypesComponent {
+  id = input.required<string>();
   typologies = input.required<ClientTypeModel[]>();
   state = input.required<StateModel>();
 
   translate = inject(TranslateService);
+  competitors = inject(CompetitorsService);
 
   family = signal({
     totalCount: 0,
@@ -610,6 +873,40 @@ export class TypesComponent {
         this.business.set(this.filterByType(data, 'business'));
       });
   }
+
+  getClientypeVoteCompetitors(clientType: string) {
+    const yourTypes = this.competitors.you.typologies().data;
+    const competitorTypes = this.competitors.others
+      .competitors()
+      .filter((competitor) => !competitor.isExluded)
+      .filter((competitor) => competitor._id !== this.id())
+      .map((competitor) => competitor.clientTypes)
+      .flat();
+
+    const typeVotes = [...yourTypes, ...competitorTypes]
+      .filter((type) => type.clientType.toLocaleLowerCase() === clientType)
+      .map((type) => type.totalRating)
+      .filter((rating) => rating !== 0);
+
+    return typeVotes.reduce((acc, curr) => acc + curr, 0) / typeVotes.length;
+  }
+
+  // getCategoryVoteCompetitors(category: string) {
+  //   const yourCategories = this.competitors.you.categories().data;
+  //   const competitorCategories = this.competitors.others
+  //     .competitors()
+  //     .filter((competitor) => !competitor.isExluded)
+  //     .filter((competitor) => competitor._id !== this.id())
+  //     .map((competitor) => competitor.categories)
+  //     .flat();
+
+  //   const categoryVotes = [...yourCategories, ...competitorCategories]
+  //     .filter((cat) => cat.category === category)
+  //     .map((category) => category.totalRating)
+  //     .filter((rating) => rating !== 0);
+
+  //   return categoryVotes.reduce((acc, curr) => acc + curr, 0) / categoryVotes.length;
+  // }
 
   private filterByType(data: ClientTypeModel[], clientType: string) {
     const family = data.find((type) => type.clientType.toLowerCase() === clientType) || {

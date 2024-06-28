@@ -63,7 +63,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
 
       <a
         id="open-add-category-dialog"
-        class="inline-flex items-center gap-x-2 rounded-md p-1 text-sm font-medium text-zinc-500 border border-dashed border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 cursor-pointer"
+        class="inline-flex items-center gap-x-2 rounded-md p-1 text-sm font-medium text-zinc-500 border border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-500 cursor-pointer"
         (click)="onAdd()"
       >
         <span class="svg-icon svg-icon-9 stroke-[1.8] ml-1" inlineSVG="plus.svg"></span>

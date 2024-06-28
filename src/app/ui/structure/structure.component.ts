@@ -107,7 +107,7 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
             />
           </div>
         </div>
-        <ul class="z-10 h-44 w-full overflow-y-auto py-1 text-base focus:outline-none sm:text-sm">
+        <ul class="z-10 max-h-44 w-full overflow-y-auto py-1 text-base focus:outline-none sm:text-sm">
           @switch(structures.state()) { @case('loaded') { @for (restaurant of structures.structures(); track $index) {
           <li
             class="text-zinc-700 dark:text-zinc-300 relative cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900 select-none py-2 pl-3 pr-9"
