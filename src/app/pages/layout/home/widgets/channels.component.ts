@@ -54,7 +54,7 @@ import { Router } from '@angular/router';
           <dl class="space-y-2">
             <div class="grid grid-cols-1 gap-4 2xl:grid-cols-3">
               <a
-                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('google')"
               >
                 <div class="flex-shrink-0">
@@ -197,7 +197,7 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('tripadvisor')"
               >
                 <div class="flex-shrink-0">
@@ -345,7 +345,7 @@ import { Router } from '@angular/router';
               </a>
 
               <a
-                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-2 rounded-xl bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 py-4 px-3 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkChannel('thefork')"
               >
                 <div class="flex-shrink-0">

@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Y compris les dérivés, c'est-à-dire tous les produits alimentaires composés de poisson, même en faibles pourcentages",
   "REJECT": "Rejeter",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Lait, tofu, spaghettis, etc."
+  "SOY_DESCRIPTION": "Lait, tofu, spaghettis, etc.",
+  "ADD_RESTAURANT": "Ajouter un restaurant",
+  "BAR": "Café",
+  "CELERY": "Céleri",
+  "CELERY_DESCRIPTION": "Présent en morceaux mais aussi dans les préparations pour soupes, sauces et concentrés de légumes",
+  "CHOOSE_PHOTO": "Choisir une photo",
+  "CREATING_YOUR_RESTAURANT": "Nous créons votre restaurant",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Nous recherchons votre restaurant dans le monde et prenons vos chaînes (Google, Tripadvisor, LaFourchette)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Charger des images depuis Google",
+  "OTHERWISE": "Sinon",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Pub",
+  "RESTAURANT": "Restaurant",
+  "SAVE": "Sauvegarder",
+  "TYPOLOGY": "Typologie",
+  "UNKNOWN_USER": "Utilisateur inconnu",
+  "WAIT": "Attendez"
 }

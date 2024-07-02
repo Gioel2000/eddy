@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "כולל נגזרות, כלומר כל אותם מוצרי מזון המורכבים מדגים, גם אם באחוזים קטנים",
   "REJECT": "לִדחוֹת",
   "SOY": "סויה",
-  "SOY_DESCRIPTION": "חלב, טופו, ספגטי וכו'"
+  "SOY_DESCRIPTION": "חלב, טופו, ספגטי וכו'",
+  "ADD_RESTAURANT": "הוסף מסעדה",
+  "BAR": "בֵּית קָפֶה",
+  "CELERY": "סלרי",
+  "CELERY_DESCRIPTION": "נוכחים בחתיכות אך גם בהכנות למרקים, רטבים ותרכיזי ירקות",
+  "CHOOSE_PHOTO": "בחר תמונה",
+  "CREATING_YOUR_RESTAURANT": "אנחנו יוצרים את המסעדה שלך",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "אנחנו מחפשים את המסעדה שלך בעולם ולוקחים את הערוצים שלך (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "טען תמונות מגוגל",
+  "OTHERWISE": "אחרת",
+  "PIZZERIA": "פיצריה",
+  "PUB": "פָּאבּ",
+  "RESTAURANT": "מִסעָדָה",
+  "SAVE": "להציל",
+  "TYPOLOGY": "טיפולוגיה",
+  "UNKNOWN_USER": "משתמש לא ידוע",
+  "WAIT": "לַחֲכוֹת"
 }

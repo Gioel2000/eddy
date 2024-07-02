@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Včetně derivátů, tedy všech těch potravinářských produktů, které se skládají z ryb, i když v malých procentech",
   "REJECT": "Odmítnout",
   "SOY": "Sója",
-  "SOY_DESCRIPTION": "Mléko, tofu, špagety atd"
+  "SOY_DESCRIPTION": "Mléko, tofu, špagety atd",
+  "ADD_RESTAURANT": "Přidat restauraci",
+  "BAR": "Kavárna",
+  "CELERY": "Celer",
+  "CELERY_DESCRIPTION": "Přítomný v kouscích, ale také v přípravcích do polévek, omáček a zeleninových koncentrátů",
+  "CHOOSE_PHOTO": "Vybrat fotku",
+  "CREATING_YOUR_RESTAURANT": "Vytváříme vaši restauraci",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Hledáme vaši restauraci ve světě a bereme vaše kanály (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Načtěte obrázky z Googlu",
+  "OTHERWISE": "v opačném případě",
+  "PIZZERIA": "Pizzerie",
+  "PUB": "Hospoda",
+  "RESTAURANT": "Restaurace",
+  "SAVE": "Uložit",
+  "TYPOLOGY": "Typologie",
+  "UNKNOWN_USER": "Neznámý uživatel",
+  "WAIT": "Počkejte"
 }

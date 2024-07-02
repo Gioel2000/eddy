@@ -431,4 +431,13 @@ export class StructureStore {
         .subscribe(() => this.router.navigate(['/structures']));
     }, 500);
   }
+
+  clear() {
+    return this.storage.delete('restaurantId').pipe(
+      untilDestroyed(this),
+      switchMap(() => this.storage.delete('expireDate')),
+      tap(() => this.showAll$.next()),
+      tap(() => this.selected$.next(null))
+    );
+  }
 }

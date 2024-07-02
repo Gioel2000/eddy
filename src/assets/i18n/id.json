@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Termasuk turunannya, yaitu semua produk pangan yang berbahan dasar ikan, meskipun persentasenya kecil",
   "REJECT": "Menolak",
   "SOY": "Kedelai",
-  "SOY_DESCRIPTION": "Susu, tahu, spageti, dll"
+  "SOY_DESCRIPTION": "Susu, tahu, spageti, dll",
+  "ADD_RESTAURANT": "Tambahkan restoran",
+  "BAR": "Kafe",
+  "CELERY": "Seledri",
+  "CELERY_DESCRIPTION": "Hadir dalam bentuk potongan tetapi juga dalam olahan sup, saus, dan konsentrat sayuran",
+  "CHOOSE_PHOTO": "Pilih foto",
+  "CREATING_YOUR_RESTAURANT": "Kami sedang membuat restoran Anda",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Kami mencari restoran Anda di dunia dan mengambil saluran Anda (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Muat gambar dari Google",
+  "OTHERWISE": "Jika tidak",
+  "PIZZERIA": "Restoran pizza",
+  "PUB": "Pub",
+  "RESTAURANT": "Restoran",
+  "SAVE": "Menyimpan",
+  "TYPOLOGY": "Tipologi",
+  "UNKNOWN_USER": "Pengguna tidak dikenal",
+  "WAIT": "Tunggu"
 }

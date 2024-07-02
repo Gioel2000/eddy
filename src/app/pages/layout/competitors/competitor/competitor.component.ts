@@ -61,7 +61,7 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
       class="rounded-3xl ring-1 mx-px min-h-screen w-96 shadow-sm transition-all transform-gpu ease-in-out duration-300"
       [ngClass]="{
         'ring-zinc-100 dark:ring-zinc-900': competitor().isExluded,
-        'ring-zinc-200 dark:ring-zinc-800': !competitor().isExluded
+        'ring-zinc-300 dark:ring-zinc-800': !competitor().isExluded
       }"
     >
       @switch(state()) { @case('loaded') {
@@ -132,22 +132,22 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
+        <channels-graph
+          [id]="competitor()._id"
+          [channelsRatings]="competitor().channelsRatings"
+          [state]="state()"
+        ></channels-graph>
+        } @placeholder {
+        <div></div>
+        } @loading {
+        <div></div>
+        } @defer (on viewport; prefetch on idle) {
         <categories-graph
           [id]="competitor()._id"
           [categories]="competitor().categories"
           [sentiment]="competitor().sentiment"
           [state]="state()"
         ></categories-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
-        <channels-graph
-          [id]="competitor()._id"
-          [channelsRatings]="competitor().channelsRatings"
-          [state]="state()"
-        ></channels-graph>
         } @placeholder {
         <div></div>
         } @loading {

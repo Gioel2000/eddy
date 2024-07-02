@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Включая производные, то есть все те пищевые продукты, которые состоят из рыбы, пусть даже и в небольших процентах.",
   "REJECT": "Отклонять",
   "SOY": "соевый",
-  "SOY_DESCRIPTION": "Молоко, тофу, спагетти и т. д."
+  "SOY_DESCRIPTION": "Молоко, тофу, спагетти и т. д.",
+  "ADD_RESTAURANT": "Добавить ресторан",
+  "BAR": "Кафе",
+  "CELERY": "Сельдерей",
+  "CELERY_DESCRIPTION": "Присутствует в кусках, а также в препаратах для супов, соусов и овощных концентратов.",
+  "CHOOSE_PHOTO": "Выбрать фото",
+  "CREATING_YOUR_RESTAURANT": "Мы создаем ваш ресторан",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Ищем ваш ресторан в мире и берем ваши каналы (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Загрузка изображений из Google",
+  "OTHERWISE": "В противном случае",
+  "PIZZERIA": "Пиццерия",
+  "PUB": "Паб",
+  "RESTAURANT": "Ресторан",
+  "SAVE": "Сохранять",
+  "TYPOLOGY": "Типология",
+  "UNKNOWN_USER": "Неизвестный пользователь",
+  "WAIT": "Ждать"
 }

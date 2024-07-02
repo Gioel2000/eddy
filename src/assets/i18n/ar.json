@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "ومنها المشتقات، أي كل تلك المنتجات الغذائية التي تتكون من الأسماك ولو بنسب قليلة",
   "REJECT": "يرفض",
   "SOY": "الصويا",
-  "SOY_DESCRIPTION": "الحليب، التوفو، السباغيتي الخ"
+  "SOY_DESCRIPTION": "الحليب، التوفو، السباغيتي الخ",
+  "ADD_RESTAURANT": "إضافة مطعم",
+  "BAR": "كافيه",
+  "CELERY": "كرفس",
+  "CELERY_DESCRIPTION": "يوجد على شكل قطع ولكن أيضًا في مستحضرات الحساء والصلصات ومركزات الخضار",
+  "CHOOSE_PHOTO": "اختر الصورة",
+  "CREATING_YOUR_RESTAURANT": "نحن نقوم بإنشاء مطعمك",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "نحن نبحث عن مطعمك في العالم ونأخذ قنواتك (Google، Tripadvisor، TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "تحميل الصور من جوجل",
+  "OTHERWISE": "خلاف ذلك",
+  "PIZZERIA": "مطعم بيتزا",
+  "PUB": "حانة",
+  "RESTAURANT": "مطعم",
+  "SAVE": "يحفظ",
+  "TYPOLOGY": "التصنيف",
+  "UNKNOWN_USER": "مستخدم غير معروف",
+  "WAIT": "انتظر"
 }

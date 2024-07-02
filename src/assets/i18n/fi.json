@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Mukaan lukien johdannaiset, eli kaikki ne elintarviketuotteet, jotka koostuvat kalasta, vaikkakin pieninä prosenttiosuuksina",
   "REJECT": "Hylätä",
   "SOY": "Soija",
-  "SOY_DESCRIPTION": "Maito, tofu, spagetti jne"
+  "SOY_DESCRIPTION": "Maito, tofu, spagetti jne",
+  "ADD_RESTAURANT": "Lisää ravintola",
+  "BAR": "Kahvila",
+  "CELERY": "Selleri",
+  "CELERY_DESCRIPTION": "Tarjolla paloina, mutta myös keittojen, kastikkeiden ja kasvistiivisteiden valmistuksessa",
+  "CHOOSE_PHOTO": "Valitse valokuva",
+  "CREATING_YOUR_RESTAURANT": "Luomme ravintolaasi",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Etsimme ravintolaasi maailmalta ja otamme kanaviasi (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Lataa kuvia Googlesta",
+  "OTHERWISE": "Muuten",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Pub",
+  "RESTAURANT": "Ravintola",
+  "SAVE": "Tallentaa",
+  "TYPOLOGY": "Typologia",
+  "UNKNOWN_USER": "Tuntematon käyttäjä",
+  "WAIT": "Odota"
 }

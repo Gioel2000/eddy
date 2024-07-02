@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Inklusive derivat, det vill säga alla de livsmedelsprodukter som består av fisk, även om det är i små procentsatser",
   "REJECT": "Avvisa",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Mjölk, tofu, spagetti mm"
+  "SOY_DESCRIPTION": "Mjölk, tofu, spagetti mm",
+  "ADD_RESTAURANT": "Lägg till restaurang",
+  "BAR": "Kafé",
+  "CELERY": "Selleri",
+  "CELERY_DESCRIPTION": "Finns i bitar men också i förberedelser för soppor, såser och grönsakskoncentrat",
+  "CHOOSE_PHOTO": "Välj Foto",
+  "CREATING_YOUR_RESTAURANT": "Vi skapar din restaurang",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Vi letar efter din restaurang i världen och tar dina kanaler (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Ladda bilder från Google",
+  "OTHERWISE": "Annat",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Pub",
+  "RESTAURANT": "Restaurang",
+  "SAVE": "Spara",
+  "TYPOLOGY": "Typologi",
+  "UNKNOWN_USER": "Okänd användare",
+  "WAIT": "Vänta"
 }

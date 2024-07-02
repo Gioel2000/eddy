@@ -44,7 +44,7 @@ import { CompetitorsService } from '../../competitors.service';
 
     <div
       #container
-      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[34rem] overflow-y-auto"
+      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[28rem] overflow-y-auto"
     >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
@@ -57,7 +57,7 @@ import { CompetitorsService } from '../../competitors.service';
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4">
               <a
-                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">
@@ -246,7 +246,7 @@ import { CompetitorsService } from '../../competitors.service';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">
@@ -435,7 +435,7 @@ import { CompetitorsService } from '../../competitors.service';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">
@@ -624,7 +624,7 @@ import { CompetitorsService } from '../../competitors.service';
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
+                class="group relative flex items-center space-x-3 min-h-36 rounded-[10px] shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer"
               >
                 <div class="flex flex-col gap-y-2 w-full">
                   <div class="flex flex-col gap-y-2">

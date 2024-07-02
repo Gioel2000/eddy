@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "파생상품(즉, 적은 비율이라도 생선으로 구성된 모든 식품 포함)",
   "REJECT": "거부하다",
   "SOY": "간장",
-  "SOY_DESCRIPTION": "우유, 두부, 스파게티 등"
+  "SOY_DESCRIPTION": "우유, 두부, 스파게티 등",
+  "ADD_RESTAURANT": "레스토랑 추가",
+  "BAR": "카페",
+  "CELERY": "셀러리",
+  "CELERY_DESCRIPTION": "조각으로 존재하지만 수프, 소스 및 야채 농축액을 위한 준비에도 사용됩니다.",
+  "CHOOSE_PHOTO": "사진 선택",
+  "CREATING_YOUR_RESTAURANT": "당신의 레스토랑을 만들어 드립니다",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "전 세계에서 귀하의 레스토랑을 찾고 귀하의 채널(Google, Tripadvisor, TheFork)을 수집하고 있습니다.",
+  "LOAD_IMAGES_FROM_GOOGLE": "Google에서 이미지 로드",
+  "OTHERWISE": "그렇지 않으면",
+  "PIZZERIA": "피자가게",
+  "PUB": "선술집",
+  "RESTAURANT": "식당",
+  "SAVE": "구하다",
+  "TYPOLOGY": "유형학",
+  "UNKNOWN_USER": "알 수없는 사용자",
+  "WAIT": "기다리다"
 }

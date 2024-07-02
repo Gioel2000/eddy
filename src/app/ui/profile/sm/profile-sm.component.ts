@@ -9,7 +9,11 @@ import { ProfileUIService } from '../profile.service';
 import { UserPanelService } from '../../user/user.service';
 import { SettingsService } from '../../settings/settings.service';
 import { environment } from '../../../../environments/environment';
+import { StructureStore } from '../../../store/structures/structure.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { switchMap, tap } from 'rxjs';
 
+@UntilDestroy()
 @Component({
   selector: 'profile-dropdown-sm',
   standalone: true,
@@ -18,7 +22,7 @@ import { environment } from '../../../../environments/environment';
     <div class="relative inline-block text-left">
       <div>
         <button
-          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-200 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200"
+          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-300 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200"
           (clickOutside)="ui.closeDropdownSm()"
           (click)="ui.toggleDropdownSm()"
         >
@@ -116,11 +120,18 @@ export class ProfileSmComponent {
   auth = inject(AuthService);
   userPanel = inject(UserPanelService);
   settings = inject(SettingsService);
+  structures = inject(StructureStore);
 
   user = computed(() => this.profile.me());
 
   logout() {
-    const { url } = environment;
-    this.auth.logout().subscribe(() => window.open(url, '_self'));
+    this.structures
+      .clear()
+      .pipe(
+        untilDestroyed(this),
+        switchMap(() => this.auth.logout()),
+        tap(() => window.open(environment.url, '_self'))
+      )
+      .subscribe();
   }
 }

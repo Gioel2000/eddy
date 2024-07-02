@@ -76,7 +76,7 @@ import { CompetitorsService } from '../../competitors.service';
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             }
-            <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
+            <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
@@ -130,15 +130,15 @@ export class BrandReputationComponent {
   });
 
   isBRPositive = computed(() => {
-    const average = +(this.reputation().average || 0).toFixed(2);
-    const averageGraph = +this.averageGraph().toFixed(2);
+    const average = +(this.reputation().average || 0);
+    const averageGraph = +this.averageGraph();
 
     return average > averageGraph ? '+' : average < averageGraph ? '-' : '=';
   });
 
   growthPercentage = computed(() => {
-    const average = +(this.reputation().average || 0).toFixed(2);
-    const averageGraph = +this.averageGraph().toFixed(2);
+    const average = +(this.reputation().average || 0);
+    const averageGraph = +this.averageGraph();
     const growth = ((average - averageGraph) / average) * 100;
 
     return growth;

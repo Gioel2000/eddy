@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Bao gồm các sản phẩm phái sinh, tức là tất cả các sản phẩm thực phẩm được làm từ cá, ngay cả với tỷ lệ nhỏ",
   "REJECT": "Từ chối",
   "SOY": "đậu nành",
-  "SOY_DESCRIPTION": "Sữa, đậu phụ, spaghetti vv"
+  "SOY_DESCRIPTION": "Sữa, đậu phụ, spaghetti vv",
+  "ADD_RESTAURANT": "Thêm nhà hàng",
+  "BAR": "quán cà phê",
+  "CELERY": "Rau cần tây",
+  "CELERY_DESCRIPTION": "Hiện diện ở dạng miếng nhưng cũng có trong chế phẩm cho súp, nước sốt và rau cô đặc",
+  "CHOOSE_PHOTO": "Chọn hình",
+  "CREATING_YOUR_RESTAURANT": "Chúng tôi đang tạo ra nhà hàng của bạn",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Chúng tôi đang tìm kiếm nhà hàng của bạn trên thế giới và sử dụng các kênh của bạn (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Tải hình ảnh từ Google",
+  "OTHERWISE": "Nếu không thì",
+  "PIZZERIA": "tiệm bánh pizza",
+  "PUB": "Quán rượu",
+  "RESTAURANT": "Nhà hàng",
+  "SAVE": "Cứu",
+  "TYPOLOGY": "Kiểu chữ",
+  "UNKNOWN_USER": "Người dùng không xác định",
+  "WAIT": "Chờ đợi"
 }

@@ -43,7 +43,7 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
     <div id="menu-categories-list" class="grid gap-3 grid-cols-4 sm:grid-cols-4 md:grid-cols-6 2xl:grid-cols-8">
       @for (category of store.categories(); track $index) {
       <span
-        class="flex flex-row items-center justify-between rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-200 shadow-sm ring-1  ring-zinc-200 dark:ring-zinc-800 hover:shadow cursor-pointer"
+        class="flex flex-row items-center justify-between rounded-md text-sm font-medium text-zinc-600 dark:text-zinc-200 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:shadow cursor-pointer"
       >
         <div
           class="flex flex-row items-center w-[calc(80%_-_20px)] cursor-pointer h-full ml-1 p-1"

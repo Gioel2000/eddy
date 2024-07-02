@@ -51,14 +51,14 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
           </dt>
         </div>
 
-        <div class="mt-3 flex items-center">
-          <div class="flex flex-row items-center gap-x-3">
-            <div class="flex flex-row items-center gap-x-3 w-full">
+        <div class="mt-3 flex items-center w-full">
+          <div class="flex flex-row items-center gap-x-3 w-full">
+            <div class="flex flex-row items-center gap-x-3">
               <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
                 {{ averageRating() | numb : translate.currentLang : 2 }}
               </dd>
             </div>
-            <div class="flex flex-col items-start gap-y-1">
+            <div class="flex flex-col items-start gap-y-1 w-full">
               <div class="flex flex-row items-center mr-4">
                 <div class="flex items-center">
                   <svg
@@ -149,7 +149,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                 </div>
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
-              <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+              <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 w-full">
                 {{ totalReviews() | numb : translate.currentLang : 2 }}
                 {{ 'REVIEWS' | translate }}
               </p>
@@ -269,7 +269,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ tripadvisor().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -386,7 +386,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ google().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -503,7 +503,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ thefork().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -620,7 +620,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ family().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -737,7 +737,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ solo().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -854,7 +854,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ couple().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -976,7 +976,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ business().averageRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
@@ -1094,7 +1094,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-medium text-zinc-900 dark:text-zinc-100">
                         {{ country.avgRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>

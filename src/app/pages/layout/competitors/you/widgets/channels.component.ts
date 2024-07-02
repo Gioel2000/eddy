@@ -879,7 +879,7 @@ export class ChannelsComponent {
       .filter((rating) => rating.channel === channelSelected)
       .filter((rating) => rating.totalRating > 0);
 
-    const channelAverageRating = channels.reduce((acc, channel) => acc + channel.totalRating, 0) / competitors.length;
+    const channelAverageRating = channels.reduce((acc, channel) => acc + channel.totalRating, 0) / channels.length;
 
     return channelAverageRating;
   }
@@ -896,7 +896,7 @@ export class ChannelsComponent {
       .filter((rating) => rating.channel === channelSelected)
       .filter((rating) => rating.totalCount > 0);
 
-    const channelAverageRating = channels.reduce((acc, channel) => acc + channel.totalCount, 0) / competitors.length;
+    const channelAverageRating = channels.reduce((acc, channel) => acc + channel.totalCount, 0) / channels.length;
 
     return channelAverageRating;
   }

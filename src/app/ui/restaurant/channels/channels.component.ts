@@ -24,22 +24,29 @@ import { RestaurantPanelService } from '../panel.service';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div class="col-span-full sm:col-span-1">
-              <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
-              >
-                <span
-                  [inlineSVG]="'channels/tripadvisor.svg'"
-                  class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
-                ></span>
-                <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
-                  'TRIPADVISOR' | translate
-                }}</span>
+              <div class="flex flex-row items-center">
+                <a
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  (click)="openTripadvisor()"
+                >
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span
+                      [inlineSVG]="'channels/tripadvisor.svg'"
+                      class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                    ></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                      'TRIPADVISOR' | translate
+                    }}</span>
+                  </div>
+                </a>
               </div>
             </div>
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-500 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('tripadvisor')?.disabled }"
                   >http://</span
                 >
@@ -47,7 +54,7 @@ import { RestaurantPanelService } from '../panel.service';
                   type="text"
                   id="restaurant-channels-tripadvisor"
                   class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
-                  placeholder="www.thefork.it/ristorante/diamonds-r732559"
+                  placeholder="https://www.tripadvisor.it/Restaurant_Review-123456"
                   formControlName="tripadvisor"
                 />
               </div>
@@ -68,22 +75,29 @@ import { RestaurantPanelService } from '../panel.service';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div class="col-span-full sm:col-span-1">
-              <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
-              >
-                <span
-                  [inlineSVG]="'channels/google.svg'"
-                  class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
-                ></span>
-                <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-300">{{
-                  'GOOGLE' | translate
-                }}</span>
+              <div class="flex flex-row items-center">
+                <a
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  (click)="openGoogle()"
+                >
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span
+                      [inlineSVG]="'channels/google.svg'"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-100"
+                    ></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-800 dark:text-zinc-200">{{
+                      'GOOGLE' | translate
+                    }}</span>
+                  </div>
+                </a>
               </div>
             </div>
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-500 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('google')?.disabled }"
                   >http://</span
                 >
@@ -112,22 +126,29 @@ import { RestaurantPanelService } from '../panel.service';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div class="col-span-full sm:col-span-1">
-              <div
-                class="flex flex-row items-center justify-center w-fit gap-x-2 p-3 rounded-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-600 shadow-sm bg-zinc-50 dark:bg-zinc-700"
-              >
-                <span
-                  [inlineSVG]="'channels/TheFork.svg'"
-                  class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                ></span>
-                <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
-                  'THE_FORK' | translate
-                }}</span>
+              <div class="flex flex-row items-center">
+                <a
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  (click)="openTheFork()"
+                >
+                  <div
+                    class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
+                  >
+                    <span
+                      [inlineSVG]="'channels/TheFork.svg'"
+                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                    ></span>
+                    <span class="block text-sm font-bold mr-0.5 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                      'THE_FORK' | translate
+                    }}</span>
+                  </div>
+                </a>
               </div>
             </div>
             <div class="col-span-full sm:col-span-2 flex flex-row items-center gap-x-2">
               <div class="flex rounded-md shadow-sm w-full">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-300 dark:border-zinc-700 px-3 text-zinc-500 text-sm"
                   [ngClass]="{ 'opacity-30': formGroup.get('thefork')?.disabled }"
                   >http://</span
                 >
@@ -268,6 +289,21 @@ export class ChannelsRestaurantPanelComponent {
           this.changeDetectionRef.detectChanges();
         }
       });
+  }
+
+  openTripadvisor() {
+    const tripadvisor = this.formGroup.get('tripadvisor')?.value || '';
+    tripadvisor && window.open(`https://${tripadvisor}`, '_blank');
+  }
+
+  openGoogle() {
+    const google = this.formGroup.get('google')?.value || '';
+    google && window.open(`https://${google}`, '_blank');
+  }
+
+  openTheFork() {
+    const thefork = this.formGroup.get('thefork')?.value || '';
+    thefork && window.open(`https://${thefork}`, '_blank');
   }
 
   save() {

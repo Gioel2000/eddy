@@ -81,7 +81,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       id="first-name"
                       autocomplete="given-name"
                       formControlName="name"
-                      class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                      class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                       placeholder="{{ 'MENU_PLACEHOLDER' | translate }}"
                     />
                   </div>
@@ -144,7 +144,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                       <span class="isolate inline-flex rounded-md shadow-sm">
                         <button
                           type="button"
-                          class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-200 dark:ring-zinc-800 focus:z-10"
+                          class="relative inline-flex items-center rounded-l-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-700 focus:z-10"
                           [disabled]="start() === 0"
                           (click)="prev()"
                         >
@@ -152,7 +152,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         </button>
                         <button
                           type="button"
-                          class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-200 dark:ring-zinc-800 focus:z-10"
+                          class="relative -ml-px inline-flex items-center rounded-r-md bg-white dark:bg-zinc-800 px-2 py-2 text-zinc-400 dark:text-zinc-600 ring-1  ring-zinc-300 dark:ring-zinc-700 focus:z-10"
                           [disabled]="end() >= store.categories().length"
                           (click)="next()"
                         >
@@ -173,33 +173,33 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                         <table class="min-w-full">
                           <tbody class="bg-white dark:bg-zinc-800">
                             @for (category of menuCategories(); track $index) {
-                            <tr class="border-t border-zinc-200 dark:border-zinc-800 h-10">
+                            <tr class="border-t border-zinc-200 dark:border-zinc-700 h-10">
                               <th
                                 colspan="4"
                                 scope="colgroup"
-                                class="bg-zinc-50 dark:bg-zinc-900 py-2 pl-4 pr-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-100 sm:pl-3 h-10"
+                                class="bg-zinc-50 dark:bg-zinc-700 py-2 pl-4 pr-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-100 sm:pl-3 h-10"
                               >
                                 {{ category.name }}
                               </th>
                               <th
                                 colspan="1"
                                 scope="colgroup"
-                                class="flex flex-row items-center gap-x-1 bg-zinc-50 dark:bg-zinc-900 py-2 pl-4 pr-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-100 sm:pl-3 h-10"
+                                class="flex flex-row items-center gap-x-1 bg-zinc-50 dark:bg-zinc-700 py-2 pl-4 pr-3 text-left text-sm font-semibold text-zinc-900 dark:text-zinc-100 sm:pl-3 h-10"
                               >
                                 <a
-                                  class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
+                                  class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-800"
                                   (click)="moveCategoryUp(category)"
                                   ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
                                 ></a>
                                 <a
-                                  class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
+                                  class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-500 dark:hover:text-zinc-800"
                                   (click)="moveCategoryDown(category)"
                                   ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
                                 ></a>
                               </th>
                             </tr>
                             @for (dish of getDishesByCategory(category); track $index) {
-                            <tr class="border-t border-zinc-200 dark:border-zinc-800">
+                            <tr class="border-t border-zinc-200 dark:border-zinc-700">
                               <td
                                 class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-zinc-900 dark:text-zinc-100 sm:pl-3 truncate"
                               >
@@ -224,12 +224,12 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                                 class="flex flex-row items-center gap-x-1 whitespace-nowrap px-3 py-4 text-sm text-zinc-500"
                               >
                                 <a
-                                  lass="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
+                                  class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveDishUp(dish)"
                                   ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-up.svg"></span
                                 ></a>
                                 <a
-                                  lass="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
+                                  class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-500 dark:hover:text-zinc-700"
                                   (click)="moveDishDown(dish)"
                                   ><span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="arrow-down.svg"></span
                                 ></a>
@@ -247,7 +247,8 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
             </div>
           </form>
           <button
-            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30"
+            class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 mt-6 mb-1 xl:col-span-1 rounded-[10px] w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/30 disabled:opacity-30"
+            [disabled]="!formGroup.valid || menuCategories().length === 0 || menuDishes().length === 0"
             (click)="done()"
           >
             <div
@@ -320,7 +321,13 @@ export class AddMenuComponent {
 
   addToMenuCategories(category: CategoryTO) {
     this.menuCategories.set([...this.menuCategories(), category]);
-    this.menuDishes.set([...this.menuDishes(), ...this.store.dishes().filter((d) => d.category === category._id)]);
+    this.menuDishes.set([
+      ...this.menuDishes(),
+      ...this.store
+        .dishes()
+        .filter((d) => d.category === category._id)
+        .sort((a, b) => a.price - b.price),
+    ]);
   }
 
   removeFromMenuCategories(category: CategoryTO) {

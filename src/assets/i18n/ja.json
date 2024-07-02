@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "派生品、つまりたとえ割合が少なくても魚を含むすべての食品を含む",
   "REJECT": "拒否する",
   "SOY": "大豆",
-  "SOY_DESCRIPTION": "牛乳、豆腐、スパゲッティなど"
+  "SOY_DESCRIPTION": "牛乳、豆腐、スパゲッティなど",
+  "ADD_RESTAURANT": "レストランを追加",
+  "BAR": "カフェ",
+  "CELERY": "セロリ",
+  "CELERY_DESCRIPTION": "断片として存在するだけでなく、スープ、ソース、野菜濃縮物の準備にも使用されます",
+  "CHOOSE_PHOTO": "写真を選んでください",
+  "CREATING_YOUR_RESTAURANT": "私たちはあなたのレストランを作っています",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "私たちは世界中であなたのレストランを探しており、あなたのチャンネル (Google、トリップアドバイザー、TheFork) を活用しています。",
+  "LOAD_IMAGES_FROM_GOOGLE": "Googleから画像を読み込みます",
+  "OTHERWISE": "さもないと",
+  "PIZZERIA": "ピッツェリア",
+  "PUB": "パブ",
+  "RESTAURANT": "レストラン",
+  "SAVE": "保存",
+  "TYPOLOGY": "類型学",
+  "UNKNOWN_USER": "不明なユーザー",
+  "WAIT": "待って"
 }

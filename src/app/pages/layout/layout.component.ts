@@ -309,9 +309,4 @@ export class LayoutComponent {
     ),
     { initialValue: '' }
   );
-
-  logout() {
-    const { url } = environment;
-    this.auth.logout().subscribe(() => window.open(url, '_self'));
-  }
 }

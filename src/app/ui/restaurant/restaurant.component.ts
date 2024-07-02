@@ -77,7 +77,7 @@ export interface MarkerInterface {
           >
             <div class="pointer-events-auto w-screen max-w-xl">
               <div
-                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-200 dark:border-zinc-800 shadow-md"
+                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-200 dark:border-zinc-700 shadow-md"
               >
                 <div class="h-0 flex-1 overflow-y-auto">
                   <div class="flex fle-row items-center justify-end w-full h-0 z-50 relative -bottom-7 -left-4">
@@ -156,7 +156,7 @@ export interface MarkerInterface {
                             <select
                               id="tabs"
                               name="tabs"
-                              class="block w-full mb-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md border-zinc-200 dark:border-zinc-800 py-2 pl-3 pr-10 focus:border-accent focus:outline-none focus:ring-accent text-sm"
+                              class="block w-full mb-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md border-zinc-200 dark:border-zinc-700 py-2 pl-3 pr-10 focus:border-accent focus:outline-none focus:ring-accent text-sm"
                               [formControl]="pageOption"
                             >
                               <option value="overview">{{ 'OVERVIEW' | translate }}</option>

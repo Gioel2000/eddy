@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Inclui os derivados, ou seja, todos os produtos alimentares constituídos por peixe, mesmo que em pequenas percentagens",
   "REJECT": "Rejeitar",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Leite, tofu, espaguete etc."
+  "SOY_DESCRIPTION": "Leite, tofu, espaguete etc.",
+  "ADD_RESTAURANT": "Adicionar restaurante",
+  "BAR": "Cafeteria",
+  "CELERY": "Salsão",
+  "CELERY_DESCRIPTION": "Presente em pedaços mas também em preparações para sopas, molhos e concentrados de vegetais",
+  "CHOOSE_PHOTO": "Escolher Foto",
+  "CREATING_YOUR_RESTAURANT": "Estamos criando o seu restaurante",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Procuramos o seu restaurante no mundo e levamos os seus canais (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Carregar imagens do Google",
+  "OTHERWISE": "De outra forma",
+  "PIZZERIA": "Pizzaria",
+  "PUB": "bar",
+  "RESTAURANT": "Restaurante",
+  "SAVE": "Salvar",
+  "TYPOLOGY": "Tipologia",
+  "UNKNOWN_USER": "Usuário desconhecido",
+  "WAIT": "Espere"
 }

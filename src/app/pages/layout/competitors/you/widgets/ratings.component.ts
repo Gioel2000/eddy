@@ -111,11 +111,8 @@ import { CompetitorsService } from '../../competitors.service';
                 <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-200">
                   {{ rating.count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-10 text-sm text-right font-medium tabular-nums text-zinc-400">
-                  {{ rating.percentage | numb : translate.currentLang : 0 }}%
-                </dd>
                 <dd
-                  class="w-10 text-left font-semibold text-sm tabular-nums ml-1.5"
+                  class="w-8 text-left font-semibold text-sm tabular-nums ml-1.5"
                   [ngClass]="{
                     'text-green-500': rating.received > 0,
                     'text-zinc-600': rating.received === 0
@@ -123,7 +120,10 @@ import { CompetitorsService } from '../../competitors.service';
                 >
                   +{{ rating.received | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-8 text-right font-semibold text-sm tabular-nums text-violet-500">
+                <dd class="w-8 text-sm text-right font-medium tabular-nums text-zinc-500">
+                  {{ rating.percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd class="w-10 text-right font-semibold text-sm tabular-nums text-violet-500">
                   {{ rating.competitorPercentage | numb : translate.currentLang : 0 }}%
                 </dd>
               </div>

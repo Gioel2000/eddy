@@ -15,6 +15,7 @@ import { LoaderComponent } from '../loader/loader.component';
 import { ReviewsStore } from '../../store/reviews/reviews.service';
 import LanguageDetect from 'languagedetect';
 import { BodyReviewSentimentComponent } from './components/review-body-sentiment.component';
+import { StructureStore } from '../../store/structures/structure.service';
 
 @UntilDestroy()
 @Component({
@@ -545,71 +546,71 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
             </div>
           </div>
         </div>
-        <ng-container *ngIf="review().replyLink">
-          <div>
+        <div>
+          <div *ngIf="(alreadyReplied$ | async) === false">
+            <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
+              'COMMENT' | translate
+            }}</label>
+            <textarea
+              [formControl]="commentControl"
+              rows="3"
+              name="comment"
+              id="comment"
+              placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
+              class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
+            ></textarea>
+          </div>
+          <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
             <div *ngIf="(alreadyReplied$ | async) === false">
-              <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
-                'COMMENT' | translate
-              }}</label>
-              <textarea
-                [formControl]="commentControl"
-                rows="3"
-                name="comment"
-                id="comment"
-                placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
-              ></textarea>
+              <button
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                [disabled]="commentControl.invalid"
+                (click)="onCopyAndReply()"
+              >
+                <div
+                  class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[9px] cursor-pointer"
+                >
+                  <span class="text-sm font-semibold">{{ 'COPY_SEND' | translate }}</span>
+                  <span
+                    class="svg-icon svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
+                    [inlineSVG]="'paper-plane-4.svg'"
+                  ></span>
+                </div>
+              </button>
             </div>
-            <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
-              <div *ngIf="(alreadyReplied$ | async) === false">
-                <button
-                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
-                  [disabled]="commentControl.invalid"
-                  (click)="onCopyAndReply()"
-                >
-                  <div
-                    class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[9px] cursor-pointer"
-                  >
-                    <span class="text-sm font-semibold">{{ 'COPY_SEND' | translate }}</span>
-                    <span
-                      class="svg-icon svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
-                      [inlineSVG]="'paper-plane-4.svg'"
-                    ></span>
-                  </div>
-                </button>
+            <div *ngIf="(alreadyReplied$ | async) === true">
+              <button
+                class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
+                (click)="showReview()"
+              >
+                <span [inlineSVG]="'share-right-4.svg'" class="svg-icon svg-icon-5 stroke-[1.7] mr-1.5"></span>
+                <span>{{ 'OPEN' | translate | uppercase }}</span>
+              </button>
+            </div>
+            <div class="relative flex items-start">
+              <div class="flex h-5 items-center">
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200 dark:bg-zinc-800 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                  [checked]="alreadyReplied$ | async"
+                  (change)="alreadyReplied()"
+                />
               </div>
-              <div *ngIf="(alreadyReplied$ | async) === true">
-                <button
-                  class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-700 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
-                  (click)="showReview()"
-                >
-                  <span [inlineSVG]="'share-right-4.svg'" class="svg-icon svg-icon-5 stroke-[1.7] mr-1.5"></span>
-                  <span>{{ 'OPEN' | translate | uppercase }}</span>
-                </button>
-              </div>
-              <div class="relative flex items-start">
-                <div class="flex h-5 items-center">
-                  <input
-                    type="checkbox"
-                    class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200 dark:bg-zinc-800 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
-                    [checked]="alreadyReplied$ | async"
-                    (change)="alreadyReplied()"
-                  />
-                </div>
-                <div class="ml-2 text-sm leading-6">
-                  <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
-                    'MARK_AS_REPLIED' | translate
-                  }}</label>
-                  <p id="comments-description" class="hidden sm:block text-zinc-500 font-normal text-xs">
-                    {{ 'MARK_AS_REPLIED_DESCRIPTION' | translate }}
-                  </p>
-                </div>
+              <div class="ml-2 text-sm leading-6">
+                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
+                  'MARK_AS_REPLIED' | translate
+                }}</label>
+                <p id="comments-description" class="hidden sm:block text-zinc-500 font-normal text-xs">
+                  {{ 'MARK_AS_REPLIED_DESCRIPTION' | translate }}
+                </p>
               </div>
             </div>
           </div>
+        </div>
 
-          <div *ngIf="(alreadyReplied$ | async) === false">
-            <div class="flex flex-row items-center mt-14 gap-x-3">
+        <div *ngIf="(alreadyReplied$ | async) === false">
+          <div class="flex flex-row items-center justify-between mt-14 gap-x-3">
+            <div class="flex flex-row items-center gap-x-3">
               <div class="group relative max-w-7xl">
                 <div
                   class="absolute -inset-1 bg-rainbow rounded-[10px] blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200"
@@ -659,7 +660,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
               }
             </div>
           </div>
-        </ng-container>
+        </div>
       </ng-container>
     </div>
   `,
@@ -685,6 +686,7 @@ export class BodyReviewComponent {
   review = input.required<ReviewTO>();
   showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
+  structure = inject(StructureStore);
 
   isResponseSuccess = signal(false);
   isResponseLoading = signal(false);
@@ -862,11 +864,18 @@ export class BodyReviewComponent {
   }
 
   showReview() {
-    const replyLink = this.review().replyLink?.includes('http')
-      ? this.review().replyLink
-      : `https://${this.review().replyLink}`;
+    const { replyLink } = this.review();
 
-    window.open(replyLink, '_blank');
+    if (replyLink) {
+      const formatted = replyLink.includes('http') ? replyLink : `https://${replyLink}`;
+
+      window.open(formatted, '_blank');
+      return;
+    }
+
+    const channels = this.structure.selected().channels;
+    const channel = channels.find((channel: any) => channel.source === this.review().channel.source);
+    channel && window.open(channel.url, '_blank');
   }
 
   alreadyReplied() {

@@ -73,7 +73,7 @@ import { ALLERGENS } from './allergens';
                         id="dish-name"
                         formControlName="name"
                         autocomplete="given-name"
-                        class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-600 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                        class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                         placeholder="{{ 'DISHES_DESCRIPTION' | translate }}"
                       />
                     </div>
@@ -110,7 +110,7 @@ import { ALLERGENS } from './allergens';
                     </button>
                     } @else {
                     <div
-                      class="mt-2 flex justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 px-6 py-10"
+                      class="mt-2 flex justify-center rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 px-6 py-10"
                       (dragover)="onDragOver($event)"
                       (drop)="onDropSuccess($event)"
                     >
@@ -513,6 +513,12 @@ export class AddDishComponent {
       this.formGroup.patchValue({
         currency: this.currencies[0].value,
       });
+      this.currentPage.set(0);
+      this.paginateAllegens.set({
+        start: 0,
+        end: 3,
+      });
+
       this.imagePreview.set(null);
       this.file.set(null);
       this.fileType.set(null);
@@ -520,6 +526,12 @@ export class AddDishComponent {
 
     if (mode === 'edit') {
       this.dialog.closeDialog();
+      this.currentPage.set(0);
+      this.paginateAllegens.set({
+        start: 0,
+        end: 3,
+      });
+
       this.store.editDish({
         _id: this.menu.dish()._id,
         name: this.formGroup.value.name!,

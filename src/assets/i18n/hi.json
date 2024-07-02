@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "डेरिवेटिव सहित, यानी वे सभी खाद्य उत्पाद जो मछली से बने होते हैं, भले ही छोटे प्रतिशत में",
   "REJECT": "अस्वीकार करना",
   "SOY": "सोया",
-  "SOY_DESCRIPTION": "दूध, टोफू, स्पेगेटी आदि"
+  "SOY_DESCRIPTION": "दूध, टोफू, स्पेगेटी आदि",
+  "ADD_RESTAURANT": "रेस्तरां जोड़ें",
+  "BAR": "कैफे",
+  "CELERY": "अजमोदा",
+  "CELERY_DESCRIPTION": "टुकड़ों में मौजूद है, लेकिन सूप, सॉस और सब्जियों की तैयारी में भी मौजूद है",
+  "CHOOSE_PHOTO": "तस्विर का चयन करो",
+  "CREATING_YOUR_RESTAURANT": "हम आपका रेस्तरां बना रहे हैं",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "हम दुनिया भर में आपके रेस्तरां की तलाश कर रहे हैं और आपके चैनल (Google, Tripadvisor, TheFork) ले रहे हैं।",
+  "LOAD_IMAGES_FROM_GOOGLE": "Google से छवियाँ लोड करें",
+  "OTHERWISE": "अन्यथा",
+  "PIZZERIA": "पिज़्ज़ेरिया",
+  "PUB": "पब",
+  "RESTAURANT": "रेस्टोरेंट",
+  "SAVE": "बचाना",
+  "TYPOLOGY": "टाइपोलॉजी",
+  "UNKNOWN_USER": "अज्ञात उपयोगकर्ता",
+  "WAIT": "इंतज़ार"
 }

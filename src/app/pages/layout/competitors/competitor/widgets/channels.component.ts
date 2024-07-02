@@ -55,7 +55,7 @@ import { CompetitorsService } from '../../competitors.service';
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -168,7 +168,7 @@ import { CompetitorsService } from '../../competitors.service';
                         } -->
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ google().totalCount | numb : translate.currentLang : 2 }}
                       </p>
@@ -251,7 +251,7 @@ import { CompetitorsService } from '../../competitors.service';
                         <span>{{ getCompetitorRating('google') | numb : translate.currentLang : 2 }}</span>
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ getCompetitorCount('google') | numb : translate.currentLang : 2 }}
                       </p>
@@ -310,7 +310,7 @@ import { CompetitorsService } from '../../competitors.service';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -425,7 +425,7 @@ import { CompetitorsService } from '../../competitors.service';
                         } -->
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
                       </p>
@@ -508,7 +508,7 @@ import { CompetitorsService } from '../../competitors.service';
                         <span>{{ getCompetitorRating('tripadvisor') | numb : translate.currentLang : 2 }}</span>
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ getCompetitorCount('tripadvisor') | numb : translate.currentLang : 2 }}
                       </p>
@@ -574,7 +574,7 @@ import { CompetitorsService } from '../../competitors.service';
               </div>
 
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -667,7 +667,7 @@ import { CompetitorsService } from '../../competitors.service';
                         <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ thefork().totalCount | numb : translate.currentLang : 2 }}
                       </p>
@@ -750,7 +750,7 @@ import { CompetitorsService } from '../../competitors.service';
                         <span>{{ getCompetitorRating('thefork') | numb : translate.currentLang : 2 }}</span>
                       </p>
                       <p
-                        class="flex flex-row items-center ml-1 font-semibold text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
                       >
                         {{ getCompetitorCount('thefork') | numb : translate.currentLang : 2 }}
                       </p>

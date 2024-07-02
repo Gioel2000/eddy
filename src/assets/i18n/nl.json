@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Inclusief derivaten, dat wil zeggen al die voedingsproducten die uit vis bestaan, ook al is het maar in kleine percentages",
   "REJECT": "Afwijzen",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Melk, tofu, spaghetti etc"
+  "SOY_DESCRIPTION": "Melk, tofu, spaghetti etc",
+  "ADD_RESTAURANT": "Restaurant toevoegen",
+  "BAR": "Cafe",
+  "CELERY": "Selderij",
+  "CELERY_DESCRIPTION": "Aanwezig in stukjes maar ook in bereidingen van soepen, sauzen en groenteconcentraten",
+  "CHOOSE_PHOTO": "Kies foto",
+  "CREATING_YOUR_RESTAURANT": "Wij creëren uw restaurant",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "We zijn op zoek naar uw restaurant ter wereld en gebruiken uw kanalen (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Laad afbeeldingen van Google",
+  "OTHERWISE": "Anders",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "kroeg",
+  "RESTAURANT": "Restaurant",
+  "SAVE": "Redden",
+  "TYPOLOGY": "Typologie",
+  "UNKNOWN_USER": "Onbekende gebruiker",
+  "WAIT": "Wachten"
 }

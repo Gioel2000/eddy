@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   template: `
     <div
-      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
+      class="group relative flex flex-col w-full transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-2xl bg-white dark:bg-[#1A1A1A] h-full max-h-[385px] pb-1"
       [ngClass]="{
         'ring-zinc-100 dark:ring-zinc-900': !dish().visible,
       }"
@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
         <div class="h-36 sm:h-40 md:h-44 w-full overflow-hidden rounded-t-2xl p-3">
           <div class="flex flex-row w-full items-center justify-end h-0 gap-x-1 rounded-md">
             <div
-              class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1  ring-zinc-200 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
+              class="gap-px relative flex flex-row items-center justify-between z-10 -bottom-5 -left-1 h-8 right-0 rounded-md bg-zinc-200 dark:bg-zinc-800 shadow-md shadow-black/10 ring-1  ring-zinc-300 dark:ring-zinc-800 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed transition ease-in-out duration-200"
             >
               @if (dish().visible) {
               <a

@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "รวมถึงอนุพันธ์ เช่น ผลิตภัณฑ์อาหารทั้งหมดที่ทำจากปลา แม้ว่าจะมีเปอร์เซ็นต์เพียงเล็กน้อยก็ตาม",
   "REJECT": "ปฏิเสธ",
   "SOY": "ถั่วเหลือง",
-  "SOY_DESCRIPTION": "นม เต้าหู้ สปาเก็ตตี้ ฯลฯ"
+  "SOY_DESCRIPTION": "นม เต้าหู้ สปาเก็ตตี้ ฯลฯ",
+  "ADD_RESTAURANT": "เพิ่มร้านอาหาร",
+  "BAR": "คาเฟ่",
+  "CELERY": "ผักชีฝรั่ง",
+  "CELERY_DESCRIPTION": "นำเสนอเป็นชิ้นๆ แต่ยังใช้ในการเตรียมซุป ซอส และเครื่องปรุงผักเข้มข้นด้วย",
+  "CHOOSE_PHOTO": "เลือกรูปภาพ",
+  "CREATING_YOUR_RESTAURANT": "เรากำลังสร้างร้านอาหารของคุณ",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "เรากำลังมองหาร้านอาหารของคุณในโลกนี้และนำช่องทางของคุณ (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "โหลดรูปภาพจาก Google",
+  "OTHERWISE": "มิฉะนั้น",
+  "PIZZERIA": "ร้านพิชซ่า",
+  "PUB": "ผับ",
+  "RESTAURANT": "ร้านอาหาร",
+  "SAVE": "บันทึก",
+  "TYPOLOGY": "ประเภท",
+  "UNKNOWN_USER": "ผู้ใช้ที่ไม่รู้จัก",
+  "WAIT": "รอ"
 }

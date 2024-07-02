@@ -10,7 +10,7 @@ import { MoneyPipe } from '../../../utils/pipes/money.pipe';
   imports: [CommonModule, TranslateModule, MoneyPipe],
   template: `
     <a
-      class="group relative flex flex-col w-[18rem] transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-200 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 hover:shadow-md bg-white dark:bg-[#1A1A1A] h-full pb-3"
+      class="group relative flex flex-col w-[18rem] transition ease-in-out duration-100 items-start justify-between ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-2xl shadow-sm shadow-black/20 dark:shadow-black/40 hover:shadow-md bg-white dark:bg-[#1A1A1A] h-full pb-3"
       (click)="open.emit(dish())"
     >
       <div

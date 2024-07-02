@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Darunter auch Derivate, also alle Lebensmittel, die, wenn auch in geringen Anteilen, aus Fisch bestehen",
   "REJECT": "Ablehnen",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Milch, Tofu, Spaghetti usw"
+  "SOY_DESCRIPTION": "Milch, Tofu, Spaghetti usw",
+  "ADD_RESTAURANT": "Restaurant hinzufügen",
+  "BAR": "Cafe",
+  "CELERY": "Sellerie",
+  "CELERY_DESCRIPTION": "In Stücken, aber auch in Zubereitungen für Suppen, Saucen und Gemüsekonzentrate vorhanden",
+  "CHOOSE_PHOTO": "Wähle ein Foto aus",
+  "CREATING_YOUR_RESTAURANT": "Wir kreieren Ihr Restaurant",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Wir suchen Ihr Restaurant auf der Welt und nutzen Ihre Kanäle (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Laden Sie Bilder von Google",
+  "OTHERWISE": "Ansonsten",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Kneipe",
+  "RESTAURANT": "Restaurant",
+  "SAVE": "Speichern",
+  "TYPOLOGY": "Typologie",
+  "UNKNOWN_USER": "Unbekannter Benutzer",
+  "WAIT": "Warten"
 }

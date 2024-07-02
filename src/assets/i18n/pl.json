@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Włącznie z pochodnymi, czyli wszystkimi produktami spożywczymi, które składają się z ryb, nawet jeśli w małych procentach",
   "REJECT": "Odrzucić",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Mleko, tofu, spaghetti itp"
+  "SOY_DESCRIPTION": "Mleko, tofu, spaghetti itp",
+  "ADD_RESTAURANT": "Dodaj restaurację",
+  "BAR": "Kawiarnia",
+  "CELERY": "Seler",
+  "CELERY_DESCRIPTION": "Występuje w kawałkach, ale także w przetworach do zup, sosów i koncentratów warzywnych",
+  "CHOOSE_PHOTO": "Wybierz zdjęcie",
+  "CREATING_YOUR_RESTAURANT": "Tworzymy Twoją restaurację",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Szukamy Twojej restauracji na świecie i przechwytujemy Twoje kanały (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Załaduj obrazy z Google",
+  "OTHERWISE": "W przeciwnym razie",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Pub",
+  "RESTAURANT": "Restauracja",
+  "SAVE": "Ratować",
+  "TYPOLOGY": "Typologia",
+  "UNKNOWN_USER": "Nieznany użytkownik",
+  "WAIT": "Czekać"
 }

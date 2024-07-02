@@ -436,7 +436,7 @@ import { SubstringPipe } from '../../../../../utils/pipes/substring.pipe';
       </div>
     </ng-template>
 
-    <div class="flex flex-col border-b border-zinc-800 py-6 h-[34rem] overflow-y-auto">
+    <div class="flex flex-col border-b border-zinc-800 py-6 h-[36rem] overflow-y-auto">
       @switch (state()) { @case ('loaded') {
       <ng-container [ngTemplateOutlet]="loaded"></ng-container>
       } @case ('error') {
@@ -460,10 +460,10 @@ export class CategoriesComponent {
     const categories = this.dashboard.categories().state;
     const sentiment = this.dashboard.sentiment().state;
 
-    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
-    if (categories === 'error' || sentiment === 'error') return 'error';
-    if (categories === 'empty' || sentiment === 'empty') return 'empty';
     if (categories === 'loading' || sentiment === 'loading') return 'loading';
+    if (categories === 'error' || sentiment === 'error') return 'error';
+    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
+    if (categories === 'empty' && sentiment === 'empty') return 'empty';
 
     return 'loading';
   });

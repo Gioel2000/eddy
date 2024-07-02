@@ -112,14 +112,11 @@ import { CompetitorsService } from '../../competitors.service';
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-400">
                   {{ rating.count | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-10 text-sm text-right font-medium tabular-nums text-zinc-400 dark:text-zinc-100">
-                  {{ rating.percentage | numb : translate.currentLang : 0 }}%
-                </dd>
                 <dd
-                  class="w-10 text-left font-semibold text-sm tabular-nums ml-1.5"
+                  class="w-8 text-left font-semibold text-sm tabular-nums ml-1.5"
                   [ngClass]="{
                     'text-green-500': rating.received > 0,
                     'text-zinc-400 dark:text-zinc-600': rating.received === 0
@@ -127,7 +124,10 @@ import { CompetitorsService } from '../../competitors.service';
                 >
                   +{{ rating.received | numb : translate.currentLang : 0 }}
                 </dd>
-                <dd class="w-8 text-right font-semibold text-sm tabular-nums text-violet-500">
+                <dd class="w-8 text-sm text-right font-medium tabular-nums text-zinc-300 ">
+                  {{ rating.percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd class="w-10 text-right font-semibold text-sm tabular-nums text-violet-500">
                   {{ rating.competitorPercentage | numb : translate.currentLang : 0 }}%
                 </dd>
               </div>

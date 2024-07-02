@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Beleértve a származékokat, azaz minden olyan élelmiszerterméket, amely halból áll, még ha kis százalékban is",
   "REJECT": "Elutasít",
   "SOY": "Szója",
-  "SOY_DESCRIPTION": "Tej, tofu, spagetti stb"
+  "SOY_DESCRIPTION": "Tej, tofu, spagetti stb",
+  "ADD_RESTAURANT": "Étterem hozzáadása",
+  "BAR": "Kávézó",
+  "CELERY": "Zeller",
+  "CELERY_DESCRIPTION": "Darabokban, de levesek, szószok és zöldségkoncentrátumok készítésére is alkalmas",
+  "CHOOSE_PHOTO": "Válassz képet",
+  "CREATING_YOUR_RESTAURANT": "Létrehozzuk éttermét",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Keressük éttermét a világban, és elfoglaljuk csatornáit (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Töltsön be képeket a Google-ból",
+  "OTHERWISE": "Másképp",
+  "PIZZERIA": "Pizzéria",
+  "PUB": "Kocsma",
+  "RESTAURANT": "Étterem",
+  "SAVE": "Megment",
+  "TYPOLOGY": "Tipológia",
+  "UNKNOWN_USER": "Ismeretlen felhasználó",
+  "WAIT": "Várjon"
 }

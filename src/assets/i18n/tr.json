@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Türevler, yani küçük yüzdelerde de olsa balıktan oluşan tüm gıda ürünleri dahil",
   "REJECT": "Reddetmek",
   "SOY": "Soya",
-  "SOY_DESCRIPTION": "Süt, tofu, spagetti vb."
+  "SOY_DESCRIPTION": "Süt, tofu, spagetti vb.",
+  "ADD_RESTAURANT": "Restoran ekle",
+  "BAR": "Kafe",
+  "CELERY": "Kereviz",
+  "CELERY_DESCRIPTION": "Parçalar halinde mevcut olmasının yanı sıra çorba, sos ve sebze konsantreleri için müstahzarlarda da bulunur",
+  "CHOOSE_PHOTO": "Fotoğraf seç",
+  "CREATING_YOUR_RESTAURANT": "Restoranınızı yaratıyoruz",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Dünyadaki restoranınızı arıyor ve kanallarınızı alıyoruz (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Google'dan resim yükle",
+  "OTHERWISE": "Aksi takdirde",
+  "PIZZERIA": "Pizzacı",
+  "PUB": "Bar",
+  "RESTAURANT": "Restoran",
+  "SAVE": "Kaydetmek",
+  "TYPOLOGY": "Tipoloji",
+  "UNKNOWN_USER": "Bilinmeyen kullanıcı",
+  "WAIT": "Beklemek"
 }

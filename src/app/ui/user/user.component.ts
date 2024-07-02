@@ -12,7 +12,8 @@ import { AuthService } from '@auth0/auth0-angular';
 import { MomentPipe } from '../../utils/pipes/moment.pipe';
 import { environment } from '../../../environments/environment';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { map, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
+import { StructureStore } from '../../store/structures/structure.service';
 
 @UntilDestroy()
 @Component({
@@ -51,7 +52,7 @@ import { map, tap } from 'rxjs';
           >
             <div class="pointer-events-auto w-screen max-w-xl">
               <div
-                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-200 dark:border-zinc-800 shadow-md"
+                class="flex h-full flex-col divide-y divide-zinc-200 dark:divide-zinc-800 border-l border-zinc-200 dark:border-zinc-700 shadow-md"
               >
                 <div class="h-0 flex-1 overflow-y-auto">
                   <div class="flex fle-row items-center justify-end w-full h-0 z-50 relative -bottom-7 -left-4">
@@ -115,11 +116,6 @@ import { map, tap } from 'rxjs';
                         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
                           <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                             <div class="flex">
-                              <!-- <img
-                                class="h-24 w-24 rounded-full ring-4 ring-zinc-50 dark:ring-zinc-800 sm:h-32 sm:w-32"
-                                [src]="this.profile.me().picture"
-                                alt=""
-                              /> -->
                               <input #fileUpload type="file" class="sr-only" (change)="onImagesPicked($event)" />
                               <a
                                 class="relative group h-24 w-24 rounded-full ring-4 ring-zinc-50 dark:ring-zinc-800 sm:h-32 sm:w-32"
@@ -143,20 +139,17 @@ import { map, tap } from 'rxjs';
                             <div
                               class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:-mb-1"
                             >
-                              <div class="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
+                              <div class="min-w-0 flex-1 sm:hidden 2xl:block">
                                 <h1 class="truncate text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                                   {{ user()?.name }} {{ user()?.surname }}
                                 </h1>
-                                <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                                  {{ profile.me().email }}
-                                </p>
                               </div>
                               <div
-                                class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"
+                                class="flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0"
                               >
                                 <button
                                   type="button"
-                                  class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                                  class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                                   (click)="logout()"
                                 >
                                   <span
@@ -174,12 +167,9 @@ import { map, tap } from 'rxjs';
                             <h1 class="truncate text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                               {{ user()?.name }} {{ user()?.surname }}
                             </h1>
-                            <p class="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                              {{ profile.me().email }}
-                            </p>
                           </div>
                           <form [formGroup]="formGroup" class="h-full">
-                            <div class="pb-12">
+                            <div class="pb-8 sm:pb-10">
                               <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div class="sm:col-span-3">
                                   <label
@@ -217,37 +207,33 @@ import { map, tap } from 'rxjs';
                                   </div>
                                 </div>
 
-                                <!-- <div class="sm:col-span-4">
-                                  <label
-                                    for="email"
-                                    class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                                    >{{ 'EMAIL' | translate }}</label
-                                  >
-                                  <div class="mt-2">
-                                    <input
-                                      id="email"
-                                      name="email"
-                                      type="email"
-                                      autocomplete="email"
-                                      formControlName="email"
-                                      class="block w-full rounded-md border-0 py-1.5 bg-transparent text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accentDark sm:text-sm sm:leading-6"
-                                    />
-                                  </div>
-                                </div> -->
+                                <div class="sm:col-span-3">
+                                  <dt class="text-sm font-medium text-zinc-500">Email</dt>
+                                  <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+                                    {{ profile.me().email }}
+                                  </dd>
+                                </div>
+
+                                <div class="sm:col-span-3">
+                                  <dt class="text-sm font-medium text-zinc-500">{{ 'ROLE' | translate }}</dt>
+                                  <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100 capitalize">
+                                    {{ profile.me().role }}
+                                  </dd>
+                                </div>
                               </div>
                             </div>
                           </form>
                         </div>
                       </div>
                       <div
-                        class="absolute bottom-0 w-full border-t border-zinc-200 dark:border-zinc-700 px-4 py-5 sm:px-6"
+                        class="absolute bottom-0 w-full border-t bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 px-4 py-5 sm:px-6"
                       >
                         <div class="flex justify-end space-x-3">
                           <button
                             type="button"
                             class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
                             [disabled]="profile.status() === 'loading'"
-                            (click)="panelUI.closePanel()"
+                            (click)="reset()"
                           >
                             {{ 'CANCEL' | translate }}
                           </button>
@@ -287,6 +273,7 @@ export class UserPanelComponent {
   profile = inject(UserStore);
   auth = inject(AuthService);
   translate = inject(TranslateService);
+  structures = inject(StructureStore);
 
   readonly ALLOWED_TYPES = ['image'];
   readonly MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -311,8 +298,14 @@ export class UserPanelComponent {
   }
 
   logout() {
-    const { url } = environment;
-    this.auth.logout().subscribe(() => window.open(url, '_self'));
+    this.structures
+      .clear()
+      .pipe(
+        untilDestroyed(this),
+        switchMap(() => this.auth.logout()),
+        tap(() => window.open(environment.url, '_self'))
+      )
+      .subscribe();
   }
 
   clickFileUpload() {
@@ -353,6 +346,13 @@ export class UserPanelComponent {
         this.formGroup.markAsDirty();
       };
     }
+  }
+
+  reset() {
+    this.file.set(null);
+    this.preview.set(null);
+    this.formGroup.patchValue(this.profile.me());
+    this.panelUI.closePanel();
   }
 
   save() {

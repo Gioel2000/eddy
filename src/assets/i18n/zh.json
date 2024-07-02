@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "包括衍生物，即所有由鱼制成的食品，即使比例很小",
   "REJECT": "拒绝",
   "SOY": "大豆",
-  "SOY_DESCRIPTION": "牛奶、豆腐、意大利面等"
+  "SOY_DESCRIPTION": "牛奶、豆腐、意大利面等",
+  "ADD_RESTAURANT": "添加餐厅",
+  "BAR": "咖啡店",
+  "CELERY": "芹菜",
+  "CELERY_DESCRIPTION": "以块状存在，也可用于汤、酱汁和蔬菜浓缩物的制备中",
+  "CHOOSE_PHOTO": "选择照片",
+  "CREATING_YOUR_RESTAURANT": "我们正在创建您的餐厅",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "我们正在世界各地寻找您的餐厅并利用您的渠道（Google、Tripadvisor、TheFork）",
+  "LOAD_IMAGES_FROM_GOOGLE": "从 Google 加载图像",
+  "OTHERWISE": "否则",
+  "PIZZERIA": "比萨店",
+  "PUB": "酒馆",
+  "RESTAURANT": "餐厅",
+  "SAVE": "节省",
+  "TYPOLOGY": "类型学",
+  "UNKNOWN_USER": "未知用户",
+  "WAIT": "等待"
 }

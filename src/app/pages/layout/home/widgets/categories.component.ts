@@ -57,7 +57,7 @@ import { Router } from '@angular/router';
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               @for (category of categories(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkCategory(category.category)"
               >
                 <div class="min-w-0 flex-1">
@@ -185,7 +185,7 @@ import { Router } from '@angular/router';
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
                 (click)="checkCategory(word.category)"
               >
                 <div class="min-w-0 flex-1">
@@ -328,10 +328,10 @@ export class CategoriesComponent {
     const categories = this.dashboard.categories().state;
     const sentiment = this.dashboard.sentiment().state;
 
-    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
-    if (categories === 'error' || sentiment === 'error') return 'error';
-    if (categories === 'empty' || sentiment === 'empty') return 'empty';
     if (categories === 'loading' || sentiment === 'loading') return 'loading';
+    if (categories === 'error' || sentiment === 'error') return 'error';
+    if (categories === 'loaded' || sentiment === 'loaded') return 'loaded';
+    if (categories === 'empty' && sentiment === 'empty') return 'empty';
 
     return 'loading';
   });

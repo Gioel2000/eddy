@@ -155,7 +155,7 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
                   @if (store.state() === 'loaded' && store.reviews().length > 0) {
                   <div class="flex flex-col items-center justify-center w-full">
                     <div
-                      class="flex flex-row items-center justify-between w-full p-3 max-w-3xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 rounded-2xl"
+                      class="flex flex-row items-center justify-between w-full p-3 max-w-3xl ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 rounded-2xl"
                     >
                       <div>
                         <span class="font-medium text-base mx-2 text-zinc-800 dark:text-zinc-200"

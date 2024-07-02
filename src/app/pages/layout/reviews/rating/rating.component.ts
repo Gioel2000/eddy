@@ -25,10 +25,10 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       >
       <button
         type="button"
-        class="block w-full ring-1 ring-zinc-200 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+        class="block w-full ring-1 ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
         [ngClass]="{
           'ring-2 ring-accent dark:ring-accentDark': checked(),
-          'ring-1 ring-zinc-200 dark:ring-zinc-800': !checked()
+          'ring-1 ring-zinc-300 dark:ring-zinc-800': !checked()
         }"
         (click)="dropdown.toggle()"
       >
@@ -44,7 +44,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
       </button>
       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
         <div
-          class="absolute z-10 mt-2 w-56 rounded-lg max-h-64 overflow-y-auto bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-300 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 right-0 origin-top-right sm:left-0 sm:origin-top-left"
+          class="absolute z-10 mt-2 w-56 rounded-[10px] max-h-64 overflow-y-auto bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 right-0 origin-top-right sm:left-0 sm:origin-top-left"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

@@ -150,7 +150,7 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
                           </g>
                         </svg>
                       </div>
-                      <span class="text-sm text-zinc-600 dark:text-zinc-400 ml-1">{{
+                      <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300 ml-1">{{
                         review.rating | numb : translate.currentLang
                       }}</span>
                     </div>
@@ -268,23 +268,25 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
               <div class="flex flex-row items-center justify-end w-full pt-4 max-w-3xl">
                 <div class="flex flex-row items-center gap-x-2">
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    type="button"
+                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
                     [disabled]="start() === 0"
                     (click)="showLess()"
                   >
                     <span
                       [inlineSVG]="'arrow-left.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative group-hover:top-0 svg-icon svg-icon-5 stroke-[1.6]"
                     ></span>
                   </button>
                   <button
-                    class="group flex flex-row items-center bg-zinc-800 ring-1  ring-zinc-500 dark:ring-zinc-500 rounded-lg px-2.5 py-1.5 shadow-[shadow:inset_0_-3.5px_theme(colors.zinc.500)] hover:shadow-none text-zinc-100 dark:text-zinc-100 hover:bg-zinc-900 text-sm font-medium leading-6 disabled:cursor-not-allowed disabled:opacity-30 disabled:dark:opacity-30"
+                    type="button"
+                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
                     [disabled]="stopKeepGoing()"
                     (click)="showMore()"
                   >
                     <span
                       [inlineSVG]="'arrow-right.svg'"
-                      class="relative -top-px group-hover:top-0 svg-icon svg-icon svg-icon-3 stroke-[1.8]"
+                      class="relative group-hover:top-0 svg-icon svg-icon-5 stroke-[1.6]"
                     ></span>
                   </button>
                 </div>

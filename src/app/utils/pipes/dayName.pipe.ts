@@ -7,7 +7,7 @@ import moment from 'moment';
 })
 export class MonthNamePipe implements PipeTransform {
   transform(month: number, locale: string, format?: string): any {
-    if (!month) return '';
+    if (!month && month !== 0) return '';
     if (!locale)
       return moment()
         .month(month)

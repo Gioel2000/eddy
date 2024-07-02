@@ -409,5 +409,21 @@
   "FISH_DESCRIPTION": "Inklusive derivater, dvs. alle de fødevarer, der består af fisk, selv om det er i små procenter",
   "REJECT": "Afvise",
   "SOY": "Soja",
-  "SOY_DESCRIPTION": "Mælk, tofu, spaghetti osv"
+  "SOY_DESCRIPTION": "Mælk, tofu, spaghetti osv",
+  "ADD_RESTAURANT": "Tilføj restaurant",
+  "BAR": "Cafe",
+  "CELERY": "Selleri",
+  "CELERY_DESCRIPTION": "Til stede i stykker, men også i tilberedninger til supper, saucer og grøntsagskoncentrater",
+  "CHOOSE_PHOTO": "Vælg billede",
+  "CREATING_YOUR_RESTAURANT": "Vi skaber din restaurant",
+  "CREATING_YOUR_RESTAURANT_DESCRIPTION": "Vi leder efter din restaurant i verden og tager dine kanaler (Google, Tripadvisor, TheFork)",
+  "LOAD_IMAGES_FROM_GOOGLE": "Indlæs billeder fra Google",
+  "OTHERWISE": "Ellers",
+  "PIZZERIA": "Pizzeria",
+  "PUB": "Pub",
+  "RESTAURANT": "Restaurant",
+  "SAVE": "Gemme",
+  "TYPOLOGY": "Typologi",
+  "UNKNOWN_USER": "Ukendt bruger",
+  "WAIT": "Vente"
 }

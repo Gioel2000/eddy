@@ -90,13 +90,13 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
-        <categories-graph></categories-graph>
+        <channels-graph></channels-graph>
         } @placeholder {
         <div></div>
         } @loading {
         <div></div>
         } @defer (on viewport; prefetch on idle) {
-        <channels-graph></channels-graph>
+        <categories-graph></categories-graph>
         } @placeholder {
         <div></div>
         } @loading {

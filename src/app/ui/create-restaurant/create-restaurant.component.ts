@@ -119,7 +119,7 @@ import { WorldComponent } from '../world/world.component';
                             type="text"
                             placeholder="Da Mario"
                             formControlName="name"
-                            class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                            class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           />
                         </div>
                       </div>
@@ -138,7 +138,7 @@ import { WorldComponent } from '../world/world.component';
                           <div class="relative rounded-md shadow-sm">
                             <button
                               type="button"
-                              class="relative w-full cursor-default rounded-md bg-transparent py-1.5 pl-3 pr-10 text-left text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accentDark sm:text-sm sm:leading-6"
+                              class="relative w-full cursor-default rounded-md bg-transparent py-1.5 pl-3 pr-10 text-left text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accentDark sm:text-sm sm:leading-6"
                               aria-haspopup="listbox"
                               aria-expanded="true"
                               aria-labelledby="listbox-label"
@@ -165,7 +165,7 @@ import { WorldComponent } from '../world/world.component';
                             </button>
                             <div [ngClass]="{ hidden: !select.isOpen() }">
                               <ul
-                                class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-zinc-800 shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 left-0 origin-top"
+                                class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-zinc-800 shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 left-0 origin-top"
                                 tabindex="-1"
                                 role="listbox"
                                 aria-labelledby="listbox-label"
@@ -225,19 +225,19 @@ import { WorldComponent } from '../world/world.component';
                             type="text"
                             placeholder="Via Torino 4"
                             formControlName="address"
-                            class="sm:col-span-4 col-span-2 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                            class="sm:col-span-4 col-span-2 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           />
                           <input
                             type="text"
                             placeholder="12345"
                             formControlName="zipCode"
-                            class="sm:col-span-2 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                            class="sm:col-span-2 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           />
                           <input
                             type="text"
                             placeholder="Roma"
                             formControlName="city"
-                            class="sm:col-span-3 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                            class="sm:col-span-3 col-span-1 block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           />
                         </div>
                       </div>
@@ -258,7 +258,7 @@ import { WorldComponent } from '../world/world.component';
                               type="text"
                               name="phone-number"
                               id="phone-number"
-                              class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                              class="block w-full rounded-md border-0 py-1.5 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ring-1  ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                               placeholder="111 111 1111"
                               formControlName="telephone"
                             />
@@ -285,7 +285,7 @@ import { WorldComponent } from '../world/world.component';
                               type="text"
                               name="company-website"
                               id="company-website"
-                              class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
+                              class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6"
                               placeholder="www.example.com"
                               formControlName="website"
                             />
@@ -308,7 +308,7 @@ import { WorldComponent } from '../world/world.component';
                             type="text"
                             placeholder="you@example.com"
                             formControlName="email"
-                            class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
+                            class="block w-full rounded-md border-0 py-1.5 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm leading-6"
                           />
                         </div>
                       </div>
@@ -325,13 +325,13 @@ import { WorldComponent } from '../world/world.component';
                           >
                           <div class="flex flex-row items-center gap-x-1">
                             <a
-                              class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
+                              class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 text-zinc-400 dark:text-zinc-600"
                               (click)="goLeft()"
                             >
                               <span [inlineSVG]="'arrow-left.svg'" class="svg-icon svg-icon-7 stroke-[1.3]"></span>
                             </a>
                             <a
-                              class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
+                              class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 text-zinc-400 dark:text-zinc-600"
                               (click)="goRight()"
                             >
                               <span [inlineSVG]="'arrow-right.svg'" class="svg-icon svg-icon-7 stroke-[1.3]"></span>
@@ -427,7 +427,7 @@ import { WorldComponent } from '../world/world.component';
                   <div class="flex justify-end space-x-3">
                     <button
                       type="button"
-                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
+                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
                       [disabled]="store.state() === 'loading'"
                       (click)="panelUI.closePanel()"
                     >

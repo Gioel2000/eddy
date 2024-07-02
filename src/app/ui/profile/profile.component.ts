@@ -9,6 +9,9 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '@auth0/auth0-angular';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { UserStore } from '../../store/user/user.service';
+import { StructureStore } from '../../store/structures/structure.service';
+import { switchMap, tap } from 'rxjs';
+import { untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'profile-dropdown',
@@ -66,7 +69,7 @@ import { UserStore } from '../../store/user/user.service';
                 </div>
                 <span
                   [inlineSVG]="'share-up-right.svg'"
-                  class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-2 transition-all transform-gpu ease-in-out duration-200"
+                  class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-[1.8] transition-all transform-gpu ease-in-out duration-200"
                 ></span>
               </div>
             </button>
@@ -116,11 +119,18 @@ export class ProfileComponent {
   auth = inject(AuthService);
   userPanel = inject(UserPanelService);
   settings = inject(SettingsService);
+  structures = inject(StructureStore);
 
   user = computed(() => this.profile.me());
 
   logout() {
-    const { url } = environment;
-    this.auth.logout().subscribe(() => window.open(url, '_self'));
+    this.structures
+      .clear()
+      .pipe(
+        untilDestroyed(this),
+        switchMap(() => this.auth.logout()),
+        tap(() => window.open(environment.url, '_self'))
+      )
+      .subscribe();
   }
 }

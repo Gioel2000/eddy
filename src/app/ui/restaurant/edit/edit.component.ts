@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, map, single, tap } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { StructureStore } from '../../../store/structures/structure.service';
 import { EditRestaurant, RestaurantSettedTO } from '../../../store/structures/interfaces/restaurant';
@@ -205,7 +205,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             <div class="col-span-2">
               <div class="flex rounded-md shadow-sm">
                 <span
-                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-800 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
+                  class="inline-flex items-center rounded-l-md border border-r-0 border-zinc-200 dark:border-zinc-700 px-3 text-zinc-400 dark:text-zinc-600 text-sm"
                   >http://</span
                 >
                 <input
@@ -292,11 +292,11 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
                 }
 
                 <a
-                  class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-800 bg-transparent cursor-pointer transition focus:outline-none"
+                  class="relative flex flex-col items-start w-full rounded-lg border border-white dark:border-zinc-700 bg-transparent cursor-pointer transition focus:outline-none"
                 >
                   <div class="w-36"></div>
                   <a
-                    class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/25 dark:border-zinc-100/25 h-36 min-w-36 w-full my-1"
+                    class="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 h-36 min-w-36 w-full my-1"
                     (dragover)="onDragOver($event)"
                     (drop)="onDropSuccess($event)"
                     (click)="clickFileUpload()"

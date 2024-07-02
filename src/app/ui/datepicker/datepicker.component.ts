@@ -58,10 +58,10 @@ export interface CalendarModel {
         >
         <button
           #buttonElement
-          class="block w-full ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+          class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
           [ngClass]="{
             'ring-2 ring-accent dark:ring-accentDark': showRing(),
-            'ring-1 ring-zinc-200 dark:ring-zinc-800': !showRing()
+            'ring-1 ring-zinc-300 dark:ring-zinc-800': !showRing()
           }"
           (click)="toggle()"
         >
@@ -75,7 +75,7 @@ export interface CalendarModel {
         </button>
         <div [ngClass]="{ hidden: !isOpen() }">
           <div
-            class="absolute z-10 mt-2 w-80 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-800 dark:ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 transform-gpu"
+            class="absolute z-10 mt-2 w-80 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 transform-gpu"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -92,12 +92,10 @@ export interface CalendarModel {
                 <div class="space-y-1.5">
                   <div>
                     <div class="flex items-center px-3 pt-3">
-                      @if (calendarDays(); as calendar) {
                       <h2 class="flex-auto text-base font-semibold text-zinc-900 dark:text-zinc-100 capitalize">
-                        {{ calendar.month | monthName : translate.currentLang }}
-                        {{ calendar.year }}
+                        {{ calendarDays().month | monthName : translate.currentLang }}
+                        {{ calendarDays().year }}
                       </h2>
-                      }
                       <button
                         type="button"
                         class="-my-1.5 flex flex-none items-center justify-center p-1.5 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600"
@@ -208,7 +206,22 @@ export class DatePickerComponent {
 
   @Output() onDateSet = new EventEmitter<Date>();
 
-  calendarDays = signal<CalendarModel | null>(null);
+  calendarDays = signal<CalendarModel>({
+    year: 0,
+    month: 0,
+    firstDay: moment().toDate(),
+    lastDay: moment().toDate(),
+    days: [
+      {
+        date: moment().toDate(),
+        day: 0,
+        month: 0,
+        year: 0,
+        isToday: false,
+        disabled: false,
+      },
+    ],
+  });
   filter = signal({ month: moment().month(), year: moment().year() });
   isOpen = signal(false);
   isVisible = signal(false);
