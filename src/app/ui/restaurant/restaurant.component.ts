@@ -19,6 +19,7 @@ import { DialogService } from './dialog.service';
 import { UserDialogComponent } from './user/user.component';
 import { DeleteRestaurantPanelComponent } from './delete/delete.component';
 import { filter } from 'rxjs';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 export interface MarkerInterface {
   structure: any;
@@ -44,6 +45,7 @@ export interface MarkerInterface {
     UsersRestaurantPanelComponent,
     UserDialogComponent,
     DeleteRestaurantPanelComponent,
+    MissingTranslationPipe,
   ],
   template: `
     @defer (on viewport; prefetch on idle) {
@@ -119,7 +121,9 @@ export interface MarkerInterface {
                             [inlineSVG]="'triangle-warning.svg'"
                             class="svg-icon svg-icon-3 text-red-500 stroke-[1.4]"
                           ></span>
-                          <span class="text-base font-medium text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+                          <span class="text-base font-medium text-red-500 mt-1">{{
+                            'ERROR' | translate | missingTranslation : 'Error'
+                          }}</span>
                         </div>
                       </div>
                     </ng-template>

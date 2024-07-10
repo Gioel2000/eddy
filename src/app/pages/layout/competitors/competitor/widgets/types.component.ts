@@ -9,12 +9,21 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { ClientTypeModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CompetitorsService } from '../../competitors.service';
+import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 
 @UntilDestroy()
 @Component({
   selector: 'types-graph',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, GrowthPipe],
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    InlineSVGModule,
+    TranslateModule,
+    NumberPipe,
+    GrowthPipe,
+    MissingTranslationPipe,
+  ],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
@@ -37,7 +46,9 @@ import { CompetitorsService } from '../../competitors.service';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

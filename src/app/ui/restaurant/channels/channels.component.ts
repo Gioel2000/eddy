@@ -156,7 +156,7 @@ import { RestaurantPanelService } from '../panel.service';
                   type="text"
                   id="restaurant-channels-thefork"
                   class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-white dark:bg-zinc-800 py-1.5 text-zinc-900 dark:text-zinc-100 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent text-sm sm:leading-6 disabled:opacity-30 disabled:text-opacity-30"
-                  placeholder="www.thefork.it/ristorante/diamonds-r732559"
+                  placeholder="www.thefork.it/ristorante/eddy-r732559"
                   formControlName="thefork"
                 />
               </div>

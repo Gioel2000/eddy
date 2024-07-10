@@ -9,6 +9,7 @@ import moment from 'moment';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentage.pipe';
 import { CompetitorsService } from '../../competitors.service';
+import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -21,6 +22,7 @@ import { CompetitorsService } from '../../competitors.service';
     NgxChartsModule,
     NumberPipe,
     GrowthPercentagePipe,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -44,7 +46,9 @@ import { CompetitorsService } from '../../competitors.service';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[385px]">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

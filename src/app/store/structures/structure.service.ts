@@ -9,8 +9,10 @@ import {
   Observable,
   Subject,
   catchError,
-  distinctUntilChanged,
+  delay,
   filter,
+  forkJoin,
+  from,
   map,
   mergeMap,
   of,
@@ -18,6 +20,7 @@ import {
   tap,
   toArray,
 } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 import {
   AddRestaurant,
   ChannelModelTO,
@@ -28,7 +31,7 @@ import {
   SetTO,
   StateModel,
 } from './interfaces/restaurant';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { ChannelsModel, ChannelsTOModel } from './interfaces/channels';
 
 export interface StructuresStore {
   selected: {
@@ -37,6 +40,10 @@ export interface StructuresStore {
   };
   structures: {
     data: RestaurantModel[];
+    state: StateModel;
+  };
+  channelsSetup: {
+    data: ChannelsModel[];
     state: StateModel;
   };
 }
@@ -57,15 +64,21 @@ export class StructureStore {
       data: [] as RestaurantModel[],
       state: 'loading' as const,
     },
+    channelsSetup: {
+      data: [] as ChannelsModel[],
+      state: 'loading' as const,
+    },
   });
 
   structures = computed(() => this.store().structures.data.filter((restaurant) => restaurant.show));
   state = computed(() => this.store().structures.state);
   selected = computed(() => this.store().selected.structure);
   selectedState = computed(() => this.store().selected.state);
+  channelsSetup = computed(() => this.store().channelsSetup.data);
+  channelsState = computed(() => this.store().channelsSetup.state);
+  structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(untilDestroyed(this));
   savedSuccesfully = signal(false);
   errors = signal(false);
-  structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(untilDestroyed(this));
 
   search$ = new Subject<string>();
 
@@ -75,9 +88,13 @@ export class StructureStore {
   private editSelected$ = new Subject<RestaurantTOModel>();
   private state$ = new Subject<StateModel>();
   private selectedState$ = new Subject<StateModel>();
+  private channelsSetupState$ = new Subject<StateModel>();
+  private setChannelsSetup$ = new Subject<ChannelsTOModel[]>();
+  private editChannelSetup$ = new Subject<{ source: 'google' | 'tripadvisor' | 'thefork'; channel: ChannelsTOModel }>();
   private selected$ = new Subject<RestaurantSettedTO | null>();
   private showAll$ = new Subject<void>();
   private setChannels$ = new Subject<ChannelModelTO[]>();
+  private checkChannelSetup$ = new Subject<string>();
   private deleteChannel$ = new Subject<string>();
 
   constructor() {
@@ -94,6 +111,10 @@ export class StructureStore {
             data: structures,
             state: structures.length > 0 ? ('loaded' as const) : ('empty' as const),
           },
+          channelsSetup: {
+            data: [],
+            state: 'loading' as const,
+          },
         })),
         catchError(() =>
           of({
@@ -101,6 +122,10 @@ export class StructureStore {
             structures: {
               data: [],
               state: 'error' as const,
+            },
+            channelsSetup: {
+              data: [],
+              state: 'loading' as const,
             },
           })
         ),
@@ -203,7 +228,58 @@ export class StructureStore {
             channels: store.selected.structure.channels.filter((channel) => channel._id !== id),
           },
         },
-      }));
+      }))
+      .with(this.channelsSetupState$, (store, state) => ({
+        ...store,
+        channelsSetup: { ...store.channelsSetup, state },
+      }))
+      .with(this.setChannelsSetup$, (store, suggestedChannels) => {
+        const google = suggestedChannels.find((channel) => channel.channel.source === 'google');
+        const tripadvisor = suggestedChannels.find((channel) => channel.channel.source === 'tripadvisor');
+        const the_fork = suggestedChannels.find((channel) => channel.channel.source === 'thefork');
+
+        const channels = [
+          { key: 'google', name: 'Google' },
+          { key: 'tripadvisor', name: 'TripAdvisor' },
+          { key: 'the_fork', name: 'The Fork' },
+        ];
+
+        const updatedChannels: ChannelsModel[] = channels.map((channel) => {
+          if (channel.key === 'google' && google) {
+            return { ...channel, channel: google, address: google.address, checked: true } as ChannelsModel;
+          }
+
+          if (channel.key === 'tripadvisor' && tripadvisor) {
+            return { ...channel, channel: tripadvisor, address: tripadvisor.address, checked: false } as ChannelsModel;
+          }
+
+          if (channel.key === 'the_fork' && the_fork) {
+            return { ...channel, channel: the_fork, address: the_fork.address, checked: false } as ChannelsModel;
+          }
+
+          return { ...channel, channel: null, address: null, checked: false } as ChannelsModel;
+        });
+
+        return {
+          ...store,
+          channelsSetup: { ...store.channelsSetup, data: updatedChannels },
+        };
+      })
+      // .with(this.editChannelSetup$, (store, { source, channel }) => {
+
+      // }
+
+      // )
+      .with(this.checkChannelSetup$, (store, key) => {
+        const updatedChannels = store.channelsSetup.data.map((channel) =>
+          channel.key === key ? { ...channel, checked: !channel.checked } : channel
+        );
+
+        return {
+          ...store,
+          channelsSetup: { ...store.channelsSetup, data: updatedChannels },
+        };
+      });
   }
 
   choose(id: string) {
@@ -221,11 +297,12 @@ export class StructureStore {
       .subscribe({
         next: (selected) => {
           const { url: current } = this.router;
+          // const page = selected.status === 'created' ? '/setup/2' : current.includes('structures') ? '/home' : current;
           const page = current.includes('structures') ? '/home' : current;
+
           this.showAll$.next();
           this.selectedState$.next('loaded');
           this.selected$.next(selected);
-
           this.router.navigate([page]);
         },
         error: (error) => {
@@ -324,6 +401,129 @@ export class StructureStore {
         }),
         catchError(() => {
           this.state$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  checkChannelSetup(key: string) {
+    this.checkChannelSetup$.next(key);
+  }
+
+  loadSuggestedChannels() {
+    this.channelsSetupState$.next('loading');
+    // debug
+    of([
+      {
+        channel: {
+          source: 'google',
+          api: {
+            url: 'https://maps.google.com/?cid=16762488484112003401',
+            id: '1385718213423706455:16762488484112003401',
+          },
+        },
+        name: 'Pizza Social Lab',
+        image:
+          'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXXnVsA5W8Sgp9HeuC7SfG53rArZ9vfE5ANhYMt-hfnZPPWvlR-6G4Ov0-ppaQib26a2RDCoDJLvbmvGLd3-n5_7VKPNnyWyGnwZjXvZIg8UGfI6LmFMtRJwF_RoPO7PAOxLDXpoT-1uYz5wrC0mNQKXAMX-ED5U_er5iAXdXcTYb_IT&3u4032&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A4200%2Fsetup%2F1&key=AIzaSyAHZLeQ42t5INTGE4OKGUNmWpvjHqFGR6M&token=12645',
+        latitude: 40.82048059999999,
+        longitude: 14.1782868,
+      } as ChannelsTOModel,
+      {
+        channel: {
+          source: 'tripadvisor',
+          api: {
+            url: 'https://www.tripadvisor.com/Restaurant_Review-d19701014',
+            id: '19701014',
+          },
+        },
+        latitude: 40.820656,
+        longitude: 14.177927,
+        name: 'Pizza Social Lab',
+        image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/31/10/c9/getlstd-property-photo.jpg',
+      } as ChannelsTOModel,
+      {
+        channel: {
+          source: 'thefork',
+          api: {
+            url: 'https://www.thefork.it/ristorante/pizza-social-lab-r580269',
+            id: '580269',
+          },
+        },
+        name: 'Pizza Social Lab',
+        image:
+          'https://res.cloudinary.com/tf-lab/image/upload/restaurant/77ee2797-da9f-4a52-8692-2f8cc123a673/8bda58b7-99a2-42ec-9272-a47842c59ace.jpg',
+        longitude: 14.1782868,
+        latitude: 40.8204806,
+      } as ChannelsTOModel,
+    ])
+      .pipe(
+        untilDestroyed(this),
+        delay(1000),
+        switchMap((channels) =>
+          forkJoin(
+            channels.map((channel) =>
+              this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+            )
+          )
+        ),
+        tap((channels) => this.setChannelsSetup$.next(channels)),
+        tap(() => this.channelsSetupState$.next('loaded')),
+        catchError(() => {
+          this.channelsSetupState$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+
+    // this.http
+    //   .get<ChannelsTOModel[]>(`${environment.apiUrl}/api/restaurants/channels/retrieve`)
+    //   .pipe(
+    //     untilDestroyed(this),
+    //     switchMap((channels) =>
+    //       forkJoin(
+    //         channels.map((channel) =>
+    //           this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+    //         )
+    //       )
+    //     ),
+    //     tap((channels) => this.setChannelsSetup$.next(channels)),
+    //     tap(() => this.channelsSetupState$.next('loaded')),
+    //     catchError(() => {
+    //       this.channelsSetupState$.next('error');
+    //       return of(null);
+    //     })
+    //   )
+    //   .subscribe();
+  }
+
+  editSetupChannel() {
+    this.channelsSetupState$.next('loading');
+
+    of({
+      channel: {
+        source: 'google',
+        api: {
+          url: 'https://maps.google.com/?cid=16762488484112003401',
+          id: '1385718213423706455:16762488484112003401',
+        },
+      },
+      name: 'Pizza Social Lab',
+      image:
+        'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXXnVsA5W8Sgp9HeuC7SfG53rArZ9vfE5ANhYMt-hfnZPPWvlR-6G4Ov0-ppaQib26a2RDCoDJLvbmvGLd3-n5_7VKPNnyWyGnwZjXvZIg8UGfI6LmFMtRJwF_RoPO7PAOxLDXpoT-1uYz5wrC0mNQKXAMX-ED5U_er5iAXdXcTYb_IT&3u4032&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A4200%2Fsetup%2F1&key=AIzaSyAHZLeQ42t5INTGE4OKGUNmWpvjHqFGR6M&token=12645',
+      latitude: 40.82048059999999,
+      longitude: 14.1782868,
+    } as ChannelsTOModel)
+      .pipe(
+        untilDestroyed(this),
+        delay(1000),
+        switchMap((channel) =>
+          this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+        ),
+        // tap((channel) => this.setChannelsSetup$.next(channel)),
+        tap(() => this.channelsSetupState$.next('loaded')),
+        catchError(() => {
+          this.channelsSetupState$.next('error');
           return of(null);
         })
       )
@@ -438,6 +638,17 @@ export class StructureStore {
       switchMap(() => this.storage.delete('expireDate')),
       tap(() => this.showAll$.next()),
       tap(() => this.selected$.next(null))
+    );
+  }
+
+  private getAddress(lat: number, lng: number) {
+    const geocoder = new google.maps.Geocoder().geocode({
+      location: { lat, lng },
+    });
+
+    return from(geocoder).pipe(
+      map((response) => response.results[0].formatted_address),
+      catchError(() => of(null))
     );
   }
 }

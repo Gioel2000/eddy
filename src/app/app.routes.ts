@@ -8,6 +8,8 @@ import { CompetitorsComponent } from './pages/layout/competitors/competitors.com
 import { MenuComponent } from './pages/layout/menu/menu.component';
 import { StructuresComponent } from './pages/structures/structures.component';
 import { PublicMenuComponent } from './pages/public-menu/public-menu.component';
+import { Step1Component } from './pages/setup/steps/step1/step1.component';
+import { Step2Component } from './pages/setup/steps/step2/step2.component';
 
 export const routes: Routes = [
   {
@@ -61,4 +63,23 @@ export const routes: Routes = [
     path: 'public-menu/:id',
     component: PublicMenuComponent,
   },
+  // {
+  //   path: 'setup',
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     {
+  //       path: '',
+  //       redirectTo: '1',
+  //       pathMatch: 'full',
+  //     },
+  //     {
+  //       path: '1',
+  //       component: Step1Component,
+  //     },
+  //     {
+  //       path: '2',
+  //       component: Step2Component,
+  //     },
+  //   ],
+  // },
 ];

@@ -73,7 +73,7 @@
   "CREATE": "Teremt",
   "CREATE_COMPETITOR": "Versenytárs létrehozása",
   "CREATE_RESTAURANT": "Étterem létrehozása",
-  "CREATE_RESTAURANT_DESCRIPTION": "Kezdje a hely nevének megadásával, és válassza ki a helyét a megjelenő legördülő listából",
+  "CREATE_RESTAURANT_DESCRIPTION": "Adja meg cége adatait, és javasolunk csatornákat, amelyekről véleményeket készíthet",
   "CUSTOMER_TYPE": "Ügyféltípus",
   "CUSTOMER_TYPES": "Vevőtípusok",
   "DATE_NOT_SETTED": "Nincs beállítva",

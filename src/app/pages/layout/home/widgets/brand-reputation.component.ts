@@ -8,6 +8,7 @@ import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPercentagePipe } from '../../../../utils/pipes/growthPercentage.pipe';
 import moment from 'moment';
+import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -20,6 +21,7 @@ import moment from 'moment';
     NgxChartsModule,
     NumberPipe,
     GrowthPercentagePipe,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -46,7 +48,9 @@ import moment from 'moment';
       >
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

@@ -11,8 +11,9 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { UserStore } from '../../store/user/user.service';
 import { StructureStore } from '../../store/structures/structure.service';
 import { switchMap, tap } from 'rxjs';
-import { untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'profile-dropdown',
   standalone: true,

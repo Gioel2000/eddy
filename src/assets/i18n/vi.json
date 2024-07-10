@@ -73,7 +73,7 @@
   "CREATE": "Tạo nên",
   "CREATE_COMPETITOR": "Tạo đối thủ cạnh tranh",
   "CREATE_RESTAURANT": "Tạo nhà hàng",
-  "CREATE_RESTAURANT_DESCRIPTION": "Bắt đầu bằng cách nhập tên vị trí của bạn và chọn vị trí của bạn từ danh sách thả xuống xuất hiện",
+  "CREATE_RESTAURANT_DESCRIPTION": "Nhập thông tin doanh nghiệp của bạn và chúng tôi sẽ đề xuất các kênh để rút ra đánh giá",
   "CUSTOMER_TYPE": "Loại khách hàng",
   "CUSTOMER_TYPES": "Các loại khách hàng",
   "DATE_NOT_SETTED": "Chưa giải quyết",

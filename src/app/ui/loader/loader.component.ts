@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { InlineSVGModule } from 'ng-inline-svg-2';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { distinctUntilChanged, filter, repeat, Subject, takeUntil, timer } from 'rxjs';
 
+@UntilDestroy()
 @Component({
   selector: 'loader',
   standalone: true,
-  imports: [InlineSVGModule, CommonModule],
+  imports: [CommonModule],
   template: `
     <div
       [ngClass]="{
@@ -117,9 +119,27 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
   `,
 })
 export class LoaderComponent {
-  counter = signal(1);
+  counter = signal(0);
 
-  constructor() {
-    setInterval(() => this.counter.set(this.counter() === 8 ? 1 : this.counter() + 1), 125);
+  private readonly stop$ = new Subject<void>();
+  private readonly start$ = new Subject<void>();
+
+  ngAfterContentChecked() {
+    timer(0, 125)
+      .pipe(
+        untilDestroyed(this),
+        takeUntil(this.stop$),
+        repeat({ delay: () => this.start$ }),
+        distinctUntilChanged((prev, curr) => prev === curr),
+        filter((i) => i !== this.counter()),
+        filter((i) => i !== 0)
+      )
+      .subscribe((i) => {
+        this.counter.set(i);
+        if (i === 8) {
+          this.stop$.next();
+          this.start$.next();
+        }
+      });
   }
 }

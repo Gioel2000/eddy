@@ -107,7 +107,7 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 export class HomeComponent {
   home = inject(HomeService);
 
-  limitStart = moment().subtract(1, 'year').toDate();
+  limitStart = moment().subtract(3, 'year').toDate();
   now = moment().toDate();
 
   startdate = computed(() => this.home.store.filter().startdate);

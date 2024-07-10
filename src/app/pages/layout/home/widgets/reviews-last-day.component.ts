@@ -9,6 +9,7 @@ import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
 import { BodyReviewComponent } from '../../../../ui/single-review/review-body.component';
 import { HeaderReviewComponent } from '../../../../ui/single-review/review-header.component';
 import { RouterModule } from '@angular/router';
+import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'reviews-last-day',
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     BodyReviewComponent,
     HeaderReviewComponent,
     RouterModule,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -49,7 +51,9 @@ import { RouterModule } from '@angular/router';
       >
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

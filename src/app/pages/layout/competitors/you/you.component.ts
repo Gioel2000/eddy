@@ -13,6 +13,7 @@ import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
 import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
+import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'you',
@@ -30,6 +31,7 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
     ChannelsComponent,
     CategoriesComponent,
     SparkleComponent,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -53,7 +55,9 @@ import { SparkleComponent } from '../../../../ui/sparkle/sparkle.component';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

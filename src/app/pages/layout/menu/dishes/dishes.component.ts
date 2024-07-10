@@ -10,11 +10,20 @@ import { DishComponent } from './dish/dish.component';
 import { DishTO } from '../../../../store/menu/interfaces/menu';
 import { MenuCategoriesComponent } from '../categories/categories.component';
 import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
+import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'menu-dishes',
   standalone: true,
-  imports: [CommonModule, TranslateModule, InlineSVGModule, LoaderComponent, DishComponent, MenuCategoriesComponent],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    InlineSVGModule,
+    LoaderComponent,
+    DishComponent,
+    MenuCategoriesComponent,
+    MissingTranslationPipe,
+  ],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
@@ -37,7 +46,9 @@ import { GeneralDialogService } from '../../../../ui/dialog/dialog.service';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-56">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

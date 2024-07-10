@@ -11,6 +11,7 @@ import { YouComponent } from './you/you.component';
 import { CompetitorComponent } from './competitor/competitor.component';
 import { CompetitorPanelService } from '../../../ui/create-competitor/create-competitor.service';
 import { LoaderComponent } from '../../../ui/loader/loader.component';
+import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'competitors',
@@ -25,6 +26,7 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
     YouComponent,
     CompetitorComponent,
     LoaderComponent,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -48,7 +50,9 @@ import { LoaderComponent } from '../../../ui/loader/loader.component';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>
@@ -151,7 +155,7 @@ export class CompetitorsComponent {
   competitors = inject(CompetitorsService);
   panelUI = inject(CompetitorPanelService);
 
-  limitStart = moment().subtract(1, 'year').toDate();
+  limitStart = moment().subtract(3, 'year').toDate();
   now = moment().toDate();
 
   startdate = computed(() => this.competitors.you.filter().startdate);

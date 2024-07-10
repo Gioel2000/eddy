@@ -27,7 +27,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CookieService } from 'ngx-cookie-service';
-import { withCredentialsInterceptor } from './utils/guards/with-credentials.interceptor';
+import { withCredentialsInterceptor } from './utils/interceptors/with-credentials.interceptor';
 import { provideServiceWorker } from '@angular/service-worker';
 import './utils/imports/momentLocales';
 import { provideLottieOptions } from 'ngx-lottie';

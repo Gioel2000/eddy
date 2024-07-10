@@ -16,6 +16,7 @@ import { SentimentComponent } from './ui/sentiment-words.component';
 import { CategoriesDropdownComponent } from './categories/categories.component';
 import { RatingDropdownComponent } from './rating/rating.component';
 import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
+import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'reviews',
@@ -35,6 +36,7 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
     CategoriesDropdownComponent,
     RatingDropdownComponent,
     SparkleComponent,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -61,7 +63,9 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
       >
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>
@@ -215,7 +219,7 @@ export class ReviewsComponent {
   reviews = inject(ReviewsService);
   store = inject(ReviewsStore);
 
-  limitStart = moment().subtract(1, 'year').toDate();
+  limitStart = moment().subtract(3, 'year').toDate();
   now = moment().toDate();
   startdate = computed(() => this.reviews.filter().startdate);
   enddate = computed(() => this.reviews.filter().enddate);

@@ -74,7 +74,7 @@
   "CREATE": "作成する",
   "CREATE_COMPETITOR": "競合他社を作成する",
   "CREATE_RESTAURANT": "レストランを作成する",
-  "CREATE_RESTAURANT_DESCRIPTION": "まず場所の名前を入力し、表示されるドロップダウン リストから場所を選択します。",
+  "CREATE_RESTAURANT_DESCRIPTION": "ビジネス情報を入力すると、レビューを集めるチャネルが提案されます",
   "CUSTOMER_TYPE": "顧客タイプ",
   "CUSTOMER_TYPES": "顧客のタイプ",
   "DATE_NOT_SETTED": "未設定",

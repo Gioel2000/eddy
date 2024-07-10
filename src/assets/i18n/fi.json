@@ -73,7 +73,7 @@
   "CREATE": "Luoda",
   "CREATE_COMPETITOR": "Luo kilpailija",
   "CREATE_RESTAURANT": "Luo ravintola",
-  "CREATE_RESTAURANT_DESCRIPTION": "Aloita kirjoittamalla sijaintisi nimi ja valitse sijaintisi avattavasta luettelosta",
+  "CREATE_RESTAURANT_DESCRIPTION": "Anna yrityksesi tiedot, niin ehdotamme kanavia, joista voit kerätä arvosteluja",
   "CUSTOMER_TYPE": "Asiakastyyppi",
   "CUSTOMER_TYPES": "Asiakastyypit",
   "DATE_NOT_SETTED": "Ei asetettu",

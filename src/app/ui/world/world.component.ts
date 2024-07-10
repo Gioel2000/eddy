@@ -7,7 +7,7 @@ import { LottieComponent } from 'ngx-lottie';
   standalone: true,
   imports: [LottieComponent, TranslateModule],
   template: `
-    <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
+    <div class="flex flex-col items-center text-balance text-center gap-y-3 animate-pulse">
       <ng-lottie
         class="h-28 w-28"
         [options]="{

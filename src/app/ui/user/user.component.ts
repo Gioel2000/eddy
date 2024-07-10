@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { map, switchMap, tap } from 'rxjs';
 import { StructureStore } from '../../store/structures/structure.service';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 @UntilDestroy()
 @Component({
@@ -27,6 +28,7 @@ import { StructureStore } from '../../store/structures/structure.service';
     ClickOutsideDirective,
     LoaderComponent,
     MomentPipe,
+    MissingTranslationPipe,
   ],
   template: `
     <div
@@ -61,7 +63,33 @@ import { StructureStore } from '../../store/structures/structure.service';
                       class="relative z-50 rounded-md p-1.5 bg-white/20 hover:bg-white/10 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100"
                       (click)="panelUI.closePanel()"
                     >
-                      <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
+                      <span class="svg-icon svg-icon-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                          <title>xmark</title>
+                          <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                            <line
+                              x1="14"
+                              y1="4"
+                              x2="4"
+                              y2="14"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              data-color="color-2"
+                            ></line>
+                            <line
+                              x1="4"
+                              y1="4"
+                              x2="14"
+                              y2="14"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></line>
+                          </g>
+                        </svg>
+                      </span>
                     </button>
                   </div>
                   <nav class="h-full overflow-y-auto bg-white dark:bg-zinc-800" aria-label="Directory">
@@ -91,16 +119,41 @@ import { StructureStore } from '../../store/structures/structure.service';
                             [inlineSVG]="'triangle-warning.svg'"
                             class="svg-icon svg-icon-1 text-red-500 stroke-[1.6]"
                           ></span>
-                          <span class="text-base font-semibold text-red-500">{{ 'ERROR' | translate }}</span>
+                          <span class="text-base font-semibold text-red-500">{{
+                            'ERROR' | translate | missingTranslation : 'Error'
+                          }}</span>
                           <button
                             type="button"
                             class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                             (click)="logout()"
                           >
-                            <span
-                              inlineSVG="rect-logout.svg"
-                              class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"
-                            ></span>
+                            <span class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                                <title>rect logout</title>
+                                <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
+                                  <path
+                                    d="M6.25,5.75v-1.5c0-1.105,.895-2,2-2h5.5c1.105,0,2,.895,2,2V13.75c0,1.105-.895,2-2,2h-5.5c-1.105,0-2-.895-2-2v-1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  ></path>
+                                  <polyline
+                                    points="3.5 11.75 .75 9 3.5 6.25"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke="currentColor"
+                                  ></polyline>
+                                  <line
+                                    x1=".75"
+                                    y1="9"
+                                    x2="9.25"
+                                    y2="9"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke="currentColor"
+                                  ></line>
+                                </g>
+                              </svg>
+                            </span>
                             <span class="text-zinc-700 dark:text-zinc-200 ml-1.5 mr-1">{{ 'EXIT' | translate }}</span>
                           </button>
                         </div>
@@ -152,10 +205,33 @@ import { StructureStore } from '../../store/structures/structure.service';
                                   class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                                   (click)="logout()"
                                 >
-                                  <span
-                                    inlineSVG="rect-logout.svg"
-                                    class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"
-                                  ></span>
+                                  <span class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                                      <title>rect logout</title>
+                                      <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
+                                        <path
+                                          d="M6.25,5.75v-1.5c0-1.105,.895-2,2-2h5.5c1.105,0,2,.895,2,2V13.75c0,1.105-.895,2-2,2h-5.5c-1.105,0-2-.895-2-2v-1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        ></path>
+                                        <polyline
+                                          points="3.5 11.75 .75 9 3.5 6.25"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke="currentColor"
+                                        ></polyline>
+                                        <line
+                                          x1=".75"
+                                          y1="9"
+                                          x2="9.25"
+                                          y2="9"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke="currentColor"
+                                        ></line>
+                                      </g>
+                                    </svg>
+                                  </span>
                                   <span class="text-zinc-700 dark:text-zinc-200 ml-1.5 mr-1">{{
                                     'EXIT' | translate
                                   }}</span>

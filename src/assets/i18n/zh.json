@@ -73,7 +73,7 @@
   "CREATE": "创造",
   "CREATE_COMPETITOR": "创建竞争对手",
   "CREATE_RESTAURANT": "创建餐厅",
-  "CREATE_RESTAURANT_DESCRIPTION": "首先输入您的位置名称，然后从出现的下拉列表中选择您的位置",
+  "CREATE_RESTAURANT_DESCRIPTION": "输入您的商家信息，我们将建议您获取评论的渠道",
   "CUSTOMER_TYPE": "客户类型",
   "CUSTOMER_TYPES": "客户类型",
   "DATE_NOT_SETTED": "未设置",

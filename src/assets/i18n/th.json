@@ -73,7 +73,7 @@
   "CREATE": "สร้าง",
   "CREATE_COMPETITOR": "สร้างคู่แข่ง",
   "CREATE_RESTAURANT": "สร้างร้านอาหาร",
-  "CREATE_RESTAURANT_DESCRIPTION": "เริ่มต้นด้วยการป้อนชื่อสถานที่ของคุณและเลือกสถานที่ของคุณจากรายการแบบเลื่อนลงที่ปรากฏขึ้น",
+  "CREATE_RESTAURANT_DESCRIPTION": "ป้อนข้อมูลธุรกิจของคุณ แล้วเราจะแนะนำช่องทางที่จะเขียนบทวิจารณ์",
   "CUSTOMER_TYPE": "ประเภทลูกค้า",
   "CUSTOMER_TYPES": "ประเภทลูกค้า",
   "DATE_NOT_SETTED": "ไม่ได้ตั้งค่า",

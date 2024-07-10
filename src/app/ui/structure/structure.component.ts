@@ -11,6 +11,7 @@ import { StructureStore } from '../../store/structures/structure.service';
 import { LoaderComponent } from '../loader/loader.component';
 import { RestaurantPanelService as CreateRestaurantService } from '../create-restaurant/create-restaurant.service';
 import { RestaurantPanelService } from '../restaurant/panel.service';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 @UntilDestroy()
 @Component({
@@ -23,6 +24,7 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
     ClickOutsideDirective,
     LoaderComponent,
     ReactiveFormsModule,
+    MissingTranslationPipe,
   ],
   template: `
     <ng-template #loading>
@@ -46,7 +48,9 @@ import { RestaurantPanelService } from '../restaurant/panel.service';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-44">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>

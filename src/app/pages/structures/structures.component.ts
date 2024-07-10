@@ -11,12 +11,21 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map } from 'rxjs';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 @UntilDestroy()
 @Component({
   standalone: true,
   selector: 'choose-restaurant',
-  imports: [CommonModule, TranslateModule, InlineSVGModule, LoaderComponent, ReactiveFormsModule, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    InlineSVGModule,
+    LoaderComponent,
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    MissingTranslationPipe,
+  ],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
@@ -39,7 +48,9 @@ import { map } from 'rxjs';
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[24rem] sm:h-[54rem]">
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>
@@ -257,14 +268,14 @@ import { map } from 'rxjs';
         </div>
 
         <nav class="-mb-6 mt-10 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-          <div class="pb-6">
+          <div class="pb-6 text-center">
             <a
               (click)="userPanelUI.togglePanel()"
               class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline decoration-[1.5px]"
               >{{ 'MY_PROFILE' | translate }}</a
             >
           </div>
-          <div class="pb-6">
+          <div class="pb-6 text-center">
             <a
               (click)="settingsUI.openDialog()"
               class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline decoration-[1.5px]"
@@ -293,6 +304,7 @@ export class StructuresComponent {
   currentYear = moment(new Date()).year();
 
   constructor() {
+    this.store.clear().subscribe();
     this.searchFormControl.valueChanges
       .pipe(
         untilDestroyed(this),

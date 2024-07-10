@@ -1,7 +1,7 @@
-import { Component, QueryList, Renderer2, ViewChildren, computed, effect, inject, signal } from '@angular/core';
+import { Component, Renderer2, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { filter, map, tap } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { PublicMenuStoreService } from '../../store/public-menu/public-menu.service';
 import { LoaderComponent } from '../../ui/loader/loader.component';
 import { CommonModule } from '@angular/common';
@@ -11,13 +11,14 @@ import { MoneyPipe } from '../../utils/pipes/money.pipe';
 import { DishComponent } from './dish/dish.component';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Category, Dish } from '../../store/public-menu/interface/public-menu';
-import moment from 'moment';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DropdownService } from './dropdown.service';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { DishDialogComponent } from './dish-dialog/dish-dialog.component';
 import { DialogService } from './dish-dialog/dialog.service';
 import { SettingsService } from '../../ui/settings/settings.service';
+import moment from 'moment';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 @UntilDestroy()
 @Component({
@@ -33,6 +34,7 @@ import { SettingsService } from '../../ui/settings/settings.service';
     DishComponent,
     ClickOutsideDirective,
     DishDialogComponent,
+    MissingTranslationPipe,
   ],
   template: `
     <dish-dialog [dish]="selectedDish()" [currentLang]="translate.currentLang"></dish-dialog>
@@ -74,7 +76,9 @@ import { SettingsService } from '../../ui/settings/settings.service';
               </g>
             </svg>
           </span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>
@@ -299,14 +303,14 @@ import { SettingsService } from '../../ui/settings/settings.service';
       <footer class="bg-zinc-100 dark:bg-[#1A1A1A] border-t border-zinc-300 dark:border-zinc-800">
         <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav class="-mb-6 columns-2 flex justify-center space-x-12" aria-label="Footer">
-            <div class="pb-6">
+            <div class="pb-6 text-center">
               <a
                 (click)="settingsUI.openDialog()"
                 class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
                 >{{ 'SETTINGS' | translate }}</a
               >
             </div>
-            <div class="pb-6">
+            <div class="pb-6 text-center">
               <a
                 class="text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
                 href="mailto:support@eddy.restaurant"

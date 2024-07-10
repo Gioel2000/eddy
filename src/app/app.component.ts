@@ -9,6 +9,7 @@ import { RestaurantPanelComponent } from './ui/restaurant/restaurant.component';
 import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-competitor.component';
 import { GeneralDialogComponent } from './ui/dialog/dialog.component';
 import { CookieAlertComponent } from './ui/cookie/cookie.component';
+import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog/edit-channel-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ import { CookieAlertComponent } from './ui/cookie/cookie.component';
     CreateCompetitorPanelComponent,
     GeneralDialogComponent,
     CookieAlertComponent,
+    EditChannelDialogComponent,
   ],
   template: `
     @if (isRouterLoaded()) { @defer (on viewport; prefetch on idle) {
@@ -46,6 +48,12 @@ import { CookieAlertComponent } from './ui/cookie/cookie.component';
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <settings></settings>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <edit-channel-dialog></edit-channel-dialog>
     } @placeholder {
     <div></div>
     } @loading {

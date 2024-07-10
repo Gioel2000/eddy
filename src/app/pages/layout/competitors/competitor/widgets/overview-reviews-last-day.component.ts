@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { ReviewModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
+import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'overview-reviews-last-day',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe],
+  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, MissingTranslationPipe],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[485px]">
@@ -35,7 +36,9 @@ import { ReviewModel, StateModel } from '../../../../../store/competitors/interf
       >
         <div class="flex flex-col items-center justify-center w-full">
           <span [inlineSVG]="'triangle-warning.svg'" class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"></span>
-          <span class="text-base font-bold text-red-500 mt-1">{{ 'ERROR' | translate }}</span>
+          <span class="text-base font-bold text-red-500 mt-1">{{
+            'ERROR' | translate | missingTranslation : 'Error'
+          }}</span>
         </div>
       </div>
     </ng-template>
