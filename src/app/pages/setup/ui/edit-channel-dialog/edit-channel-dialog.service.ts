@@ -6,8 +6,8 @@ export class EditChannelDialogService {
   isDialogVisible = signal(false);
 
   url = signal('');
-  fuction = signal<() => void>(() => {});
-  source = signal<'google' | 'tripadvisor' | 'the_fork'>('google');
+  fuction = signal<(url: string) => void>(() => {});
+  source = signal<'google' | 'tripadvisor' | 'thefork'>('google');
   placeholder = computed(() => {
     return this.source() === 'google'
       ? 'www.google.com/travel/hotels/entity/aje4nbsk'

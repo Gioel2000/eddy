@@ -4,11 +4,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { GeneralDialogService } from './dialog.service';
+import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'general-dialog',
   standalone: true,
-  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective],
+  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, MissingTranslationPipe],
   template: `
     <div
       class="relative z-[10000]"
@@ -39,17 +40,43 @@ import { GeneralDialogService } from './dialog.service';
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
               >
-                <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+                <span class="svg-icon svg-icon-8 stroke-[1.6]">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                    <title>xmark</title>
+                    <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                      <line
+                        x1="14"
+                        y1="4"
+                        x2="4"
+                        y2="14"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-color="color-2"
+                      ></line>
+                      <line
+                        x1="4"
+                        y1="4"
+                        x2="14"
+                        y2="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></line>
+                    </g>
+                  </svg>
+                </span>
               </button>
             </div>
             <div class="sm:flex sm:items-start">
               <div class="mt-3 text-center sm:mt-0 sm:text-left">
                 <h3 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100" id="modal-title">
-                  {{ dialog.title() }}
+                  {{ dialog.title() | translate | missingTranslation : dialog.title() }}
                 </h3>
                 <div class="mt-2">
                   <p class="text-sm text-zinc-500">
-                    {{ dialog.descriptioni18n() | translate }}
+                    {{ dialog.description() | translate | missingTranslation : dialog.description() }}
                   </p>
                 </div>
               </div>
@@ -70,6 +97,15 @@ import { GeneralDialogService } from './dialog.service';
                 (click)="dialog.closeDialog()"
               >
                 {{ 'NO' | translate }}
+              </button>
+            </div>
+            } @case ('ok') {
+            <div class="mt-8 sm:flex gap-x-3">
+              <button
+                class="flex flex-col items-center justify-center w-full cursor-pointer rounded-[10px] min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto"
+                (click)="dialog.fuction()(); dialog.closeDialog()"
+              >
+                <span class="font-semibold text-base">{{ 'OK' | translate }}</span>
               </button>
             </div>
             } }

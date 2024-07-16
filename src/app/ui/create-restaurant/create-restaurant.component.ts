@@ -95,7 +95,35 @@ import { WorldComponent } from '../world/world.component';
                             class="relative text-zinc-400 dark:text-zinc-600 hover:text-zinc-500"
                             (click)="panelUI.closePanel()"
                           >
-                            <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
+                            <span class="svg-icon svg-icon-5">
+                              <span class="svg-icon svg-icon-8 stroke-[1.6]">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                                  <title>xmark</title>
+                                  <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                                    <line
+                                      x1="14"
+                                      y1="4"
+                                      x2="4"
+                                      y2="14"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      data-color="color-2"
+                                    ></line>
+                                    <line
+                                      x1="4"
+                                      y1="4"
+                                      x2="14"
+                                      y2="14"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    ></line>
+                                  </g>
+                                </svg>
+                              </span>
+                            </span>
                           </button>
                         </div>
                       </div>
@@ -566,30 +594,30 @@ export class CreateRestaurantPanelComponent implements AfterViewInit {
 
     this.isLoading.set(true);
 
-    this.store
-      .add({
-        name,
-        address,
-        zipCode,
-        city,
-        telephone,
-        email,
-        website,
-        image: file ?? preview,
-        type: this.structureTypes[this.selectedType()],
-        googleMapsLink: this.googleLink(),
-        googlePlaceId: this.googlePlaceId(),
-        latitude: this.coordinates().latitude,
-        longitude: this.coordinates().longitude,
-      } as AddRestaurant)
-      .subscribe(() => {
-        this.isLoading.set(false);
-        this.googleLink.set('');
-        this.selectedPhoto.set(0);
-        this.photos.set([]);
-        this.panelUI.closePanel();
-        this.formGroup.reset();
-      });
+    // this.store
+    //   .add({
+    //     name,
+    //     address,
+    //     zipCode,
+    //     city,
+    //     telephone,
+    //     email,
+    //     website,
+    //     image: file ?? preview,
+    //     type: this.structureTypes[this.selectedType()],
+    //     googleMapsLink: this.googleLink(),
+    //     googlePlaceId: this.googlePlaceId(),
+    //     latitude: this.coordinates().latitude,
+    //     longitude: this.coordinates().longitude,
+    //   } as AddRestaurant)
+    //   .subscribe(() => {
+    //     this.isLoading.set(false);
+    //     this.googleLink.set('');
+    //     this.selectedPhoto.set(0);
+    //     this.photos.set([]);
+    //     this.panelUI.closePanel();
+    //     this.formGroup.reset();
+    //   });
   }
 
   goLeft() {

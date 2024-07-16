@@ -450,5 +450,13 @@
   "NO_CHANNEL_DESCRIPTION": "We didn't find your business on this channel",
   "CONFIRM": "Confirm",
   "EDIT_CHANNEL": "Edit channel",
-  "EDIT_CHANNEL_DESCRIPTION": "If we didn't find you on this channel or we found a business that isn't yours, change the reference URL!"
+  "EDIT_CHANNEL_DESCRIPTION": "If we didn't find you on this channel or we found a business that isn't yours, change the reference URL!",
+  "CLOSE": "",
+  "ERROR_URL_CHANNEL": "You have entered an invalid URL for this channel",
+  "NOT_FOUND": "Not found",
+  "SEARCHING_COMPETITORS": "We are looking for your competitors",
+  "COMPETITORS_DESCRIPTION": "We search for your competitors around the world and take their channels (Google, Tripadvisor, TheFork)",
+  "CONFIGURE_COMPETITORS": "Configure Competitors",
+  "CHECK_COMPETITOS": "Add competitors based on those we recommend or enter them manually",
+  "SKIP": "Skip"
 }

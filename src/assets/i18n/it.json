@@ -450,5 +450,13 @@
   "NO_CHANNEL_DESCRIPTION": "Non abbiamo trovato la tua attività su questo canale",
   "CONFIRM": "Conferma",
   "EDIT_CHANNEL": "Modifica canale",
-  "EDIT_CHANNEL_DESCRIPTION": "Se non ti abbiamo trovato su questo canale o abbiamo trovato un'attività non tua, cambia l'URL di riferimento!"
+  "EDIT_CHANNEL_DESCRIPTION": "Se non ti abbiamo trovato su questo canale o abbiamo trovato un'attività non tua, cambia l'URL di riferimento!",
+  "CLOSE": "",
+  "ERROR_URL_CHANNEL": "Hai inserito un URL non valido per questo canale",
+  "NOT_FOUND": "Non trovato",
+  "SEARCHING_COMPETITORS": "Cerchiamo i tuoi competitors",
+  "COMPETITORS_DESCRIPTION": "Cerchiamo i tuoi concorrenti nel mondo e prendiamo i loro canali (Google, Tripadvisor, TheFork)",
+  "CONFIGURE_COMPETITORS": "Configura i Competitors",
+  "CHECK_COMPETITOS": "Aggiungi concorrenti in base a quelli da noi consigliati oppure inseriscili manualmente",
+  "SKIP": "Salta"
 }

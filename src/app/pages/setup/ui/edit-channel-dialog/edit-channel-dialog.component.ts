@@ -43,7 +43,33 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                 class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
                 (click)="dialog.closeDialog()"
               >
-                <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+                <span class="svg-icon svg-icon-8 stroke-[1.6]">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                    <title>xmark</title>
+                    <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                      <line
+                        x1="14"
+                        y1="4"
+                        x2="4"
+                        y2="14"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-color="color-2"
+                      ></line>
+                      <line
+                        x1="4"
+                        y1="4"
+                        x2="14"
+                        y2="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></line>
+                    </g>
+                  </svg>
+                </span>
               </button>
             </div>
             <div class="sm:flex sm:items-start">
@@ -105,7 +131,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
                     </g>
                   </svg>
                 </div>
-                } @case ('the_fork') {
+                } @case ('thefork') {
                 <svg
                   version="1.1"
                   id="katman_1"
@@ -195,10 +221,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               <button
                 id="yes"
                 class="flex flex-col items-center justify-center w-full cursor-pointer rounded-[10px] min-w-11 bg-accent dark:bg-accentDark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 dark:hover:hover:bg-accentDark/90 sm:mt-0 sm:w-auto disabled:opacity-30"
-                (click)="dialog.closeDialog()"
+                (click)="save()"
                 [disabled]="URLFormControl.invalid"
               >
-                <span class="font-semibold text-base">{{ 'EDIT' | translate }}</span>
+                <span class="font-semibold text-base">
+                  {{ 'SAVE' | translate }}
+                </span>
               </button>
             </div>
           </div>
@@ -211,11 +239,16 @@ export class EditChannelDialogComponent {
   dialog = inject(EditChannelDialogService);
 
   readonly URL_REGEX = /^https:\/\/(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\/[a-zA-Z0-9._~:/?#[\]@!$&'()*+,;=%-]*$/;
-  readonly URLFormControl = new FormControl('', [Validators.required, Validators.pattern(this.URL_REGEX)]);
+  readonly URLFormControl = new FormControl('', [Validators.pattern(this.URL_REGEX)]);
 
   constructor() {
     toObservable(this.dialog.url)
       .pipe(untilDestroyed(this))
       .subscribe((url) => this.URLFormControl.patchValue(url));
+  }
+
+  save() {
+    this.dialog.fuction()(this.URLFormControl.value as string);
+    this.dialog.closeDialog();
   }
 }

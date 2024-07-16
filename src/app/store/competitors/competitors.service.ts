@@ -15,6 +15,7 @@ import {
   delay,
   distinctUntilChanged,
   filter,
+  first,
   forkJoin,
   interval,
   map,
@@ -54,6 +55,8 @@ export class CompetitorsStore {
   private delete$ = new Subject<string>();
   private setIsDownloading$ = new Subject<{ competitorId: string; newIsDownloading: boolean }>();
   private setExlusion$ = new Subject<{ competitorId: string; isExluded: boolean }>();
+
+  private stateSeup$ = new Subject<StateModel>();
 
   constructor() {
     const subscription = interval(3000)

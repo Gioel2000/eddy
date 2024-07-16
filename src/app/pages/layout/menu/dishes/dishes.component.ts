@@ -175,7 +175,7 @@ export class MenuDishesComponent {
 
   deleteDish(dish: DishTO) {
     this.generalDialog.title.set(dish.name);
-    this.generalDialog.descriptioni18n.set('DELETE_DISH_CONFIRM');
+    this.generalDialog.description.set('DELETE_DISH_CONFIRM');
     this.generalDialog.mode.set('boolean');
     this.generalDialog.fuction.set(() => this.store.deleteDish(dish._id));
     this.generalDialog.openDialog();

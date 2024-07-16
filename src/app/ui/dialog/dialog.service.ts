@@ -6,8 +6,8 @@ export class GeneralDialogService {
   isDialogVisible = signal(false);
 
   title = signal('');
-  descriptioni18n = signal('');
-  mode = signal<'boolean'>('boolean');
+  description = signal('');
+  mode = signal<'boolean' | 'ok'>('boolean');
   fuction = signal<() => void>(() => {});
 
   openDialog() {

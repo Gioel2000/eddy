@@ -10,6 +10,7 @@ import { StructuresComponent } from './pages/structures/structures.component';
 import { PublicMenuComponent } from './pages/public-menu/public-menu.component';
 import { Step1Component } from './pages/setup/steps/step1/step1.component';
 import { Step2Component } from './pages/setup/steps/step2/step2.component';
+import { Step3Component } from './pages/setup/steps/step3/step3.component';
 
 export const routes: Routes = [
   {
@@ -60,26 +61,30 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'setup',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: '1',
+        pathMatch: 'full',
+      },
+      {
+        path: '1',
+        component: Step1Component,
+      },
+      {
+        path: '2',
+        component: Step2Component,
+      },
+      {
+        path: '3',
+        component: Step3Component,
+      },
+    ],
+  },
+  {
     path: 'public-menu/:id',
     component: PublicMenuComponent,
   },
-  // {
-  //   path: 'setup',
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: '1',
-  //       pathMatch: 'full',
-  //     },
-  //     {
-  //       path: '1',
-  //       component: Step1Component,
-  //     },
-  //     {
-  //       path: '2',
-  //       component: Step2Component,
-  //     },
-  //   ],
-  // },
 ];

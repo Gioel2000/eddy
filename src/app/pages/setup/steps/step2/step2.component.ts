@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -10,17 +10,16 @@ import { StepperComponent } from '../../stepper/stepper.component';
 import { StructureStore } from '../../../../store/structures/structure.service';
 import { SettingsService } from '../../../../ui/settings/settings.service';
 import { UserPanelService } from '../../../../ui/user/user.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { filter, from, map } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { GoogleStep2Component } from './ui/google.component';
 import { TripadvisorStep2Component } from './ui/tripadvisor.component';
 import { TheForkStep2Component } from './ui/thefork.component';
-import moment from 'moment';
 import { NoChannelComponent } from './ui/no-channel.component';
 import { EditChannelDialogService } from '../../ui/edit-channel-dialog/edit-channel-dialog.service';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
+import moment from 'moment';
 
 @UntilDestroy()
 @Component({
@@ -102,7 +101,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
         } @case ('error') {
         <ng-container *ngTemplateOutlet="error"></ng-container>
         } @case ('loaded') { @if (channels()[index()]; as selectedChannel) {
-        <div class="col-span-1 px-6 pb-24 pt-20 sm:pt-44 sm:pb-32 lg:px-8 lg:min-h-screen">
+        <div class="col-span-1 px-6 pb-24 pt-16 sm:pb-32 lg:px-8 lg:min-h-screen">
           <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
             <div class="flex flex-row items-center gap-x-2 cursor-pointer">
               @switch (selectedChannel.key) { @case('google') {
@@ -162,7 +161,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   </g>
                 </svg>
               </div>
-              } @case ('the_fork') {
+              } @case ('thefork') {
               <svg
                 version="1.1"
                 id="katman_1"
@@ -317,7 +316,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </div>
 
                         <div
-                          class="grid grid-cols-3 text-xs leading-5 overflow-hidden border-t border-zinc-900/5 dark:border-zinc-100/5"
+                          class="grid grid-cols-3 text-xs leading-5 overflow-hidden border-t border-zinc-200 dark:border-zinc-600"
                         >
                           <a
                             class="cursor-pointer svg-icon-9 font-medium px-4 py-1.5 flex items-center justify-center space-x-2 dark:text-zinc-200"
@@ -432,11 +431,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                             class="cursor-pointer svg-icon-9 font-medium px-4 py-1.5 flex items-center justify-center space-x-2 dark:text-zinc-200"
                             [ngClass]="{
                               'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100':
-                                selectedChannel.key === 'the_fork',
+                                selectedChannel.key === 'thefork',
                               'bg-zinc-100 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-600':
-                                selectedChannel.key !== 'the_fork'
+                                selectedChannel.key !== 'thefork'
                             }"
-                            (click)="goTo('the_fork')"
+                            (click)="goTo('thefork')"
                           >
                             <svg
                               version="1.0"
@@ -450,8 +449,8 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                                 transform="translate(0.000000,205.000000) scale(0.100000,-0.100000)"
                                 fill="currentColor"
                                 [ngClass]="{
-                                  'fill-[#00645a]': selectedChannel.key === 'the_fork',
-                                  'fill-zinc-400 dark:fill-zinc-600': selectedChannel.key !== 'the_fork'
+                                  'fill-[#00645a]': selectedChannel.key === 'thefork',
+                                  'fill-zinc-400 dark:fill-zinc-600': selectedChannel.key !== 'thefork'
                                 }"
                                 stroke="none"
                               >
@@ -488,7 +487,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         [name]="channelSuggested.name || ''"
                         [address]="selectedChannel.address || ''"
                       ></step2-tripadvisor>
-                      } @case ('the_fork') {
+                      } @case ('thefork') {
                       <step2-thefork
                         [image]="channelSuggested.image || ''"
                         [name]="channelSuggested.name || ''"
@@ -516,9 +515,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
               <div class="flex flex-row items-center justify-between mt-14 w-full">
                 <button
                   type="button"
-                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
                   (click)="edit()"
+                  [disabled]="selectedChannel.key === 'google'"
                 >
+                  @if (selectedChannel.channel?.channel?.api?.url) {
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                     <title>pen writing</title>
                     <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
@@ -539,6 +540,34 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                     </g>
                   </svg>
                   {{ 'EDIT' | translate }}
+                  } @else {
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                    <title>plus</title>
+                    <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                      <line
+                        x1="9"
+                        y1="3.25"
+                        x2="9"
+                        y2="14.75"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-color="color-2"
+                      ></line>
+                      <line
+                        x1="3.25"
+                        y1="9"
+                        x2="14.75"
+                        y2="9"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></line>
+                    </g>
+                  </svg>
+                  {{ 'ADD' | translate }}
+                  }
                 </button>
 
                 <button
@@ -748,6 +777,7 @@ export class Step2Component {
   userPanelUI = inject(UserPanelService);
   dialog = inject(EditChannelDialogService);
 
+  isLoading = signal<boolean>(false);
   channels = computed(() => this.store.channelsSetup());
   index = signal(0);
   finalConfirm = computed(() => this.channels().every((channel) => channel.checked));
@@ -755,19 +785,10 @@ export class Step2Component {
   readonly currentYear = moment(new Date()).year();
 
   constructor() {
-    toObservable(this.store.selected)
-      .pipe(
-        untilDestroyed(this),
-        filter((selected) => !!selected?.status),
-        map((selected) => selected.status),
-        filter((status) => status !== 'created')
-      )
-      .subscribe(() => this.router.navigate(['setup', '1']));
-
     setTimeout(() => this.store.loadSuggestedChannels(), 0);
   }
 
-  goTo(source: 'google' | 'tripadvisor' | 'the_fork') {
+  goTo(source: 'google' | 'tripadvisor' | 'thefork') {
     const index = this.channels().findIndex((channel) => channel.key === source);
     this.index.set(index);
     this.store.checkChannelSetup(source);
@@ -782,7 +803,15 @@ export class Step2Component {
     const selectedChannel = this.channels()[this.index()];
     this.dialog.source.set(selectedChannel.key);
     this.dialog.url.set(selectedChannel.channel?.channel?.api?.url || '');
-    this.dialog.fuction.set(() => {});
+    this.dialog.fuction.set((url: string) => {
+      if (!url) {
+        console.log('remove', selectedChannel.key);
+        this.store.removeChannelSetup(selectedChannel.key);
+        return;
+      }
+
+      this.store.editSetupChannel(selectedChannel.key, url);
+    });
 
     this.dialog.openDialog();
   }
@@ -790,12 +819,29 @@ export class Step2Component {
   confirm() {
     const checked = this.channels().filter((channel) => !channel.checked);
     if (checked.length === 0) {
-      console.log('all checked');
+      this.save();
       return;
     }
 
     const selectedChannel = checked[0];
 
     this.goTo(selectedChannel.key);
+  }
+
+  private save() {
+    const channelsSetup: {
+      source: string;
+      url: string;
+      id: string;
+    }[] = this.store
+      .channelsSetup()
+      .map((channel) => ({
+        source: channel.key,
+        url: channel.channel?.channel?.api?.url || '',
+        id: '',
+      }))
+      .filter((channel) => channel.url);
+
+    this.store.saveChannelsSetup(channelsSetup);
   }
 }

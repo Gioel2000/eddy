@@ -14,7 +14,6 @@ import { UserPanelService } from '../../../../ui/user/user.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AddRestaurant } from '../../../../store/structures/interfaces/restaurant';
 import moment from 'moment';
-import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -577,7 +576,6 @@ export class Step1Component {
   select = inject(SelectService);
   settingsUI = inject(SettingsService);
   userPanelUI = inject(UserPanelService);
-  router = inject(Router);
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -656,6 +654,7 @@ export class Step1Component {
             c.types.includes('administrative_area_level_3') ||
             c.types.includes('postal_town')
         )?.long_name || '';
+
       const photos = place.photos?.map((p: any) => p.getUrl()) || ([] as string[]);
       const googlePlaceId = place.place_id || '';
 
@@ -682,30 +681,21 @@ export class Step1Component {
 
     this.isLoading.set(true);
 
-    this.store
-      .add({
-        name,
-        address,
-        zipCode,
-        city,
-        telephone,
-        email,
-        website,
-        image: file ?? preview,
-        type: this.structureTypes[this.selectedType()],
-        googleMapsLink: this.googleLink(),
-        googlePlaceId: this.googlePlaceId(),
-        latitude: this.coordinates().latitude,
-        longitude: this.coordinates().longitude,
-      } as AddRestaurant)
-      .subscribe(() => {
-        this.isLoading.set(false);
-        this.googleLink.set('');
-        this.selectedPhoto.set(0);
-        this.photos.set([]);
-        this.formGroup.reset();
-        this.router.navigate(['/setup/2']);
-      });
+    this.store.add({
+      name,
+      address,
+      zipCode,
+      city,
+      telephone,
+      email,
+      website,
+      image: file ?? preview,
+      type: this.structureTypes[this.selectedType()],
+      googleMapsLink: this.googleLink(),
+      googlePlaceId: this.googlePlaceId(),
+      latitude: this.coordinates().latitude,
+      longitude: this.coordinates().longitude,
+    } as AddRestaurant);
   }
 
   goLeft() {

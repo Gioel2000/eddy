@@ -50,7 +50,33 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
               (click)="dialog.closeDialog()"
             >
-              <span class="svg-icon svg-icon-8 stroke-[1.6]" inlineSVG="xmark.svg"></span>
+              <span class="svg-icon svg-icon-8 stroke-[1.6]">
+                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                  <title>xmark</title>
+                  <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                    <line
+                      x1="14"
+                      y1="4"
+                      x2="4"
+                      y2="14"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      data-color="color-2"
+                    ></line>
+                    <line
+                      x1="4"
+                      y1="4"
+                      x2="14"
+                      y2="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></line>
+                  </g>
+                </svg>
+              </span>
             </button>
           </div>
 

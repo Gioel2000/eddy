@@ -9,7 +9,7 @@ export interface CompetitorTO {
     source: string;
     url: string;
   }[];
-  gMapsUrl: string;
+  googleMapsLink: string;
   active: boolean;
 }
 
@@ -18,7 +18,7 @@ export interface CompetitorModel {
   name: string;
   image: string;
   channels: Channel[];
-  gMapsUrl: string;
+  googleMapsLink: string;
   active: boolean;
   reputation: ReputationModel;
   rating: RatingModel[];

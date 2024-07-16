@@ -95,7 +95,7 @@ export class MenuCategoriesComponent {
 
   onDelete(category: CategoryTO) {
     this.generalDialog.title.set(category.name);
-    this.generalDialog.descriptioni18n.set('DELETE_CATEGORY_CONFIRM');
+    this.generalDialog.description.set('DELETE_CATEGORY_CONFIRM');
     this.generalDialog.mode.set('boolean');
     this.generalDialog.fuction.set(() => this.store.deleteCategory(category._id));
     this.generalDialog.openDialog();

@@ -1,26 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import {
-  Observable,
-  Subject,
-  catchError,
-  delay,
-  filter,
-  forkJoin,
-  from,
-  map,
-  mergeMap,
-  of,
-  switchMap,
-  tap,
-  toArray,
-} from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { ChannelsModel, ChannelsTOModel } from './interfaces/channels';
 import {
   AddRestaurant,
   ChannelModelTO,
@@ -31,7 +17,21 @@ import {
   SetTO,
   StateModel,
 } from './interfaces/restaurant';
-import { ChannelsModel, ChannelsTOModel } from './interfaces/channels';
+import {
+  Observable,
+  Subject,
+  catchError,
+  filter,
+  forkJoin,
+  from,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+  toArray,
+} from 'rxjs';
+import { GeneralDialogService } from '../../ui/dialog/dialog.service';
 
 export interface StructuresStore {
   selected: {
@@ -42,7 +42,7 @@ export interface StructuresStore {
     data: RestaurantModel[];
     state: StateModel;
   };
-  channelsSetup: {
+  setup: {
     data: ChannelsModel[];
     state: StateModel;
   };
@@ -54,6 +54,7 @@ export class StructureStore {
   http = inject(HttpClient);
   router = inject(Router);
   storage = inject(StorageMap);
+  generalDialog = inject(GeneralDialogService);
 
   private store = signal<StructuresStore>({
     selected: {
@@ -64,7 +65,7 @@ export class StructureStore {
       data: [] as RestaurantModel[],
       state: 'loading' as const,
     },
-    channelsSetup: {
+    setup: {
       data: [] as ChannelsModel[],
       state: 'loading' as const,
     },
@@ -74,8 +75,8 @@ export class StructureStore {
   state = computed(() => this.store().structures.state);
   selected = computed(() => this.store().selected.structure);
   selectedState = computed(() => this.store().selected.state);
-  channelsSetup = computed(() => this.store().channelsSetup.data);
-  channelsState = computed(() => this.store().channelsSetup.state);
+  channelsSetup = computed(() => this.store().setup.data);
+  channelsState = computed(() => this.store().setup.state);
   structureChanged$ = toObservable(computed(() => this.store().selected.structure._id)).pipe(untilDestroyed(this));
   savedSuccesfully = signal(false);
   errors = signal(false);
@@ -88,14 +89,16 @@ export class StructureStore {
   private editSelected$ = new Subject<RestaurantTOModel>();
   private state$ = new Subject<StateModel>();
   private selectedState$ = new Subject<StateModel>();
-  private channelsSetupState$ = new Subject<StateModel>();
-  private setChannelsSetup$ = new Subject<ChannelsTOModel[]>();
-  private editChannelSetup$ = new Subject<{ source: 'google' | 'tripadvisor' | 'thefork'; channel: ChannelsTOModel }>();
   private selected$ = new Subject<RestaurantSettedTO | null>();
   private showAll$ = new Subject<void>();
   private setChannels$ = new Subject<ChannelModelTO[]>();
-  private checkChannelSetup$ = new Subject<string>();
   private deleteChannel$ = new Subject<string>();
+
+  private setSetupState$ = new Subject<StateModel>();
+  private checkChannelSetup$ = new Subject<string>();
+  private editChannelSetup$ = new Subject<{ source: 'google' | 'tripadvisor' | 'thefork'; channel: ChannelsTOModel }>();
+  private setChannelsSetup$ = new Subject<ChannelsTOModel[]>();
+  private removeChannelSetup$ = new Subject<'google' | 'tripadvisor' | 'thefork'>();
 
   constructor() {
     const next$: Observable<StructuresStore> = this.http
@@ -111,7 +114,7 @@ export class StructureStore {
             data: structures,
             state: structures.length > 0 ? ('loaded' as const) : ('empty' as const),
           },
-          channelsSetup: {
+          setup: {
             data: [],
             state: 'loading' as const,
           },
@@ -123,7 +126,7 @@ export class StructureStore {
               data: [],
               state: 'error' as const,
             },
-            channelsSetup: {
+            setup: {
               data: [],
               state: 'loading' as const,
             },
@@ -229,19 +232,19 @@ export class StructureStore {
           },
         },
       }))
-      .with(this.channelsSetupState$, (store, state) => ({
+      .with(this.setSetupState$, (store, state) => ({
         ...store,
-        channelsSetup: { ...store.channelsSetup, state },
+        setup: { ...store.setup, state },
       }))
       .with(this.setChannelsSetup$, (store, suggestedChannels) => {
         const google = suggestedChannels.find((channel) => channel.channel.source === 'google');
         const tripadvisor = suggestedChannels.find((channel) => channel.channel.source === 'tripadvisor');
-        const the_fork = suggestedChannels.find((channel) => channel.channel.source === 'thefork');
+        const thefork = suggestedChannels.find((channel) => channel.channel.source === 'thefork');
 
         const channels = [
           { key: 'google', name: 'Google' },
           { key: 'tripadvisor', name: 'TripAdvisor' },
-          { key: 'the_fork', name: 'The Fork' },
+          { key: 'thefork', name: 'The Fork' },
         ];
 
         const updatedChannels: ChannelsModel[] = channels.map((channel) => {
@@ -253,8 +256,8 @@ export class StructureStore {
             return { ...channel, channel: tripadvisor, address: tripadvisor.address, checked: false } as ChannelsModel;
           }
 
-          if (channel.key === 'the_fork' && the_fork) {
-            return { ...channel, channel: the_fork, address: the_fork.address, checked: false } as ChannelsModel;
+          if (channel.key === 'thefork' && thefork) {
+            return { ...channel, channel: thefork, address: thefork.address, checked: false } as ChannelsModel;
           }
 
           return { ...channel, channel: null, address: null, checked: false } as ChannelsModel;
@@ -262,22 +265,38 @@ export class StructureStore {
 
         return {
           ...store,
-          channelsSetup: { ...store.channelsSetup, data: updatedChannels },
+          setup: { ...store.setup, data: updatedChannels },
         };
       })
-      // .with(this.editChannelSetup$, (store, { source, channel }) => {
-
-      // }
-
-      // )
+      .with(this.editChannelSetup$, (store, { source, channel }) => {
+        return {
+          ...store,
+          setup: {
+            ...store.setup,
+            data: store.setup.data.map((c) =>
+              c.key === source ? { ...c, channel, address: channel.address, checked: true } : c
+            ),
+          },
+        };
+      })
       .with(this.checkChannelSetup$, (store, key) => {
-        const updatedChannels = store.channelsSetup.data.map((channel) =>
-          channel.key === key ? { ...channel, checked: !channel.checked } : channel
+        const updatedChannels = store.setup.data.map((channel) =>
+          channel.key === key ? { ...channel, checked: true } : channel
         );
 
         return {
           ...store,
-          channelsSetup: { ...store.channelsSetup, data: updatedChannels },
+          setup: { ...store.setup, data: updatedChannels },
+        };
+      })
+      .with(this.removeChannelSetup$, (store, sourceToRemove) => {
+        const updatedChannels = store.setup.data.map((channel) =>
+          channel.key === sourceToRemove ? { ...channel, channel: null } : channel
+        );
+
+        return {
+          ...store,
+          setup: { ...store.setup, data: updatedChannels },
         };
       });
   }
@@ -296,24 +315,19 @@ export class StructureStore {
       )
       .subscribe({
         next: (selected) => {
-          const { url: current } = this.router;
-          // const page = selected.status === 'created' ? '/setup/2' : current.includes('structures') ? '/home' : current;
-          const page = current.includes('structures') ? '/home' : current;
-
+          this.routeSetup(selected.status);
           this.showAll$.next();
           this.selectedState$.next('loaded');
           this.selected$.next(selected);
-          this.router.navigate([page]);
         },
-        error: (error) => {
+        error: () => {
           this.selectedState$.next('error');
           this.router.navigate(['/structures']);
         },
       });
   }
 
-  add(structure: AddRestaurant): Observable<void> {
-    const done$ = new Subject<void>();
+  add(structure: AddRestaurant) {
     this.showAll$.next();
     this.state$.next('loading');
 
@@ -343,23 +357,16 @@ export class StructureStore {
         untilDestroyed(this),
         tap((restaurant) => {
           this.state$.next('loaded');
-          this.savedSuccesfully.set(true);
-          setTimeout(() => this.savedSuccesfully.set(false), 2000);
           this.add$.next(restaurant);
           this.choose(restaurant._id);
-          this.router.navigate(['/home']);
+          this.routeSetup('created');
         }),
         catchError(() => {
           this.state$.next('error');
           return of(null);
         })
       )
-      .subscribe({
-        complete: () => done$.next(),
-        next: () => done$.next(),
-      });
-
-    return done$;
+      .subscribe();
   }
 
   edit(payload: EditRestaurant) {
@@ -412,122 +419,64 @@ export class StructureStore {
   }
 
   loadSuggestedChannels() {
-    this.channelsSetupState$.next('loading');
-    // debug
-    of([
-      {
-        channel: {
-          source: 'google',
-          api: {
-            url: 'https://maps.google.com/?cid=16762488484112003401',
-            id: '1385718213423706455:16762488484112003401',
-          },
-        },
-        name: 'Pizza Social Lab',
-        image:
-          'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXXnVsA5W8Sgp9HeuC7SfG53rArZ9vfE5ANhYMt-hfnZPPWvlR-6G4Ov0-ppaQib26a2RDCoDJLvbmvGLd3-n5_7VKPNnyWyGnwZjXvZIg8UGfI6LmFMtRJwF_RoPO7PAOxLDXpoT-1uYz5wrC0mNQKXAMX-ED5U_er5iAXdXcTYb_IT&3u4032&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A4200%2Fsetup%2F1&key=AIzaSyAHZLeQ42t5INTGE4OKGUNmWpvjHqFGR6M&token=12645',
-        latitude: 40.82048059999999,
-        longitude: 14.1782868,
-      } as ChannelsTOModel,
-      {
-        channel: {
-          source: 'tripadvisor',
-          api: {
-            url: 'https://www.tripadvisor.com/Restaurant_Review-d19701014',
-            id: '19701014',
-          },
-        },
-        latitude: 40.820656,
-        longitude: 14.177927,
-        name: 'Pizza Social Lab',
-        image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/31/10/c9/getlstd-property-photo.jpg',
-      } as ChannelsTOModel,
-      {
-        channel: {
-          source: 'thefork',
-          api: {
-            url: 'https://www.thefork.it/ristorante/pizza-social-lab-r580269',
-            id: '580269',
-          },
-        },
-        name: 'Pizza Social Lab',
-        image:
-          'https://res.cloudinary.com/tf-lab/image/upload/restaurant/77ee2797-da9f-4a52-8692-2f8cc123a673/8bda58b7-99a2-42ec-9272-a47842c59ace.jpg',
-        longitude: 14.1782868,
-        latitude: 40.8204806,
-      } as ChannelsTOModel,
-    ])
+    this.setSetupState$.next('loading');
+
+    this.http
+      .get<ChannelsTOModel[]>(`${environment.apiUrl}/api/restaurants/channels/retrieve`)
       .pipe(
         untilDestroyed(this),
-        delay(1000),
         switchMap((channels) =>
           forkJoin(
             channels.map((channel) =>
-              this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+              channel.latitude && channel.longitude
+                ? this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+                : of(channel)
             )
           )
         ),
         tap((channels) => this.setChannelsSetup$.next(channels)),
-        tap(() => this.channelsSetupState$.next('loaded')),
+        tap(() => this.setSetupState$.next('loaded')),
         catchError(() => {
-          this.channelsSetupState$.next('error');
+          this.setSetupState$.next('error');
           return of(null);
         })
       )
       .subscribe();
-
-    // this.http
-    //   .get<ChannelsTOModel[]>(`${environment.apiUrl}/api/restaurants/channels/retrieve`)
-    //   .pipe(
-    //     untilDestroyed(this),
-    //     switchMap((channels) =>
-    //       forkJoin(
-    //         channels.map((channel) =>
-    //           this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
-    //         )
-    //       )
-    //     ),
-    //     tap((channels) => this.setChannelsSetup$.next(channels)),
-    //     tap(() => this.channelsSetupState$.next('loaded')),
-    //     catchError(() => {
-    //       this.channelsSetupState$.next('error');
-    //       return of(null);
-    //     })
-    //   )
-    //   .subscribe();
   }
 
-  editSetupChannel() {
-    this.channelsSetupState$.next('loading');
+  editSetupChannel(source: 'google' | 'tripadvisor' | 'thefork', url: string) {
+    this.setSetupState$.next('loading');
 
-    of({
-      channel: {
-        source: 'google',
-        api: {
-          url: 'https://maps.google.com/?cid=16762488484112003401',
-          id: '1385718213423706455:16762488484112003401',
-        },
-      },
-      name: 'Pizza Social Lab',
-      image:
-        'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXXnVsA5W8Sgp9HeuC7SfG53rArZ9vfE5ANhYMt-hfnZPPWvlR-6G4Ov0-ppaQib26a2RDCoDJLvbmvGLd3-n5_7VKPNnyWyGnwZjXvZIg8UGfI6LmFMtRJwF_RoPO7PAOxLDXpoT-1uYz5wrC0mNQKXAMX-ED5U_er5iAXdXcTYb_IT&3u4032&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A4200%2Fsetup%2F1&key=AIzaSyAHZLeQ42t5INTGE4OKGUNmWpvjHqFGR6M&token=12645',
-      latitude: 40.82048059999999,
-      longitude: 14.1782868,
-    } as ChannelsTOModel)
+    this.http
+      .post<ChannelsTOModel>(`${environment.apiUrl}/api/restaurants/channels/preview`, {
+        source,
+        url,
+      })
       .pipe(
         untilDestroyed(this),
-        delay(1000),
+        tap(() => this.setSetupState$.next('loaded')),
+        tap((channel) => {
+          if (channel === null) {
+            this.generalDialog.title.set('ERROR');
+            this.generalDialog.description.set('ERROR_URL_CHANNEL');
+            this.generalDialog.mode.set('ok');
+            this.generalDialog.fuction.set(() => {});
+            this.generalDialog.openDialog();
+          }
+        }),
+        filter((channel) => channel !== null),
         switchMap((channel) =>
-          this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+          channel.latitude && channel.longitude
+            ? this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+            : of(channel)
         ),
-        // tap((channel) => this.setChannelsSetup$.next(channel)),
-        tap(() => this.channelsSetupState$.next('loaded')),
-        catchError(() => {
-          this.channelsSetupState$.next('error');
-          return of(null);
-        })
+        tap((channel) => this.editChannelSetup$.next({ source, channel }))
       )
       .subscribe();
+  }
+
+  removeChannelSetup(sourceToRemove: 'google' | 'tripadvisor' | 'thefork') {
+    this.removeChannelSetup$.next(sourceToRemove);
   }
 
   delete() {
@@ -567,9 +516,7 @@ export class StructureStore {
     this.http
       .put<{ errors: { source: string; status: string }[]; restaurant: RestaurantSettedTO }>(
         `${environment.apiUrl}/api/restaurants/channels`,
-        {
-          channels,
-        }
+        { channels }
       )
       .pipe(
         untilDestroyed(this),
@@ -587,6 +534,43 @@ export class StructureStore {
         }),
         catchError(() => {
           this.state$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  saveChannelsSetup(
+    channels: {
+      source: string;
+      url: string;
+      id: string;
+    }[]
+  ) {
+    this.showAll$.next();
+    this.setSetupState$.next('loading');
+
+    this.http
+      .put<{ errors: { source: string; status: string }[]; restaurant: RestaurantSettedTO }>(
+        `${environment.apiUrl}/api/restaurants/channels`,
+        { channels }
+      )
+      .pipe(
+        untilDestroyed(this),
+        switchMap(({ restaurant }) =>
+          this.http
+            .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, { status: 'channels' })
+            .pipe(map(() => restaurant))
+        ),
+        tap((restaurant) => {
+          this.routeSetup('channels');
+          this.edit$.next({ id: restaurant._id, structure: restaurant });
+          this.setChannels$.next(restaurant.channels);
+          this.editSelected$.next(restaurant);
+          setTimeout(() => this.setSetupState$.next('loaded'), 500);
+        }),
+        catchError(() => {
+          this.setSetupState$.next('error');
           return of(null);
         })
       )
@@ -639,6 +623,28 @@ export class StructureStore {
       tap(() => this.showAll$.next()),
       tap(() => this.selected$.next(null))
     );
+  }
+
+  private routeSetup(status: 'created' | 'channels' | 'competitors' | 'completed') {
+    const { url: current } = this.router;
+
+    if (status === 'completed') {
+      this.router.navigate([current.includes('structures') ? '/home' : current]);
+      return;
+    }
+
+    const step = () => {
+      switch (status) {
+        case 'created':
+          return 2;
+        case 'channels':
+          return 3;
+        case 'competitors':
+          return 4;
+      }
+    };
+
+    this.router.navigate(['setup', step()]);
   }
 
   private getAddress(lat: number, lng: number) {

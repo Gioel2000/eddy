@@ -11,7 +11,7 @@ export interface RestaurantTOModel {
   image: string;
   openaiLimit: number;
   googlePlaceId: string;
-  status: 'created' | 'completed';
+  status: 'created' | 'channels' | 'competitors' | 'completed';
 }
 
 export interface License {
@@ -91,7 +91,7 @@ export interface RestaurantSettedTO {
   type: string;
   competitors: string[];
   googlePlaceId: string;
-  status: 'created' | 'completed';
+  status: 'created' | 'channels' | 'competitors' | 'completed';
 }
 
 export type AddRestaurant = Omit<RestaurantSettedTO, '_id' | 'openaiLimit'> & {

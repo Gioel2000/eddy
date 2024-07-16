@@ -183,7 +183,7 @@ export class MenusMenuComponent {
 
   onDelete(menu: MenuTO) {
     this.generalDialog.title.set(menu.name);
-    this.generalDialog.descriptioni18n.set('DELETE_MENU_CONFIRM');
+    this.generalDialog.description.set('DELETE_MENU_CONFIRM');
     this.generalDialog.mode.set('boolean');
     this.generalDialog.fuction.set(() => this.store.deleteMenu(menu._id));
     this.generalDialog.openDialog();
