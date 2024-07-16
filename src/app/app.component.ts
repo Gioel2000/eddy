@@ -88,4 +88,5 @@ import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog
 })
 export class AppComponent {
   isRouterLoaded = signal(false);
+  isUnderMaintenance = signal(false);
 }

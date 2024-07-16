@@ -806,11 +806,11 @@ export class Step2Component {
     this.dialog.fuction.set((url: string) => {
       if (!url) {
         console.log('remove', selectedChannel.key);
-        this.store.removeChannelSetup(selectedChannel.key);
+        // this.store.removeChannelSetup(selectedChannel.key);
         return;
       }
 
-      this.store.editSetupChannel(selectedChannel.key, url);
+      // this.store.editSetupChannel(selectedChannel.key, url);
     });
 
     this.dialog.openDialog();
@@ -842,6 +842,6 @@ export class Step2Component {
       }))
       .filter((channel) => channel.url);
 
-    this.store.saveChannelsSetup(channelsSetup);
+    // this.store.saveChannelsSetup(channelsSetup);
   }
 }

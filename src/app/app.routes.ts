@@ -61,29 +61,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'setup',
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        redirectTo: '1',
-        pathMatch: 'full',
-      },
-      {
-        path: '1',
-        component: Step1Component,
-      },
-      {
-        path: '2',
-        component: Step2Component,
-      },
-      {
-        path: '3',
-        component: Step3Component,
-      },
-    ],
-  },
-  {
     path: 'public-menu/:id',
     component: PublicMenuComponent,
   },
