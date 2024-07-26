@@ -93,15 +93,6 @@ export class OverviewRestaurantPanelComponent {
         )
       )
       .subscribe((marker) => this.markers.set([marker]));
-
-    // const geocoder = new google.maps.Geocoder();
-    // const ciao = new google.maps.Geocoder().geocode({
-    //   location: { lat: 40.8517746, lng: 14.2681244 },
-    // });
-
-    // ciao.then((data) => {
-    //   console.log(data);
-    // });
   }
 
   getGeoLocation(address: string): Observable<any> {

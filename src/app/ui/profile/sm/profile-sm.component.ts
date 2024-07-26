@@ -91,6 +91,21 @@ import { switchMap, tap } from 'rxjs';
                 <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ 'SETTINGS' | translate }}</span>
               </div>
             </a>
+            <a
+              class="block px-4 py-2 text-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
+              role="menuitem"
+              tabindex="-1"
+              id="menu-item-0"
+              routerLink="/changelog"
+            >
+              <div class="flex flex-row items-center w-full">
+                <span
+                  class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
+                  [inlineSVG]="'flask.svg'"
+                ></span>
+                <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ 'NOVELTY' | translate }}</span>
+              </div>
+            </a>
           </div>
           <div class="py-2" role="none">
             <a

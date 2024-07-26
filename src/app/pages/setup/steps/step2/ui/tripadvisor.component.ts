@@ -9,7 +9,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   imports: [TranslateModule],
   template: `
     <div
-      class="pointer-events-none relative bg-white dark:bg-zinc-700 border-t border-zinc-200 dark:border-zinc-600 -mb-8 w-full h-[32rem] rounded-b-xl"
+      class="pointer-events-none relative bg-white dark:bg-zinc-700 border-t border-zinc-200 dark:border-zinc-700 -mb-8 w-full h-[32rem] rounded-b-xl"
     >
       <div class="flex flex-row items-center justify-between gap-x-2 p-5">
         <div>
@@ -112,7 +112,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           </span>
         </div>
       </div>
-      <div class="bg-zinc-100 dark:bg-zinc-600 h-[calc(32rem_-_218px)] w-full p-5 rounded-b-xl">
+      <div class="bg-zinc-100 dark:bg-zinc-600 h-[calc(32rem_-_219px)] w-full p-5 rounded-b-xl">
         <!-- <div
           class="flex flex-col justify-between gap-3 col-span-2 rounded-lg h-64 ring-1 ring-inset ring-zinc-200 bg-white p-3"
         >

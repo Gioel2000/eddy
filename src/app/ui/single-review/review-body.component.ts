@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  input,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, Subject, filter, map } from 'rxjs';
+import { BehaviorSubject, Subject, filter, map, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MISSING_TRANSLATION } from '../../utils/constants/missingTranslation';
 import { CommonModule } from '@angular/common';
@@ -16,6 +25,7 @@ import { ReviewsStore } from '../../store/reviews/reviews.service';
 import LanguageDetect from 'languagedetect';
 import { BodyReviewSentimentComponent } from './components/review-body-sentiment.component';
 import { StructureStore } from '../../store/structures/structure.service';
+import { I18nStore } from '../../store/i18n/i18n.service';
 
 @UntilDestroy()
 @Component({
@@ -46,7 +56,7 @@ import { StructureStore } from '../../store/structures/structure.service';
             </h3>
             } @else {
             <div *ngIf="reviewContent?.text as text">
-              <span class="text-sm max-w-none text-zinc-500" [innerHTML]="text"></span>
+              <span class="text-zinc-700 dark:text-zinc-300 text-sm font-light" [innerHTML]="text"></span>
             </div>
             }
             <!-- <span
@@ -267,7 +277,7 @@ import { StructureStore } from '../../store/structures/structure.service';
         </div>
         @if ((reviewContent.title || '').trim().length !== 0) {
         <div *ngIf="reviewContent?.text as text">
-          <span class="text-sm mt-4 max-w-none text-zinc-500" [innerHTML]="text"></span>
+          <span class="text-zinc-700 dark:text-zinc-300 text-sm font-light" [innerHTML]="text"></span>
         </div>
         }
 
@@ -551,14 +561,23 @@ import { StructureStore } from '../../store/structures/structure.service';
             <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
               'COMMENT' | translate
             }}</label>
-            <textarea
-              [formControl]="commentControl"
-              rows="3"
-              name="comment"
-              id="comment"
-              placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
+            <div
               class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
-            ></textarea>
+            >
+              <textarea
+                #autoSize
+                [formControl]="commentControl"
+                name="comment"
+                id="comment"
+                width="100%"
+                height="100%"
+                placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
+                class="block p-0 text-sm w-full bg-transparent resize-none mt-1 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 border-0 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+              ></textarea>
+              <p class="text-gray-400 dark:text-gray-500 font-medium mt-3 italic">
+                {{ translatedReply() }}
+              </p>
+            </div>
           </div>
           <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
             <div *ngIf="(alreadyReplied$ | async) === false">
@@ -667,6 +686,7 @@ import { StructureStore } from '../../store/structures/structure.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BodyReviewComponent {
+  @ViewChild('autoSize') autoSize!: ElementRef;
   scale: number = 5;
   amountToMultiply: number = 1;
   readonly langSwitcher = new FormControl('');
@@ -687,15 +707,25 @@ export class BodyReviewComponent {
   showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
   structure = inject(StructureStore);
+  i18n = inject(I18nStore);
 
   isResponseSuccess = signal(false);
   isResponseLoading = signal(false);
   isResponseError = signal(false);
+  translatedReply = signal('');
 
   constructor(
     private readonly translateService: TranslateService // private readonly reviewsService: ReviewsService, // private readonly francisService: FrancisService
   ) {
     setTimeout(() => {
+      this.autoSize.nativeElement.style.height = 'auto';
+      this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
+
+      this.autoSize.nativeElement.addEventListener('input', () => {
+        this.autoSize.nativeElement.style.height = 'auto';
+        this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
+      });
+
       const titleOriginal = this.review().title;
       const source = this.review().channel.source;
       const reviewLang = this.getLanguageFromReviewContent();
@@ -1076,14 +1106,21 @@ export class BodyReviewComponent {
   askAIToReply() {
     this.isResponseLoading.set(true);
     this.store
-      .askAIReply(this.review()._id)
+      .askAIReply(this.review()._id, this.i18n.selectedLang().locale)
       .pipe(untilDestroyed(this))
       .subscribe({
-        next: ({ reply }) => {
+        next: ({ reply, translations }) => {
           this.isResponseLoading.set(false);
           this.isResponseError.set(false);
           this.isResponseSuccess.set(true);
           this.commentControl.setValue(reply);
+          if (translations) {
+            this.translatedReply.set(translations[0].reply);
+          }
+
+          this.autoSize.nativeElement.style.height = 'auto';
+          this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
+
           setTimeout(() => this.isResponseSuccess.set(false), 1500);
         },
         error: () => {

@@ -12,6 +12,7 @@ import { CompetitorComponent } from './competitor/competitor.component';
 import { CompetitorPanelService } from '../../../ui/create-competitor/create-competitor.service';
 import { LoaderComponent } from '../../../ui/loader/loader.component';
 import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
+import { AddCompetitorDialogService } from '../../../ui/add-competitor-dialog/add-competitor-dialog.service';
 
 @Component({
   selector: 'competitors',
@@ -105,7 +106,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
               <button
                 type="button"
                 class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"
-                (click)="panelUI.openPanel()"
+                (click)="competitorDialog.openDialog()"
               >
                 <div class="gap-y-3 w-96"></div>
               </button>
@@ -154,6 +155,8 @@ export class CompetitorsComponent {
 
   competitors = inject(CompetitorsService);
   panelUI = inject(CompetitorPanelService);
+
+  competitorDialog = inject(AddCompetitorDialogService);
 
   limitStart = moment().subtract(3, 'year').toDate();
   now = moment().toDate();

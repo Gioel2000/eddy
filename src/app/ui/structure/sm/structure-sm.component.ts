@@ -13,6 +13,7 @@ import { StructureUIService } from '../structure.service';
 import { StructureStore } from '../../../store/structures/structure.service';
 import { LayoutUIService } from '../../../pages/layout/layout.service';
 import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
+import { RouterModule } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -26,6 +27,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
     LoaderComponent,
     ReactiveFormsModule,
     MissingTranslationPipe,
+    RouterModule,
   ],
   template: `
     <ng-template #loading>
@@ -76,13 +78,13 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
           >
             <div class="flex flex-row items-start justify-between w-full gap-x-1">
               <div class="flex flex-row items-center gap-x-2">
-                <div class="flex flex-col items-start w-full line-clamp-1 text-left">
+                <div class="flex flex-col items-start w-full line-clamp-1 text-left gap-y-1">
                   <span
-                    class="text-sm font-semibold leading-5 text-zinc-800 dark:text-zinc-200 line-clamp-1"
+                    class="text-lg font-bold leading-5 tracking-tight text-zinc-700 dark:text-zinc-200 line-clamp-1"
                     aria-hidden="true"
                     >{{ structures.selected().name }}</span
                   >
-                  <span class="text-xs font-normal text-zinc-400 dark:text-zinc-600 line-clamp-1" aria-hidden="true"
+                  <span class="text-zinc-700 dark:text-zinc-300 text-sm font-light line-clamp-1" aria-hidden="true"
                     >{{ structures.selected().address }}, {{ structures.selected().city }}</span
                   >
                 </div>
@@ -155,7 +157,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
             role="menuitem"
             tabindex="-1"
             id="menu-item-0"
-            (click)="createRestaurantPanel.openPanel(); layout.closeMenu()"
+            routerLink="/setup"
           >
             <div class="flex flex-row items-center w-full">
               <span class="mr-2 svg-icon-6 stroke-[1.6] text-zinc-700 dark:text-zinc-300" inlineSVG="plus.svg"></span>

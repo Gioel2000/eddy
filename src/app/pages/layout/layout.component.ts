@@ -241,7 +241,9 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
               <div class="hidden sm:block">
                 <div class="flex flex-row items-center justify-between">
                   <h1 class="text-xl font-medium text-zinc-900 dark:text-zinc-100">{{ title() | translate }}</h1>
-                  <profile-dropdown></profile-dropdown>
+                  <div class="flex flex-row items-center gap-x-4">
+                    <profile-dropdown></profile-dropdown>
+                  </div>
                 </div>
               </div>
 
@@ -253,7 +255,6 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
               <div
                 class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-screen bg-white dark:bg-dark"
               >
-                
                 <loader></loader>
               </div>
               }

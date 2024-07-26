@@ -11,7 +11,6 @@ import { StructureStore } from '../../../../store/structures/structure.service';
 import { SettingsService } from '../../../../ui/settings/settings.service';
 import { UserPanelService } from '../../../../ui/user/user.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { GoogleStep2Component } from './ui/google.component';
 import { TripadvisorStep2Component } from './ui/tripadvisor.component';
@@ -42,7 +41,7 @@ import moment from 'moment';
   ],
   template: `
     <ng-template #loading>
-      <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-44 sm:pb-32 lg:px-8 lg:min-h-screen">
+      <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
         <div class="flex flex-col items-center">
           <world
             [title]="'SEARCHING_CHANNELS' | translate"
@@ -101,7 +100,7 @@ import moment from 'moment';
         } @case ('error') {
         <ng-container *ngTemplateOutlet="error"></ng-container>
         } @case ('loaded') { @if (channels()[index()]; as selectedChannel) {
-        <div class="col-span-1 px-6 pb-24 pt-16 sm:pb-32 lg:px-8 lg:min-h-screen">
+        <div class="col-span-1 px-6 pb-24 pt-20 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
           <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
             <div class="flex flex-row items-center gap-x-2 cursor-pointer">
               @switch (selectedChannel.key) { @case('google') {
@@ -228,20 +227,12 @@ import moment from 'moment';
               </svg>
               } }
             </div>
-            <h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {{ 'CONFIGURE_CHANNELS' | translate }}
-            </h2>
-            <p class="mt-6 text-lg leading-8 text-zinc-600">
-              {{ 'CHECK_CHANNEL' | translate }}
-            </p>
 
-            <div class="max-w-7xl mx-auto mt-6">
+            <div class="max-w-7xl mx-auto">
               <div class="demo-sm:-mt-24 xl:mt-0">
                 <div class="relative">
-                  <div
-                    class="shadow-xl shadow-black/10 rounded-xl min-w-full max-w-full demo-sm:min-w-0 demo-sm:max-w-none w-full"
-                  >
-                    <div class="rounded-xl ring-1 ring-zinc-900/10">
+                  <div class="rounded-xl min-w-full max-w-full demo-sm:min-w-0 demo-sm:max-w-none w-full">
+                    <div class="rounded-xl ring-1 ring-zinc-300 dark:ring-zinc-600">
                       <div
                         class="rounded-t-xl bg-gradient-to-b from-white to-[#FBFBFB] dark:bg-none dark:bg-zinc-700 dark:highlight-white/10"
                         style="box-shadow: inset 0 1px 0 0 #ffffff33;"
@@ -515,7 +506,7 @@ import moment from 'moment';
               <div class="flex flex-row items-center justify-between mt-14 w-full">
                 <button
                   type="button"
-                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
+                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
                   (click)="edit()"
                   [disabled]="selectedChannel.key === 'google'"
                 >
@@ -583,10 +574,10 @@ import moment from 'moment';
                   >
                     <span class="font-semibold text-base"> {{ 'CONFIRM' | translate }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>chevron right</title>
+                      <title>check</title>
                       <g fill="currentColor" class="nc-icon-wrapper">
                         <polyline
-                          points="6.5 2.75 12.75 9 6.5 15.25"
+                          points="2.75 9.25 6.75 14.25 15.25 3.75"
                           fill="none"
                           stroke="currentColor"
                           stroke-linecap="round"
@@ -781,6 +772,7 @@ export class Step2Component {
   channels = computed(() => this.store.channelsSetup());
   index = signal(0);
   finalConfirm = computed(() => this.channels().every((channel) => channel.checked));
+  step = computed(() => this.channels().filter((channel) => channel.checked).length);
 
   readonly currentYear = moment(new Date()).year();
 
@@ -805,7 +797,6 @@ export class Step2Component {
     this.dialog.url.set(selectedChannel.channel?.channel?.api?.url || '');
     this.dialog.fuction.set((url: string) => {
       if (!url) {
-        console.log('remove', selectedChannel.key);
         this.store.removeChannelSetup(selectedChannel.key);
         return;
       }

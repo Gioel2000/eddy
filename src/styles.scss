@@ -236,7 +236,14 @@ input::-webkit-inner-spin-button {
   );
 }
 
+.map-container {
+  border-radius: 0.375rem !important;
+}
+
 .iubenda {
   @apply flex flex-row gap-x-1 bg-white dark:bg-zinc-800 text-black dark:text-white shadow-sm shadow-black/10 dark:shadow-black rounded-lg px-2 py-1.5 text-xs font-semibold ring-1 ring-zinc-900/10 dark:ring-zinc-50/20;
 }
 
+.pac-container {
+  z-index: 1000000 !important;
+}

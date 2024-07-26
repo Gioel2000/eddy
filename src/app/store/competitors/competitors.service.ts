@@ -1,11 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { AddCompetitor, CompetitorModel, CompetitorTO, ReputationModel, StateModel } from './interfaces/competitors';
+import {
+  AddCompetitor,
+  ChannelsModel,
+  ChannelTO,
+  CompetitorModel,
+  CompetitorTO,
+  RatingModel,
+  ReputationModel,
+  StateModel,
+} from './interfaces/competitors';
 import moment from 'moment';
 import {
   Observable,
@@ -17,6 +26,7 @@ import {
   filter,
   first,
   forkJoin,
+  from,
   interval,
   map,
   mergeMap,
@@ -24,9 +34,17 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
+import { GeneralDialogService } from '../../ui/dialog/dialog.service';
+import { RestaurantSettedTO } from '../setup/interfaces/competitors';
+import { de } from '@faker-js/faker';
 
 export interface CompetitorsStoreModel {
   data: CompetitorModel[];
+  state: StateModel;
+}
+
+export interface ChannelsStoreModel {
+  channels: ChannelsModel[];
   state: StateModel;
 }
 
@@ -35,10 +53,16 @@ export interface CompetitorsStoreModel {
 export class CompetitorsStore {
   http = inject(HttpClient);
   structure = inject(StructureStore);
+  generalDialog = inject(GeneralDialogService);
 
   private store = signal<CompetitorsStoreModel>({
     data: [{} as CompetitorModel, {} as CompetitorModel],
     state: 'loading',
+  });
+
+  private channelsStore = signal<ChannelsStoreModel>({
+    channels: [],
+    state: 'loaded',
   });
 
   filter = signal({
@@ -46,17 +70,23 @@ export class CompetitorsStore {
     enddate: moment().toDate(),
     channels: ['thefork', 'tripadvisor', 'google'],
   });
-
+  step = signal(1);
+  selected = signal({} as CompetitorModel);
   competitors = computed(() => this.store().data);
   state = computed(() => this.store().state);
+  channels = computed(() => this.channelsStore().channels);
+  channelState = computed(() => this.channelsStore().state);
 
   private state$ = new Subject<StateModel>();
   private add$ = new Subject<CompetitorModel>();
   private delete$ = new Subject<string>();
   private setIsDownloading$ = new Subject<{ competitorId: string; newIsDownloading: boolean }>();
   private setExlusion$ = new Subject<{ competitorId: string; isExluded: boolean }>();
-
-  private stateSeup$ = new Subject<StateModel>();
+  private stateChannels$ = new Subject<StateModel>();
+  private setChannels$ = new Subject<ChannelTO[]>();
+  private checkChannelSetup$ = new Subject<string>();
+  private removeChannelSetup$ = new Subject<'google' | 'tripadvisor' | 'thefork'>();
+  private editChannelSetup$ = new Subject<{ source: 'google' | 'tripadvisor' | 'thefork'; channel: ChannelTO }>();
 
   constructor() {
     const subscription = interval(3000)
@@ -105,15 +135,7 @@ export class CompetitorsStore {
       ),
     }).pipe(
       untilDestroyed(this),
-      filter(({ selected }) => !!selected),
-      filter(({ selected }) => Object.keys(selected).length > 0),
-      distinctUntilChanged(
-        (prev, curr) =>
-          prev.selected === curr.selected &&
-          prev.filter.startdate === curr.filter.startdate &&
-          prev.filter.enddate === curr.filter.enddate &&
-          prev.filter.channels === curr.filter.channels
-      )
+      filter(({ selected }) => !!selected && Object.keys(selected).length > 0)
     );
 
     const next$: Observable<CompetitorsStoreModel> = stream$.pipe(
@@ -185,10 +207,7 @@ export class CompetitorsStore {
       .with(this.state$, (store, state) => ({ ...store, state }))
       .with(this.add$, (store, payload) => ({
         ...store,
-        data: [
-          ...store.data.filter((competitor) => competitor._id !== payload._id),
-          { ...payload, isDownloading: true, isExluded: false },
-        ],
+        data: [...store.data.filter((competitor) => competitor._id !== payload._id), { ...payload, isExluded: false }],
       }))
       .with(this.delete$, (store, id) => ({
         ...store,
@@ -206,91 +225,109 @@ export class CompetitorsStore {
           competitor._id === competitorId ? { ...competitor, isExluded } : competitor
         ),
       }));
+
+    connect(this.channelsStore)
+      .with(this.stateChannels$, (store, state) => ({ ...store, state }))
+      .with(this.setChannels$, (store, suggestedChannels) => {
+        const google = suggestedChannels.find((channel) => channel.channel.source === 'google');
+        const tripadvisor = suggestedChannels.find((channel) => channel.channel.source === 'tripadvisor');
+        const thefork = suggestedChannels.find((channel) => channel.channel.source === 'thefork');
+
+        const channels = [
+          { key: 'google', name: 'Google' },
+          { key: 'tripadvisor', name: 'TripAdvisor' },
+          { key: 'thefork', name: 'The Fork' },
+        ];
+
+        const updatedChannels: ChannelsModel[] = channels.map((channel) => {
+          if (channel.key === 'google' && google) {
+            return { ...channel, channel: google, address: google.address, checked: true } as ChannelsModel;
+          }
+
+          if (channel.key === 'tripadvisor' && tripadvisor) {
+            return {
+              ...channel,
+              channel: tripadvisor,
+              address: tripadvisor.address,
+              checked: false,
+            } as ChannelsModel;
+          }
+
+          if (channel.key === 'thefork' && thefork) {
+            return { ...channel, channel: thefork, address: thefork.address, checked: false } as ChannelsModel;
+          }
+
+          return { ...channel, channel: null, address: null, checked: false } as ChannelsModel;
+        });
+
+        return {
+          ...store,
+          channels: updatedChannels,
+        };
+      })
+      .with(this.checkChannelSetup$, (store, key) => {
+        const updatedChannels = store.channels.map((channel) =>
+          channel.key === key ? { ...channel, checked: true } : channel
+        );
+
+        return {
+          ...store,
+          channels: updatedChannels,
+        };
+      })
+      .with(this.removeChannelSetup$, (store, sourceToRemove) => {
+        const updatedChannels = store.channels.map((channel) =>
+          channel.key === sourceToRemove ? { ...channel, channel: null } : channel
+        );
+
+        return {
+          ...store,
+          channels: updatedChannels,
+        };
+      })
+      .with(this.editChannelSetup$, (store, { source, channel }) => {
+        return {
+          ...store,
+          channels: store.channels.map((c) =>
+            c.key === source ? { ...c, channel, address: channel.address, checked: true } : c
+          ),
+        };
+      });
   }
 
   add(competitor: AddCompetitor) {
     this.state$.next('loading');
+    this.stateChannels$.next('loading');
 
-    const { startdate, enddate, channels } = this.filter();
-    const startDateFilter = moment(startdate).format('YYYY-MM-DD');
-    const endDateFilter = moment(enddate).format('YYYY-MM-DD');
-    const channelsFilter = channels.join(',');
-
-    const filterData = {
-      startdate: startDateFilter,
-      enddate: endDateFilter,
-      channels: channelsFilter,
-    };
+    this.step.set(2);
 
     this.http
       .post<CompetitorTO>(`${environment.apiUrl}/api/competitors`, competitor)
       .pipe(
         untilDestroyed(this),
         tap((data) => {
-          const competitorsId = data._id;
+          const competitorId = data._id;
           this.state$.next('loaded');
-          this.add$.next(data as CompetitorModel);
-          this.setIsDownloading$.next({ competitorId: competitorsId, newIsDownloading: true });
+          this.stateChannels$.next('loading');
 
-          const subscription = interval(3000)
-            .pipe(
-              untilDestroyed(this),
-              switchMap(() =>
-                this.http
-                  .get<{ status: 'downloading' | 'completed' }>(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/channels/status`
-                  )
-                  .pipe(
-                    map((data) => ({ competitorId: competitorsId, newIsDownloading: data.status === 'downloading' }))
-                  )
-              ),
-              filter((newDownload) => !newDownload.newIsDownloading),
-              switchMap(() =>
-                forkJoin({
-                  reputation: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/graph/average`,
-                    filterData
-                  ),
-                  rating: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/rating/grouped`,
-                    filterData
-                  ),
-                  clientTypes: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/clientType/grouped`,
-                    filterData
-                  ),
-                  categories: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/category/grouped`,
-                    filterData
-                  ),
-                  sentiment: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/sentiment/categories`,
-                    filterData
-                  ),
-                  reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitorsId}/last/week/2`),
-                  channelsRatings: this.http.post(
-                    `${environment.apiUrl}/api/competitors/${competitorsId}/channel/grouped`,
-                    filterData
-                  ),
-                }).pipe(
-                  map((response) => ({ ...data, ...response })),
-                  map((data) => data as CompetitorModel),
-                  tap((response) => {
-                    this.add$.next(response);
-                    this.setIsDownloading$.next({
-                      competitorId: competitorsId,
-                      newIsDownloading: false,
-                    });
-                    subscription.unsubscribe();
-                  }),
-                  catchError((error) => {
-                    this.state$.next('error');
-                    return of(error);
-                  })
-                )
-              )
-            )
-            .subscribe();
+          const competitor = {
+            reputation: { average: 0, graph: [] } as ReputationModel,
+            rating: [] as any[],
+            clientTypes: [] as any[],
+            reviews: [] as any[],
+            categories: [] as any[],
+            sentiment: [] as any[],
+            channelsRatings: [] as any[],
+            isDownloading: false,
+            ...data,
+            _id: competitorId,
+          } as CompetitorModel;
+
+          this.selected.set(competitor);
+          this.add$.next(competitor);
+
+          this.retriveChannels();
+          this.reloadCompetitor(competitorId);
         }),
         catchError((error) => {
           this.state$.next('error');
@@ -326,6 +363,200 @@ export class CompetitorsStore {
     this.setExlusion$.next({ competitorId, isExluded: false });
   }
 
+  checkChannelSetup(key: string) {
+    this.checkChannelSetup$.next(key);
+  }
+
+  retriveChannels() {
+    const competitorSelected = this.selected()?._id;
+    if (!competitorSelected) return;
+
+    this.stateChannels$.next('loading');
+
+    this.http
+      .get<ChannelTO[]>(`${environment.apiUrl}/api/competitors/${competitorSelected}/channels/retrieve`)
+      .pipe(
+        untilDestroyed(this),
+        switchMap((channels) =>
+          forkJoin(
+            channels.map((channel) =>
+              channel.latitude && channel.longitude
+                ? this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+                : of(channel)
+            )
+          )
+        ),
+        tap((channels) => {
+          this.setChannels$.next(channels);
+        }),
+        tap(() => this.stateChannels$.next('loaded')),
+        catchError(() => {
+          this.stateChannels$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  removeChannelSetup(sourceToRemove: 'google' | 'tripadvisor' | 'thefork') {
+    this.removeChannelSetup$.next(sourceToRemove);
+  }
+
+  editSetupChannel(source: 'google' | 'tripadvisor' | 'thefork', url: string) {
+    const competitorSelected = this.selected()?._id;
+    if (!competitorSelected) return;
+
+    this.stateChannels$.next('loading');
+
+    this.http
+      .post<ChannelTO>(`${environment.apiUrl}/api/competitors/${competitorSelected}/channels/preview`, {
+        source,
+        url,
+      })
+      .pipe(
+        untilDestroyed(this),
+        tap(() => this.stateChannels$.next('loaded')),
+        tap((channel) => {
+          if (channel === null) {
+            this.generalDialog.title.set('ERROR');
+            this.generalDialog.description.set('ERROR_URL_CHANNEL');
+            this.generalDialog.mode.set('ok');
+            this.generalDialog.fuction.set(() => {});
+            this.generalDialog.openDialog();
+          }
+        }),
+        filter((channel) => channel !== null),
+        switchMap((channel) =>
+          channel.latitude && channel.longitude
+            ? this.getAddress(channel.latitude, channel.longitude).pipe(map((address) => ({ ...channel, address })))
+            : of(channel)
+        ),
+        tap((channel) => this.editChannelSetup$.next({ source, channel }))
+      )
+      .subscribe();
+  }
+
+  saveChannelsSetup(
+    channels: {
+      source: string;
+      url: string;
+      id: string;
+    }[]
+  ) {
+    const competitorSelected = this.selected()?._id;
+    if (!competitorSelected) return;
+
+    this.stateChannels$.next('loading');
+    this.state$.next('loading');
+
+    this.http
+      .put<{ errors: { source: string; status: string }[]; competitor: RestaurantSettedTO }>(
+        `${environment.apiUrl}/api/competitors/${competitorSelected}/channels`,
+        { channels }
+      )
+      .pipe(
+        untilDestroyed(this),
+        tap((restaurant) => {
+          const competitorsId = restaurant.competitor._id;
+          this.stateChannels$.next('loaded');
+          this.state$.next('loaded');
+          this.step.set(1);
+          this.reloadCompetitor(competitorsId);
+        }),
+        catchError(() => {
+          this.stateChannels$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  private reloadCompetitor(competitorId: string) {
+    const competitor = this.competitors().find((competitor) => competitor._id === competitorId);
+
+    if (!competitor) return;
+
+    const { startdate, enddate, channels } = this.filter();
+    const startDateFilter = moment(startdate).format('YYYY-MM-DD');
+    const endDateFilter = moment(enddate).format('YYYY-MM-DD');
+    const channelsFilter = channels.join(',');
+    const filterData = {
+      startdate: startDateFilter,
+      enddate: endDateFilter,
+      channels: channelsFilter,
+    };
+
+    this.setIsDownloading$.next({ competitorId, newIsDownloading: true });
+
+    const subscription = interval(3000)
+      .pipe(
+        untilDestroyed(this),
+        switchMap(() =>
+          this.http
+            .get<{ status: 'downloading' | 'completed' }>(
+              `${environment.apiUrl}/api/competitors/${competitorId}/channels/status`
+            )
+            .pipe(map((data) => ({ competitorId: competitorId, newIsDownloading: data.status === 'downloading' })))
+        ),
+        filter((newDownload) => !newDownload.newIsDownloading),
+        switchMap(() =>
+          forkJoin({
+            reputation: this.http
+              .post<ReputationModel>(`${environment.apiUrl}/api/competitors/${competitorId}/graph/average`, filterData)
+              .pipe(
+                map((response) => ({
+                  average: response.average,
+                  graph: this.fillWithMissingDays(response.graph, startDateFilter, endDateFilter),
+                }))
+              ),
+            rating: this.http.post(`${environment.apiUrl}/api/competitors/${competitorId}/rating/grouped`, filterData),
+            clientTypes: this.http.post(
+              `${environment.apiUrl}/api/competitors/${competitorId}/clientType/grouped`,
+              filterData
+            ),
+            categories: this.http.post(
+              `${environment.apiUrl}/api/competitors/${competitorId}/category/grouped`,
+              filterData
+            ),
+            sentiment: this.http.post(
+              `${environment.apiUrl}/api/competitors/${competitorId}/sentiment/categories`,
+              filterData
+            ),
+            reviews: this.http.get(`${environment.apiUrl}/api/competitors/${competitorId}/last/week/2`),
+            channelsRatings: this.http.post(
+              `${environment.apiUrl}/api/competitors/${competitorId}/channel/grouped`,
+              filterData
+            ),
+          }).pipe(
+            map((response) => ({ ...response })),
+            map((data) => data as CompetitorModel),
+            tap((response) => {
+              this.add$.next({
+                ...competitor,
+                ...response,
+                _id: competitorId,
+              });
+              this.setIsDownloading$.next({
+                competitorId,
+                newIsDownloading: false,
+              });
+              this.selected.set({
+                ...competitor,
+                ...response,
+              });
+
+              subscription.unsubscribe();
+            }),
+            catchError((error) => {
+              this.state$.next('error');
+              return of(error);
+            })
+          )
+        )
+      )
+      .subscribe();
+  }
+
   private fillWithMissingDays(
     data: { date: string; average: number }[],
     startdate: string,
@@ -356,5 +587,16 @@ export class CompetitorsStore {
     }
 
     return ratings;
+  }
+
+  private getAddress(lat: number, lng: number) {
+    const geocoder = new google.maps.Geocoder().geocode({
+      location: { lat, lng },
+    });
+
+    return from(geocoder).pipe(
+      map((response) => response.results[0].formatted_address),
+      catchError(() => of(null))
+    );
   }
 }

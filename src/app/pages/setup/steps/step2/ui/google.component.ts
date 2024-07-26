@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [TranslateModule],
   template: `
     <div
-      class="pointer-events-none relative bg-white dark:bg-zinc-700 border-t border-zinc-200 dark:border-zinc-600 -mb-8 dark:border-zinc-900/50 w-full h-[32rem] rounded-b-xl"
+      class="pointer-events-none relative bg-white dark:bg-zinc-700 border-t border-zinc-200 dark:border-zinc-700 -mb-8 w-full h-[32rem] rounded-b-xl"
     >
       <img [src]="image()" alt="Google" class="w-full h-56 object-cover object-center" />
       <div class="flex flex-col gap-2 p-6">

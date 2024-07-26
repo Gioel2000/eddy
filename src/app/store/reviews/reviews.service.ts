@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
@@ -178,7 +178,10 @@ export class ReviewsStore {
     return this.http.put(`${environment.apiUrl}/api/reviews/${reviewId}/setreplied/${replied}`, {});
   }
 
-  askAIReply(reviewId: string) {
-    return this.http.get<{ reply: string; createdAt: Date }>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply`);
+  askAIReply(reviewId: string, language: string) {
+    const params = new HttpParams().set('lng', language);
+    return this.http.get<{ reply: string; createdAt: Date; translations?: { reply: string; language: string }[] }>(
+      `${environment.apiUrl}/api/reviews/${reviewId}/aireply?${params.toString()}`
+    );
   }
 }

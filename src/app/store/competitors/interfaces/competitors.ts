@@ -3,23 +3,33 @@ export type StateModel = 'loaded' | 'loading' | 'error' | 'empty';
 export interface CompetitorTO {
   _id: string;
   name: string;
+  address: string;
+  city: string;
+  zipCode: string;
   image: string;
-  channels: {
-    _id: string;
-    source: string;
-    url: string;
-  }[];
+  channels: any[];
   googleMapsLink: string;
+  googlePlaceId: string;
+  latitude: number;
+  longitude: number;
   active: boolean;
+  status: string;
 }
 
 export interface CompetitorModel {
   _id: string;
   name: string;
+  address: string;
+  city: string;
+  zipCode: string;
   image: string;
-  channels: Channel[];
+  channels: any[];
   googleMapsLink: string;
+  googlePlaceId: string;
+  latitude: number;
+  longitude: number;
   active: boolean;
+  status: string;
   reputation: ReputationModel;
   rating: RatingModel[];
   clientTypes: ClientTypeModel[];
@@ -27,8 +37,6 @@ export interface CompetitorModel {
   categories: CategoryTO[];
   sentiment: SentimentTO[];
   channelsRatings: any[];
-  address: string;
-  city: string;
   isDownloading: boolean;
   isExluded: boolean;
 }
@@ -95,17 +103,6 @@ export interface Translation {
   text: string;
 }
 
-export type AddCompetitor = {
-  name: string;
-  address: string;
-  city: string;
-  zipCode: string;
-  image: string;
-  googleMapsLink: string;
-  latitude: number;
-  longitude: number;
-};
-
 export interface CategoryTO {
   category: string;
   totalRating: number;
@@ -117,4 +114,43 @@ export interface SentimentTO {
   good: number;
   neutral: number;
   bad: number;
+}
+
+export type AddCompetitor = {
+  name: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  telephone: string;
+  email: string;
+  website: string;
+  image: string | File;
+  type: string;
+  googleMapsLink: string;
+  googlePlaceId: string;
+  latitude: number;
+  longitude: number;
+};
+
+export interface ChannelTO {
+  channel: {
+    source: string;
+    api: {
+      url: string;
+      id: string;
+    };
+  };
+  name: string;
+  image: string;
+  latitude: number | null;
+  longitude: number | null;
+  address: string | null;
+}
+
+export interface ChannelsModel {
+  key: 'google' | 'tripadvisor' | 'thefork';
+  name: string;
+  channel: ChannelTO | null;
+  address: string | null;
+  checked: boolean;
 }

@@ -577,6 +577,48 @@ export class StructureStore {
       .subscribe();
   }
 
+  setCompetitorsCompleted() {
+    this.showAll$.next();
+    this.setSetupState$.next('loading');
+
+    this.http
+      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, { status: 'competitors' })
+      .pipe(
+        untilDestroyed(this),
+        tap((restaurant) => {
+          this.edit$.next({ id: restaurant._id, structure: restaurant });
+          this.setSetupState$.next('loaded');
+          this.routeSetup('competitors');
+        }),
+        catchError(() => {
+          this.setSetupState$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
+  setConfigurationCompleted() {
+    this.showAll$.next();
+    this.setSetupState$.next('loading');
+
+    this.http
+      .put<RestaurantTOModel>(`${environment.apiUrl}/api/restaurants`, { status: 'completed' })
+      .pipe(
+        untilDestroyed(this),
+        tap((restaurant) => {
+          this.edit$.next({ id: restaurant._id, structure: restaurant });
+          this.setSetupState$.next('loaded');
+          this.router.navigate(['/home']).then(() => setTimeout(() => location.reload(), 0));
+        }),
+        catchError(() => {
+          this.setSetupState$.next('error');
+          return of(null);
+        })
+      )
+      .subscribe();
+  }
+
   deleteChannel(id: string) {
     this.showAll$.next();
     this.state$.next('loading');
@@ -609,10 +651,13 @@ export class StructureStore {
         .pipe(
           untilDestroyed(this),
           switchMap(() => this.storage.delete('expireDate')),
-          tap(() => this.selected$.next(null)),
-          tap(() => this.state$.next('loaded'))
+          tap(() => {
+            this.selected$.next(null);
+            this.state$.next('loaded');
+            this.router.navigate(['/structures']);
+          })
         )
-        .subscribe(() => this.router.navigate(['/structures']));
+        .subscribe();
     }, 500);
   }
 

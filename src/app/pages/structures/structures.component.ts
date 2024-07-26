@@ -12,6 +12,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map } from 'rxjs';
 import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
+import { RouterModule } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -25,6 +26,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
     ReactiveFormsModule,
     NgOptimizedImage,
     MissingTranslationPipe,
+    RouterModule,
   ],
   template: `
     <ng-template #loading>
@@ -155,10 +157,10 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
               >
                 <span [inlineSVG]="'magnifier.svg'" class="svg-icon svg-icon svg-icon-3 stroke-2"></span>
               </a>
-              <button
+              <a
                 id="open-create-restaurant-panel"
                 class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
-                (click)="restaurantPanelUI.openPanel()"
+                routerLink="/setup"
               >
                 <div
                   class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] p-3 rounded-[9998px] cursor-pointer"
@@ -168,7 +170,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                     [inlineSVG]="'plus.svg'"
                   ></span>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>

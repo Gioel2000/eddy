@@ -14,14 +14,14 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
       <div class="flex-none py-3">
         <div
           class="h-10 w-10 rounded-full"
-          class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 text-base text-white/90"
+          class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 font-bold text-base text-white"
         >
           {{ nameFormatter(review().name).charAt(0).toUpperCase() }}
         </div>
       </div>
       <div class="flex-1 py-3">
-        <div class="flex flex-row items-center mt-1">
-          <h3 class="font-semibold text-base text-zinc-900 dark:text-zinc-100">
+        <div class="flex flex-row items-center">
+          <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-7">
             {{ nameFormatter(review().name) }}
           </h3>
           <span
@@ -30,7 +30,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
             class="svg-icon svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
           ></span>
         </div>
-        <p class="font-medium text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>
+        <p class="font-medium tracking-tight text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>
       </div>
     </div>
   `,
@@ -63,7 +63,7 @@ export class HeaderReviewComponent {
 
     return moment(date)
       .locale(currentLang)
-      .format('DD MMM YYYY')
-      .replace(moment(new Date()).locale(currentLang).format('DD MMM YYYY'), `${todayLabel} `);
+      .format('DD MMMM YYYY')
+      .replace(moment(new Date()).locale(currentLang).format('DD MMMM YYYY'), `${todayLabel} `);
   }
 }

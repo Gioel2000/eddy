@@ -34,7 +34,7 @@ import moment from 'moment';
       <div class="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 w-full">
         <stepper></stepper>
         @if (isLoading()) {
-        <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-44 sm:pb-32 lg:px-8 lg:min-h-screen">
+        <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
           <div class="flex flex-col items-center">
             <world
               [title]="'CREATING_YOUR_RESTAURANT' | translate"
@@ -44,7 +44,7 @@ import moment from 'moment';
         </div>
         }
         <div [ngClass]="{ hidden: isLoading() }">
-          <form [formGroup]="formGroup" class="col-span-1 px-6 pb-24 pt-8 sm:pt-44 sm:pb-32 lg:px-8 lg:min-h-screen">
+          <form [formGroup]="formGroup" class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
             <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
               <div class="grid grid-cols-2 gap-x-8 gap-y-7">
                 <div class="col-span-2">

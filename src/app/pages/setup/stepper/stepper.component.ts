@@ -8,10 +8,10 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule, RouterModule],
   template: `
-    <div class="relative px-6 pb-20 pt-20 sm:pt-44 lg:static lg:px-8 lg:min-h-screen">
+    <div class="relative px-6 pb-20 pt-20 sm:pt-24 lg:static lg:px-8 lg:min-h-screen">
       <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <div
-          class="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-zinc-100 dark:bg-dark border-r border-zinc-900/10 dark:border-zinc-100/10 lg:w-1/2"
+          class="absolute inset-y-0 left-0 -z-10 h-full w-full overflow-hidden bg-zinc-100 dark:bg-dark border-r border-zinc-900/10 dark:border-zinc-100/10 lg:w-1/2"
         >
           <svg
             class="absolute inset-0 h-full w-full stroke-zinc-200 dark:stroke-zinc-800 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:[mask-image:radial-gradient(100%_100%_at_top_right,black,transparent)]"
@@ -44,296 +44,220 @@ import { TranslateModule } from '@ngx-translate/core';
             </h1>
           </a>
         </div>
-        <h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+        @switch (step) { @case (1) {
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           {{ 'CREATE_RESTAURANT' | translate }}
         </h2>
-        <p class="mt-6 text-lg leading-8 text-zinc-600">
+        <p class="mt-3 text-lg leading-8 text-zinc-600">
           {{ 'CREATE_RESTAURANT_DESCRIPTION' | translate }}
         </p>
-        <dl class="mt-10 space-y-4 text-base leading-7 ml-4">
-          <ol class="relative text-zinc-500 dark:text-zinc-400 border-s border-zinc-200 dark:border-zinc-700">
-            <li class="flex flex-row items-center mb-10 ms-6">
-              <span
-                class="absolute flex items-center justify-center w-8 h-8 bg-zinc-100 dark:bg-dark rounded-full -start-4 ring-4 ring-transparent"
-                [ngClass]="{ 'bg-green-300 dark:bg-green-400': step > 1 }"
-              >
-                <span
-                  class="svg-icon svg-icon-5 stroke-[1.8]"
-                  [ngClass]="{
-                    'text-green-600 dark:text-green-50': step > 1,
-                    'text-zinc-600 dark:text-zinc-400': step <= 1
-                  }"
-                >
-                  @if (step > 1) {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>check</title>
-                    <g fill="currentColor" class="nc-icon-wrapper">
-                      <polyline
-                        points="2.75 9.25 6.75 14.25 15.25 3.75"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></polyline>
-                    </g>
-                  </svg>
-                  } @else {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>id badge 2</title>
-                    <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
-                      <circle cx="6.269" cy="7.519" r="1.269" stroke="none" fill="currentColor"></circle>
-                      <path
-                        d="M8.309,11.685c.368-.116,.562-.523,.406-.876-.415-.938-1.353-1.594-2.445-1.594s-2.03,.655-2.446,1.594c-.156,.353,.037,.76,.406,.876,.525,.165,1.219,.315,2.04,.315s1.515-.149,2.04-.315Z"
-                        stroke="none"
-                        fill="currentColor"
-                      ></path>
-                      <path
-                        d="M13,3.75h1.25c1.105,0,2,.895,2,2v6.5c0,1.105-.895,2-2,2H3.75c-1.105,0-2-.895-2-2V5.75c0-1.105,.895-2,2-2h1.25"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                      <path
-                        d="M9,.75h0c.69,0,1.25,.56,1.25,1.25v2.25h-2.5V2c0-.69,.56-1.25,1.25-1.25Z"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                      <line
-                        x1="10.5"
-                        y1="7.75"
-                        x2="13.25"
-                        y2="7.75"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></line>
-                      <line
-                        x1="10.5"
-                        y1="10.75"
-                        x2="13.25"
-                        y2="10.75"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></line>
-                    </g>
-                  </svg>
-                  }
-                </span>
-              </span>
-              <h3
-                class="font-medium leading-tight"
-                [ngClass]="{
-                  'text-green-600 dark:text-green-50': step > 1,
-                  'text-zinc-600 dark:text-zinc-400': step <= 1
-                }"
-              >
-                {{ 'INFO' | translate }}
-              </h3>
-            </li>
-            <li class="flex flex-row items-center mb-10 ms-6">
-              <span
-                class="absolute flex items-center justify-center w-8 h-8 bg-zinc-100 dark:bg-dark rounded-full -start-4 ring-4 ring-transparent"
-                [ngClass]="{ 'bg-green-300 dark:bg-green-400': step > 2 }"
-              >
-                <span
-                  class="svg-icon svg-icon-5 stroke-[1.8]"
-                  [ngClass]="{
-                    'text-green-600 dark:text-green-50': step > 2,
-                    'text-zinc-600 dark:text-zinc-400': step <= 2
-                  }"
-                >
-                  @if (step > 2) {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>check</title>
-                    <g fill="currentColor" class="nc-icon-wrapper">
-                      <polyline
-                        points="2.75 9.25 6.75 14.25 15.25 3.75"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></polyline>
-                    </g>
-                  </svg>
-                  } @else {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>star sparkle</title>
-                    <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
-                      <path
-                        d="M4.743,2.492l-.946-.315-.316-.947c-.102-.306-.609-.306-.711,0l-.316,.947-.946,.315c-.153,.051-.257,.194-.257,.356s.104,.305,.257,.356l.946,.315,.316,.947c.051,.153,.194,.256,.355,.256s.305-.104,.355-.256l.316-.947,.946-.315c.153-.051,.257-.194,.257-.356s-.104-.305-.257-.356Z"
-                        data-color="color-2"
-                        data-stroke="none"
-                        stroke="none"
-                      ></path>
-                      <polyline
-                        points="13.469 9.728 16.25 7.017 11.24 6.29 9 1.75 6.76 6.29 1.75 7.017 5.375 10.551 4.519 15.54 8.864 13.256"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></polyline>
-                      <path
-                        d="M15.158,13.49l-1.263-.421-.421-1.263c-.137-.408-.812-.408-.949,0l-.421,1.263-1.263,.421c-.204,.068-.342,.259-.342,.474s.138,.406,.342,.474l1.263,.421,.421,1.263c.068,.204,.26,.342,.475,.342s.406-.138,.475-.342l.421-1.263,1.263-.421c.204-.068,.342-.259,.342-.474s-.138-.406-.342-.474Z"
-                        data-color="color-2"
-                        data-stroke="none"
-                        stroke="none"
-                      ></path>
-                      <circle
-                        cx="14.25"
-                        cy="3.25"
-                        r=".75"
-                        data-color="color-2"
-                        data-stroke="none"
-                        stroke="none"
-                      ></circle>
-                    </g>
-                  </svg>
-                  }
-                </span>
-              </span>
-              <h3
-                class="font-medium leading-tight"
-                [ngClass]="{
-                  'text-green-600 dark:text-green-50': step > 2,
-                  'text-zinc-600 dark:text-zinc-400': step <= 2
-                }"
-              >
-                {{ 'REVIEWS' | translate }}
-              </h3>
-            </li>
-            <li class="flex flex-row items-center mb-10 ms-6">
-              <span
-                class="absolute flex items-center justify-center w-8 h-8 bg-zinc-100 dark:bg-dark rounded-full -start-4 ring-4 ring-transparent"
-                [ngClass]="{ 'bg-green-300 dark:bg-green-400': step > 3 }"
-              >
-                <span
-                  class="svg-icon svg-icon-5 stroke-[1.8]"
-                  [ngClass]="{
-                    'text-green-600 dark:text-green-50': step > 3,
-                    'text-zinc-600 dark:text-zinc-400': step <= 3
-                  }"
-                >
-                  @if (step > 3) {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>check</title>
-                    <g fill="currentColor" class="nc-icon-wrapper">
-                      <polyline
-                        points="2.75 9.25 6.75 14.25 15.25 3.75"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></polyline>
-                    </g>
-                  </svg>
-                  } @else {
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>shield</title>
-                    <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
-                      <path
-                        d="M9.305,1.848l5.25,1.68c.414,.133,.695,.518,.695,.952v6.52c0,3.03-4.684,4.748-5.942,5.155-.203,.066-.413,.066-.616,0-1.258-.407-5.942-2.125-5.942-5.155V4.48c0-.435,.281-.82,.695-.952l5.25-1.68c.198-.063,.411-.063,.61,0Z"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </g>
-                  </svg>
-                  }
-                </span>
-              </span>
-              <h3
-                class="font-medium leading-tight"
-                [ngClass]="{
-                  'text-green-600 dark:text-green-50': step > 3,
-                  'text-zinc-600 dark:text-zinc-400': step <= 3
-                }"
-              >
-                {{ 'COMPETITORS' | translate }}
-              </h3>
-            </li>
-            <li class="flex flex-row items-center mb-10 ms-6">
-              <span
-                class="absolute flex items-center justify-center w-8 h-8 bg-zinc-100 dark:bg-dark rounded-full -start-4 ring-4 ring-transparent"
-              >
-                <span class="svg-icon svg-icon-5 stroke-[1.8] text-zinc-600 dark:text-zinc-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>party</title>
-                    <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
-                      <path
-                        d="M2.795,13.957L5.568,4.846c.22-.722,1.13-.95,1.664-.416l6.339,6.339c.534,.534,.306,1.444-.416,1.664l-9.112,2.773c-.765,.233-1.481-.482-1.248-1.248Z"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                      <line
-                        x1="6.825"
-                        y1="14.359"
-                        x2="4.654"
-                        y2="7.848"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></line>
-                      <line
-                        x1="10.346"
-                        y1="13.287"
-                        x2="7.475"
-                        y2="4.673"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></line>
-                      <path
-                        d="M16.743,2.492l-.946-.315-.316-.947c-.102-.306-.609-.306-.711,0l-.316,.947-.946,.315c-.153,.051-.257,.194-.257,.356s.104,.305,.257,.356l.946,.315,.316,.947c.051,.153,.194,.256,.355,.256s.305-.104,.355-.256l.316-.947,.946-.315c.153-.051,.257-.194,.257-.356s-.104-.305-.257-.356Z"
-                        stroke="none"
-                        fill="currentColor"
-                      ></path>
-                      <circle cx="12.75" cy="5.25" r=".75" stroke="none" fill="currentColor"></circle>
-                      <path
-                        d="M10,3.439c.184-.133,.588-.465,.823-1.048,.307-.763,.118-1.442,.055-1.64"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                      <path
-                        d="M14.561,8c.133-.184,.465-.588,1.048-.823,.763-.307,1.442-.118,1.64-.055"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </g>
-                  </svg>
-                </span>
-              </span>
-              <h3 class="font-medium leading-tight text-zinc-600 dark:text-zinc-400">{{ 'DONE' | translate }}!</h3>
-            </li>
-          </ol>
-        </dl>
-        <a
-          class="flex flex-row items-center gap-x-1 font-medium mt-10 text-sm cursor-pointer leading-6 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline decoration-[1.5px]"
-          [routerLink]="['/structures']"
-        >
-          <span class="svg-icon-7 text-zinc-600 dark:text-zinc-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="18"
-              width="18"
-              viewBox="0 0 18 18"
-              class="h-5 w-5 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
-            >
-              <title>chevron left</title>
-              <g fill="currentColor" class="nc-icon-wrapper">
-                <polyline
-                  points="11.5 15.25 5.25 9 11.5 2.75"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></polyline>
-              </g>
-            </svg>
-          </span>
+        } @case (2) {
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          {{ 'CONFIGURE_CHANNELS' | translate }}
+        </h2>
+        <p class="mt-3 text-lg leading-8 text-zinc-600">
+          {{ 'CHECK_CHANNEL' | translate }}
+        </p>
+        } @case (3) {
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          {{ 'CONFIGURE_COMPETITORS' | translate }}
+        </h2>
+        <p class="mt-3 text-lg leading-8 text-zinc-600">
+          {{ 'CHECK_COMPETITOS' | translate }}
+        </p>
+        } @case (4) {
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          {{ 'CONFIGURATION_COMPLETED' | translate }}
+        </h2>
+        <p class="mt-3 text-lg leading-8 text-zinc-600">
+          {{ 'CONFIGURATION_COMPLETED_DESCRIPTION' | translate }}
+        </p>
+        } }
 
-          {{ 'CHOOSE_RESTAURANT' | translate }}</a
-        >
+        <div class="py-12">
+          <nav class="flex" aria-label="Progress">
+            <ol role="list" class="space-y-6">
+              <li>
+                <a>
+                  <span class="flex flex-row items-center">
+                    @if (step > 1) {
+                    <span class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center">
+                      <svg
+                        class="h-full w-full text-accent dark:text-accentDark"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    } @if (step === 1) {
+                    <span class="relative flex h-3 w-3 flex-shrink-0 items-center justify-center ml-1">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent dark:bg-accentDark opacity-75"
+                      ></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-accent dark:bg-accentDark "></span>
+                    </span>
+                    } @if (step < 1) {
+                    <div class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center" aria-hidden="true">
+                      <div class="h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-700"></div>
+                    </div>
+                    }
+                    <span
+                      class="ml-3 text-sm"
+                      [ngClass]="{
+                        'text-accent dark:text-accentDark font-semibold': step === 1,
+                        'text-zinc-500 dark:text-zinc-400 font-medium': step !== 1
+                      }"
+                      >{{ 'INFO' | translate }}</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="flex items-start" aria-current="step">
+                  <span class="flex flex-row items-center">
+                    @if (step > 2) {
+                    <span class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center">
+                      <svg
+                        class="h-full w-full text-accent dark:text-accentDark"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    } @if (step === 2) {
+                    <span class="relative flex h-3 w-3 flex-shrink-0 items-center justify-center ml-1">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent dark:bg-accentDark opacity-75"
+                      ></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-accent dark:bg-accentDark "></span>
+                    </span>
+                    } @if (step < 2) {
+                    <div class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center" aria-hidden="true">
+                      <div class="h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-700"></div>
+                    </div>
+                    }
+                    <span
+                      class="ml-3 text-sm text-zinc-500 dark:text-zinc-400"
+                      [ngClass]="{
+                        'text-accent dark:text-accentDark font-semibold': step === 2,
+                        'text-zinc-500 dark:text-zinc-400 font-medium': step !== 2
+                      }"
+                      >{{ 'REVIEWS' | translate }}</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="flex flex-row items-center">
+                    @if (step > 3) {
+                    <span class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center">
+                      <svg
+                        class="h-full w-full text-accent dark:text-accentDark"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    } @if (step === 3) {
+                    <span class="relative flex h-3 w-3 flex-shrink-0 items-center justify-center ml-1">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent dark:bg-accentDark opacity-75"
+                      ></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-accent dark:bg-accentDark "></span>
+                    </span>
+                    } @if (step < 3) {
+                    <div class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center" aria-hidden="true">
+                      <div class="h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-700"></div>
+                    </div>
+                    }
+                    <span
+                      class="ml-3 text-sm text-zinc-500 dark:text-zinc-400"
+                      [ngClass]="{
+                        'text-accent dark:text-accentDark font-semibold': step === 3,
+                        'text-zinc-500 dark:text-zinc-400 font-medium': step !== 3
+                      }"
+                      >{{ 'COMPETITORS' | translate }}</span
+                    >
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="flex flex-row items-center">
+                    @if (step > 4) {
+                    <span class="relative flex h-5 w-5 flex-shrink-0 items-center justify-center">
+                      <svg
+                        class="h-full w-full text-accent dark:text-accentDark"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    }
+                  </span>
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
+
+    <a
+      class="hidden sm:block absolute cursor-pointer top-6 right-6 z-30 svg-icon-5 stroke-[1.8] rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out duration-200 transform"
+      [routerLink]="['/structures']"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+        <title>xmark</title>
+        <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+          <line
+            x1="14"
+            y1="4"
+            x2="4"
+            y2="14"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            data-color="color-2"
+          ></line>
+          <line
+            x1="4"
+            y1="4"
+            x2="14"
+            y2="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></line>
+        </g>
+      </svg>
+    </a>
   `,
 })
 export class StepperComponent {

@@ -1,24 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { WorldComponent } from '../../../../ui/world/world.component';
 import { ClickOutsideDirective } from '../../../../utils/directives/clickoutside';
 import { StepperComponent } from '../../stepper/stepper.component';
 import { StructureStore } from '../../../../store/structures/structure.service';
 import { SettingsService } from '../../../../ui/settings/settings.service';
 import { UserPanelService } from '../../../../ui/user/user.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { AddRestaurant } from '../../../../store/structures/interfaces/restaurant';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import moment from 'moment';
 import { Router } from '@angular/router';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { filter, first, map } from 'rxjs';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
-import { CompetitorsStore } from '../../../../store/competitors/competitors.service';
 import { SetupStore } from '../../../../store/setup/setup.service';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AddCompetitorSetupDialogService } from './add-competitor-dialog/add-competitor-dialog.service';
+import { CompetitorsStore } from '../../../../store/competitors/competitors.service';
 
 @UntilDestroy()
 @Component({
@@ -34,10 +33,11 @@ import { SetupStore } from '../../../../store/setup/setup.service';
     ClickOutsideDirective,
     StepperComponent,
     MissingTranslationPipe,
+    GoogleMapsModule,
   ],
   template: `
     <ng-template #loading>
-      <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-44 sm:pb-32 lg:px-8 lg:min-h-screen">
+      <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
         <div class="flex flex-col items-center">
           <world
             [title]="'SEARCHING_COMPETITORS' | translate"
@@ -91,30 +91,142 @@ import { SetupStore } from '../../../../store/setup/setup.service';
     <div class="relative isolate bg-white dark:bg-dark">
       <div class="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 w-full">
         <stepper></stepper>
-        @switch (store.state()) { @case ('loading') {
+        @switch (store.stateCompetitors()) { @case ('loading') {
         <ng-container *ngTemplateOutlet="loading"></ng-container>
         } @case ('error') {
         <ng-container *ngTemplateOutlet="error"></ng-container>
-        } @case ('loaded') {
-        <div class="col-span-1 px-6 pb-24 pt-16 sm:pb-32 lg:px-8 lg:min-h-screen">
+        } @case ('empty') {
+        <div class="col-span-1 px-6 pb-24 pt-20 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
           <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-            <h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              {{ 'CONFIGURE_COMPETITORS' | translate }}
-            </h2>
-            <p class="mt-6 text-lg leading-8 text-zinc-600">
-              {{ 'CHECK_COMPETITOS' | translate }}
-            </p>
-
-            <div class="max-w-7xl mx-auto mt-10">
-              <div
-                class="ring-1 ring-zinc-300 dark:ring-zinc-800 shadow-xl shadow-black/10 dark:shadow-black rounded-2xl p-8"
+            <div class="max-w-7xl mx-auto">
+              <div>
+                <div class="flex flex-row items-center justify-center px-6 h-[50rem] sm:px-6 sm:py-32 lg:px-8">
+                  <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-3xl">
+                      {{ 'NO_COMPETITORS_FOUND' | translate }}
+                    </h2>
+                    <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                      {{ 'NO_COMPETITORS_FOUND_DESCRIPTION' | translate }}
+                    </p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                      <button
+                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+                        (click)="save()"
+                      >
+                        <div
+                          class="flex flex-row items-center justify-center gap-x-2 svg-icon-7 stroke-2 bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
+                        >
+                          <span class="font-semibold text-base"> {{ 'CONFIRM' | translate }}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                            <title>check</title>
+                            <g fill="currentColor" class="nc-icon-wrapper">
+                              <polyline
+                                points="2.75 9.25 6.75 14.25 15.25 3.75"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></polyline>
+                            </g>
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        } @case ('loaded') {
+        <div class="col-span-1 px-6 pb-24 pt-20 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
+          <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
+            <div class="hidden xl:flex flex-row items-center justify-between relative -bottom-96 -mx-10 h-0">
+              <button
+                class="svg-icon-5 stroke-[1.8] pr-4 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-500 cursor-pointer disabled:opacity-30 w-0"
+                [disabled]="index() === 0"
+                (click)="prev()"
               >
+                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                  <title>chevron left</title>
+                  <g fill="currentColor" class="nc-icon-wrapper">
+                    <polyline
+                      points="11.5 15.25 5.25 9 11.5 2.75"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></polyline>
+                  </g>
+                </svg>
+              </button>
+
+              <button
+                class="svg-icon-5 stroke-[1.8] pr-4 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-500 cursor-pointer disabled:opacity-30 w-0"
+                [disabled]="index() === store.competitors().length"
+                (click)="next()"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                  <title>chevron right</title>
+                  <g fill="currentColor" class="nc-icon-wrapper">
+                    <polyline
+                      points="6.5 2.75 12.75 9 6.5 15.25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></polyline>
+                  </g>
+                </svg>
+              </button>
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+              @if (suggestNextStep()) {
+              <div>
+                <div class="flex flex-row items-center justify-center px-6 h-[50rem] sm:px-6 sm:py-32 lg:px-8">
+                  <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-3xl">
+                      {{ 'NO_MORE_COMPETITORS' | translate }}
+                    </h2>
+                    <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                      {{ 'NO_MORE_COMPETITORS_DESCRIPTION' | translate }}
+                    </p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                      <button
+                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+                        (click)="save()"
+                      >
+                        <div
+                          class="flex flex-row items-center justify-center gap-x-2 svg-icon-7 stroke-2 bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
+                        >
+                          <span class="font-semibold text-base"> {{ 'CONFIRM' | translate }}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                            <title>check</title>
+                            <g fill="currentColor" class="nc-icon-wrapper">
+                              <polyline
+                                points="2.75 9.25 6.75 14.25 15.25 3.75"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></polyline>
+                            </g>
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              } @else {
+              <div class="ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-xl p-8">
                 <div class="flex flex-row justify-between mb-3">
                   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 w-full truncate">
                     {{ competitor().name }}
                   </h2>
                   <a
-                    class="flex flex-col items-center justify-center rounded-md h-8 w-8 ml-3 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 transform"
+                    class="flex flex-col items-center justify-center rounded-md p-1.5 ml-3 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 transform"
                     (click)="openLink(competitor().url)"
                   >
                     <svg
@@ -150,6 +262,7 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                     </svg>
                   </a>
                 </div>
+
                 <p
                   class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-medium leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
                 >
@@ -173,6 +286,7 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                   </svg>
                   {{ competitor().address }}, {{ competitor().city }}
                 </p>
+
                 <p
                   class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-medium leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
                 >
@@ -198,7 +312,7 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                     <figure
                       class="rounded-xl bg-white dark:bg-dark shadow-sm ring-1 ring-zinc-900/5 col-span-2 col-start-2 row-end-1"
                     >
-                      <img [src]="getUrl(competitor().photos[0])" alt="" class="w-full h-64 object-cover rounded-xl" />
+                      <img [src]="getUrl(competitor().photos[0])" alt="" class="w-full h-64 object-cover rounded-md" />
                     </figure>
                     <div class="contents space-y-0">
                       <div class="space-y-4 row-span-2">
@@ -206,21 +320,21 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                           <img
                             [src]="getUrl(competitor().photos[1])"
                             alt=""
-                            class="w-full h-[120px] object-cover rounded-xl"
+                            class="w-full h-[120px] object-cover rounded-md"
                           />
                         </figure>
                         <figure class="rounded-xl bg-white dark:bg-dark shadow-sm ring-1 ring-zinc-900/5">
                           <img
                             [src]="getUrl(competitor().photos[2])"
                             alt=""
-                            class="w-full h-[120px] object-cover rounded-xl"
+                            class="w-full h-[120px] object-cover rounded-md"
                           />
                         </figure>
                         <figure class="rounded-xl bg-white dark:bg-dark shadow-sm ring-1 ring-zinc-900/5">
                           <img
                             [src]="getUrl(competitor().photos[3])"
                             alt=""
-                            class="w-full h-[120px] object-cover rounded-xl"
+                            class="w-full h-[120px] object-cover rounded-md"
                           />
                         </figure>
                       </div>
@@ -230,14 +344,14 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                         <img
                           [src]="getUrl(competitor().photos[4])"
                           alt=""
-                          class="w-full h-[120px] object-cover rounded-xl"
+                          class="w-full h-[120px] object-cover rounded-md"
                         />
                       </figure>
                       <figure class="rounded-xl bg-white dark:bg-dark shadow-sm ring-1 ring-zinc-900/5">
                         <img
                           [src]="getUrl(competitor().photos[5])"
                           alt=""
-                          class="w-full h-[120px] object-cover rounded-xl"
+                          class="w-full h-[120px] object-cover rounded-md"
                         />
                       </figure>
                     </div>
@@ -246,14 +360,107 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                     <figure
                       class="rounded-xl bg-white dark:bg-dark shadow-sm ring-1 ring-zinc-900/5 col-span-2 col-start-2 row-end-1"
                     >
-                      <img [src]="getUrl(competitor().photos[0])" alt="" class="w-full h-64 object-cover rounded-xl" />
+                      <img [src]="getUrl(competitor().photos[0])" alt="" class="w-full h-64 object-cover rounded-md" />
                     </figure>
                   </div>
                 </div>
 
+                <div class="w-full z-0 rounded-md mt-4">
+                  <google-map
+                    width="100%"
+                    height="120px"
+                    [zoom]="16"
+                    [options]="{ disableDefaultUI: true }"
+                    [center]="{ lat: markers()[0].position.lat, lng: markers()[0].position.lng }"
+                  >
+                    <map-marker *ngFor="let marker of markers()" [position]="marker.position"> </map-marker>
+                  </google-map>
+                </div>
+
                 <div class="flex flex-row items-center justify-between w-full mt-10">
+                  @if (competitor().isAdded) {
+                  <h1
+                    class="flex flex-row items-center justify-center gap-1 text-green-500 w-full stroke-2 text-lg font-medium leading-6"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                      <title>check</title>
+                      <g fill="currentColor" class="nc-icon-wrapper">
+                        <polyline
+                          points="2.75 9.25 6.75 14.25 15.25 3.75"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></polyline>
+                      </g>
+                    </svg>
+                    {{ 'ADDED' | translate }}
+                  </h1>
+                  } @else { @if (competitor().competitorReferenceId) {
                   <button
-                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40"
+                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    [disabled]="!canAdd()"
+                    (click)="channels()"
+                  >
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 svg-icon-9 stroke-[2.6px] bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
+                    >
+                      <span class="font-semibold text-base">{{ 'CONFIGURE_CHANNELS' | translate }}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                        <title>sliders vertical</title>
+                        <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
+                          <line
+                            x1="12.75"
+                            y1="13.25"
+                            x2="12.75"
+                            y2="16.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke="currentColor"
+                          ></line>
+                          <line
+                            x1="12.75"
+                            y1="1.75"
+                            x2="12.75"
+                            y2="8.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke="currentColor"
+                          ></line>
+                          <circle
+                            cx="12.75"
+                            cy="11"
+                            r="2.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke="currentColor"
+                          ></circle>
+                          <line
+                            x1="5.25"
+                            y1="4.75"
+                            x2="5.25"
+                            y2="1.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></line>
+                          <line
+                            x1="5.25"
+                            y1="16.25"
+                            x2="5.25"
+                            y2="9.25"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          ></line>
+                          <circle cx="5.25" cy="7" r="2.25" stroke-linecap="round" stroke-linejoin="round"></circle>
+                        </g>
+                      </svg>
+                    </div>
+                  </button>
+                  } @else {
+                  <button
+                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    [disabled]="!canAdd()"
+                    (click)="add()"
                   >
                     <div
                       class="flex flex-row items-center justify-center gap-x-2 svg-icon-9 stroke-[2.6px] bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
@@ -286,36 +493,31 @@ import { SetupStore } from '../../../../store/setup/setup.service';
                       </svg>
                     </div>
                   </button>
+                  } }
                 </div>
               </div>
-              <nav class="flex items-center justify-center mt-10" aria-label="Progress">
-                <ol role="list" class="flex items-center space-x-5">
-                  @for (competitor of store.competitors(); track $index) {
-                  <li>
-                    <a
-                      class="relative flex items-center justify-center"
-                      aria-current="step"
-                      (click)="index.set($index)"
-                    >
-                      @if ($index === index()) {
-                      <span class="absolute flex h-5 w-5 p-px" aria-hidden="true">
-                        <span class="h-full w-full rounded-full bg-accent/20 dark:bg-accentDark/20"></span>
-                      </span>
-                      }
-
-                      <span
-                        class="relative block h-2.5 w-2.5 rounded-full"
-                        [ngClass]="{
-                          'bg-accent/90 dark:bg-accentDark/90': $index <= index(),
-                          'bg-zinc-200 hover:bg-zinc-400 dark:bg-zinc-800 dark:hover:bg-zinc-600': $index > index()
-                        }"
-                      ></span>
-                      <span class="sr-only">Step 2</span>
-                    </a>
-                  </li>
-                  }
-                </ol>
-              </nav>
+              }
+              <div class="xl:hidden flex flex-row items-center justify-between pt-7 pb-5">
+                <button
+                  type="button"
+                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
+                  [disabled]="index() === 0"
+                  (click)="prev()"
+                >
+                  {{ 'PREVIOUS' | translate }}
+                </button>
+                <button
+                  type="button"
+                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
+                  [disabled]="index() === store.competitors().length"
+                  (click)="next()"
+                >
+                  {{ 'NEXT' | translate }}
+                </button>
+              </div>
+              <p class="text-zinc-400 dark:text-zinc-600 text-sm font-normal tracking-tight italic mt-6">
+                {{ 'COMPETITOR_MAX_LIMIT' | translate }}
+              </p>
             </div>
           </div>
         </div>
@@ -491,18 +693,37 @@ import { SetupStore } from '../../../../store/setup/setup.service';
 })
 export class Step3Component {
   store = inject(SetupStore);
+  router = inject(Router);
   settingsUI = inject(SettingsService);
   userPanelUI = inject(UserPanelService);
-  router = inject(Router);
+  dialog = inject(AddCompetitorSetupDialogService);
+  structure = inject(StructureStore);
+  competitorStore = inject(CompetitorsStore);
 
   readonly currentYear = moment(new Date()).year();
 
   index = signal(0);
+  markers = computed(() => {
+    const competitor = this.store.competitors()[this.index()];
+    return [
+      {
+        position: {
+          lat: competitor?.geometry?.location.lat,
+          lng: competitor?.geometry?.location.lng,
+        },
+      },
+    ];
+  });
+
   competitor = computed(() => {
     const competitor = this.store.competitors()[this.index()];
     const address: string =
       competitor?.address_components?.find((c) => c.types.includes('route') || c.types.includes('sublocality_level_2'))
         ?.long_name || '';
+    const number: string =
+      competitor?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
+    const zipCode: string =
+      competitor?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
     const city: string =
       competitor?.address_components?.find(
         (c) =>
@@ -511,19 +732,32 @@ export class Step3Component {
           c.types.includes('postal_town')
       )?.long_name || '';
 
+    const googlePlaceId = competitor.place_id || '';
+    const isAdded = competitor.isAdded;
+
     return {
-      address,
-      city,
-      ...competitor,
+      competitorReferenceId: competitor?.competitorReference?.id || '',
+      name: competitor?.name || '',
+      address: `${address} ${number}`,
+      city: city,
+      zipCode: zipCode,
+      phone: competitor?.phone || '',
+      url: competitor?.website || '',
+      placeId: googlePlaceId,
+      photos: competitor?.photos || ([] as any[]),
+      isAdded,
     };
   });
 
-  constructor() {
-    setTimeout(() => this.store.retrive(), 0);
+  canAdd = computed(() => {
+    const competitors = this.store.competitors().filter((c) => c.isAdded);
+    return competitors.length < 3;
+  });
 
-    effect(() => {
-      console.log(this.competitor());
-    });
+  suggestNextStep = signal(false);
+
+  constructor() {
+    this.store.retrive();
   }
 
   getUrl(googlephoto: { height: number; html_attributions: string[]; photo_reference: string; width: number }) {
@@ -533,5 +767,39 @@ export class Step3Component {
   openLink(url: string) {
     if (!url) return;
     window.open(url, '_blank');
+  }
+
+  add() {
+    this.store.selectByPlace(this.competitor().placeId);
+    this.store.step.set(1);
+    this.dialog.openDialog();
+  }
+
+  channels() {
+    this.store.selectByPlace(this.competitor().placeId);
+    this.store.step.set(2);
+    this.dialog.openDialog();
+  }
+
+  next() {
+    if (this.index() === this.store.competitors().length - 1) {
+      this.suggestNextStep.set(true);
+      return;
+    }
+    this.index.set(this.index() + 1);
+  }
+
+  prev() {
+    if (this.index() === 0) return;
+    this.index.set(this.index() - 1);
+
+    if (this.suggestNextStep()) {
+      this.suggestNextStep.set(false);
+    }
+  }
+
+  save() {
+    this.structure.setCompetitorsCompleted();
+    // this.competitorStore.reload();
   }
 }

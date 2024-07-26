@@ -11,6 +11,8 @@ import { PublicMenuComponent } from './pages/public-menu/public-menu.component';
 import { Step1Component } from './pages/setup/steps/step1/step1.component';
 import { Step2Component } from './pages/setup/steps/step2/step2.component';
 import { Step3Component } from './pages/setup/steps/step3/step3.component';
+import { Step4Component } from './pages/setup/steps/step4/step4.component';
+import { ChangeLogComponent } from './pages/changelog/changelog.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +38,7 @@ export const routes: Routes = [
         data: { show: true, i18n: 'MENU', icon: 'restaurant-menu.svg' },
         canActivate: [CookieGuard],
       },
+
       {
         path: 'reviews',
         component: ReviewsComponent,
@@ -54,6 +57,11 @@ export const routes: Routes = [
         canActivate: [CookieGuard],
       },
     ],
+  },
+  {
+    path: 'changelog',
+    component: ChangeLogComponent,
+    data: { show: false },
   },
   {
     path: 'structures',
@@ -80,6 +88,10 @@ export const routes: Routes = [
       {
         path: '3',
         component: Step3Component,
+      },
+      {
+        path: '4',
+        component: Step4Component,
       },
     ],
   },

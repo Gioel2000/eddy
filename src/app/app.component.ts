@@ -10,6 +10,8 @@ import { CreateCompetitorPanelComponent } from './ui/create-competitor/create-co
 import { GeneralDialogComponent } from './ui/dialog/dialog.component';
 import { CookieAlertComponent } from './ui/cookie/cookie.component';
 import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog/edit-channel-dialog.component';
+import { AddCompetitorSetupDialogComponent } from './pages/setup/steps/step3/add-competitor-dialog/add-competitor-dialog.component';
+import { AddCompetitorDialogComponent } from './ui/add-competitor-dialog/add-competitor-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +28,8 @@ import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog
     GeneralDialogComponent,
     CookieAlertComponent,
     EditChannelDialogComponent,
+    AddCompetitorSetupDialogComponent,
+    AddCompetitorDialogComponent,
   ],
   template: `
     @if (isRouterLoaded()) { @defer (on viewport; prefetch on idle) {
@@ -72,6 +76,18 @@ import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <cookie-alert></cookie-alert>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <setup-add-competitor-dialog></setup-add-competitor-dialog>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <add-competitor-dialog></add-competitor-dialog>
     } @placeholder {
     <div></div>
     } @loading {

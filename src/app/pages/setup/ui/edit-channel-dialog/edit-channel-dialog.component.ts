@@ -17,8 +17,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
     <div
       class="relative z-[10000]"
       [ngClass]="{
-      hidden: !dialog.isDialogOpen(),
-    }"
+        hidden: !dialog.isDialogOpen(),
+      }"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"

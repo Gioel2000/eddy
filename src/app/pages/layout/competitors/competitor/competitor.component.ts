@@ -118,62 +118,27 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
         </p>
         @if (competitor().isDownloading) {
         <sparkle [title]="'WARNING' | translate" [description]="'DOWNLOADING_REVIEWS' | translate"></sparkle>
-        } @else { @defer (on viewport; prefetch on idle) {
+        } @else {
         <brand-reputation-graph
           [id]="competitor()._id"
           [reputation]="competitor().reputation"
           [state]="state()"
         ></brand-reputation-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <ratings-graph [id]="competitor()._id" [rating]="competitor().rating" [state]="state()"></ratings-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <channels-graph
           [id]="competitor()._id"
           [channelsRatings]="competitor().channelsRatings"
           [state]="state()"
         ></channels-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <categories-graph
           [id]="competitor()._id"
           [categories]="competitor().categories"
           [sentiment]="competitor().sentiment"
           [state]="state()"
         ></categories-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <types-graph [id]="competitor()._id" [typologies]="competitor().clientTypes" [state]="state()"></types-graph>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <overview-reviews-last-day [recentReviews]="competitor().reviews" [state]="state()"></overview-reviews-last-day>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        } @defer (on viewport; prefetch on idle) {
         <reviews-last-day [recentReviews]="competitor().reviews" [state]="state()"></reviews-last-day>
-        } @placeholder {
-        <div></div>
-        } @loading {
-        <div></div>
-        }
 
         <button
           class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] mt-6 w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
