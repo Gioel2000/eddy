@@ -308,7 +308,7 @@
       "DESC": "Pulizia"
     },
     "RESTAURANT_VALUE": {
-      "DESC": "Rapporto Qualità Prezzo"
+      "DESC": "Prezzi"
     },
     "RESTAURANT_SERVICES": {
       "DESC": "Servizi"
@@ -356,7 +356,7 @@
       "DESC": "Camere in vendita"
     },
     "RESTAURANT_ATMOSPHERE": {
-      "DESC": "Atmosfera"
+      "DESC": "Ambiente"
     },
     "RESTAURANT_FOOD": {
       "DESC": "Cibo"

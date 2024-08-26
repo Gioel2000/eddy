@@ -12,12 +12,13 @@ import { environment } from '../../../../environments/environment';
 import { StructureStore } from '../../../store/structures/structure.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { switchMap, tap } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @UntilDestroy()
 @Component({
   selector: 'profile-dropdown-sm',
   standalone: true,
-  imports: [CommonModule, InlineSVGModule, TranslateModule, ClickOutsideDirective],
+  imports: [CommonModule, InlineSVGModule, TranslateModule, ClickOutsideDirective, RouterModule],
   template: `
     <div class="relative inline-block text-left">
       <div>
@@ -96,12 +97,12 @@ import { switchMap, tap } from 'rxjs';
               role="menuitem"
               tabindex="-1"
               id="menu-item-0"
-              routerLink="/changelog"
+              [routerLink]="'/changelog'"
             >
               <div class="flex flex-row items-center w-full">
                 <span
                   class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                  [inlineSVG]="'flask.svg'"
+                  [inlineSVG]="'brackets-curly-dots.svg'"
                 ></span>
                 <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ 'NOVELTY' | translate }}</span>
               </div>

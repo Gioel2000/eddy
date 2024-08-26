@@ -7,11 +7,20 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { RatingModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 import { CompetitorsService } from '../../competitors.service';
 import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
+import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 
 @Component({
   selector: 'ratings-graph',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, MissingTranslationPipe],
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    InlineSVGModule,
+    TranslateModule,
+    NumberPipe,
+    MissingTranslationPipe,
+    GrowthPipe,
+  ],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
@@ -55,21 +64,17 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
             <dd
               class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
               [ngClass]="{
-                'text-green-600 bg-green-100 dark:bg-green-900': isGrowthPercentagePositive(),
-                'text-zinc-500 bg-zinc-100 dark:bg-zinc-900': !isGrowthPercentagePositive(),
+                'text-green-600 bg-green-100 dark:bg-green-900': isPositive(),
+                'text-zinc-500 bg-zinc-100 dark:bg-zinc-900': !isPositive(),
               }"
             >
               <span
-                [inlineSVG]="isGrowthPercentagePositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
+                [inlineSVG]="isPositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
                 class="svg-icon svg-icon-7 stroke-2"
               ></span>
-              <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
+              <span> {{ totalReviewsReceived() | growth : translate.currentLang }}</span>
             </dd>
           </div>
-          <dt class="text-sm font-medium leading-6 text-zinc-500">
-            vs. {{ totalReviewsReceived() | numb : translate.currentLang : 2 }}
-            {{ 'SUM_OF_PERIOD' | translate | lowercase }}
-          </dt>
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
@@ -160,13 +165,9 @@ export class RatingsComponent {
   totalReviews = computed(() => this.rating().reduce((acc, curr) => acc + curr.totalCount, 0));
   totalReviewsReceived = computed(() => this.rating().reduce((acc, curr) => acc + curr.filteredCount, 0));
 
-  growthPercentage = computed(() => {
-    const now = this.totalReviews();
-    const received = this.totalReviewsReceived();
-    return (received / now) * 100;
+  isPositive = computed(() => {
+    return this.totalReviewsReceived() > 0;
   });
-
-  isGrowthPercentagePositive = computed(() => this.growthPercentage() > 0);
 
   getStarData(rating: number) {
     const row = this.rating().find((item) => item.rating === rating);

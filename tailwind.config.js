@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "sans-serif"],
+        sans: ["Outfit", "sans-serif"],
         cursive: ["Pacifico", "cursive"],
       },
       colors: {

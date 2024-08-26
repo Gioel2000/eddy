@@ -207,16 +207,16 @@ export class CompetitorsComponent {
 
   pastRapidDates = [
     {
-      key: '2_WEEKS_AGO',
-      value: moment().toDate(),
-    },
-    {
       key: 'LAST_MONTH',
       value: moment().subtract(1, 'month').toDate(),
     },
     {
       key: '3_MONTHS_AGO',
       value: moment().subtract(3, 'months').toDate(),
+    },
+    {
+      key: '6_MONTHS_AGO',
+      value: moment().subtract(6, 'month').toDate(),
     },
   ];
 }

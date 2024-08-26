@@ -249,7 +249,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     >
                       <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
                       <span></span>
-                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                      <span>{{ diff | growth : translate.currentLang }}</span>
                     </div>
                     } }
                   </div>
@@ -438,7 +438,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     >
                       <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
                       <span></span>
-                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                      <span>{{ diff | growth : translate.currentLang }}</span>
                     </div>
                     } }
                   </div>
@@ -627,7 +627,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     >
                       <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
                       <span></span>
-                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                      <span>{{ diff | growth : translate.currentLang }}</span>
                     </div>
                     } }
                   </div>
@@ -816,7 +816,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     >
                       <span class="w-full max-w-16 truncate">{{ 'DIFFERENCE' | translate }}</span>
                       <span></span>
-                      <span>{{ diff | growth : translate.currentLang : 1 }}</span>
+                      <span>{{ diff | growth : translate.currentLang }}</span>
                     </div>
                     } }
                   </div>

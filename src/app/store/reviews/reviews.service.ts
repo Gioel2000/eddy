@@ -5,8 +5,19 @@ import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
 import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
-import { Observable, Subject, catchError, combineLatest, filter, forkJoin, interval, map, of, switchMap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
+import {
+  Observable,
+  Subject,
+  catchError,
+  combineLatest,
+  filter,
+  forkJoin,
+  interval,
+  map,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 
 export interface ReviewsStoreModel {
   summary: {
@@ -71,6 +82,7 @@ export class ReviewsStore {
   sentimentState = computed(() => this.store().sentiment.state);
 
   isDownloading = computed(() => this.store().isDownloading);
+  sentimentWordsFilter = signal<string[]>([]);
 
   constructor() {
     interval(3000)
@@ -87,6 +99,8 @@ export class ReviewsStore {
       .subscribe((isDownloading) => {
         this.setIsDownloading$.next(isDownloading);
       });
+
+    this.structure.structureChanged$.pipe(untilDestroyed(this)).subscribe(() => this.sentimentWordsFilter.set([]));
 
     const stream$ = combineLatest({
       selected: this.structure.structureChanged$,
@@ -135,7 +149,12 @@ export class ReviewsStore {
             summary: data.summary,
             sentiment: data.sentiment,
             isDownloading,
-          }))
+          })),
+          tap(({ sentiment }) => {
+            if (this.sentimentWordsFilter().length === 0) {
+              this.sentimentWordsFilter.set(sentiment.data.map((word) => word.word));
+            }
+          })
         )
       ),
       map((data) => data as ReviewsStoreModel)

@@ -281,7 +281,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffRating < 0,
                           'text-zinc-700': diffRating === 0
                         }"
-                        >{{ diffRating | growth : translate.currentLang : 1 }}</span
+                        >{{ diffRating | growth : translate.currentLang }}</span
                       >
                       <span
                         class="w-8"
@@ -290,7 +290,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffCount < 0,
                           'text-zinc-700': diffCount === 0
                         }"
-                        >{{ diffCount | growth : translate.currentLang : 1 }}</span
+                        >{{ diffCount | growth : translate.currentLang }}</span
                       >
                     </div>
                     } }
@@ -306,7 +306,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'bg-green-800 text-green-500': google().filteredCount > 0,
                           'bg-zinc-800 text-zinc-500': google().filteredCount === 0
                         }"
-                        >{{ google().filteredCount | growth : translate.currentLang : 2 }}</span
+                        >{{ google().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
                     </p> -->
@@ -530,7 +530,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffRating < 0,
                           'text-zinc-700': diffRating === 0
                         }"
-                        >{{ diffRating | growth : translate.currentLang : 1 }}</span
+                        >{{ diffRating | growth : translate.currentLang }}</span
                       >
                       <span
                         class="w-8"
@@ -539,7 +539,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffCount < 0,
                           'text-zinc-700': diffCount === 0
                         }"
-                        >{{ diffCount | growth : translate.currentLang : 1 }}</span
+                        >{{ diffCount | growth : translate.currentLang }}</span
                       >
                     </div>
                     } }
@@ -555,7 +555,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'bg-green-800 text-green-500': tripadvisor().filteredCount > 0,
                           'bg-zinc-800 text-zinc-500': tripadvisor().filteredCount === 0
                         }"
-                        >{{ tripadvisor().filteredCount | growth : translate.currentLang : 2 }}</span
+                        >{{ tripadvisor().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
                     </p> -->
@@ -779,7 +779,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffRating < 0,
                           'text-zinc-700': diffRating === 0
                         }"
-                        >{{ diffRating | growth : translate.currentLang : 1 }}</span
+                        >{{ diffRating | growth : translate.currentLang }}</span
                       >
                       <span
                         class="w-8"
@@ -788,7 +788,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'text-red-500': diffCount < 0,
                           'text-zinc-700': diffCount === 0
                         }"
-                        >{{ diffCount | growth : translate.currentLang : 1 }}</span
+                        >{{ diffCount | growth : translate.currentLang }}</span
                       >
                     </div>
                     } }
@@ -804,7 +804,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                           'bg-green-800 text-green-500': thefork().filteredCount > 0,
                           'bg-zinc-800 text-zinc-500': thefork().filteredCount === 0
                         }"
-                        >{{ thefork().filteredCount | growth : translate.currentLang : 2 }}</span
+                        >{{ thefork().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
                     </p> -->

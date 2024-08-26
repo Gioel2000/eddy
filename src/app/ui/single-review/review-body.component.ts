@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   inject,
   input,
@@ -136,7 +137,7 @@ import { I18nStore } from '../../store/i18n/i18n.service';
                 </svg>
 
                 <div
-                  class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                  class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
                   [style.width.%]="(5 - review().rating) * 20"
                 ></div>
               </div>
@@ -264,7 +265,7 @@ import { I18nStore } from '../../store/i18n/i18n.service';
                   </svg>
 
                   <div
-                    class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                    class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
                     [style.width.%]="(5 - (scale === 5 ? vote / 2 : vote)) * 20"
                   ></div>
                 </div>
@@ -367,7 +368,7 @@ import { I18nStore } from '../../store/i18n/i18n.service';
                     </svg>
 
                     <div
-                      class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                      class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
                       [style.width.%]="(5 - category.rating) * 20"
                     ></div>
                   </div>
@@ -717,7 +718,8 @@ export class BodyReviewComponent {
   constructor(
     private readonly translateService: TranslateService // private readonly reviewsService: ReviewsService, // private readonly francisService: FrancisService
   ) {
-    setTimeout(() => {
+    effect(() => {
+      const review = this.review();
       this.autoSize.nativeElement.style.height = 'auto';
       this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
 
@@ -726,25 +728,25 @@ export class BodyReviewComponent {
         this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
       });
 
-      const titleOriginal = this.review().title;
-      const source = this.review().channel.source;
+      const titleOriginal = review.title;
+      const source = review.channel.source;
       const reviewLang = this.getLanguageFromReviewContent();
       const index = this.getIndexTranslation('en');
       const canBeTranslated = reviewLang === null ? false : reviewLang !== 'it';
 
-      const { text } = this.review();
+      const { text } = review;
       const { title: titleTranslated, translated: isTitleTranslated } = this.translate(titleOriginal);
       const { scale, amountToMultiply } = SERVICES.find((service: any) => service._id === source) || {
         scale: 5,
         amountToMultiply: 1,
       };
-      const title = isTitleTranslated ? titleTranslated : this.review().title;
-      const titleFormatted = title.trim().length > 0 ? title : this.review().title;
+      const title = isTitleTranslated ? titleTranslated : review.title;
+      const titleFormatted = title.trim().length > 0 ? title : review.title;
 
       this.scale = scale;
       this.amountToMultiply = amountToMultiply;
       //   this.review.set({
-      //     ...this.review(),
+      //     ...review,
       //     titleTranslated,
       //     isTitleTranslated,
       //   });
@@ -754,14 +756,14 @@ export class BodyReviewComponent {
         title: titleTranslated,
       });
       this.canBeTranslated$.next(canBeTranslated);
-      this.alreadyReplied$.next(this.review().hasReplied);
+      this.alreadyReplied$.next(review.hasReplied);
 
       reviewLang && this.originalLangKey$.next('LANGS.' + reviewLang);
 
       if (reviewLang === 'it') {
         const content = {
-          ...this.review(),
-          title: this.review().title,
+          ...review,
+          title: review.title,
         };
 
         this.reviewContent$.next({
@@ -773,7 +775,7 @@ export class BodyReviewComponent {
       }
 
       if (reviewLang !== 'it' && index !== -1) {
-        const translation = this.review().translations[index];
+        const translation = review.translations[index];
         translation &&
           this.reviewContent$.next({
             text: translation.text,
@@ -783,7 +785,7 @@ export class BodyReviewComponent {
         this.calculateSentiment(translation, 'en');
       }
 
-      const aiReply = this.review().aiReply;
+      const aiReply = review.aiReply;
       if (aiReply) {
         // this.commentControl.setValue(aiReply.reply);
       }

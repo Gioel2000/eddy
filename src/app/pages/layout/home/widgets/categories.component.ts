@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { DashboardStore } from '../../../../store/dashboard/dashboard.service';
 import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -6,7 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
-import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
+import { CategoryTO, SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
 import { ReviewsService } from '../../reviews/reviews.service';
 import { Router } from '@angular/router';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
@@ -68,28 +68,24 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               @for (category of categories(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] px-6 py-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
                 (click)="checkCategory(category.category)"
               >
-                <div class="min-w-0 flex-1">
+                <div class="min-w-0 flex-1 z-10">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-1 text-base font-bold text-zinc-900 dark:text-zinc-100 max-w-22">
                         {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
                       </p>
-                      <span
-                        [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
-                      ></span>
                     </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ category.totalRating | numb : translate.currentLang : 2 }}
+                    <div class="flex flex-row items-end py-1">
+                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ category.totalRating | numb : translate.currentLang : 1 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
-                      @if (category.filteredRating) {
+                      <!-- @if (category.filteredRating) {
                       <span
                         class="text-sm px-1 font-semibold tabular-nums relative -top-0.5"
                         [ngClass]="{
@@ -97,139 +93,121 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                           'text-green-500': category.filteredRating > 0,
                           'text-zinc-500': category.filteredRating === 0
                         }"
-                        >{{ category.filteredRating | growth : translate.currentLang : 2 }}</span
+                        >{{ category.filteredRating | growth : translate.currentLang : 3 }}</span
                       >
-                      }
+                      } -->
                     </div>
 
                     <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center pt-1">
+                      <div class="flex flex-row relative whitespace-nowrap mt-1">
                         <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 1
-                          }"
+                          class="fill-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="18"
+                          height="18"
                           viewBox="0 0 18 18"
                         >
-                          <g fill="currentColor">
+                          <g>
                             <path
                               d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
                             ></path>
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 2
-                          }"
+                          class="fill-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="18"
+                          height="18"
                           viewBox="0 0 18 18"
                         >
-                          <g fill="currentColor">
+                          <g>
                             <path
                               d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
                             ></path>
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 3
-                          }"
+                          class="fill-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="18"
+                          height="18"
                           viewBox="0 0 18 18"
                         >
-                          <g fill="currentColor">
+                          <g>
                             <path
                               d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
                             ></path>
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 4
-                          }"
+                          class="fill-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="18"
+                          height="18"
                           viewBox="0 0 18 18"
                         >
-                          <g fill="currentColor">
+                          <g>
                             <path
                               d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
                             ></path>
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]': category.totalRating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': category.totalRating < 5
-                          }"
+                          class="fill-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="18"
+                          height="18"
                           viewBox="0 0 18 18"
                         >
-                          <g fill="currentColor">
+                          <g>
                             <path
                               d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                              fill="currentColor"
                             ></path>
                           </g>
                         </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - category.totalRating) * 20"
+                        ></div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <span
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  [inlineSVG]="category.icon"
+                ></span>
               </a>
               } @for (word of words(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm cursor-pointer hover:ring-2 hover:ring-accent dark:hover:ring-accentDark transition ease-in-out duration-100"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] px-6 py-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
                 (click)="checkCategory(word.category)"
               >
-                <div class="min-w-0 flex-1">
+                <div class="min-w-0 flex-1 z-10">
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="line-clamp-2 text-sm font-bold text-zinc-700 dark:text-zinc-300">
+                      <p class="line-clamp-2 text-base font-bold text-zinc-900 dark:text-zinc-100">
                         {{ 'REVIEWS_CATEGORIES.' + (word.category | uppercase) + '.DESC' | translate }}
                       </p>
-                      <span
-                        [inlineSVG]="'share-up-right.svg'"
-                        class="group-hover:block hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3]"
-                      ></span>
                     </div>
 
-                    <div class="flex flex-row items-end">
-                      <span class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ word.rating | numb : translate.currentLang : 2 }}
+                    <div class="flex flex-row items-end py-1">
+                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ word.rating | numb : translate.currentLang : 1 }}
                       </span>
                       <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
                     </div>
 
                     <div class="flex items-center xl:col-span-1">
-                      <div class="flex items-center pt-1">
+                      <div class="flex flex-row relative whitespace-nowrap mt-1">
                         <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 1,
-                            'text-zinc-200 dark:text-zinc-700': word.rating < 1
-                          }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
                           height="16"
                           viewBox="0 0 18 18"
+                          class="text-red-500"
                         >
                           <title>heart</title>
                           <g fill="currentColor">
@@ -239,14 +217,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 2,
-                            'text-zinc-200 dark:text-zinc-700': word.rating < 2
-                          }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
                           height="16"
                           viewBox="0 0 18 18"
+                          class="text-red-500"
                         >
                           <title>heart</title>
                           <g fill="currentColor">
@@ -256,14 +231,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 3,
-                            'text-zinc-200 dark:text-zinc-700': word.rating < 3
-                          }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
                           height="16"
                           viewBox="0 0 18 18"
+                          class="text-red-500"
                         >
                           <title>heart</title>
                           <g fill="currentColor">
@@ -273,14 +245,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 4,
-                            'text-zinc-200 dark:text-zinc-700': word.rating < 4
-                          }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
                           height="16"
                           viewBox="0 0 18 18"
+                          class="text-red-500"
                         >
                           <title>heart</title>
                           <g fill="currentColor">
@@ -290,14 +259,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                           </g>
                         </svg>
                         <svg
-                          [ngClass]="{
-                            'text-red-500 drop-shadow-[0_0px_5px_rgba(239,68,68,0.4)]': word.rating >= 5,
-                            'text-zinc-200 dark:text-zinc-700': word.rating < 5
-                          }"
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
                           height="16"
                           viewBox="0 0 18 18"
+                          class="text-red-500"
                         >
                           <title>heart</title>
                           <g fill="currentColor">
@@ -306,10 +272,19 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                             ></path>
                           </g>
                         </svg>
+
+                        <div
+                          class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - word.rating) * 20"
+                        ></div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <span
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  [inlineSVG]="word.icon"
+                ></span>
               </a>
               }
             </div>
@@ -332,7 +307,34 @@ export class CategoriesComponent {
   reviews = inject(ReviewsService);
   router = inject(Router);
 
-  categories = computed(() => this.dashboard.categories().data);
+  icons = [
+    {
+      category: 'restaurant_service',
+      icon: 'food-delivery-time.svg',
+    },
+    {
+      category: 'restaurant_atmosphere',
+      icon: 'portal-sparkle.svg',
+    },
+    {
+      category: 'restaurant_food',
+      icon: 'pizza-slice-2.svg',
+    },
+    {
+      category: 'restaurant_value',
+      icon: 'currency-dollar.svg',
+    },
+  ];
+
+  categories = computed(() =>
+    this.dashboard
+      .categories()
+      .data.map((category) => ({
+        ...category,
+        icon: this.icons.find((icon) => icon.category === category.category)?.icon || '',
+      }))
+      .sort((a, b) => b.category.localeCompare(a.category))
+  );
   sentiment = computed(() => this.dashboard.sentiment().data);
 
   state = computed(() => {
@@ -356,10 +358,13 @@ export class CategoriesComponent {
 
   words = computed(() => {
     const sentiment = this.sentiment();
-    return sentiment.map((word) => ({
-      ...word,
-      rating: this.calculateSentimentRating(word),
-    }));
+    return sentiment
+      .map((word) => ({
+        ...word,
+        rating: this.calculateSentimentRating(word),
+        icon: this.icons.find((icon) => icon.category === word.category)?.icon || '',
+      }))
+      .sort((a, b) => b.category.localeCompare(a.category));
   });
 
   private calculateSentimentRating(word: SentimentTO) {
@@ -388,4 +393,23 @@ export class CategoriesComponent {
 
     this.router.navigate(['/reviews']);
   }
+
+  // private growthRating(rating: CategoryTO) {
+  //   const actualRating = rating.totalRating;
+  //   const actualReview = rating.totalCount;
+  //   const totalStars = actualRating * actualReview;
+
+  //   const newRating = rating.totalRating + rating.filteredRating;
+  //   const newReview = rating.filteredCount;
+  //   const newStars = newRating * newReview;
+
+  //   const newTotalStars = totalStars + newStars;
+  //   const newTotalReview = actualReview + newReview;
+
+  //   const weightedAverage = newTotalStars / newTotalReview;
+
+  //   const growth = weightedAverage - actualRating;
+
+  //   return growth;
+  // }
 }

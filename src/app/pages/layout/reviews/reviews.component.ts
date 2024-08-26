@@ -141,19 +141,10 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
 
                 <div class="flow-root">
                   <div class="pt-8">
-                    @for (review of store.reviews(); track $index) { @defer (on viewport; prefetch on idle) {
+                    @for (review of store.reviews(); track $index) {
                     <header-review [review]="review"></header-review>
-                    } @placeholder {
-                    <div></div>
-                    } @loading {
-                    <div></div>
-                    } @defer (on viewport; prefetch on idle) {
                     <body-review [review]="review" [showBorder]="$index !== store.reviews().length - 1"></body-review>
-                    } @placeholder {
-                    <div></div>
-                    } @loading {
-                    <div></div>
-                    } }
+                    }
                   </div>
 
                   @if (store.state() === 'loaded' && store.reviews().length > 0) {

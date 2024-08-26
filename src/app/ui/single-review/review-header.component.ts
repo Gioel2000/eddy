@@ -30,7 +30,7 @@ import { ReviewTO } from '../../store/reviews/interfaces/reviews';
             class="svg-icon svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
           ></span>
         </div>
-        <p class="font-medium tracking-tight text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>
+        <p class="font-normal tracking-tight text-zinc-400 dark:text-zinc-600">{{ formatDate(review().date) }}</p>
       </div>
     </div>
   `,

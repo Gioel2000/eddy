@@ -102,7 +102,7 @@ import { RouterModule } from '@angular/router';
               <div class="flex flex-row items-center w-full">
                 <span
                   class="mr-1.5 svg-icon svg-icon-7 stroke-[1.7] text-zinc-700 dark:text-zinc-300"
-                  [inlineSVG]="'flask.svg'"
+                  [inlineSVG]="'brackets-curly-dots.svg'"
                 ></span>
                 <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ 'NOVELTY' | translate }}</span>
               </div>

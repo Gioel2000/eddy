@@ -141,7 +141,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                             (click)="layout.closeMenu()"
                           >
                             <span class="mr-2 svg-icon svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
-                            <span class="text-sm font-semibold">{{ routeData['i18n'] | translate }}</span>
+                            <span class="text-sm font-medium">{{ routeData['i18n'] | translate }}</span>
                           </a>
                         </li>
                         } } }
@@ -189,7 +189,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                       routerLinkActive="text-zinc-950 dark:text-zinc-50 font-semibold rounded-lg bg-zinc-700/5 dark:bg-zinc-300/5"
                     >
                       <span class="mr-2 svg-icon svg-icon-6 stroke-2" [inlineSVG]="routeData['icon']"></span>
-                      <span class="text-sm font-semibold">{{ routeData['i18n'] | translate }}</span>
+                      <span class="text-sm font-medium">{{ routeData['i18n'] | translate }}</span>
                     </a>
                   </li>
                   } } }

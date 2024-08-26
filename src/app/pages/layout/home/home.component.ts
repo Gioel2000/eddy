@@ -93,10 +93,10 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
               <types-graph></types-graph>
             </div>
             <div class="bg-light dark:bg-dark sm:pr-10 py-6">
-              <reviews-last-day></reviews-last-day>
+              <overview-reviews-last-day></overview-reviews-last-day>
             </div>
             <div class="bg-light dark:bg-dark sm:pl-10 py-6">
-              <overview-reviews-last-day></overview-reviews-last-day>
+              <reviews-last-day></reviews-last-day>
             </div>
           </div>
         </div>
@@ -123,16 +123,16 @@ export class HomeComponent {
 
   pastRapidDates = [
     {
-      key: '2_WEEKS_AGO',
-      value: moment().toDate(),
-    },
-    {
       key: 'LAST_MONTH',
       value: moment().subtract(1, 'month').toDate(),
     },
     {
       key: '3_MONTHS_AGO',
       value: moment().subtract(3, 'months').toDate(),
+    },
+    {
+      key: '6_MONTHS_AGO',
+      value: moment().subtract(6, 'month').toDate(),
     },
   ];
 }

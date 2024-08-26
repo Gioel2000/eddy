@@ -56,7 +56,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
           <div class="flex flex-row items-center gap-x-3">
             <div class="flex flex-row items-center gap-x-3 w-full">
               <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-                {{ averageRating() | numb : translate.currentLang : 2 }}
+                {{ averageRating() | numb : translate.currentLang : 1 }}
               </dd>
             </div>
             <div class="flex flex-col items-start gap-y-1">
@@ -150,7 +150,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                 </div>
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
-              <p class="text-sm  font-medium tabular-nums text-zinc-400 dark:text-zinc-600">
+              <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                 {{ totalReviews() | numb : translate.currentLang : 2 }}
                 {{ 'REVIEWS' | translate }}
               </p>
@@ -159,11 +159,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
         </div>
 
         <div class="mt-6">
-          <div class="mt-6 space-y-5 divide-y divide-zinc-200 dark:divide-zinc-800 pb-10">
+          <div class="mt-6 space-y-5 pb-10">
             @if (tripadvisor().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'channels/tripadvisor.svg'"
                     class="svg-icon svg-icon-2 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
@@ -270,11 +270,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ tripadvisor().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ tripadvisor().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ tripadvisor().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -285,7 +285,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (google().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'channels/google.svg'"
                     class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900 dark:text-zinc-100"
@@ -387,11 +387,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ google().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ google().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ google().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -402,7 +402,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (thefork().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'channels/TheFork.svg'"
                     class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
@@ -504,11 +504,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ thefork().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ thefork().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ thefork().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -519,7 +519,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (family().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'crowd.svg'"
                     class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
@@ -621,11 +621,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ family().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ family().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ family().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -636,7 +636,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (solo().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'user.svg'"
                     class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
@@ -738,11 +738,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ solo().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ solo().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ solo().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -753,7 +753,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (couple().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'users-3.svg'"
                     class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
@@ -855,11 +855,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ couple().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ couple().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ couple().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -870,7 +870,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (business().totalReviews > 0) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <span
                     [inlineSVG]="'suitcase-6.svg'"
                     class="svg-icon svg-icon-6 ml-0.5 stroke-2 text-zinc-900 dark:text-zinc-100"
@@ -977,11 +977,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
-                        {{ business().averageRating | numb : translate.currentLang : 2 }}
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        {{ business().averageRating | numb : translate.currentLang : 1 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ business().totalReviews | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>
@@ -992,7 +992,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             } @if (countries().length > 0) { @for (country of countries(); track $index) {
             <div class="pt-5 grid grid-cols-12 gap-x-8">
               <div class="col-start-1 col-span-6">
-                <div class="flex flex-row items-center justify-center w-fit gap-x-2 p-3">
+                <div class="flex flex-row items-center justify-center w-fit gap-x-2 py-3 px-1">
                   <img
                     class="w-5 h-4 ml-0.5 rounded object-cover shadow"
                     alt=""
@@ -1095,11 +1095,11 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                         </svg>
                       </div>
                       <p class="sr-only">4 out of 5 stars</p>
-                      <p class="ml-2 text-sm text-zinc-900 dark:text-zinc-100">
+                      <p class="ml-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                         {{ country.avgRating | numb : translate.currentLang : 2 }}
                       </p>
                     </div>
-                    <p class="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-600 mt-1">
+                    <p class="text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase">
                       {{ country.count | numb : translate.currentLang : 2 }}
                       {{ 'REVIEWS' | translate }}
                     </p>

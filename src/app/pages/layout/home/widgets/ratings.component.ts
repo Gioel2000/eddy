@@ -6,11 +6,20 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
+import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 
 @Component({
   selector: 'ratings-graph',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, MissingTranslationPipe],
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    InlineSVGModule,
+    TranslateModule,
+    NumberPipe,
+    MissingTranslationPipe,
+    GrowthPipe,
+  ],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">
@@ -54,21 +63,17 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             <dd
               class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
               [ngClass]="{
-                'text-green-600 bg-green-100 dark:bg-green-900': isGrowthPercentagePositive(),
-                'text-zinc-500 bg-zinc-100 dark:bg-zinc-900': !isGrowthPercentagePositive(),
+                'text-green-600 bg-green-100 dark:bg-green-900': isPositive(),
+                'text-zinc-500 bg-zinc-100 dark:bg-zinc-900': !isPositive(),
               }"
             >
               <span
-                [inlineSVG]="isGrowthPercentagePositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
+                [inlineSVG]="isPositive() ? 'arrow-up.svg' : 'priority-normal.svg'"
                 class="svg-icon svg-icon-7 stroke-2"
               ></span>
-              <span> {{ growthPercentage() | numb : translate.currentLang : 2 }}% </span>
+              <span> {{ totalReviewsReceived() | growth : translate.currentLang }}</span>
             </dd>
           </div>
-          <dt class="text-sm font-medium leading-6 text-zinc-500">
-            vs. {{ totalReviewsReceived() | numb : translate.currentLang : 2 }}
-            {{ 'SUM_OF_PERIOD' | translate | lowercase }}
-          </dt>
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
@@ -95,7 +100,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark"
                     ></div>
                     @if (getStarData(5).percentage; as percentage) {
                     <div
@@ -119,7 +124,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   {{ getStarData(5).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  class="w-12 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(5).received > 0,
                     'text-zinc-400 dark:text-zinc-600': getStarData(5).received === 0
@@ -152,7 +157,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark"
                     ></div>
                     @if (getStarData(4).percentage; as percentage) {
                     <div
@@ -176,7 +181,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   {{ getStarData(4).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  class="w-12 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(4).received > 0,
                     'text-zinc-400 dark:text-zinc-600': getStarData(4).received === 0
@@ -209,7 +214,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark"
                     ></div>
                     @if (getStarData(3).percentage; as percentage) {
                     <div
@@ -233,7 +238,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   {{ getStarData(3).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  class="w-12 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(3).received > 0,
                     'text-zinc-400 dark:text-zinc-600': getStarData(3).received === 0
@@ -266,7 +271,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark"
                     ></div>
 
                     @if (getStarData(2).percentage; as percentage) {
@@ -291,7 +296,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   {{ getStarData(2).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  class="w-12 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(2).received > 0,
                     'text-zinc-400 dark:text-zinc-600': getStarData(2).received === 0
@@ -324,7 +329,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 
                   <div class="relative ml-3 flex-1 mr-0.5">
                     <div
-                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark"
                     ></div>
                     @if (getStarData(1).percentage; as percentage) {
                     <div
@@ -348,7 +353,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   {{ getStarData(1).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  class="w-12 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
                     'text-green-500': getStarData(1).received > 0,
                     'text-zinc-400 dark:text-zinc-600': getStarData(1).received === 0
@@ -378,13 +383,10 @@ export class RatingsComponent {
   totalReviews = computed(() => this.store().data.reduce((acc, curr) => acc + curr.totalCount, 0));
   totalReviewsReceived = computed(() => this.store().data.reduce((acc, curr) => acc + curr.filteredCount, 0));
 
-  growthPercentage = computed(() => {
-    const now = this.totalReviews();
-    const received = this.totalReviewsReceived();
-    return (received / now) * 100;
+  isPositive = computed(() => {
+    const growth = this.totalReviewsReceived() / this.totalReviews();
+    return growth > 0;
   });
-
-  isGrowthPercentagePositive = computed(() => this.growthPercentage() > 0);
 
   getStarData(rating: number) {
     const row = this.store().data.find((item) => item.rating === rating);

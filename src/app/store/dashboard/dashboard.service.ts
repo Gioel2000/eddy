@@ -206,7 +206,7 @@ export class DashboardStore {
                 startdate: filter.startdate,
                 enddate: filter.enddate,
                 channels: 'thefork,tripadvisor,google',
-                rows: 5,
+                rows: 100,
                 offset: 0,
                 clients: [],
               })
@@ -239,17 +239,35 @@ export class DashboardStore {
                   })
                 )
               ),
-            sentiment: this.http
-              .post<SentimentTO[]>(`${environment.apiUrl}/api/reviews/sentiment/categories`, filter)
-              .pipe(
-                map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
-                catchError(() =>
-                  of({
-                    data: [] as SentimentTO[],
-                    state: 'error' as const,
-                  })
-                )
-              ),
+            sentiment: of({
+              data: [
+                {
+                  good: 1,
+                  neutral: 0,
+                  bad: 0,
+                  category: 'restaurant_value',
+                },
+                {
+                  good: 6,
+                  neutral: 0,
+                  bad: 0,
+                  category: 'restaurant_food',
+                },
+              ] as SentimentTO[],
+              state: 'empty' as const,
+            }),
+
+            // this.http
+            // .post<SentimentTO[]>(`${environment.apiUrl}/api/reviews/sentiment/categories`, filter)
+            // .pipe(
+            //   map((data) => ({ data, state: data.length > 0 ? ('loaded' as const) : ('empty' as const) })),
+            //   catchError(() =>
+            //     of({
+            //       data: [] as SentimentTO[],
+            //       state: 'error' as const,
+            //     })
+            //   )
+            // ),
           }),
           isDownloading: this.http
             .get<{ status: 'downloading' | 'completed' }>(`${environment.apiUrl}/api/restaurants/channels/status`)

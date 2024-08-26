@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
-import { GrowthPercentagePipe } from '../../../../../utils/pipes/growthPercentage.pipe';
 import { ReputationModel } from '../../../../../store/competitors/interfaces/competitors';
 import { StateModel } from '../../../../../store/dashboard/interfaces/dashboard';
 import moment from 'moment';
 import { CompetitorsService } from '../../competitors.service';
 import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
+import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -22,8 +22,8 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
     TranslateModule,
     NgxChartsModule,
     NumberPipe,
-    GrowthPercentagePipe,
     MissingTranslationPipe,
+    GrowthPipe,
   ],
   template: `
     <ng-template #loading>
@@ -80,12 +80,54 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             }
-            <span> {{ growthPercentage() | numb : translate.currentLang }}% </span>
+            <span>
+              {{ reputation().average - averageGraph() | growth : translate.currentLang : 4 }}
+            </span>
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">
-          vs. {{ averageGraph() | numb : translate.currentLang : 2 }}
-          {{ 'AVERAGE_OF_THE_PERIOD' | translate | lowercase }}
+          <div class="flex flex-row relative whitespace-nowrap mt-1">
+            <svg class="fill-yellow-400" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <g>
+                <path
+                  d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                ></path>
+              </g>
+            </svg>
+            <svg class="fill-yellow-400" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <g>
+                <path
+                  d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                ></path>
+              </g>
+            </svg>
+            <svg class="fill-yellow-400" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <g>
+                <path
+                  d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                ></path>
+              </g>
+            </svg>
+            <svg class="fill-yellow-400" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <g>
+                <path
+                  d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                ></path>
+              </g>
+            </svg>
+            <svg class="fill-yellow-400" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <g>
+                <path
+                  d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                ></path>
+              </g>
+            </svg>
+
+            <div
+              class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+              [style.width.%]="(5 - reputation().average) * 20"
+            ></div>
+          </div>
         </dt>
       </div>
       <div class="mt-8 -mx-4">
@@ -106,7 +148,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
             group: linear,
             domain: isBRPositive() === '+' ? ['#22c55e', '#8b5cf6'] : (isBRPositive() === '-' ? ['#ef4444', '#8b5cf6'] : ['#71717a', '#8b5cf6']),
           }"
-          style="fill: #71717a;"
+          class="fill-zinc-500"
         >
         </ngx-charts-line-chart>
       </div>
