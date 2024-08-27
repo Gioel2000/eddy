@@ -132,7 +132,7 @@ import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
       </div>
       <div class="mt-8 -mx-4">
         <ngx-charts-line-chart
-          [view]="[container.offsetWidth + 30, 280]"
+          [view]="[container.offsetWidth + 30, 340]"
           [results]="data()"
           [xAxis]="true"
           [yAxis]="true"

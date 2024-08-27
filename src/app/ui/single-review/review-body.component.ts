@@ -27,6 +27,7 @@ import LanguageDetect from 'languagedetect';
 import { BodyReviewSentimentComponent } from './components/review-body-sentiment.component';
 import { StructureStore } from '../../store/structures/structure.service';
 import { I18nStore } from '../../store/i18n/i18n.service';
+import { MomentPipe } from '../../utils/pipes/moment.pipe';
 
 @UntilDestroy()
 @Component({
@@ -42,6 +43,7 @@ import { I18nStore } from '../../store/i18n/i18n.service';
     TranslateDropdownComponent,
     LoaderComponent,
     BodyReviewSentimentComponent,
+    MomentPipe,
   ],
   template: `
     <div
@@ -563,7 +565,7 @@ import { I18nStore } from '../../store/i18n/i18n.service';
               'COMMENT' | translate
             }}</label>
             <div
-              class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-800 placeholder:text-zinc-400 placeholder:dark:text-zinc-500 focus:ring-2 focus:ring-inset focus:ring-accent focus:dark:ring-accentDark text-sm leading-6 focus:outline-none transition ease-in-out duration-300"
+              class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer text-sm leading-6 focus:outline-none"
             >
               <textarea
                 #autoSize
@@ -573,9 +575,9 @@ import { I18nStore } from '../../store/i18n/i18n.service';
                 width="100%"
                 height="100%"
                 placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"
-                class="block p-0 text-sm w-full bg-transparent resize-none mt-1 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 border-0 focus:ring-0 focus:ring-offset-0 focus:outline-none"
+                class="block p-0 text-sm w-full bg-transparent resize-none mt-1 text-zinc-600 dark:text-zinc-400 placeholder-zinc-400 dark:placeholder-zinc-500 border-0 focus:ring-0 focus:ring-offset-0 focus:outline-none"
               ></textarea>
-              <p class="text-gray-400 dark:text-gray-500 font-medium mt-3 italic">
+              <p class="text-zinc-400 dark:text-zinc-500 font-medium mt-3 italic">
                 {{ translatedReply() }}
               </p>
             </div>
@@ -680,6 +682,49 @@ import { I18nStore } from '../../store/i18n/i18n.service';
               }
             </div>
           </div>
+          @if (( replies$ | async )!.length > 0) {
+          <div class="py-4 mt-5">
+            <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
+              'RESPONSE_HISTORY' | translate
+            }}</label>
+            <div class="mx-auto max-w-7xl">
+              <div
+                class="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:mt-5 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+              >
+                @for (response of ( replies$ | async ); track $index) {
+                <article
+                  class="flex max-w-xl flex-col items-start justify-between gap-y-4 rounded-2xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm cursor-pointer p-6"
+                >
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <time class="text-zinc-500 capitalize">
+                      {{ response.createdAt | moment : translate.currentLang : 'MMM DD, YYYY' }}
+                    </time>
+                  </div>
+                  <div class="group relative">
+                    <p class="line-clamp-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                      {{ response.reply }}
+                    </p>
+                  </div>
+                  <button
+                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 mt-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-sm shadow-black/25 disabled:opacity-30"
+                    (click)="pasteResponse(response.reply)"
+                  >
+                    <div
+                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[9px] cursor-pointer"
+                    >
+                      <span class="text-sm font-semibold">{{ 'PASTE' | translate }}</span>
+                      <span
+                        class="svg-icon svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
+                        [inlineSVG]="'duplicate.svg'"
+                      ></span>
+                    </div>
+                  </button>
+                </article>
+                }
+              </div>
+            </div>
+          </div>
+          }
         </div>
       </ng-container>
     </div>
@@ -703,21 +748,21 @@ export class BodyReviewComponent {
     title?: string;
     text?: string;
   }>({});
+  readonly replies$ = new BehaviorSubject<{ reply: string; createdAt: Date }[]>([]);
 
   review = input.required<ReviewTO>();
   showBorder = input.required<boolean>();
   store = inject(ReviewsStore);
   structure = inject(StructureStore);
   i18n = inject(I18nStore);
+  translate = inject(TranslateService);
 
   isResponseSuccess = signal(false);
   isResponseLoading = signal(false);
   isResponseError = signal(false);
   translatedReply = signal('');
 
-  constructor(
-    private readonly translateService: TranslateService // private readonly reviewsService: ReviewsService, // private readonly francisService: FrancisService
-  ) {
+  constructor() {
     effect(() => {
       const review = this.review();
       this.autoSize.nativeElement.style.height = 'auto';
@@ -735,7 +780,7 @@ export class BodyReviewComponent {
       const canBeTranslated = reviewLang === null ? false : reviewLang !== 'it';
 
       const { text } = review;
-      const { title: titleTranslated, translated: isTitleTranslated } = this.translate(titleOriginal);
+      const { title: titleTranslated, translated: isTitleTranslated } = this.translateReview(titleOriginal);
       const { scale, amountToMultiply } = SERVICES.find((service: any) => service._id === source) || {
         scale: 5,
         amountToMultiply: 1,
@@ -745,11 +790,8 @@ export class BodyReviewComponent {
 
       this.scale = scale;
       this.amountToMultiply = amountToMultiply;
-      //   this.review.set({
-      //     ...review,
-      //     titleTranslated,
-      //     isTitleTranslated,
-      //   });
+
+      this.replies$.next(review.aiReply || []);
 
       this.reviewContent$.next({
         text,
@@ -796,7 +838,7 @@ export class BodyReviewComponent {
         untilDestroyed(this),
         filter((value) => value !== null),
         map((value) => value as string),
-        map((value) => (value === 'your_language' ? this.translateService.currentLang : value))
+        map((value) => (value === 'your_language' ? this.translate.currentLang : value))
       )
       .subscribe((currentLang: string) => {
         const index = this.getIndexTranslation(currentLang);
@@ -861,11 +903,15 @@ export class BodyReviewComponent {
     return hearths;
   }
 
-  translate(titleReview: string): { title: string; translated: boolean } {
+  pasteResponse(response: string) {
+    this.commentControl.setValue(response);
+    window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
+  }
+
+  translateReview(titleReview: string): { title: string; translated: boolean } {
     const translatedTitle =
-      this.translateService.instant(
-        `REVIEWS.REVIEWS_TRANSLATED.${this.replaceAll(titleReview.toUpperCase(), ' ', '_')}`
-      ) || MISSING_TRANSLATION;
+      this.translate.instant(`REVIEWS.REVIEWS_TRANSLATED.${this.replaceAll(titleReview.toUpperCase(), ' ', '_')}`) ||
+      MISSING_TRANSLATION;
 
     const isTranslated = translatedTitle !== MISSING_TRANSLATION;
 
@@ -912,7 +958,6 @@ export class BodyReviewComponent {
 
   alreadyReplied() {
     this.store.setReviewReplied(this.review()._id, !this.alreadyReplied$.value).subscribe();
-
     this.alreadyReplied$.next(!this.alreadyReplied$.value);
   }
 
@@ -922,8 +967,8 @@ export class BodyReviewComponent {
     const reviewScore = this.review().rating;
     const originallangreview = this.getLanguageFromReviewContent();
     const translation = originallangreview ? 'LANGS.' + originallangreview : 'english';
-    const lang = this.translateService.instant(translation);
-    const translatedQuestion = this.translateService.instant('FRANCIS.REVIEWS.HOW_TO_REPLY_THIS_REVIEW_IN_LANG', {
+    const lang = this.translate.instant(translation);
+    const translatedQuestion = this.translate.instant('FRANCIS.REVIEWS.HOW_TO_REPLY_THIS_REVIEW_IN_LANG', {
       lang,
     });
     const question = `${translatedQuestion}: \"${reviewTitle || ''}  ${reviewContent || ''}\"`;
@@ -936,7 +981,7 @@ export class BodyReviewComponent {
     const reviewTitle = this.review().title;
     const reviewScore = this.review().rating;
 
-    const translatedQuestion = this.translateService.instant('FRANCIS.REVIEWS.HOW_TO_REPLY_THIS_REVIEW');
+    const translatedQuestion = this.translate.instant('FRANCIS.REVIEWS.HOW_TO_REPLY_THIS_REVIEW');
 
     const question = `${translatedQuestion}: \"${reviewTitle || ''}  ${reviewContent || ''}\"`;
 
@@ -948,7 +993,7 @@ export class BodyReviewComponent {
     const reviewTitle = this.review().title;
     const reviewScore = this.review().rating;
 
-    const translatedQuestion = this.translateService.instant('FRANCIS.REVIEWS.ANALYSIS_THIS_REVIEW');
+    const translatedQuestion = this.translate.instant('FRANCIS.REVIEWS.ANALYSIS_THIS_REVIEW');
     const question = `${translatedQuestion}: \"${reviewTitle || ''}  ${reviewContent || ''}\"`;
 
     // this.francisService.askQuestion(question, question, reviewScore <= 2.5 ? FrancisState.ANGRY : FrancisState.DEFAULT);
@@ -983,7 +1028,7 @@ export class BodyReviewComponent {
   private showSentimentCategories(translation: any, sentiments: any) {
     // .filter((sentiment: any) => sentiment.score !== 0)
     const categories = sentiments.map((sentiment: any) => {
-      const translation = this.translateService.instant('REVIEWS_CATEGORIES.' + sentiment.singleCategory.toUpperCase());
+      const translation = this.translate.instant('REVIEWS_CATEGORIES.' + sentiment.singleCategory.toUpperCase());
 
       return {
         name: translation.DESC,
@@ -1116,12 +1161,21 @@ export class BodyReviewComponent {
           this.isResponseError.set(false);
           this.isResponseSuccess.set(true);
           this.commentControl.setValue(reply);
-          if (translations) {
-            this.translatedReply.set(translations[0].reply);
-          }
 
           this.autoSize.nativeElement.style.height = 'auto';
           this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
+
+          this.replies$.next([
+            {
+              reply,
+              createdAt: new Date(),
+            },
+            ...this.replies$.value,
+          ]);
+
+          if (translations && translations.length > 0) {
+            this.translatedReply.set(translations[0].reply);
+          }
 
           setTimeout(() => this.isResponseSuccess.set(false), 1500);
         },

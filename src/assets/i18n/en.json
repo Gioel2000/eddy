@@ -477,5 +477,7 @@
   "CHANGE_LOG_DESCRIPTION": "Here you can find out all the news on software developments",
   "ASSISTANCE": "Assistance",
   "NEWS": "News",
-  "NOVELTY": "Novelty"
+  "NOVELTY": "Novelty",
+  "RESPONSE_HISTORY": "Response History",
+  "PASTE": "Paste"
 }
