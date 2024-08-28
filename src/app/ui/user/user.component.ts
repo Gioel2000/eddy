@@ -60,7 +60,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                   <div class="flex fle-row items-center justify-end w-full h-0 z-50 relative -bottom-7 -left-4">
                     <button
                       type="button"
-                      class="relative z-50 rounded-md p-1.5 bg-white/20 hover:bg-white/10 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100"
+                      class="relative z-50 rounded-md p-1.5 bg-white/20 hover:bg-white/10 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100 animate-blurToClear100"
                       (click)="panelUI.closePanel()"
                     >
                       <span class="svg-icon svg-icon-5">
@@ -124,7 +124,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                           }}</span>
                           <button
                             type="button"
-                            class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                            class="flex flex-row items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 mt-1 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
                             (click)="logout()"
                           >
                             <span class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]">
@@ -180,11 +180,11 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                                   alt=""
                                 />
                                 <div
-                                  class="h-24 w-24 sm:h-32 sm:w-32 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-900/80 rounded-full absolute flex justify-center items-center cursor-pointer transition duration-500"
+                                  class="h-24 w-24 sm:h-32 sm:w-32 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-900/80 rounded-full absolute flex justify-center items-center cursor-pointer transition duration-500 animate-blurToClear500"
                                 >
                                   <span
                                     [inlineSVG]="'pen-writing.svg'"
-                                    class="hidden group-hover:block svg-icon svg-icon-1 text-zinc-900 dark:text-zinc-100 stroke-[1.7] transition duration-500"
+                                    class="hidden group-hover:block svg-icon svg-icon-1 text-zinc-900 dark:text-zinc-100 stroke-[1.7] transition duration-500 animate-blurToClear500"
                                   ></span>
                                 </div>
                               </a>
@@ -202,7 +202,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                               >
                                 <button
                                   type="button"
-                                  class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                                  class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 cursor-pointer text-sm shadow-sm shadow-zinc-950/5 font-semibold ring-1  ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
                                   (click)="logout()"
                                 >
                                   <span class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]">
@@ -307,7 +307,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                         <div class="flex justify-end space-x-3">
                           <button
                             type="button"
-                            class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
+                            class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200  disabled:opacity-30"
                             [disabled]="profile.status() === 'loading'"
                             (click)="reset()"
                           >

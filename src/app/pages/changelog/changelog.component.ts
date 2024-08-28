@@ -927,7 +927,7 @@ import { Location } from '@angular/common';
 
                 <div>
                   <a
-                    class="flex flex-row items-center transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-3xl font-medium"
+                    class="flex flex-row items-center transition-all transform-gpu ease-in-out duration-100 animate-blurToClear100  cursor-pointer font-[Pacifico] text-3xl font-medium"
                   >
                     <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                       Eddy
@@ -1088,7 +1088,7 @@ import { Location } from '@angular/common';
         </div>
       </div>
       <a
-        class="hidden sm:block absolute cursor-pointer top-6 right-6 z-30 svg-icon-5 stroke-[1.8] rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out duration-200 transform"
+        class="hidden sm:block absolute cursor-pointer top-6 right-6 z-30 svg-icon-5 stroke-[1.8] rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out duration-200 animate-blurToClear200  transform"
         (click)="location.back()"
       >
         <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
@@ -1134,6 +1134,70 @@ import { Location } from '@angular/common';
           </svg>
         </div>
         <main class="space-y-20 py-20 sm:space-y-32 sm:py-32">
+          <article class="scroll-mt-16" style="padding-bottom:0px">
+            <div>
+              <header class="relative mb-10 xl:mb-0">
+                <div
+                  class="pointer-events-none absolute left-[max(-0.5rem,calc(50%-18.625rem))] top-0 z-50 flex h-4 items-center justify-end gap-x-2 lg:left-0 lg:right-[calc(max(2rem,50%-38rem)+40rem)] lg:min-w-[32rem] xl:h-8"
+                >
+                  <a class="inline-flex"
+                    ><time
+                      class="hidden xl:pointer-events-auto xl:block text-xs xl:font-medium text-black/80 dark:text-white/50"
+                      >Ago 27, 2024</time
+                    ></a
+                  >
+                  <div class="h-[0.0625rem] w-3.5 lg:-mr-3.5 xl:mr-0 bg-zinc-700 dark:bg-zinc-300"></div>
+                </div>
+                <div class="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
+                  <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32">
+                    <div class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto">
+                      <div class="flex">
+                        <a class="inline-flex"
+                          ><time
+                            datetime="2023-04-06T00:00:00.000Z"
+                            class="text-2xs/4 font-medium text-zinc-500 xl:hidden"
+                            >Ago 27, 2024</time
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+              <div class="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
+                <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32">
+                  <div
+                    class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto typography"
+                    data-mdx-content="true"
+                  >
+                    <div class="relative mt-8 overflow-hidden rounded-xl bg-zinc-50 dark:bg-zinc-900 [&amp;+*]:mt-8">
+                      <img
+                        alt=""
+                        loading="lazy"
+                        width="1728"
+                        height="936"
+                        decoding="async"
+                        data-nimg="1"
+                        style="color:transparent"
+                        sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 45vw, (min-width: 640px) 32rem, 95vw"
+                        [src]="theme() === 'light' ? '/assets/images/aireply.png' : '/assets/images/aireply-dark.png'"
+                      />
+                      <div
+                        class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-zinc-900/10 dark:ring-white/10"
+                      ></div>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-8 py-3">
+                      <a>Cronologia delle risposte</a>
+                    </h2>
+                    <p class="text-zinc-700 dark:text-zinc-300 text-sm font-light pb-2">
+                      É possibile visualizzare la cronologia delle risposte generate dalla AI. Questo ti permette
+                      scegliere la risposta che più ti soddisfa e inviarla al cliente.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
           <article class="scroll-mt-16" style="padding-bottom:0px">
             <div>
               <header class="relative mb-10 xl:mb-0">

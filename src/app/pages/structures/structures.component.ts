@@ -102,7 +102,7 @@ import { RouterModule } from '@angular/router';
               </div>
             </div>
             <div
-              class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200"
+              class="bg-accent dark:bg-accentDark rounded-lg relative mt-8 flex items-center gap-x-4 opacity-90 hover:opacity-100 transition ease-in-out duration-200 animate-blurToClear200"
             >
               <button
                 [id]="'choose-structure-' + structure._id"
@@ -159,7 +159,7 @@ import { RouterModule } from '@angular/router';
               </a>
               <a
                 id="open-create-restaurant-panel"
-                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 routerLink="/setup"
               >
                 <div

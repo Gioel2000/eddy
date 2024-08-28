@@ -110,7 +110,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                     </p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                       <button
-                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
                         (click)="save()"
                       >
                         <div
@@ -194,7 +194,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                     </p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                       <button
-                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+                        class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
                         (click)="save()"
                       >
                         <div
@@ -226,7 +226,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                     {{ competitor().name }}
                   </h2>
                   <a
-                    class="flex flex-col items-center justify-center rounded-md p-1.5 ml-3 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 transform"
+                    class="flex flex-col items-center justify-center rounded-md p-1.5 ml-3 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 animate-blurToClear200  transform"
                     (click)="openLink(competitor().url)"
                   >
                     <svg
@@ -398,7 +398,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                   </h1>
                   } @else { @if (competitor().competitorReferenceId) {
                   <button
-                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
                     [disabled]="!canAdd()"
                     (click)="channels()"
                   >
@@ -458,7 +458,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                   </button>
                   } @else {
                   <button
-                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
                     [disabled]="!canAdd()"
                     (click)="add()"
                   >

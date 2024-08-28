@@ -70,7 +70,7 @@ export interface MarkerInterface {
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="transform transition ease-in-out duration-300 sm:duration-700 pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
+            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear700  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
             [ngClass]="{
               'translate-x-0': !dialog.isDialogOpen() && panelUI.isPanelVisible(),
               'translate-x-full': !dialog.isDialogOpen() && !panelUI.isPanelVisible()
@@ -85,7 +85,7 @@ export interface MarkerInterface {
                   <div class="flex fle-row items-center justify-end w-full h-0 z-50 relative -bottom-7 -left-4">
                     <button
                       type="button"
-                      class="relative z-50 rounded-md p-1.5 bg-black/40 hover:bg-black/50 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100"
+                      class="relative z-50 rounded-md p-1.5 bg-black/40 hover:bg-black/50 hover:dark:bg-zinc-50/5 text-zinc-200 focus:outline-none transition ease-in-out duration-100 animate-blurToClear100"
                       (click)="panelUI.closePanel()"
                     >
                       <span class="svg-icon svg-icon-5" inlineSVG="xmark.svg"></span>
@@ -143,7 +143,7 @@ export interface MarkerInterface {
                           <!-- <button
                             id="change-restaurant"
                             type="button"
-                            class="flex fle-row gap-x-1 items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
+                            class="flex fle-row gap-x-1 items-center rounded-lg px-2.5 py-2 cursor-pointer text-sm shadow-sm text-zinc-900 dark:text-zinc-100 shadow-black/10 font-semibold ring-1 ring-zinc-500/30 hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
                             (click)="structures.exit(); panelUI.closePanel()"
                           >
                             <span

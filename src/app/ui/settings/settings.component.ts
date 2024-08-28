@@ -42,7 +42,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 
               <button
                 type="button"
-                class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
+                class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100 animate-blurToClear100"
                 (click)="dialog.closeDialog()"
               >
                 <span class="svg-icon svg-icon-8 stroke-1">
@@ -149,7 +149,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 <div class="grid gap-5 sm:gap-10 grid-cols-3">
                   <div class="col-span-1 flex flex-col">
                     <a
-                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-200 rounded-lg bg-zinc-100 border border-zinc-300 w-full h-full pt-4 pl-8"
+                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 animate-blurToClear100 rounded-lg bg-zinc-100 border border-zinc-300 w-full h-full pt-4 pl-8"
                       [ngClass]="{
                         'ring-4 ring-accent shadow-lg shadow-accent/70': themeStore.option() === 'light'
                       }"
@@ -164,7 +164,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 
                   <div class="col-span-1 flex flex-col">
                     <a
-                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 rounded-lg bg-zinc-900 border border-zinc-900 w-full h-full pt-4 pl-8"
+                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 animate-blurToClear100 rounded-lg bg-zinc-900 border border-zinc-900 w-full h-full pt-4 pl-8"
                       [ngClass]="{
                         'ring-4 ring-accent shadow-lg shadow-accent/70': themeStore.option() === 'dark'
                       }"
@@ -179,7 +179,7 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 
                   <div class="col-span-1 flex flex-col">
                     <a
-                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 flex flex-row rounded-lg border border-zinc-200 dark:border-zinc-800"
+                      class="hover:ring-4 hover:ring-accent hover:shadow-lg hover:shadow-accent/70 cursor-pointer transition ease-in-out duration-100 animate-blurToClear100 flex flex-row rounded-lg border border-zinc-200 dark:border-zinc-800"
                       [ngClass]="{
                         'ring-4 ring-accent shadow-lg shadow-accent/70': themeStore.option() === 'system'
                       }"

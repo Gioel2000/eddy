@@ -263,3 +263,12 @@ input::-webkit-inner-spin-button {
 .pac-container {
   z-index: 1000000 !important;
 }
+
+@keyframes blurToClear {
+  0% {
+    filter: blur(8px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}

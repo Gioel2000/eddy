@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
     <div class="relative inline-block text-left">
       <div>
         <button
-          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-200 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200"
+          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-200 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200 animate-blurToClear200"
           (clickOutside)="ui.closeDropdown()"
           (click)="ui.toggleDropdown()"
         >
@@ -38,7 +38,7 @@ import { RouterModule } from '@angular/router';
       </div>
       <div [ngClass]="{ hidden: !ui.isDropdownOpen() }">
         <div
-          class="absolute z-10 mt-2 w-56 origin-top-right right-0 divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
+          class="absolute z-10 mt-2 w-56 origin-top-right right-0 divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -51,7 +51,7 @@ import { RouterModule } from '@angular/router';
           <div class="block text-sm cursor-pointer w-full">
             <button
               id="structure-item"
-              class="group flex flex-col w-full p-3 cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
+              class="group flex flex-col w-full p-3 cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
               (click)="userPanel.togglePanel()"
             >
               <div class="flex flex-row items-start justify-between w-full gap-x-1">
@@ -71,7 +71,7 @@ import { RouterModule } from '@angular/router';
                 </div>
                 <span
                   [inlineSVG]="'share-up-right.svg'"
-                  class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-[1.8] transition-all transform-gpu ease-in-out duration-200"
+                  class="group-hover:text-zinc-700 dark:group-hover:text-zinc-200 w-4 text-zinc-400 dark:text-zinc-600 svg-icon svg-icon-7 stroke-[1.8] transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
                 ></span>
               </div>
             </button>

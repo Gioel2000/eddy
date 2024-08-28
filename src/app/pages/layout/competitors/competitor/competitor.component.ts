@@ -62,7 +62,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
     </ng-template>
 
     <div
-      class="rounded-3xl ring-1 mx-px min-h-screen w-96 shadow-sm transition-all transform-gpu ease-in-out duration-300"
+      class="rounded-3xl ring-1 mx-px min-h-screen w-96 shadow-sm transition-all transform-gpu ease-in-out duration-300 "
       [ngClass]="{
         'ring-zinc-100 dark:ring-zinc-900': competitor().isExluded,
         'ring-zinc-300 dark:ring-zinc-800': !competitor().isExluded
@@ -74,7 +74,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
           <img
             [src]="competitor().image"
             alt=""
-            class="h-full w-full object-cover object-center transition-all transform-gpu ease-in-out duration-300"
+            class="h-full w-full object-cover object-center transition-all transform-gpu ease-in-out duration-300 "
             [ngClass]="{
               'opacity-50': competitor().isExluded,
             }"
@@ -103,7 +103,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
       </div>
 
       <div
-        class="p-8 xl:p-10 transition-all transform-gpu ease-in-out duration-300"
+        class="p-8 xl:p-10 transition-all transform-gpu ease-in-out duration-300 "
         [ngClass]="{
           'opacity-50': competitor().isExluded,
         }"
@@ -141,7 +141,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
         <reviews-last-day [recentReviews]="competitor().reviews" [state]="state()"></reviews-last-day>
 
         <button
-          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] mt-6 w-full h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
+          class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] mt-6 w-full h-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-accentDark text-white bg-gradient-to-b from-accent/55 dark:from-accentDark/55 via-accent dark:via-accentDark to-accent dark:to-accentDark p-px shadow-md shadow-black/10 disabled:opacity-30"
           (click)="delete.emit(competitor()._id)"
         >
           <div

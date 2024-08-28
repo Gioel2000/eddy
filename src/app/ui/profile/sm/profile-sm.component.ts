@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
     <div class="relative inline-block text-left">
       <div>
         <button
-          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-300 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200"
+          class="flex flex-row items-center gap-x-1.5 cursor-pointer p-2 rounded-full ring-1 ring-zinc-300 dark:ring-zinc-800 shadow-sm hover:shadow-md shadow-black/20 dark:shadow-black/90 transition ease-in-out duration-200 animate-blurToClear200"
           (clickOutside)="ui.closeDropdownSm()"
           (click)="ui.toggleDropdownSm()"
         >
@@ -39,7 +39,7 @@ import { RouterModule } from '@angular/router';
       </div>
       <div [ngClass]="{ hidden: !ui.isDropdownOpenSm() }">
         <div
-          class="absolute z-10 mt-2 w-56 origin-top-right right-0 divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
+          class="absolute z-10 mt-2 w-56 origin-top-right right-0 divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -52,24 +52,24 @@ import { RouterModule } from '@angular/router';
           <div class="block px-4 py-3 text-sm cursor-pointer w-full">
             <button
               id="structure-item"
-              class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
+              class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
               (click)="userPanel.togglePanel()"
             >
               <div class="flex flex-row items-center justify-between gap-x-2 w-full">
                 <div class="flex flex-col gap-x-2 w-full">
                   <div class="flex flex-row items-center justify-between gap-x-2 w-full">
                     <p
-                      class="max-w-36 text-base truncate font-semibold text-zinc-700 dark:text-zinc-100 group-hover:font-semibold group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
+                      class="max-w-36 text-base truncate font-semibold text-zinc-700 dark:text-zinc-100 group-hover:font-semibold group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
                     >
                       {{ user().name }} {{ user().surname }}
                     </p>
                     <span
                       [inlineSVG]="'share-up-right.svg'"
-                      class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200"
+                      class="group-hover:text-zinc-950 dark:group-hover:text-zinc-200 w-4 text-zinc-400 svg-icon svg-icon-9 stroke-[2.3] transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
                     ></span>
                   </div>
                   <span
-                    class="max-w-full text-left truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200"
+                    class="max-w-full text-left truncate text-xs font-medium text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-zinc-200 transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
                     >{{ user().email }}</span
                   >
                 </div>

@@ -117,7 +117,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                   <div class="flex flex-row items-center">
                     <div class="flex flex-row items-center">
                       <a
-                        class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
+                        class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 animate-blurToClear100  cursor-pointer font-[Pacifico] text-2xl font-medium"
                       >
                         <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                           Eddy
@@ -165,7 +165,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
         <div class="flex grow flex-col gap-y-6 overflow-y-auto px-10 py-6">
           <div class="flex h-16 shrink-0 items-center">
             <a
-              class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
+              class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 animate-blurToClear100  cursor-pointer font-[Pacifico] text-2xl font-medium"
             >
               <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                 Eddy
@@ -225,7 +225,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                   </button>
   
                   <a
-                    class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 cursor-pointer font-[Pacifico] text-2xl font-medium"
+                    class="flex flex-row items-center hover:scale-110 transition-all transform-gpu ease-in-out duration-100 animate-blurToClear100  cursor-pointer font-[Pacifico] text-2xl font-medium"
                   >
                     <h1 class="text-accent dark:text-accentDark -tracking-[0.05rem]">
                       Eddy

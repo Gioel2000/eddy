@@ -66,7 +66,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
           <dl class="space-y-3">
             <div class="grid grid-cols-2 gap-4 2xl:grid-cols-4">
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="checkType('Family')"
               >
                 <div class="min-w-0 flex-1 z-10">
@@ -173,13 +173,13 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   </div>
                 </div>
                 <span
-                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200 animate-blurToClear200"
                   [inlineSVG]="'crowd.svg'"
                 ></span>
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="checkType('Couple')"
               >
                 <div class="min-w-0 flex-1 z-10">
@@ -287,13 +287,13 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   </div>
                 </div>
                 <span
-                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200 animate-blurToClear200"
                   [inlineSVG]="'users-3.svg'"
                 ></span>
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="checkType('Solo')"
               >
                 <div class="min-w-0 flex-1 z-10">
@@ -401,13 +401,13 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   </div>
                 </div>
                 <span
-                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200 animate-blurToClear200"
                   [inlineSVG]="'user.svg'"
                 ></span>
               </a>
 
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="checkType('Business')"
               >
                 <div class="min-w-0 flex-1 z-10">
@@ -515,7 +515,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   </div>
                 </div>
                 <span
-                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200"
+                  class="absolute top-5 right-5 stroke-[1.5] text-zinc-100 group-hover:text-zinc-200 dark:text-[#1A1A1A] dark:group-hover:text-[#2F2F2F] svg-illustration-7 transition ease-in-out duration-200 animate-blurToClear200"
                   [inlineSVG]="'suitcase-6.svg'"
                 ></span>
               </a>

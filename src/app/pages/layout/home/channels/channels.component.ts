@@ -42,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         </button>
         <div [ngClass]="{ hidden: !dropdown.isOpen() }">
           <div
-            class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
+            class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

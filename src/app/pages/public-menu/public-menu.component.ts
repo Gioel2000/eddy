@@ -136,7 +136,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                     <div class="relative">
                       <button
                         type="button"
-                        class="block w-full ring-1  ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-dark text-zinc-300 shadow-sm placeholder:text-zinc-600 text-sm leading-6"
+                        class="block w-full ring-1 ring-zinc-800 focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-dark text-zinc-300 shadow-sm placeholder:text-zinc-600 text-sm leading-6"
                         id="menu-button"
                         aria-expanded="true"
                         aria-haspopup="true"
@@ -164,7 +164,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                       </button>
                       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
                         <div
-                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-[10px] bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200"
+                          class="absolute left-0 z-10 mt-2 w-full origin-top rounded-[10px] bg-zinc-800 shadow-lg ring-1 ring-zinc-700 ring-opacity-5 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
                           role="menu"
                           aria-orientation="vertical"
                           aria-labelledby="menu-button"
@@ -179,7 +179,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                               <div class="space-y-2">
                                 @for (category of categories(); track $index) {
                                 <div
-                                  class="flex flex-row items-center gap-x-1 rounded-lg p-2 text-sm font-bold leading-6 cursor-pointer transition-all transform-gpu ease-in-out duration-300 hover:bg-accent hover:dark:bg-accentDark hover:text-white"
+                                  class="flex flex-row items-center gap-x-1 rounded-lg p-2 text-sm font-bold leading-6 cursor-pointer transition-all transform-gpu ease-in-out duration-300  hover:bg-accent hover:dark:bg-accentDark hover:text-white"
                                   [ngClass]="{
                                     'bg-accent dark:bg-accentDark text-white':
                                       selectedCategory().category._id === category.category._id,
@@ -205,7 +205,7 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
                   <nav class="flex space-x-4" aria-label="Tabs">
                     @for (category of categories(); track $index) {
                     <a
-                      class="rounded-md px-3 py-2 text-sm font-medium transition-all transform-gpu ease-in-out duration-300 cursor-pointer"
+                      class="rounded-md px-3 py-2 text-sm font-medium transition-all transform-gpu ease-in-out duration-300  cursor-pointer"
                       [ngClass]="{
                         'bg-accent dark:bg-accentDark text-white':
                           selectedCategory().category._id === category.category._id,

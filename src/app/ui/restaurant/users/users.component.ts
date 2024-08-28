@@ -75,7 +75,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
               w-full
               transition
               ease-in-out
-              duration-200
+              duration-200 animate-blurToClear200 
               opacity-90
               hover:opacity-100
               ring-1

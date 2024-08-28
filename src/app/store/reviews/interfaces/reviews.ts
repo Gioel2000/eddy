@@ -1,5 +1,17 @@
 export type StateModel = 'loaded' | 'loading' | 'error' | 'empty';
 
+export interface AIReply {
+  reply: string;
+  translations?:
+    | {
+        reply: string;
+        language: string;
+      }[]
+    | null;
+  createdAt: string;
+  _id: string;
+}
+
 export interface ReviewTO {
   _id: string;
   name: string;
@@ -21,7 +33,7 @@ export interface ReviewTO {
   clientsType?: string[];
   reviewId?: any;
   externalSource?: any;
-  aiReply: { reply: string; createdAt: Date }[]; //translations: { reply: string; language: string }[]
+  aiReply: AIReply[];
   categories: {
     category: string;
     rating: number;

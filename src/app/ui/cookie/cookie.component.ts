@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
   template: `
     <div [ngClass]="{ hidden: !isCookieAlertOpen() }">
       <div
-        class="transition ease-out duration-300 pointer-events-none fixed bottom-0 right-0 px-6 pb-6 z-20 origin-bottom sm:origin-bottom-right transform scale-90 opacity-0"
+        class="transition ease-out duration-300  pointer-events-none fixed bottom-0 right-0 px-6 pb-6 z-20 origin-bottom sm:origin-bottom-right transform scale-90 opacity-0"
         [ngClass]="{
           'opacity-100 scale-100': isCookieAlertVisible(),
           'opacity-0 scale-90': !isCookieAlertVisible()

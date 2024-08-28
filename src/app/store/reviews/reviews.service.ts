@@ -4,7 +4,7 @@ import { connect } from 'ngxtension/connect';
 import { environment } from '../../../environments/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { StructureStore } from '../structures/structure.service';
-import { ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
+import { AIReply, ReviewTO, SentimentTO, StateModel, SummaryTO } from './interfaces/reviews';
 import {
   Observable,
   Subject,
@@ -199,8 +199,6 @@ export class ReviewsStore {
 
   askAIReply(reviewId: string, language: string) {
     const params = new HttpParams().set('lng', language);
-    return this.http.get<{ reply: string; createdAt: Date; translations?: { reply: string; language: string }[] }>(
-      `${environment.apiUrl}/api/reviews/${reviewId}/aireply?${params.toString()}`
-    );
+    return this.http.get<AIReply>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply?${params.toString()}`);
   }
 }

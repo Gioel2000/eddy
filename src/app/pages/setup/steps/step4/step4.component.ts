@@ -65,7 +65,7 @@ import { StructureStore } from '../../../../store/structures/structure.service';
           </p>
           <div class="mt-10 flex items-center gap-x-6">
             <button
-              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px hover:shadow-lg hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer focus:outline-none"
+              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px hover:shadow-lg hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer focus:outline-none"
               (click)="structure.setConfigurationCompleted()"
             >
               <div

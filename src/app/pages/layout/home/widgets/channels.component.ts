@@ -68,7 +68,7 @@ import { ChannelTO } from '../../../../store/dashboard/interfaces/dashboard';
           <dl class="space-y-2">
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 2xl:grid-cols-3">
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="google().totalCount && checkChannel('google')"
                 [ngClass]="{
                   'cursor-not-allowed opacity-50': !google().totalCount
@@ -138,7 +138,7 @@ import { ChannelTO } from '../../../../store/dashboard/interfaces/dashboard';
                 </div>
               </a>
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="tripadvisor().totalCount && checkChannel('tripadvisor')"
                 [ngClass]="{
                   'cursor-not-allowed opacity-50': !tripadvisor().totalCount
@@ -208,7 +208,7 @@ import { ChannelTO } from '../../../../store/dashboard/interfaces/dashboard';
                 </div>
               </a>
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200"
+                class="group relative flex items-center space-x-3 rounded-[10px] min-h-32 bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] p-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="thefork().totalCount && checkChannel('thefork')"
                 [ngClass]="{
                   'cursor-not-allowed opacity-50': !thefork().totalCount

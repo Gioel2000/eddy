@@ -19,7 +19,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { SERVICES } from './data/reviews.data';
 import { ReplacePipe } from '../../utils/pipes/replace.pipe';
 import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
-import { ReviewTO } from '../../store/reviews/interfaces/reviews';
+import { AIReply, ReviewTO } from '../../store/reviews/interfaces/reviews';
 import { TranslateDropdownComponent } from './components/types/translate.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { ReviewsStore } from '../../store/reviews/reviews.service';
@@ -28,6 +28,7 @@ import { BodyReviewSentimentComponent } from './components/review-body-sentiment
 import { StructureStore } from '../../store/structures/structure.service';
 import { I18nStore } from '../../store/i18n/i18n.service';
 import { MomentPipe } from '../../utils/pipes/moment.pipe';
+import moment from 'moment';
 
 @UntilDestroy()
 @Component({
@@ -444,7 +445,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
               <div class="flex flex-row items-center mt-1 pr-2 py-1 z-100">
                 @if (review().channel.source === 'tripadvisor') {
                 <div
-                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
                     class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -460,7 +461,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                 </div>
                 } @if (review().channel.source === 'google') {
                 <div
-                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
                     class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -476,7 +477,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                 </div>
                 } @if (review().channel.source === 'thefork') {
                 <div
-                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                 >
                   <div
                     class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -585,7 +586,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
           <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
             <div *ngIf="(alreadyReplied$ | async) === false">
               <button
-                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 [disabled]="commentControl.invalid"
                 (click)="onCopyAndReply()"
               >
@@ -602,7 +603,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
             </div>
             <div *ngIf="(alreadyReplied$ | async) === true">
               <button
-                class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200"
+                class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
                 (click)="showReview()"
               >
                 <span [inlineSVG]="'share-right-4.svg'" class="svg-icon svg-icon-5 stroke-[1.7] mr-1.5"></span>
@@ -635,7 +636,7 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
             <div class="flex flex-row items-center gap-x-3">
               <div class="group relative max-w-7xl">
                 <div
-                  class="absolute -inset-1 bg-rainbow rounded-[10px] blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200"
+                  class="absolute -inset-1 bg-rainbow rounded-[10px] blur group-hover:opacity-40 group-hover:dark:opacity-30 opacity-0 transition ease-in-out duration-200 animate-blurToClear200"
                 ></div>
                 <div class="relative rounded-[10px] leading-none space-x-6">
                   <button
@@ -684,16 +685,20 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
           </div>
           @if (( replies$ | async )!.length > 0) {
           <div class="py-4 mt-5">
-            <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
-              'RESPONSE_HISTORY' | translate
-            }}</label>
+            <label
+              for="comment"
+              class="flex flex-row items-center gap-x-1 text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200"
+            >
+              <span class="svg-icon svg-icon-7 stroke-2" [inlineSVG]="'clock-rotate-clockwise-2.svg'"></span>
+              {{ 'RESPONSE_HISTORY' | translate }}</label
+            >
             <div class="mx-auto max-w-7xl">
               <div
                 class="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:mt-5 lg:mx-0 lg:max-w-none lg:grid-cols-3"
               >
                 @for (response of ( replies$ | async ); track $index) {
                 <article
-                  class="flex max-w-xl flex-col items-start justify-between gap-y-4 rounded-2xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 shadow-sm cursor-pointer p-6"
+                  class="flex max-w-xl flex-col items-start justify-between gap-y-4 rounded-2xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer p-6"
                 >
                   <div class="flex items-center gap-x-4 text-xs">
                     <time class="text-zinc-500 capitalize">
@@ -706,8 +711,8 @@ import { MomentPipe } from '../../utils/pipes/moment.pipe';
                     </p>
                   </div>
                   <button
-                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 mt-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-sm shadow-black/25 disabled:opacity-30"
-                    (click)="pasteResponse(response.reply)"
+                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 mt-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-sm shadow-black/25 disabled:opacity-30"
+                    (click)="pasteResponse(response)"
                   >
                     <div
                       class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[9px] cursor-pointer"
@@ -748,7 +753,7 @@ export class BodyReviewComponent {
     title?: string;
     text?: string;
   }>({});
-  readonly replies$ = new BehaviorSubject<{ reply: string; createdAt: Date }[]>([]);
+  readonly replies$ = new BehaviorSubject<AIReply[]>([]);
 
   review = input.required<ReviewTO>();
   showBorder = input.required<boolean>();
@@ -903,8 +908,16 @@ export class BodyReviewComponent {
     return hearths;
   }
 
-  pasteResponse(response: string) {
-    this.commentControl.setValue(response);
+  pasteResponse(response: AIReply) {
+    const { translations, reply } = response;
+    this.commentControl.setValue(reply);
+
+    if (translations && translations.length > 0) {
+      this.translatedReply.set(translations[0].reply);
+    }
+
+    this.autoSize.nativeElement.style.height = 'auto';
+    this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
     window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
   }
 
@@ -1156,7 +1169,8 @@ export class BodyReviewComponent {
       .askAIReply(this.review()._id, this.i18n.selectedLang().locale)
       .pipe(untilDestroyed(this))
       .subscribe({
-        next: ({ reply, translations }) => {
+        next: (aiReply: AIReply) => {
+          const { reply, translations } = aiReply;
           this.isResponseLoading.set(false);
           this.isResponseError.set(false);
           this.isResponseSuccess.set(true);
@@ -1165,17 +1179,13 @@ export class BodyReviewComponent {
           this.autoSize.nativeElement.style.height = 'auto';
           this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
 
-          this.replies$.next([
-            {
-              reply,
-              createdAt: new Date(),
-            },
-            ...this.replies$.value,
-          ]);
+          this.replies$.next([...this.replies$.value, aiReply]);
 
           if (translations && translations.length > 0) {
             this.translatedReply.set(translations[0].reply);
           }
+
+          window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
 
           setTimeout(() => this.isResponseSuccess.set(false), 1500);
         },

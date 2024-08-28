@@ -229,7 +229,7 @@ import { TranslateModule } from '@ngx-translate/core';
     </div>
 
     <a
-      class="hidden sm:block absolute cursor-pointer top-6 right-6 z-30 svg-icon-5 stroke-[1.8] rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out duration-200 transform"
+      class="hidden sm:block absolute cursor-pointer top-6 right-6 z-30 svg-icon-5 stroke-[1.8] rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition ease-in-out duration-200 animate-blurToClear200  transform"
       [routerLink]="['/structures']"
     >
       <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">

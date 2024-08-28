@@ -49,7 +49,7 @@ import { WorldComponent } from '../world/world.component';
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="transform transition ease-in-out duration-300 sm:duration-700 pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
+            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear700  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
             [ngClass]="{
               'translate-x-0': panelUI.isPanelVisible(),
               'translate-x-full': !panelUI.isPanelVisible()
@@ -193,7 +193,7 @@ import { WorldComponent } from '../world/world.component';
                             </button>
                             <div [ngClass]="{ hidden: !select.isOpen() }">
                               <ul
-                                class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-zinc-800 shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 left-0 origin-top"
+                                class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-zinc-800 shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 animate-blurToClear200  left-0 origin-top"
                                 tabindex="-1"
                                 role="listbox"
                                 aria-labelledby="listbox-label"
@@ -370,7 +370,7 @@ import { WorldComponent } from '../world/world.component';
                           @for (photo of photos(); track $index) {
                           <div class="flex flex-col items-start m-1">
                             <a
-                              class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 focus:outline-none"
+                              class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 animate-blurToClear100  focus:outline-none"
                               [ngClass]="{
                               'ring-4 ring-accent dark:ring-accentDark shadow-md shadow-accent/70 dark:shadow-accentDark/70': selectedPhoto() === $index,
                             }"
@@ -455,7 +455,7 @@ import { WorldComponent } from '../world/world.component';
                   <div class="flex justify-end space-x-3">
                     <button
                       type="button"
-                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 disabled:opacity-30"
+                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200  disabled:opacity-30"
                       [disabled]="store.state() === 'loading'"
                       (click)="panelUI.closePanel()"
                     >

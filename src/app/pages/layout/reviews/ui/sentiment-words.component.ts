@@ -165,13 +165,13 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
               <dt class="flex flex-1 items-center">
                 <a class="group flex flex-row items-center gap-x-2 w-24 cursor-pointer">
                   <p
-                    class="w-20 truncate font-medium text-zinc-600 dark:text-zinc-400 group-hover:font-semibold transition-all transform-gpu ease-in-out duration-300"
+                    class="w-20 truncate font-medium text-zinc-600 dark:text-zinc-400 group-hover:font-semibold transition-all transform-gpu ease-in-out duration-300 "
                   >
                     {{ word.word }}
                   </p>
                   <!-- <span
                     [inlineSVG]="'share-up-right.svg'"
-                    class="group-hover:block w-4 hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition-all transform-gpu ease-in-out duration-300"
+                    class="group-hover:block w-4 hidden svg-icon svg-icon-9 text-accent dark:text-accentDark stroke-[2.3] transition-all transform-gpu ease-in-out duration-300 "
                   ></span> -->
                 </a>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">

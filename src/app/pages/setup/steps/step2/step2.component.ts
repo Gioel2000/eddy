@@ -248,7 +248,7 @@ import moment from 'moment';
                           </div>
                           <div>
                             <a
-                              class="bg-zinc-100 hover:bg-zinc-50 rounded-md font-medium text-xs leading-6 py-1 flex items-center justify-center ring-1 ring-inset ring-zinc-900/5 mx-auto w-4/5 dark:bg-zinc-800 dark:hover:bg-zinc-900 text-zinc-800 dark:text-zinc-500 transition ease-in-out duration-200 transform"
+                              class="bg-zinc-100 hover:bg-zinc-50 rounded-md font-medium text-xs leading-6 py-1 flex items-center justify-center ring-1 ring-inset ring-zinc-900/5 mx-auto w-4/5 dark:bg-zinc-800 dark:hover:bg-zinc-900 text-zinc-800 dark:text-zinc-500 transition ease-in-out duration-200 animate-blurToClear200  transform"
                             >
                               <svg
                                 viewBox="0 0 20 20"
@@ -268,7 +268,7 @@ import moment from 'moment';
                           </div>
                           <div class="flex justify-end gap-x-3">
                             <a
-                              class="flex flex-col items-center justify-center rounded-md p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 transform"
+                              class="flex flex-col items-center justify-center rounded-md p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition ease-in-out duration-200 animate-blurToClear200  transform"
                               (click)="openLink(selectedChannel.channel?.channel?.api?.url || '')"
                             >
                               <svg
@@ -562,7 +562,7 @@ import moment from 'moment';
                 </button>
 
                 <button
-                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
                   [ngClass]="{
                     'shadow-lg shadow-accent/70 dark:shadow-accentDark/70': finalConfirm(),
                     'shadow-md shadow-black/20': !finalConfirm()

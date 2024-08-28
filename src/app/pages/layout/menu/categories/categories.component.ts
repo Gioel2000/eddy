@@ -56,7 +56,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
         </div>
         <button
           type="button"
-          class="group relative rounded p-1 m-1 w-[25px] hover:bg-zinc-500/20 dark:hover:bg-zinc-700/20 focus:outline-none transition ease-in-out duration-100"
+          class="group relative rounded p-1 m-1 w-[25px] hover:bg-zinc-500/20 dark:hover:bg-zinc-700/20 focus:outline-none transition ease-in-out duration-100 animate-blurToClear100"
           (click)="onDelete(category)"
         >
           <span class="svg-icon svg-icon-6 stroke-[1.8]" inlineSVG="trash.svg"></span>

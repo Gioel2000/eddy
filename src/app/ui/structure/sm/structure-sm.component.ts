@@ -60,7 +60,7 @@ import { RouterModule } from '@angular/router';
 
     <div [ngClass]="{ hidden: !ui.isDropdownOpenSm() }">
       <div
-        class="absolute bottom-12 w-full z-10 my-3 origin-bottom divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg shadow-black/10 ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200"
+        class="absolute bottom-12 w-full z-10 my-3 origin-bottom divide-y divide-zinc-200 dark:divide-zinc-700 rounded-lg bg-white dark:bg-zinc-800 shadow-lg shadow-black/10 ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
@@ -73,7 +73,7 @@ import { RouterModule } from '@angular/router';
         <div class="block pl-4 pr-3 py-3 text-sm cursor-pointer w-full">
           <button
             id="structure-item"
-            class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200"
+            class="group flex flex-col w-full cursor-pointer gap-y-0.5 transition-all transform-gpu ease-in-out duration-200 animate-blurToClear200"
             (click)="restaurantPanel.togglePanel(); layout.closeMenu()"
           >
             <div class="flex flex-row items-start justify-between w-full gap-x-1">

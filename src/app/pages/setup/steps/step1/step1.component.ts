@@ -135,7 +135,7 @@ import moment from 'moment';
                       </button>
                       <div [ngClass]="{ hidden: !select.isOpen() }">
                         <ul
-                          class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-dark shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 left-0 origin-top"
+                          class="absolute z-10 mt-2 w-full rounded-md bg-white dark:bg-dark shadow-md shadow-black/20 ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 animate-blurToClear200  left-0 origin-top"
                           tabindex="-1"
                           role="listbox"
                           aria-labelledby="listbox-label"
@@ -307,7 +307,7 @@ import moment from 'moment';
                   @for (photo of photos(); track $index) {
                   <div class="flex flex-col items-start m-1">
                     <a
-                      class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 focus:outline-none"
+                      class="relative flex flex-col items-start w-44 rounded-lg border border-white dark:border-zinc-800 bg-white hover:ring-4 hover:ring-accent dark:hover:ring-accentDark hover:shadow-md hover:shadow-accent/70 dark:hover:shadow-accentDark/70 cursor-pointer transition ease-in-out duration-100 animate-blurToClear100  focus:outline-none"
                       [ngClass]="{
                         'ring-4 ring-accent dark:ring-accentDark shadow-md shadow-accent/70 dark:shadow-accentDark/70': selectedPhoto() === $index,
                       }"
@@ -382,7 +382,7 @@ import moment from 'moment';
               >
                 <button
                   id="edit-restaurant-button"
-                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20"
+                  class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[8px] h-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20"
                   (click)="add()"
                 >
                   <div

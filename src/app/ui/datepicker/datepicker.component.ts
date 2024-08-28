@@ -75,7 +75,7 @@ export interface CalendarModel {
         </button>
         <div [ngClass]="{ hidden: !isOpen() }">
           <div
-            class="absolute z-10 mt-2 w-80 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 transform-gpu"
+            class="absolute z-10 mt-2 w-80 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200  transform-gpu"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -121,7 +121,7 @@ export interface CalendarModel {
                     <div class="grid grid-cols-3 gap-2 px-3 pt-5">
                       @for (date of rapidDates(); track $index) {
                       <span
-                        class="col-span-1 inline-flex items-center cursor-pointer transition ease-in-out duration-200 gap-x-1 rounded-md bg-red-500/10 hover:bg-accent hover:text-white dark:hover:text-white dark:hover:bg-red-500 p-1.5 text-xs text-red-500 font-semibold"
+                        class="col-span-1 inline-flex items-center cursor-pointer transition ease-in-out duration-200 animate-blurToClear200  gap-x-1 rounded-md bg-red-500/10 hover:bg-accent hover:text-white dark:hover:text-white dark:hover:bg-red-500 p-1.5 text-xs text-red-500 font-semibold"
                         (click)="onDateSet.emit(date.value)"
                       >
                         <span [inlineSVG]="'bolt.svg'" class="svg-icon svg-icon-9 stroke-[1.8]"></span>

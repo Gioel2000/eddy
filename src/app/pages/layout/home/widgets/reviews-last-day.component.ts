@@ -74,7 +74,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
           <div class="flex flex-row items-center gap-x-2 mr-1">
             <button
               type="button"
-              class="flex flex-row items-center rounded-lg px-2.5 py-2 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+              class="flex flex-row items-center rounded-lg px-2.5 py-2 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
               [disabled]="start() === 0"
               (click)="showLess()"
             >
@@ -85,7 +85,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             </button>
             <button
               type="button"
-              class="flex flex-row items-center rounded-lg px-2.5 py-2 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+              class="flex flex-row items-center rounded-lg px-2.5 py-2 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
               [disabled]="stopKeepGoing()"
               (click)="showMore()"
             >
@@ -113,7 +113,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
             <div class="flex flex-row items-center gap-x-2">
               <button
                 type="button"
-                class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+                class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
                 [disabled]="start() === 0"
                 (click)="showLess()"
               >
@@ -124,7 +124,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
               </button>
               <button
                 type="button"
-                class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+                class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
                 [disabled]="stopKeepGoing()"
                 (click)="showMore()"
               >

@@ -41,7 +41,7 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="transform transition ease-in-out duration-300 sm:duration-700 pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
+            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear700  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
             [ngClass]="{
               'translate-x-0': panelUI.isPanelVisible(),
               'translate-x-full': !panelUI.isPanelVisible()
@@ -190,7 +190,7 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
                   <div class="flex justify-end space-x-3">
                     <button
                       type="button"
-                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
+                      class="rounded-md bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1  ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
                       (click)="panelUI.closePanel()"
                     >
                       {{ 'CANCEL' | translate }}

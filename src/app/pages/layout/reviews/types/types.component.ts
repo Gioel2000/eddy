@@ -40,7 +40,7 @@ import { ReviewsService } from '../reviews.service';
       </button>
       <div [ngClass]="{ hidden: !dropdown.isOpen() }">
         <div
-          class="absolute z-10 mt-2 w-56 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 left-0 origin-top-left sm:left-0 sm:origin-top-left"
+          class="absolute z-10 mt-2 w-56 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200  left-0 origin-top-left sm:left-0 sm:origin-top-left"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

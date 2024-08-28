@@ -163,7 +163,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                 <div class="flex flex-row items-center pl-2 py-1 z-100">
                   @if (review.channel.source === 'tripadvisor') {
                   <div
-                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                    class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
                     <div
                       class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -179,7 +179,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                   </div>
                   } @if (review.channel.source === 'google') {
                   <div
-                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                    class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
                     <div
                       class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -195,7 +195,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                   </div>
                   } @if (review.channel.source === 'thefork') {
                   <div
-                    class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                    class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   >
                     <div
                       class="flex flex-row items-center justify-center gap-x-2 bg-zinc-50 dark:bg-[#1A1A1A] p-3 py-2.5 rounded-[9998px] cursor-pointer"
@@ -272,7 +272,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                 <div class="flex flex-row items-center gap-x-2">
                   <button
                     type="button"
-                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
                     [disabled]="start() === 0"
                     (click)="showLess()"
                   >
@@ -283,7 +283,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                   </button>
                   <button
                     type="button"
-                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200"
+                    class="flex flex-row items-center rounded-lg px-2.5 py-2 mt-4 text-zinc-400 dark:text-zinc-600 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
                     [disabled]="stopKeepGoing()"
                     (click)="showMore()"
                   >

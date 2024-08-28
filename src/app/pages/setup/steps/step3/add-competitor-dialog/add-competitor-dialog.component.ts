@@ -48,7 +48,7 @@ import { SetupStore } from '../../../../../store/setup/setup.service';
             <div class="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
               <button
                 type="button"
-                class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100"
+                class="relative rounded-full p-1.5 hover:bg-black/5 hover:dark:bg-zinc-50/5 text-zinc-500 focus:outline-none transition ease-in-out duration-100 animate-blurToClear100"
                 (click)="dialog.closeDialog()"
               >
                 <span class="svg-icon svg-icon-8 stroke-[1.6]">
