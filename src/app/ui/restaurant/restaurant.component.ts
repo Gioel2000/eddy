@@ -70,7 +70,7 @@ export interface MarkerInterface {
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear700  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
+            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear600  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
             [ngClass]="{
               'translate-x-0': !dialog.isDialogOpen() && panelUI.isPanelVisible(),
               'translate-x-full': !dialog.isDialogOpen() && !panelUI.isPanelVisible()

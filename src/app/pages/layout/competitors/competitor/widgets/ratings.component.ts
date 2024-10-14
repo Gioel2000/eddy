@@ -50,10 +50,10 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
+    <div #container class="flex flex-col border-b border-zinc-200 dark:border-[#1e1e1e] py-6">
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 h-24">
           <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
             {{ 'REVIEWS' | translate }}
           </dt>
@@ -78,11 +78,10 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
         </div>
         <div class="mt-6">
           <dl class="space-y-3">
-            @for (vote of [5,4,3,2,1]; track $index) { @if (getStarData(vote); as rating) {
             <div class="flex items-center text-sm">
               <dt class="flex flex-1 items-center">
                 <p class="w-3 font-medium text-zinc-900 dark:text-zinc-100">
-                  {{ vote }}<span class="sr-only"> star reviews</span>
+                  5<span class="sr-only"> star reviews</span>
                 </p>
                 <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
                   <svg
@@ -104,43 +103,267 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
                     <div
                       class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
                     ></div>
+                    @if (getStarData(5).percentage; as percentage) {
                     <div
-                      [style.width.%]="rating.percentage"
+                      [style.width.%]="percentage"
                       class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
                     ></div>
+                    } @if (getStarData(5).percentageLessGrow; as percentageLessGrow) {
                     <div
-                      [style.width.%]="rating.percentageLessGrow"
+                      [style.width.%]="percentageLessGrow"
                       class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                     ></div>
-                    <div
-                      [style.left.%]="rating.competitorPercentage"
-                      class="absolute inset-y-0 border border-violet-400 bg-violet-400 w-1"
-                    ></div>
+                    }
                   </div>
                 </div>
               </dt>
               <div class="flex flex-row items-center justify-end">
-                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-400">
-                  {{ rating.count | numb : translate.currentLang : 0 }}
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100 ml-2">
+                  {{ getStarData(5).count | numb : translate.currentLang : 0 }}
+                </dd>
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-600">
+                  {{ getStarData(5).percentage | numb : translate.currentLang : 0 }}%
                 </dd>
                 <dd
-                  class="w-8 text-left font-semibold text-sm tabular-nums ml-1.5"
+                  class="w-8 text-right font-semibold text-sm tabular-nums"
                   [ngClass]="{
-                    'text-green-500': rating.received > 0,
-                    'text-zinc-400 dark:text-zinc-600': rating.received === 0
+                    'text-green-500': getStarData(5).received > 0,
+                    'text-zinc-400 dark:text-zinc-600': getStarData(5).received === 0
                   }"
                 >
-                  +{{ rating.received | numb : translate.currentLang : 0 }}
-                </dd>
-                <dd class="w-8 text-sm text-right font-medium tabular-nums text-zinc-300 ">
-                  {{ rating.percentage | numb : translate.currentLang : 0 }}%
-                </dd>
-                <dd class="w-10 text-right font-semibold text-sm tabular-nums text-violet-500">
-                  {{ rating.competitorPercentage | numb : translate.currentLang : 0 }}%
+                  +{{ getStarData(5).received | numb : translate.currentLang : 0 }}
                 </dd>
               </div>
             </div>
-            } }
+            <div class="flex items-center text-sm">
+              <dt class="flex flex-1 items-center">
+                <p class="w-3 font-medium text-zinc-900 dark:text-zinc-100">
+                  4<span class="sr-only"> star reviews</span>
+                </p>
+                <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+
+                  <div class="relative ml-3 flex-1">
+                    <div
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    ></div>
+                    @if (getStarData(4).percentage; as percentage) {
+                    <div
+                      [style.width.%]="percentage"
+                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
+                    ></div>
+                    } @if (getStarData(4).percentageLessGrow; as percentageLessGrow) {
+                    <div
+                      [style.width.%]="percentageLessGrow"
+                      class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                    ></div>
+                    }
+                  </div>
+                </div>
+              </dt>
+              <div class="flex flex-row items-center justify-end">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100 ml-2">
+                  {{ getStarData(4).count | numb : translate.currentLang : 0 }}
+                </dd>
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-600">
+                  {{ getStarData(4).percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd
+                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  [ngClass]="{
+                    'text-green-500': getStarData(4).received > 0,
+                    'text-zinc-400 dark:text-zinc-600': getStarData(4).received === 0
+                  }"
+                >
+                  +{{ getStarData(4).received | numb : translate.currentLang : 0 }}
+                </dd>
+              </div>
+            </div>
+            <div class="flex items-center text-sm">
+              <dt class="flex flex-1 items-center">
+                <p class="w-3 font-medium text-zinc-900 dark:text-zinc-100">
+                  3<span class="sr-only"> star reviews</span>
+                </p>
+                <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+
+                  <div class="relative ml-3 flex-1">
+                    <div
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    ></div>
+                    @if (getStarData(3).percentage; as percentage) {
+                    <div
+                      [style.width.%]="percentage"
+                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
+                    ></div>
+                    } @if (getStarData(3).percentageLessGrow; as percentageLessGrow) {
+                    <div
+                      [style.width.%]="percentageLessGrow"
+                      class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                    ></div>
+                    }
+                  </div>
+                </div>
+              </dt>
+              <div class="flex flex-row items-center justify-end">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100 ml-2">
+                  {{ getStarData(3).count | numb : translate.currentLang : 0 }}
+                </dd>
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-600">
+                  {{ getStarData(3).percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd
+                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  [ngClass]="{
+                    'text-green-500': getStarData(3).received > 0,
+                    'text-zinc-400 dark:text-zinc-600': getStarData(3).received === 0
+                  }"
+                >
+                  +{{ getStarData(3).received | numb : translate.currentLang : 0 }}
+                </dd>
+              </div>
+            </div>
+            <div class="flex items-center text-sm">
+              <dt class="flex flex-1 items-center">
+                <p class="w-3 font-medium text-zinc-900 dark:text-zinc-100">
+                  2<span class="sr-only"> star reviews</span>
+                </p>
+                <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+
+                  <div class="relative ml-3 flex-1">
+                    <div
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    ></div>
+
+                    @if (getStarData(2).percentage; as percentage) {
+                    <div
+                      [style.width.%]="percentage"
+                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
+                    ></div>
+                    } @if (getStarData(2).percentageLessGrow; as percentageLessGrow) {
+                    <div
+                      [style.width.%]="percentageLessGrow"
+                      class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                    ></div>
+                    }
+                  </div>
+                </div>
+              </dt>
+              <div class="flex flex-row items-center justify-end">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100 ml-2">
+                  {{ getStarData(2).count | numb : translate.currentLang : 0 }}
+                </dd>
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-600">
+                  {{ getStarData(2).percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd
+                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  [ngClass]="{
+                    'text-green-500': getStarData(2).received > 0,
+                    'text-zinc-400 dark:text-zinc-600': getStarData(2).received === 0
+                  }"
+                >
+                  +{{ getStarData(2).received | numb : translate.currentLang : 0 }}
+                </dd>
+              </div>
+            </div>
+            <div class="flex items-center text-sm">
+              <dt class="flex flex-1 items-center">
+                <p class="w-3 font-medium text-zinc-900 dark:text-zinc-100">
+                  1<span class="sr-only"> star reviews</span>
+                </p>
+                <div aria-hidden="true" class="ml-1 flex flex-1 items-center text-yellow-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    class="drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                        fill="currentColor"
+                      ></path>
+                    </g>
+                  </svg>
+
+                  <div class="relative ml-3 flex-1">
+                    <div
+                      class="h-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900"
+                    ></div>
+                    @if (getStarData(1).percentage; as percentage) {
+                    <div
+                      [style.width.%]="percentage"
+                      class="absolute inset-y-0 rounded-full border border-green-400 bg-green-400"
+                    ></div>
+                    } @if (getStarData(1).percentageLessGrow; as percentageLessGrow) {
+                    <div
+                      [style.width.%]="percentageLessGrow"
+                      class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                    ></div>
+                    }
+                  </div>
+                </div>
+              </dt>
+              <div class="flex flex-row items-center justify-end">
+                <dd class="w-8 text-right font-medium text-sm tabular-nums text-zinc-500 dark:text-zinc-100 ml-2">
+                  {{ getStarData(1).count | numb : translate.currentLang : 0 }}
+                </dd>
+                <dd class="w-12 text-right font-medium text-sm tabular-nums text-zinc-400 dark:text-zinc-600">
+                  {{ getStarData(1).percentage | numb : translate.currentLang : 0 }}%
+                </dd>
+                <dd
+                  class="w-8 text-right font-semibold text-sm tabular-nums"
+                  [ngClass]="{
+                    'text-green-500': getStarData(1).received > 0,
+                    'text-zinc-400 dark:text-zinc-600': getStarData(1).received === 0
+                  }"
+                >
+                  +{{ getStarData(1).received | numb : translate.currentLang : 0 }}
+                </dd>
+              </div>
+            </div>
           </dl>
         </div>
       </div>
@@ -180,6 +403,7 @@ export class RatingsComponent {
     const competitors = this.competitors.others
       .competitors()
       .filter((competitor) => !competitor.isExluded)
+      .filter((competitor) => competitor.channels?.length > 0)
       .filter((competitor) => competitor._id !== this.id());
 
     const youCount = you.find((item) => item.rating === rating)?.totalCount || 0;

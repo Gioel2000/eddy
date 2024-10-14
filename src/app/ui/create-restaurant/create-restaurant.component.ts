@@ -49,7 +49,7 @@ import { WorldComponent } from '../world/world.component';
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear700  pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
+            class="transform transition ease-in-out duration-300  sm:duration-700 sm:animate-blurToClear600 pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16"
             [ngClass]="{
               'translate-x-0': panelUI.isPanelVisible(),
               'translate-x-full': !panelUI.isPanelVisible()
@@ -98,7 +98,6 @@ import { WorldComponent } from '../world/world.component';
                             <span class="svg-icon svg-icon-5">
                               <span class="svg-icon svg-icon-8 stroke-[1.6]">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                                  <title>xmark</title>
                                   <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                                     <line
                                       x1="14"

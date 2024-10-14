@@ -54,9 +54,9 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
       </div>
     </ng-template>
 
-    <div #container class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6">
+    <div #container class="flex flex-col border-b border-zinc-200 dark:border-[#1e1e1e] py-6">
       @switch (state()) { @case ('loaded') {
-      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 h-28">
         <dt class="text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-200">
           {{ 'BRAND_REPUTATION' | translate }}
         </dt>
@@ -200,6 +200,7 @@ export class BrandReputationComponent {
     const competitors = this.competitor.others
       .competitors()
       .filter((competitor) => !competitor.isExluded)
+      .filter((competitor) => competitor.channels?.length > 0)
       .filter((competitor) => competitor._id !== this.id());
 
     const competitorGraphs = competitors.map((competitor) => competitor?.reputation?.graph || []).flat();
@@ -228,13 +229,13 @@ export class BrandReputationComponent {
           value,
         })),
       },
-      {
-        name: competition,
-        series: competitorsRatings.map(({ date, average }) => ({
-          name: moment(date).locale(currentLang).format('DD/MM'),
-          value: average,
-        })),
-      },
+      // {
+      //   name: competition,
+      //   series: competitorsRatings.map(({ date, average }) => ({
+      //     name: moment(date).locale(currentLang).format('DD/MM'),
+      //     value: average,
+      //   })),
+      // },
     ];
   });
 }

@@ -15,7 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReactiveFormsModule],
   template: `
     <div
-      class="relative z-[10000]"
+      class="relative z-[100000]"
       [ngClass]="{
         hidden: !dialog.isDialogOpen(),
       }"
@@ -45,7 +45,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
               >
                 <span class="svg-icon svg-icon-8 stroke-[1.6]">
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>xmark</title>
                     <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                       <line
                         x1="14"
@@ -249,6 +248,7 @@ export class EditChannelDialogComponent {
 
   save() {
     this.dialog.fuction()(this.URLFormControl.value as string);
+    this.URLFormControl.reset();
     this.dialog.closeDialog();
   }
 }

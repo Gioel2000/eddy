@@ -9,6 +9,7 @@ import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
 import { CompetitorsService } from '../../competitors.service';
 import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
+import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -22,6 +23,7 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
     NumberPipe,
     MissingTranslationPipe,
     GrowthPipe,
+    TooltipComponent,
   ],
   template: `
     <ng-template #loading>
@@ -52,11 +54,49 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
       </div>
     </ng-template>
 
+    <ng-template #better>
+      <tooltip position="top-right" label="{{ 'BETTER_THEN_YOUR_COMPETITOR' | translate }}">
+        <a class="flex flex-row items-center cursor-pointer w-full p-2 rounded-lg hover:bg-zinc-800 text-green-500">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="h-4.5 w-4.5">
+            <g fill="currentColor">
+              <path
+                d="M16.331,7.073c-.525-.682-1.319-1.073-2.179-1.073h-3.326l.798-2.167c.463-1.256-.091-2.655-1.289-3.254-.307-.153-.679-.079-.903,.181L5.168,5.697c-.431,.5-.668,1.138-.668,1.797v5.756c0,1.517,1.234,2.75,2.75,2.75h5.71c1.246,0,2.339-.841,2.659-2.046l1.191-4.5c.22-.832,.045-1.699-.479-2.381Z"
+              ></path>
+              <path
+                d="M4.25,16h-1.5c-.965,0-1.75-.785-1.75-1.75V7.75c0-.965,.785-1.75,1.75-1.75h1.5c.965,0,1.75,.785,1.75,1.75v6.5c0,.965-.785,1.75-1.75,1.75ZM2.75,7.5c-.138,0-.25,.112-.25,.25v6.5c0,.138,.112,.25,.25,.25h1.5c.138,0,.25-.112,.25-.25V7.75c0-.138-.112-.25-.25-.25h-1.5Z"
+              ></path>
+            </g>
+          </svg>
+        </a>
+      </tooltip>
+    </ng-template>
+
+    <ng-template #worse>
+      <tooltip position="top-right" label="{{ 'WORSE_THEN_YOUR_COMPETITOR' | translate }}">
+        <a class="flex flex-row items-center cursor-pointer w-full p-2 rounded-lg hover:bg-zinc-800 text-red-500">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="h-4.5 w-4.5">
+            <g fill="currentColor">
+              <path
+                d="M16.81,8.546l-1.191-4.5c-.319-1.205-1.413-2.046-2.659-2.046H7.25c-1.516,0-2.75,1.233-2.75,2.75v5.756c0,.659,.237,1.297,.669,1.797l4.264,4.937c.146,.169,.355,.26,.568,.26,.113,0,.228-.026,.335-.079,1.197-.599,1.751-1.998,1.289-3.254l-.798-2.167h3.326c.86,0,1.654-.391,2.179-1.073,.524-.682,.699-1.549,.479-2.381Z"
+              ></path>
+              <path
+                d="M4.25,12h-1.5c-.965,0-1.75-.785-1.75-1.75V3.75c0-.965,.785-1.75,1.75-1.75h1.5c.965,0,1.75,.785,1.75,1.75v6.5c0,.965-.785,1.75-1.75,1.75ZM2.75,3.5c-.138,0-.25,.112-.25,.25v6.5c0,.138,.112,.25,.25,.25h1.5c.138,0,.25-.112,.25-.25V3.75c0-.138-.112-.25-.25-.25h-1.5Z"
+              ></path>
+            </g>
+          </svg>
+        </a>
+      </tooltip>
+    </ng-template>
+
     <ng-template #loaded>
-      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 h-28">
         <dt class="text-sm font-medium leading-6 text-zinc-200">
           {{ 'BRAND_REPUTATION' | translate }}
         </dt>
+        @if (isBRBetter() !== null) {
+        <ng-container [ngTemplateOutlet]="isBRBetter() ? better : worse"></ng-container>
+        }
+
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-100">
             {{ competitor.you.brandReputation().data.average | numb : translate.currentLang : 2 }}
@@ -186,27 +226,6 @@ export class BrandReputationComponent {
     const { currentLang } = this.translate;
 
     const brandReputation = this.translate.instant('BRAND_REPUTATION');
-    const competition = this.translate.instant('COMPETITION');
-
-    const competitors = this.competitor.others.competitors().filter((competitor) => !competitor.isExluded);
-
-    const averageGraphCompetitors: {
-      [date: string]: number[];
-    } = competitors
-      .map((competitor) => competitor?.reputation?.graph || [])
-      .flat()
-      .reduce((acc: any, { date, average }) => {
-        if (!acc[date]) {
-          acc[date] = [];
-        }
-        acc[date].push(average);
-        return acc;
-      }, {});
-
-    const competitorsRatings = Object.entries(averageGraphCompetitors).map(([date, values]) => ({
-      date,
-      average: values.reduce((acc: any, value: any) => acc + value, 0) / values.length,
-    }));
 
     return [
       {
@@ -216,13 +235,21 @@ export class BrandReputationComponent {
           value,
         })),
       },
-      {
-        name: competition,
-        series: competitorsRatings.map(({ date, average }) => ({
-          name: moment(date).locale(currentLang).format('DD/MM'),
-          value: average,
-        })),
-      },
     ];
+  });
+
+  isBRBetter = computed(() => {
+    const myBr = +(this.competitor.you.brandReputation().data?.average || 0);
+    const competitors = this.competitor.others
+      .competitors()
+      .filter((competitor) => !competitor.isExluded)
+      .filter((competitor) => competitor.channels?.length > 0);
+
+    if (!competitors.length) return null;
+
+    const competitorsBRAverage: number =
+      competitors.reduce((acc, competitor) => acc + (competitor?.reputation?.average || 0), 0) / competitors.length;
+
+    return myBr > competitorsBRAverage;
   });
 }

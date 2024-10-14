@@ -75,7 +75,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
                   <div class="focus:outline-none">
                     <span class="absolute inset-0" aria-hidden="true"></span>
                     <div class="flex flex-row items-center justify-between">
-                      <p class="line-clamp-1 text-base font-bold text-zinc-900 dark:text-zinc-100 max-w-22">
+                      <p class="line-clamp-2 text-base font-bold text-zinc-900 dark:text-zinc-100 max-w-22">
                         {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
                       </p>
                     </div>

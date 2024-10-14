@@ -491,7 +491,7 @@ export class Step2CompetitorDialog {
   edit() {
     const selectedChannel = this.channels()[this.index()];
     this.editDialog.source.set(selectedChannel.key);
-    this.editDialog.url.set(selectedChannel.channel?.channel?.api?.url || '');
+    this.editDialog.url.set('');
     this.editDialog.fuction.set((url: string) => {
       if (!url) {
         this.store.removeChannelSetup(selectedChannel.key);

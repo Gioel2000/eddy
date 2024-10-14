@@ -949,7 +949,6 @@ import { Location } from '@angular/common';
                       class="absolute inset-0 -z-10 scale-75 rounded-lg bg-black/5 dark:bg-white/5 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
                     ></span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>cookie</title>
                       <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                         <path
                           d="M14.75,8c-1.91,0-3.469-1.433-3.703-3.28-.099,.01-.195,.03-.297,.03-1.618,0-2.928-1.283-2.989-2.887-3.413,.589-6.011,3.556-6.011,7.137,0,4.004,3.246,7.25,7.25,7.25s7.25-3.246,7.25-7.25c0-.434-.045-.857-.118-1.271-.428,.17-.893,.271-1.382,.271Z"
@@ -1004,7 +1003,6 @@ import { Location } from '@angular/common';
                       class="absolute inset-0 -z-10 scale-75 rounded-lg bg-black/5 dark:bg-white/5 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
                     ></span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>lock</title>
                       <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                         <path
                           d="M5.75,8.25v-3.25c0-1.795,1.455-3.25,3.25-3.25h0c1.795,0,3.25,1.455,3.25,3.25v3.25"
@@ -1048,7 +1046,6 @@ import { Location } from '@angular/common';
                       class="absolute inset-0 -z-10 scale-75 rounded-lg bg-black/5 dark:bg-white/5 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
                     ></span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>circle question</title>
                       <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
                         <circle cx="9" cy="9" r="7.25" stroke-linecap="round" stroke-linejoin="round"></circle>
                         <path
@@ -1092,7 +1089,6 @@ import { Location } from '@angular/common';
         (click)="location.back()"
       >
         <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-          <title>xmark</title>
           <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
             <line
               x1="14"

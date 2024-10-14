@@ -44,7 +44,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
     </ng-template>
 
     <div
-      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 py-6 px-px h-[32rem] overflow-y-auto overflow-x-hidden"
+      class="flex flex-col border-b border-zinc-200 dark:border-[#1e1e1e] py-6 px-px h-[32rem] overflow-y-auto overflow-x-hidden"
     >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">

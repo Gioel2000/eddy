@@ -47,7 +47,6 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
               >
                 <span class="svg-icon svg-icon-8 stroke-1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
-                    <title>xmark</title>
                     <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
                       <line x1="2.25" y1="9.75" x2="9.75" y2="2.25"></line>
                       <line x1="9.75" y1="9.75" x2="2.25" y2="2.25"></line>

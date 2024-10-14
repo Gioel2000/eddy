@@ -33,7 +33,7 @@ import { filter, first } from 'rxjs';
       <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8">
         <div class="flex flex-col items-center">
           <world
-            [title]="'SEARCHING_CHANNELS' | translate"
+            [title]="'DO_NOT_CLOSE' | translate"
             [description]="'CREATING_YOUR_RESTAURANT_DESCRIPTION' | translate"
           ></world>
         </div>

@@ -13,6 +13,8 @@ import { CompetitorPanelService } from '../../../ui/create-competitor/create-com
 import { LoaderComponent } from '../../../ui/loader/loader.component';
 import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
 import { AddCompetitorDialogService } from '../../../ui/add-competitor-dialog/add-competitor-dialog.service';
+import { CompetitorsStore } from '../../../store/competitors/competitors.service';
+import { AddCompetitor, CompetitorModel } from '../../../store/competitors/interfaces/competitors';
 
 @Component({
   selector: 'competitors',
@@ -101,12 +103,13 @@ import { AddCompetitorDialogService } from '../../../ui/add-competitor-dialog/ad
                 (delete)="delete($event)"
                 (exlude)="exlude($event)"
                 (include)="include($event)"
+                (configure)="configureChannels($event)"
               ></competitor>
               } @if (competitors.others.competitors().length < 3) {
               <button
                 type="button"
                 class="rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600"
-                (click)="competitorDialog.openDialog()"
+                (click)="onAddCompetitor()"
               >
                 <div class="gap-y-3 w-96"></div>
               </button>
@@ -155,6 +158,7 @@ export class CompetitorsComponent {
 
   competitors = inject(CompetitorsService);
   panelUI = inject(CompetitorPanelService);
+  store = inject(CompetitorsStore);
 
   competitorDialog = inject(AddCompetitorDialogService);
 
@@ -163,6 +167,25 @@ export class CompetitorsComponent {
 
   startdate = computed(() => this.competitors.you.filter().startdate);
   enddate = computed(() => this.competitors.you.filter().enddate);
+  pastRapidDates = [
+    {
+      key: 'LAST_MONTH',
+      value: moment().subtract(1, 'month').toDate(),
+    },
+    {
+      key: '3_MONTHS_AGO',
+      value: moment().subtract(3, 'months').toDate(),
+    },
+    {
+      key: '6_MONTHS_AGO',
+      value: moment().subtract(6, 'month').toDate(),
+    },
+  ];
+
+  onAddCompetitor() {
+    this.store.step.set(1);
+    this.competitorDialog.openDialog();
+  }
 
   setStartDate(date: Date) {
     this.competitors.you.filter.set({ ...this.competitors.you.filter(), startdate: date });
@@ -180,12 +203,10 @@ export class CompetitorsComponent {
   }
 
   exlude(id: string) {
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
     this.competitors.others.exlude(id);
   }
 
   include(id: string) {
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
     this.competitors.others.include(id);
   }
 
@@ -205,18 +226,24 @@ export class CompetitorsComponent {
     });
   }
 
-  pastRapidDates = [
-    {
-      key: 'LAST_MONTH',
-      value: moment().subtract(1, 'month').toDate(),
-    },
-    {
-      key: '3_MONTHS_AGO',
-      value: moment().subtract(3, 'months').toDate(),
-    },
-    {
-      key: '6_MONTHS_AGO',
-      value: moment().subtract(6, 'month').toDate(),
-    },
-  ];
+  configureChannels(competitor: CompetitorModel) {
+    const competitorToReset: AddCompetitor = {
+      name: competitor.name,
+      address: competitor.address,
+      zipCode: competitor.zipCode,
+      city: competitor.city,
+      telephone: '',
+      email: '',
+      website: '',
+      image: competitor.image,
+      type: '',
+      googleMapsLink: competitor.googleMapsLink,
+      googlePlaceId: competitor.googlePlaceId,
+      latitude: competitor.latitude,
+      longitude: competitor.longitude,
+    };
+
+    this.store.restartToConfigureChannels(competitorToReset, competitor._id);
+    this.competitorDialog.openDialog();
+  }
 }

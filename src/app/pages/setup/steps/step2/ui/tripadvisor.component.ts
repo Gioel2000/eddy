@@ -41,7 +41,6 @@ import { UntilDestroy } from '@ngneat/until-destroy';
           <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <span class="svg-icon svg-icon svg-icon-5 stroke-[1.4] text-zinc-800 dark:text-zinc-200">
               <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                <title>magnifier</title>
                 <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                   <line
                     x1="15.25"

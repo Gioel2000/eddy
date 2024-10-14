@@ -227,7 +227,6 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span class="svg-icon svg-icon svg-icon-5 stroke-[1.4] text-zinc-400 dark:text-zinc-600">
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                    <title>magnifier</title>
                     <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
                       <line
                         x1="15.25"

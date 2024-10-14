@@ -4,6 +4,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      
       fontFamily: {
         sans: ['Outfit', 'sans-serif'],
         cursive: ['Pacifico', 'cursive'],
@@ -15,6 +16,7 @@ module.exports = {
         dark: '#141414',
       },
       animation: {
+        enter: 'enter 0.3s ease-out',
         blurToClear100: 'blurToClear 0.1s ease-out',
         blurToClear200: 'blurToClear 0.2s ease-out',
         blurToClear300: 'blurToClear 0.3s ease-out',
@@ -28,5 +30,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
+  plugins: [require('@tailwindcss/forms')],
 };

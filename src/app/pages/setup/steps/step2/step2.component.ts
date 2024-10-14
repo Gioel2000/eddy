@@ -574,7 +574,6 @@ import moment from 'moment';
                   >
                     <span class="font-semibold text-base"> {{ 'CONFIRM' | translate }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>check</title>
                       <g fill="currentColor" class="nc-icon-wrapper">
                         <polyline
                           points="2.75 9.25 6.75 14.25 15.25 3.75"
@@ -794,7 +793,7 @@ export class Step2Component {
   edit() {
     const selectedChannel = this.channels()[this.index()];
     this.dialog.source.set(selectedChannel.key);
-    this.dialog.url.set(selectedChannel.channel?.channel?.api?.url || '');
+    this.dialog.url.set('');
     this.dialog.fuction.set((url: string) => {
       if (!url) {
         this.store.removeChannelSetup(selectedChannel.key);

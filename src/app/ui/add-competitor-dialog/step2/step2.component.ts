@@ -36,7 +36,7 @@ import { CompetitorsStore } from '../../../store/competitors/competitors.service
       <div class="col-span-1 px-6 pb-24 pt-8 sm:pt-24 sm:pb-32 lg:px-8">
         <div class="flex flex-col items-center">
           <world
-            [title]="'SEARCHING_CHANNELS' | translate"
+            [title]="'DO_NOT_CLOSE' | translate"
             [description]="'CREATING_YOUR_RESTAURANT_DESCRIPTION' | translate"
           ></world>
         </div>
@@ -485,7 +485,7 @@ export class Step2CompetitorDialog {
   edit() {
     const selectedChannel = this.channels()[this.index()];
     this.editDialog.source.set(selectedChannel.key);
-    this.editDialog.url.set(selectedChannel.channel?.channel?.api?.url || '');
+    this.editDialog.url.set('');
     this.editDialog.fuction.set((url: string) => {
       if (!url) {
         this.store.removeChannelSetup(selectedChannel.key);

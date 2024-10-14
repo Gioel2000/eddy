@@ -53,7 +53,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
 
     <div
       #container
-      class="flex flex-col border-b border-zinc-200 dark:border-zinc-800 px-px pt-6 h-[32rem] overflow-y-auto"
+      class="flex flex-col border-b border-zinc-200 dark:border-[#1e1e1e] px-px py-6 h-[30rem] overflow-y-auto"
     >
       @switch (state()) { @case ('loaded') {
       <div class="lg:col-span-4">
@@ -66,7 +66,10 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
           <dl class="space-y-3">
             <div class="grid grid-cols-1 gap-4">
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                [ngClass]="{
+                  'cursor-not-allowed opacity-50': !google().totalCount
+                }"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -76,252 +79,55 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     ></span>
                   </div>
                 </div>
-                <div class="min-w-0 flex-1 ml-2">
+                <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-2">{{ 'GOOGLE' | translate }}</p>
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - google().totalRating) * 20"
-                        ></div>
-                      </div>
-                      <p
-                        class="flex flex-row ml-1 font-semibold w-8 text-sm tabular-nums text-zinc-700 dark:text-zinc-300"
-                      >
-                        <span>{{ google().totalRating | numb : translate.currentLang : 2 }}</span>
-                        <!-- @if (google().filteredRating) {
-                        <div
-                          class="flex flex-row items-center gap-x-0.5 ml-2 font-semibold text-[0.70rem] tabular-nums py-px px-1 rounded bg-green-800"
-                          [ngClass]="{
-                            'bg-red-800 text-red-500': google().filteredRating < 0,
-                            'bg-green-800 text-green-500': google().filteredRating > 0,
-                            'bg-zinc-800 text-zinc-500': google().filteredRating === 0
-                          }"
-                        >
-                          @if (google().filteredRating > 0) {
-                          <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (google().filteredRating < 0) {
-                          <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (google().filteredRating == 0) {
-                          <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          }
-
-                          <span>{{ google().filteredRating | numb : translate.currentLang : 2 }}</span>
-                        </div>
-                        } -->
-                      </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
-                      >
-                        {{ google().totalCount | numb : translate.currentLang : 2 }}
-                      </p>
+                    <div class="flex flex-row items-center justify-between mb-1">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'GOOGLE' | translate }}</p>
                     </div>
-
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('google')) * 20 || 100"
-                        ></div>
-                      </div>
-                      <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ getCompetitorRating('google') | numb : translate.currentLang : 2 }}</span>
+                    <div class="flex items-center xl:col-span-1 gap-x-1 mb-1">
+                      <p class="font-bold tracking-tight text-xl tabular-nums text-zinc-900 dark:text-zinc-100">
+                        <span>{{ google().totalRating | numb : translate.currentLang : 1 }}</span>
                       </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 18 18"
+                        class="text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
                       >
-                        {{ getCompetitorCount('google') | numb : translate.currentLang : 2 }}
-                      </p>
+                        <g fill="currentColor">
+                          <path
+                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            fill="currentColor"
+                          ></path>
+                        </g>
+                      </svg>
                     </div>
-
-                    @if((google().totalRating - getCompetitorRating('google')); as diffRating) {
-                    @if((google().totalCount - getCompetitorCount('google')); as diffCount) {
-                    <div class="flex flex-row items-center text-xs font-semibold mt-1.5">
-                      <span
-                        class="w-20 truncate mr-1"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ 'DIFFERENCE' | translate }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ diffRating | growth : translate.currentLang }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffCount > 0,
-                          'text-red-500': diffCount < 0,
-                          'text-zinc-700': diffCount === 0
-                        }"
-                        >{{ diffCount | growth : translate.currentLang }}</span
-                      >
-                    </div>
-                    } }
-
-                    <!-- <p class="text-sm font-medium tabular-nums text-zinc-700">
-                      {{ google().totalCount | numb : translate.currentLang : 2 }}
-                      {{ 'REVIEWS' | translate }}
+                    <div
+                      class="flex flex-row items-center w-full text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase"
+                    >
+                      {{ google().totalCount | numb : translate.currentLang : 1 }}
+                      <span class="truncate mx-0.5">{{ 'REVIEWS' | translate }}</span>
                       @if (google().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="ml-0.5 font-semibold tabular-nums text-sm"
                         [ngClass]="{
-                          'bg-red-800 text-red-500': google().filteredCount < 0,
-                          'bg-green-800 text-green-500': google().filteredCount > 0,
-                          'bg-zinc-800 text-zinc-500': google().filteredCount === 0
+                          'text-red-500': google().filteredCount < 0,
+                          'text-green-500': google().filteredCount > 0,
+                          'text-zinc-500': google().filteredCount === 0
                         }"
                         >{{ google().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
-                    </p> -->
+                    </div>
                   </div>
                 </div>
               </div>
-
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                [ngClass]="{
+                  'cursor-not-allowed opacity-50': !tripadvisor().totalCount
+                }"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -331,261 +137,55 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     ></span>
                   </div>
                 </div>
-                <div class="min-w-0 flex-1 ml-2">
+                <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-2">
-                      {{ 'TRIPADVISOR' | translate }}
-                    </p>
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - tripadvisor().totalRating) * 20"
-                        ></div>
-                      </div>
-                      <p
-                        class="flex flex-row ml-1 font-semibold w-8 text-sm tabular-nums text-zinc-700 dark:text-zinc-300"
-                      >
-                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang : 2 }}</span>
-                        <!-- @if (tripadvisor().filteredRating) {
-                        <div
-                          class="flex flex-row items-center gap-x-0.5 ml-2 font-semibold text-[0.70rem] tabular-nums py-px px-1 rounded bg-green-800"
-                          [ngClass]="{
-                            'bg-red-800 text-red-500': tripadvisor().filteredRating < 0,
-                            'bg-green-800 text-green-500': tripadvisor().filteredRating > 0,
-                            'bg-zinc-800 text-zinc-500': tripadvisor().filteredRating === 0
-                          }"
-                        >
-                          @if (tripadvisor().filteredRating > 0) {
-                          <span [inlineSVG]="'arrow-up.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (tripadvisor().filteredRating < 0) {
-                          <span [inlineSVG]="'arrow-down.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          } @if (tripadvisor().filteredRating == 0) {
-                          <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-9 stroke-[1.5]"></span>
-                          }
-
-                          <span>{{ tripadvisor().filteredRating | numb : translate.currentLang : 2 }}</span>
-                        </div>
-                        } -->
-                      </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
-                      >
-                        {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
-                      </p>
+                    <div class="flex flex-row items-center justify-between mb-1">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'TRIPADVISOR' | translate }}</p>
                     </div>
-
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('tripadvisor')) * 20 || 100"
-                        ></div>
-                      </div>
-                      <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ getCompetitorRating('tripadvisor') | numb : translate.currentLang : 2 }}</span>
+                    <div class="flex items-center xl:col-span-1 gap-x-1 mb-1">
+                      <p class="font-bold tracking-tight text-xl tabular-nums text-zinc-900 dark:text-zinc-100">
+                        <span>{{ tripadvisor().totalRating | numb : translate.currentLang : 1 }}</span>
                       </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 18 18"
+                        class="text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
                       >
-                        {{ getCompetitorCount('tripadvisor') | numb : translate.currentLang : 2 }}
-                      </p>
+                        <g fill="currentColor">
+                          <path
+                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            fill="currentColor"
+                          ></path>
+                        </g>
+                      </svg>
                     </div>
-
-                    @if((tripadvisor().totalRating - getCompetitorRating('tripadvisor')); as diffRating) {
-                    @if((tripadvisor().totalCount - getCompetitorCount('tripadvisor')); as diffCount) {
                     <div
-                      class="flex flex-row items-center text-xs font-semibold mt-1.5"
-                      [ngClass]="{
-                        'text-green-500': diffRating > 0,
-                        'text-red-500': diffRating < 0,
-                        'text-zinc-700': diffRating === 0
-                      }"
+                      class="flex flex-row items-center w-full text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase"
                     >
-                      <span
-                        class="w-20 truncate mr-1"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ 'DIFFERENCE' | translate }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ diffRating | growth : translate.currentLang }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffCount > 0,
-                          'text-red-500': diffCount < 0,
-                          'text-zinc-700': diffCount === 0
-                        }"
-                        >{{ diffCount | growth : translate.currentLang }}</span
-                      >
-                    </div>
-                    } }
-
-                    <!-- <p class="text-sm font-medium tabular-nums text-zinc-700">
-                      {{ tripadvisor().totalCount | numb : translate.currentLang : 2 }}
-                      {{ 'REVIEWS' | translate }}
+                      {{ tripadvisor().totalCount | numb : translate.currentLang : 1 }}
+                      <span class="truncate mx-0.5">{{ 'REVIEWS' | translate }}</span>
                       @if (tripadvisor().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="ml-0.5 font-semibold tabular-nums text-sm"
                         [ngClass]="{
-                          'bg-red-800 text-red-500': tripadvisor().filteredCount < 0,
-                          'bg-green-800 text-green-500': tripadvisor().filteredCount > 0,
-                          'bg-zinc-800 text-zinc-500': tripadvisor().filteredCount === 0
+                          'text-red-500': tripadvisor().filteredCount < 0,
+                          'text-green-500': tripadvisor().filteredCount > 0,
+                          'text-zinc-500': tripadvisor().filteredCount === 0
                         }"
                         >{{ tripadvisor().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
-                    </p> -->
+                    </div>
                   </div>
                 </div>
               </div>
-
               <div
-                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] ring-1 ring-zinc-300 dark:ring-zinc-800 px-6 py-5 shadow-sm shadow-black/5"
+                class="relative flex items-center min-h-[112px] space-x-3 rounded-[10px] shadow-black/5 ring-1 ring-zinc-200 dark:ring-zinc-800 px-6 py-5 shadow-sm"
+                [ngClass]="{
+                  'cursor-not-allowed opacity-50': !thefork().totalCount
+                }"
               >
                 <div class="flex-shrink-0">
                   <div class="flex flex-row items-center justify-center h-10 w-10 rounded-full">
@@ -595,233 +195,48 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
                     ></span>
                   </div>
                 </div>
-                <div class="min-w-0 flex-1 ml-2">
+                <div class="min-w-0 flex-1">
                   <div class="focus:outline-none">
-                    <span class="absolute inset-0" aria-hidden="true"></span>
-                    <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-2">{{ 'THE_FORK' | translate }}</p>
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-yellow-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - thefork().totalRating) * 20"
-                        ></div>
-                      </div>
-                      <p
-                        class="flex flex-row ml-1 font-semibold w-8 text-sm tabular-nums text-zinc-700 dark:text-zinc-300"
-                      >
-                        <span>{{ thefork().totalRating | numb : translate.currentLang : 2 }}</span>
-                      </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
-                      >
-                        {{ thefork().totalCount | numb : translate.currentLang : 2 }}
-                      </p>
+                    <div class="flex flex-row items-center justify-between mb-1">
+                      <p class="text-sm font-bold text-zinc-800 dark:text-zinc-200">{{ 'THE_FORK' | translate }}</p>
                     </div>
 
-                    <div class="flex items-center xl:col-span-1">
-                      <div class="flex flex-row relative whitespace-nowrap">
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-                        <svg
-                          class="fill-violet-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 18 18"
-                        >
-                          <g>
-                            <path
-                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                            ></path>
-                          </g>
-                        </svg>
-
-                        <div
-                          class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                          [style.width.%]="(5 - getCompetitorRating('thefork')) * 20 || 100"
-                        ></div>
-                      </div>
-                      <p class="ml-1 font-semibold text-sm w-8 tabular-nums text-zinc-700 dark:text-zinc-300">
-                        <span>{{ getCompetitorRating('thefork') | numb : translate.currentLang : 2 }}</span>
+                    <div class="flex items-center xl:col-span-1 gap-x-1 mb-1">
+                      <p class="font-bold tracking-tight text-xl tabular-nums text-zinc-900 dark:text-zinc-100">
+                        <span>{{ thefork().totalRating | numb : translate.currentLang : 1 }}</span>
                       </p>
-                      <p
-                        class="flex flex-row items-center ml-1 font-medium text-sm tabular-nums text-zinc-300 dark:text-zinc-700"
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 18 18"
+                        class="text-yellow-400 drop-shadow-[0_0px_5px_rgba(234,179,8,0.4)]"
                       >
-                        {{ getCompetitorCount('thefork') | numb : translate.currentLang : 2 }}
-                      </p>
+                        <g fill="currentColor">
+                          <path
+                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            fill="currentColor"
+                          ></path>
+                        </g>
+                      </svg>
                     </div>
-
-                    @if((thefork().totalRating - getCompetitorRating('thefork')); as diffRating) {
-                    @if((thefork().totalCount - getCompetitorCount('thefork')); as diffCount) {
                     <div
-                      class="flex flex-row items-center text-xs font-semibold mt-1.5"
-                      [ngClass]="{
-                        'text-green-500': diffRating > 0,
-                        'text-red-500': diffRating < 0,
-                        'text-zinc-700': diffRating === 0
-                      }"
+                      class="flex flex-row items-center w-full text-sm font-light tabular-nums text-zinc-400 dark:text-zinc-600 lowercase"
                     >
-                      <span
-                        class="w-20 truncate mr-1"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ 'DIFFERENCE' | translate }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffRating > 0,
-                          'text-red-500': diffRating < 0,
-                          'text-zinc-700': diffRating === 0
-                        }"
-                        >{{ diffRating | growth : translate.currentLang }}</span
-                      >
-                      <span
-                        class="w-8"
-                        [ngClass]="{
-                          'text-green-500': diffCount > 0,
-                          'text-red-500': diffCount < 0,
-                          'text-zinc-700': diffCount === 0
-                        }"
-                        >{{ diffCount | growth : translate.currentLang }}</span
-                      >
-                    </div>
-                    } }
-
-                    <!-- <p class="text-sm font-medium tabular-nums text-zinc-700">
-                      {{ thefork().totalCount | numb : translate.currentLang : 2 }}
-                      {{ 'REVIEWS' | translate }}
+                      {{ thefork().totalCount | numb : translate.currentLang : 1 }}
+                      <span class="truncate mx-0.5">{{ 'REVIEWS' | translate }}</span>
                       @if (thefork().filteredCount) {
                       <span
-                        class="px-1 font-semibold tabular-nums"
+                        class="ml-0.5 font-semibold tabular-nums text-sm"
                         [ngClass]="{
-                          'bg-red-800 text-red-500': thefork().filteredCount < 0,
-                          'bg-green-800 text-green-500': thefork().filteredCount > 0,
-                          'bg-zinc-800 text-zinc-500': thefork().filteredCount === 0
+                          'text-red-500': thefork().filteredCount < 0,
+                          'text-green-500': thefork().filteredCount > 0,
+                          'text-zinc-500': thefork().filteredCount === 0
                         }"
                         >{{ thefork().filteredCount | growth : translate.currentLang }}</span
                       >
                       }
-                    </p> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -888,6 +303,7 @@ export class ChannelsComponent {
       ...this.competitors.others
         .competitors()
         .filter((competitor) => !competitor.isExluded)
+        .filter((competitor) => competitor.channels?.length > 0)
         .filter((competitor) => competitor._id !== this.id())
         .map((competitor) => competitor.channelsRatings)
         .flat(),
@@ -912,6 +328,7 @@ export class ChannelsComponent {
       ...this.competitors.others
         .competitors()
         .filter((competitor) => !competitor.isExluded)
+        .filter((competitor) => competitor.channels?.length > 0)
         .filter((competitor) => competitor._id !== this.id())
         .map((competitor) => competitor.channelsRatings)
         .flat(),

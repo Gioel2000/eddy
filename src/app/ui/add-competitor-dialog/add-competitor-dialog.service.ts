@@ -1,4 +1,4 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class AddCompetitorDialogService {
@@ -20,10 +20,7 @@ export class AddCompetitorDialogService {
   }
 
   toggleDialog() {
-    if (this.isDialogOpen()) {
-      this.closeDialog();
-    } else {
-      this.openDialog();
-    }
+    if (this.isDialogOpen()) this.closeDialog();
+    else this.openDialog();
   }
 }

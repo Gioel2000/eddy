@@ -26,7 +26,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-1">
               <div class="flex flex-row items-center">
                 <a
-                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   (click)="openTripadvisor()"
                 >
                   <div
@@ -61,7 +61,7 @@ import { RestaurantPanelService } from '../panel.service';
               <button
                 type="button"
                 id="delete-tripadvisor-button"
-                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
+                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                 (click)="delete('tripadvisor')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
@@ -77,7 +77,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-1">
               <div class="flex flex-row items-center">
                 <a
-                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   (click)="openGoogle()"
                 >
                   <div
@@ -112,7 +112,7 @@ import { RestaurantPanelService } from '../panel.service';
               <button
                 type="button"
                 id="delete-google-button"
-                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
+                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                 (click)="delete('google')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
@@ -128,7 +128,7 @@ import { RestaurantPanelService } from '../panel.service';
             <div class="col-span-full sm:col-span-1">
               <div class="flex flex-row items-center">
                 <a
-                  class="rounded-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
+                  class="rounded-full transition ease-in-out duration-200 opacity-90 hover:opacity-100 text-white bg-gradient-to-b from-black/20 via-zinc-300 to-zinc-300 dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/5 dark:shadow-black/40"
                   (click)="openTheFork()"
                 >
                   <div
@@ -163,7 +163,7 @@ import { RestaurantPanelService } from '../panel.service';
               <button
                 type="button"
                 id="delete-thefork-button"
-                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
+                class="flex fle-row items-center rounded-md px-2.5 py-2 cursor-pointer text-sm font-semibold hover:bg-zinc-200 hover:dark:bg-zinc-700 transition ease-in-out duration-200"
                 (click)="delete('thefork')"
               >
                 <span inlineSVG="trash.svg" class="text-zinc-700 dark:text-zinc-200 mt-[1px] stroke-[1.6]"></span>
@@ -195,14 +195,14 @@ import { RestaurantPanelService } from '../panel.service';
             }
             <button
               type="button"
-              class="rounded-[9px] bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200 animate-blurToClear200"
+              class="rounded-[9px] bg-white dark:bg-zinc-800 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition ease-in-out duration-200"
               (click)="panelUI.closePanel()"
             >
               {{ 'CANCEL' | translate }}
             </button>
             <button
               id="delete-restaurant-button"
-              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-sm shadow-black/30"
+              class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full transition ease-in-out duration-200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-red-600 dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-sm shadow-black/30"
               (click)="save()"
               [disabled]="formGroup.invalid || formGroup.pristine"
             >

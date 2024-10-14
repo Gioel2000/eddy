@@ -383,7 +383,6 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                     class="flex flex-row items-center justify-center gap-1 text-green-500 w-full stroke-2 text-lg font-medium leading-6"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <title>check</title>
                       <g fill="currentColor" class="nc-icon-wrapper">
                         <polyline
                           points="2.75 9.25 6.75 14.25 15.25 3.75"

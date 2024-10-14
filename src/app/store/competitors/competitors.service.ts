@@ -355,6 +355,58 @@ export class CompetitorsStore {
       .subscribe();
   }
 
+  restartToConfigureChannels(competitor: AddCompetitor, competitorIdToDelete: string) {
+    this.state$.next('loading');
+    this.stateChannels$.next('loading');
+
+    this.step.set(2);
+
+    this.http
+      .delete(`${environment.apiUrl}/api/competitors/${competitorIdToDelete}`)
+      .pipe(
+        untilDestroyed(this),
+        tap(() => this.delete$.next(competitorIdToDelete)),
+        switchMap(() =>
+          this.http.post<CompetitorTO>(`${environment.apiUrl}/api/competitors`, competitor).pipe(
+            untilDestroyed(this),
+            tap((data) => {
+              const competitorId = data._id;
+              this.state$.next('loaded');
+              this.stateChannels$.next('loading');
+
+              const competitor = {
+                reputation: { average: 0, graph: [] } as ReputationModel,
+                rating: [] as any[],
+                clientTypes: [] as any[],
+                reviews: [] as any[],
+                categories: [] as any[],
+                sentiment: [] as any[],
+                channelsRatings: [] as any[],
+                isDownloading: false,
+                ...data,
+                _id: competitorId,
+              } as CompetitorModel;
+
+              this.selected.set(competitor);
+              this.add$.next(competitor);
+
+              this.retriveChannels();
+              this.reloadCompetitor(competitorId);
+            }),
+            catchError((error) => {
+              this.state$.next('error');
+              return of(error);
+            })
+          )
+        ),
+        catchError((error) => {
+          this.state$.next('error');
+          return of(error);
+        })
+      )
+      .subscribe();
+  }
+
   exlude(competitorId: string) {
     this.setExlusion$.next({ competitorId, isExluded: true });
   }
