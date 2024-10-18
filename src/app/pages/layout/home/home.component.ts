@@ -54,26 +54,9 @@ import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepic
                 [enddate]="enddate()"
                 [rapidDates]="pastRapidDates"
                 [limitStart]="limitStart"
-                [limitEnd]="enddate()"
+                [limitEnd]="today"
+                (applied)="setFilter($event)"
               ></date-picker-period>
-              <!-- <date-picker
-                class="col-span-1"
-                [i18n]="'STARTDATE'"
-                [date]="startdate()"
-                [limitStart]="limitStart"
-                [limitEnd]="enddate()"
-                [rapidDates]="pastRapidDates"
-                (onDateSet)="setStartDate($event)"
-              ></date-picker>
-              <date-picker
-                class="col-span-1"
-                [i18n]="'ENDDATE'"
-                [date]="enddate()"
-                [limitStart]="startdate()"
-                [limitEnd]="now"
-                [rapidDates]="[]"
-                (onDateSet)="setEndDate($event)"
-              ></date-picker> -->
               <channels-dropdown class="col-span-1"></channels-dropdown>
             </div>
           </ul>
@@ -123,13 +106,10 @@ export class HomeComponent {
 
   startdate = computed(() => this.home.store.filter().startdate);
   enddate = computed(() => this.home.store.filter().enddate);
+  today = moment().toDate();
 
-  setStartDate(date: Date) {
-    this.home.store.filter.set({ ...this.home.store.filter(), startdate: date });
-  }
-
-  setEndDate(date: Date) {
-    this.home.store.filter.set({ ...this.home.store.filter(), enddate: date });
+  setFilter(filter: { startdate: Date; enddate: Date }) {
+    this.home.store.filter.set({ ...this.home.store.filter(), ...filter });
   }
 
   pastRapidDates = [
@@ -138,12 +118,16 @@ export class HomeComponent {
       value: moment().subtract(1, 'month').toDate(),
     },
     {
-      key: '3_MONTHS_AGO',
+      key: 'LAST_3_MONTHS',
       value: moment().subtract(3, 'months').toDate(),
     },
     {
-      key: '6_MONTHS_AGO',
+      key: 'LAST_6_MONTHS',
       value: moment().subtract(6, 'month').toDate(),
+    },
+    {
+      key: 'LAST_YEAR',
+      value: moment().subtract(1, 'year').toDate(),
     },
   ];
 }

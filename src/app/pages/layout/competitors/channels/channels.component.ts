@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
 import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
@@ -11,111 +11,117 @@ import { CompetitorsService } from '../competitors.service';
   selector: 'channels-dropdown',
   standalone: true,
   imports: [CommonModule, InlineSVGModule, ClickOutsideDirective, TranslateModule, ReactiveFormsModule],
-  template: ` <div
-    class="min-w-36 w-full border-none md:border-l border-zinc-300 dark:border-zinc-800"
-    (clickOutside)="dropdown.close()"
-  >
-    <div class="relative">
-      <label
-        for="name"
-        class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-normal text-zinc-600 dark:text-zinc-400"
-        >{{ 'CHANNELS' | translate }}</label
-      >
-      <button
-        type="button"
-        class="block w-full ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 font-medium focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
-        id="menu-button"
-        aria-expanded="true"
-        aria-haspopup="true"
-        (click)="dropdown.toggle()"
-      >
-        <div class="flex flex-row items-center justify-between">
-          <span class="truncate max-w-full sm:max-w-24 capitalize">{{
-            checkedChannels() || ('NO_CHANNEL' | translate)
-          }}</span>
-          <span
-            [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
-          ></span>
-        </div>
-      </button>
-      <div [ngClass]="{ hidden: !dropdown.isOpen() }">
-        <div
-          class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-          tabindex="-1"
-          [ngClass]="{
-            'opacity-100 scale-100': dropdown.isVisible(),
-            'opacity-0 scale-90': !dropdown.isVisible()
-          }"
+  template: `
+    <div
+      class="min-w-36 w-full border-none md:border-l border-zinc-200 dark:border-zinc-800"
+      (clickOutside)="dropdown.close()"
+    >
+      <div class="relative">
+        <label
+          for="name"
+          class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-normal text-zinc-600 dark:text-zinc-400"
+          >{{ 'CHANNELS' | translate }}</label
         >
-          <div class="py-2 px-3" role="none">
-            <fieldset>
-              <div class="space-y-3">
-                <div class="flex flex-row items-center gap-x-2">
-                  <input
-                    type="checkbox"
-                    class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsTripAdvisor()"
-                    (change)="toggle('tripadvisor')"
-                  />
+        <button
+          #buttonElement
+          type="button"
+          class="block w-full h-11 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 font-medium focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
+          id="menu-button"
+          aria-expanded="true"
+          aria-haspopup="true"
+          (click)="dropdown.toggle()"
+        >
+          <div class="flex flex-row items-center justify-between">
+            <span class="truncate max-w-32 sm:max-w-32 md:max-w-full lg:max-w-full xl:max-w-32 capitalize">{{
+              checkedChannels() || ('NO_CHANNEL' | translate)
+            }}</span>
+            <span
+              [inlineSVG]="'chevron-down.svg'"
+              class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            ></span>
+          </div>
+        </button>
+        <div [ngClass]="{ hidden: !dropdown.isOpen() }">
+          <div
+            class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="menu-button"
+            tabindex="-1"
+            [ngClass]="{
+              'opacity-100 scale-100': dropdown.isVisible(),
+              'opacity-0 scale-90': !dropdown.isVisible(),
+              'left-0 origin-top-left ': direction() === 'left',
+              'right-0 origin-top-right': direction() === 'right'
+            }"
+          >
+            <div class="py-2 px-3" role="none">
+              <fieldset>
+                <div class="space-y-3">
                   <div class="flex flex-row items-center gap-x-2">
-                    <span
-                      [inlineSVG]="'channels/tripadvisor.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
-                    ></span>
-                    <span class="block text-sm font-bold mr-2 leading-6 text-emerald-600 dark:text-emerald-500">{{
-                      'TRIPADVISOR' | translate
-                    }}</span>
+                    <input
+                      type="checkbox"
+                      class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
+                      [checked]="thereIsTripAdvisor()"
+                      (change)="toggle('tripadvisor')"
+                    />
+                    <div class="flex flex-row items-center gap-x-2">
+                      <span
+                        [inlineSVG]="'channels/tripadvisor.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-emerald-600 dark:text-emerald-500"
+                      ></span>
+                      <span class="block text-sm font-bold mr-2 leading-6 text-emerald-600 dark:text-emerald-500">{{
+                        'TRIPADVISOR' | translate
+                      }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="flex flex-row items-center gap-x-2">
-                  <input
-                    type="checkbox"
-                    class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsGoogle()"
-                    (change)="toggle('google')"
-                  />
                   <div class="flex flex-row items-center gap-x-2">
-                    <span
-                      [inlineSVG]="'channels/google.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900"
-                    ></span>
-                    <span class="block text-sm font-bold mr-2 leading-6 text-zinc-900 dark:text-zinc-200">{{
-                      'GOOGLE' | translate
-                    }}</span>
+                    <input
+                      type="checkbox"
+                      class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
+                      [checked]="thereIsGoogle()"
+                      (change)="toggle('google')"
+                    />
+                    <div class="flex flex-row items-center gap-x-2">
+                      <span
+                        [inlineSVG]="'channels/google.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-zinc-900"
+                      ></span>
+                      <span class="block text-sm font-bold mr-2 leading-6 text-zinc-900 dark:text-zinc-200">{{
+                        'GOOGLE' | translate
+                      }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="flex flex-row items-center gap-x-2">
-                  <input
-                    type="checkbox"
-                    class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
-                    [checked]="thereIsTheFork()"
-                    (change)="toggle('thefork')"
-                  />
                   <div class="flex flex-row items-center gap-x-2">
-                    <span
-                      [inlineSVG]="'channels/TheFork.svg'"
-                      class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
-                    ></span>
-                    <span class="block text-sm font-bold mr-2 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
-                      'THE_FORK' | translate
-                    }}</span>
+                    <input
+                      type="checkbox"
+                      class="h-4 w-4 rounded bg-zinc-200 dark:bg-zinc-700 border-zinc-300 text-accent dark:text-accentDark focus:ring-accent"
+                      [checked]="thereIsTheFork()"
+                      (change)="toggle('thefork')"
+                    />
+                    <div class="flex flex-row items-center gap-x-2">
+                      <span
+                        [inlineSVG]="'channels/TheFork.svg'"
+                        class="svg-icon svg-icon-4 stroke-[1.8] text-[#005f54] dark:text-[#00ab97]"
+                      ></span>
+                      <span class="block text-sm font-bold mr-2 leading-6 text-[#005f54] dark:text-[#00ab97]">{{
+                        'THE_FORK' | translate
+                      }}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </fieldset>
+              </fieldset>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>`,
+  `,
 })
 export class ChannelsDropdownComponent {
+  @ViewChild('buttonElement', { read: ElementRef }) buttonElement: ElementRef | undefined;
   dropdown = inject(DropdownService);
   competitor = inject(CompetitorsService);
 
@@ -124,6 +130,17 @@ export class ChannelsDropdownComponent {
   thereIsTheFork = computed(() => this.competitor.you.filter().channels.includes('thefork'));
   thereIsGoogle = computed(() => this.competitor.you.filter().channels.includes('google'));
   thereIsTripAdvisor = computed(() => this.competitor.you.filter().channels.includes('tripadvisor'));
+
+  direction = signal<'left' | 'right'>('left');
+
+  constructor() {
+    setTimeout(() => {
+      const { innerWidth: windowWidth } = window;
+      const { right } = (this.buttonElement?.nativeElement?.getBoundingClientRect() as DOMRect) || { right: 0 };
+
+      this.direction.set(windowWidth - right > 200 ? 'left' : 'right');
+    }, 0);
+  }
 
   toggle(service: string) {
     const channels = this.competitor.you.filter().channels;

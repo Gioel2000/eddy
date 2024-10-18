@@ -288,7 +288,7 @@
   "IN_1_MONTH": "Om 1 måned",
   "IN_3_MONTH": "Om 3 måneder",
   "IN_ONE_MONTH": "Om 1 måned",
-  "LAST_MONTH": "1 måned siden",
+  "LAST_MONTH": "Sidste måned",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Rengøring"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Bedre end dine konkurrenter",
   "CONFIGURE_CHANNELS_CONFIGURED": "Du har ikke konfigureret nogen kanaler for denne konkurrent",
   "DO_NOT_CLOSE": "Luk ikke denne side!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Værre end dine konkurrenter"
+  "WORSE_THEN_YOUR_COMPETITOR": "Værre end dine konkurrenter",
+  "LAST_3_MONTHS": "Sidste 3 måneder"
 }

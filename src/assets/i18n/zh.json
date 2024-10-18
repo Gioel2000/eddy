@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1个月内",
   "IN_3_MONTH": "3个月内",
   "IN_ONE_MONTH": "1个月内",
-  "LAST_MONTH": "1个月前",
+  "LAST_MONTH": "上个月",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "打扫"

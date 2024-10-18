@@ -288,7 +288,7 @@
   "IN_1_MONTH": "Σε 1 μήνα",
   "IN_3_MONTH": "Σε 3 μήνες",
   "IN_ONE_MONTH": "Σε 1 μήνα",
-  "LAST_MONTH": "πριν 1 μηνά",
+  "LAST_MONTH": "Τον περασμένο μήνα",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Καθάρισμα"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Καλύτερα από τους ανταγωνιστές σας",
   "CONFIGURE_CHANNELS_CONFIGURED": "Δεν έχετε διαμορφώσει κανένα κανάλι για αυτόν τον ανταγωνιστή",
   "DO_NOT_CLOSE": "Μην κλείσετε αυτή τη σελίδα!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Χειρότερα από τους ανταγωνιστές σας"
+  "WORSE_THEN_YOUR_COMPETITOR": "Χειρότερα από τους ανταγωνιστές σας",
+  "LAST_3_MONTHS": "Τελευταίοι 3 μήνες"
 }

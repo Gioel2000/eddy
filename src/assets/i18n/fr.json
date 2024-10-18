@@ -288,7 +288,7 @@
   "IN_1_MONTH": "Dans 1 mois",
   "IN_3_MONTH": "Dans 3 mois",
   "IN_ONE_MONTH": "Dans 1 mois",
-  "LAST_MONTH": "Il ya 1 mois",
+  "LAST_MONTH": "Mois dernier",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Nettoyage"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Mieux que vos concurrents",
   "CONFIGURE_CHANNELS_CONFIGURED": "Vous n'avez configuré aucune chaîne pour ce concurrent",
   "DO_NOT_CLOSE": "Ne fermez pas cette page !",
-  "WORSE_THEN_YOUR_COMPETITOR": "Pire que vos concurrents"
+  "WORSE_THEN_YOUR_COMPETITOR": "Pire que vos concurrents",
+  "LAST_3_MONTHS": "3 derniers mois"
 }

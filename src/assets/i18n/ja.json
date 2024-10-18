@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1ヶ月以内",
   "IN_3_MONTH": "3ヶ月以内",
   "IN_ONE_MONTH": "1ヶ月以内",
-  "LAST_MONTH": "1ヶ月前",
+  "LAST_MONTH": "先月",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "クリーニング"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "競合他社よりも優れている",
   "CONFIGURE_CHANNELS_CONFIGURED": "この競合他社に対してチャネルを設定していません",
   "DO_NOT_CLOSE": "このページを閉じないでください。",
-  "WORSE_THEN_YOUR_COMPETITOR": "競合他社よりも悪い"
+  "WORSE_THEN_YOUR_COMPETITOR": "競合他社よりも悪い",
+  "LAST_3_MONTHS": "過去 3 か月"
 }

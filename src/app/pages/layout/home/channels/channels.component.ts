@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
 import { DropdownService } from './dropdown.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CommonModule } from '@angular/common';
@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           >{{ 'CHANNELS' | translate }}</label
         >
         <button
+          #buttonElement
           type="button"
           class="block w-full h-11 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-800 font-medium focus:ring-2 focus:ring-inset focus:ring-accent dark:focus:ring-accent rounded-[0.65rem] border-0 py-2.5 px-3 bg-white dark:bg-dark text-zinc-600 dark:text-zinc-200 shadow-sm placeholder:text-zinc-400 placeholder:dark:text-zinc-600 text-sm leading-6"
           id="menu-button"
@@ -31,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           (click)="dropdown.toggle()"
         >
           <div class="flex flex-row items-center justify-between">
-            <span class="truncate max-w-full sm:max-w-24 capitalize">{{
+            <span class="truncate max-w-32 sm:max-w-32 md:max-w-full lg:max-w-full xl:max-w-32 capitalize">{{
               checkedChannels() || ('NO_CHANNEL' | translate)
             }}</span>
             <span
@@ -49,7 +50,9 @@ import { ReactiveFormsModule } from '@angular/forms';
             tabindex="-1"
             [ngClass]="{
               'opacity-100 scale-100': dropdown.isVisible(),
-              'opacity-0 scale-90': !dropdown.isVisible()
+              'opacity-0 scale-90': !dropdown.isVisible(),
+              'left-0 origin-top-left ': direction() === 'left',
+              'right-0 origin-top-right': direction() === 'right'
             }"
           >
             <div class="py-2 px-3" role="none">
@@ -118,6 +121,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   `,
 })
 export class ChannelsDropdownComponent {
+  @ViewChild('buttonElement', { read: ElementRef }) buttonElement: ElementRef | undefined;
+
   dropdown = inject(DropdownService);
   home = inject(HomeService);
 
@@ -126,6 +131,17 @@ export class ChannelsDropdownComponent {
   thereIsTheFork = computed(() => this.home.store.filter().channels.includes('thefork'));
   thereIsGoogle = computed(() => this.home.store.filter().channels.includes('google'));
   thereIsTripAdvisor = computed(() => this.home.store.filter().channels.includes('tripadvisor'));
+
+  direction = signal<'left' | 'right'>('left');
+
+  constructor() {
+    setTimeout(() => {
+      const { innerWidth: windowWidth } = window;
+      const { right } = (this.buttonElement?.nativeElement?.getBoundingClientRect() as DOMRect) || { right: 0 };
+
+      this.direction.set(windowWidth - right > 200 ? 'left' : 'right');
+    }, 0);
+  }
 
   toggle(service: string) {
     const channels = this.home.store.filter().channels;

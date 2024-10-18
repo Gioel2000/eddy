@@ -282,7 +282,7 @@
   "6_MONTHS_AGO": "6 months ago",
   "1_YEAR_AGO": "1 year ago",
   "3_MONTHS_AGO": "3 months ago",
-  "LAST_MONTH": "1 month ago",
+  "LAST_MONTH": "Last month",
   "2_WEEKS_AGO": "2 weeks ago",
   "BEGINNING_OF_THE_YEAR": "January 1st",
   "IN_ONE_MONTH": "In 1 month",
@@ -487,5 +487,6 @@
   "GETTING_BETTER": "You're getting better",
   "GETTING_WORSE": "You're getting worse",
   "OBSERVATION_PERIOD": "Observation Period",
-  "PERIOD": "Period"
+  "PERIOD": "Period",
+  "LAST_3_MONTHS": "Last 3 months"
 }

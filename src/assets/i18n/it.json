@@ -280,7 +280,7 @@
   "OPEN": "Apri",
   "NO_IMAGE": "Nessuna immagine",
   "2_WEEKS_AGO": "2 sett. fa",
-  "LAST_MONTH": "1 mese fa",
+  "LAST_MONTH": "Il mese scorso",
   "3_MONTHS_AGO": "3 mesi fa",
   "6_MONTHS_AGO": "6 mesi fa",
   "1_YEAR_AGO": "1 anno fa",
@@ -487,5 +487,6 @@
   "GETTING_BETTER": "Stai migliorando",
   "GETTING_WORSE": "Stai peggiorando",
   "OBSERVATION_PERIOD": "Periodo di osservazione",
-  "PERIOD": "Periodo"
+  "PERIOD": "Periodo",
+  "LAST_3_MONTHS": "Ultimi 3 mesi"
 }

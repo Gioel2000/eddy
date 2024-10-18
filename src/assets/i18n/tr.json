@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1 ay içinde",
   "IN_3_MONTH": "3 ay içinde",
   "IN_ONE_MONTH": "1 ay içinde",
-  "LAST_MONTH": "1 ay önce",
+  "LAST_MONTH": "Geçen ay",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Temizlik"

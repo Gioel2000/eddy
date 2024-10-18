@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1 hónap alatt",
   "IN_3_MONTH": "3 hónap alatt",
   "IN_ONE_MONTH": "1 hónap alatt",
-  "LAST_MONTH": "1 hónapja",
+  "LAST_MONTH": "Múlt hónapban",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Tisztítás"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Jobb, mint a versenytársaid",
   "CONFIGURE_CHANNELS_CONFIGURED": "Nem konfigurált egyetlen csatornát sem ehhez a versenytárshoz",
   "DO_NOT_CLOSE": "Ne zárd be ezt az oldalt!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Rosszabb, mint a versenytársaid"
+  "WORSE_THEN_YOUR_COMPETITOR": "Rosszabb, mint a versenytársaid",
+  "LAST_3_MONTHS": "Az elmúlt 3 hónap"
 }

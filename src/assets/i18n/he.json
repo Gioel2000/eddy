@@ -288,7 +288,7 @@
   "IN_1_MONTH": "בעוד חודש",
   "IN_3_MONTH": "בעוד 3 חודשים",
   "IN_ONE_MONTH": "בעוד חודש",
-  "LAST_MONTH": "לפני חודש",
+  "LAST_MONTH": "בחודש שעבר",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "ניקוי"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "יותר טוב מהמתחרים שלך",
   "CONFIGURE_CHANNELS_CONFIGURED": "לא הגדרת אף ערוצים עבור מתחרה זה",
   "DO_NOT_CLOSE": "אל תסגור את הדף הזה!",
-  "WORSE_THEN_YOUR_COMPETITOR": "יותר גרוע מהמתחרים שלך"
+  "WORSE_THEN_YOUR_COMPETITOR": "יותר גרוע מהמתחרים שלך",
+  "LAST_3_MONTHS": "3 חודשים אחרונים"
 }

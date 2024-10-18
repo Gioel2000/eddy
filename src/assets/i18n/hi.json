@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1 महीने में",
   "IN_3_MONTH": "3 महीने में",
   "IN_ONE_MONTH": "1 महीने में",
-  "LAST_MONTH": "1 महीने पहले",
+  "LAST_MONTH": "पिछला महीना",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "सफाई"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "अपने प्रतिस्पर्धियों से बेहतर",
   "CONFIGURE_CHANNELS_CONFIGURED": "आपने इस प्रतिस्पर्धी के लिए कोई चैनल कॉन्फ़िगर नहीं किया है",
   "DO_NOT_CLOSE": "इस पेज को बंद न करें!",
-  "WORSE_THEN_YOUR_COMPETITOR": "अपने प्रतिस्पर्धियों से भी बदतर"
+  "WORSE_THEN_YOUR_COMPETITOR": "अपने प्रतिस्पर्धियों से भी बदतर",
+  "LAST_3_MONTHS": "पिछले 3 महीने"
 }

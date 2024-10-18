@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1 kuukaudessa",
   "IN_3_MONTH": "3 kuukaudessa",
   "IN_ONE_MONTH": "1 kuukaudessa",
-  "LAST_MONTH": "1 kuukausi sitten",
+  "LAST_MONTH": "Viime kuussa",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Puhdistus"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Parempi kuin kilpailijasi",
   "CONFIGURE_CHANNELS_CONFIGURED": "Et ole määrittänyt yhtään kanavaa tälle kilpailijalle",
   "DO_NOT_CLOSE": "Älä sulje tätä sivua!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Huonompi kuin kilpailijasi"
+  "WORSE_THEN_YOUR_COMPETITOR": "Huonompi kuin kilpailijasi",
+  "LAST_3_MONTHS": "Viimeiset 3 kuukautta"
 }

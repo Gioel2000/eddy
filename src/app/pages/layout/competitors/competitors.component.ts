@@ -15,6 +15,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
 import { AddCompetitorDialogService } from '../../../ui/add-competitor-dialog/add-competitor-dialog.service';
 import { CompetitorsStore } from '../../../store/competitors/competitors.service';
 import { AddCompetitor, CompetitorModel } from '../../../store/competitors/interfaces/competitors';
+import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepicker.component';
 
 @Component({
   selector: 'competitors',
@@ -30,6 +31,7 @@ import { AddCompetitor, CompetitorModel } from '../../../store/competitors/inter
     CompetitorComponent,
     LoaderComponent,
     MissingTranslationPipe,
+    DatePickerPeriodComponent,
   ],
   template: `
     <ng-template #loading>
@@ -68,25 +70,17 @@ import { AddCompetitor, CompetitorModel } from '../../../store/competitors/inter
             class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
           >
             <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 w-full xl:w-auto max-w-full gap-y-6">
-              <date-picker
+              <date-picker-period
                 class="col-span-1"
-                [i18n]="'STARTDATE'"
-                [date]="startdate()"
-                [limitStart]="limitStart"
-                [limitEnd]="enddate()"
+                [i18n]="'PERIOD'"
+                [startdate]="startdate()"
+                [enddate]="enddate()"
                 [rapidDates]="pastRapidDates"
-                (onDateSet)="setStartDate($event)"
-              ></date-picker>
-              <date-picker
-                class="col-span-1"
-                [i18n]="'ENDDATE'"
-                [date]="enddate()"
-                [limitStart]="startdate()"
-                [limitEnd]="now"
-                [rapidDates]="[]"
-                (onDateSet)="setEndDate($event)"
-              ></date-picker>
-              <channels-dropdown class="col-span-2 sm:col-span-1"></channels-dropdown>
+                [limitStart]="limitStart"
+                [limitEnd]="today"
+                (applied)="setFilter($event)"
+              ></date-picker-period>
+              <channels-dropdown class="col-span-1"></channels-dropdown>
             </div>
           </ul>
         </nav>
@@ -163,7 +157,7 @@ export class CompetitorsComponent {
   competitorDialog = inject(AddCompetitorDialogService);
 
   limitStart = moment().subtract(3, 'year').toDate();
-  now = moment().toDate();
+  today = moment().toDate();
 
   startdate = computed(() => this.competitors.you.filter().startdate);
   enddate = computed(() => this.competitors.you.filter().enddate);
@@ -173,12 +167,16 @@ export class CompetitorsComponent {
       value: moment().subtract(1, 'month').toDate(),
     },
     {
-      key: '3_MONTHS_AGO',
+      key: 'LAST_3_MONTHS',
       value: moment().subtract(3, 'months').toDate(),
     },
     {
-      key: '6_MONTHS_AGO',
+      key: 'LAST_6_MONTHS',
       value: moment().subtract(6, 'month').toDate(),
+    },
+    {
+      key: 'LAST_YEAR',
+      value: moment().subtract(1, 'year').toDate(),
     },
   ];
 
@@ -187,14 +185,9 @@ export class CompetitorsComponent {
     this.competitorDialog.openDialog();
   }
 
-  setStartDate(date: Date) {
-    this.competitors.you.filter.set({ ...this.competitors.you.filter(), startdate: date });
-    this.competitors.others.filter.set({ ...this.competitors.you.filter(), startdate: date });
-  }
-
-  setEndDate(date: Date) {
-    this.competitors.you.filter.set({ ...this.competitors.you.filter(), enddate: date });
-    this.competitors.others.filter.set({ ...this.competitors.you.filter(), enddate: date });
+  setFilter(filter: { startdate: Date; enddate: Date }) {
+    this.competitors.you.filter.set({ ...this.competitors.you.filter(), ...filter });
+    this.competitors.others.filter.set({ ...this.competitors.you.filter(), ...filter });
   }
 
   delete(id: string) {

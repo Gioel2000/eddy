@@ -17,6 +17,7 @@ import { CategoriesDropdownComponent } from './categories/categories.component';
 import { RatingDropdownComponent } from './rating/rating.component';
 import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.pipe';
+import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepicker.component';
 
 @Component({
   selector: 'reviews',
@@ -37,6 +38,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
     RatingDropdownComponent,
     SparkleComponent,
     MissingTranslationPipe,
+    DatePickerPeriodComponent,
   ],
   template: `
     <ng-template #loading>
@@ -80,7 +82,18 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
             <div
               class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-7 2xl:grid-cols-7 w-full xl:w-auto max-w-full gap-y-6"
             >
-              <date-picker
+              <date-picker-period
+                class="col-span-1"
+                [i18n]="'PERIOD'"
+                [startdate]="startdate()"
+                [enddate]="enddate()"
+                [rapidDates]="[]"
+                [limitStart]="limitStart"
+                [limitEnd]="today"
+                [showReset]="true"
+                (applied)="setFilter($event)"
+              ></date-picker-period>
+              <!-- <date-picker
                 class="col-span-1"
                 [i18n]="'STARTDATE'"
                 [date]="startdate()"
@@ -99,7 +112,7 @@ import { MissingTranslationPipe } from '../../../utils/pipes/missingTranslation.
                 [rapidDates]="[]"
                 [focus]="true"
                 (onDateSet)="setEndDate($event)"
-              ></date-picker>
+              ></date-picker> -->
               <channels-dropdown class="col-span-1"></channels-dropdown>
               <rating-dropdown class="col-span-1"></rating-dropdown>
               <types-dropdown class="col-span-1"></types-dropdown>
@@ -216,6 +229,7 @@ export class ReviewsComponent {
   enddate = computed(() => this.reviews.filter().enddate);
   offset = signal(0);
   stopKeepGoing = computed(() => this.store.reviews().length < 5);
+  today = moment().toDate();
 
   setStartDate(startdate: any) {
     this.reviews.filter.set({ ...this.reviews.filter(), startdate, offset: 0 });
@@ -236,4 +250,27 @@ export class ReviewsComponent {
     this.reviews.page.set(this.reviews.page() + 1);
     this.reviews.filter.set({ ...this.reviews.filter(), offset: this.reviews.filter().offset + 5 });
   }
+
+  setFilter(filter: { startdate: Date; enddate: Date }) {
+    this.reviews.filter.set({ ...this.reviews.filter(), ...filter });
+  }
+
+  pastRapidDates = [
+    {
+      key: 'LAST_MONTH',
+      value: moment().subtract(1, 'month').toDate(),
+    },
+    {
+      key: 'LAST_3_MONTHS',
+      value: moment().subtract(3, 'months').toDate(),
+    },
+    {
+      key: 'LAST_6_MONTHS',
+      value: moment().subtract(6, 'month').toDate(),
+    },
+    {
+      key: 'LAST_YEAR',
+      value: moment().subtract(1, 'year').toDate(),
+    },
+  ];
 }

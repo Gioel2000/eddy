@@ -288,7 +288,7 @@
   "IN_1_MONTH": "1개월 후",
   "IN_3_MONTH": "3개월 후",
   "IN_ONE_MONTH": "1개월 후",
-  "LAST_MONTH": "1 개월 전",
+  "LAST_MONTH": "전달",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "청소"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "경쟁사보다 낫습니다.",
   "CONFIGURE_CHANNELS_CONFIGURED": "이 경쟁업체에 대해 구성한 채널이 없습니다.",
   "DO_NOT_CLOSE": "이 페이지를 닫지 마세요!",
-  "WORSE_THEN_YOUR_COMPETITOR": "경쟁사보다 더 나쁩니다."
+  "WORSE_THEN_YOUR_COMPETITOR": "경쟁사보다 더 나쁩니다.",
+  "LAST_3_MONTHS": "지난 3개월"
 }

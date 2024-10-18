@@ -13,6 +13,8 @@ import { IsSameDayPipe } from '../../utils/pipes/isSameDay.pipe';
 import { MonthNamePipe } from '../../utils/pipes/dayName.pipe';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 import { IsBetweenDayPipe } from '../../utils/pipes/isBetweenDay.pipe';
+import { IsBeforePipe } from '../../utils/pipes/isBefore.pipe';
+import { filter } from 'rxjs';
 
 export interface CalendarModel {
   year: number;
@@ -22,17 +24,13 @@ export interface CalendarModel {
   calendar: {
     week: number;
     days: {
+      index: number;
       date: Date;
       day: number;
       month: number;
       year: number;
       isToday: boolean;
       disabled: boolean;
-      data?: {
-        isStart: boolean;
-        isEnd: boolean;
-        isPeriod: boolean;
-      };
     }[];
   }[];
 }
@@ -52,6 +50,7 @@ export interface CalendarModel {
     MonthNamePipe,
     ClickOutsideDirective,
     IsBetweenDayPipe,
+    IsBeforePipe,
   ],
   template: `
     <div
@@ -73,10 +72,18 @@ export interface CalendarModel {
           }"
           (click)="toggle()"
         >
-          <div class="flex flex-row items-center justify-between">
-            <span>{{
-              startdate() ? (startdate() | moment : translate.currentLang : 'DD MMM YYYY') : ('VOID' | translate)
-            }}</span>
+          <div class="flex flex-row items-center justify-between gap-x-1">
+            <span
+              >{{
+                startDateChoosed()
+                  ? (startDateChoosed() | moment : translate.currentLang : 'DD MMM')
+                  : ('VOID' | translate)
+              }}
+              -
+              {{
+                endDateChoosed() ? (endDateChoosed() | moment : translate.currentLang : 'DD MMM') : ('VOID' | translate)
+              }}</span
+            >
             <span
               [inlineSVG]="'calendar.svg'"
               class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
@@ -87,7 +94,7 @@ export interface CalendarModel {
         <div [ngClass]="{ hidden: !isOpen() }">
           <div class="flex flex-col bg-white shadow-lg rounded-xl overflow-hidden dark:bg-neutral-900">
             <div
-              class="space-y-0.5 absolute z-10 mt-2 w-80 rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200 transform-gpu"
+              class="space-y-0.5 absolute z-10 mt-2 w-[280px] rounded-[10px] bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-200 dark:ring-zinc-700 focus:outline-none transition ease-out duration-200 animate-blurToClear200 transform-gpu"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
@@ -100,14 +107,15 @@ export interface CalendarModel {
               }"
             >
               <div class="p-2 gap-x-3 mx-1.5 pb-3 w-full">
-                <div class="flex items-center pt-1 pb-3">
+                <div class="flex items-center pt-1 pb-1">
                   <h2 class="flex-auto text-base font-semibold text-zinc-900 dark:text-zinc-100 capitalize">
                     {{ calendarDays().month | monthName : translate.currentLang }}
                     {{ calendarDays().year }}
                   </h2>
                   <button
                     type="button"
-                    class="flex flex-none items-center justify-center p-1.5 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600"
+                    class="flex flex-none items-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all transform-gpu ease-in-out duration-100 justify-center p-1.5 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 disabled:opacity-30"
+                    [disabled]="!canGoToPrevMonth()"
                     (click)="prevMonth()"
                   >
                     <span
@@ -117,7 +125,8 @@ export interface CalendarModel {
                   </button>
                   <button
                     type="button"
-                    class="ml-2 mr-2 flex flex-none items-center justify-center p-1.5 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600"
+                    class="ml-2 mr-2 flex flex-none items-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all transform-gpu ease-in-out duration-100 justify-center p-1.5 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 disabled:opacity-30"
+                    [disabled]="!canGoToNextMonth()"
                     (click)="nextMonth()"
                   >
                     <span
@@ -127,6 +136,19 @@ export interface CalendarModel {
                   </button>
                 </div>
               </div>
+              @if (rapidDates(); as dates) { @if (dates.length > 0) {
+              <div class="grid grid-cols-2 gap-1.5 px-3 pb-6">
+                @for (date of rapidDates(); track $index) {
+                <a
+                  class="col-span-1 inline-flex items-center cursor-pointer transition ease-in-out duration-200 animate-blurToClear200  gap-x-1 rounded-md bg-red-500/10 hover:bg-accent hover:text-white dark:hover:text-white dark:hover:bg-red-500 p-1.5 text-xs text-red-500 font-semibold"
+                  (click)="applyRapidDate(date.value)"
+                >
+                  <span [inlineSVG]="'bolt.svg'" class="svg-icon svg-icon-9 stroke-[1.8]"></span>
+                  <span class="truncate">{{ date.key | translate }}</span>
+                </a>
+                }
+              </div>
+              } }
               <div class="flex justify-between pb-1.5">
                 <span class="m-px w-10 block text-center text-xs leading-6 text-zinc-500">
                   {{ 'DAYS.MONDAY' | translate | substring : 0 : 1 }}
@@ -151,385 +173,30 @@ export interface CalendarModel {
                 </span>
               </div>
 
-              <!-- <div class="flex">
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                    disabled
-                  >
-                    26
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                    disabled
-                  >
-                    27
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                    disabled
-                  >
-                    28
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                    disabled
-                  >
-                    29
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                    disabled
-                  >
-                    30
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    2
-                  </button>
-                </div>
-              </div>
+              @if (calendarDays(); as calendar) { @for (week of calendar.calendar; track week.week) {
               <div class="flex">
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    3
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    4
-                  </button>
-                </div>
-                <div class="bg-zinc-100 rounded-s-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center bg-blue-600 border border-transparent text-sm font-medium text-white hover:border-blue-600 focus:outline-none focus:border-blue-600 rounded-full disabled:text-zinc-300 disabled:pointer-events-none dark:bg-blue-500 dark:hover:border-neutral-700 dark:focus:border-neutral-700"
-                  >
-                    5
-                  </button>
-                </div>
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    6
-                  </button>
-                </div>
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    7
-                  </button>
-                </div>
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    8
-                  </button>
-                </div>
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    9
-                  </button>
-                </div>
-              </div>
-              <div class="flex">
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    10
-                  </button>
-                </div>
-                <div class="bg-zinc-100 first:rounded-s-full last:rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    11
-                  </button>
-                </div>
-                <div class="bg-zinc-100 rounded-e-full dark:bg-neutral-800">
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center bg-blue-600 border border-transparent text-sm font-medium text-white hover:border-blue-600 focus:outline-none focus:border-blue-600 rounded-full disabled:text-zinc-300 disabled:pointer-events-none dark:bg-blue-500 dark:hover:border-neutral-700 dark:focus:border-neutral-700"
-                  >
-                    12
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    13
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    14
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    15
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    16
-                  </button>
-                </div>
-              </div>
-              <div class="flex">
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    17
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    18
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    19
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    20
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    21
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    22
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    23
-                  </button>
-                </div>
-              </div>
-              <div class="flex">
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    24
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    25
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    26
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    27
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    28
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    29
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    30
-                  </button>
-                </div>
-              </div>
-              <div class="flex">
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 rounded-full hover:border-blue-600 hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-blue-600 focus:text-blue-600 dark:text-neutral-200"
-                  >
-                    31
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    1
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    2
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    3
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    4
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    5
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent text-sm text-zinc-800 hover:border-blue-600 hover:text-blue-600 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-zinc-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700"
-                    disabled
-                  >
-                    6
-                  </button>
-                </div>
-              </div> -->
-
-              @if (calendarDays(); as calendar) { @for (week of calendar.calendar; track $index) {
-              <div class="flex">
-                @for (day of week.days; track $index) {
+                @for (day of week.days; track $index) { @let isStartDateChoosed = startDateChoosed() ? (day.date |
+                isSameDay : startDateChoosed()!): false; @let isEndDateChoosed = endDateChoosed() ? (day.date |
+                isSameDay : endDateChoosed()!): false; @let isDateBetween = day.date | isBetweenDay :
+                startDateChoosed()! : endDateChoosed()!;
                 <div
-                  class="flex-auto items-center justify-center"
+                  class="flex items-center justify-center w-10"
                   [ngClass]="{
-                    'rounded-s-full': startDateChoosed() ? (day.date | isSameDay : startDateChoosed()!): false,
-                    'rounded-e-full': endDateChoosed() ? (day.date | isSameDay : endDateChoosed()!): false,
-                    'bg-accent text-white': canApply() && isDateBetween(day.date),
+                    'rounded-s-full': isStartDateChoosed,
+                    'rounded-e-full': isEndDateChoosed,
+                    'bg-accent dark:bg-accentDark text-white': canApply() && isDateBetween,
+                    'rounded-br-[10px]': day.index === 41 && !showReset(),
+                    'rounded-bl-[10px]': day.index === 35 && !showReset(),
                   }"
                 >
                   <button
                     type="button"
-                    class="m-px size-10 flex justify-center items-center border border-transparent font-medium text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
+                    class="size-10 flex justify-center items-center border border-transparent font-medium text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
                     [ngClass]="{
-                      'hover:bg-zinc-200 dark:text-neutral-200 bg-accent text-white': isSameChoosedDay(day.date) || isDateBetween(day.date),
-                      'hover:bg-zinc-200 text-zinc-800': !isSameChoosedDay(day.date) && !isDateBetween(day.date),
+                      'hover:bg-zinc-100 dark:hover:bg-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-200 bg-accent dark:bg-accentDark text-white': (isStartDateChoosed || isEndDateChoosed) || isDateBetween,
+                      'hover:bg-zinc-100 text-zinc-800 dark:hover:bg-zinc-900 dark:text-zinc-200 ': !(isStartDateChoosed || isEndDateChoosed) && !isDateBetween,
                     }"
-                    [disabled]="day.disabled"
+                    [disabled]="!(day.date | isBetweenDay : limitStart() : limitEnd()) || day.disabled"
                     (click)="onClickDaySelected(day.date)"
                   >
                     {{ day.day }}
@@ -537,7 +204,19 @@ export interface CalendarModel {
                 </div>
                 }
               </div>
-              } }
+              } } @if(showReset()) {
+              <div
+                class="flex flex-row items-center justify-end py-2.5 px-2 border-t border-zinc-200 dark:border-zinc-700"
+              >
+                <button
+                  type="button"
+                  class="flex flex-row items-center rounded-lg px-2.5 py-2 text-zinc-900 dark:text-zinc-100 cursor-pointer text-sm shadow-sm shadow-zinc-950/20 font-medium ring-1 ring-zinc-200 dark:ring-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700 disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
+                  (click)="reset()"
+                >
+                  {{ 'RESET' | translate }}
+                </button>
+              </div>
+              }
             </div>
           </div>
         </div>
@@ -561,6 +240,7 @@ export class DatePickerPeriodComponent {
       value: Date;
     }[]
   >();
+  showReset = input<boolean>();
 
   startDateChoosed = signal<Date | null>(null);
   endDateChoosed = signal<Date | null>(null);
@@ -592,6 +272,7 @@ export class DatePickerPeriodComponent {
             day: 0,
             month: 0,
             year: 0,
+            index: 0,
             isToday: false,
             disabled: false,
           },
@@ -610,9 +291,22 @@ export class DatePickerPeriodComponent {
       .subscribe((date) => this.calendarDays.set(this.loadCalendarDays(date)));
 
     toObservable(this.startdate)
-      .pipe(untilDestroyed(this))
+      .pipe(
+        untilDestroyed(this),
+        filter((date): date is Date => !!date)
+      )
       .subscribe((date) => {
-        date && this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
+        this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
+        this.startDateChoosed.set(date);
+      });
+
+    toObservable(this.enddate)
+      .pipe(
+        untilDestroyed(this),
+        filter((date): date is Date => !!date)
+      )
+      .subscribe((date) => {
+        this.endDateChoosed.set(date);
       });
 
     setTimeout(() => {
@@ -650,11 +344,27 @@ export class DatePickerPeriodComponent {
     this.filter.set({ month: nextMonth.month(), year: nextMonth.year() });
   }
 
-  isSameChoosedDay(date: Date): boolean {
-    const isStartDateChoosed = (this.startDateChoosed() && this.startDateChoosed() === date) || false;
-    const isEndDateChoosed = (this.endDateChoosed() && this.endDateChoosed() === date) || false;
+  canGoToNextMonth() {
+    const { month, year } = this.filter();
+    const nextMonth = moment({ month, year }).add(1, 'month');
+    return moment(nextMonth).isBefore(moment());
+  }
 
-    return (isStartDateChoosed || isEndDateChoosed) as boolean;
+  canGoToPrevMonth() {
+    const { month, year } = this.filter();
+    const prevMonth = moment({ month, year });
+    return moment(prevMonth).isAfter(moment(this.limitStart()));
+  }
+
+  applyRapidDate(date: Date) {
+    console.log(date);
+    this.startDateChoosed.set(date);
+    this.endDateChoosed.set(moment().toDate());
+    this.applied.emit({
+      startdate: this.startDateChoosed()!,
+      enddate: this.endDateChoosed()!,
+    });
+    this.close();
   }
 
   onClickDaySelected(date: Date) {
@@ -667,28 +377,31 @@ export class DatePickerPeriodComponent {
         this.endDateChoosed.set(null);
       } else {
         this.endDateChoosed.set(date);
+        this.applied.emit({
+          startdate: this.startDateChoosed()!,
+          enddate: this.endDateChoosed()!,
+        });
+        this.close();
       }
     } else {
       this.startDateChoosed.set(date);
     }
   }
 
-  isDateBetween(date: Date): boolean {
-    return (
-      (this.startDateChoosed() &&
-        this.endDateChoosed() &&
-        moment(date).isBetween(this.startDateChoosed(), this.endDateChoosed(), 'day', '[]')) ||
-      false
-    );
-  }
+  reset() {
+    this.startDateChoosed.set(null);
+    this.endDateChoosed.set(null);
 
-  onDaySelected(startdate: Date) {
-    // this.onDateSet.emit(date);
-    // this.close();
+    this.applied.emit({
+      startdate: this.startDateChoosed()!,
+      enddate: this.endDateChoosed()!,
+    });
+    this.close();
   }
 
   private loadCalendarDays(date: { month: number; year: number }) {
     let calendarDays = [];
+    let index = 0;
 
     const { month: monthIndex, year: yearIndex } = date;
     const currentMonth = moment({ month: monthIndex, year: yearIndex });
@@ -702,13 +415,13 @@ export class DatePickerPeriodComponent {
       calendarDays.push({
         date: moment({
           day: firstDayOfCurrentMonth.date(),
-          month: prevMonth.month() - 1,
-          year: prevMonth.year(),
+          month: firstDayOfCurrentMonth.month(),
+          year: firstDayOfCurrentMonth.year(),
         }).toDate(),
         week: firstDayOfCurrentMonth.week(),
         day: firstDayOfCurrentMonth.date(),
-        month: prevMonth.month() - 1,
-        year: prevMonth.year(),
+        month: firstDayOfCurrentMonth.month(),
+        year: firstDayOfCurrentMonth.year(),
         isToday: firstDayOfCurrentMonth.isSame(moment(), 'day'),
         disabled: !firstDayOfCurrentMonth.isSame(currentMonth, 'month'),
       });
@@ -775,8 +488,8 @@ export class DatePickerPeriodComponent {
         )
         .forEach((day) => {
           calendarDays.push({
-            date: day.toDate(),
-            day: day.date(),
+            date: moment(day).month(monthIndex).add(1, 'month').toDate(),
+            day: moment(day).month(monthIndex).add(1, 'month').date(),
             week: day.week(),
             month: nextMonth.month(),
             year: nextMonth.year(),
@@ -790,6 +503,11 @@ export class DatePickerPeriodComponent {
     const lastDay = moment(objToDate(calendarDays[calendarDays.length - 1]))
       .add(1, 'day')
       .toDate();
+
+    calendarDays = calendarDays.map((day) => ({
+      ...day,
+      index: index++,
+    }));
 
     const calendar = Array.from({ length: 6 }).map((_, index) => ({
       week: index,

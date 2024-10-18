@@ -288,7 +288,7 @@
   "IN_1_MONTH": "Dalam 1 bulan",
   "IN_3_MONTH": "Dalam 3 bulan",
   "IN_ONE_MONTH": "Dalam 1 bulan",
-  "LAST_MONTH": "1 bulan yang lalu",
+  "LAST_MONTH": "Bulan lalu",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Pembersihan"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Lebih baik dari pesaing Anda",
   "CONFIGURE_CHANNELS_CONFIGURED": "Anda belum mengonfigurasi saluran apa pun untuk pesaing ini",
   "DO_NOT_CLOSE": "Jangan tutup halaman ini!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Lebih buruk dari pesaing Anda"
+  "WORSE_THEN_YOUR_COMPETITOR": "Lebih buruk dari pesaing Anda",
+  "LAST_3_MONTHS": "3 bulan terakhir"
 }

@@ -288,7 +288,7 @@
   "IN_1_MONTH": "Za 1 měsíc",
   "IN_3_MONTH": "Za 3 měsíce",
   "IN_ONE_MONTH": "Za 1 měsíc",
-  "LAST_MONTH": "před 1 měsícem",
+  "LAST_MONTH": "Minulý měsíc",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "Čištění"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "Lepší než vaši konkurenti",
   "CONFIGURE_CHANNELS_CONFIGURED": "Pro tohoto konkurenta jste nenakonfigurovali žádné kanály",
   "DO_NOT_CLOSE": "Nezavírejte tuto stránku!",
-  "WORSE_THEN_YOUR_COMPETITOR": "Horší než vaši konkurenti"
+  "WORSE_THEN_YOUR_COMPETITOR": "Horší než vaši konkurenti",
+  "LAST_3_MONTHS": "Poslední 3 měsíce"
 }

@@ -281,14 +281,14 @@
   "SHARE": "يشارك",
   "1_YEAR_AGO": "منذ سنة 1",
   "2_WEEKS_AGO": "2 منذ أسابيع",
-  "3_MONTHS_AGO": "قبل 3 أشهر",
+  "3_MONTHS_AGO": "منذ 3 أشهر",
   "6_MONTHS_AGO": "قبل 6 أشهر",
   "ALSO_TALK_ABOUT": "الحديث أيضا عن",
   "BEGINNING_OF_THE_YEAR": "1 يناير",
   "IN_1_MONTH": "في شهر واحد",
   "IN_3_MONTH": "في 3 أشهر",
   "IN_ONE_MONTH": "في شهر واحد",
-  "LAST_MONTH": "1 قبل شهر",
+  "LAST_MONTH": "الشهر الماضي",
   "REVIEWS_CATEGORIES": {
     "RESTAURANT_CLEAN": {
       "DESC": "تنظيف"
@@ -483,5 +483,6 @@
   "BETTER_THEN_YOUR_COMPETITOR": "أفضل من منافسيك",
   "CONFIGURE_CHANNELS_CONFIGURED": "لم تقم بتكوين أية قنوات لهذا المنافس",
   "DO_NOT_CLOSE": "لا تغلق هذه الصفحة!",
-  "WORSE_THEN_YOUR_COMPETITOR": "أسوأ من منافسيك"
+  "WORSE_THEN_YOUR_COMPETITOR": "أسوأ من منافسيك",
+  "LAST_3_MONTHS": "آخر 3 أشهر"
 }
