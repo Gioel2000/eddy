@@ -15,6 +15,7 @@ import { OverviewReviewsLastDayComponent } from './widgets/overview-reviews-last
 import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
 import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
+import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepicker.component';
 
 @Component({
   selector: 'home',
@@ -34,6 +35,7 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
     CategoriesComponent,
     OverviewReviewsLastDayComponent,
     SparkleComponent,
+    DatePickerPeriodComponent,
   ],
   template: `
     <!-- <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1> -->
@@ -45,7 +47,16 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
             class="flex min-w-full flex-none gap-x-6 text-sm font-semibold leading-6 text-zinc-400 dark:text-zinc-600"
           >
             <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 w-full xl:w-auto max-w-full gap-y-6">
-              <date-picker
+              <date-picker-period
+                class="col-span-1"
+                [i18n]="'PERIOD'"
+                [startdate]="startdate()"
+                [enddate]="enddate()"
+                [rapidDates]="pastRapidDates"
+                [limitStart]="limitStart"
+                [limitEnd]="enddate()"
+              ></date-picker-period>
+              <!-- <date-picker
                 class="col-span-1"
                 [i18n]="'STARTDATE'"
                 [date]="startdate()"
@@ -62,8 +73,8 @@ import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
                 [limitEnd]="now"
                 [rapidDates]="[]"
                 (onDateSet)="setEndDate($event)"
-              ></date-picker>
-              <channels-dropdown class="col-span-2 sm:col-span-1"></channels-dropdown>
+              ></date-picker> -->
+              <channels-dropdown class="col-span-1"></channels-dropdown>
             </div>
           </ul>
         </nav>

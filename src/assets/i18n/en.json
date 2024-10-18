@@ -485,5 +485,7 @@
   "WORSE_THEN_YOUR_COMPETITOR": "Worse than your competitors",
   "BETTER_THEN_YOUR_COMPETITOR": "Better than your competitors",
   "GETTING_BETTER": "You're getting better",
-  "GETTING_WORSE": "You're getting worse"
+  "GETTING_WORSE": "You're getting worse",
+  "OBSERVATION_PERIOD": "Observation Period",
+  "PERIOD": "Period"
 }

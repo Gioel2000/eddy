@@ -142,47 +142,6 @@ import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
                         </span>
                         <span class="relative -top-0.5 text-sm font-semibold text-zinc-700"> /5 </span>
                       </div>
-                      <div>
-                        @if (category.filteredRating > 0) {
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          class="h-4 w-4 text-green-500"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="m6,11.75c-.414,0-.75-.336-.75-.75V1.25c0-.414.336-.75.75-.75s.75.336.75.75v9.75c0,.414-.336.75-.75.75Z"
-                              stroke-width="0"
-                            ></path>
-                            <path
-                              d="m9.25,5c-.192,0-.384-.073-.53-.22l-2.72-2.72-2.72,2.72c-.293.293-.768.293-1.061,0s-.293-.768,0-1.061L5.47.47c.293-.293.768-.293,1.061,0l3.25,3.25c.293.293.293.768,0,1.061-.146.146-.338.22-.53.22Z"
-                              stroke-width="0"
-                            ></path>
-                          </g>
-                        </svg>
-                        } @if (category.filteredRating < 0) {
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          class="h-4 w-4 text-red-500"
-                        >
-                          <g fill="currentColor">
-                            <path
-                              d="m6,11.5c-.414,0-.75-.336-.75-.75V1c0-.414.336-.75.75-.75s.75.336.75.75v9.75c0,.414-.336.75-.75.75Z"
-                              stroke-width="0"
-                            ></path>
-                            <path
-                              d="m6,11.75c-.192,0-.384-.073-.53-.22l-3.25-3.25c-.293-.293-.293-.768,0-1.061s.768-.293,1.061,0l2.72,2.72,2.72-2.72c.293-.293.768-.293,1.061,0s.293.768,0,1.061l-3.25,3.25c-.146.146-.338.22-.53.22Z"
-                              stroke-width="0"
-                            ></path>
-                          </g>
-                        </svg>
-                        }
-                      </div>
                     </div>
 
                     <div class="flex flex-row items-center justify-between mt-1">

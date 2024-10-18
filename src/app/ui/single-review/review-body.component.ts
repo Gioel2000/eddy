@@ -807,35 +807,13 @@ export class BodyReviewComponent {
 
       reviewLang && this.originalLangKey$.next('LANGS.' + reviewLang);
 
-      if (reviewLang === 'it') {
-        const content = {
-          ...review,
-          title: review.title,
-        };
+      if (reviewLang === 'it') this.calculateSentiment(review, 'it');
+      if (reviewLang !== 'it' && index !== -1) this.calculateSentiment(review, 'en');
 
-        this.reviewContent$.next({
-          ...content,
-          title: titleFormatted,
-        });
-
-        this.calculateSentiment(content, 'it');
-      }
-
-      if (reviewLang !== 'it' && index !== -1) {
-        const translation = review.translations[index];
-        translation &&
-          this.reviewContent$.next({
-            text: translation.text,
-            title: titleFormatted,
-          });
-
-        this.calculateSentiment(translation, 'en');
-      }
-
-      const aiReply = review.aiReply;
-      if (aiReply) {
-        // this.commentControl.setValue(aiReply.reply);
-      }
+      // const aiReply = review.aiReply;
+      // if (aiReply) {
+      //   // this.commentControl.setValue(aiReply.reply);
+      // }
     });
 
     this.langSwitcher.valueChanges
