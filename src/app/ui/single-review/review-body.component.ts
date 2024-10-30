@@ -29,6 +29,7 @@ import { StructureStore } from '../../store/structures/structure.service';
 import { I18nStore } from '../../store/i18n/i18n.service';
 import { MomentPipe } from '../../utils/pipes/moment.pipe';
 import moment from 'moment';
+import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
 
 @UntilDestroy()
 @Component({
@@ -642,14 +643,12 @@ import moment from 'moment';
                   <button
                     class="rounded-[10px] p-0.5 bg-rainbow-opacity-50 cursor-pointer leading-6 disabled:cursor-not-allowed shadow-md shadow-black/10"
                     [disabled]="isResponseLoading() || isResponseError()"
-                    (click)="askAIToReply()"
+                    (click)="openSmartReply()"
                   >
                     <div
                       class="flex flex-row items-center gap-x-2 px-3 py-2 opacity-100 bg-rainbow cursor-pointer rounded-[8px]"
                     >
-                      <span class="text-sm font-semibold text-white dark:text-white">{{
-                        'HAVE_THE_AI_RESPOND' | translate
-                      }}</span>
+                      <span class="text-sm font-semibold text-white dark:text-white"> Smart Reply AI </span>
                       <span
                         [inlineSVG]="'wand-sparkle.svg'"
                         class="svg-icon svg-icon-6 stroke-2 text-white dark:text-white"
@@ -760,6 +759,7 @@ export class BodyReviewComponent {
   store = inject(ReviewsStore);
   structure = inject(StructureStore);
   i18n = inject(I18nStore);
+  smartReply = inject(SmartReplyDialogService);
   translate = inject(TranslateService);
 
   isResponseSuccess = signal(false);
@@ -1141,36 +1141,33 @@ export class BodyReviewComponent {
     return str.replace(new RegExp(find, 'g'), replace);
   }
 
-  askAIToReply() {
-    this.isResponseLoading.set(true);
-    this.store
-      .askAIReply(this.review()._id, this.i18n.selectedLang().locale)
-      .pipe(untilDestroyed(this))
-      .subscribe({
-        next: (aiReply: AIReply) => {
-          const { reply, translations } = aiReply;
-          this.isResponseLoading.set(false);
-          this.isResponseError.set(false);
-          this.isResponseSuccess.set(true);
-          this.commentControl.setValue(reply);
-
-          this.autoSize.nativeElement.style.height = 'auto';
-          this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
-
-          this.replies$.next([...this.replies$.value, aiReply]);
-
-          if (translations && translations.length > 0) {
-            this.translatedReply.set(translations[0].reply);
-          }
-
-          window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
-
-          setTimeout(() => this.isResponseSuccess.set(false), 1500);
-        },
-        error: () => {
-          this.isResponseLoading.set(false);
-          this.isResponseError.set(true);
-        },
-      });
+  openSmartReply() {
+    this.smartReply.review.set(this.review());
+    this.smartReply.openDialog();
+    // this.isResponseLoading.set(true);
+    // this.store
+    //   .askAIReply(this.review()._id, this.i18n.selectedLang().locale)
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe({
+    //     next: (aiReply: AIReply) => {
+    //       const { reply, translations } = aiReply;
+    //       this.isResponseLoading.set(false);
+    //       this.isResponseError.set(false);
+    //       this.isResponseSuccess.set(true);
+    //       this.commentControl.setValue(reply);
+    //       this.autoSize.nativeElement.style.height = 'auto';
+    //       this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
+    //       this.replies$.next([...this.replies$.value, aiReply]);
+    //       if (translations && translations.length > 0) {
+    //         this.translatedReply.set(translations[0].reply);
+    //       }
+    //       window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
+    //       setTimeout(() => this.isResponseSuccess.set(false), 1500);
+    //     },
+    //     error: () => {
+    //       this.isResponseLoading.set(false);
+    //       this.isResponseError.set(true);
+    //     },
+    //   });
   }
 }

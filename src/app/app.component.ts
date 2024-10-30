@@ -12,6 +12,7 @@ import { CookieAlertComponent } from './ui/cookie/cookie.component';
 import { EditChannelDialogComponent } from './pages/setup/ui/edit-channel-dialog/edit-channel-dialog.component';
 import { AddCompetitorSetupDialogComponent } from './pages/setup/steps/step3/add-competitor-dialog/add-competitor-dialog.component';
 import { AddCompetitorDialogComponent } from './ui/add-competitor-dialog/add-competitor-dialog.component';
+import { SmartReplyDialogComponent } from './ui/smart-reply/smart-reply.component';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ import { AddCompetitorDialogComponent } from './ui/add-competitor-dialog/add-com
     EditChannelDialogComponent,
     AddCompetitorSetupDialogComponent,
     AddCompetitorDialogComponent,
+    SmartReplyDialogComponent,
   ],
   template: `
     @if (isRouterLoaded()) { @defer (on viewport; prefetch on idle) {
@@ -88,6 +90,12 @@ import { AddCompetitorDialogComponent } from './ui/add-competitor-dialog/add-com
     <div></div>
     } @defer (on viewport; prefetch on idle) {
     <add-competitor-dialog></add-competitor-dialog>
+    } @placeholder {
+    <div></div>
+    } @loading {
+    <div></div>
+    } @defer (on viewport; prefetch on idle) {
+    <smart-reply-dialog></smart-reply-dialog>
     } @placeholder {
     <div></div>
     } @loading {
