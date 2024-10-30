@@ -1,25 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { LottieComponent } from 'ngx-lottie';
 import { ThemeManagerStore } from '../../store/theme/theme.service';
 
 @Component({
   selector: 'sparkle',
   standalone: true,
-  imports: [CommonModule, LottieComponent, TranslateModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <div class="flex flex-col items-center text-balance text-center gap-y-3 my-24 animate-pulse">
-      <ng-lottie
+      @if (isThemeLight()) {
+      <iframe
         class="h-20 w-20"
-        [options]="{
-          path: isThemeLight() ?'/assets/lottie/sparkle.json' : '/assets/lottie/sparkle-dark.json',
-        }"
-        background="transparent"
-        speed="0.6"
-        loop
-        autoplay
-      ></ng-lottie>
+        src="https://lottie.host/embed/b9efe211-feee-4f6f-b6ef-79c6b928ae1f/8kmbdOiwS7.json"
+      ></iframe>
+      } @else {
+      <iframe
+        class="h-20 w-20"
+        src="https://lottie.host/embed/063e75b0-fb19-4bb6-8fbf-d7d614b2fca6/y1UmHG8Jzg.json"
+      ></iframe>
+      }
+
       <p
         class="text-2xl font-bold leading-8 tracking-tight"
         [ngClass]="{

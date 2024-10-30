@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { SmartReplyDialogService } from './smart-reply.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -6,11 +6,26 @@ import { HeaderReviewComponent } from '../single-review/review-header.component'
 import moment from 'moment';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { ReplacePipe } from '../../utils/pipes/replace.pipe';
+import LanguageDetect from 'languagedetect';
+import { SERVICES } from '../single-review/data/reviews.data';
+import { MISSING_TRANSLATION } from '../../utils/constants/missingTranslation';
+import { AIReply } from '../../store/reviews/interfaces/reviews';
+import { BodyReviewComponent } from '../single-review/review-body.component';
 
 @Component({
   selector: 'smart-reply-dialog',
   standalone: true,
-  imports: [CommonModule, TranslateModule, HeaderReviewComponent, InlineSVGModule, ClickOutsideDirective],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    InlineSVGModule,
+    ClickOutsideDirective,
+    ReplacePipe,
+    HeaderReviewComponent,
+    BodyReviewComponent,
+  ],
   template: `
     <div
       class="relative z-[10000]"
@@ -69,31 +84,12 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
                 </span>
               </button>
             </div>
-            <div class="sm:flex sm:items-start">
-              <div class="flex space-x-4 text-sm text-zinc-500">
-                <div class="flex-none py-3">
-                  <div
-                    class="h-10 w-10 rounded-full"
-                    class="bg-accent dark:bg-accentDark flex flex-row items-center justify-center cursor-pointer rounded-full w-12 h-12 font-bold text-base text-white"
-                  >
-                    {{ nameFormatter(smartReplyDialog.review()?.name).charAt(0).toUpperCase() }}
-                  </div>
-                </div>
-                <div class="flex-1 py-3">
-                  <div class="flex flex-row items-center">
-                    <h3 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-7">
-                      {{ nameFormatter(smartReplyDialog.review()?.name) }}
-                    </h3>
-                    <span
-                      *ngIf="smartReplyDialog.review()?.name === 'Verified traveler'"
-                      [inlineSVG]="'badge-check.svg'"
-                      class="svg-icon svg-icon svg-icon-4 stroke-[1.3] ml-1 text-zinc-800 dark:text-zinc-200"
-                    ></span>
-                  </div>
-                  <p class="font-normal tracking-tight text-zinc-400 dark:text-zinc-600">
-                    {{ formatDate(smartReplyDialog.review()?.date) }}
-                  </p>
-                </div>
+            <div class="flow-root">
+              <div class="px-1">
+                @if (smartReplyDialog.review(); as review) {
+                <header-review [review]="review"></header-review>
+                <body-review [review]="review" [showBorder]="false"></body-review>
+                }
               </div>
             </div>
           </div>
@@ -105,6 +101,61 @@ import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
 export class SmartReplyDialogComponent {
   smartReplyDialog = inject(SmartReplyDialogService);
   translateService = inject(TranslateService);
+
+  scale = 5;
+  readonly categories$ = new BehaviorSubject<any[]>([]);
+  readonly sentimentVote$ = new Subject<number>();
+  readonly replies$ = new BehaviorSubject<AIReply[]>([]);
+  readonly canBeTranslated$ = new BehaviorSubject<boolean>(false);
+  readonly alreadyReplied$ = new BehaviorSubject<boolean>(false);
+  readonly originalLangKey$ = new BehaviorSubject<string>('');
+  readonly reviewContent$ = new BehaviorSubject<{
+    title?: string;
+    text?: string;
+  }>({});
+
+  constructor() {
+    effect(() => {
+      const review = this.smartReplyDialog.review();
+      if (!review) return;
+
+      const titleOriginal = review.title;
+      const source = review.channel.source;
+      const reviewLang = this.getLanguageFromReviewContent();
+      const index = this.getIndexTranslation('en');
+      const canBeTranslated = reviewLang === null ? false : reviewLang !== 'it';
+
+      const { text } = review;
+      const { title: titleTranslated, translated: isTitleTranslated } = this.translateReview(titleOriginal);
+      const { scale, amountToMultiply } = SERVICES.find((service: any) => service._id === source) || {
+        scale: 5,
+        amountToMultiply: 1,
+      };
+      const title = isTitleTranslated ? titleTranslated : review.title;
+      const titleFormatted = title.trim().length > 0 ? title : review.title;
+
+      this.scale = scale;
+
+      this.replies$.next(review.aiReply || []);
+
+      this.reviewContent$.next({
+        text,
+        title: titleTranslated,
+      });
+      this.canBeTranslated$.next(canBeTranslated);
+      this.alreadyReplied$.next(review.hasReplied);
+
+      reviewLang && this.originalLangKey$.next('LANGS.' + reviewLang);
+
+      if (reviewLang === 'it') this.calculateSentiment(review, 'it');
+      if (reviewLang !== 'it' && index !== -1) this.calculateSentiment(review, 'en');
+
+      const aiReply = review.aiReply;
+      if (aiReply) {
+        // this.commentControl.setValue(aiReply.reply);
+      }
+    });
+  }
 
   nameFormatter(name: string | undefined): string {
     if (!name) {
@@ -119,6 +170,20 @@ export class SmartReplyDialogComponent {
     return name;
   }
 
+  translateReview(titleReview: string): { title: string; translated: boolean } {
+    const translatedTitle =
+      this.translateService.instant(
+        `REVIEWS.REVIEWS_TRANSLATED.${this.replaceAll(titleReview.toUpperCase(), ' ', '_')}`
+      ) || MISSING_TRANSLATION;
+
+    const isTranslated = translatedTitle !== MISSING_TRANSLATION;
+
+    return {
+      title: isTranslated ? translatedTitle : titleReview,
+      translated: isTranslated,
+    };
+  }
+
   formatDate(date: Date | string | null | undefined): string {
     const currentLang = this.translateService.currentLang;
     const todayLabel = this.translateService.instant('TODAY');
@@ -127,5 +192,166 @@ export class SmartReplyDialogComponent {
       .locale(currentLang)
       .format('DD MMMM YYYY')
       .replace(moment(new Date()).locale(currentLang).format('DD MMMM YYYY'), `${todayLabel} `);
+  }
+
+  replaceAll(str: string, find: string, replace: string) {
+    return str.replace(new RegExp(find, 'g'), replace);
+  }
+
+  private calculateSentiment(translation: any, currentLang: string) {
+    const sentimentsByWords = [];
+    const sentimentByCategory = [];
+
+    const sentiments = this.smartReplyDialog!.review()?.sentiments;
+
+    if (!sentiments) {
+      return;
+    }
+
+    for (const [, value] of Object.entries(sentiments) as any) {
+      sentimentsByWords.push(
+        ...(currentLang === 'en' ? value.words : value.wordsIt).map((word: any) => ({
+          word,
+          ...value,
+        }))
+      );
+
+      sentimentByCategory.push(
+        ...value.category.map((category: any) => ({
+          singleCategory: category,
+          ...value,
+        }))
+      );
+    }
+
+    this.underlineSetiment(translation, sentimentsByWords);
+    this.showSentimentCategories(translation, sentimentByCategory);
+  }
+
+  private underlineSetiment(translation: any, sentiments: any) {
+    // .filter((sentiment: any) => sentiment.score !== 0)
+    const sentimentsWords = sentiments.map((sentiment: any) => ({
+      word: sentiment.word,
+      valutation: sentiment.score < 0 ? 'negative' : sentiment.score > 0 ? 'positive' : 'neutral',
+      replaced: false,
+    }));
+
+    const replaceBySentiment = (attr: string) => {
+      if (!attr) return '';
+
+      let attrWithSentiment = '';
+      let startIndex = 0;
+      let text = attr.toLowerCase();
+
+      sentimentsWords.forEach((sentimentWord: any) => {
+        const { word, valutation, replaced } = sentimentWord;
+        const wordIndex = text.indexOf(word.toLowerCase());
+
+        if (wordIndex !== -1 && !replaced) {
+          const endIndex = wordIndex + word.length;
+          const beforeWord = text.substring(startIndex, wordIndex);
+          const afterWord = text.substring(endIndex, text.length);
+          const wordToReplace = text.substring(wordIndex, endIndex);
+
+          attrWithSentiment += `${beforeWord}<span class="sentiment-${valutation}">${wordToReplace}</span>`;
+          text = afterWord;
+          startIndex = 0;
+          sentimentWord.replaced = true;
+        }
+      });
+
+      attrWithSentiment += text;
+
+      return attrWithSentiment;
+    };
+
+    const text = translation.text || '';
+    const title = translation.title || '';
+
+    const textSentiment = replaceBySentiment(text);
+
+    this.reviewContent$.next({
+      title: title,
+      text: textSentiment,
+    });
+  }
+
+  private getLanguageFromReviewContent() {
+    try {
+      const review = this.smartReplyDialog.review();
+      if (!review) return -1;
+
+      const lngDetector = new LanguageDetect();
+      const { title, text } = review;
+      const reviewContent = `${title || ''} ${text || ''}`;
+      const lang = lngDetector.detect(reviewContent)[0][0].toLowerCase();
+
+      return reviewContent.trim().length > 0 ? lang : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private showSentimentCategories(translation: any, sentiments: any) {
+    // .filter((sentiment: any) => sentiment.score !== 0)
+    const categories = sentiments.map((sentiment: any) => {
+      const translation = this.translateService.instant('REVIEWS_CATEGORIES.' + sentiment.singleCategory.toUpperCase());
+
+      return {
+        name: translation.DESC,
+        score: sentiment.score,
+        category: sentiment.singleCategory,
+      };
+    });
+
+    const sentimentVotes = categories.map((category: any) => {
+      const vote = category.score;
+      if (vote >= 4) return 10;
+      if (vote >= 3 && vote < 4) return 8;
+      if (vote >= 2 && vote < 3) return 7;
+      if (vote >= 1 && vote < 2) return 6;
+      if (vote >= 0 && vote < 1) return 5;
+      if (vote >= -1 && vote < 0) return 4;
+      if (vote >= -2 && vote < -1) return 3;
+      if (vote >= -3 && vote < -2) return 2;
+      if (vote >= -4 && vote < -3) return 1;
+      if (vote < -4) return 0;
+      return 0;
+    });
+
+    const sentimentVoteAverage = +(
+      (sentimentVotes.reduce((acc: any, curr: any) => acc + curr, 0) / sentimentVotes.length +
+        (this.smartReplyDialog.review() || { rating: 0 }).rating * 2) /
+      2
+    ).toFixed(1);
+
+    const categoriesGrouped = categories.reduce((acc: any, curr: any) => {
+      const { name, score } = curr;
+      const category = acc.find((category: any) => category.name === name);
+
+      category ? (category.score = (category.score + score) / 2) : acc.push(curr);
+
+      return acc;
+    }, []);
+
+    this.categories$.next(
+      categoriesGrouped.map((category: any) => ({
+        ...category,
+        valutation: category.score < 0 ? 'negative' : category.score > 0 ? 'positive' : 'neutral',
+      }))
+    );
+
+    this.sentimentVote$.next(sentimentVoteAverage);
+  }
+
+  private getIndexTranslation(lang: string) {
+    const review = this.smartReplyDialog.review();
+    if (!review) return -1;
+
+    const translations = review.translations;
+
+    if (!translations) return -1;
+
+    return translations.findIndex((translation: any) => translation.language === lang);
   }
 }

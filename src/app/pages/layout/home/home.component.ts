@@ -16,6 +16,7 @@ import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
 import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepicker.component';
+import { WorldComponent } from '../../../ui/world/world.component';
 
 @Component({
   selector: 'home',
@@ -36,6 +37,7 @@ import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepic
     OverviewReviewsLastDayComponent,
     SparkleComponent,
     DatePickerPeriodComponent,
+    WorldComponent,
   ],
   template: `
     <!-- <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1> -->
