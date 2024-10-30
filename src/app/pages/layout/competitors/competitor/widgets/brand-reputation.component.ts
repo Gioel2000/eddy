@@ -62,11 +62,11 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
         </dt>
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-900 dark:text-zinc-100">
-            {{ reputation().average | numb : translate.currentLang : 2 }}
+            {{ reputation().average | numb : translate.currentLang : 1 }}
             <span class="text-sm font-semibold text-zinc-400 dark:text-zinc-600"> / 5 </span>
           </dd>
           <dd
-            class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
+            class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 p-2 rounded-md gap-x-1"
             [ngClass]="{
               'text-green-600 bg-green-100 dark:bg-green-900': isBRPositive() === '+',
               'text-red-600 bg-red-100 dark:bg-red-900': isBRPositive() === '-',
@@ -80,9 +80,9 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             }
-            <span>
+            <!-- <span>
               {{ reputation().average - averageGraph() | growth : translate.currentLang : 4 }}
-            </span>
+            </span> -->
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">

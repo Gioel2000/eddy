@@ -62,98 +62,142 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
             <div class="grid grid-cols-2 gap-4">
               @for (category of categoriesOrdered(); track $index) {
               <a
-                class="group relative flex items-center space-x-3 rounded-[10px] ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] px-6 py-5 cursor-pointer shadow-sm shadow-black/5"
+                class="group relative flex items-center space-x-3 rounded-[10px] bg-white dark:bg-dark shadow-black/5 ring-1 ring-inset ring-zinc-200 dark:ring-[#1e1e1e] px-6 py-5 shadow-sm cursor-pointer hover:ring-[3px] hover:ring-accent hover:shadow-md dark:hover:ring-accentDark hover:shadow-accent/10 dark:hover:shadow-accentDark/10 transition ease-in-out duration-200 animate-blurToClear200"
               >
-                <div class="min-w-0 flex-1">
+                <div class="min-w-0 flex-1 z-10">
                   <div class="focus:outline-none">
-                    <div class="flex flex-row items-start justify-between w-full -mb-2">
-                      <p class="truncate text-sm font-bold text-zinc-700 dark:text-zinc-300 w-full h-8">
+                    <span class="absolute inset-0" aria-hidden="true"></span>
+                    <div class="flex flex-row items-center justify-between">
+                      <p class="line-clamp-2 text-base font-bold text-zinc-900 dark:text-zinc-100 max-w-22">
                         {{ 'REVIEWS_CATEGORIES.' + (category.category | uppercase) + '.DESC' | translate }}
                       </p>
                     </div>
-                  </div>
 
-                  <div class="flex flex-row items-center gap-2">
-                    <div class="flex flex-row items-end">
-                      <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {{ category.totalRating | numb : translate.currentLang : 2 }}
-                      </span>
-                      <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700"> /5 </span>
+                    <div class="flex flex-row items-center gap-2">
+                      <div class="flex flex-row items-end">
+                        <span class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                          {{ category.totalRating | numb : translate.currentLang : 2 }}
+                        </span>
+                        <span class="relative -top-0.5 text-sm font-semibold text-zinc-300 dark:text-zinc-700">
+                          /5
+                        </span>
+                      </div>
+                      <div>
+                        @if (category.filteredRating > 0) {
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          class="h-4 w-4 text-green-500"
+                        >
+                          <g fill="currentColor">
+                            <path
+                              d="m6,11.75c-.414,0-.75-.336-.75-.75V1.25c0-.414.336-.75.75-.75s.75.336.75.75v9.75c0,.414-.336.75-.75.75Z"
+                              stroke-width="0"
+                            ></path>
+                            <path
+                              d="m9.25,5c-.192,0-.384-.073-.53-.22l-2.72-2.72-2.72,2.72c-.293.293-.768.293-1.061,0s-.293-.768,0-1.061L5.47.47c.293-.293.768-.293,1.061,0l3.25,3.25c.293.293.293.768,0,1.061-.146.146-.338.22-.53.22Z"
+                              stroke-width="0"
+                            ></path>
+                          </g>
+                        </svg>
+                        } @if (category.filteredRating < 0) {
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          class="h-4 w-4 text-red-500"
+                        >
+                          <g fill="currentColor">
+                            <path
+                              d="m6,11.5c-.414,0-.75-.336-.75-.75V1c0-.414.336-.75.75-.75s.75.336.75.75v9.75c0,.414-.336.75-.75.75Z"
+                              stroke-width="0"
+                            ></path>
+                            <path
+                              d="m6,11.75c-.192,0-.384-.073-.53-.22l-3.25-3.25c-.293-.293-.293-.768,0-1.061s.768-.293,1.061,0l2.72,2.72,2.72-2.72c.293-.293.768-.293,1.061,0s.293.768,0,1.061l-3.25,3.25c-.146.146-.338.22-.53.22Z"
+                              stroke-width="0"
+                            ></path>
+                          </g>
+                        </svg>
+                        }
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="flex flex-row items-center justify-between mt-1">
-                    <div class="flex flex-row relative whitespace-nowrap">
-                      <svg
-                        class="fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 18 18"
-                      >
-                        <g>
-                          <path
-                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                          ></path>
-                        </g>
-                      </svg>
-                      <svg
-                        class="fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 18 18"
-                      >
-                        <g>
-                          <path
-                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                          ></path>
-                        </g>
-                      </svg>
-                      <svg
-                        class="fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 18 18"
-                      >
-                        <g>
-                          <path
-                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                          ></path>
-                        </g>
-                      </svg>
-                      <svg
-                        class="fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 18 18"
-                      >
-                        <g>
-                          <path
-                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                          ></path>
-                        </g>
-                      </svg>
-                      <svg
-                        class="fill-yellow-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 18 18"
-                      >
-                        <g>
-                          <path
-                            d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
-                          ></path>
-                        </g>
-                      </svg>
+                    <div class="flex items-center xl:col-span-1">
+                      <div class="flex flex-row relative whitespace-nowrap mt-1">
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
+                        <svg
+                          class="fill-yellow-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                        >
+                          <g>
+                            <path
+                              d="M16.963,6.786c-.088-.271-.323-.469-.605-.51l-4.62-.671L9.672,1.418c-.252-.512-1.093-.512-1.345,0l-2.066,4.186-4.62,.671c-.282,.041-.517,.239-.605,.51-.088,.271-.015,.57,.19,.769l3.343,3.258-.79,4.601c-.048,.282,.067,.566,.298,.734,.231,.167,.538,.189,.79,.057l4.132-2.173,4.132,2.173c.11,.058,.229,.086,.349,.086,.155,0,.31-.048,.441-.143,.231-.168,.347-.452,.298-.734l-.79-4.601,3.343-3.258c.205-.199,.278-.498,.19-.769Z"
+                            ></path>
+                          </g>
+                        </svg>
 
-                      <div
-                        class="bg-white/50 dark:bg-[#141414]/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
-                        [style.width.%]="(5 - category.totalRating) * 20"
-                      ></div>
+                        <div
+                          class="bg-white/50 dark:bg-dark/80 mix-blend-darker h-full overflow-hidden absolute top-0 right-0"
+                          [style.width.%]="(5 - category.totalRating) * 20"
+                        ></div>
+                      </div>
                     </div>
                   </div>
                 </div>

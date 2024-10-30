@@ -296,7 +296,6 @@ export class DatePickerPeriodComponent {
         filter((date): date is Date => !!date)
       )
       .subscribe((date) => {
-        this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
         this.startDateChoosed.set(date);
       });
 
@@ -306,6 +305,7 @@ export class DatePickerPeriodComponent {
         filter((date): date is Date => !!date)
       )
       .subscribe((date) => {
+        this.filter.set(this.loadCalendarDays({ month: date.getMonth(), year: date.getFullYear() }));
         this.endDateChoosed.set(date);
       });
 

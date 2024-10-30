@@ -99,11 +99,11 @@ import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
 
         <div class="flex flex-row items-center gap-x-3 w-full">
           <dd class="flex-none text-3xl font-medium leading-10 tracking-tight text-zinc-100">
-            {{ competitor.you.brandReputation().data.average | numb : translate.currentLang : 2 }}
+            {{ competitor.you.brandReputation().data.average | numb : translate.currentLang : 1 }}
             <span class="text-sm font-semibold text-zinc-600"> / 5 </span>
           </dd>
           <dd
-            class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 px-2 rounded-md gap-x-1"
+            class="flex flex-row items-center text-sm font-semibold tracking-tight leading-9 p-2 rounded-md gap-x-1"
             [ngClass]="{
               'text-green-600 bg-green-900': isBRPositive() === '+',
               'text-red-600 bg-red-900': isBRPositive() === '-',
@@ -117,9 +117,9 @@ import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
             } @if (isBRPositive() === '=') {
             <span [inlineSVG]="'priority-normal.svg'" class="svg-icon svg-icon-7 stroke-2"></span>
             }
-            <span>
+            <!-- <span>
               {{ competitor.you.brandReputation().data.average - averageGraph() | growth : translate.currentLang : 4 }}
-            </span>
+            </span> -->
           </dd>
         </div>
         <dt class="text-sm font-medium leading-6 text-zinc-500">

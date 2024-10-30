@@ -138,6 +138,10 @@ export class MenuStoreService {
           ...state.dishes,
           state: 'loading',
         },
+        menus: {
+          ...state.menus,
+          state: 'loading',
+        },
       }))
       .with(this.addCategory$, (state, category) => ({
         categories: {
