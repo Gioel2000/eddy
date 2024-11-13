@@ -71,6 +71,7 @@ export class ReviewsStore {
   }>();
 
   setIsDownloading$ = new Subject<boolean>();
+  addAiReply$ = new Subject<{ reviewId: string; newAiReply: AIReply }>();
 
   reviews = computed(() => this.store().list.data);
   state = computed(() => this.store().list.state);
@@ -121,7 +122,10 @@ export class ReviewsStore {
           data: forkJoin({
             list: this.http.post<ReviewTO[]>(`${environment.apiUrl}/api/reviews/paginate`, filter).pipe(
               map((data) => ({
-                data,
+                data: data.map((review) => ({
+                  ...review,
+                  aiReply: review.aiReply.reverse(),
+                })),
                 state: 'loaded',
               })),
               catchError(() => of({ data: [], state: 'error' }))
@@ -182,6 +186,20 @@ export class ReviewsStore {
         }
 
         return { ...store, isDownloading };
+      })
+      .with(this.addAiReply$, (store, { reviewId, newAiReply }) => {
+        const { list } = store;
+        const newList = list.data.map((review) => {
+          if (review._id === reviewId) {
+            return {
+              ...review,
+              aiReply: [newAiReply, ...review.aiReply],
+            };
+          }
+          return review;
+        });
+
+        return { ...store, list: { ...list, data: newList } };
       });
   }
 
@@ -197,8 +215,8 @@ export class ReviewsStore {
     return this.http.put(`${environment.apiUrl}/api/reviews/${reviewId}/setreplied/${replied}`, {});
   }
 
-  askAIReply(reviewId: string, language: string) {
-    const params = new HttpParams().set('lng', language);
+  askAIReply(reviewId: string, personality: string, lngAnswer: string, language: string) {
+    const params = new HttpParams().set('lng', language).set('personality', personality).set('lngAnswer', lngAnswer);
     return this.http.get<AIReply>(`${environment.apiUrl}/api/reviews/${reviewId}/aireply?${params.toString()}`);
   }
 }

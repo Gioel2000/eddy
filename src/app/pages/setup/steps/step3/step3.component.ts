@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorldComponent } from '../../../../ui/world/world.component';
-import { ClickOutsideDirective } from '../../../../utils/directives/clickoutside';
 import { StepperComponent } from '../../stepper/stepper.component';
 import { StructureStore } from '../../../../store/structures/structure.service';
 import { SettingsService } from '../../../../ui/settings/settings.service';
@@ -26,11 +24,9 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
   imports: [
     CommonModule,
     TranslateModule,
-    LoaderComponent,
     InlineSVGModule,
     ReactiveFormsModule,
     WorldComponent,
-    ClickOutsideDirective,
     StepperComponent,
     MissingTranslationPipe,
     GoogleMapsModule,
@@ -141,48 +137,138 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
         } @case ('loaded') {
         <div class="col-span-1 px-6 pb-24 pt-20 sm:pt-24 sm:pb-32 lg:px-8 lg:min-h-screen">
           <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-            <div class="hidden xl:flex flex-row items-center justify-between relative -bottom-96 -mx-10 h-0">
+            <div class="hidden xl:flex flex-row items-center justify-between relative -bottom-96 -mx-16 h-0">
               <button
-                class="svg-icon-5 stroke-[1.8] pr-4 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-500 cursor-pointer disabled:opacity-30 w-0"
-                [disabled]="index() === 0"
+                class="flex flex-col items-start scale-90 pt-8 pl-8 pb-8 relative -right-0.5 rounded-l-xl border border-r-0 border-zinc-300 dark:border-zinc-800 h-[42rem] w-16 hover:bg-zinc-50 dark:hover:bg-zinc-900 dark:bg-dark opacity-80"
                 (click)="prev()"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                  <title>chevron left</title>
-                  <g fill="currentColor" class="nc-icon-wrapper">
-                    <polyline
-                      points="11.5 15.25 5.25 9 11.5 2.75"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></polyline>
-                  </g>
-                </svg>
+                <div
+                  class="flex flex-col items-start w-full rounded-md cursor-pointer transition ease-in-out duration-200 animate-blurToClear200 transform"
+                >
+                  <h2
+                    class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 w-full overflow-hidden whitespace-nowrap"
+                  >
+                    {{ prevCompetitor().name }}
+                  </h2>
+                </div>
+
+                <div class="min-h-11">
+                  <p
+                    class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-normal leading-6 text-zinc-400 dark:text-zinc-600 mb-1 mt-4"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                      <title>pin</title>
+                      <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
+                        <path
+                          d="M14.779,7.266c0,2.622-3.428,6.833-5.004,8.631-.413,.471-1.139,.471-1.551,0-1.576-1.797-5.004-6.008-5.004-8.631C3.221,3.776,6.207,1.75,9,1.75s5.779,2.026,5.779,5.516Z"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                        <circle
+                          cx="9"
+                          cy="7.5"
+                          r="1.75"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="currentColor"
+                        ></circle>
+                      </g>
+                    </svg>
+                  </p>
+                </div>
+
+                <p
+                  class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-normal leading-6 text-zinc-400 dark:text-zinc-600 mb-4"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                    <title>phone</title>
+                    <g fill="currentColor" class="nc-icon-wrapper">
+                      <path
+                        d="M11.347,10.646l-1.141,1.426c-1.767-1.039-3.24-2.511-4.278-4.278l1.426-1.141c.344-.275,.459-.748,.28-1.15l-1.3-2.927c-.193-.434-.671-.664-1.13-.545l-2.475,.642c-.478,.125-.787,.588-.719,1.077,.892,6.354,5.886,11.348,12.241,12.241,.489,.067,.952-.242,1.076-.719l.642-2.475c.119-.459-.111-.936-.544-1.129l-2.927-1.3c-.402-.179-.874-.064-1.15,.279Z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </svg>
+                </p>
+
+                <div class="w-full h-64 overflow-hidden mb-4">
+                  <img
+                    [src]="getUrl(prevCompetitor().photos[0])"
+                    class="object-cover object-left w-full h-full rounded-l-md"
+                  />
+                </div>
+
+                <div class="w-full h-64 overflow-hidden">
+                  <img
+                    [src]="getUrl(prevCompetitor().photos[1])"
+                    class="object-cover object-left w-full h-full rounded-l-md"
+                  />
+                </div>
               </button>
 
               <button
-                class="svg-icon-5 stroke-[1.8] pr-4 text-zinc-400 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-500 cursor-pointer disabled:opacity-30 w-0"
-                [disabled]="index() === store.competitors().length"
+                class="flex flex-col items-start scale-90 pt-8 pr-8 pb-8 relative -left-0.5 rounded-r-xl border border-l-0 border-zinc-300 dark:border-zinc-800 h-[42rem] w-16 hover:bg-zinc-50 dark:hover:bg-zinc-900 dark:bg-dark opacity-80"
                 (click)="next()"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                  <title>chevron right</title>
-                  <g fill="currentColor" class="nc-icon-wrapper">
-                    <polyline
-                      points="6.5 2.75 12.75 9 6.5 15.25"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></polyline>
-                  </g>
-                </svg>
+                <div
+                  class="flex flex-col items-end w-full rounded-md p-1.5 cursor-pointer transition ease-in-out duration-200 animate-blurToClear200 transform"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="18"
+                    width="18"
+                    viewBox="0 0 18 18"
+                    class="text-zinc-400 dark:text-zinc-500 stroke-[1.7]"
+                  >
+                    <title>share up right</title>
+                    <g fill="none" stroke="currentColor" class="nc-icon-wrapper">
+                      <polyline
+                        points="10.5 2.75 15.25 2.75 15.25 7.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke="currentColor"
+                      ></polyline>
+                      <line
+                        x1="15.25"
+                        y1="2.75"
+                        x2="9"
+                        y2="9"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke="currentColor"
+                      ></line>
+                      <path
+                        d="M15.25,10.5v2.75c0,1.105-.895,2-2,2H4.75c-1.105,0-2-.895-2-2V4.75c0-1.105,.895-2,2-2h2.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </svg>
+                </div>
+
+                <div class="py-11"></div>
+
+                <div class="w-full h-64 overflow-hidden mb-4">
+                  <img
+                    [src]="getUrl(nextCompetitor().photos[0])"
+                    class="object-cover object-right w-full h-full rounded-r-md"
+                  />
+                </div>
+
+                <div class="w-full h-64 overflow-hidden">
+                  <img
+                    [src]="getUrl(nextCompetitor().photos[1])"
+                    class="object-cover object-right w-full h-full rounded-r-md"
+                  />
+                </div>
               </button>
             </div>
 
             <div class="max-w-7xl mx-auto">
-              @if (suggestNextStep()) {
+              <!-- @if (suggestNextStep()) {
               <div>
                 <div class="flex flex-row items-center justify-center px-6 h-[50rem] sm:px-6 sm:py-32 lg:px-8">
                   <div class="mx-auto max-w-2xl text-center">
@@ -219,7 +305,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                   </div>
                 </div>
               </div>
-              } @else {
+              } @else { -->
               <div class="ring-1 ring-zinc-300 dark:ring-zinc-800 rounded-xl p-8">
                 <div class="flex flex-row justify-between mb-3">
                   <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 w-full truncate">
@@ -264,7 +350,7 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                 </div>
 
                 <p
-                  class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-medium leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
+                  class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-normal leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                     <title>pin</title>
@@ -284,11 +370,11 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                       ></circle>
                     </g>
                   </svg>
-                  {{ competitor().address }}, {{ competitor().city }}
+                  <span class="truncate">{{ competitor().address }}, {{ competitor().city }}</span>
                 </p>
 
                 <p
-                  class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-medium leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
+                  class="flex flex-row items-center gap-x-1 col-span-1 svg-icon-7 stroke-[1.6] text-sm font-normal leading-6 text-zinc-400 dark:text-zinc-600 mb-1"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
                     <title>phone</title>
@@ -380,24 +466,13 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                 <div class="flex flex-row items-center justify-between w-full mt-10">
                   @if (competitor().isAdded) {
                   <h1
-                    class="flex flex-row items-center justify-center gap-1 text-green-500 w-full stroke-2 text-lg font-medium leading-6"
+                    class="flex flex-row items-center justify-center gap-1 text-green-500 w-full stroke-2 text-lg font-medium leading-6 h-11"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                      <g fill="currentColor" class="nc-icon-wrapper">
-                        <polyline
-                          points="2.75 9.25 6.75 14.25 15.25 3.75"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        ></polyline>
-                      </g>
-                    </svg>
-                    {{ 'ADDED' | translate }}
+                    {{ 'COMPETITOR_ADDED' | translate }}
                   </h1>
                   } @else { @if (competitor().competitorReferenceId) {
                   <button
-                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
                     [disabled]="!canAdd()"
                     (click)="channels()"
                   >
@@ -457,67 +532,94 @@ import { CompetitorsStore } from '../../../../store/competitors/competitors.serv
                   </button>
                   } @else {
                   <button
-                    class="w-full col-start-1 col-span-full sm:col-start-2 sm:col-span-1 cursor-pointer xl:col-span-1 rounded-[8px] h-11 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px shadow-md shadow-black/20 hover:shadow-lg hover:shadow-accent/40 hover:dark:shadow-accentDark/40 disabled:opacity-30"
+                    class="flex flex-row items-center justify-center w-full gap-x-1.5 rounded-[8px] bg-zinc-900 dark:bg-zinc-100 px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-50 dark:text-zinc-950 shadow-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 disabled:opacity-30"
                     [disabled]="!canAdd()"
                     (click)="add()"
                   >
-                    <div
-                      class="flex flex-row items-center justify-center gap-x-2 svg-icon-9 stroke-[2.6px] bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
-                    >
-                      <span class="font-semibold text-base"> {{ 'ADD' | translate }}</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
-                        <title>plus</title>
-                        <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
-                          <line
-                            x1="9"
-                            y1="3.25"
-                            x2="9"
-                            y2="14.75"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            data-color="color-2"
-                          ></line>
-                          <line
-                            x1="3.25"
-                            y1="9"
-                            x2="14.75"
-                            y2="9"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          ></line>
-                        </g>
-                      </svg>
-                    </div>
+                    <span class="font-semibold text-base"> {{ 'ADD' | translate }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18" class="stroke-2">
+                      <title>plus</title>
+                      <g fill="currentColor" stroke="currentColor" class="nc-icon-wrapper">
+                        <line
+                          x1="9"
+                          y1="3.25"
+                          x2="9"
+                          y2="14.75"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          data-color="color-2"
+                        ></line>
+                        <line
+                          x1="3.25"
+                          y1="9"
+                          x2="14.75"
+                          y2="9"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></line>
+                      </g>
+                    </svg>
                   </button>
                   } }
                 </div>
               </div>
-              }
-              <div class="xl:hidden flex flex-row items-center justify-between pt-7 pb-5">
+              <div class="flex flex-row items-center justify-between xl:justify-center pt-7 pb-5">
                 <button
                   type="button"
-                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
-                  [disabled]="index() === 0"
+                  class="xl:hidden flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
                   (click)="prev()"
                 >
                   {{ 'PREVIOUS' | translate }}
                 </button>
+                <div class="flex flex-row items-center justify-center gap-2 h-11">
+                  @for (item of store.competitors(); track $index) {
+                  <button
+                    class="flex flex-row items-center justify-center gap-2 w-2 h-2 rounded-full bg-zinc-300 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                    [ngClass]="{
+                      'bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950': $index === index()
+                    }"
+                    (click)="jump($index)"
+                  ></button>
+                  }
+                </div>
                 <button
                   type="button"
-                  class="flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
-                  [disabled]="index() === store.competitors().length"
+                  class="xl:hidden flex flex-row items-center gap-x-2 rounded-[8px] bg-transparent px-4 h-11 text-sm svg-icon-7 stroke-2 font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-zinc-300 dark:ring-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-30"
                   (click)="next()"
                 >
                   {{ 'NEXT' | translate }}
                 </button>
               </div>
-              <p class="text-zinc-400 dark:text-zinc-600 text-sm font-normal tracking-tight italic mt-6">
-                {{ 'COMPETITOR_MAX_LIMIT' | translate }}
-              </p>
             </div>
+
+            <button
+              class="w-full rounded-[8px] h-11 mt-6 transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-accent dark:ring-red-500 text-white bg-gradient-to-b from-red-600/55 dark:from-red-500/55 via-red-600 dark:via-red-500 to-red-600 dark:to-red-500 p-px"
+              (click)="save()"
+            >
+              <div
+                class="flex flex-row items-center justify-center gap-x-2 svg-icon-7 stroke-2 bg-accent dark:bg-accentDark h-full px-3.5 py-2.5 rounded-[7px] cursor-pointer"
+              >
+                <span class="font-semibold text-base"> {{ 'CONFIRM' | translate }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 18 18">
+                  <title>check</title>
+                  <g fill="currentColor" class="nc-icon-wrapper">
+                    <polyline
+                      points="2.75 9.25 6.75 14.25 15.25 3.75"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></polyline>
+                  </g>
+                </svg>
+              </div>
+            </button>
+            <p class="text-zinc-400 dark:text-zinc-600 text-sm font-normal tracking-tight italic mt-6">
+              {{ 'COMPETITOR_MAX_LIMIT' | translate }}
+            </p>
           </div>
         </div>
         } }
@@ -748,12 +850,79 @@ export class Step3Component {
     };
   });
 
+  nextCompetitor = computed(() => {
+    const competitor = this.store.competitors()[this.index() + 1] || this.store.competitors()[0];
+    const address: string =
+      competitor?.address_components?.find((c) => c.types.includes('route') || c.types.includes('sublocality_level_2'))
+        ?.long_name || '';
+    const number: string =
+      competitor?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
+    const zipCode: string =
+      competitor?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
+    const city: string =
+      competitor?.address_components?.find(
+        (c) =>
+          c.types.includes('locality') ||
+          c.types.includes('administrative_area_level_3') ||
+          c.types.includes('postal_town')
+      )?.long_name || '';
+
+    const googlePlaceId = competitor.place_id || '';
+    const isAdded = competitor.isAdded;
+
+    return {
+      competitorReferenceId: competitor?.competitorReference?.id || '',
+      name: competitor?.name || '',
+      address: `${address} ${number}`,
+      city: city,
+      zipCode: zipCode,
+      phone: competitor?.phone || '',
+      url: competitor?.website || '',
+      placeId: googlePlaceId,
+      photos: competitor?.photos || ([] as any[]),
+      isAdded,
+    };
+  });
+
+  prevCompetitor = computed(() => {
+    const competitor =
+      this.store.competitors()[this.index() - 1] || this.store.competitors()[this.store.competitors().length - 1];
+    const address: string =
+      competitor?.address_components?.find((c) => c.types.includes('route') || c.types.includes('sublocality_level_2'))
+        ?.long_name || '';
+    const number: string =
+      competitor?.address_components?.find((c) => c.types.includes('street_number'))?.long_name || '';
+    const zipCode: string =
+      competitor?.address_components?.find((c) => c.types.includes('postal_code'))?.long_name || '';
+    const city: string =
+      competitor?.address_components?.find(
+        (c) =>
+          c.types.includes('locality') ||
+          c.types.includes('administrative_area_level_3') ||
+          c.types.includes('postal_town')
+      )?.long_name || '';
+
+    const googlePlaceId = competitor.place_id || '';
+    const isAdded = competitor.isAdded;
+
+    return {
+      competitorReferenceId: competitor?.competitorReference?.id || '',
+      name: competitor?.name || '',
+      address: `${address} ${number}`,
+      city: city,
+      zipCode: zipCode,
+      phone: competitor?.phone || '',
+      url: competitor?.website || '',
+      placeId: googlePlaceId,
+      photos: competitor?.photos || ([] as any[]),
+      isAdded,
+    };
+  });
+
   canAdd = computed(() => {
     const competitors = this.store.competitors().filter((c) => c.isAdded);
     return competitors.length < 3;
   });
-
-  suggestNextStep = signal(false);
 
   constructor() {
     this.store.retrive();
@@ -782,19 +951,22 @@ export class Step3Component {
 
   next() {
     if (this.index() === this.store.competitors().length - 1) {
-      this.suggestNextStep.set(true);
-      return;
+      this.index.set(0);
+    } else {
+      this.index.set(this.index() + 1);
     }
-    this.index.set(this.index() + 1);
   }
 
   prev() {
-    if (this.index() === 0) return;
-    this.index.set(this.index() - 1);
-
-    if (this.suggestNextStep()) {
-      this.suggestNextStep.set(false);
+    if (this.index() === 0) {
+      this.index.set(this.store.competitors().length - 1);
+    } else {
+      this.index.set(this.index() - 1);
     }
+  }
+
+  jump(index: number) {
+    this.index.set(index);
   }
 
   save() {

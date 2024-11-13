@@ -29,16 +29,9 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        data: { show: true, i18n: 'HOME', icon: 'house.svg' },
+        data: { show: true, i18n: 'HOME', icon: 'house-9.svg' },
         canActivate: [CookieGuard],
       },
-      {
-        path: 'menu',
-        component: MenuComponent,
-        data: { show: true, i18n: 'MENU', icon: 'restaurant-menu.svg' },
-        canActivate: [CookieGuard],
-      },
-
       {
         path: 'reviews',
         component: ReviewsComponent,
@@ -54,6 +47,12 @@ export const routes: Routes = [
         path: 'competitors',
         component: CompetitorsComponent,
         data: { show: true, i18n: 'COMPETITORS', icon: 'shield.svg' },
+        canActivate: [CookieGuard],
+      },
+      {
+        path: 'menu',
+        component: MenuComponent,
+        data: { show: true, i18n: 'MENU', icon: 'restaurant-menu.svg' },
         canActivate: [CookieGuard],
       },
     ],

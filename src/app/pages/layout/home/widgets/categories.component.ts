@@ -5,8 +5,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
-import { CategoryTO, SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
+import { SentimentTO } from '../../../../store/dashboard/interfaces/dashboard';
 import { ReviewsService } from '../../reviews/reviews.service';
 import { Router } from '@angular/router';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
@@ -14,15 +13,7 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
 @Component({
   selector: 'categories-graph',
   standalone: true,
-  imports: [
-    CommonModule,
-    LoaderComponent,
-    InlineSVGModule,
-    TranslateModule,
-    NumberPipe,
-    GrowthPipe,
-    MissingTranslationPipe,
-  ],
+  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, MissingTranslationPipe],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[485px]">

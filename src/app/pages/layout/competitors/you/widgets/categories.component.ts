@@ -5,26 +5,13 @@ import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DashboardStore } from '../../../../../store/dashboard/dashboard.service';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { SentimentTO } from '../../../../../store/dashboard/interfaces/dashboard';
 import { CompetitorsService } from '../../competitors.service';
-import { SubstringPipe } from '../../../../../utils/pipes/substring.pipe';
-import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
 
 @Component({
   selector: 'categories-graph',
-  imports: [
-    InlineSVGModule,
-    CommonModule,
-    LoaderComponent,
-    TranslateModule,
-    NumberPipe,
-    GrowthPipe,
-    SubstringPipe,
-    MissingTranslationPipe,
-    TooltipComponent,
-  ],
+  imports: [InlineSVGModule, CommonModule, LoaderComponent, TranslateModule, NumberPipe, TooltipComponent],
   standalone: true,
   template: `
     <ng-template #loading>

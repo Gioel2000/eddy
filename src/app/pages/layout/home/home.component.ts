@@ -3,7 +3,6 @@ import { Component, computed, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { DatePickerComponent } from '../../../ui/datepicker/datepicker.component';
 import { HomeService } from './home.service';
 import { ChannelsDropdownComponent } from './channels/channels.component';
 import moment from 'moment';
@@ -16,7 +15,6 @@ import { ChannelsComponent } from './widgets/channels.component';
 import { CategoriesComponent } from './widgets/categories.component';
 import { SparkleComponent } from '../../../ui/sparkle/sparkle.component';
 import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepicker.component';
-import { WorldComponent } from '../../../ui/world/world.component';
 
 @Component({
   selector: 'home',
@@ -26,7 +24,6 @@ import { WorldComponent } from '../../../ui/world/world.component';
     InlineSVGModule,
     TranslateModule,
     ReactiveFormsModule,
-    DatePickerComponent,
     ChannelsDropdownComponent,
     BrandReputationComponent,
     RatingsComponent,
@@ -37,7 +34,6 @@ import { WorldComponent } from '../../../ui/world/world.component';
     OverviewReviewsLastDayComponent,
     SparkleComponent,
     DatePickerPeriodComponent,
-    WorldComponent,
   ],
   template: `
     <!-- <h1 class="hidden sm:block text-xl font-medium text-zinc-900 dark:text-zinc-100">Home</h1> -->

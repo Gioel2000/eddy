@@ -1,17 +1,28 @@
 import { Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-// import { LottieComponent } from 'ngx-lottie';
+import { LottieComponent } from 'ngx-lottie';
 
 @Component({
   selector: 'world',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, LottieComponent],
   template: `
     <div class="flex flex-col items-center text-balance text-center gap-y-3 animate-pulse">
-      <iframe
+      <ng-lottie
         class="h-28 w-28"
-        src="https://lottie.host/embed/626fff2e-6a24-46fb-bded-d1150d4ede6a/ZmvEzIrBrI.json"
-      ></iframe>
+        [options]="{
+          path: '/assets/lottie/world.json',
+        }"
+        background="transparent"
+        speed="0.6"
+        loop
+        autoplay
+      ></ng-lottie>
+      <script
+        src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+        type="module"
+      ></script>
+
       <p class="text-2xl font-bold leading-8 text-zinc-900 dark:text-zinc-100 tracking-tight">
         {{ title() }}
       </p>

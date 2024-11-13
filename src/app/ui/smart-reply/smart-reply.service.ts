@@ -7,6 +7,9 @@ export class SmartReplyDialogService {
   isDialogVisible = signal(false);
 
   review = signal<ReviewTO | null>(null);
+  width = signal<number>(0);
+  left = signal<number>(0);
+  pasteResponse = signal<Function>(() => {});
 
   openDialog() {
     this.isDialogOpen.set(true);

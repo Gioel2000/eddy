@@ -4,7 +4,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { AddCompetitorSetupDialogService } from './add-competitor-dialog.service';
 import { ClickOutsideDirective } from '../../../../../utils/directives/clickoutside';
-import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 import { Step1CompetitorDialog } from './step1/step1.component';
 import { Step2CompetitorDialog } from './step2/step2.component';
 import { SetupStore } from '../../../../../store/setup/setup.service';
@@ -17,7 +16,6 @@ import { SetupStore } from '../../../../../store/setup/setup.service';
     TranslateModule,
     InlineSVGModule,
     ClickOutsideDirective,
-    MissingTranslationPipe,
     Step1CompetitorDialog,
     Step2CompetitorDialog,
   ],

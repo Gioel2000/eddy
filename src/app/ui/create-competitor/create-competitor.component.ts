@@ -111,11 +111,9 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
                       class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
                     >
                       <div>
-                        <label
-                          for="project-name"
-                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'NAME' | translate }}</label
-                        >
+                        <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                          'NAME' | translate
+                        }}</label>
                       </div>
                       <div class="col-span-2">
                         <input
@@ -131,11 +129,9 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
                       class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
                     >
                       <div>
-                        <label
-                          for="project-name"
-                          class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                          >{{ 'ADDRESS' | translate }}</label
-                        >
+                        <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                          'ADDRESS' | translate
+                        }}</label>
                       </div>
                       <div class="col-span-2 grid grid-cols-2 sm:grid-cols-9 gap-x-2 gap-y-2 w-full">
                         <input
@@ -172,11 +168,9 @@ import { AddCompetitor } from '../../store/competitors/interfaces/competitors';
                     class="bg-white dark:bg-zinc-800 px-4 py-6 sm:px-6 border-b border-zinc-200 dark:border-zinc-700"
                   >
                     <div>
-                      <label
-                        for="project-name"
-                        class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5 mb-3"
-                        >{{ 'PHOTO' | translate }}</label
-                      >
+                      <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5 mb-3">{{
+                        'PHOTO' | translate
+                      }}</label>
                     </div>
                     <div class="bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
                       <img [src]="cover()" alt="" class="w-full h-72 bg-zinc-100 object-cover" />

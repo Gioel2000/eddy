@@ -22,7 +22,6 @@ import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
     NgxChartsModule,
     NumberPipe,
     MissingTranslationPipe,
-    GrowthPipe,
     TooltipComponent,
   ],
   template: `

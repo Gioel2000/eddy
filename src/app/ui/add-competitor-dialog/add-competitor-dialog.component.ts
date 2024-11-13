@@ -6,7 +6,6 @@ import { AddCompetitorDialogService } from './add-competitor-dialog.service';
 import { Step1CompetitorDialog } from './step1/step1.component';
 import { Step2CompetitorDialog } from './step2/step2.component';
 import { ClickOutsideDirective } from '../../utils/directives/clickoutside';
-import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pipe';
 import { CompetitorsStore } from '../../store/competitors/competitors.service';
 
 @Component({
@@ -17,7 +16,6 @@ import { CompetitorsStore } from '../../store/competitors/competitors.service';
     TranslateModule,
     InlineSVGModule,
     ClickOutsideDirective,
-    MissingTranslationPipe,
     Step1CompetitorDialog,
     Step2CompetitorDialog,
   ],

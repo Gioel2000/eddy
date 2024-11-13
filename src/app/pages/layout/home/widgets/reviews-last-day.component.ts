@@ -4,8 +4,6 @@ import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { NumberPipe } from '../../../../utils/pipes/number.pipe';
-import { MomentPipe } from '../../../../utils/pipes/moment.pipe';
 import { BodyReviewComponent } from '../../../../ui/single-review/review-body.component';
 import { HeaderReviewComponent } from '../../../../ui/single-review/review-header.component';
 import { RouterModule } from '@angular/router';
@@ -19,8 +17,6 @@ import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslati
     LoaderComponent,
     InlineSVGModule,
     TranslateModule,
-    NumberPipe,
-    MomentPipe,
     BodyReviewComponent,
     HeaderReviewComponent,
     RouterModule,

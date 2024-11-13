@@ -14,7 +14,6 @@ import { ShareMenuComponent } from './menu/share/share.component';
   standalone: true,
   imports: [
     TranslateModule,
-    MenuCategoriesComponent,
     AddCategoryComponent,
     MenuDishesComponent,
     AddDishComponent,

@@ -33,9 +33,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
                 >{{ 'NAME' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
@@ -54,9 +52,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
                 >{{ 'TYPOLOGY' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
@@ -138,9 +134,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
                 >{{ 'ADDRESS' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
@@ -173,9 +167,7 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
                 >{{ 'TELEPHONE' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
               >
             </div>
@@ -196,11 +188,9 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'WEBSITE' | translate }}</label
-              >
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                'WEBSITE' | translate
+              }}</label>
             </div>
             <div class="col-span-2">
               <div class="flex rounded-md shadow-sm">
@@ -223,11 +213,9 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
             class="grid grid-cols-3 gap-1 sm:gap-4 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700"
           >
             <div>
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'EMAIL' | translate }}</label
-              >
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                'EMAIL' | translate
+              }}</label>
             </div>
             <div class="col-span-2">
               <input
@@ -242,11 +230,9 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
           @if (photos().length > 0) {
           <div class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700 w-full">
             <div class="flex flex-row items-center justify-between w-full">
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'CHOOSE_PHOTO' | translate }}</label
-              >
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                'CHOOSE_PHOTO' | translate
+              }}</label>
               <div class="flex flex-row items-center gap-x-1">
                 <a
                   class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"
@@ -334,11 +320,9 @@ import { ClickOutsideDirective } from '../../../utils/directives/clickoutside';
           } @else {
           <div class="flex flex-col gap-y-2 space-y-0 px-6 py-5 border-b border-zinc-200 dark:border-zinc-700 w-full">
             <div class="flex flex-row items-center justify-between w-full">
-              <label
-                for="project-name"
-                class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-                >{{ 'CHOOSE_PHOTO' | translate }}</label
-              >
+              <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+                'CHOOSE_PHOTO' | translate
+              }}</label>
               <a
                 class="flex flex-row items-center justify-center cursor-pointer gap-x-1 text-sm font-medium bg-transparent rounded-lg py-2 px-2 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-600 dark:text-zinc-400"
                 (click)="loadImagesFromGoogle()"

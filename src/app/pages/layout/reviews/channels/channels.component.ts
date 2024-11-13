@@ -17,7 +17,6 @@ import { ReviewsService } from '../reviews.service';
   >
     <div class="relative">
       <label
-        for="name"
         class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-normal text-zinc-600 dark:text-zinc-400"
         >{{ 'CHANNELS' | translate }}</label
       >

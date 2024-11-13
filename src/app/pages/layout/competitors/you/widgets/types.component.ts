@@ -22,7 +22,6 @@ import { TooltipComponent } from '../../../../../ui/tooltip/tooltip.component';
     InlineSVGModule,
     TranslateModule,
     NumberPipe,
-    GrowthPipe,
     MissingTranslationPipe,
     TooltipComponent,
   ],

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { ClientTypeModel, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CompetitorsService } from '../../competitors.service';
@@ -15,15 +14,7 @@ import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTransl
 @Component({
   selector: 'types-graph',
   standalone: true,
-  imports: [
-    CommonModule,
-    LoaderComponent,
-    InlineSVGModule,
-    TranslateModule,
-    NumberPipe,
-    GrowthPipe,
-    MissingTranslationPipe,
-  ],
+  imports: [CommonModule, LoaderComponent, InlineSVGModule, TranslateModule, NumberPipe, MissingTranslationPipe],
   template: `
     <ng-template #loading>
       <div class="flex flex-row items-center justify-center w-full px-4 py-10 sm:px-6 xl:px-8 h-[525px]">

@@ -85,7 +85,7 @@ import { filter, first } from 'rxjs';
       <form [formGroup]="formGroup" class="pt-8">
         <div class="grid grid-cols-2 gap-x-8 gap-y-7">
           <div class="col-span-2">
-            <label for="first-name" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
               >{{ 'NAME' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
             >
             <div class="mt-2.5">
@@ -103,7 +103,7 @@ import { filter, first } from 'rxjs';
             </div>
           </div>
           <div class="col-span-2" [ngClass]="{ 'opacity-30 cursor-none pointer-events-none': googleLink() === '' }">
-            <label for="email" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100 "
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100 "
               >{{ 'ADDRESS' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
             >
             <div class="mt-2.5">
@@ -130,7 +130,7 @@ import { filter, first } from 'rxjs';
             </div>
           </div>
           <div class="col-span-1" [ngClass]="{ 'opacity-30 cursor-none pointer-events-none': googleLink() === '' }">
-            <label for="phone-number" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
               >{{ 'TYPOLOGY' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
             >
             <div class="mt-2.5">
@@ -208,7 +208,7 @@ import { filter, first } from 'rxjs';
             </div>
           </div>
           <div class="col-span-1" [ngClass]="{ 'opacity-30 cursor-none pointer-events-none': googleLink() === '' }">
-            <label for="message" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
               >{{ 'TELEPHONE' | translate }} <span class="mx-0.4 text-red-500 font-semibold">*</span></label
             >
             <div class="mt-2.5">
@@ -226,7 +226,7 @@ import { filter, first } from 'rxjs';
             class="col-span-2 sm:col-span-1"
             [ngClass]="{ 'opacity-30 cursor-none pointer-events-none': googleLink() === '' }"
           >
-            <label for="message" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{
               'WEBSITE' | translate
             }}</label>
             <div class="mt-2.5">
@@ -250,7 +250,7 @@ import { filter, first } from 'rxjs';
             class="col-span-2 sm:col-span-1"
             [ngClass]="{ 'opacity-30 cursor-none pointer-events-none': googleLink() === '' }"
           >
-            <label for="message" class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{
+            <label class="block text-sm font-semibold leading-6 text-zinc-900 dark:text-zinc-100">{{
               'EMAIL' | translate
             }}</label>
             <div class="mt-2.5">
@@ -267,11 +267,9 @@ import { filter, first } from 'rxjs';
         @if (photos().length > 0){
         <div class="flex flex-col gap-y-2 space-y-0 px-px pt-5">
           <div class="flex flex-row items-center justify-between">
-            <label
-              for="project-name"
-              class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5"
-              >{{ 'CHOOSE_PHOTO' | translate }}</label
-            >
+            <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100 mt-1.5">{{
+              'CHOOSE_PHOTO' | translate
+            }}</label>
             <div class="flex flex-row items-center gap-x-1">
               <a
                 class="flex flex-row items-center justify-center bg-transparent rounded-full p-1.5 shadow-sm hover:bg-black/5 dark:hover:bg-white/5 ring-1 ring-inset ring-zinc-300 dark:ring-zinc-700 text-zinc-400 dark:text-zinc-600"

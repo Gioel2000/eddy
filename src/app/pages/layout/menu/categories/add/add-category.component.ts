@@ -5,7 +5,6 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClickOutsideDirective } from '../../../../../utils/directives/clickoutside';
 import { DialogService } from './dialog.service';
 import { icons } from './icons';
-import { ReplacePipe } from '../../../../../utils/pipes/replace.pipe';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuStoreService } from '../../../../../store/menu/menu.service';
 import { MenuService } from '../../menu.service';
@@ -16,7 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'add-category-dialog',
   standalone: true,
-  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReplacePipe, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReactiveFormsModule],
   template: ` <div
     class="relative z-[10000]"
     [ngClass]="{

@@ -7,7 +7,6 @@ import { LoaderComponent } from '../../ui/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MoneyPipe } from '../../utils/pipes/money.pipe';
 import { DishComponent } from './dish/dish.component';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Category, Dish } from '../../store/public-menu/interface/public-menu';
@@ -29,7 +28,6 @@ import { MissingTranslationPipe } from '../../utils/pipes/missingTranslation.pip
     LoaderComponent,
     InlineSVGModule,
     TranslateModule,
-    MoneyPipe,
     ReactiveFormsModule,
     DishComponent,
     ClickOutsideDirective,

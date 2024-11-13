@@ -26,7 +26,6 @@ import { DatePickerPeriodComponent } from '../../../ui/datepicker-period/datepic
     CommonModule,
     InlineSVGModule,
     TranslateModule,
-    DatePickerComponent,
     ChannelsDropdownComponent,
     TypesDropdownComponent,
     LoaderComponent,

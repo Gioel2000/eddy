@@ -88,11 +88,9 @@ import { UserService } from './user.service';
               <div class="grid grid-cols-1 gap-x-8 gap-y-10 pb-12 md:grid-cols-2">
                 <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                   <div class="sm:col-span-3">
-                    <label
-                      for="first-name"
-                      class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                      >{{ 'NAME' | translate }}</label
-                    >
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                      'NAME' | translate
+                    }}</label>
                     <div class="mt-2">
                       <input
                         type="text"
@@ -107,11 +105,9 @@ import { UserService } from './user.service';
                   </div>
 
                   <div class="sm:col-span-3">
-                    <label
-                      for="last-name"
-                      class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                      >{{ 'SURNAME' | translate }}</label
-                    >
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                      'SURNAME' | translate
+                    }}</label>
                     <div class="mt-2">
                       <input
                         type="text"
@@ -126,7 +122,7 @@ import { UserService } from './user.service';
                   </div>
 
                   <div class="sm:col-span-4">
-                    <label for="email" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                       'EMAIL' | translate
                     }}</label>
                     <div class="mt-2">

@@ -8,7 +8,6 @@ import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { NumberPipe } from '../../../../utils/pipes/number.pipe';
 import moment from 'moment';
 import { MissingTranslationPipe } from '../../../../utils/pipes/missingTranslation.pipe';
-import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
 
 @Component({
   selector: 'brand-reputation-graph',
@@ -21,7 +20,6 @@ import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
     NgxChartsModule,
     NumberPipe,
     MissingTranslationPipe,
-    GrowthPipe,
   ],
   template: `
     <ng-template #loading>
@@ -135,7 +133,7 @@ import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
           [view]="[container.offsetWidth + 30, 340]"
           [results]="data()"
           [xAxis]="true"
-          [yAxis]="true"
+          [yAxis]="false"
           [showXAxisLabel]="false"
           [showYAxisLabel]="false"
           [showGridLines]="true"
@@ -149,7 +147,7 @@ import { GrowthPipe } from '../../../../utils/pipes/growth.pipe';
             domain: growth() > 0 ? ['#22c55e'] : growth() < 0 ? ['#ef4444'] : ['#71717a']
           }"
           [xAxisTickFormatting]="xAxisTickFormatting"
-          class="fill-zinc-500"
+          class="fill-zinc-800 dark:fill-zinc-200"
         >
         </ngx-charts-line-chart>
       </div>

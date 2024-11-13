@@ -4,7 +4,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClickOutsideDirective } from '../../../../../utils/directives/clickoutside';
 import { DialogService } from './dialog.service';
-import { ReplacePipe } from '../../../../../utils/pipes/replace.pipe';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuStoreService } from '../../../../../store/menu/menu.service';
 import { MenuService } from '../../menu.service';
@@ -18,7 +17,7 @@ import { ALLERGENS } from './allergens';
 @Component({
   selector: 'add-dish-dialog',
   standalone: true,
-  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReplacePipe, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, InlineSVGModule, ClickOutsideDirective, ReactiveFormsModule],
   template: `
     <div
       class="relative z-[10000]"
@@ -86,11 +85,9 @@ import { ALLERGENS } from './allergens';
               <div class="grid grid-cols-1 gap-x-8 gap-y-10 pb-4 md:grid-cols-2">
                 <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                   <div class="col-span-full">
-                    <label
-                      for="first-name"
-                      class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                      >{{ 'NAME' | translate }}</label
-                    >
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                      'NAME' | translate
+                    }}</label>
                     <div class="mt-2">
                       <input
                         type="text"
@@ -104,7 +101,7 @@ import { ALLERGENS } from './allergens';
                     </div>
                   </div>
                   <div class="col-span-full">
-                    <label for="about" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                       'DESCRIPTION' | translate
                     }}</label>
                     <div class="mt-2">
@@ -177,11 +174,9 @@ import { ALLERGENS } from './allergens';
                   </div>
                   <div class="col-span-full">
                     <div>
-                      <label
-                        for="location"
-                        class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                        >{{ 'CATEGORY' | translate }}</label
-                      >
+                      <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                        'CATEGORY' | translate
+                      }}</label>
                       <select
                         id="dish-category"
                         name="location"
@@ -196,7 +191,7 @@ import { ALLERGENS } from './allergens';
                   </div>
                   <div class="col-span-full">
                     <div>
-                      <label for="price" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                      <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                         'PRICE' | translate
                       }}</label>
                       <div class="relative mt-2 rounded-md bg-white dark:bg-zinc-800">

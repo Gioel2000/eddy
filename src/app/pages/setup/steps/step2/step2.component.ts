@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { LoaderComponent } from '../../../../ui/loader/loader.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorldComponent } from '../../../../ui/world/world.component';
-import { ClickOutsideDirective } from '../../../../utils/directives/clickoutside';
 import { StepperComponent } from '../../stepper/stepper.component';
 import { StructureStore } from '../../../../store/structures/structure.service';
 import { SettingsService } from '../../../../ui/settings/settings.service';
@@ -27,11 +25,9 @@ import moment from 'moment';
   imports: [
     CommonModule,
     TranslateModule,
-    LoaderComponent,
     InlineSVGModule,
     ReactiveFormsModule,
     WorldComponent,
-    ClickOutsideDirective,
     StepperComponent,
     GoogleStep2Component,
     TripadvisorStep2Component,

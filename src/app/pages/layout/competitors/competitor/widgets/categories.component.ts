@@ -4,22 +4,13 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { LoaderComponent } from '../../../../../ui/loader/loader.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NumberPipe } from '../../../../../utils/pipes/number.pipe';
-import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
 import { CategoryTO, SentimentTO, StateModel } from '../../../../../store/competitors/interfaces/competitors';
 import { CompetitorsService } from '../../competitors.service';
 import { MissingTranslationPipe } from '../../../../../utils/pipes/missingTranslation.pipe';
 
 @Component({
   selector: 'categories-graph',
-  imports: [
-    InlineSVGModule,
-    CommonModule,
-    LoaderComponent,
-    TranslateModule,
-    NumberPipe,
-    GrowthPipe,
-    MissingTranslationPipe,
-  ],
+  imports: [InlineSVGModule, CommonModule, LoaderComponent, TranslateModule, NumberPipe, MissingTranslationPipe],
   standalone: true,
   template: `
     <ng-template #loading>

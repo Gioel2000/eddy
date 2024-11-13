@@ -15,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   >
     <div class="relative">
       <label
-        for="name"
         class="absolute -top-2 left-2 inline-block bg-white dark:bg-dark px-1.5 text-xs font-normal text-zinc-600 dark:text-zinc-400"
       >
         <span [inlineSVG]="'language.svg'" class="svg-icon svg-icon-8 text-zinc-500 stroke-[1.8]"></span>
@@ -38,13 +37,13 @@ import { ReactiveFormsModule } from '@angular/forms';
           </span>
           <span
             [inlineSVG]="'chevron-down.svg'"
-            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8]"
+            class="svg-icon svg-icon-8 text-zinc-600 dark:text-zinc-400 stroke-[1.8] ml-1"
           ></span>
         </div>
       </button>
       <div [ngClass]="{ hidden: !isOpen() }">
         <div
-          class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-lg bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-300 dark:ring-zinc-800 focus:outline-none transition ease-out duration-200 animate-blurToClear200"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

@@ -23,7 +23,6 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
     TranslateModule,
     InlineSVGModule,
     ClickOutsideDirective,
-    ReplacePipe,
     ReactiveFormsModule,
     MoneyPipe,
     TruncatePipe,
@@ -94,11 +93,9 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 pb-4 md:grid-cols-2">
               <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                 <div class="col-span-full">
-                  <label
-                    for="first-name"
-                    class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100"
-                    >{{ 'NAME' | translate }}</label
-                  >
+                  <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    'NAME' | translate
+                  }}</label>
                   <div class="mt-2">
                     <input
                       type="text"
@@ -112,7 +109,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                   </div>
                 </div>
                 <div class="col-span-full">
-                  <label for="about" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                  <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                     'DESCRIPTION' | translate
                   }}</label>
                   <div class="mt-2">
@@ -128,7 +125,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                 </div>
                 <div class="col-span-full">
                   <div class="flex flex-row items-center justify-between">
-                    <label for="about" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                    <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                       'CATEGORIES' | translate
                     }}</label>
                     <!-- <a
@@ -189,7 +186,7 @@ import { TruncatePipe } from '../../../../../utils/pipes/truncate.pipe';
                 </div>
                 @if (menuCategories().length > 0 && menuDishes().length > 0) {
                 <div class="col-span-full">
-                  <label for="about" class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
+                  <label class="block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100">{{
                     'DISHES' | translate
                   }}</label>
                   <div class="mt-2 flow-root">

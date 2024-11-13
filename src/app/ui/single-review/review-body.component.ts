@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, Subject, filter, map, tap } from 'rxjs';
+import { BehaviorSubject, Subject, debounceTime, filter, map, pairwise, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MISSING_TRANSLATION } from '../../utils/constants/missingTranslation';
 import { CommonModule } from '@angular/common';
@@ -27,9 +27,8 @@ import LanguageDetect from 'languagedetect';
 import { BodyReviewSentimentComponent } from './components/review-body-sentiment.component';
 import { StructureStore } from '../../store/structures/structure.service';
 import { I18nStore } from '../../store/i18n/i18n.service';
-import { MomentPipe } from '../../utils/pipes/moment.pipe';
-import moment from 'moment';
 import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
+import { LANGUAGES } from '../../utils/constants/languages';
 
 @UntilDestroy()
 @Component({
@@ -45,10 +44,10 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
     TranslateDropdownComponent,
     LoaderComponent,
     BodyReviewSentimentComponent,
-    MomentPipe,
   ],
   template: `
     <div
+      #bodyReview
       class="z-100 mb-12 sm:ml-16 pb-8"
       [ngClass]="{ 'border-b border-zinc-200 dark:border-zinc-800': showBorder() }"
     >
@@ -548,14 +547,37 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
         </div>
 
         <div class="mt-2 mb-3">
-          <div class="grid grid-cols-6 w-full py-3 sm:py-6">
-            <div class="col-span-full mb-6 sm:col-span-2 sm:mb-0">
+          <div class="flex flex-row items-center justify-between w-full py-3 sm:py-6">
+            <div class="mb-6 sm:mb-0">
+              <div class="flex flex-row items-center pr-2 py-1 z-100">
+                @if (language(); as language) {
+                <div class="flex flex-col gap-y-2">
+                  <span class="text-sm text-zinc-400 dark:text-zinc-600">
+                    <div class="flex flex-row items-center justify-center w-fit gap-x-2">
+                      <img
+                        class="w-5 h-4 ml-0.5 rounded object-cover shadow"
+                        alt=""
+                        [src]="'./assets/flags/' + language.flag + '.svg'"
+                      />
+                      <span class="block text-sm font-bold mr-0.5 leading-6 text-zinc-900 dark:text-zinc-100"
+                        >{{ 'LANGUAGE' | translate }}:
+                        {{
+                          'i18n.' + language.locale | translate | missingTranslation : language.locale | lowercase
+                        }}</span
+                      >
+                    </div>
+                  </span>
+                </div>
+                }
+              </div>
+            </div>
+            <div class="mb-6 sm:mb-0">
               <ng-container *ngIf="(canBeTranslated$ | async) === true">
-                <div class="flex flex-row items-center gap-x-4">
-                  <translate-dropdown (selected)="langSwitcher.patchValue($event)"></translate-dropdown>
+                <div class="flex flex-row items-center">
                   @if (isLoading$ | async) {
                   <loader></loader>
                   }
+                  <translate-dropdown (selected)="langSwitcher.patchValue($event)"></translate-dropdown>
                 </div>
               </ng-container>
             </div>
@@ -563,8 +585,8 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
         </div>
         <div>
           <div *ngIf="(alreadyReplied$ | async) === false">
-            <label for="comment" class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
-              'COMMENT' | translate
+            <label class="block text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200">{{
+              'REPLY' | translate
             }}</label>
             <div
               class="mt-2 mb-4 block w-full rounded-[10px] border-0 py-3 px-4 bg-transparent text-zinc-800 dark:text-zinc-200 shadow-sm ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer text-sm leading-6 focus:outline-none"
@@ -585,9 +607,10 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
             </div>
           </div>
           <div class="flex flex-row items-center justify-between w-full mt-2 mb-3">
-            <div *ngIf="(alreadyReplied$ | async) === false">
+            @if ((alreadyReplied$ | async) === false) {
+            <div>
               <button
-                class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
+                class="col-start-1 col-span-full sm:col-start-2 relative -right-px sm:col-span-1 xl:col-span-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 animate-blurToClear200 opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-md shadow-black/25 disabled:opacity-30"
                 [disabled]="commentControl.invalid"
                 (click)="onCopyAndReply()"
               >
@@ -602,6 +625,7 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
                 </div>
               </button>
             </div>
+            }
             <div *ngIf="(alreadyReplied$ | async) === true">
               <button
                 class="flex flex-row items-center justify-center text-sm font-semibold col-span-1 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer ring-1 ring-zinc-300 dark:ring-zinc-800 text-zinc-800 dark:text-zinc-200 shadow-sm disabled:opacity-30 transition ease-in-out duration-200 animate-blurToClear200"
@@ -617,13 +641,11 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
                   type="checkbox"
                   class="h-5 w-5 mt-2 rounded-md cursor-pointer text-accent dark:text-accentDark bg-zinc-200 dark:bg-zinc-800 border-none dark:text-accentDark-100 focus:ring-0 focus:ring-offset-0 focus:outline-none"
                   [checked]="alreadyReplied$ | async"
-                  (change)="alreadyReplied()"
+                  (change)="setAlreadyReplied()"
                 />
               </div>
               <div class="ml-2 text-sm leading-6">
-                <label for="comments" class="font-medium text-zinc-900 dark:text-zinc-100">{{
-                  'MARK_AS_REPLIED' | translate
-                }}</label>
+                <label class="font-medium text-zinc-900 dark:text-zinc-100">{{ 'MARK_AS_REPLIED' | translate }}</label>
                 <p id="comments-description" class="hidden sm:block text-zinc-500 font-normal text-xs">
                   {{ 'MARK_AS_REPLIED_DESCRIPTION' | translate }}
                 </p>
@@ -642,7 +664,6 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
                 <div class="relative rounded-[10px] leading-none space-x-6">
                   <button
                     class="rounded-[10px] p-0.5 bg-rainbow-opacity-50 cursor-pointer leading-6 disabled:cursor-not-allowed shadow-md shadow-black/10"
-                    [disabled]="isResponseLoading() || isResponseError()"
                     (click)="openSmartReply()"
                   >
                     <div
@@ -657,78 +678,8 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
                   </button>
                 </div>
               </div>
-
-              @if (isResponseLoading()) {
-              <div class="flex flex-row items-center justify-center">
-                <div class="flex flex-row items-center justify-center w-full">
-                  <loader></loader>
-                </div>
-              </div>
-              } @if (isResponseError()) {
-              <div class="flex flex-row items-center justify-center">
-                <div class="flex flex-row items-center justify-center w-full">
-                  <span
-                    [inlineSVG]="'triangle-warning.svg'"
-                    class="svg-icon svg-icon-1 text-red-500 stroke-[1.7]"
-                  ></span>
-                </div>
-              </div>
-              } @if (isResponseSuccess()) {
-              <div class="flex flex-row items-center justify-center">
-                <div class="flex flex-row items-center justify-center w-full">
-                  <span [inlineSVG]="'check.svg'" class="svg-icon svg-icon-1 text-green-500 stroke-[1.7]"></span>
-                </div>
-              </div>
-              }
             </div>
           </div>
-          @if (( replies$ | async )!.length > 0) {
-          <div class="py-4 mt-5">
-            <label
-              for="comment"
-              class="flex flex-row items-center gap-x-1 text-sm font-medium leading-6 text-zinc-600 dark:text-zinc-200"
-            >
-              <span class="svg-icon svg-icon-7 stroke-2" [inlineSVG]="'clock-rotate-clockwise-2.svg'"></span>
-              {{ 'RESPONSE_HISTORY' | translate }}</label
-            >
-            <div class="mx-auto max-w-7xl">
-              <div
-                class="mx-auto mt-2 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:mt-5 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-              >
-                @for (response of ( replies$ | async ); track $index) {
-                <article
-                  class="flex max-w-xl flex-col items-start justify-between gap-y-4 rounded-2xl ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 cursor-pointer p-6"
-                >
-                  <div class="flex items-center gap-x-4 text-xs">
-                    <time class="text-zinc-500 capitalize">
-                      {{ response.createdAt | moment : translate.currentLang : 'MMM DD, YYYY' }}
-                    </time>
-                  </div>
-                  <div class="group relative">
-                    <p class="line-clamp-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                      {{ response.reply }}
-                    </p>
-                  </div>
-                  <button
-                    class="col-start-1 col-span-full sm:col-start-2 sm:col-span-1 xl:col-span-1 mt-1 rounded-[10px] h-full w-full transition ease-in-out duration-200 animate-blurToClear200  opacity-90 hover:opacity-100 ring-1 dark:ring-0 ring-[#1A1A1A] text-white bg-gradient-to-b from-black/55 via-[#1A1A1A] to-[#1A1A1A] dark:from-white/10 dark:via-white/5 dark:to-white/5 p-px shadow-sm shadow-black/25 disabled:opacity-30"
-                    (click)="pasteResponse(response)"
-                  >
-                    <div
-                      class="flex flex-row items-center justify-center gap-x-2 bg-[#1A1A1A] h-full w-full px-3 py-2 rounded-[9px] cursor-pointer"
-                    >
-                      <span class="text-sm font-semibold">{{ 'PASTE' | translate }}</span>
-                      <span
-                        class="svg-icon svg-icon-6 stroke-2 text-zinc-100 dark:text-zinc-100 relative -bottom-px"
-                        [inlineSVG]="'duplicate.svg'"
-                      ></span>
-                    </div>
-                  </button>
-                </article>
-                }
-              </div>
-            </div>
-          </div>
-          }
         </div>
       </ng-container>
     </div>
@@ -736,6 +687,7 @@ import { SmartReplyDialogService } from '../smart-reply/smart-reply.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BodyReviewComponent {
+  @ViewChild('bodyReview') bodyReview!: ElementRef;
   @ViewChild('autoSize') autoSize!: ElementRef;
   scale: number = 5;
   amountToMultiply: number = 1;
@@ -759,17 +711,89 @@ export class BodyReviewComponent {
   store = inject(ReviewsStore);
   structure = inject(StructureStore);
   i18n = inject(I18nStore);
-  smartReply = inject(SmartReplyDialogService);
   translate = inject(TranslateService);
-
-  isResponseSuccess = signal(false);
-  isResponseLoading = signal(false);
-  isResponseError = signal(false);
+  smartReply = inject(SmartReplyDialogService);
   translatedReply = signal('');
 
+  language = computed(() => {
+    const review = this.review();
+
+    const lang = LANGUAGES.find((lang) => lang.locale === review.language);
+    const name = lang?.name.toLowerCase() || '';
+    const flag = lang?.flag || '';
+    const locale = lang?.locale;
+
+    return name && flag && locale ? { name, flag, locale } : null;
+  });
+
   constructor() {
+    this.langSwitcher.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        filter((value) => value !== null),
+        map((value) => value as string),
+        map((value) => (value === 'your_language' ? this.translate.currentLang : value))
+      )
+      .subscribe((currentLang: string) => {
+        const index = this.getIndexTranslation(currentLang);
+
+        if (index !== -1) {
+          const translation = this.review().translations![index];
+          const translatedTitle = translation?.title || '';
+          const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
+          const text = translation?.text || '';
+
+          this.reviewContent$.next({
+            text: text,
+            title: titleFormatted,
+          });
+          this.calculateSentiment(translation, currentLang);
+        } else {
+          this.isLoading$.next(true);
+          this.store
+            .translate(this.review()._id, currentLang)
+            .pipe(untilDestroyed(this))
+            .subscribe((translation) => {
+              this.isLoading$.next(false);
+              const translatedTitle = translation?.title || '';
+              const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
+              const text = translation?.text || '';
+
+              this.reviewContent$.next({
+                title: titleFormatted,
+                text: text,
+              });
+              this.calculateSentiment(translation, currentLang);
+              this.review().translations = [...(this.review().translations || []), translation];
+            });
+        }
+      });
+
+    this.commentControl.valueChanges
+      .pipe(
+        untilDestroyed(this),
+        pairwise(),
+        filter(([prev, next]) => {
+          const nextLength = next?.trim().length || 0;
+          const prevLength = prev?.trim().length || 0;
+          return nextLength < prevLength;
+        })
+      )
+      .subscribe(() => this.translatedReply.set(''));
+
+    this.langSwitcher.patchValue('your_language', { emitEvent: false });
+
     effect(() => {
       const review = this.review();
+
+      this.content$.next('');
+      this.categories$.next([]);
+      this.originalLangKey$.next('');
+      this.replies$.next([]);
+      this.isLoading$.next(false);
+      this.canBeTranslated$.next(false);
+      this.alreadyReplied$.next(false);
+
       this.autoSize.nativeElement.style.height = 'auto';
       this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
 
@@ -815,50 +839,6 @@ export class BodyReviewComponent {
       //   // this.commentControl.setValue(aiReply.reply);
       // }
     });
-
-    this.langSwitcher.valueChanges
-      .pipe(
-        untilDestroyed(this),
-        filter((value) => value !== null),
-        map((value) => value as string),
-        map((value) => (value === 'your_language' ? this.translate.currentLang : value))
-      )
-      .subscribe((currentLang: string) => {
-        const index = this.getIndexTranslation(currentLang);
-
-        if (index !== -1) {
-          const translation = this.review().translations![index];
-          const translatedTitle = translation?.title || '';
-          const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
-          const text = translation?.text || '';
-
-          this.reviewContent$.next({
-            text: text,
-            title: titleFormatted,
-          });
-          this.calculateSentiment(translation, currentLang);
-        } else {
-          this.isLoading$.next(true);
-          this.store
-            .translate(this.review()._id, currentLang)
-            .pipe(untilDestroyed(this))
-            .subscribe((translation) => {
-              this.isLoading$.next(false);
-              const translatedTitle = translation?.title || '';
-              const titleFormatted = translatedTitle.trim().length > 0 ? translatedTitle : this.review().title;
-              const text = translation?.text || '';
-
-              this.reviewContent$.next({
-                title: titleFormatted,
-                text: text,
-              });
-              this.calculateSentiment(translation, currentLang);
-              this.review().translations = [...(this.review().translations || []), translation];
-            });
-        }
-      });
-
-    this.langSwitcher.patchValue('your_language', { emitEvent: false });
   }
 
   calculateStars(rating: number) {
@@ -888,6 +868,9 @@ export class BodyReviewComponent {
 
   pasteResponse(response: AIReply) {
     const { translations, reply } = response;
+    this.commentControl.setValue('');
+    this.translatedReply.set('');
+
     this.commentControl.setValue(reply);
 
     if (translations && translations.length > 0) {
@@ -896,7 +879,6 @@ export class BodyReviewComponent {
 
     this.autoSize.nativeElement.style.height = 'auto';
     this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
-    window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
   }
 
   translateReview(titleReview: string): { title: string; translated: boolean } {
@@ -947,7 +929,7 @@ export class BodyReviewComponent {
     channel && window.open(channel.url, '_blank');
   }
 
-  alreadyReplied() {
+  setAlreadyReplied() {
     this.store.setReviewReplied(this.review()._id, !this.alreadyReplied$.value).subscribe();
     this.alreadyReplied$.next(!this.alreadyReplied$.value);
   }
@@ -1142,32 +1124,14 @@ export class BodyReviewComponent {
   }
 
   openSmartReply() {
+    const width = this.bodyReview.nativeElement.offsetWidth;
+    const position = this.bodyReview.nativeElement.getBoundingClientRect();
+    const left = position.x;
+
+    this.smartReply.width.set(width);
+    this.smartReply.left.set(left);
     this.smartReply.review.set(this.review());
+    this.smartReply.pasteResponse.set(this.pasteResponse.bind(this));
     this.smartReply.openDialog();
-    // this.isResponseLoading.set(true);
-    // this.store
-    //   .askAIReply(this.review()._id, this.i18n.selectedLang().locale)
-    //   .pipe(untilDestroyed(this))
-    //   .subscribe({
-    //     next: (aiReply: AIReply) => {
-    //       const { reply, translations } = aiReply;
-    //       this.isResponseLoading.set(false);
-    //       this.isResponseError.set(false);
-    //       this.isResponseSuccess.set(true);
-    //       this.commentControl.setValue(reply);
-    //       this.autoSize.nativeElement.style.height = 'auto';
-    //       this.autoSize.nativeElement.style.height = this.autoSize.nativeElement.scrollHeight + 'px';
-    //       this.replies$.next([...this.replies$.value, aiReply]);
-    //       if (translations && translations.length > 0) {
-    //         this.translatedReply.set(translations[0].reply);
-    //       }
-    //       window.scrollTo({ top: this.autoSize.nativeElement.offsetTop - 100, behavior: 'smooth' });
-    //       setTimeout(() => this.isResponseSuccess.set(false), 1500);
-    //     },
-    //     error: () => {
-    //       this.isResponseLoading.set(false);
-    //       this.isResponseError.set(true);
-    //     },
-    //   });
   }
 }

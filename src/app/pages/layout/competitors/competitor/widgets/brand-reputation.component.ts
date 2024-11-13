@@ -23,7 +23,6 @@ import { GrowthPipe } from '../../../../../utils/pipes/growth.pipe';
     NgxChartsModule,
     NumberPipe,
     MissingTranslationPipe,
-    GrowthPipe,
   ],
   template: `
     <ng-template #loading>
